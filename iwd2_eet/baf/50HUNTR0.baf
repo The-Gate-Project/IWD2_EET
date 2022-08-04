@@ -1,0 +1,196 @@
+IF
+  Global("SaveSavedLoc","LOCALS",0)
+THEN
+  RESPONSE #100
+    SetGlobal("SaveSavedLoc","LOCALS",1)
+    SaveObjectLocation("LOCALS","SavedLoc",Myself)
+    Continue()
+END
+
+IF
+	Global("SPINNING_INSULT","MYAREA",1)
+	See("05_50CHILDM_15")
+THEN
+	RESPONSE #100
+		SetGlobal("SPINNING_INSULT","MYAREA",2)
+		SetGlobal("HEARD_KID","LOCALS",1)
+		FaceObject(LastSeenBy(Myself))
+		DisplayStringHead(Myself,@17907)
+		Wait(2)
+END
+
+IF
+	!Global("HEARD_KID","LOCALS",0)
+	Global("SPINNING_INSULT","MYAREA",0)
+THEN
+	RESPONSE #100
+		SetGlobal("HEARD_KID","LOCALS",0)
+		Continue()
+END
+
+IF
+	Global("HUNTER_TALK","MYAREA",0)
+	Global("IM_SPEAKER","LOCALS",0)
+	See([PC])
+THEN
+	RESPONSE #100
+		SetGlobal("HUNTER_TALK","MYAREA",1)
+		SetGlobal("I_REPRESENT_HUNTERS","LOCALS",1)
+		/*Continue()*/
+END
+
+IF
+	!Allegiance(Myself,ENEMY)
+	Heard([NEUTRAL],80)
+	NearSavedLocation(Myself,"LOCALSSavedLoc",1)
+THEN
+	RESPONSE #100
+		FaceObject(LastHeardBy(Myself))
+END
+
+IF
+	!Allegiance(Myself,ENEMY)
+	!StateCheck(Myself,STATE_REALLY_DEAD)
+	Global("50Hunter_Know","GLOBAL",0)
+	!Global("I_REPRESENT_HUNTERS","LOCALS",0)
+	See([PC])
+THEN
+	RESPONSE #100
+		Dialogue(LastSeenBy(Myself))
+END
+
+IF
+	!GlobalTimerNotExpired("IwTimer18","LOCALS")
+	!GlobalTimerNotExpired("HUNTER_SPEAK","MYAREA")
+THEN
+	RESPONSE #50
+		DisplayStringHead(Myself,@17022)
+		SetGlobalTimerRandom("IwTimer18","LOCALS",30,50)
+		SetGlobalTimer("HUNTER_SPEAK","MYAREA",10)
+		Shout(80)
+		Continue()
+	RESPONSE #50
+		DisplayStringHead(Myself,@17023)
+		SetGlobalTimerRandom("IwTimer18","LOCALS",30,50)
+		SetGlobalTimer("HUNTER_SPEAK","MYAREA",10)
+		Shout(80)
+		Continue()
+	RESPONSE #50
+		DisplayStringHead(Myself,@17024)
+		SetGlobalTimerRandom("IwTimer18","LOCALS",30,50)
+		SetGlobalTimer("HUNTER_SPEAK","MYAREA",10)
+		Shout(80)
+		Continue()
+	RESPONSE #50
+		DisplayStringHead(Myself,@17025)
+		SetGlobalTimerRandom("IwTimer18","LOCALS",30,50)
+		SetGlobalTimer("HUNTER_SPEAK","MYAREA",10)
+		Shout(80)
+		Continue()
+	RESPONSE #50
+		DisplayStringHead(Myself,@17026)
+		SetGlobalTimerRandom("IwTimer18","LOCALS",30,50)
+		SetGlobalTimer("HUNTER_SPEAK","MYAREA",10)
+		Shout(80)
+		Continue()
+	RESPONSE #50
+		DisplayStringHead(Myself,@17027)
+		SetGlobalTimerRandom("IwTimer18","LOCALS",30,50)
+		SetGlobalTimer("HUNTER_SPEAK","MYAREA",10)
+		Shout(80)
+		Continue()
+	RESPONSE #50
+		DisplayStringHead(Myself,@17028)
+		SetGlobalTimerRandom("IwTimer18","LOCALS",30,50)
+		SetGlobalTimer("HUNTER_SPEAK","MYAREA",10)
+		Shout(80)
+		Continue()
+	RESPONSE #350
+		Continue()
+END
+
+IF
+	!GlobalTimerNotExpired("IwTimer18","LOCALS")
+	!GlobalTimerNotExpired("HUNTER_SPEAK","MYAREA")
+	GlobalGT("50Suoma_Help","Global",0)
+	!Global("50Suoma_Help","Global",4)
+THEN
+	RESPONSE #50
+		DisplayStringHead(Myself,@17029)
+		SetGlobalTimerRandom("IwTimer18","LOCALS",30,50)
+		SetGlobalTimer("HUNTER_SPEAK","MYAREA",10)
+		Shout(80)
+		Continue()
+	RESPONSE #50
+		Continue()
+END
+
+IF
+	!GlobalTimerNotExpired("IwTimer18","LOCALS")
+	!GlobalTimerNotExpired("HUNTER_SPEAK","MYAREA")
+	Global("50Venla_Children","Global",2)
+THEN
+	RESPONSE #50
+		DisplayStringHead(Myself,@17030)
+		SetGlobalTimerRandom("IwTimer18","LOCALS",30,50)
+		SetGlobalTimer("HUNTER_SPEAK","MYAREA",10)
+		Shout(80)
+		Continue()
+	RESPONSE #50
+		Continue()
+END
+
+IF
+	!GlobalTimerNotExpired("IwTimer18","LOCALS")
+	!GlobalTimerNotExpired("HUNTER_SPEAK","MYAREA")
+	Global("50Tahvo_Wight","Global",2)
+THEN
+	RESPONSE #50
+		DisplayStringHead(Myself,@17031)
+		SetGlobalTimerRandom("IwTimer18","LOCALS",30,50)
+		SetGlobalTimer("HUNTER_SPEAK","MYAREA",10)
+		Shout(80)
+		Continue()
+	RESPONSE #50
+		Continue()
+END
+
+IF
+	!GlobalTimerNotExpired("IwTimer18","LOCALS")
+	!GlobalTimerNotExpired("HUNTER_SPEAK","MYAREA")
+	Global("50Kurttu_Ghost","Global",2)
+THEN
+	RESPONSE #50
+		DisplayStringHead(Myself,@17032)
+		SetGlobalTimerRandom("IwTimer18","LOCALS",30,50)
+		SetGlobalTimer("HUNTER_SPEAK","MYAREA",10)
+		Shout(80)
+		Continue()
+	RESPONSE #50
+		Continue()
+END
+
+IF
+	!GlobalTimerNotExpired("IwTimer18","LOCALS")
+	!GlobalTimerNotExpired("HUNTER_SPEAK","MYAREA")
+	Global("50Suoma_Help","Global",4)
+THEN
+	RESPONSE #50
+		DisplayStringHead(Myself,@17033)
+		SetGlobalTimerRandom("IwTimer18","LOCALS",30,50)
+		SetGlobalTimer("HUNTER_SPEAK","MYAREA",10)
+		Shout(80)
+		Continue()
+	RESPONSE #50
+		Continue()
+END
+
+IF
+	!GlobalTimerNotExpired("IwTimer19","LOCALS")
+	!NearSavedLocation(Myself,"LOCALSSavedLoc",4)
+THEN
+	RESPONSE #100
+		MoveToSavedLocation("SavedLoc","LOCALS")
+		SetGlobalTimer("IwTimer19","LOCALS",5)
+END
+

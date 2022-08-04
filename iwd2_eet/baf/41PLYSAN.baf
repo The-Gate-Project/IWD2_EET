@@ -1,0 +1,10 @@
+IF
+	Clicked([ANYONE])
+	!Global("41PLYSAN_INACTIVE","MYAREA",1)
+THEN
+	RESPONSE #100
+		SetGlobal("41SaidPainting2","GLOBAL",1)
+		//ChangeCurrentScript("")
+		SetGlobal("41PLYSAN_INACTIVE","MYAREA",1)
+END
+

@@ -1,0 +1,45 @@
+IF
+	Global("WATCHING_PLAYER","MYAREA",0)
+	//!CreatureHidden(Myself)
+	!Global("CreatureHidden","LOCALS",0)
+THEN
+	RESPONSE #100
+		//SetCreatureAreaFlag(Myself,IGNORE_AI_INHIBIT,TRUE)
+		ApplySpellRES("IWPERAI",Myself)
+		//SpellHitEffectSprite(Myself,Myself,SUNSCORCH,10)
+		//CreateVisualEffectObject("SUNSCOH",Myself)
+		//ForceSpellRES("IDSUNSCH",Myself)
+		CreateVisualEffectObject("IDSNCH",Myself)
+		Wait(1)
+		DestroySelf()
+END
+
+IF
+	Global("WATCHING_PLAYER","MYAREA",0)
+	//CreatureHidden(Myself)
+	Global("CreatureHidden","LOCALS",0)
+THEN
+	RESPONSE #100
+		DestroySelf()
+END
+
+IF
+	//CreatureHidden(Myself)
+	Global("CreatureHidden","LOCALS",0)
+	!Global("WATCHING_PLAYER","MYAREA",0)
+THEN
+	RESPONSE #100
+		//SetCreatureAreaFlag(Myself,IGNORE_AI_INHIBIT,TRUE)
+		ApplySpellRES("IWPERAI",Myself)
+		//SpellHitEffectSprite(Myself,Myself,SUNSCORCH,10)
+		//CreateVisualEffectObject("SUNSCOH",Myself)
+		//ForceSpellRES("IDSUNSCH",Myself)
+		CreateVisualEffectObject("IDSNCH",Myself)
+		Wait(1)
+		Enemy()
+		FaceObject(NearestEnemyOf(Myself))
+		//HideCreature(Myself,FALSE)
+		ApplySpellRES("idinvis5",Myself)
+		SetGlobal("CreatureHidden","LOCALS",1)
+END
+

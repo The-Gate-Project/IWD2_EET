@@ -1,0 +1,362 @@
+IF
+	Global("CheckCure","LOCALS",0)
+	Global("Rested","LOCALS",1)
+	!GlobalTimerNotExpired("CheckCureTimer","LOCALS")
+	OR(5)
+		HaveSpell(CLERIC_NEUTRALIZE_POISON)
+		HaveSpellRES("IWPR316")
+		HaveSpell(CLERIC_REMOVE_PARALYSIS)
+		HaveSpell(CLERIC_CURE_DISEASE)
+		HaveSpell(CLERIC_DISPEL_MAGIC)
+THEN
+	RESPONSE #100
+		SetGlobal("CheckCure","LOCALS",1)
+		Continue()
+END
+
+IF
+	Global("CheckCure","LOCALS",1)
+	!Allegiance(Myself,ENEMY)
+	OR(2)
+		See(MostDamagedOf(Myself))
+		See([GOODCUTOFF])
+THEN
+	RESPONSE #100
+		//SetMyTarget(LastMarkedObject)
+		SetGlobal("CheckCure","LOCALS",2)
+		Continue()
+END
+
+IF
+	Global("CheckCure","LOCALS",1)
+	Allegiance(Myself,ENEMY)
+	See(MostDamagedOf(Myself))
+	Allegiance(LastSeenBy(Myself),ENEMY)
+THEN
+	RESPONSE #100
+		//SetMyTarget(LastMarkedObject)
+		SetGlobal("CheckCure","LOCALS",2)
+		Continue()
+END
+
+IF
+	Global("CheckCure","LOCALS",2)
+	HaveSpell(CLERIC_NEUTRALIZE_POISON)
+	StateCheck(LastSeenBy(Myself),STATE_POISONED)
+	//!CheckSpellState(MyTarget,GLOBE_OF_INVULNERABILITY)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_NEUTRALIZE_POISON)
+		SetGlobal("CheckCure","LOCALS",0)
+END
+
+IF
+	Global("CheckCure","LOCALS",2)
+	HaveSpellRES("IWPR316")
+	OR(8)
+		StateCheck(LastSeenBy(Myself),STATE_PANIC)
+		StateCheck(LastSeenBy(Myself),STATE_SLEEPING)
+		StateCheck(LastSeenBy(Myself),STATE_FEEBLEMINDED)
+		StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+		StateCheck(LastSeenBy(Myself),STATE_HELPLESS)
+		StateCheck(LastSeenBy(Myself),STATE_BERSERK)
+		StateCheck(LastSeenBy(Myself),STATE_CONFUSED)
+		CheckSpellState(LastSeenBy(Myself),HOPELESSNESS)
+	//!CheckSpellState(MyTarget,GLOBE_OF_INVULNERABILITY)
+	//!CheckSpellState(MyTarget,MINOR_GLOBE_OF_INVULNERABILITY)
+	CheckStatLT(LastSeenBy(Myself),1,MINORGLOBE)
+	CheckStatLT(LastSeenBy(Myself),1,SHIELDGLOBE)
+THEN
+	RESPONSE #100
+		SpellRES("IWPR316",LastSeenBy(Myself))
+		SetGlobal("CheckCure","LOCALS",0)
+END
+
+IF
+	Global("CheckCure","LOCALS",2)
+	HaveSpell(CLERIC_REMOVE_PARALYSIS)
+	OR(2)
+		CheckSpellState(LastSeenBy(Myself),HELD)
+		CheckStatGT(LastSeenBy(Myself),0,HELD)
+	//!CheckSpellState(MyTarget,GLOBE_OF_INVULNERABILITY)
+	//!CheckSpellState(MyTarget,MINOR_GLOBE_OF_INVULNERABILITY)
+	CheckStatLT(LastSeenBy(Myself),1,MINORGLOBE)
+	CheckStatLT(LastSeenBy(Myself),1,SHIELDGLOBE)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_REMOVE_PARALYSIS)
+		SetGlobal("CheckCure","LOCALS",0)
+END
+
+IF
+	Global("CheckCure","LOCALS",2)
+	HaveSpell(CLERIC_CURE_DISEASE)
+	//StateCheck(LastSeenBy(Myself),STATE_DISEASED)
+	CheckSpellState(LastSeenBy(Myself),DISEASED)
+	//!CheckSpellState(MyTarget,GLOBE_OF_INVULNERABILITY)
+	//!CheckSpellState(MyTarget,MINOR_GLOBE_OF_INVULNERABILITY)
+	CheckStatLT(LastSeenBy(Myself),1,MINORGLOBE)
+	CheckStatLT(LastSeenBy(Myself),1,SHIELDGLOBE)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_DISEASE)
+		SetGlobal("CheckCure","LOCALS",0)
+END
+
+IF
+	Global("CheckCure","LOCALS",2)
+	HaveSpell(CLERIC_DISPEL_MAGIC)
+	OR(8)
+		StateCheck(LastSeenBy(Myself),STATE_HELPLESS)
+		StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+		StateCheck(LastSeenBy(Myself),STATE_PANIC)
+		StateCheck(LastSeenBy(Myself),STATE_SLEEPING)
+		StateCheck(LastSeenBy(Myself),STATE_SILENCED)
+		StateCheck(LastSeenBy(Myself),STATE_CHARMED)
+		StateCheck(LastSeenBy(Myself),STATE_FEEBLEMINDED)
+		StateCheck(LastSeenBy(Myself),STATE_CONFUSED)
+	CheckStatLT(LastSeenBy(Myself),1,MINORGLOBE)
+	CheckStatLT(LastSeenBy(Myself),1,SHIELDGLOBE)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_DISPEL_MAGIC)
+		SetGlobal("CheckCure","LOCALS",0)
+END
+
+IF
+	GlobalGT("CheckCure","LOCALS",-1)
+	Global("Rested","LOCALS",1)
+	!GlobalTimerNotExpired("CheckCureTimer","LOCALS")
+THEN
+	RESPONSE #100
+		SetGlobalTimer("CheckCureTimer","LOCALS",10)
+		SetGlobal("CheckCure","LOCALS",0)
+		Continue()
+END
+
+IF
+	HaveSpell(CLERIC_HEAL)
+	Global("Rested","LOCALS",1)
+	See(MostDamagedOf(Myself))
+	HPPercentLT(LastSeenBy(Myself),20)
+	!StateCheck(LastSeenBy(Myself),STATE_REALLY_DEAD)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_HEAL)
+		Wait(1)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_CRITICAL_WOUNDS)
+	Global("Rested","LOCALS",1)
+	See(MostDamagedOf(Myself))
+	HPPercentLT(LastSeenBy(Myself),40)
+	!StateCheck(LastSeenBy(Myself),STATE_REALLY_DEAD)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_CRITICAL_WOUNDS)
+		Wait(1)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_SERIOUS_WOUNDS)
+	Global("Rested","LOCALS",1)
+	See(MostDamagedOf(Myself))
+	HPPercentLT(LastSeenBy(Myself),60)
+	!StateCheck(LastSeenBy(Myself),STATE_REALLY_DEAD)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_SERIOUS_WOUNDS)
+		Wait(1)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_MEDIUM_WOUNDS)
+	Global("Rested","LOCALS",1)
+	See(MostDamagedOf(Myself))
+	HPPercentLT(LastSeenBy(Myself),75)
+	!StateCheck(LastSeenBy(Myself),STATE_REALLY_DEAD)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_MEDIUM_WOUNDS)
+		Wait(1)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_LIGHT_WOUNDS)
+	Global("Rested","LOCALS",1)
+	See(MostDamagedOf(Myself))
+	HPPercentLT(LastSeenBy(Myself),90)
+	!StateCheck(LastSeenBy(Myself),STATE_REALLY_DEAD)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_LIGHT_WOUNDS)
+		Wait(1)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	GlobalGT("CheckDead","LOCALS",-1)
+THEN
+	RESPONSE #100
+		SetGlobal("CheckDead","LOCALS",-1)
+END
+
+IF
+	Global("CheckDead","LOCALS",0)
+	Global("Rested","LOCALS",1)
+	!GlobalTimerNotExpired("CheckDeadTimer","LOCALS")
+	OR(2)
+		HaveSpell(CLERIC_RAISE_DEAD)
+		HaveSpell(CLERIC_RESURRECTION)
+	See([PC])
+THEN
+	RESPONSE #100
+		SetGlobal("CheckDead","LOCALS",1)
+		Continue()
+END
+
+IF
+	Global("CheckDead","LOCALS",1)
+	StateCheck(Player1,STATE_REALLY_DEAD)
+THEN
+	RESPONSE #100
+		//SetMyTarget(Player1)
+		SetGlobal("SetMyTarget","LOCALS",1)
+		SetGlobal("CheckDead","LOCALS",2)
+		Continue()
+END
+
+IF
+	Global("CheckDead","LOCALS",1)
+	NumInPartyGT(1)
+	StateCheck(Player2,STATE_REALLY_DEAD)
+THEN
+	RESPONSE #100
+		//SetMyTarget(Player2)
+		SetGlobal("SetMyTarget","LOCALS",2)
+		SetGlobal("CheckDead","LOCALS",2)
+		Continue()
+END
+
+IF
+	Global("CheckDead","LOCALS",1)
+	NumInPartyGT(2)
+	StateCheck(Player3,STATE_REALLY_DEAD)
+THEN
+	RESPONSE #100
+		//SetMyTarget(Player3)
+		SetGlobal("SetMyTarget","LOCALS",3)
+		SetGlobal("CheckDead","LOCALS",2)
+		Continue()
+END
+
+IF
+	Global("CheckDead","LOCALS",1)
+	NumInPartyGT(3)
+	StateCheck(Player4,STATE_REALLY_DEAD)
+THEN
+	RESPONSE #100
+		//SetMyTarget(Player4)
+		SetGlobal("SetMyTarget","LOCALS",4)
+		SetGlobal("CheckDead","LOCALS",2)
+		Continue()
+END
+
+IF
+	Global("CheckDead","LOCALS",1)
+	NumInPartyGT(4)
+	StateCheck(Player5,STATE_REALLY_DEAD)
+THEN
+	RESPONSE #100
+		//SetMyTarget(Player5)
+		SetGlobal("SetMyTarget","LOCALS",5)
+		SetGlobal("CheckDead","LOCALS",2)
+		Continue()
+END
+
+IF
+	Global("CheckDead","LOCALS",1)
+	NumInPartyGT(5)
+	StateCheck(Player6,STATE_REALLY_DEAD)
+THEN
+	RESPONSE #100
+		//SetMyTarget(Player6)
+		SetGlobal("SetMyTarget","LOCALS",6)
+		SetGlobal("CheckDead","LOCALS",2)
+		Continue()
+END
+
+IF
+	Global("CheckDead","LOCALS",2)
+	HaveSpell(CLERIC_RAISE_DEAD)
+	//!Race(MyTarget,ELF)
+	Switch("SetMyTarget","LOCALS")
+THEN
+	RESPONSE #1
+		Spell(Player1,CLERIC_RAISE_DEAD)
+		SetGlobal("CheckDead","LOCALS",0)
+		SetGlobal("SetMyTarget","LOCALS",0)
+	RESPONSE #2
+		Spell(Player2,CLERIC_RAISE_DEAD)
+		SetGlobal("CheckDead","LOCALS",0)
+		SetGlobal("SetMyTarget","LOCALS",0)
+	RESPONSE #3
+		Spell(Player3,CLERIC_RAISE_DEAD)
+		SetGlobal("CheckDead","LOCALS",0)
+		SetGlobal("SetMyTarget","LOCALS",0)
+	RESPONSE #4
+		Spell(Player4,CLERIC_RAISE_DEAD)
+		SetGlobal("CheckDead","LOCALS",0)
+		SetGlobal("SetMyTarget","LOCALS",0)
+	RESPONSE #5
+		Spell(Player5,CLERIC_RAISE_DEAD)
+		SetGlobal("CheckDead","LOCALS",0)
+		SetGlobal("SetMyTarget","LOCALS",0)
+	RESPONSE #6
+		Spell(Player6,CLERIC_RAISE_DEAD)
+		SetGlobal("CheckDead","LOCALS",0)
+		SetGlobal("SetMyTarget","LOCALS",0)
+END
+
+IF
+	Global("CheckDead","LOCALS",2)
+	HaveSpell(CLERIC_RESURRECTION)
+	Switch("SetMyTarget","LOCALS")
+THEN
+	RESPONSE #1
+		Spell(Player1,CLERIC_RESURRECTION)
+		SetGlobal("CheckDead","LOCALS",0)
+		SetGlobal("SetMyTarget","LOCALS",0)
+	RESPONSE #2
+		Spell(Player2,CLERIC_RESURRECTION)
+		SetGlobal("CheckDead","LOCALS",0)
+		SetGlobal("SetMyTarget","LOCALS",0)
+	RESPONSE #3
+		Spell(Player3,CLERIC_RESURRECTION)
+		SetGlobal("CheckDead","LOCALS",0)
+		SetGlobal("SetMyTarget","LOCALS",0)
+	RESPONSE #4
+		Spell(Player4,CLERIC_RESURRECTION)
+		SetGlobal("CheckDead","LOCALS",0)
+		SetGlobal("SetMyTarget","LOCALS",0)
+	RESPONSE #5
+		Spell(Player5,CLERIC_RESURRECTION)
+		SetGlobal("CheckDead","LOCALS",0)
+		SetGlobal("SetMyTarget","LOCALS",0)
+	RESPONSE #6
+		Spell(Player6,CLERIC_RESURRECTION)
+		SetGlobal("CheckDead","LOCALS",0)
+		SetGlobal("SetMyTarget","LOCALS",0)
+END
+
+IF
+	GlobalGT("CheckDead","LOCALS",-1)
+	!GlobalTimerNotExpired("CheckDeadTimer","LOCALS")
+THEN
+	RESPONSE #100
+		SetGlobalTimer("CheckDeadTimer","LOCALS",10)
+		SetGlobal("CheckDead","LOCALS",0)
+		Continue()
+END
+

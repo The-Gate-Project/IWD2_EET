@@ -1,0 +1,81 @@
+IF
+	//!IsHeartOfFuryModeOn()
+	!NightmareModeOn()
+	HPPercentLT(Myself,40)
+THEN
+	RESPONSE #100
+		MoraleSet(Myself,0)
+		Panic()
+END
+
+IF
+	Dead("DRUM_4")
+THEN
+	RESPONSE #100
+		ChangeAIScript("",SPECIFICS)
+END
+
+/*IF
+	//!IsHeartOfFuryModeOn()
+	!NightmareModeOn()
+	Dead("DRUM_4")
+THEN
+	RESPONSE #100
+		ChangeAIScript("",SPECIFICS)
+END*/
+
+IF
+	Global("I_PLAY_DRUMS","LOCALS",0)
+	OR(3)
+		Global("DRUM_4_STATE","MYAREA",1)
+		See(NearestEnemyOf(Myself))
+		AttackedBy([PC],DEFAULT)
+THEN
+	RESPONSE #100
+		SetGlobal("DRUM_4_STATE","MYAREA",2)
+		SetGlobal("I_PLAY_DRUMS","LOCALS",1)
+		//SetCreatureAreaFlag(Myself,IGNORE_RETURN_TO_START_POS,TRUE)
+END
+
+IF
+	!Global("I_PLAY_DRUMS","LOCALS",0)
+	ActionListEmpty()
+	Global("PLAYING_DRUM","LOCALS",0)
+	!Dead("DRUM_4")
+	Range("DRUM_4",4)
+THEN
+	RESPONSE #100
+		SetGlobal("PLAYING_DRUM","LOCALS",1)
+		StartCutScene("30cDrum4")
+	RESPONSE #10
+		SetGlobal("PLAYING_DRUM","LOCALS",1)
+		DisplayStringHead(Myself,@472)
+		StartCutScene("30cDrum4")
+END
+
+IF
+	!Global("PLAYING_DRUM","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobal("PLAYING_DRUM","LOCALS",0)
+		Continue()
+END
+
+IF
+	!Global("I_PLAY_DRUMS","LOCALS",0)
+	OR(2)
+		!Global("PLAYING_DRUM","LOCALS",0)
+		Range("DRUM_4",4)
+THEN
+	RESPONSE #100
+		NoAction()
+END
+
+IF
+	!Global("I_PLAY_DRUMS","LOCALS",0)
+	!Dead("DRUM_4")
+THEN
+	RESPONSE #100
+		MoveToObject("DRUM_4")
+END
+

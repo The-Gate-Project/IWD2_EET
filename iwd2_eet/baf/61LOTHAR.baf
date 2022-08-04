@@ -1,0 +1,245 @@
+IF
+	//Or(2)
+	//	!IsCreatureAreaFlag(Myself,IGNORE_RETURN_TO_START_POS)
+	//	!IsCreatureAreaFlag(Myself,IGNORE_AI_INHIBIT)
+	!Global("IGNORE_AI_INHIBIT","LOCALS",1)
+THEN
+	RESPONSE #100
+		ChangeSpecifics(Myself,253)
+		//SetCreatureAreaFlag(Myself,IGNORE_RETURN_TO_START_POS,TRUE)
+		//SetCreatureAreaFlag(Myself,IGNORE_AI_INHIBIT,TRUE)
+		ApplySpellRES("IWPERAI",Myself)
+		SetGlobal("IGNORE_AI_INHIBIT","LOCALS",1)
+		Continue()
+END
+
+//IDCRITPS
+IF
+	GlobalGT("BeginTrial","MYAREA",1)
+	//GlobalGT("IDCRITPS","LOCALS",0)
+	CheckSpellState(Myself,CRITICAL_PATH)
+THEN
+	RESPONSE #100
+		ApplySpellRES("IWCPREM",Myself)
+		Continue()
+END
+
+IF
+	GlobalGT("61VolcanoStatus","GLOBAL",0)
+THEN
+	RESPONSE #100
+		//SpellHitEffectSprite("INVISIBLE",Myself,ALTERATION,0)
+		CreateVisualEffectObject("ALTERH",Myself)
+		DestroySelf()
+END
+
+IF
+	Global("61CurrentDay","GLOBAL",3)
+	Global("LotharDestroyEmbassy","MYAREA",1)
+	OpenState("AR6104_Ruins2",FALSE)
+THEN
+	RESPONSE #100
+		EquipMostDamagingMelee()
+		AttackOneRound("61Embassy")
+END
+
+IF
+	Global("61CurrentDay","GLOBAL",3)
+	Global("LotharDestroyEmbassy","MYAREA",1)
+	OpenState("AR6104_Ruins2",TRUE)
+THEN
+	RESPONSE #100
+		SetGlobal("LotharDestroyEmbassy","MYAREA",2)
+END
+
+IF
+	Global("61CurrentDay","GLOBAL",3)
+	Global("LotharDestroyEmbassy","MYAREA",3)
+	See([PC])
+THEN
+	RESPONSE #100
+		//SetMyTarget(LastMarkedObject)
+		SetGlobal("LotharDestroyEmbassy","MYAREA",4)
+		StartCutSceneMode()
+		ClearAllActions()
+		MultiPlayerSync()
+		StartCutScene("61cEfSum")
+END
+
+IF
+	Global("VenominSeeLothar","MYAREA",-1)
+	See([PC])
+	See("Venomin3")
+THEN
+	RESPONSE #100
+		FaceObject(LastSeenBy(Myself))
+		SetGlobal("VenominSeeLothar","MYAREA",-2)
+END
+
+IF
+	!Allegiance(Myself,ENEMY)
+	Global("61CurrentDay","GLOBAL",3)
+	!GlobalTimerNotExpired("AttackTimer","LOCALS")
+	See([ENEMY])
+	Specifics(LastSeenBy(Myself),254)
+	!Range(LastSeenBy(Myself),10)
+THEN
+	RESPONSE #100
+		SetSequence(SEQ_ATTACK)
+		SmallWait(7)
+		ReallyForceSpell(LastSeenBy(Myself),WIZARD_FIREBALL)
+		SetGlobalTimer("AttackTimer","LOCALS",7)
+END
+
+IF
+	!Allegiance(Myself,ENEMY)
+	Global("61CurrentDay","GLOBAL",3)
+	See([ENEMY])
+	Specifics(LastSeenBy(Myself),254)
+	Range(LastSeenBy(Myself),10)
+THEN
+	RESPONSE #100
+		//EquipWeapon()
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("AttackTimer","LOCALS")
+	!See([ENEMY.MONSTER.TROLL])
+	See([GOODCUTOFF])
+	!Range(LastSeenBy(Myself),10)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("AttackTimer","LOCALS",7)
+		FaceObject(LastSeenBy(Myself))
+		SetSequence(SEQ_ATTACK)
+		SmallWait(7)
+		ReallyForceSpell(LastSeenBy(Myself),WIZARD_FIREBALL)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See([GOODCUTOFF])
+	Range(LastSeenBy(Myself),10)
+THEN
+	RESPONSE #100
+		//EquipWeapon()
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	Global("ML_0","LOCALS",0)
+	Global("61CurrentDay","GLOBAL",1)
+THEN
+	RESPONSE #100
+		JumpToPoint([1920.1700])
+		SetGlobal("ML_0","LOCALS",1)
+END
+
+IF
+	Global("ML_0","LOCALS",1)
+	Global("61CurrentDay","GLOBAL",1)
+THEN
+	RESPONSE #100
+		Face(NE)
+		SetGlobal("ML_0","LOCALS",-1)
+END
+
+IF
+	Global("ML_1","LOCALS",0)
+	Global("LotharDestroyEmbassy","MYAREA",2)
+THEN
+	RESPONSE #100
+		//SpellHitEffectPoint("INVISIBLE",[2975.1440],ALTERATION,0)
+		CreateVisualEffect("ALTERH",[2975.1440])
+		CloseDoor("AR6104_Lava_Bridge6")
+		SetGlobal("ML_1","LOCALS",1)
+END
+
+IF
+	Global("ML_1","LOCALS",1)
+	ActionListEmpty()
+	NearLocation(Myself,2975,1375,4)
+THEN
+	RESPONSE #100
+		SetHomeLocation([2975.1375])
+		SetGlobal("ML_1","LOCALS",2)
+		Continue()
+END
+
+IF
+	Global("ML_1","LOCALS",1)
+	Global("LotharDestroyEmbassy","MYAREA",2)
+THEN
+	RESPONSE #100
+		MoveToPoint([2975.1375])
+END
+
+IF
+	Global("ML_1","LOCALS",2)
+	Global("LotharDestroyEmbassy","MYAREA",2)
+THEN
+	RESPONSE #100
+		Face(E)
+		SetGlobal("ML_1","LOCALS",3)
+END
+
+IF
+	Global("ML_1","LOCALS",3)
+	Global("LotharDestroyEmbassy","MYAREA",2)
+THEN
+	RESPONSE #100
+		JumpToPoint([3170.1375])
+		SmallWait(5)
+		PlaySound("IW6103F")
+		ScreenShake([40.30],45)
+		SetGlobal("ML_1","LOCALS",4)
+END
+
+IF
+	Global("ML_1","LOCALS",4)
+	ActionListEmpty()
+	NearLocation(Myself,3230,1500,4)
+THEN
+	RESPONSE #100
+		SetHomeLocation([3230.1500])
+		SetGlobal("ML_1","LOCALS",5)
+		Continue()
+END
+
+IF
+	Global("ML_1","LOCALS",4)
+	Global("LotharDestroyEmbassy","MYAREA",2)
+THEN
+	RESPONSE #100
+		MoveToPoint([3230.1500])
+END
+
+IF
+	Global("ML_1","LOCALS",5)
+	Global("LotharDestroyEmbassy","MYAREA",2)
+THEN
+	RESPONSE #100
+		Face(E)
+		SetGlobal("ML_1","LOCALS",6)
+END
+
+IF
+	Global("ML_1","LOCALS",6)
+	Global("LotharDestroyEmbassy","MYAREA",2)
+THEN
+	RESPONSE #100
+		SetGlobal("LotharDestroyEmbassy","MYAREA",3)
+		SetGlobal("ML_1","LOCALS",-1)
+END
+
+IF
+	!GlobalTimerNotExpired("IwTimer24","LOCALS")
+	Global("LotharOnPatrol","MYAREA",1)
+THEN
+	RESPONSE #100
+		RandomWalk()
+		SetGlobalTimer("IwTimer24","LOCALS",5)
+END
+

@@ -1,0 +1,40 @@
+IF
+	Dead("Limha")
+THEN
+	RESPONSE #100
+		DestroySelf()
+END
+
+IF
+	//!IsCreatureAreaFlag(Myself,ENABLED)
+	!Global("ENABLED","LOCALS",1)
+	!See([GOODCUTOFF])
+	!Range("Limha",15)
+THEN
+	RESPONSE #100
+		//SetCreatureAreaFlag(Myself,ENABLED,TRUE)
+		SetGlobal("ENABLED","LOCALS",1)
+END
+
+IF
+	//IsCreatureAreaFlag(Myself,ENABLED)
+	Global("ENABLED","LOCALS",1)
+	OR(2)
+		See([GOODCUTOFF])
+		Range("Limha",15)
+THEN
+	RESPONSE #100
+		//SetCreatureAreaFlag(Myself,ENABLED,FALSE)
+		SetGlobal("ENABLED","LOCALS",0)
+END
+
+IF
+	//!IsCreatureAreaFlag(Myself,IGNORE_AI_INHIBIT)
+	!Global("IGNORE_AI_INHIBIT","LOCALS",1)
+THEN
+	RESPONSE #100
+		//SetCreatureAreaFlag(Myself,IGNORE_AI_INHIBIT,TRUE)
+		ApplySpellRES("IWPERAI",Myself)
+		SetGlobal("IGNORE_AI_INHIBIT","LOCALS",1)
+END
+

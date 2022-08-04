@@ -1,0 +1,10 @@
+IF
+	Global("HINT_2_GIVEN","MYAREA",0)
+	Entered([PC])
+THEN
+	RESPONSE #100
+		DisplayString(Myself,@38691)
+		SetGlobal("HINT_2_GIVEN","MYAREA",1)
+		Continue()
+END
+

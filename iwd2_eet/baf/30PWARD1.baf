@@ -1,0 +1,16 @@
+IF
+	Entered([PC])
+	!PartyHasItem("z3bstone")
+THEN
+	RESPONSE #100
+		ReallyForceSpell(LastTrigger,WIZARD_DEATH_FOG)
+END
+
+IF
+	Entered([PC])
+	PartyHasItem("z3bstone")
+THEN
+	RESPONSE #100
+		NoAction()
+END
+

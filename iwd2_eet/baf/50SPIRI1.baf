@@ -1,0 +1,52 @@
+IF
+	!IsActive(Myself)
+	GlobalGT("5004_SPIDER_REINFORCEMENT_1","GLOBAL",0)
+	//!Exists([ENEMY][1960.1125.5.-1]) //SpiderTrig1
+	//!Exists([ENEMY][70.1590.5.-1])   //SpiderTrig2
+	!TriggerOverride("SpiderTrig1",Range([ENEMY],5))
+	!TriggerOverride("SpiderTrig2",Range([ENEMY],5))
+THEN
+	RESPONSE #100
+		Activate(Myself)
+		SetGlobal("IwIHidden","LOCALS",0)
+		IncrementGlobal("5004_SPIDER_REINFORCEMENT_1","GLOBAL",-1)
+		JumpToPoint([1960.1125])
+		FaceObject([PC])
+		//HideCreature(Myself,FALSE)
+		ApplySpellRES("idinvis5",Myself)
+		Continue()
+	RESPONSE #100
+		Continue()
+END
+
+IF
+	!IsActive(Myself)
+	GlobalGT("5004_SPIDER_REINFORCEMENT_1","GLOBAL",0)
+	//!Exists([ENEMY][70.1590.5.-1])
+	!TriggerOverride("SpiderTrig2",Range([ENEMY],5))
+THEN
+	RESPONSE #100
+		Activate(Myself)
+		SetGlobal("IwIHidden","LOCALS",0)
+		IncrementGlobal("5004_SPIDER_REINFORCEMENT_1","GLOBAL",-1)
+		JumpToPoint([70.1590])
+		FaceObject([PC])
+		//HideCreature(Myself,FALSE)
+		ApplySpellRES("idinvis5",Myself)
+		Continue()
+END
+
+IF
+	IsActive(Myself)
+THEN
+	RESPONSE #100
+		ChangeAIScript("",CLASS)
+END
+
+IF
+	!IsActive(Myself)
+THEN
+	RESPONSE #100
+		NoAction()
+END
+

@@ -1,0 +1,91 @@
+IF
+	StateCheck(Myself,STATE_PANIC)
+THEN
+	RESPONSE #100
+		RandomWalkContinuous()
+END
+
+IF
+	!GlobalTimerNotExpired("IWD_Rest","LOCALS")
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IWD_Rest","LOCALS",EIGHT_HOURS)
+		ApplySpell(Myself,RESTORE_FULL_HEALTH)
+		Rest()
+END
+
+IF
+	HasItem("MoonBla",Myself)
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+/*IF
+	ForceMarkedSpell(MARKED_SPELL)
+	SetSpellTarget(Nothing)
+	See(NearestEnemyOf(Myself),0)
+THEN
+	RESPONSE #100
+		MarkSpellAndObject("12021318",Myself,SPELLCAST_IGNORE_SEE | SPELLCAST_IGNORE_VALID_SPELL_TARGET)  // [CLERIC_BARKSKIN, CLERIC_MOONBLADE]
+		Continue()
+END
+
+IF
+	!IsMarkedSpell(MARKED_SPELL)
+THEN
+	RESPONSE #100
+		ForceSpell(SpellTarget,MARKED_SPELL)
+		RemoveSpell(MARKED_SPELL)
+		WaitAnimation(Myself,WALK)
+		WaitAnimation(Myself,CONJURE)
+		WaitAnimation(Myself,CAST)
+		ForceMarkedSpell(MARKED_SPELL)
+END*/
+
+IF
+	HaveSpell(CLERIC_BARKSKIN)
+	See(NearestEnemyOf(Myself))
+	!CheckSpellState(Myself,BARKSKIN)
+THEN
+	RESPONSE #100
+		ForceSpell(Myself,CLERIC_BARKSKIN)
+		RemoveSpell(CLERIC_BARKSKIN)
+		Wait(1)
+END
+
+IF
+	HaveSpellRES("IWPR318")
+	See(NearestEnemyOf(Myself))
+	!HasItem("MoonBla",Myself)
+THEN
+	RESPONSE #100
+		ForceSpellRES("IWPR318",Myself)
+		RemoveSpellRES("IWPR318")
+		Wait(1)
+END
+
+/////BLUN10
+IF
+	Global("HAS_BLUN","LOCALS",0)
+	!HasItem("MoonBla",Myself)
+THEN
+	RESPONSE #100
+		CreateItem("BLUN10",0,0,0)
+		XEquipItem("BLUN10",Myself,SLOT_WEAPON0,EQUIP)
+		SetItemFlags("BLUN10",NONSTEALABLE_NONDROPABLE,TRUE)
+		SetGlobal("HAS_BLUN","LOCALS",1)
+END
+//BLUN10
+
+
+
+IF
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		EquipMostDamagingMelee()
+		AttackOneRound(LastSeenBy(Myself))
+END
+

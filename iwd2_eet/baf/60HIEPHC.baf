@@ -1,0 +1,300 @@
+IF
+	Global("TEAM_1","MYAREA",0)
+	Allegiance(Myself,ENEMY)
+THEN
+	RESPONSE #100
+		SetGlobal("TEAM_1","MYAREA",1)
+		Continue()
+END
+
+//BLOCK SET_VARS
+IF
+	!Global("SET_60HIEPHC","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		SetGlobalRandom("SSPELLS_2_RANDOM_CAST","LOCALS",1,2)
+		SetGlobal("SET_60HIEPHC","LOCALS",1)
+		SetInterrupt(TRUE)
+END
+//BLOCKEND
+
+IF
+	StateCheck(Myself,STATE_PANIC)
+THEN
+	RESPONSE #100
+		RandomWalkContinuous()
+END
+
+IF
+	!GlobalTimerNotExpired("IWD_Rest","LOCALS")
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IWD_Rest","LOCALS",EIGHT_HOURS)
+		ApplySpell(Myself,RESTORE_FULL_HEALTH)
+		Rest()
+END
+
+//BLOCK SPELL 1
+/*IF
+	GlobalLT("SS_CAST_1_SPELL","LOCALS",5)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SS_CAST_1_SPELL","LOCALS",1,4)
+		Continue()
+END*/
+/*IF
+	ForceMarkedSpell(MARKED_SPELL)
+	SetSpellTarget(Nothing)
+	HPPercentLT(Myself,50)
+THEN
+	RESPONSE #100
+		MarkSpellAndObject("1607150212141103",Myself,SPELLCAST_IGNORE_SEE)  // [CLERIC_HEAL, CLERIC_CURE_CRITICAL_WOUNDS, CLERIC_CURE_MODERATE_WOUNDS, CLERIC_CURE_LIGHT_WOUNDS]
+		Continue()
+END
+
+IF
+	!IsMarkedSpell(MARKED_SPELL)
+THEN
+	RESPONSE #100
+		Spell(SpellTarget,MARKED_SPELL)
+		WaitAnimation(Myself,WALK)
+		WaitAnimation(Myself,CONJURE)
+		WaitAnimation(Myself,CAST)
+		ForceMarkedSpell(MARKED_SPELL)
+END*/
+
+//Myself [CLERIC_HEAL, CLERIC_CURE_CRITICAL_WOUNDS, CLERIC_CURE_MODERATE_WOUNDS, CLERIC_CURE_LIGHT_WOUNDS]
+IF
+	HaveSpell(CLERIC_HEAL)
+	HPPercentLT(Myself,20)
+THEN
+	RESPONSE #100
+		Spell(Myself,CLERIC_HEAL)
+		Wait(1)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_CRITICAL_WOUNDS)
+	HPPercentLT(Myself,40)
+THEN
+	RESPONSE #100
+		Spell(Myself,CLERIC_CURE_CRITICAL_WOUNDS)
+		Wait(1)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_MEDIUM_WOUNDS)
+	HPPercentLT(Myself,75)
+THEN
+	RESPONSE #100
+		Spell(Myself,CLERIC_CURE_MEDIUM_WOUNDS)
+		Wait(1)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_LIGHT_WOUNDS)
+	HPPercentLT(Myself,90)
+THEN
+	RESPONSE #100
+		Spell(Myself,CLERIC_CURE_LIGHT_WOUNDS)
+		Wait(1)
+END
+//BLOCKEND
+
+//BLOCK SPELL 2
+/*IF
+	GlobalLT("SS_CAST_2_SPELL","LOCALS",3)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SS_CAST_2_SPELL","LOCALS",1,2)
+		Continue()
+END*/
+/*IF
+	ForceMarkedSpell(MARKED_SPELL)
+	SetSpellTarget(Nothing)
+	GlobalLT("Action","LOCALS",3)
+	See(NearestEnemyOf(Myself),0)
+THEN
+	RESPONSE #100
+		MarkSpellAndObject("13121415",Farthest([0.0.ORC]),SPELLCAST_RANDOM)  // [CLERIC_STRENGTH_OF_ONE, CLERIC_BLOOD_RAGE]
+		MarkSpellAndObject("121514251219",Myself,SPELLCAST_IGNORE_SEE | SPELLCAST_IGNORE_VALID_SPELL_TARGET | SPELLCAST_RANDOM)  // [CLERIC_DRAW_UPON_HOLY_MIGHT, CLERIC_HOLY_POWER, CLERIC_SPELL_SHIELD]
+		Continue()
+	RESPONSE #100
+		MarkSpellAndObject("121514251219",Myself,SPELLCAST_IGNORE_SEE | SPELLCAST_IGNORE_VALID_SPELL_TARGET | SPELLCAST_RANDOM)  // [CLERIC_DRAW_UPON_HOLY_MIGHT, CLERIC_HOLY_POWER, CLERIC_SPELL_SHIELD]
+		MarkSpellAndObject("13121415",Farthest([0.0.ORC]),SPELLCAST_RANDOM)  // [CLERIC_STRENGTH_OF_ONE, CLERIC_BLOOD_RAGE]
+		Continue()
+END
+
+IF
+	!IsMarkedSpell(MARKED_SPELL)
+THEN
+	RESPONSE #100
+		IncrementGlobal("Action","LOCALS",1)
+		Spell(SpellTarget,MARKED_SPELL)
+		WaitAnimation(Myself,WALK)
+		WaitAnimation(Myself,CONJURE)
+		WaitAnimation(Myself,CAST)
+		ForceMarkedSpell(MARKED_SPELL)
+END*/
+//Farthest([0.0.ORC]) [CLERIC_STRENGTH_OF_ONE, CLERIC_BLOOD_RAGE]
+//Myself [CLERIC_DRAW_UPON_HOLY_MIGHT, CLERIC_HOLY_POWER, CLERIC_SPELL_SHIELD]
+
+IF
+	HaveSpellRES("IWPR312")
+	Global("SSPELLS_2_RANDOM_CAST","LOCALS",1)
+	GlobalLT("Action","LOCALS",3)
+	See([0.0.ORC])
+	CheckStatLT(LastSeenBy(Myself),18,STR)
+	!CheckSpellState(LastSeenBy(Myself),HOLY_POWER)
+	RandomNum(2,1)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_2_RANDOM_CAST","LOCALS",1,2)
+		SpellRES("IWPR312",LastSeenBy(Myself))
+		Wait(1)
+END
+
+IF
+	HaveSpellRES("IWPR415")
+	Global("SSPELLS_2_RANDOM_CAST","LOCALS",1)
+	GlobalLT("Action","LOCALS",3)
+	See([0.0.ORC])
+	!CheckSpellState(LastSeenBy(Myself),BLOOD_RAGE)
+	RandomNum(2,2)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_2_RANDOM_CAST","LOCALS",1,2)
+		SpellRES("IWPR415",LastSeenBy(Myself))
+		Wait(1)
+END
+
+IF
+	HaveSpell(CLERIC_DRAW_UPON_HOLY_MIGHT)
+	Global("SSPELLS_2_RANDOM_CAST","LOCALS",2)
+	GlobalLT("Action","LOCALS",3)
+	!StateCheck(Myself,STATE_DRAWUPONHOLYMIGHT)
+	RandomNum(3,1)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_2_RANDOM_CAST","LOCALS",1,2)
+		Spell(Myself,CLERIC_DRAW_UPON_HOLY_MIGHT)
+		Wait(1)
+END
+
+IF
+	HaveSpell(CLERIC_HOLY_POWER)
+	Global("SSPELLS_2_RANDOM_CAST","LOCALS",2)
+	GlobalLT("Action","LOCALS",3)
+	CheckStatLT(Myself,18,STR)
+	!CheckSpellState(Myself,HOLY_POWER)
+	RandomNum(3,2)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_2_RANDOM_CAST","LOCALS",1,2)
+		Spell(Myself,CLERIC_HOLY_POWER)
+		Wait(1)
+END
+
+IF
+	HaveSpellRES("IWPR219")
+	Global("SSPELLS_2_RANDOM_CAST","LOCALS",2)
+	GlobalLT("Action","LOCALS",3)
+	RandomNum(3,3)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_2_RANDOM_CAST","LOCALS",1,2)
+		SpellRES("IWPR219",Myself)
+		Wait(1)
+END
+//BLOCK NO_RND
+IF
+	HaveSpellRES("IWPR312")
+	GlobalLT("Action","LOCALS",3)
+	See([0.0.ORC])
+	CheckStatLT(LastSeenBy(Myself),18,STR)
+	!CheckSpellState(LastSeenBy(Myself),HOLY_POWER)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_2_RANDOM_CAST","LOCALS",1,2)
+		SpellRES("IWPR312",LastSeenBy(Myself))
+		Wait(1)
+END
+
+IF
+	HaveSpellRES("IWPR415")
+	GlobalLT("Action","LOCALS",3)
+	See([0.0.ORC])
+	!CheckSpellState(LastSeenBy(Myself),BLOOD_RAGE)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_2_RANDOM_CAST","LOCALS",1,2)
+		SpellRES("IWPR415",LastSeenBy(Myself))
+		Wait(1)
+END
+
+IF
+	HaveSpell(CLERIC_DRAW_UPON_HOLY_MIGHT)
+	GlobalLT("Action","LOCALS",3)
+	!StateCheck(Myself,STATE_DRAWUPONHOLYMIGHT)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_2_RANDOM_CAST","LOCALS",1,2)
+		Spell(Myself,CLERIC_DRAW_UPON_HOLY_MIGHT)
+		Wait(1)
+END
+
+IF
+	HaveSpell(CLERIC_HOLY_POWER)
+	GlobalLT("Action","LOCALS",3)
+	CheckStatLT(Myself,18,STR)
+	!CheckSpellState(Myself,HOLY_POWER)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_2_RANDOM_CAST","LOCALS",1,2)
+		Spell(Myself,CLERIC_HOLY_POWER)
+		Wait(1)
+END
+
+IF
+	HaveSpellRES("IWPR219")
+	GlobalLT("Action","LOCALS",3)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_2_RANDOM_CAST","LOCALS",1,2)
+		SpellRES("IWPR219",Myself)
+		Wait(1)
+END
+//BLOCKEND
+//BLOCKEND
+
+IF
+	HasItem("Slaylive",Myself)  // Убить Живое
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	HaveSpell(CLERIC_SLAY_LIVING)  // SPPR515.SPL (Убить живое)
+	See(NearestEnemyOf(Myself))
+	//IsSpellTargetValid(Myself,CLERIC_SLAY_LIVING,0)  // SPPR515.SPL (Убить живое)
+	!HasItem("Slaylive",Myself)
+THEN
+	RESPONSE #100
+		Spell(Myself,CLERIC_SLAY_LIVING)  // SPPR515.SPL (Убить живое)
+		//WaitAnimation(Myself,WALK)
+		//WaitAnimation(Myself,CONJURE)
+		//WaitAnimation(Myself,CAST)
+		Wait(1)
+END
+
+IF
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		EquipMostDamagingMelee()
+		AttackOneRound(LastSeenBy(Myself))
+END
+

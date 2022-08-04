@@ -1,0 +1,11 @@
+BEGIN ~62ELVES~
+
+IF ~NumTimesTalkedTo(0)~ THEN BEGIN 0
+  SAY @35471
+  IF ~~ THEN EXIT
+END
+
+IF ~NumTimesTalkedToGT(0)~ THEN BEGIN 1
+  SAY @35473
+  IF ~~ THEN EXIT
+END

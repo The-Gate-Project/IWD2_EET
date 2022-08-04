@@ -1,0 +1,26 @@
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId(Player1) //[PC]
+		HideGUI()
+		MoveViewPoint([960.2368],VERY_FAST)
+		ActionOverride("VenominSuicide",MoveToPoint([960.2368]))
+		Wait(4)
+		MoveViewObject("VenominSuicide",INSTANT)
+		//SpellHitEffectSprite("VenominSuicide","VenominSuicide",FLAME_STRIKE,0)
+		//ActionOverride("VenominSuicide",ForceSpellRES("IDFSTRIK",Myself))
+		CreateVisualEffectObject("IDFSTH","VenominSuicide")
+		DisplayString("VenominSuicide",@14026)
+		//SetCriticalPathObject("VenominSuicide",FALSE)
+		ActionOverride("VenominSuicide",ApplySpellRES("IWCPREM",Myself))
+		Wait(1)
+		ActionOverride("VenominSuicide",DestroySelf())
+		MoveViewObject([PC],VERY_FAST)
+		Wait(2)
+		UnhideGUI()
+		EndCutSceneMode()
+END
+
+//ForceSpellRES("IDFSTRIK",Myself)
+		//CreateVisualEffectObject("IDFSTH",Myself)

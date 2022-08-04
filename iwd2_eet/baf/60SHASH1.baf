@@ -1,0 +1,52 @@
+IF
+	!NumTimesTalkedTo(0)
+THEN
+	RESPONSE #100
+		SetGlobal("TEAM_4","MYAREA",1)
+		Enemy()
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+THEN
+	RESPONSE #100
+		ChangeAIScript("",SPECIFICS)
+END
+
+IF
+	!GlobalTimerNotExpired("IwTimer21","LOCALS")
+	!Allegiance(Myself,ENEMY)
+THEN
+	RESPONSE #100
+		DisplayString(Myself,@35310)
+		SetGlobalTimer("IwTimer21","LOCALS",15)
+		Continue()
+	RESPONSE #100
+		DisplayString(Myself,@35311)
+		SetGlobalTimer("IwTimer21","LOCALS",15)
+		Continue()
+	RESPONSE #100
+		DisplayString(Myself,@35312)
+		SetGlobalTimer("IwTimer21","LOCALS",15)
+		Continue()
+	RESPONSE #100
+		DisplayString(Myself,@35313)
+		SetGlobalTimer("IwTimer21","LOCALS",15)
+		Continue()
+END
+
+IF
+	NumTimesTalkedTo(0)
+	!Allegiance(Myself,ENEMY)
+	!StateCheck(Myself,STATE_REALLY_DEAD)
+	See([PC])
+	Range(LastSeenBy(Myself),18)
+THEN
+	RESPONSE #100
+		//SetDialogueRange(300)
+		//Dialogue(LastMarkedObject)
+		ApplySpellRES("BDCUTSPY",Myself)
+		StartDialogNoSet(LastSeenBy(Myself))
+END
+

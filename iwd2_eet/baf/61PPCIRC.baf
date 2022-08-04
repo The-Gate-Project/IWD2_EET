@@ -1,0 +1,46 @@
+IF
+	Global("Summon","MYAREA",1)
+	IsOverMe([0.0.YUANTI.CLERIC])
+	!StateCheck(LastTrigger,STATE_REALLY_DEAD)
+	//!CheckSpellState(LastTrigger,PROTECTION_FROM_EVIL)
+	!CheckStatGT(LastTrigger,0,PROTECTION_FROM_EVIL)
+THEN
+	RESPONSE #100
+		ForceSpell(LastTrigger,WIZARD_PROTECTION_FROM_EVIL)  // SPPR107.SPL CLERIC_PROTECTION_FROM_EVIL
+END
+
+IF
+	Global("Summon","MYAREA",1)
+	IsOverMe([0.0.YUANTI.CLERIC])
+	!StateCheck(LastTrigger,STATE_REALLY_DEAD)
+THEN
+	RESPONSE #100
+		ActionOverride(LastTrigger,ForceSpellPointRES("IWWI807",[1214.1972]))
+		//ActionOverride(LastTrigger,SpellWait(WIZARD_SUMMON_FIEND))
+		ActionOverride(LastTrigger,Wait(1))
+		SetGlobal("Summon","MYAREA",3)
+END
+
+IF
+	Global("Summon","MYAREA",2)
+	IsOverMe([PC])
+	!StateCheck(LastTrigger,STATE_REALLY_DEAD)
+	//!CheckSpellState(LastTrigger,PROTECTION_FROM_EVIL)
+	!CheckStatGT(LastTrigger,0,PROTECTION_FROM_EVIL)
+THEN
+	RESPONSE #100
+		ForceSpell(LastTrigger,WIZARD_PROTECTION_FROM_EVIL)  // SPPR107.SPL CLERIC_PROTECTION_FROM_EVIL
+END
+
+IF
+	Global("Summon","MYAREA",2)
+	IsOverMe([PC])
+	!StateCheck(LastTrigger,STATE_REALLY_DEAD)
+THEN
+	RESPONSE #100
+		ActionOverride(LastTrigger,ForceSpellPointRES("IWWI807",[1214.1972]))
+		//ActionOverride(LastTrigger,SpellWait(WIZARD_SUMMON_FIEND))
+		ActionOverride(LastTrigger,Wait(1))
+		SetGlobal("Summon","MYAREA",3)
+END
+

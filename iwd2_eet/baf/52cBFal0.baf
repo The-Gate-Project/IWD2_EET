@@ -1,0 +1,34 @@
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId(LastTrigger)
+		MultiPlayerSync()
+		MoveViewPoint([425.1120],INSTANT)
+		Wait(1)
+		MultiPlayerSync()
+		PlaySound("IW5200E")
+		OpenDoor("AR5200_Boards")
+		//HideCreature(Myself,TRUE)
+		ApplySpellRES("IDINVIS6",Myself)
+		VerbalConstant(Myself,HURT) //FALLING
+		Wait(3)
+		//SetHP(Myself,1)
+		ApplySpellRES("IWSHP1",Myself)
+		MultiPlayerSync()
+		FadeToColor([0.0],0)
+		Wait(1)
+		JumpToPoint([400.1295])
+		Face(SW)
+		//HideCreature(Myself,FALSE)
+		ApplySpellRES("IDINVIS7",Myself)
+		SetSequence(SEQ_SLEEP)
+		Wait(2)
+		MultiPlayerSync()
+		MoveViewPoint([400.1295],INSTANT)
+		FadeFromColor([0.0],0)
+		Wait(1)
+		DisplayStringNoName(Myself,@22953)
+		EndCutSceneMode()
+END
+

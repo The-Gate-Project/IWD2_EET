@@ -1,0 +1,92 @@
+IF
+	!Global("61PBRAZ5_INACTIVE","MYAREA",1)
+	!BitCheck("61BrazierTally","GLOBAL",16)
+	Clicked([ANYONE])
+	!Contains("MISC16",Myself)
+	PartyHasItem("MISC16")
+	Range(LastTrigger,5)
+THEN
+	RESPONSE #100
+		DisplayString(LastTrigger,@41115)
+		TakePartyItemNum("MISC16",1)
+		//StartCutSceneMode()
+		//EndCutSceneMode()
+		IncrementGlobal("61BrazierTally","GLOBAL",16)
+END
+
+IF
+	!Global("61PBRAZ5_INACTIVE","MYAREA",1)
+	BitCheck("61BrazierTally","GLOBAL",16)
+	Contains("MISC16",Myself)
+THEN
+	RESPONSE #100
+		PlaySound("WFt_p31a")
+		DestroyItem("MISC16")
+		AmbientActivate("BrazierFlame5",TRUE)
+		AmbientActivate("BrazierGem5",FALSE)
+		TriggerActivation("InfoBrazier5",FALSE)
+		//ChangeCurrentScript("")
+		SetGlobal("61PBRAZ5_INACTIVE","MYAREA",1)
+END
+
+IF
+	!Global("61PBRAZ5_INACTIVE","MYAREA",1)
+	!BitCheck("61BrazierTally","GLOBAL",16)
+	//TotalItemCntGT(Myself,0)
+	OR(38)	
+		HasItemCategory(Myself,MISC,FALSE)
+		HasItemCategory(Myself,AMULET,FALSE)
+		HasItemCategory(Myself,ARMOR,FALSE)
+		HasItemCategory(Myself,BELT,FALSE)
+		HasItemCategory(Myself,BOOT,FALSE)
+		HasItemCategory(Myself,ARROW,FALSE)
+		HasItemCategory(Myself,BRACER,FALSE)
+		HasItemCategory(Myself,HELMET,FALSE)
+		HasItemCategory(Myself,KEY,FALSE)
+		HasItemCategory(Myself,POTION,FALSE)
+		HasItemCategory(Myself,RING,FALSE)
+		HasItemCategory(Myself,SCROLL,FALSE)
+		HasItemCategory(Myself,SHIELD,FALSE)
+		HasItemCategory(Myself,FOOD,FALSE)
+		HasItemCategory(Myself,BULLET,FALSE)
+		HasItemCategory(Myself,BOW,FALSE)
+		HasItemCategory(Myself,DAGGER,FALSE)
+		HasItemCategory(Myself,MACE,FALSE)
+		HasItemCategory(Myself,SLING,FALSE)
+		HasItemCategory(Myself,SMSWORD,FALSE)
+		HasItemCategory(Myself,BGSWORD,FALSE)
+		HasItemCategory(Myself,HAMMER,FALSE)
+		HasItemCategory(Myself,MSTAR,FALSE)
+		HasItemCategory(Myself,FLAIL,FALSE)
+		HasItemCategory(Myself,DART,FALSE)
+		HasItemCategory(Myself,AXE,FALSE)
+		HasItemCategory(Myself,STAFF,FALSE)
+		HasItemCategory(Myself,XBOW,FALSE)
+		HasItemCategory(Myself,FIST,FALSE)
+		HasItemCategory(Myself,SPEAR,FALSE)
+		HasItemCategory(Myself,POLEARM,FALSE)
+		HasItemCategory(Myself,BOLT,FALSE)
+		HasItemCategory(Myself,CLOAK,FALSE)
+		HasItemCategory(Myself,COIN,FALSE)
+		HasItemCategory(Myself,GEM,FALSE)
+		HasItemCategory(Myself,WAND,FALSE)
+		HasItemCategory(Myself,BROKEN1,FALSE)
+		HasItemCategory(Myself,BROKEN2,FALSE)
+	Range([PC],25)
+THEN
+	RESPONSE #100
+		//TransferInventory(Myself,LastMarkedObject)
+		MoveContainerContents("Brazier5","Brazier5drop")
+		DisplayString(Player1,@34923) //[PC]
+		///StartCutSceneMode()
+		//EndCutSceneMode()
+END
+
+IF
+	!Global("61PBRAZ5_INACTIVE","MYAREA",1)
+	Clicked([ANYONE])
+THEN
+	RESPONSE #100
+		NoAction()
+END
+

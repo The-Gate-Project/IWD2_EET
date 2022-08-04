@@ -1,0 +1,320 @@
+IF
+	Global("OfferAbused","LOCALS",1)
+THEN
+	RESPONSE #100
+		FadeToColor([0.0],0)
+		MoveViewPoint([880.2240],INSTANT)
+		ActionOverride(Player1,JumpToPoint([880.2240]))
+		ActionOverride("Odea",JumpToPoint([1425.1560]))
+		MoveToPoint([2326.532])
+		FadeFromColor([0.0],0)
+		SetGlobal("OfferAbused","LOCALS",0)
+END
+
+IF
+	Global("INITIALIZED_40ILLIUM","LOCALS",0)
+THEN
+	RESPONSE #100
+		//SetSavedLocationPoint(1933,323,SE)
+		SaveLocation("LOCALS","SavedLoc",[1933.323])
+		SetGlobal("INITIALIZED_40ILLIUM","LOCALS",1)
+		SetGlobal("SaveSavedLoc","LOCALS",1)
+		Continue()
+END
+
+//BLOCK SET_VARS
+IF
+	!Global("SET_40ILLIUM","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,4)
+		SetGlobal("SET_40ILLIUM","LOCALS",1)
+		SetInterrupt(TRUE)
+END
+//BLOCKEND
+
+IF
+	StateCheck(Myself,STATE_PANIC)
+THEN
+	RESPONSE #100
+		RandomWalkContinuous()
+END
+
+IF
+	!GlobalTimerNotExpired("IWD_Rest","LOCALS")
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IWD_Rest","LOCALS",EIGHT_HOURS)
+		ApplySpell(Myself,RESTORE_FULL_HEALTH)
+		Rest()
+END
+
+IF
+	HasItem("POTN55",Myself) //POTN_52
+	HPPercentLT(Myself,50)
+THEN
+	RESPONSE #100
+		UseItem("POTN55",Myself) //POTN_52
+END
+
+IF
+	HaveSpell(CLERIC_CURE_SERIOUS_WOUNDS)
+	HPPercentLT(Myself,60)
+	!StateCheck(Myself,STATE_REALLY_DEAD)
+THEN
+	RESPONSE #100
+		Spell(Myself,CLERIC_CURE_SERIOUS_WOUNDS)
+		Wait(1)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_MEDIUM_WOUNDS)
+	HPPercentLT(Myself,75)
+	!StateCheck(Myself,STATE_REALLY_DEAD)
+THEN
+	RESPONSE #100
+		Spell(Myself,CLERIC_CURE_MEDIUM_WOUNDS)
+		Wait(1)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_LIGHT_WOUNDS)
+	HPPercentLT(Myself,90)
+	!StateCheck(Myself,STATE_REALLY_DEAD)
+THEN
+	RESPONSE #100
+		Spell(Myself,CLERIC_CURE_LIGHT_WOUNDS)
+		Wait(1)
+END
+
+IF
+	HaveSpellRES("IWPR323")
+	OR(2)
+		HitBy([ANYONE],FIRE)
+		HitBy([ANYONE],ELECTRICITY)
+	HPPercentLT(Myself,75)
+	!CheckSpellState(Myself,STORM_SHELL)
+THEN
+	RESPONSE #100
+		SpellRES("IWPR323",Myself)
+		Wait(1)
+END
+
+IF
+	HaveSpell(CLERIC_NEUTRALIZE_POISON)
+	StateCheck(Myself,STATE_POISONED)
+	HPPercentLT(Myself,75)
+THEN
+	RESPONSE #100
+		Spell(Myself,CLERIC_NEUTRALIZE_POISON)
+		Wait(1)
+END
+//BLOCK SPL_1
+/*IF
+	ForceMarkedSpell(MARKED_SPELL)
+	SetSpellTarget(Nothing)
+	!Global("OBJ_SP_40ILLIUM_0","LOCALS",-1)
+	Allegiance(Myself,ENEMY)
+	!Global("OBJ_SP_40ILLIUM_0","LOCALS",-1)
+	RandomNum(5,1)
+	See(FarthestEnemyOf(Myself),0)
+THEN
+	RESPONSE #100
+		MarkSpellAndObject("13021520",Myself,SPELLCAST_IGNORE_SEE | SPELLCAST_IGNORE_VALID_SPELL_TARGET | SPELLCAST_RANDOM)  // [CLERIC_CALL_LIGHTNING, CLERIC_IRON_SKINS]
+		MarkSpellAndObject("1410140215011602",LastMarkedObject,SPELLCAST_IGNORE_SEE | SPELLCAST_IGNORE_VALID_SPELL_TARGET | SPELLCAST_RANDOM)  // [CLERIC_GIANT_INSECT, CLERIC_SUMMON_NATURES_ALLY_4, CLERIC_SUMMON_NATURES_ALLY_5, CLERIC_SUMMON_NATURES_ALLY_6]
+		Continue()
+	RESPONSE #100
+		MarkSpellAndObject("1410140215011602",LastMarkedObject,SPELLCAST_IGNORE_SEE | SPELLCAST_IGNORE_VALID_SPELL_TARGET | SPELLCAST_RANDOM)  // [CLERIC_GIANT_INSECT, CLERIC_SUMMON_NATURES_ALLY_4, CLERIC_SUMMON_NATURES_ALLY_5, CLERIC_SUMMON_NATURES_ALLY_6]
+		MarkSpellAndObject("13021520",Myself,SPELLCAST_IGNORE_SEE | SPELLCAST_IGNORE_VALID_SPELL_TARGET | SPELLCAST_RANDOM)  // [CLERIC_CALL_LIGHTNING, CLERIC_IRON_SKINS]
+		Continue()
+END
+
+IF
+	!IsMarkedSpell(MARKED_SPELL)
+THEN
+	RESPONSE #100
+		Spell(SpellTarget,MARKED_SPELL)
+		WaitAnimation(Myself,WALK)
+		WaitAnimation(Myself,CONJURE)
+		WaitAnimation(Myself,CAST)
+		ForceMarkedSpell(MARKED_SPELL)
+END*/
+/*IF
+	GlobalLT("SSPELLS_1_RANDOM_CAST","LOCALS",5)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,4)
+		Continue()
+END*/
+//MarkSpellAndObject("13021520",Myself,SPELLCAST_IGNORE_SEE | SPELLCAST_IGNORE_VALID_SPELL_TARGET | SPELLCAST_RANDOM)  // [CLERIC_CALL_LIGHTNING, CLERIC_IRON_SKINS]
+//		MarkSpellAndObject("1410140215011602",LastMarkedObject,SPELLCAST_IGNORE_SEE | SPELLCAST_IGNORE_VALID_SPELL_TARGET | SPELLCAST_RANDOM)  // [CLERIC_GIANT_INSECT, CLERIC_SUMMON_NATURES_ALLY_4, CLERIC_SUMMON_NATURES_ALLY_5, CLERIC_SUMMON_NATURES_ALLY_6]
+//1
+IF
+	Global("SSPELLS_1_RANDOM_CAST","LOCALS",1)
+	HaveSpell(CLERIC_CALL_LIGHTNING)
+	Allegiance(Myself,ENEMY)
+	!Global("OBJ_SP_40ILLIUM_0","LOCALS",-1)
+	RandomNum(5,1)
+	See(FarthestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,4)
+		Spell(LastSeenBy(Myself),CLERIC_CALL_LIGHTNING)
+		Wait(1)
+END
+//2
+IF
+	Global("SSPELLS_1_RANDOM_CAST","LOCALS",2)
+	HaveSpell(CLERIC_IRONSKIN)
+	Allegiance(Myself,ENEMY)
+	!Global("OBJ_SP_40ILLIUM_0","LOCALS",-1)
+	RandomNum(5,1)
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,4)
+		Spell(LastSeenBy(Myself),CLERIC_IRONSKIN)
+		Wait(1)
+END
+//3
+IF
+	Global("SSPELLS_1_RANDOM_CAST","LOCALS",3)
+	HaveSpell(CLERIC_CREEPING_DOOM)
+	Allegiance(Myself,ENEMY)
+	!Global("OBJ_SP_40ILLIUM_0","LOCALS",-1)
+	RandomNum(5,1)
+	See(FarthestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,4)
+		Spell(LastSeenBy(Myself),CLERIC_CREEPING_DOOM)
+		Wait(1)
+END
+//4
+IF
+	Global("SSPELLS_1_RANDOM_CAST","LOCALS",4)
+	HaveSpell(CLERIC_ANIMAL_SUMMONING_3)
+	Allegiance(Myself,ENEMY)
+	!Global("OBJ_SP_40ILLIUM_0","LOCALS",-1)
+	RandomNum(5,1)
+	See(FarthestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,4)
+		Spell(LastSeenBy(Myself),CLERIC_ANIMAL_SUMMONING_3)
+		Wait(1)
+END
+//BLOCK NO_RND
+//1
+IF
+	HaveSpell(CLERIC_CALL_LIGHTNING)
+	Allegiance(Myself,ENEMY)
+	!Global("OBJ_SP_40ILLIUM_0","LOCALS",-1)
+	RandomNum(5,1)
+	See(FarthestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,4)
+		Spell(LastSeenBy(Myself),CLERIC_CALL_LIGHTNING)
+		Wait(1)
+END
+//2
+IF
+	HaveSpell(CLERIC_IRONSKIN)
+	Allegiance(Myself,ENEMY)
+	!Global("OBJ_SP_40ILLIUM_0","LOCALS",-1)
+	RandomNum(5,1)
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,4)
+		Spell(LastSeenBy(Myself),CLERIC_IRONSKIN)
+		Wait(1)
+END
+//3
+IF
+	HaveSpell(CLERIC_CREEPING_DOOM)
+	Allegiance(Myself,ENEMY)
+	!Global("OBJ_SP_40ILLIUM_0","LOCALS",-1)
+	RandomNum(5,1)
+	See(FarthestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,4)
+		Spell(LastSeenBy(Myself),CLERIC_CREEPING_DOOM)
+		Wait(1)
+END
+//4
+IF
+	HaveSpell(CLERIC_ANIMAL_SUMMONING_3)
+	Allegiance(Myself,ENEMY)
+	!Global("OBJ_SP_40ILLIUM_0","LOCALS",-1)
+	RandomNum(5,1)
+	See(FarthestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,4)
+		Spell(LastSeenBy(Myself),CLERIC_ANIMAL_SUMMONING_3)
+		Wait(1)
+END
+//BLOCKEND
+//BLOCKEND
+
+IF
+	!Global("OBJ_SP_40ILLIUM_0","LOCALS",-1)
+	!HaveSpell(CLERIC_CALL_LIGHTNING)
+	!HaveSpell(CLERIC_CREEPING_DOOM)
+	!HaveSpell(CLERIC_IRONSKIN)
+	!HaveSpell(CLERIC_ANIMAL_SUMMONING_3)
+	//!HaveSpell(CLERIC_SUMMON_NATURES_ALLY_5)  // SPPR501.SPL (Призыв природных союзников V)
+	//!HaveSpell(CLERIC_SUMMON_NATURES_ALLY_6)  // SPPR602.SPL (Призыв природных союзников VI)
+THEN
+	RESPONSE #100
+		SetGlobal("OBJ_SP_40ILLIUM_0","LOCALS",-1)
+		Continue()
+END
+
+IF
+	!GlobalTimerNotExpired("IwTimer22","LOCALS")
+	!NearSavedLocation(Myself,"LOCALSSavedLoc",0)
+	HPPercentLT(Myself,50)
+THEN
+	RESPONSE #100
+		MoveToSavedLocation("SavedLoc","LOCALS")
+		SetGlobalTimer("IwTimer22","LOCALS",5)
+END
+
+/*IF
+	!GlobalTimerNotExpired("IwTimer22","LOCALS")
+	NearSavedLocation(Myself,"LOCALSSavedLoc",0)
+	HPPercentLT(Myself,50)
+THEN
+	RESPONSE #100
+		RandomTurn()
+		SetGlobalTimer("IwTimer22","LOCALS",5)
+END*/
+
+IF
+	NumTimesTalkedToLT(2)
+	Global("CanSeePlayer","LOCALS",0)
+	See([PC])
+THEN
+	RESPONSE #100
+		ClearAllActions()
+		FaceObject(LastSeenBy(Myself))
+		//SetDialogueRange(300)
+		SetGlobal("CanSeePlayer","LOCALS",1)
+		//Dialogue(LastMarkedObject)
+		ApplySpellRES("BDCUTSPY",Myself)
+		StartDialogNoSet(LastSeenBy(Myself))
+END
+
+IF
+	Global("CanSeePlayer","LOCALS",1)
+	!See([PC])
+THEN
+	RESPONSE #100
+		SetGlobal("CanSeePlayer","LOCALS",0)
+END
+

@@ -1,0 +1,367 @@
+IF
+	OnCreation()
+THEN
+	RESPONSE #100
+		NoAction()
+END
+
+IF
+	OpenState("AR5004_1A",TRUE)
+	//Sequence("ROCK_1A",SEQ_ATTACK)
+	Global("ROCK_1A_SEQ","MYAREA",0)
+THEN
+	RESPONSE #100
+		StaticSequence("ROCK_1A",SEQ_AWAKE)
+		SetGlobal("ROCK_1A_SEQ","MYAREA",1)
+		Continue()
+END
+
+IF
+	OpenState("AR5004_1A",FALSE)
+	//!Sequence("ROCK_1A",SEQ_ATTACK)
+	!Global("ROCK_1A_SEQ","MYAREA",0)
+THEN
+	RESPONSE #100
+		StaticSequence("ROCK_1A",SEQ_ATTACK)
+		SetGlobal("ROCK_1A_SEQ","MYAREA",0)
+		Continue()
+END
+
+IF
+	OpenState("AR5004_1B",TRUE)
+	//Sequence("ROCK_1B",SEQ_ATTACK)
+	Global("ROCK_1B_SEQ","MYAREA",0)
+THEN
+	RESPONSE #100
+		StaticSequence("ROCK_1B",SEQ_AWAKE)
+		SetGlobal("ROCK_1B_SEQ","MYAREA",1)
+		Continue()
+END
+
+IF
+	OpenState("AR5004_1B",FALSE)
+	//!Sequence("ROCK_1B",SEQ_ATTACK)
+	!Global("ROCK_1B_SEQ","MYAREA",0)
+THEN
+	RESPONSE #100
+		StaticSequence("ROCK_1B",SEQ_ATTACK)
+		SetGlobal("ROCK_1B_SEQ","MYAREA",0)
+		Continue()
+END
+
+IF
+	OpenState("AR5004_1C",TRUE)
+	//Sequence("ROCK_1C",SEQ_ATTACK)
+	Global("ROCK_1C_SEQ","MYAREA",0)
+THEN
+	RESPONSE #100
+		StaticSequence("ROCK_1C",SEQ_AWAKE)
+		SetGlobal("ROCK_1C_SEQ","MYAREA",1)
+		Continue()
+END
+
+IF
+	OpenState("AR5004_1C",FALSE)
+	//!Sequence("ROCK_1C",SEQ_ATTACK)
+	!Global("ROCK_1C_SEQ","MYAREA",0)
+THEN
+	RESPONSE #100
+		StaticSequence("ROCK_1C",SEQ_ATTACK)
+		SetGlobal("ROCK_1C_SEQ","MYAREA",0)
+		Continue()
+END
+
+IF
+	OpenState("AR5004_1D",TRUE)
+	//Sequence("ROCK_1D",SEQ_ATTACK)
+	Global("ROCK_1D_SEQ","MYAREA",0)
+THEN
+	RESPONSE #100
+		StaticSequence("ROCK_1D",SEQ_AWAKE)
+		SetGlobal("ROCK_1D_SEQ","MYAREA",1)
+		Continue()
+END
+
+IF
+	OpenState("AR5004_1D",FALSE)
+	//!Sequence("ROCK_1D",SEQ_ATTACK)
+	!Global("ROCK_1D_SEQ","MYAREA",0)
+THEN
+	RESPONSE #100
+		StaticSequence("ROCK_1D",SEQ_ATTACK)
+		SetGlobal("ROCK_1D_SEQ","MYAREA",0)
+		Continue()
+END
+/* */
+IF
+	OpenState("AR5004_2A",TRUE)
+	//Sequence("ROCK_2A",SEQ_ATTACK)
+	Global("ROCK_2A_SEQ","MYAREA",0)
+THEN
+	RESPONSE #100
+		StaticSequence("ROCK_2A",SEQ_AWAKE)
+		SetGlobal("ROCK_2A_SEQ","MYAREA",1)
+		Continue()
+END
+
+IF
+	OpenState("AR5004_2A",FALSE)
+	//!Sequence("ROCK_2A",SEQ_ATTACK)
+	!Global("ROCK_2A_SEQ","MYAREA",0)
+THEN
+	RESPONSE #100
+		StaticSequence("ROCK_2A",SEQ_ATTACK)
+		SetGlobal("ROCK_2A_SEQ","MYAREA",0)
+		Continue()
+END
+
+IF
+	OpenState("AR5004_2B",TRUE)
+	//Sequence("ROCK_2B",SEQ_ATTACK)
+	Global("ROCK_2B_SEQ","MYAREA",0)
+THEN
+	RESPONSE #100
+		StaticSequence("ROCK_2B",SEQ_AWAKE)
+		SetGlobal("ROCK_2B_SEQ","MYAREA",1)
+		Continue()
+END
+
+IF
+	OpenState("AR5004_2B",FALSE)
+	//!Sequence("ROCK_2B",SEQ_ATTACK)
+	!Global("ROCK_2B_SEQ","MYAREA",0)
+THEN
+	RESPONSE #100
+		StaticSequence("ROCK_2B",SEQ_ATTACK)
+		SetGlobal("ROCK_2B_SEQ","MYAREA",0)
+		Continue()
+END
+
+IF
+	OpenState("AR5004_2C",TRUE)
+	//Sequence("ROCK_2C",SEQ_ATTACK)
+	Global("ROCK_2C_SEQ","MYAREA",0)
+THEN
+	RESPONSE #100
+		StaticSequence("ROCK_2C",SEQ_AWAKE)
+		SetGlobal("ROCK_2C_SEQ","MYAREA",1)
+		Continue()
+END
+
+IF
+	OpenState("AR5004_2C",FALSE)
+	//!Sequence("ROCK_2C",SEQ_ATTACK)
+	!Global("ROCK_2C_SEQ","MYAREA",0)
+THEN
+	RESPONSE #100
+		StaticSequence("ROCK_2C",SEQ_ATTACK)
+		SetGlobal("ROCK_2C_SEQ","MYAREA",0)
+		Continue()
+END
+
+IF
+	OpenState("AR5004_2D",TRUE)
+	//Sequence("ROCK_2D",SEQ_ATTACK)
+	Global("ROCK_2D_SEQ","MYAREA",0)
+THEN
+	RESPONSE #100
+		StaticSequence("ROCK_2D",SEQ_AWAKE)
+		SetGlobal("ROCK_2D_SEQ","MYAREA",1)
+		Continue()
+END
+
+IF
+	OpenState("AR5004_2D",FALSE)
+	//!Sequence("ROCK_2D",SEQ_ATTACK)
+	!Global("ROCK_2D_SEQ","MYAREA",0)
+THEN
+	RESPONSE #100
+		StaticSequence("ROCK_2D",SEQ_ATTACK)
+		SetGlobal("ROCK_2D_SEQ","MYAREA",0)
+		Continue()
+END
+
+IF
+	OpenState("AR5004_3A",TRUE)
+	//Sequence("ROCK_3A",SEQ_ATTACK)
+	Global("ROCK_3A_SEQ","MYAREA",0)
+THEN
+	RESPONSE #100
+		StaticSequence("ROCK_3A",SEQ_AWAKE)
+		SetGlobal("ROCK_3A_SEQ","MYAREA",1)
+		Continue()
+END
+
+IF
+	OpenState("AR5004_3A",FALSE)
+	//!Sequence("ROCK_3A",SEQ_ATTACK)
+	!Global("ROCK_3A_SEQ","MYAREA",0)
+THEN
+	RESPONSE #100
+		StaticSequence("ROCK_3A",SEQ_ATTACK)
+		SetGlobal("ROCK_3A_SEQ","MYAREA",0)
+		Continue()
+END
+
+IF
+	OpenState("AR5004_3B",TRUE)
+	//Sequence("ROCK_3B",SEQ_ATTACK)
+	Global("ROCK_3B_SEQ","MYAREA",0)
+THEN
+	RESPONSE #100
+		StaticSequence("ROCK_3B",SEQ_AWAKE)
+		SetGlobal("ROCK_3B_SEQ","MYAREA",1)
+		Continue()
+END
+
+IF
+	OpenState("AR5004_3B",FALSE)
+	//!Sequence("ROCK_3B",SEQ_ATTACK)
+	!Global("ROCK_3B_SEQ","MYAREA",0)
+THEN
+	RESPONSE #100
+		StaticSequence("ROCK_3B",SEQ_ATTACK)
+		SetGlobal("ROCK_3B_SEQ","MYAREA",0)
+		Continue()
+END
+
+IF
+	OpenState("AR5004_3C",TRUE)
+	//Sequence("ROCK_3C",SEQ_ATTACK)
+	Global("ROCK_3C_SEQ","MYAREA",0)
+THEN
+	RESPONSE #100
+		StaticSequence("ROCK_3C",SEQ_AWAKE)
+		SetGlobal("ROCK_3C_SEQ","MYAREA",1)
+		Continue()
+END
+
+IF
+	OpenState("AR5004_3C",FALSE)
+	//!Sequence("ROCK_3C",SEQ_ATTACK)
+	!Global("ROCK_3C_SEQ","MYAREA",0)
+THEN
+	RESPONSE #100
+		StaticSequence("ROCK_3C",SEQ_ATTACK)
+		SetGlobal("ROCK_3C_SEQ","MYAREA",0)
+		Continue()
+END
+
+IF
+	OpenState("AR5004_3D",TRUE)
+	//Sequence("ROCK_3D",SEQ_ATTACK)
+	Global("ROCK_3D_SEQ","MYAREA",0)
+THEN
+	RESPONSE #100
+		StaticSequence("ROCK_3D",SEQ_AWAKE)
+		SetGlobal("ROCK_3D_SEQ","MYAREA",1)
+		Continue()
+END
+
+IF
+	OpenState("AR5004_3D",FALSE)
+	//!Sequence("ROCK_3D",SEQ_ATTACK)
+	!Global("ROCK_3D_SEQ","MYAREA",0)
+THEN
+	RESPONSE #100
+		StaticSequence("ROCK_3D",SEQ_ATTACK)
+		SetGlobal("ROCK_3D_SEQ","MYAREA",0)
+		Continue()
+END
+
+IF
+	OpenState("AR5004_4A",TRUE)
+	//Sequence("ROCK_4A",SEQ_ATTACK)
+	Global("ROCK_4A_SEQ","MYAREA",0)
+THEN
+	RESPONSE #100
+		StaticSequence("ROCK_4A",SEQ_AWAKE)
+		SetGlobal("ROCK_4A_SEQ","MYAREA",1)
+		Continue()
+END
+
+IF
+	OpenState("AR5004_4A",FALSE)
+	//!Sequence("ROCK_4A",SEQ_ATTACK)
+	!Global("ROCK_4A_SEQ","MYAREA",0)
+THEN
+	RESPONSE #100
+		StaticSequence("ROCK_4A",SEQ_ATTACK)
+		SetGlobal("ROCK_4A_SEQ","MYAREA",0)
+		Continue()
+END
+
+IF
+	OpenState("AR5004_4B",TRUE)
+	//Sequence("ROCK_4B",SEQ_ATTACK)
+	Global("ROCK_4B_SEQ","MYAREA",0)
+THEN
+	RESPONSE #100
+		StaticSequence("ROCK_4B",SEQ_AWAKE)
+		SetGlobal("ROCK_4B_SEQ","MYAREA",1)
+		Continue()
+END
+
+IF
+	OpenState("AR5004_4B",FALSE)
+	//!Sequence("ROCK_4B",SEQ_ATTACK)
+	!Global("ROCK_4B_SEQ","MYAREA",0)
+THEN
+	RESPONSE #100
+		StaticSequence("ROCK_4B",SEQ_ATTACK)
+		SetGlobal("ROCK_4B_SEQ","MYAREA",0)
+		Continue()
+END
+
+IF
+	OpenState("AR5004_4C",TRUE)
+	//Sequence("ROCK_4C",SEQ_ATTACK)
+	Global("ROCK_4C_SEQ","MYAREA",0)
+THEN
+	RESPONSE #100
+		StaticSequence("ROCK_4C",SEQ_AWAKE)
+		SetGlobal("ROCK_4C_SEQ","MYAREA",1)
+		Continue()
+END
+
+IF
+	OpenState("AR5004_4C",FALSE)
+	//!Sequence("ROCK_4C",SEQ_ATTACK)
+	!Global("ROCK_4C_SEQ","MYAREA",0)
+THEN
+	RESPONSE #100
+		StaticSequence("ROCK_4C",SEQ_ATTACK)
+		SetGlobal("ROCK_4C_SEQ","MYAREA",0)
+		Continue()
+END
+
+IF
+	OpenState("AR5004_4D",TRUE)
+	//Sequence("ROCK_4D",SEQ_ATTACK)
+	Global("ROCK_4D_SEQ","MYAREA",0)
+THEN
+	RESPONSE #100
+		StaticSequence("ROCK_4D",SEQ_AWAKE)
+		SetGlobal("ROCK_4D_SEQ","MYAREA",1)
+		Continue()
+END
+
+IF
+	OpenState("AR5004_4D",FALSE)
+	//!Sequence("ROCK_4D",SEQ_ATTACK)
+	!Global("ROCK_4D_SEQ","MYAREA",0)
+THEN
+	RESPONSE #100
+		StaticSequence("ROCK_4D",SEQ_ATTACK)
+		SetGlobal("ROCK_4D_SEQ","MYAREA",0)
+		Continue()
+END
+
+IF
+	OnCreation()
+THEN
+	RESPONSE #100
+		NoAction()
+		Continue()
+END
+

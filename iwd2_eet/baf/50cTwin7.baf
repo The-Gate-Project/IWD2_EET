@@ -1,0 +1,268 @@
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("05_50VIL_09")
+		SetHomeLocation([-1.-1])
+		SaveObjectLocation("LOCALS","SavedLoc",Myself)
+		//SetCreatureAreaFlag(Myself,IGNORE_RETURN_TO_START_POS,TRUE)
+		MoveToPoint([1824.412])
+		MoveToPoint([1824.412])
+		MoveToPoint([1824.412])
+		//HideCreature(Myself,TRUE)
+		//ApplySpellRES("IDINVS10",Myself)
+		ApplySpellRES("IDINVUL",Myself)
+		ApplySpellRES("IDINVIS8",Myself)
+		ChangeAIScript("00aStIv3",OVERRIDE)
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("Venla")
+		SetHomeLocation([-1.-1])
+		SaveObjectLocation("LOCALS","SavedLoc",Myself)
+		//SetCreatureAreaFlag(Myself,IGNORE_RETURN_TO_START_POS,TRUE)
+		MoveToPoint([2375.809])
+		MoveToPoint([2375.809])
+		MoveToPoint([2375.809])
+		//HideCreature(Myself,TRUE)
+		//ApplySpellRES("IDINVS10",Myself)
+		ApplySpellRES("IDINVUL",Myself)
+		ApplySpellRES("IDINVIS8",Myself)
+		ChangeAIScript("00aStIv3",OVERRIDE)
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("Hannu")
+		SetHomeLocation([-1.-1])
+		SaveObjectLocation("LOCALS","SavedLoc",Myself)
+		//SetCreatureAreaFlag(Myself,IGNORE_RETURN_TO_START_POS,TRUE)
+		MoveToPoint([2375.809])
+		MoveToPoint([2375.809])
+		MoveToPoint([2375.809])
+		//HideCreature(Myself,TRUE)
+		//ApplySpellRES("IDINVS10",Myself)
+		ApplySpellRES("IDINVUL",Myself)
+		ApplySpellRES("IDINVIS8",Myself)
+		ChangeAIScript("00aStIv3",OVERRIDE)
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("05_50VIL_12")
+		SetHomeLocation([-1.-1])
+		SaveObjectLocation("LOCALS","SavedLoc",Myself)
+		//SetCreatureAreaFlag(Myself,IGNORE_RETURN_TO_START_POS,TRUE)
+		MoveToPoint([2375.809])
+		MoveToPoint([2375.809])
+		MoveToPoint([2375.809])
+		//HideCreature(Myself,TRUE)
+		//ApplySpellRES("IDINVS10",Myself)
+		ApplySpellRES("IDINVUL",Myself)
+		ApplySpellRES("IDINVIS8",Myself)
+		ChangeAIScript("00aStIv3",OVERRIDE)
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("05_50CHILDM_15")
+		SetHomeLocation([-1.-1])
+		SaveObjectLocation("LOCALS","SavedLoc",Myself)
+		//SetCreatureAreaFlag(Myself,IGNORE_RETURN_TO_START_POS,TRUE)
+		MoveToPoint([2375.809])
+		MoveToPoint([2375.809])
+		MoveToPoint([2375.809])
+		//HideCreature(Myself,TRUE)
+		//ApplySpellRES("IDINVS10",Myself)
+		ApplySpellRES("IDINVUL",Myself)
+		ApplySpellRES("IDINVIS8",Myself)
+		ChangeAIScript("00aStIv3",OVERRIDE)
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("05_50CHILDF_17")
+		SetHomeLocation([-1.-1])
+		SaveObjectLocation("LOCALS","SavedLoc",Myself)
+		//SetCreatureAreaFlag(Myself,IGNORE_RETURN_TO_START_POS,TRUE)
+		MoveToPoint([2375.809])
+		MoveToPoint([2375.809])
+		MoveToPoint([2375.809])
+		//HideCreature(Myself,TRUE)
+		//ApplySpellRES("IDINVS10",Myself)
+		ApplySpellRES("IDINVUL",Myself)
+		ApplySpellRES("IDINVIS8",Myself)
+		ChangeAIScript("00aStIv3",OVERRIDE)
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("Tahvo")
+		SetHomeLocation([-1.-1])
+		SaveObjectLocation("LOCALS","SavedLoc",Myself)
+		//SetCreatureAreaFlag(Myself,IGNORE_RETURN_TO_START_POS,TRUE)
+		MoveToPoint([2301.499])
+		MoveToPoint([2301.499])
+		MoveToPoint([2301.499])
+		//HideCreature(Myself,TRUE)
+		//ApplySpellRES("IDINVS10",Myself)
+		ApplySpellRES("IDINVUL",Myself)
+		ApplySpellRES("IDINVIS8",Myself)
+		ChangeAIScript("00aStIv3",OVERRIDE)
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("Kurttu")
+		SetHomeLocation([-1.-1])
+		SaveObjectLocation("LOCALS","SavedLoc",Myself)
+		//SetCreatureAreaFlag(Myself,IGNORE_RETURN_TO_START_POS,TRUE)
+		MoveToPoint([1833.627])
+		MoveToPoint([1833.627])
+		MoveToPoint([1833.627])
+		//HideCreature(Myself,TRUE)
+		//ApplySpellRES("IDINVS10",Myself)
+		ApplySpellRES("IDINVUL",Myself)
+		ApplySpellRES("IDINVIS8",Myself)
+		ChangeAIScript("00aStIv3",OVERRIDE)
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("05_50VIL2_10")
+		SetHomeLocation([-1.-1])
+		SaveObjectLocation("LOCALS","SavedLoc",Myself)
+		//SetCreatureAreaFlag(Myself,IGNORE_RETURN_TO_START_POS,TRUE)
+		MoveToPoint([1833.627])
+		MoveToPoint([1833.627])
+		MoveToPoint([1833.627])
+		//HideCreature(Myself,TRUE)
+		//ApplySpellRES("IDINVS10",Myself)
+		ApplySpellRES("IDINVUL",Myself)
+		ApplySpellRES("IDINVIS8",Myself)
+		ChangeAIScript("00aStIv3",OVERRIDE)
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("05_50VIL3_11")
+		SetHomeLocation([-1.-1])
+		SaveObjectLocation("LOCALS","SavedLoc",Myself)
+		//SetCreatureAreaFlag(Myself,IGNORE_RETURN_TO_START_POS,TRUE)
+		MoveToPoint([1833.627])
+		MoveToPoint([1833.627])
+		MoveToPoint([1833.627])
+		//HideCreature(Myself,TRUE)
+		//ApplySpellRES("IDINVS10",Myself)
+		ApplySpellRES("IDINVUL",Myself)
+		ApplySpellRES("IDINVIS8",Myself)
+		ChangeAIScript("00aStIv3",OVERRIDE)
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("Jari")
+		SetHomeLocation([-1.-1])
+		SaveObjectLocation("LOCALS","SavedLoc",Myself)
+		//SetCreatureAreaFlag(Myself,IGNORE_RETURN_TO_START_POS,TRUE)
+		MoveToPoint([1905.425])
+		MoveToPoint([1905.425])
+		MoveToPoint([1905.425])
+		//HideCreature(Myself,TRUE)
+		//ApplySpellRES("IDINVS10",Myself)
+		ApplySpellRES("IDINVUL",Myself)
+		ApplySpellRES("IDINVIS8",Myself)
+		ChangeAIScript("00aStIv3",OVERRIDE)
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("05_50VIL2_13")
+		SetHomeLocation([-1.-1])
+		SaveObjectLocation("LOCALS","SavedLoc",Myself)
+		//SetCreatureAreaFlag(Myself,IGNORE_RETURN_TO_START_POS,TRUE)
+		MoveToPoint([1905.425])
+		MoveToPoint([1905.425])
+		MoveToPoint([1905.425])
+		//HideCreature(Myself,TRUE)
+		//ApplySpellRES("IDINVS10",Myself)
+		ApplySpellRES("IDINVUL",Myself)
+		ApplySpellRES("IDINVIS8",Myself)
+		ChangeAIScript("00aStIv3",OVERRIDE)
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("05_50CHILDF_16")
+		SetHomeLocation([-1.-1])
+		SaveObjectLocation("LOCALS","SavedLoc",Myself)
+		//SetCreatureAreaFlag(Myself,IGNORE_RETURN_TO_START_POS,TRUE)
+		MoveToPoint([1905.425])
+		MoveToPoint([1905.425])
+		MoveToPoint([1905.425])
+		//HideCreature(Myself,TRUE)
+		//ApplySpellRES("IDINVS10",Myself)
+		ApplySpellRES("IDINVUL",Myself)
+		ApplySpellRES("IDINVIS8",Myself)
+		ChangeAIScript("00aStIv3",OVERRIDE)
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("Pairi")
+		SetHomeLocation([-1.-1])
+		SaveObjectLocation("LOCALS","SavedLoc",Myself)
+		//SetCreatureAreaFlag(Myself,IGNORE_RETURN_TO_START_POS,TRUE)
+		MoveToPoint([2301.499])
+		MoveToPoint([2301.499])
+		MoveToPoint([2301.499])
+		//HideCreature(Myself,TRUE)
+		//ApplySpellRES("IDINVS10",Myself)
+		ApplySpellRES("IDINVUL",Myself)
+		ApplySpellRES("IDINVIS8",Myself)
+		ChangeAIScript("00aStIv3",OVERRIDE)
+END
+
+/*IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("Tahvo")
+		SetHomeLocation([-1.-1])
+		SaveObjectLocation("LOCALS","SavedLoc",Myself)
+		//SetCreatureAreaFlag(Myself,IGNORE_RETURN_TO_START_POS,TRUE)
+		MoveToPoint([2301.499])
+		MoveToPoint([2301.499])
+		MoveToPoint([2301.499])
+		//HideCreature(Myself,TRUE)
+		ApplySpellRES("IDINVS10",Myself)
+		ChangeAIScript("00aStIv3",OVERRIDE)
+END*/
+

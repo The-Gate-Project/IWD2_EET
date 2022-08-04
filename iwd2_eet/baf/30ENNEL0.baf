@@ -1,0 +1,63 @@
+IF
+	Global("30enneli_Healed","GLOBAL",0)
+	HPGT(Myself,15)
+THEN
+	RESPONSE #100
+		SetGlobal("30enneli_Healed","GLOBAL",1)
+		//Continue()
+END
+
+IF
+	Global("30enneli_Healed","GLOBAL",1)
+	!Allegiance(Myself,ENEMY)
+	//Dead([ENEMY])
+	!See([ENEMY])
+	See([PC])
+THEN
+	RESPONSE #100
+		Dialogue(LastSeenBy(Myself))
+END
+
+IF
+	Global("ENNELIA_BRASTON_TEAM","MYAREA",0)
+	!Global("ENNELIA_SAW_BRASTON","MYAREA",0)
+THEN
+	RESPONSE #100
+		SetGlobal("ENNELIA_BRASTON_TEAM","MYAREA",1)
+		Continue()
+END
+
+IF
+	Global("ENNELIA_SAW_BRASTON","MYAREA",0)
+	See("Braston")
+THEN
+	RESPONSE #100
+		SetGlobal("ENNELIA_SAW_BRASTON","MYAREA",1)
+		FaceObject(LastSeenBy(Myself))
+		DisplayStringHead(Myself,@17050)
+		Wait(1)
+		Continue()
+END
+
+IF
+	HasItem("HQLSWRD",Myself)
+	!Global("ENNELIA_SAW_BRASTON","MYAREA",0)
+	!Dead("Braston")
+	Range("Braston",5)
+THEN
+	RESPONSE #100
+		GiveItem("HQLSWRD","Braston")
+		Continue()
+END
+
+IF
+	HasItem("HQLSWRD",Myself)
+	!Dead("Braston")
+	OR(2)
+		!Global("BRASTON_SAW_ENNELIA","MYAREA",0)
+		!Global("ENNELIA_SAW_BRASTON","MYAREA",0)
+THEN
+	RESPONSE #100
+		MoveToObject("Braston")
+END
+

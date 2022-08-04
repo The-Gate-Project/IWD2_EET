@@ -1,0 +1,104 @@
+IF
+	Global("53GolIm","GLOBAL",10)
+	Global("StatsSet","LOCALS",0)
+THEN
+	RESPONSE #100
+		ChangeStat(Myself,RESISTMAGIC,0,SET)
+		ChangeStat(Myself,RESISTFIRE,0,SET)
+		ChangeStat(Myself,RESISTMAGICFIRE,0,SET)
+		ChangeStat(Myself,RESISTMAGICCOLD,0,SET)
+		ChangeStat(Myself,RESISTSLASHING,0,SET)
+		ChangeStat(Myself,RESISTCRUSHING,0,SET)
+		ChangeStat(Myself,RESISTPIERCING,0,SET)
+		ChangeStat(Myself,RESISTMISSILE,0,SET)
+		ChangeStat(Myself,ARMORCLASS,20,SET)
+		ChangeStat(Myself,SAVEVSDEATH,20,SET)
+		ChangeStat(Myself,SAVEVSWANDS,20,SET)
+		ChangeStat(Myself,SAVEVSPOLY,20,SET)
+		ChangeStat(Myself,SAVEVSBREATH,20,SET)
+		ChangeStat(Myself,SAVEVSSPELL,20,SET)
+		ApplySpellRES("53golimx",Myself)
+		SetGlobal("StatsSet","LOCALS",1)
+END
+
+IF
+	Global("53GolIm","GLOBAL",10)
+	HitBy(Player1,ELECTRICITY)
+THEN
+	RESPONSE #100
+		SetGlobal("53PCGolem_Protect","GLOBAL",1)
+		//HideCreature(Myself,TRUE)
+		ApplySpellRES("IDINVIS6",Myself)
+		CreateCreature("53GOLIMH",[1475.1945],0)
+		DestroySelf()
+END
+
+IF
+	Global("53GolIm","GLOBAL",10)
+	HitBy(Player2,ELECTRICITY)
+THEN
+	RESPONSE #100
+		SetGlobal("53PCGolem_Protect","GLOBAL",2)
+		//HideCreature(Myself,TRUE)
+		ApplySpellRES("IDINVIS6",Myself)
+		CreateCreature("53GOLIMH",[1475.1945],0)
+		DestroySelf()
+END
+
+IF
+	Global("53GolIm","GLOBAL",10)
+	HitBy(Player3,ELECTRICITY)
+THEN
+	RESPONSE #100
+		SetGlobal("53PCGolem_Protect","GLOBAL",3)
+		//HideCreature(Myself,TRUE)
+		ApplySpellRES("IDINVIS6",Myself)
+		CreateCreature("53GOLIMH",[1475.1945],0)
+		DestroySelf()
+END
+
+IF
+	Global("53GolIm","GLOBAL",10)
+	HitBy(Player4,ELECTRICITY)
+THEN
+	RESPONSE #100
+		SetGlobal("53PCGolem_Protect","GLOBAL",4)
+		//HideCreature(Myself,TRUE)
+		ApplySpellRES("IDINVIS6",Myself)
+		CreateCreature("53GOLIMH",[1475.1945],0)
+		DestroySelf()
+END
+
+IF
+	Global("53GolIm","GLOBAL",10)
+	HitBy(Player5,ELECTRICITY)
+THEN
+	RESPONSE #100
+		SetGlobal("53PCGolem_Protect","GLOBAL",5)
+		//HideCreature(Myself,TRUE)
+		ApplySpellRES("IDINVIS6",Myself)
+		CreateCreature("53GOLIMH",[1475.1945],0)
+		DestroySelf()
+END
+
+IF
+	Global("53GolIm","GLOBAL",10)
+	HitBy(Player6,ELECTRICITY)
+THEN
+	RESPONSE #100
+		SetGlobal("53PCGolem_Protect","GLOBAL",6)
+		//HideCreature(Myself,TRUE)
+		ApplySpellRES("IDINVIS6",Myself)
+		CreateCreature("53GOLIMH",[1475.1945],0)
+		DestroySelf()
+END
+
+IF
+	!HPPercent(Myself,100)
+THEN
+	RESPONSE #100
+		//SetHPPercent(Myself,100,MAX_HP)
+		ApplySpellRES("IDSHP100",Myself) //RESTORE_FULL_HEALTH
+		Continue()
+END
+

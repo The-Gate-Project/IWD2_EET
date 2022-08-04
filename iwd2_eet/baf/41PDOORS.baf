@@ -1,0 +1,38 @@
+IF
+	Clicked([ANYONE])
+	!Global("41PDOORS_INACTIVE","MYAREA",1)
+	OR(6) //6
+		Race(LastTrigger,HALFLING)
+		Race(LastTrigger,GNOME)
+		Race(LastTrigger,DWARF)
+		//Race(LastTrigger,DWARF_UNDERDARK)
+		Race(LastTrigger,GOBLIN)
+		HasItem("Wolfm",LastTrigger)
+		HasItem("PLYSPID",LastTrigger)
+THEN
+	RESPONSE #100
+		Unlock("AR4100_Door14")
+		OpenDoor("AR4100_Door14")
+		SetGlobal("41PartyPrisonEntry","GLOBAL",1)
+		DisplayString(LastTrigger,@29257)
+END
+
+IF
+	Clicked([ANYONE])
+	!Global("41PDOORS_INACTIVE","MYAREA",1)
+	Global("41PlayerSawTempleSideDoor","GLOBAL",0)
+THEN
+	RESPONSE #100
+		SetGlobal("41PlayerSawTempleSideDoor","GLOBAL",1)
+END
+
+IF
+	OpenState(Myself,TRUE)
+	!Global("41PDOORS_INACTIVE","MYAREA",1)
+THEN
+	RESPONSE #100
+		SetGlobal("41UnhideAbishai","GLOBAL",2)
+		//ChangeCurrentScript("")
+		SetGlobal("41PDOORS_INACTIVE","MYAREA",1)
+END
+

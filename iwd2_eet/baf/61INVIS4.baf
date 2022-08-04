@@ -1,0 +1,11 @@
+IF
+	Global("CreateFallout","MYAREA",0)
+THEN
+	RESPONSE #100
+		ForceSpellPoint([1920.640],WIZARD_CACOFIEND)  // SPWI713.SPL (Какодемон)
+		SetGlobal("CreateFallout","MYAREA",1)
+		
+		Wait(4)
+		DestroySelf()
+END
+

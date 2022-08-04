@@ -1,0 +1,20 @@
+IF
+	Global("61PlayerSawWorkroom","GLOBAL",0)
+	See([PC])
+THEN
+	RESPONSE #100
+		SetGlobal("61PlayerSawWorkroom","GLOBAL",1)
+END
+
+IF
+	Global("61NheeroMissionQuest","GLOBAL",4)
+	See([PC])
+THEN
+	RESPONSE #100
+		DisplayString(Player1,@50013) //[PC]
+		AddJournalEntry(@35060,QUEST)
+		SetGlobal("61NheeroMissionQuest","GLOBAL",5)
+		TriggerActivation(Myself,FALSE)
+		//ChangeCurrentScript("")
+END
+

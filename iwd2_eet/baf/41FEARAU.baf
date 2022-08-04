@@ -1,0 +1,12 @@
+IF
+	!GlobalTimerNotExpired("FearAura","LOCALS")
+	See([PC])
+	Range(LastSeenBy(Myself),15)
+THEN
+	RESPONSE #100
+		//ApplySpellRES("IWWI085",LastSeenBy(Myself))  // SPWI085.SPL (Страх)
+		ReallyForceSpellRES("IWWI085",LastSeenBy(Myself))
+		SetGlobalTimer("FearAura","LOCALS",7)
+		Continue()
+END
+

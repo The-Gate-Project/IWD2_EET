@@ -1,0 +1,157 @@
+IF
+	Global("PONDMUK_RUN","MYAREA",0)
+	!Global("30gobPon_Betrayer","GLOBAL",0)
+	Dead("Pondmuk_Worg_1")
+	Dead("Pondmuk_Worg_2")
+	Dead("Pondmuk_Worg_3")
+	Dead("Pondmuk_Worg_4")
+	Dead("Pondmuk_Worg_5")
+	Dead("Pondmuk_Worg_6")
+	Dead("Pondmuk_Worg_C")
+THEN
+	RESPONSE #100
+		SetGlobal("PONDMUK_RUN","MYAREA",1)
+		//Continue()
+END
+
+IF
+	!GlobalTimerNotExpired("IwTimer21","LOCALS")
+	NumTimesTalkedTo(0)
+	!Allegiance(Myself,ENEMY)
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,@627)
+		SetGlobalTimerRandom("IwTimer21","LOCALS",2,5)
+		Continue()
+END
+
+IF
+	Global("ML_0","LOCALS",0)
+	!Global("PONDMUK_RUN","MYAREA",0)
+THEN
+	RESPONSE #100
+		SetSequence(SEQ_READY)
+		SetGlobal("ML_0","LOCALS",1)
+END
+
+IF
+	Global("ML_0","LOCALS",1)
+	!Global("PONDMUK_RUN","MYAREA",0)
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,@1770)
+		SetGlobal("ML_0","LOCALS",2)
+END
+
+IF
+	Global("ML_0","LOCALS",2)
+	ActionListEmpty()
+	NearLocation(Myself,1589,1750,4)
+THEN
+	RESPONSE #100
+		SetHomeLocation([1589.1750])
+		SetGlobal("ML_0","LOCALS",3)
+		Continue()
+END
+
+IF
+	Global("ML_0","LOCALS",2)
+	!Global("PONDMUK_RUN","MYAREA",0)
+THEN
+	RESPONSE #100
+		MoveToPoint([1589.1750])
+END
+
+IF
+	Global("ML_0","LOCALS",3)
+	ActionListEmpty()
+	NearLocation(Myself,2337,1951,4)
+THEN
+	RESPONSE #100
+		SetHomeLocation([2337.1951])
+		SetGlobal("ML_0","LOCALS",4)
+		Continue()
+END
+
+IF
+	Global("ML_0","LOCALS",3)
+	!Global("PONDMUK_RUN","MYAREA",0)
+THEN
+	RESPONSE #100
+		MoveToPoint([2337.1951])
+END
+
+IF
+	Global("ML_0","LOCALS",4)
+	ActionListEmpty()
+	NearLocation(Myself,3051,1791,4)
+THEN
+	RESPONSE #100
+		SetHomeLocation([3051.1791])
+		SetGlobal("ML_0","LOCALS",5)
+		Continue()
+END
+
+IF
+	Global("ML_0","LOCALS",4)
+	!Global("PONDMUK_RUN","MYAREA",0)
+THEN
+	RESPONSE #100
+		MoveToPoint([3051.1791])
+END
+
+IF
+	Global("ML_0","LOCALS",5)
+	ActionListEmpty()
+	NearLocation(Myself,3448,1544,4)
+THEN
+	RESPONSE #100
+		SetHomeLocation([3448.1544])
+		SetGlobal("ML_0","LOCALS",6)
+		Continue()
+END
+
+IF
+	Global("ML_0","LOCALS",5)
+	!Global("PONDMUK_RUN","MYAREA",0)
+THEN
+	RESPONSE #100
+		MoveToPoint([3448.1544])
+END
+
+IF
+	Global("ML_0","LOCALS",6)
+	ActionListEmpty()
+	NearLocation(Myself,3544,1128,4)
+THEN
+	RESPONSE #100
+		SetHomeLocation([3544.1128])
+		SetGlobal("ML_0","LOCALS",7)
+		Continue()
+END
+
+IF
+	Global("ML_0","LOCALS",6)
+	!Global("PONDMUK_RUN","MYAREA",0)
+THEN
+	RESPONSE #100
+		MoveToPoint([3544.1128])
+END
+
+IF
+	Global("ML_0","LOCALS",7)
+	!Global("PONDMUK_RUN","MYAREA",0)
+THEN
+	RESPONSE #100
+		DestroySelf()
+END
+
+IF
+	Global("PONDMUK_RUN","MYAREA",0)
+	!Allegiance(Myself,ENEMY)
+	See([ENEMY])
+THEN
+	RESPONSE #100
+		FaceObject(LastSeenBy(Myself))
+END
+

@@ -1,0 +1,14 @@
+IF
+	Global("PlayerSawAmphitheatre","MYAREA",0)
+	//See([PC])
+	//LOS(LastSeenBy(Myself),100)
+	TriggerOverride("61Amphitheatre",See([PC]))
+THEN
+	RESPONSE #100
+		SetGlobal("PlayerSawAmphitheatre","MYAREA",1)
+		//DisplayString(LastSeenBy(Myself),@35856)
+		DisplayString(LastSeenBy("61Amphitheatre"),@35856)
+		TriggerActivation(Myself,FALSE)
+		//ChangeCurrentScript("")
+END
+

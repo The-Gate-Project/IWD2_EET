@@ -1,0 +1,696 @@
+//BLOCK SET_VARS
+IF
+	!Global("SET_60NORP2C","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,4)
+		SetGlobalRandom("SSPELLS_2_RANDOM_CAST","LOCALS",1,3)
+		SetGlobal("SET_60NORP2C","LOCALS",1)
+		SetInterrupt(TRUE)
+END
+//BLOCKEND
+
+IF
+	StateCheck(Myself,STATE_PANIC)
+THEN
+	RESPONSE #100
+		RandomWalkContinuous()
+END
+
+IF
+	!GlobalTimerNotExpired("IWD_Rest","LOCALS")
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IWD_Rest","LOCALS",EIGHT_HOURS)
+		ApplySpell(Myself,RESTORE_FULL_HEALTH)
+		Rest()
+END
+
+/*IF
+	ForceMarkedSpell(MARKED_SPELL)
+	SetSpellTarget(Nothing)
+	HPPercentLT(Myself,50)
+THEN
+	RESPONSE #100
+		MarkSpellAndObject("11031502",Myself,SPELLCAST_IGNORE_SEE)  // [CLERIC_CURE_LIGHT_WOUNDS, CLERIC_CURE_CRITICAL_WOUNDS]
+		Continue()
+END*/
+
+IF
+	HaveSpell(CLERIC_CURE_CRITICAL_WOUNDS)
+	HPPercentLT(Myself,40)
+	!StateCheck(Myself,STATE_REALLY_DEAD)
+THEN
+	RESPONSE #100
+		Spell(Myself,CLERIC_CURE_CRITICAL_WOUNDS)
+		Wait(1)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_LIGHT_WOUNDS)
+	HPPercentLT(Myself,90)
+	!StateCheck(Myself,STATE_REALLY_DEAD)
+THEN
+	RESPONSE #100
+		Spell(Myself,CLERIC_CURE_LIGHT_WOUNDS)
+		Wait(1)
+END
+
+/*IF
+	IsMarkedSpell(MARKED_SPELL)
+	HPPercentLT("6001Black_Neo_Orog1",50)
+	See("6001Black_Neo_Orog1",0)
+THEN
+	RESPONSE #100
+		MarkSpellAndObject("11031502",LastSeenBy(Myself),SPELLCAST_IGNORE_SEE)  // [CLERIC_CURE_LIGHT_WOUNDS, CLERIC_CURE_CRITICAL_WOUNDS]
+		Continue()
+END*/
+
+IF
+	HaveSpell(CLERIC_CURE_CRITICAL_WOUNDS)
+	HPPercentLT("6001Black_Neo_Orog1",40)
+	See("6001Black_Neo_Orog1")
+	!StateCheck(LastSeenBy(Myself),STATE_REALLY_DEAD)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_CRITICAL_WOUNDS)
+		Wait(1)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_LIGHT_WOUNDS)
+	HPPercentLT("6001Black_Neo_Orog1",90)
+	See("6001Black_Neo_Orog1")
+	!StateCheck(LastSeenBy(Myself),STATE_REALLY_DEAD)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_LIGHT_WOUNDS)
+		Wait(1)
+END
+
+/*IF
+	IsMarkedSpell(MARKED_SPELL)
+	HPPercentLT("6001Black_Neo_Orog2",50)
+	See("6001Black_Neo_Orog2",0)
+THEN
+	RESPONSE #100
+		MarkSpellAndObject("11031502",LastSeenBy(Myself),SPELLCAST_IGNORE_SEE)  // [CLERIC_CURE_LIGHT_WOUNDS, CLERIC_CURE_CRITICAL_WOUNDS]
+		Continue()
+END*/
+
+IF
+	HaveSpell(CLERIC_CURE_CRITICAL_WOUNDS)
+	HPPercentLT("6001Black_Neo_Orog2",40)
+	See("6001Black_Neo_Orog2")
+	!StateCheck(LastSeenBy(Myself),STATE_REALLY_DEAD)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_CRITICAL_WOUNDS)
+		Wait(1)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_LIGHT_WOUNDS)
+	HPPercentLT("6001Black_Neo_Orog2",90)
+	See("6001Black_Neo_Orog2")
+	!StateCheck(LastSeenBy(Myself),STATE_REALLY_DEAD)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_LIGHT_WOUNDS)
+		Wait(1)
+END
+
+/*IF
+	IsMarkedSpell(MARKED_SPELL)
+	HPPercentLT("6001Black_Neo_Orog3",50)
+	See("6001Black_Neo_Orog3",0)
+THEN
+	RESPONSE #100
+		MarkSpellAndObject("11031502",LastSeenBy(Myself),SPELLCAST_IGNORE_SEE)  // [CLERIC_CURE_LIGHT_WOUNDS, CLERIC_CURE_CRITICAL_WOUNDS]
+		Continue()
+END*/
+
+IF
+	HaveSpell(CLERIC_CURE_CRITICAL_WOUNDS)
+	HPPercentLT("6001Black_Neo_Orog3",40)
+	See("6001Black_Neo_Orog3")
+	!StateCheck(LastSeenBy(Myself),STATE_REALLY_DEAD)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_CRITICAL_WOUNDS)
+		Wait(1)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_LIGHT_WOUNDS)
+	HPPercentLT("6001Black_Neo_Orog3",90)
+	See("6001Black_Neo_Orog3")
+	!StateCheck(LastSeenBy(Myself),STATE_REALLY_DEAD)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_LIGHT_WOUNDS)
+		Wait(1)
+END
+
+/*IF
+	IsMarkedSpell(MARKED_SPELL)
+	HPPercentLT("6001Black_Neo_Orog4",50)
+	See("6001Black_Neo_Orog4",0)
+THEN
+	RESPONSE #100
+		MarkSpellAndObject("11031502",LastSeenBy(Myself),SPELLCAST_IGNORE_SEE)  // [CLERIC_CURE_LIGHT_WOUNDS, CLERIC_CURE_CRITICAL_WOUNDS]
+		Continue()
+END*/
+
+IF
+	HaveSpell(CLERIC_CURE_CRITICAL_WOUNDS)
+	HPPercentLT("6001Black_Neo_Orog4",40)
+	See("6001Black_Neo_Orog4")
+	!StateCheck(LastSeenBy(Myself),STATE_REALLY_DEAD)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_CRITICAL_WOUNDS)
+		Wait(1)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_LIGHT_WOUNDS)
+	HPPercentLT("6001Black_Neo_Orog4",90)
+	See("6001Black_Neo_Orog4")
+	!StateCheck(LastSeenBy(Myself),STATE_REALLY_DEAD)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_LIGHT_WOUNDS)
+		Wait(1)
+END
+
+/*IF
+	IsMarkedSpell(MARKED_SPELL)
+	HPPercentLT("6001Black_Neo_Orog7",50)
+	See("6001Black_Neo_Orog7",0)
+THEN
+	RESPONSE #100
+		MarkSpellAndObject("11031502",LastSeenBy(Myself),SPELLCAST_IGNORE_SEE)  // [CLERIC_CURE_LIGHT_WOUNDS, CLERIC_CURE_CRITICAL_WOUNDS]
+		Continue()
+END*/
+
+IF
+	HaveSpell(CLERIC_CURE_CRITICAL_WOUNDS)
+	HPPercentLT("6001Black_Neo_Orog7",40)
+	See("6001Black_Neo_Orog7")
+	!StateCheck(LastSeenBy(Myself),STATE_REALLY_DEAD)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_CRITICAL_WOUNDS)
+		Wait(1)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_LIGHT_WOUNDS)
+	HPPercentLT("6001Black_Neo_Orog7",90)
+	See("6001Black_Neo_Orog7")
+	!StateCheck(LastSeenBy(Myself),STATE_REALLY_DEAD)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_LIGHT_WOUNDS)
+		Wait(1)
+END
+
+/*IF
+	IsMarkedSpell(MARKED_SPELL)
+	HPPercentLT("6001Black_Neo_Orog8",50)
+	See("6001Black_Neo_Orog8",0)
+THEN
+	RESPONSE #100
+		MarkSpellAndObject("11031502",LastSeenBy(Myself),SPELLCAST_IGNORE_SEE)  // [CLERIC_CURE_LIGHT_WOUNDS, CLERIC_CURE_CRITICAL_WOUNDS]
+		Continue()
+END*/
+
+IF
+	HaveSpell(CLERIC_CURE_CRITICAL_WOUNDS)
+	HPPercentLT("6001Black_Neo_Orog8",40)
+	See("6001Black_Neo_Orog8")
+	!StateCheck(LastSeenBy(Myself),STATE_REALLY_DEAD)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_CRITICAL_WOUNDS)
+		Wait(1)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_LIGHT_WOUNDS)
+	HPPercentLT("6001Black_Neo_Orog8",90)
+	See("6001Black_Neo_Orog8")
+	!StateCheck(LastSeenBy(Myself),STATE_REALLY_DEAD)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_LIGHT_WOUNDS)
+		Wait(1)
+END
+
+/*IF
+	IsMarkedSpell(MARKED_SPELL)
+	HPPercentLT("6001Black_Neo_Orog9",50)
+	See("6001Black_Neo_Orog9",0)
+THEN
+	RESPONSE #100
+		MarkSpellAndObject("11031502",LastSeenBy(Myself),SPELLCAST_IGNORE_SEE)  // [CLERIC_CURE_LIGHT_WOUNDS, CLERIC_CURE_CRITICAL_WOUNDS]
+		Continue()
+END*/
+
+IF
+	HaveSpell(CLERIC_CURE_CRITICAL_WOUNDS)
+	HPPercentLT("6001Black_Neo_Orog9",40)
+	See("6001Black_Neo_Orog9")
+	!StateCheck(LastSeenBy(Myself),STATE_REALLY_DEAD)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_CRITICAL_WOUNDS)
+		Wait(1)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_LIGHT_WOUNDS)
+	HPPercentLT("6001Black_Neo_Orog9",90)
+	See("6001Black_Neo_Orog9")
+	!StateCheck(LastSeenBy(Myself),STATE_REALLY_DEAD)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_LIGHT_WOUNDS)
+		Wait(1)
+END
+
+/*IF
+	IsMarkedSpell(MARKED_SPELL)
+	HPPercentLT("6001Black_Neo_Orog10",50)
+	See("6001Black_Neo_Orog10",0)
+THEN
+	RESPONSE #100
+		MarkSpellAndObject("11031502",LastSeenBy(Myself),SPELLCAST_IGNORE_SEE)  // [CLERIC_CURE_LIGHT_WOUNDS, CLERIC_CURE_CRITICAL_WOUNDS]
+		Continue()
+END*/
+
+IF
+	HaveSpell(CLERIC_CURE_CRITICAL_WOUNDS)
+	HPPercentLT("6001Black_Neo_Orog10",40)
+	See("6001Black_Neo_Orog10")
+	!StateCheck(LastSeenBy(Myself),STATE_REALLY_DEAD)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_CRITICAL_WOUNDS)
+		Wait(1)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_LIGHT_WOUNDS)
+	HPPercentLT("6001Black_Neo_Orog10",90)
+	See("6001Black_Neo_Orog10")
+	!StateCheck(LastSeenBy(Myself),STATE_REALLY_DEAD)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_LIGHT_WOUNDS)
+		Wait(1)
+END
+
+/*IF
+	!IsMarkedSpell(MARKED_SPELL)
+THEN
+	RESPONSE #100
+		Spell(SpellTarget,MARKED_SPELL)
+		WaitAnimation(Myself,WALK)
+		WaitAnimation(Myself,CONJURE)
+		WaitAnimation(Myself,CAST)
+		ForceMarkedSpell(MARKED_SPELL)
+END*/
+//BLOCK SPL_1
+/*IF
+	ForceMarkedSpell(MARKED_SPELL)
+	SetSpellTarget(Nothing)
+	SetLastMarkedObject(Myself)
+THEN
+	RESPONSE #100
+		MarkSpellAndObject("1201","6001Black_Neo_Orog4",0)  // [CLERIC_AID]
+		MarkSpellAndObject("1313",Myself,SPELLCAST_IGNORE_SEE | SPELLCAST_IGNORE_VALID_SPELL_TARGET)  // [CLERIC_PRAYER]
+		MarkSpellAndObject("1503",NearestEnemyOf(Myself),0)  // [CLERIC_FLAME_STRIKE]
+		MarkSpellAndObject("14061312",Myself,SPELLCAST_IGNORE_SEE | SPELLCAST_IGNORE_VALID_SPELL_TARGET)  // [CLERIC_DEFENSIVE_HARMONY, CLERIC_STRENGTH_OF_ONE]
+		Continue()
+END
+
+IF
+	!IsMarkedSpell(MARKED_SPELL)
+THEN
+	RESPONSE #100
+		Spell(SpellTarget,MARKED_SPELL)
+		WaitAnimation(Myself,WALK)
+		WaitAnimation(Myself,CONJURE)
+		WaitAnimation(Myself,CAST)
+		ForceMarkedSpell(MARKED_SPELL)
+END*/
+/*IF
+	GlobalLT("SSPELLS_1_RANDOM_CAST","LOCALS",5)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,4)
+		Continue()
+END*/
+//1 - "6001Black_Neo_Orog4" - [CLERIC_AID]
+IF
+	Global("SSPELLS_1_RANDOM_CAST","LOCALS",1)
+	HaveSpell(CLERIC_AID)
+	See(NearestEnemyOf(Myself))
+	See("6001Black_Neo_Orog1")
+	HPPercentLT(LastSeenBy(Myself),80)
+	!StateCheck(LastSeenBy(Myself),STATE_AID)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,4)
+		SetGlobalRandom("SSPELLS_2_RANDOM_CAST","LOCALS",1,3)
+		Spell(LastSeenBy(Myself),CLERIC_AID)
+		Wait(1)
+END
+//2 - Myself - [CLERIC_PRAYER]
+IF
+	Global("SSPELLS_1_RANDOM_CAST","LOCALS",2)
+	HaveSpell(CLERIC_BLESS)
+	See(NearestEnemyOf(Myself))
+	!StateCheck(Myself,STATE_BLESS)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,4)
+		SetGlobalRandom("SSPELLS_2_RANDOM_CAST","LOCALS",1,3)
+		Spell(Myself,CLERIC_BLESS)
+		Wait(1)
+END
+//3 - NearestEnemyOf(Myself) - [CLERIC_FLAME_STRIKE]
+IF
+	Global("SSPELLS_1_RANDOM_CAST","LOCALS",3)
+	HaveSpell(CLERIC_FLAME_STRIKE)
+	See(NearestEnemyOf(Myself))
+	!Race(LastSeenBy(Myself),LICH)
+	!Race(LastSeenBy(Myself),DEMILICH)
+	!Race(LastSeenBy(Myself),RAKSHASA)
+	!Race(LastSeenBy(Myself),GOLEM)
+	!HasBounceEffects(LastSeenBy(Myself))
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,4)
+		SetGlobalRandom("SSPELLS_2_RANDOM_CAST","LOCALS",1,3)
+		Spell(LastSeenBy(Myself),CLERIC_FLAME_STRIKE)
+		Wait(1)
+END
+//4 - Myself - [CLERIC_DEFENSIVE_HARMONY, CLERIC_STRENGTH_OF_ONE]
+IF
+	RandomNum(2,1)
+	Global("SSPELLS_1_RANDOM_CAST","LOCALS",4)
+	HaveSpell(CLERIC_DEFENSIVE_HARMONY)
+	See(NearestEnemyOf(Myself))
+	CheckStat(Myself,0,CLERIC_DEFENSIVE_HARMONY)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,4)
+		SetGlobalRandom("SSPELLS_2_RANDOM_CAST","LOCALS",1,3)
+		Spell(LastSeenBy(Myself),CLERIC_DEFENSIVE_HARMONY)
+		Wait(1)
+END
+
+IF
+	RandomNum(2,2)
+	Global("SSPELLS_1_RANDOM_CAST","LOCALS",4)
+	HaveSpell(CLERIC_STRENGTH_OF_ONE)
+	See(NearestEnemyOf(Myself))
+	CheckStatLT(Myself,18,STR)
+	!CheckSpellState(Myself,HOLY_POWER)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,4)
+		SetGlobalRandom("SSPELLS_2_RANDOM_CAST","LOCALS",1,3)
+		Spell(LastSeenBy(Myself),CLERIC_STRENGTH_OF_ONE)
+		Wait(1)
+END
+//BLOCK NO_RND
+//1 - "6001Black_Neo_Orog4" - [CLERIC_AID]
+IF
+	HaveSpell(CLERIC_AID)
+	See(NearestEnemyOf(Myself))
+	See("6001Black_Neo_Orog1")
+	HPPercentLT(LastSeenBy(Myself),80)
+	!StateCheck(LastSeenBy(Myself),STATE_AID)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,4)
+		SetGlobalRandom("SSPELLS_2_RANDOM_CAST","LOCALS",1,3)
+		Spell(LastSeenBy(Myself),CLERIC_AID)
+		Wait(1)
+END
+//2 - Myself - [CLERIC_PRAYER]
+IF
+	HaveSpell(CLERIC_BLESS)
+	See(NearestEnemyOf(Myself))
+	!StateCheck(Myself,STATE_BLESS)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,4)
+		SetGlobalRandom("SSPELLS_2_RANDOM_CAST","LOCALS",1,3)
+		Spell(Myself,CLERIC_BLESS)
+		Wait(1)
+END
+//3 - NearestEnemyOf(Myself) - [CLERIC_FLAME_STRIKE]
+IF
+	HaveSpell(CLERIC_FLAME_STRIKE)
+	See(NearestEnemyOf(Myself))
+	!Race(LastSeenBy(Myself),LICH)
+	!Race(LastSeenBy(Myself),DEMILICH)
+	!Race(LastSeenBy(Myself),RAKSHASA)
+	!Race(LastSeenBy(Myself),GOLEM)
+	!HasBounceEffects(LastSeenBy(Myself))
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,4)
+		SetGlobalRandom("SSPELLS_2_RANDOM_CAST","LOCALS",1,3)
+		Spell(LastSeenBy(Myself),CLERIC_FLAME_STRIKE)
+		Wait(1)
+END
+//4 - Myself - [CLERIC_DEFENSIVE_HARMONY, CLERIC_STRENGTH_OF_ONE]
+IF
+	HaveSpell(CLERIC_DEFENSIVE_HARMONY)
+	See(NearestEnemyOf(Myself))
+	CheckStat(Myself,0,CLERIC_DEFENSIVE_HARMONY)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,4)
+		SetGlobalRandom("SSPELLS_2_RANDOM_CAST","LOCALS",1,3)
+		Spell(LastSeenBy(Myself),CLERIC_DEFENSIVE_HARMONY)
+		Wait(1)
+END
+
+IF
+	HaveSpell(CLERIC_STRENGTH_OF_ONE)
+	See(NearestEnemyOf(Myself))
+	CheckStatLT(Myself,18,STR)
+	!CheckSpellState(Myself,HOLY_POWER)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,4)
+		SetGlobalRandom("SSPELLS_2_RANDOM_CAST","LOCALS",1,3)
+		Spell(LastSeenBy(Myself),CLERIC_STRENGTH_OF_ONE)
+		Wait(1)
+END
+//BLOCKEND
+//BLOCKEND
+
+//BLOCK SPL_2
+/*IF
+	ForceMarkedSpell(MARKED_SPELL)
+	SetSpellTarget(Nothing)
+	Global("I_Have_Seen_An_Enemy","LOCALS",1)
+	!See(NearestEnemyOf(Myself),0)
+	Or(9)
+		See("6001Black_Neo_Orog1",0)
+		See("6001Black_Neo_Orog2",0)
+		See("6001Black_Neo_Orog3",0)
+		See("6001Black_Neo_Orog4",0)
+		See("6001Black_Neo_Orog7",0)
+		See("6001Black_Neo_Orog8",0)
+		See("6001Black_Neo_Orog9",0)
+		See("6001Black_Neo_Orog10",0)
+		SetLastMarkedObject(Myself)
+THEN
+	RESPONSE #100
+		MarkSpellAndObject("121012191107",LastMarkedObject,SPELLCAST_IGNORE_SEE | SPELLCAST_IGNORE_VALID_SPELL_TARGET | SPELLCAST_RANDOM)  // [CLERIC_MINOR_ELEMENTAL_BARRIER, CLERIC_SPELL_SHIELD, CLERIC_PROTECTION_FROM_EVIL]
+		Continue()
+END
+
+IF
+	!IsMarkedSpell(MARKED_SPELL)
+THEN
+	RESPONSE #100
+		Spell(SpellTarget,MARKED_SPELL)
+		WaitAnimation(Myself,WALK)
+		WaitAnimation(Myself,CONJURE)
+		WaitAnimation(Myself,CAST)
+		ForceMarkedSpell(MARKED_SPELL)
+END*/
+/*IF
+	GlobalLT("SSPELLS_2_RANDOM_CAST","LOCALS",4)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_2_RANDOM_CAST","LOCALS",1,3)
+		Continue()
+END*/
+//1 - LastMarkedObject - [CLERIC_MINOR_ELEMENTAL_BARRIER, CLERIC_SPELL_SHIELD, CLERIC_PROTECTION_FROM_EVIL]
+IF
+	Global("SSPELLS_2_RANDOM_CAST","LOCALS",1)
+	HaveSpell(WIZARD_PROTECTION_FROM_THE_ELEMENTS)
+	Global("I_Have_Seen_An_Enemy","LOCALS",1)
+	!See(NearestEnemyOf(Myself))
+	OR(9)
+		See(Myself)
+		See("6001Black_Neo_Orog1")
+		See("6001Black_Neo_Orog2")
+		See("6001Black_Neo_Orog3")
+		See("6001Black_Neo_Orog4")
+		See("6001Black_Neo_Orog7")
+		See("6001Black_Neo_Orog8")
+		See("6001Black_Neo_Orog9")
+		See("6001Black_Neo_Orog10")
+		//SetLastMarkedObject(Myself)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,4)
+		SetGlobalRandom("SSPELLS_2_RANDOM_CAST","LOCALS",1,3)
+		Spell(LastSeenBy(Myself),WIZARD_PROTECTION_FROM_THE_ELEMENTS)
+		Wait(1)
+END
+
+IF
+	Global("SSPELLS_2_RANDOM_CAST","LOCALS",2)
+	HaveSpellRES("IWPR219")
+	Global("I_Have_Seen_An_Enemy","LOCALS",1)
+	!See(NearestEnemyOf(Myself))
+	OR(9)
+		See(Myself)
+		See("6001Black_Neo_Orog1")
+		See("6001Black_Neo_Orog2")
+		See("6001Black_Neo_Orog3")
+		See("6001Black_Neo_Orog4")
+		See("6001Black_Neo_Orog7")
+		See("6001Black_Neo_Orog8")
+		See("6001Black_Neo_Orog9")
+		See("6001Black_Neo_Orog10")
+		//SetLastMarkedObject(Myself)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,4)
+		SetGlobalRandom("SSPELLS_2_RANDOM_CAST","LOCALS",1,3)
+		SpellRES("IWPR219",LastSeenBy(Myself))
+		Wait(1)
+END
+
+IF
+	Global("SSPELLS_2_RANDOM_CAST","LOCALS",3)
+	HaveSpell(CLERIC_PROTECT_FROM_EVIL)
+	Global("I_Have_Seen_An_Enemy","LOCALS",1)
+	!See(NearestEnemyOf(Myself))
+	OR(9)
+		See(Myself)
+		See("6001Black_Neo_Orog1")
+		See("6001Black_Neo_Orog2")
+		See("6001Black_Neo_Orog3")
+		See("6001Black_Neo_Orog4")
+		See("6001Black_Neo_Orog7")
+		See("6001Black_Neo_Orog8")
+		See("6001Black_Neo_Orog9")
+		See("6001Black_Neo_Orog10")
+		//SetLastMarkedObject(Myself)
+	!CheckStatGT(Myself,0,PROTECTION_FROM_EVIL)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,4)
+		SetGlobalRandom("SSPELLS_2_RANDOM_CAST","LOCALS",1,3)
+		Spell(LastSeenBy(Myself),CLERIC_PROTECT_FROM_EVIL)
+		Wait(1)
+END
+//BLOCK NO_RND
+//1 - LastMarkedObject - [CLERIC_MINOR_ELEMENTAL_BARRIER, CLERIC_SPELL_SHIELD, CLERIC_PROTECTION_FROM_EVIL]
+IF
+	HaveSpell(WIZARD_PROTECTION_FROM_THE_ELEMENTS)
+	Global("I_Have_Seen_An_Enemy","LOCALS",1)
+	!See(NearestEnemyOf(Myself))
+	OR(9)
+		See(Myself)
+		See("6001Black_Neo_Orog1")
+		See("6001Black_Neo_Orog2")
+		See("6001Black_Neo_Orog3")
+		See("6001Black_Neo_Orog4")
+		See("6001Black_Neo_Orog7")
+		See("6001Black_Neo_Orog8")
+		See("6001Black_Neo_Orog9")
+		See("6001Black_Neo_Orog10")
+		//SetLastMarkedObject(Myself)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,4)
+		SetGlobalRandom("SSPELLS_2_RANDOM_CAST","LOCALS",1,3)
+		Spell(LastSeenBy(Myself),WIZARD_PROTECTION_FROM_THE_ELEMENTS)
+		Wait(1)
+END
+
+IF
+	HaveSpellRES("IWPR219")
+	Global("I_Have_Seen_An_Enemy","LOCALS",1)
+	!See(NearestEnemyOf(Myself))
+	OR(9)
+		See(Myself)
+		See("6001Black_Neo_Orog1")
+		See("6001Black_Neo_Orog2")
+		See("6001Black_Neo_Orog3")
+		See("6001Black_Neo_Orog4")
+		See("6001Black_Neo_Orog7")
+		See("6001Black_Neo_Orog8")
+		See("6001Black_Neo_Orog9")
+		See("6001Black_Neo_Orog10")
+		//SetLastMarkedObject(Myself)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,4)
+		SetGlobalRandom("SSPELLS_2_RANDOM_CAST","LOCALS",1,3)
+		SpellRES("IWPR219",LastSeenBy(Myself))
+		Wait(1)
+END
+
+IF
+	HaveSpell(CLERIC_PROTECT_FROM_EVIL)
+	Global("I_Have_Seen_An_Enemy","LOCALS",1)
+	!See(NearestEnemyOf(Myself))
+	OR(9)
+		See(Myself)
+		See("6001Black_Neo_Orog1")
+		See("6001Black_Neo_Orog2")
+		See("6001Black_Neo_Orog3")
+		See("6001Black_Neo_Orog4")
+		See("6001Black_Neo_Orog7")
+		See("6001Black_Neo_Orog8")
+		See("6001Black_Neo_Orog9")
+		See("6001Black_Neo_Orog10")
+		//SetLastMarkedObject(Myself)
+	!CheckStatGT(Myself,0,PROTECTION_FROM_EVIL)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,4)
+		SetGlobalRandom("SSPELLS_2_RANDOM_CAST","LOCALS",1,3)
+		Spell(LastSeenBy(Myself),CLERIC_PROTECT_FROM_EVIL)
+		Wait(1)
+END
+//BLOCKEND
+//BLOCKEND
+
+IF
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		SetGlobal("I_Have_Seen_An_Enemy","LOCALS",1)
+		EquipMostDamagingMelee()
+		AttackOneRound(LastSeenBy(Myself))
+END
+

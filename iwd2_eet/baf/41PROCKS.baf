@@ -1,0 +1,76 @@
+/* OLD
+IF
+	Clicked([ANYONE])
+THEN
+	RESPONSE #100
+		GiveItemCreate("z4genrp",LastTrigger,0,0,0)
+		CloseDoor(Myself)
+		//SetDoorFlag(Myself,HIDDEN,TRUE)
+END*/
+
+IF
+	OpenState("AR4100_Lever1_RocksDumped",TRUE)
+	!Global("Is_Over_Me_1_Cont","MYAREA",0)
+	OR(6)
+		IsOverMe(Player1)
+		IsOverMe(Player2)
+		IsOverMe(Player3)
+		IsOverMe(Player4)
+		IsOverMe(Player5)
+		IsOverMe(Player6)
+THEN
+	RESPONSE #100
+		SetGlobal("Is_Over_Me_1_Cont","MYAREA",0)
+		ContainerEnable("AR4100_Lever1_Container",TRUE)
+		Continue()
+END
+
+IF
+	OpenState("AR4100_Lever1_RocksDumped",TRUE)
+	!Global("Is_Over_Me_1_Cont","MYAREA",1)
+	!IsOverMe(Player1)
+	!IsOverMe(Player2)
+	!IsOverMe(Player3)
+	!IsOverMe(Player4)
+	!IsOverMe(Player5)
+	!IsOverMe(Player6)
+THEN
+	RESPONSE #100
+		SetGlobal("Is_Over_Me_1_Cont","MYAREA",1)
+		ContainerEnable("AR4100_Lever1_Container",FALSE)
+		Continue()
+END
+
+IF
+	OpenState("AR4100_Lever3_RocksDumped",TRUE)
+	!Global("Is_Over_Me_3_Cont","MYAREA",0)
+	OR(6)
+		IsOverMe(Player1)
+		IsOverMe(Player2)
+		IsOverMe(Player3)
+		IsOverMe(Player4)
+		IsOverMe(Player5)
+		IsOverMe(Player6)
+THEN
+	RESPONSE #100
+		SetGlobal("Is_Over_Me_3_Cont","MYAREA",0)
+		ContainerEnable("AR4100_Lever3_Container",TRUE)
+		Continue()
+END
+
+IF
+	OpenState("AR4100_Lever3_RocksDumped",TRUE)
+	!Global("Is_Over_Me_3_Cont","MYAREA",1)
+	!IsOverMe(Player1)
+	!IsOverMe(Player2)
+	!IsOverMe(Player3)
+	!IsOverMe(Player4)
+	!IsOverMe(Player5)
+	!IsOverMe(Player6)
+THEN
+	RESPONSE #100
+		SetGlobal("Is_Over_Me_3_Cont","MYAREA",1)
+		ContainerEnable("AR4100_Lever3_Container",FALSE)
+		Continue()
+END
+

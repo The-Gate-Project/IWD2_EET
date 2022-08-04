@@ -1,0 +1,72 @@
+IF
+	!Global("Fire_Room_Armed","MYAREA",0)
+	OR(2)
+		//CheckDoorFlags("AR6051_Lava_Art",DOOROPEN)
+		//CheckDoorFlags("AR6051_Lava_Switch",DOOROPEN)
+		OpenState("AR6051_Lava_Art",TRUE)
+		OpenState("AR6051_Lava_Switch",TRUE)
+THEN
+	RESPONSE #100
+		CloseDoor("AR6051_Lava_Art")
+		CloseDoor("AR6051_Lava_Switch")
+END
+
+IF
+	Global("Fire_Room_Armed","MYAREA",0)
+	Global("Fire_Room_Active","MYAREA",1)
+THEN
+	RESPONSE #100
+		SetGlobal("Fire_Room_Active","MYAREA",0)
+		CloseDoor("AR6051_Lava_Art")
+		CloseDoor("AR6051_Lava_Switch")
+		Wait(7)
+		Wait(7)
+		Wait(7)
+		Wait(7)
+		Wait(7)
+		Wait(7)
+		Wait(7)
+		Wait(7)
+		Wait(7)
+		Wait(7)
+		Wait(7)
+		Wait(7)
+END
+
+IF
+	Global("Fire_Room_Armed","MYAREA",0)
+	GlobalGT("Fire_Room_Active","MYAREA",1)
+THEN
+	RESPONSE #100
+		OpenDoor("AR6051_Lava_Art")
+		OpenDoor("AR6051_Lava_Switch")
+		ForceSpellPointRES("IWIN254",[222.1392])  // SPIN254.SPL TRAP_LAKE_OF_FIRE
+		ForceSpellPointRES("IWIN254",[222.1487])  // SPIN254.SPL TRAP_LAKE_OF_FIRE
+		ForceSpellPointRES("IWIN254",[326.1432])  // SPIN254.SPL TRAP_LAKE_OF_FIRE
+		ForceSpellPointRES("IWIN254",[287.1539])  // SPIN254.SPL TRAP_LAKE_OF_FIRE
+		ForceSpellPointRES("IWIN254",[410.1489])  // SPIN254.SPL TRAP_LAKE_OF_FIRE
+		ForceSpellPointRES("IWIN254",[364.1554])  // SPIN254.SPL TRAP_LAKE_OF_FIRE
+		ForceSpellPointRES("IWIN254",[437.1589])  // SPIN254.SPL TRAP_LAKE_OF_FIRE
+		ForceSpellPointRES("IWIN254",[525.1528])  // SPIN254.SPL TRAP_LAKE_OF_FIRE
+		ForceSpellPointRES("IWIN254",[510.1626])  // SPIN254.SPL TRAP_LAKE_OF_FIRE
+		ForceSpellPointRES("IWIN254",[622.1578])  // SPIN254.SPL TRAP_LAKE_OF_FIRE
+		ForceSpellPointRES("IWIN254",[597.1657])  // SPIN254.SPL TRAP_LAKE_OF_FIRE
+		ForceSpellPointRES("IWIN254",[712.1594])  // SPIN254.SPL TRAP_LAKE_OF_FIRE
+		ForceSpellPointRES("IWIN254",[682.1690])  // SPIN254.SPL TRAP_LAKE_OF_FIRE
+		ForceSpellPointRES("IWIN254",[822.1631])  // SPIN254.SPL TRAP_LAKE_OF_FIRE
+		ForceSpellPointRES("IWIN254",[780.1673])  // SPIN254.SPL TRAP_LAKE_OF_FIRE
+		ForceSpellPointRES("IWIN254",[755.1713])  // SPIN254.SPL TRAP_LAKE_OF_FIRE
+		Wait(7)
+		IncrementGlobal("Fire_Room_Active","MYAREA",-1)
+END
+
+IF
+	Global("Fire_Room_Armed","MYAREA",0)
+	Global("Fire_Room_Active","MYAREA",0)
+	IsOverMe([ANYONE])
+THEN
+	RESPONSE #100
+		Wait(3)
+		SetGlobal("Fire_Room_Active","MYAREA",11)
+END
+

@@ -1,0 +1,179 @@
+/*IF
+	Global("MyTarget","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobal("MyTarget","LOCALS",1)
+		SetMyTarget(NearestEnemyOf(Myself))
+		Continue()
+	RESPONSE #100
+		SetGlobal("MyTarget","LOCALS",1)
+		SetMyTarget(SecondNearestEnemyOf(Myself))
+		Continue()
+	RESPONSE #100
+		SetGlobal("MyTarget","LOCALS",1)
+		SetMyTarget(ThirdNearestEnemyOf(Myself))
+		Continue()
+	RESPONSE #100
+		SetGlobal("MyTarget","LOCALS",1)
+		SetMyTarget(FourthNearestEnemyOf(Myself))
+		Continue()
+	RESPONSE #100
+		SetGlobal("MyTarget","LOCALS",1)
+		SetMyTarget(FifthNearestEnemyOf(Myself))
+		Continue()
+	RESPONSE #100
+		SetGlobal("MyTarget","LOCALS",1)
+		SetMyTarget(SixthNearestEnemyOf(Myself))
+		Continue()
+	RESPONSE #100
+		SetGlobal("MyTarget","LOCALS",1)
+		SetMyTarget(SeventhNearestEnemyOf(Myself))
+		Continue()
+	RESPONSE #100
+		SetGlobal("MyTarget","LOCALS",1)
+		SetMyTarget(EigthNearestEnemyOf(Myself))
+		Continue()
+	RESPONSE #100
+		SetGlobal("MyTarget","LOCALS",1)
+		SetMyTarget(NinthNearestEnemyOf(Myself))
+		Continue()
+	RESPONSE #100
+		SetGlobal("MyTarget","LOCALS",1)
+		SetMyTarget(TenthNearestEnemyOf(Myself))
+		Continue()
+END*/
+
+IF
+	Global("MyTarget","LOCALS",0)
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		SetGlobal("MyTarget","LOCALS",1)
+		Continue()
+END
+
+IF
+	Global("MyTarget","LOCALS",0)
+	See(SecondNearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		SetGlobal("MyTarget","LOCALS",1)
+		Continue()
+END
+
+IF
+	Global("MyTarget","LOCALS",0)
+	See(ThirdNearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		SetGlobal("MyTarget","LOCALS",1)
+		Continue()
+END
+
+IF
+	Global("MyTarget","LOCALS",0)
+	See(FourthNearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		SetGlobal("MyTarget","LOCALS",1)
+		Continue()
+END
+
+IF
+	Global("MyTarget","LOCALS",0)
+	See(FifthNearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		SetGlobal("MyTarget","LOCALS",1)
+		Continue()
+END
+
+IF
+	Global("MyTarget","LOCALS",0)
+	See(SixthNearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		SetGlobal("MyTarget","LOCALS",1)
+		Continue()
+END
+
+IF
+	Global("MyTarget","LOCALS",0)
+	See(SeventhNearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		SetGlobal("MyTarget","LOCALS",1)
+		Continue()
+END
+
+IF
+	Global("MyTarget","LOCALS",0)
+	See(EighthNearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		SetGlobal("MyTarget","LOCALS",1)
+		Continue()
+END
+
+IF
+	Global("MyTarget","LOCALS",0)
+	See(NinthNearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		SetGlobal("MyTarget","LOCALS",1)
+		Continue()
+END
+
+IF
+	Global("MyTarget","LOCALS",0)
+	See(TenthNearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		SetGlobal("MyTarget","LOCALS",1)
+		Continue()
+END
+
+IF
+	//CreatureHidden(Myself)
+	!Global("CreatureHidden","LOCALS",0)
+	True()
+THEN
+	RESPONSE #100
+		//SpellHitEffectSprite(Myself,Myself,ANIMAL_SUMMONING_II,0)
+		CreateVisualEffectObject("ASUMM1X",Myself)
+		//HideCreature(Myself,FALSE)
+		ApplySpellRES("IDINVIS9",Myself)
+		Continue()
+END
+
+IF
+	StateCheck(Myself,STATE_PANIC)
+THEN
+	RESPONSE #100
+		RandomWalkContinuous()
+END
+
+IF
+	HPGT(LastSeenBy(Myself),0) //MyTarget
+	!Allegiance(LastSeenBy(Myself),ENEMY)
+	!Allegiance(LastSeenBy(Myself),CHARMED_PC)
+	!StateCheck(LastSeenBy(Myself),STATE_NOT_VISIBLE)
+	//!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+	//!IsCreatureHiddenInShadows(MyTarget)
+	See(LastSeenBy(Myself))
+THEN
+	RESPONSE #100
+		SetGlobal("MyTarget","LOCALS",0) /* NEW */
+		//EquipWeapon()
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		SetGlobal("MyTarget","LOCALS",0)
+		//EquipWeapon()
+		AttackOneRound(LastSeenBy(Myself))
+END
+

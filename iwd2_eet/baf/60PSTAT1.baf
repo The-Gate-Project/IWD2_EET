@@ -1,0 +1,51 @@
+IF
+	Global("StatueXP","MYAREA",0)
+	GlobalGT("Kuldahar_6002_UndeadKilled","GLOBAL",0)
+	OR(12)
+		Kit(Player1,OHILMATER)
+		Kit(Player2,OHILMATER)
+		Kit(Player3,OHILMATER)
+		Kit(Player4,OHILMATER)
+		Kit(Player5,OHILMATER)
+		Kit(Player6,OHILMATER)
+		Kit(Player1,PL_ILMATER)
+		Kit(Player2,PL_ILMATER)
+		Kit(Player3,PL_ILMATER)
+		Kit(Player4,PL_ILMATER)
+		Kit(Player5,PL_ILMATER)
+		Kit(Player6,PL_ILMATER)
+	Clicked([ANYONE])
+THEN
+	RESPONSE #100
+		SetGlobal("StatueXP","MYAREA",1)
+		DisplayStringPointLog([635.300],@28903)
+		//DisplayStringNoName(LastTrigger,@28903)
+		//SetGlobal("XP","LOCALS",1)
+		AddXP2DA("IW2EX12E")
+		DisplayStringNoName(LastTrigger,@28901)
+END
+
+IF
+	!Global("StatueXP","MYAREA",0)
+	Clicked([ANYONE])
+THEN
+	RESPONSE #100
+		DisplayStringPointLog([635.300],@28903)
+		//DisplayStringNoName(LastTrigger,@28903)
+END
+
+IF
+	Clicked([ANYONE])
+THEN
+	RESPONSE #100
+		DisplayStringPointLog([635.300],@28902)
+		//DisplayStringNoName(LastTrigger,@28902)
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		NoAction()
+END
+

@@ -1,0 +1,207 @@
+/*IF
+	OnCreation()
+	Global("WATCHING_PLAYER","MYAREA",0)
+THEN
+	RESPONSE #100
+		//ResetJoinRequests()
+		Continue()
+END*/
+
+IF
+	!Global("FORCE_PARTY_EA","MYAREA",0)
+	//!InCutsceneMode()
+THEN
+	RESPONSE #100
+		SetGlobal("FORCE_PARTY_EA","MYAREA",0)
+		ClearActions(Player1)
+		ClearActions(Player2)
+		ClearActions(Player3)
+		ClearActions(Player4)
+		ClearActions(Player5)
+		ClearActions(Player6)
+		/*ActionOverride(Player1,ChangeEnemyAlly(Myself,PC))
+		ActionOverride(Player2,ChangeEnemyAlly(Myself,PC))
+		ActionOverride(Player3,ChangeEnemyAlly(Myself,PC))
+		ActionOverride(Player4,ChangeEnemyAlly(Myself,PC))
+		ActionOverride(Player5,ChangeEnemyAlly(Myself,PC))
+		ActionOverride(Player6,ChangeEnemyAlly(Myself,PC))*/
+		ActionOverride(Player1,ApplySpellRES("IDRUNSEL",Myself))
+		ActionOverride(Player2,ApplySpellRES("IDRUNSEL",Myself))
+		ActionOverride(Player3,ApplySpellRES("IDRUNSEL",Myself))
+		ActionOverride(Player4,ApplySpellRES("IDRUNSEL",Myself))
+		ActionOverride(Player5,ApplySpellRES("IDRUNSEL",Myself))
+		ActionOverride(Player6,ApplySpellRES("IDRUNSEL",Myself))
+		Continue()
+END
+
+IF
+	Global("52Alarm","GLOBAL",0)
+	!Global("TEAM_0","MYAREA",0)
+THEN
+	RESPONSE #100
+		SetGlobal("52Alarm","GLOBAL",1)
+		Continue()
+END
+
+IF
+	Global("TEAM_0","MYAREA",0)
+	!Global("52Alarm","GLOBAL",0)
+THEN
+	RESPONSE #100
+		SetGlobal("TEAM_0","MYAREA",1)
+		Continue()
+END
+
+IF
+	Global("AR5202_BLACKRAVEN_DEAD","GLOBAL",0)
+	Dead("Morohem")
+THEN
+	RESPONSE #100
+		SetGlobal("AR5202_BLACKRAVEN_DEAD","GLOBAL",1)
+		Continue()
+END
+
+IF
+	Global("BLACKRAVEN_MONKS_DEAD","GLOBAL",0)
+	!Global("AR5201_BLACKRAVEN_DEAD","GLOBAL",0)
+	!Global("AR5202_BLACKRAVEN_DEAD","GLOBAL",0)
+THEN
+	RESPONSE #100
+		DisplayStringNoName(Player1,@27960)
+		SetGlobal("BLACKRAVEN_MONKS_DEAD","GLOBAL",1)
+		Continue()
+END
+
+IF
+	Global("BLACKRAVEN_MONKS_DEAD","GLOBAL",1)
+	Global("SPRITE_IS_DEADBarud","GLOBAL",0)
+	Global("51Barud_Monks","GLOBAL",1)
+THEN
+	RESPONSE #100
+		AddJournalEntry(@28813,QUEST)
+		SetGlobal("BLACKRAVEN_MONKS_DEAD","GLOBAL",2)
+		Continue()
+END
+
+IF
+	//AreaRestDisabled()
+	!Global("AllowAreaResting","MYAREA",1)
+	!Global("BLACKRAVEN_MONKS_DEAD","GLOBAL",0)
+THEN
+	RESPONSE #100
+		//AllowAreaResting(TRUE)
+		SetGlobal("AllowAreaResting","MYAREA",1)
+		RemoveAreaFlag(NOREST)
+		Continue()
+END
+
+IF
+	//!Sequence("5202T01",SEQ_ATTACK)
+	!Global("5202T01_SEQ","MYAREA",0)
+	!Global("WATCHING_PLAYER","MYAREA",0)
+	Global("52Morohem_Master","GLOBAL",4)
+THEN
+	RESPONSE #100
+		StaticSequence("5202T01",SEQ_ATTACK)
+		SetGlobal("5202T01_SEQ","MYAREA",0)
+END
+
+IF
+	//!Sequence("5202T01",SEQ_AWAKE)
+	!Global("5202T01_SEQ","MYAREA",1)
+	OR(2)
+		Global("WATCHING_PLAYER","MYAREA",0)
+		!Global("52Morohem_Master","GLOBAL",4)
+THEN
+	RESPONSE #100
+		StaticSequence("5202T01",SEQ_AWAKE)
+		SetGlobal("5202T01_SEQ","MYAREA",1)
+END
+
+IF
+	//!Sequence("5202T02",SEQ_ATTACK)
+	!Global("5202T02_SEQ","MYAREA",0)
+	!Global("WATCHING_PLAYER","MYAREA",0)
+	Global("52Morohem_Master","GLOBAL",4)
+THEN
+	RESPONSE #100
+		StaticSequence("5202T02",SEQ_ATTACK)
+		SetGlobal("5202T02_SEQ","MYAREA",0)
+END
+
+IF
+	//!Sequence("5202T02",SEQ_AWAKE)
+	!Global("5202T02_SEQ","MYAREA",1)
+	OR(2)
+		Global("WATCHING_PLAYER","MYAREA",0)
+		!Global("52Morohem_Master","GLOBAL",4)
+THEN
+	RESPONSE #100
+		StaticSequence("5202T02",SEQ_AWAKE)
+		SetGlobal("5202T02_SEQ","MYAREA",1)
+END
+
+IF
+	//!Sequence("5202T03",SEQ_ATTACK)
+	!Global("5202T03_SEQ","MYAREA",0)
+	!Global("WATCHING_PLAYER","MYAREA",0)
+	Global("52Morohem_Master","GLOBAL",4)
+THEN
+	RESPONSE #100
+		StaticSequence("5202T03",SEQ_ATTACK)
+		SetGlobal("5202T03_SEQ","MYAREA",0)
+END
+
+IF
+	//!Sequence("5202T03",SEQ_AWAKE)
+	!Global("5202T03_SEQ","MYAREA",1)
+	OR(2)
+		Global("WATCHING_PLAYER","MYAREA",0)
+		!Global("52Morohem_Master","GLOBAL",4)
+THEN
+	RESPONSE #100
+		StaticSequence("5202T03",SEQ_AWAKE)
+		SetGlobal("5202T03_SEQ","MYAREA",1)
+END
+
+IF
+	//!Sequence("5202T04",SEQ_ATTACK)
+	!Global("5202T04_SEQ","MYAREA",0)
+	!Global("WATCHING_PLAYER","MYAREA",0)
+	Global("52Morohem_Master","GLOBAL",4)
+THEN
+	RESPONSE #100
+		StaticSequence("5202T04",SEQ_ATTACK)
+		SetGlobal("5202T04_SEQ","MYAREA",0)
+END
+
+IF
+	//!Sequence("5202T04",SEQ_AWAKE)
+	!Global("5202T04_SEQ","MYAREA",1)
+	OR(2)
+		Global("WATCHING_PLAYER","MYAREA",0)
+		!Global("52Morohem_Master","GLOBAL",4)
+THEN
+	RESPONSE #100
+		StaticSequence("5202T04",SEQ_AWAKE)
+		SetGlobal("5202T04_SEQ","MYAREA",1)
+END
+
+IF
+	Global("52Ven_Loot","GLOBAL",3)
+	//EntirePartyOnMap()
+	InMyArea(Player1)
+THEN
+	RESPONSE #100
+		SetGlobal("52Ven_Loot","GLOBAL",4)
+		Continue()
+END
+
+IF
+	OnCreation()
+THEN
+	RESPONSE #100
+		NoAction()
+		Continue()
+END
+

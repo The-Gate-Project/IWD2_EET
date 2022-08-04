@@ -1,0 +1,58 @@
+IF
+	!Allegiance(Myself,ENEMY)
+	Global("BeodaewnWarning","MYAREA",1)
+	See([PC])
+THEN
+	RESPONSE #100
+		//SetDialogueRange(300)
+		//Dialogue(LastMarkedObject)
+		ApplySpellRES("BDCUTSPY",Myself)
+		StartDialogNoSet(LastSeenBy(Myself))
+		SetGlobal("BeodaewnWarning","MYAREA",2)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	Global("Transformed","LOCALS",0)
+	See([PC])
+THEN
+	RESPONSE #100
+		//SpellHitEffectSprite(Myself,Myself,ALTERATION,0)
+		CreateVisualEffectObject("ALTERH",Myself)
+		Polymorph(WEREWOLF_GREATER)
+		SetGlobal("Transformed","LOCALS",1)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	Global("GaveSpeech","LOCALS",0)
+	See([PC])
+THEN
+	RESPONSE #100
+		//SetDialogueRange(300)
+		//Dialogue(LastMarkedObject)
+		ApplySpellRES("BDCUTSPY",Myself)
+		StartDialogNoSet(LastSeenBy(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	OR(2)
+		Global("GaveSpeech","LOCALS",0)
+		Global("Transformed","LOCALS",0)
+	!See([PC])
+THEN
+	RESPONSE #100
+		//ClearSpriteEffects(Myself)
+		MoveToObject(Player1)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	Global("GaveSpeech","LOCALS",1)
+	Global("Transformed","LOCALS",1)
+THEN
+	RESPONSE #100
+		ChangeAIScript("",CLASS)
+END
+

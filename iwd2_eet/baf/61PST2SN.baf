@@ -1,0 +1,18 @@
+IF
+	Allegiance("Thorasskus",ENEMY)
+	OR(4)
+		HasItem("BLUN01",Myself)
+		HasItem("STAF01",Myself)
+		HasItem("AROW01",Myself)
+		HasItem("SPER01",Myself)
+THEN
+	RESPONSE #100
+		DestroyItem("BLUN01")
+		DestroyItem("STAF01")
+		DestroyItem("AROW01")
+		DestroyItem("SPER01")
+		CreateCreature("61snaGi1",[-1.-1],8)
+		//ChangeCurrentScript("")
+		ContainerEnable(Myself,FALSE)
+END
+

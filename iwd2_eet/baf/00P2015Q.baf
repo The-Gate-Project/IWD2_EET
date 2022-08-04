@@ -1,0 +1,9 @@
+IF
+	OR(2)
+		Opened([PC])
+		Entered([PC])
+THEN
+	RESPONSE #100
+		ReallyForceSpellRES("IWWI015",LastTrigger)  // SPWI015.SPL TRAP_POISON_DAMAGE_DARTS
+END
+

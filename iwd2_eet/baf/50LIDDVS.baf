@@ -1,0 +1,26 @@
+IF
+	!IsActive(Myself)
+	!Global("SPRITE_IS_DEADLimha","Global",0)
+THEN
+	RESPONSE #100
+		Activate(Myself)
+		SetGlobal("IwIHidden","LOCALS",0)
+		ApplySpellRES("idinvis5",Myself)
+		Continue()
+END
+
+IF
+	IsActive(Myself)
+	!Global("SPRITE_IS_DEADLimha","Global",0)
+THEN
+	RESPONSE #100
+		ChangeAIScript("",SPECIFICS)
+END
+
+IF
+	!IsActive(Myself)
+THEN
+	RESPONSE #100
+		NoAction()
+END
+

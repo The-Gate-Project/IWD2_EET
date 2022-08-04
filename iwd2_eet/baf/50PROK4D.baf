@@ -1,0 +1,9 @@
+IF
+	Opened([ANYONE])
+THEN
+	RESPONSE #100
+		StartCutScene("50cRok4D")
+		/* AddEndCutSceneMode */
+		EndCutSceneMode()
+END
+

@@ -1,0 +1,10 @@
+IF
+	Global("TEAM_0","MYAREA",1)
+	!See([PC])
+THEN
+	RESPONSE #100
+		MoveToObject(Player1)
+END
+
+
+

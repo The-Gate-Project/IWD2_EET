@@ -1,0 +1,57 @@
+IF
+	StateCheck(Myself,STATE_PANIC)
+THEN
+	RESPONSE #100
+		RandomWalkContinuous()
+END
+
+IF
+	!GlobalTimerNotExpired("IWD_Rest","LOCALS")
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IWD_Rest","LOCALS",EIGHT_HOURS)
+		ApplySpell(Myself,RESTORE_FULL_HEALTH)
+		Rest()
+END
+
+IF
+	HaveSpell(CLERIC_SLOW_POISON)
+	StateCheck(Myself,STATE_POISONED)
+	HPPercentLT(Myself,75)
+THEN
+	RESPONSE #100
+		Spell(Myself,CLERIC_SLOW_POISON)
+		Wait(1)
+END
+
+IF
+	HaveSpell(WIZARD_PROTECTION_FROM_THE_ELEMENTS)
+	HitBy([ANYONE],FIRE)
+	HPPercentLT(Myself,75)
+THEN
+	RESPONSE #100
+		Spell(Myself,WIZARD_PROTECTION_FROM_THE_ELEMENTS)
+		Wait(1)
+END
+
+IF
+	See(NearestEnemyOf(Myself))
+	!Range(LastSeenBy(Myself),4)
+	CanEquipRanged()
+THEN
+	RESPONSE #100
+		EquipRanged()
+		AttackReevaluate(LastSeenBy(Myself),45)
+END
+
+IF
+	See(NearestEnemyOf(Myself))
+	OR(2)
+		Range(LastSeenBy(Myself),4)
+		!CanEquipRanged()
+THEN
+	RESPONSE #100
+		EquipMostDamagingMelee()
+		AttackReevaluate(LastSeenBy(Myself),45)
+END
+

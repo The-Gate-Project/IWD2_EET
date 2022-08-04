@@ -1,0 +1,37 @@
+BEGIN ~60CCABAT~
+
+IF ~Global("60CCabaT","GLOBAL",0)
+    Global("6051_Wearing_Robes","GLOBAL",6)~ THEN BEGIN 0
+  SAY @31259
+  IF ~~ THEN REPLY @31261 DO ~SetGlobal("60CCabaT","GLOBAL",1)~ GOTO 4
+  IF ~~ THEN REPLY @31262 DO ~SetGlobal("60CCabaT","GLOBAL",1)~ EXIT
+END
+
+IF ~Global("60CCabaT","GLOBAL",1)
+    Global("6051_Wearing_Robes","GLOBAL",6)~ THEN BEGIN 1
+  SAY @31263
+  IF ~~ THEN REPLY @31261 DO ~SetGlobal("60CCabaT","GLOBAL",2)~ GOTO 4
+  IF ~~ THEN REPLY @31262 DO ~SetGlobal("60CCabaT","GLOBAL",2)~ EXIT
+END
+
+IF ~Global("6051_Wearing_Robes","GLOBAL",6)~ THEN BEGIN 2
+  SAY @31264
+  IF ~~ THEN REPLY @31261 DO ~SetGlobal("60CCabaT","GLOBAL",0)~ GOTO 4
+  IF ~~ THEN REPLY @31262 DO ~SetGlobal("60CCabaT","GLOBAL",0)~ EXIT
+END
+
+IF ~~ THEN BEGIN 3
+  SAY @31265
+  IF ~~ THEN REPLY @31266 GOTO 4
+  IF ~~ THEN REPLY @31262 EXIT
+END
+
+IF ~~ THEN BEGIN 4
+  SAY @31267
+  IF ~~ THEN REPLY @31262 EXIT
+END
+
+IF ~!Global("6051_Wearing_Robes","GLOBAL",6)~ THEN BEGIN 5
+  SAY @34329
+  IF ~~ THEN DO ~Enemy()~ EXIT
+END

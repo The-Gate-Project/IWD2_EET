@@ -1,0 +1,129 @@
+IF
+	Global("4001Visited","MYAREA",0)
+	//EntirePartyOnMap()
+THEN
+	RESPONSE #100
+		SetGlobal("4001Visited","MYAREA",1)
+		EndCutSceneMode()
+		MultiPlayerSync()
+		StartMovie("MIDDLE")
+END
+
+/*IF
+	Global("4001Visited","MYAREA",0)
+	//!InCutsceneMode()
+THEN
+	RESPONSE #100
+		StartCutSceneMode()
+END
+
+IF
+	Global("4001Visited","MYAREA",0)
+THEN
+	RESPONSE #100
+		MultiPlayerSync()
+END*/
+
+IF
+	Global("4001Visited","MYAREA",1)
+THEN
+	RESPONSE #100
+		//IncrementChapter("")
+		IncrementGlobal("IWD2_CHAPTER","GLOBAL",1)
+		TextScreen("IWD2TXT2")
+		/*SetHPPercent(Player1,100,MAX_HP)
+		SetHPPercent(Player2,100,MAX_HP)
+		SetHPPercent(Player3,100,MAX_HP)
+		SetHPPercent(Player4,100,MAX_HP)
+		SetHPPercent(Player5,100,MAX_HP)
+		SetHPPercent(Player6,100,MAX_HP)*/
+		ActionOverride(Player1,ApplySpell(Myself,RESTORE_FULL_HEALTH))
+		ActionOverride(Player2,ApplySpell(Myself,RESTORE_FULL_HEALTH))
+		ActionOverride(Player3,ApplySpell(Myself,RESTORE_FULL_HEALTH))
+		ActionOverride(Player4,ApplySpell(Myself,RESTORE_FULL_HEALTH))
+		ActionOverride(Player5,ApplySpell(Myself,RESTORE_FULL_HEALTH))
+		ActionOverride(Player6,ApplySpell(Myself,RESTORE_FULL_HEALTH))
+		SetGlobal("4001Visited","MYAREA",2)
+END
+
+IF
+	OnCreation()
+THEN
+	RESPONSE #100
+		NoAction()
+		Continue()
+END
+
+IF
+	//AreaRestDisabled()
+	Global("AREA_NO_REST","MYAREA",1)
+	Global("40BeetleAttackOver","GLOBAL",1)
+THEN
+	RESPONSE #100
+		//AllowAreaResting(TRUE)
+		RemoveAreaFlag(NOREST)
+		SetGlobal("AREA_NO_REST","MYAREA",2)
+END
+
+IF
+	Global("40BeetleAttackOver","GLOBAL",0)
+	Global("40BeetleSpawnRequests","GLOBAL",0)
+	GlobalGT("40BeetleDied","GLOBAL",0)
+	Global("40BeetleKills","GLOBAL",30)
+THEN
+	RESPONSE #100
+		EraseJournalEntry(@34762)
+		EraseJournalEntry(@18852)
+		AddJournalEntry(@18863,QUEST)
+		AddXP2DA("IW2EX7A")
+		DisplayStringNoName(Player1,@18866)
+		SetGlobal("40BeetleAttackOver","GLOBAL",1)
+END
+
+IF
+	GlobalGT("40BeetleSpawnRequests","GLOBAL",0)
+THEN
+	RESPONSE #100
+		CreateCreature("40betBor",[540.100],2)
+		ActionOverride("40betBor",WaitRandom(1,10))
+		IncrementGlobal("40BeetleSpawnRequests","GLOBAL",-1)
+END
+
+IF
+	GlobalGT("40SpiderSpawnRequests","GLOBAL",0)
+	OpenState("AR4001_Door1",TRUE)
+THEN
+	RESPONSE #100
+		CreateCreature("40spiPhS",[297.297],10)
+		IncrementGlobal("40SpiderSpawnRequests","GLOBAL",-1)
+END
+
+IF
+	GlobalGT("40SpiderSpawnRequests","GLOBAL",0)
+	OpenState("AR4001_Door1",FALSE)
+THEN
+	RESPONSE #100
+		CreateCreature("40spiPhS",[415.159],2)
+		IncrementGlobal("40SpiderSpawnRequests","GLOBAL",-1)
+END
+
+IF
+	GlobalGT("40BeetleDied","GLOBAL",0)
+THEN
+	RESPONSE #100
+		IncrementGlobal("40BeetleKills","GLOBAL",1)
+		IncrementGlobal("40BeetleDied","GLOBAL",-1)
+		IncrementGlobal("40CurrentBeetleCount","GLOBAL",-1)
+END
+
+IF
+	!Global("RJ_AR4001","GLOBAL",0)
+	//!InCutsceneMode()
+THEN
+	RESPONSE #100
+		MultiPlayerSync()
+		//ResetJoinRequests()
+		SetGlobal("RJ_AR4001","GLOBAL",0)
+		Continue()
+END
+

@@ -1,0 +1,23 @@
+IF
+	//CheckDoorFlags(Myself,DOORLOCKED)
+	!Global("31PWARD0_UNLOCKED","MYAREA",1)
+	PartyHasItem("z3bstone")
+	PartyHasItem("z3istone")
+THEN
+	RESPONSE #100
+		Unlock(Myself)
+		SetGlobal("31PWARD0_UNLOCKED","MYAREA",1)
+END
+
+IF
+	//!CheckDoorFlags(Myself,DOORLOCKED)
+	!Global("31PWARD0_UNLOCKED","MYAREA",0)
+	OR(2)
+		!PartyHasItem("z3bstone")
+		!PartyHasItem("z3istone")
+THEN
+	RESPONSE #100
+		Lock(Myself)
+		SetGlobal("31PWARD0_UNLOCKED","MYAREA",0)
+END
+

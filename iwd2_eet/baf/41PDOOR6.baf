@@ -1,0 +1,92 @@
+IF
+	Disarmed([ANYONE])
+	!Global("41PDOOR6_INACTIVE","MYAREA",1)
+	!Global("41PDOOR6_NOTRAP","MYAREA",1)
+THEN
+	RESPONSE #100
+		//SetDoorFlag(Myself,TRAPDETECTABLE,FALSE)
+		SetGlobal("41PDOOR6_NOTRAP","MYAREA",1)
+		//Reset(Myself)
+END
+
+IF
+	Opened([ANYONE])
+	!Global("41PDOOR6_INACTIVE","MYAREA",1)
+	Global("AllowIceLance","MYAREA",1)
+	//!InCutsceneMode()
+	//CheckDoorFlags(Myself,TRAPDETECTABLE)
+	!Global("41PDOOR6_NOTRAP","MYAREA",1)
+THEN
+	RESPONSE #100
+		ForceSpellRES("IWWI318",LastTrigger)  // WIZARD_ICELANCE
+		Continue()
+END
+
+IF
+	Opened([ANYONE])
+	!Global("41PDOOR6_INACTIVE","MYAREA",1)
+	Global("AllowIceLance","MYAREA",1)
+	//!InCutsceneMode()
+	Global("41OpenIceDoors","MYAREA",1)
+THEN
+	RESPONSE #100
+		SetGlobal("41OpenIceDoors","MYAREA",2)
+		AddJournalEntry(@22965,QUEST)
+		AddXP2DA("IW2EX8A")
+		DisplayStringNoName(LastTrigger,@22972)
+		Continue()
+END
+
+IF
+	Opened([ANYONE])
+	!Global("41PDOOR6_INACTIVE","MYAREA",1)
+	Global("AllowIceLance","MYAREA",1)
+	//!InCutsceneMode()
+THEN
+	RESPONSE #100
+		IncrementGlobal("NumOpenedIceDoors","MYAREA",1)
+		Continue()
+END
+
+IF
+	!Global("41PDOOR6_INACTIVE","MYAREA",1)
+	OpenState(Myself,TRUE)
+	Global("AllowIceLance","MYAREA",1)
+	//!InCutsceneMode()
+	Global("NumOpenedIceDoors","MYAREA",10)
+	PartyHasItem("z4amulhs")
+THEN
+	RESPONSE #100
+		TakePartyItem("z4amulhs")
+		DestroyItem("z4amulhs")
+		//DisplayMessage(17577)  // Отряд потерял предмет.
+		DisplayStringNoName(Player1,@80091)
+		SetGlobal("NumOpenedIceDoors","MYAREA",-1)
+		Continue()
+END
+
+IF
+	!Global("41PDOOR6_INACTIVE","MYAREA",1)
+	OpenState(Myself,TRUE)
+	Global("AllowIceLance","MYAREA",1)
+	//!InCutsceneMode()
+THEN
+	RESPONSE #100
+		//SetDoorFlag(Myself,HIDDEN,TRUE)
+		Lock(Myself)
+		Deactivate(Myself)
+		//ChangeCurrentScript("")
+		SetGlobal("41PDOOR6_INACTIVE","MYAREA",1)
+END
+
+IF
+	Clicked([ANYONE])
+	!Global("41PDOOR6_INACTIVE","MYAREA",1)
+	Global("41OpenIceDoors","MYAREA",0)
+THEN
+	RESPONSE #100
+		SetGlobal("41OpenIceDoors","MYAREA",1)
+		AddJournalEntry(@22964,QUEST)
+		Continue()
+END
+

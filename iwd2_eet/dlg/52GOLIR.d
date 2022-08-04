@@ -1,0 +1,21 @@
+BEGIN ~52GOLIR~
+
+IF ~True()~ THEN BEGIN 0
+  SAY @28838
+  IF ~!Alignment(LastTalkedToBy,LAWFUL_GOOD)
+      !Alignment(LastTalkedToBy,LAWFUL_NEUTRAL)
+      !Alignment(LastTalkedToBy,NEUTRAL_GOOD)
+      !Alignment(LastTalkedToBy,NEUTRAL)~ THEN REPLY @28839 GOTO 1
+  IF ~~ THEN REPLY @28840 EXIT
+END
+
+IF ~~ THEN BEGIN 1
+  SAY @28841
+  IF ~~ THEN REPLY @28842 GOTO 2
+  IF ~~ THEN REPLY @28843 EXIT
+END
+
+IF ~~ THEN BEGIN 2
+  SAY @28841
+  IF ~~ THEN EXIT
+END

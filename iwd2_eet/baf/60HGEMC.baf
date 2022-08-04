@@ -1,0 +1,168 @@
+//BLOCK SET_VARS
+IF
+	!Global("SET_60HGEMC","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,10)
+		SetGlobal("SET_60HGEMC","LOCALS",1)
+		SetInterrupt(TRUE)
+END
+//BLOCKEND
+
+IF
+	!Allegiance(Myself,ENEMY)
+	Allegiance("Iselore",ENEMY)
+THEN
+	RESPONSE #100
+		Enemy()
+		Continue()
+END
+
+IF
+	!Range("Iselore",6)
+THEN
+	RESPONSE #100
+		JumpToObject("Iselore")
+		ApplySpellRES("IWJUMPOF",Myself)
+		Continue()
+END
+
+IF
+	HPPercentLT("Iselore",100)
+THEN
+	RESPONSE #100
+		ReallyForceSpell("Iselore",CLERIC_HEAL)
+		Wait(1)
+END
+
+/*IF
+	ForceMarkedSpell(MARKED_SPELL)
+	SetSpellTarget(Nothing)
+	See(NearestEnemyOf(Myself),0)
+THEN
+	RESPONSE #100
+		MarkSpellAndObject("1719161314271523",LastMarkedObject,SPELLCAST_IGNORE_SEE | SPELLCAST_IGNORE_VALID_SPELL_TARGET | SPELLCAST_RANDOM | SPELLCAST_IGNORE_HAS_CHECK)  // [CLERIC_TREMOR, CLERIC_WHIRLWIND, CLERIC_WALL_OF_FIRE, CLERIC_STATIC_CHARGE]
+		MarkSpellAndObject("1302",Myself,SPELLCAST_IGNORE_SEE | SPELLCAST_IGNORE_VALID_SPELL_TARGET | SPELLCAST_RANDOM | SPELLCAST_IGNORE_HAS_CHECK)  // [CLERIC_CALL_LIGHTNING]
+		Continue()
+	RESPONSE #100
+		MarkSpellAndObject("1302",Myself,SPELLCAST_IGNORE_SEE | SPELLCAST_IGNORE_VALID_SPELL_TARGET | SPELLCAST_RANDOM | SPELLCAST_IGNORE_HAS_CHECK)  // [CLERIC_CALL_LIGHTNING]
+		MarkSpellAndObject("1719161314271523",LastMarkedObject,SPELLCAST_IGNORE_SEE | SPELLCAST_IGNORE_VALID_SPELL_TARGET | SPELLCAST_RANDOM | SPELLCAST_IGNORE_HAS_CHECK)  // [CLERIC_TREMOR, CLERIC_WHIRLWIND, CLERIC_WALL_OF_FIRE, CLERIC_STATIC_CHARGE]
+		Continue()
+END
+
+IF
+	!IsMarkedSpell(MARKED_SPELL)
+THEN
+	RESPONSE #100
+		ReallyForceSpell(SpellTarget,MARKED_SPELL)
+		WaitAnimation(Myself,WALK)
+		WaitAnimation(Myself,CONJURE)
+		WaitAnimation(Myself,CAST)
+		ForceMarkedSpell(MARKED_SPELL)
+		Wait(3)
+END
+
+IF
+	ForceMarkedSpell(MARKED_SPELL)
+	SetSpellTarget(Nothing)
+	See(FarthestEnemyOf(Myself),0)
+THEN
+	RESPONSE #100
+		MarkSpellAndObject("1719161314271523",LastMarkedObject,SPELLCAST_IGNORE_SEE | SPELLCAST_IGNORE_VALID_SPELL_TARGET | SPELLCAST_RANDOM | SPELLCAST_IGNORE_HAS_CHECK)  // [CLERIC_TREMOR, CLERIC_WHIRLWIND, CLERIC_WALL_OF_FIRE, CLERIC_STATIC_CHARGE]
+		MarkSpellAndObject("1302",Myself,SPELLCAST_IGNORE_SEE | SPELLCAST_IGNORE_VALID_SPELL_TARGET | SPELLCAST_RANDOM | SPELLCAST_IGNORE_HAS_CHECK)  // [CLERIC_CALL_LIGHTNING]
+		Continue()
+	RESPONSE #100
+		MarkSpellAndObject("1302",Myself,SPELLCAST_IGNORE_SEE | SPELLCAST_IGNORE_VALID_SPELL_TARGET | SPELLCAST_RANDOM | SPELLCAST_IGNORE_HAS_CHECK)  // [CLERIC_CALL_LIGHTNING]
+		MarkSpellAndObject("1719161314271523",LastMarkedObject,SPELLCAST_IGNORE_SEE | SPELLCAST_IGNORE_VALID_SPELL_TARGET | SPELLCAST_RANDOM | SPELLCAST_IGNORE_HAS_CHECK)  // [CLERIC_TREMOR, CLERIC_WHIRLWIND, CLERIC_WALL_OF_FIRE, CLERIC_STATIC_CHARGE]
+		Continue()
+END
+
+IF
+	!IsMarkedSpell(MARKED_SPELL)
+THEN
+	RESPONSE #100
+		ReallyForceSpell(SpellTarget,MARKED_SPELL)
+		WaitAnimation(Myself,WALK)
+		WaitAnimation(Myself,CONJURE)
+		WaitAnimation(Myself,CAST)
+		ForceMarkedSpell(MARKED_SPELL)
+		Wait(3)
+END*/
+
+/*IF
+	GlobalLT("SSPELLS_1_RANDOM_CAST","LOCALS",11)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,10)
+		Continue()
+END*/
+
+IF
+	See([ENEMY])
+	!Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("HGCast","LOCALS")
+	Switch("SSPELLS_1_RANDOM_CAST","LOCALS")
+THEN
+	RESPONSE #1
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,5)
+		SetGlobalTimerRandom("HGCast","LOCALS",12,18)
+		ActionOverride(Player1,ApplySpellRES("IWPR719P",Myself))
+		ReallyForceSpellRES("IWPR719",LastSeenBy(Myself))  // Дрожь
+		Wait(3)
+	RESPONSE #2
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,5)
+		SetGlobalTimerRandom("HGCast","LOCALS",12,18)
+		ReallyForceSpellRES("IWPR613",LastSeenBy(Myself))  // Вихрь
+		Wait(3)
+	RESPONSE #3
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,5)
+		SetGlobalTimerRandom("HGCast","LOCALS",12,18)
+		ReallyForceSpellRES("IWPR427",LastSeenBy(Myself))  // Стена огня
+		Wait(3)
+	RESPONSE #4
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,5)
+		SetGlobalTimerRandom("HGCast","LOCALS",12,18)
+		ReallyForceSpellRES("IWPR523",LastSeenBy(Myself))  // Статический заряд
+		Wait(3)
+	RESPONSE #5
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,5)
+		SetGlobalTimerRandom("HGCast","LOCALS",12,18)
+		ReallyForceSpell(LastSeenBy(Myself),CLERIC_CALL_LIGHTNING)  // SPPR302.SPL (Вызов молнии)
+		Wait(3)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(NearestEnemyOf(Myself))
+	!GlobalTimerNotExpired("HGCast","LOCALS")
+	Switch("SSPELLS_1_RANDOM_CAST","LOCALS")
+THEN
+	RESPONSE #1
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,5)
+		SetGlobalTimerRandom("HGCast","LOCALS",12,18)
+		ActionOverride(Player1,ApplySpellRES("IWPR719P",Myself))
+		ReallyForceSpellRES("IWPR719",LastSeenBy(Myself))  // Дрожь
+		Wait(3)
+	RESPONSE #2
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,5)
+		SetGlobalTimerRandom("HGCast","LOCALS",12,18)
+		ReallyForceSpellRES("IWPR613",LastSeenBy(Myself))  // Вихрь
+		Wait(3)
+	RESPONSE #3
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,5)
+		SetGlobalTimerRandom("HGCast","LOCALS",12,18)
+		ReallyForceSpellRES("IWPR427",LastSeenBy(Myself))  // Стена огня
+		Wait(3)
+	RESPONSE #4
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,5)
+		SetGlobalTimerRandom("HGCast","LOCALS",12,18)
+		ReallyForceSpellRES("IWPR523",LastSeenBy(Myself))  // Статический заряд
+		Wait(3)
+	RESPONSE #5
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,5)
+		SetGlobalTimerRandom("HGCast","LOCALS",12,18)
+		ReallyForceSpell(LastSeenBy(Myself),CLERIC_CALL_LIGHTNING)  // SPPR302.SPL (Вызов молнии)
+		Wait(3)
+END
+

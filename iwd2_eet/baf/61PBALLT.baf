@@ -1,0 +1,12 @@
+IF
+	Entered([PC])
+THEN
+	RESPONSE #100
+		MultiPlayerSync()
+		ForceSpellPointRES("IWWI088",[3550.1700])  // SPWI088.SPL 
+		//ScreenShake(5,30,30)
+		ScreenShake([30.30],5)
+		//ChangeCurrentScript("")
+		TriggerActivation(Myself,FALSE)
+END
+

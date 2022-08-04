@@ -1,0 +1,10 @@
+IF
+	OR(2)
+		Opened([PC])
+		Entered([PC])
+THEN
+	RESPONSE #100
+		DisplayString(LastTrigger,14381)
+		ReallyForceSpellRES("IWWI619",LastTrigger)  // SPWI619.SPL WIZARD_SOUL_EATER
+END
+

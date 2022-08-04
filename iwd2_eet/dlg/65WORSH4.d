@@ -1,0 +1,11 @@
+BEGIN ~65WORSH4~
+
+IF ~Gender(LastTalkedToBy,FEMALE)~ THEN BEGIN 0
+  SAY @28614
+  IF ~~ THEN EXIT
+END
+
+IF ~Gender(LastTalkedToBy,MALE)~ THEN BEGIN 1
+  SAY @28616
+  IF ~~ THEN EXIT
+END

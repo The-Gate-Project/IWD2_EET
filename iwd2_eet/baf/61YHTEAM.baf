@@ -1,0 +1,418 @@
+IF
+	!Global("LastShout","MYAREA",100)
+	HitBy([ANYONE],FIRE)
+THEN
+	RESPONSE #100
+		Shout(100)
+		SetGlobal("LastShout","MYAREA",100)
+		DisplayStringHead(Myself,@35581)
+		SetGlobalTimer("IwTimer102","LOCALS",7)
+		Continue()
+END
+
+IF
+	!Global("LastShout","MYAREA",101)
+	HitBy([ANYONE],COLD)
+THEN
+	RESPONSE #100
+		Shout(101)
+		SetGlobal("LastShout","MYAREA",101)
+		DisplayStringHead(Myself,@35583)
+		SetGlobalTimer("IwTimer102","LOCALS",7)
+		Continue()
+END
+
+IF
+	!Global("LastShout","MYAREA",102)
+	HitBy([ANYONE],ELECTRICITY)
+THEN
+	RESPONSE #100
+		Shout(102)
+		SetGlobal("LastShout","MYAREA",102)
+		DisplayStringHead(Myself,@35584)
+		SetGlobalTimer("IwTimer102","LOCALS",7)
+		Continue()
+END
+
+IF
+	!Global("LastShout","MYAREA",103)
+	HitBy([ANYONE],ACID)
+THEN
+	RESPONSE #100
+		Shout(103)
+		SetGlobal("LastShout","MYAREA",103)
+		DisplayStringHead(Myself,@35585)
+		SetGlobalTimer("IwTimer102","LOCALS",7)
+		Continue()
+END
+
+IF
+	!Global("LastShout","MYAREA",104)
+	HitBy([ANYONE],MAGIC)
+THEN
+	RESPONSE #100
+		Shout(104)
+		SetGlobal("LastShout","MYAREA",104)
+		DisplayStringHead(Myself,@35586)
+		SetGlobalTimer("IwTimer102","LOCALS",7)
+		Continue()
+END
+
+IF
+	!Global("LastShout","MYAREA",105)
+	HitBy([ANYONE],MISSILE)
+THEN
+	RESPONSE #100
+		Shout(105)
+		SetGlobal("LastShout","MYAREA",105)
+		DisplayStringHead(Myself,@35587)
+		SetGlobalTimer("IwTimer102","LOCALS",7)
+		Continue()
+END
+
+IF
+	!Global("LastShout","MYAREA",108)
+	HitBy([ANYONE],POISON)
+	StateCheck(Myself,STATE_POISONED)
+	!GlobalTimerExpired("IwTimer100","LOCALS")
+THEN
+	RESPONSE #100
+		Shout(108)
+		SetGlobal("LastShout","MYAREA",108)
+		DisplayStringHead(Myself,@35590)
+		SetGlobalTimer("IwTimer102","LOCALS",7)
+END
+
+IF
+	!Global("LastShout","MYAREA",113)
+	!StateCheck(Myself,STATE_DEAD)
+	!StateCheck(Myself,STATE_SILENCED)
+	!GlobalTimerNotExpired("IwTimer102","LOCALS")
+	OR(5)
+		CheckSpellState(Myself,MOLD_TOUCH)
+		CheckSpellState(Myself,ENTANGLE)
+		CheckSpellState(Myself,WEB)
+		CheckSpellState(Myself,GREASE)
+		CheckSpellState(Myself,SHROUD_OF_FLAME)
+THEN
+	RESPONSE #100
+		Shout(113)
+		SetGlobal("LastShout","MYAREA",113)
+		DisplayStringHead(Myself,@35596)
+		SetGlobalTimer("IwTimer102","LOCALS",7)
+END
+
+IF
+	!Global("LastShout","MYAREA",109)
+	!StateCheck(Myself,STATE_DEAD)
+	!StateCheck(Myself,STATE_SILENCED)
+	!GlobalTimerNotExpired("IwTimer102","LOCALS")
+	AttackedBy([GOODCUTOFF],DEFAULT)
+	!See(LastAttackerOf(Myself))
+THEN
+	RESPONSE #100
+		Shout(109)
+		SetGlobal("LastShout","MYAREA",109)
+		DisplayStringHead(Myself,@35592)
+		SetGlobalTimer("IwTimer102","LOCALS",7)
+END
+
+IF
+	!Global("LastShout","MYAREA",107)
+	!Global("LastHeard","MYAREA",107)
+	!StateCheck(Myself,STATE_DEAD)
+	!StateCheck(Myself,STATE_SILENCED)
+	!GlobalTimerNotExpired("IwTimer102","LOCALS")
+	OR(2)
+		Died([0.0.YUANTI])
+		See(NearestEnemyOf(Myself))
+	//!IsAnimationID(LastMarkedObject,"""""Mummy, Histachii""""")
+	!TriggerOverride(LastSeenBy(Myself),Global("AnimationId","LOCALS",57408))
+THEN
+	RESPONSE #100
+		Shout(107)
+		SetGlobal("LastShout","MYAREA",107)
+		DisplayStringHead(Myself,@35589)
+		SetGlobalTimer("IwTimer102","LOCALS",7)
+END
+
+IF
+	!Global("LastShout","MYAREA",106)
+	!StateCheck(Myself,STATE_DEAD)
+	!StateCheck(Myself,STATE_SILENCED)
+	!GlobalTimerNotExpired("IwTimer102","LOCALS")
+	HPPercentLT(Myself,50)
+	!See([0.0.YUANTI])
+	//See([0.0.YUANTI][0.0.10000.10000],0)
+	Exists([0.0.YUANTI])
+	//!StateCheck([0.0.YUANTI],STATE_REALLY_DEAD)
+THEN
+	RESPONSE #100
+		Shout(106)
+		SetGlobal("LastShout","MYAREA",106)
+		DisplayStringHead(Myself,@35588)
+		IncrementGlobal("YuantiCallForHelp","MYAREA",1)
+		SetGlobalTimer("IwTimer102","LOCALS",7)
+		SetInterrupt(FALSE)
+		//MoveToObjectUntilSee(LastMarkedObject)
+		MoveToObject([0.0.YUANTI])
+		SetInterrupt(TRUE)
+END
+
+IF
+	!Global("LastShout","MYAREA",106)
+	!StateCheck(Myself,STATE_DEAD)
+	!StateCheck(Myself,STATE_SILENCED)
+	!GlobalTimerNotExpired("IwTimer102","LOCALS")
+	CheckSpellState(Myself,HELD)
+	!See([0.0.YUANTI])
+THEN
+	RESPONSE #100
+		Shout(106)
+		SetGlobal("LastShout","MYAREA",106)
+		DisplayStringHead(Myself,@35588)
+		IncrementGlobal("YuantiCallForHelp","MYAREA",1)
+		SetGlobalTimer("IwTimer102","LOCALS",7)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!Global("LastShout","MYAREA",106)
+	!StateCheck(Myself,STATE_DEAD)
+	!StateCheck(Myself,STATE_SILENCED)
+	!GlobalTimerNotExpired("IwTimer102","LOCALS")
+	RandomNum(10,1)
+	!See([0.0.YUANTI])
+	See([GOODCUTOFF])
+	//!IsAnimationID(LastMarkedObject,"""""Mummy, Histachii""""")
+	!TriggerOverride(LastSeenBy(Myself),Global("AnimationId","LOCALS",57408))
+THEN
+	RESPONSE #10
+		Shout(106)
+		SetGlobal("LastShout","MYAREA",106)
+		DisplayStringHead(Myself,@35588)
+		IncrementGlobal("YuantiCallForHelp","MYAREA",1)
+		SetGlobalTimer("IwTimer102","LOCALS",7)
+		IncrementGlobal("61HalfbreedDied","GLOBAL",1)
+	RESPONSE #80
+		Shout(106)
+		SetGlobal("LastShout","MYAREA",106)
+		DisplayStringHead(Myself,@35588)
+		IncrementGlobal("YuantiCallForHelp","MYAREA",1)
+		SetGlobalTimer("IwTimer102","LOCALS",7)
+	RESPONSE #10
+		Shout(106)
+		SetGlobal("LastShout","MYAREA",106)
+		DisplayStringHead(Myself,@35588)
+		IncrementGlobal("YuantiCallForHelp","MYAREA",1)
+		SetGlobalTimer("IwTimer102","LOCALS",7)
+		RunAwayFromNoInterrupt(LastSeenBy(Myself),45)
+END
+
+IF
+	!Global("LastShout","MYAREA",112)
+	!StateCheck(Myself,STATE_DEAD)
+	!StateCheck(Myself,STATE_SILENCED)
+	!GlobalTimerNotExpired("IwTimer102","LOCALS")
+	See([GOODCUTOFF.0.0.0.0.SUMMONED])
+	//StateCheck(LastMarkedObject,STATE_SUMMONED_CREATURE)
+THEN
+	RESPONSE #100
+		//SetMyTarget(LastMarkedObject)
+		Shout(112)
+		SetGlobal("LastShout","MYAREA",112)
+		DisplayStringHead(Myself,@35595)
+		SetGlobalTimer("IwTimer102","LOCALS",7)
+		Continue()
+END
+
+IF
+	!Global("LastShout","MYAREA",110)
+	!StateCheck(Myself,STATE_DEAD)
+	!StateCheck(Myself,STATE_SILENCED)
+	!GlobalTimerNotExpired("IwTimer102","LOCALS")
+	OR(4) //3
+		See([0.0.TANARI.0.0.SUMMONED])
+		See([0.0.ELEMENTAL.0.0.SUMMONED])
+		See([0.0.0.0.0.SUMMONED_DEMON])
+		See([0.0.0.TANARI])
+	//StateCheck(LastMarkedObject,STATE_SUMMONED_CREATURE)
+THEN
+	RESPONSE #100
+		Shout(110)
+		SetGlobal("LastShout","MYAREA",110)
+		DisplayStringHead(Myself,@35593)
+		SetGlobalTimer("IwTimer102","LOCALS",7)
+END
+
+IF
+	Heard([ANYONE],107)
+THEN
+	RESPONSE #100
+		SetGlobal("LastHeard","MYAREA",107)
+		MoveToObject(LastSeenBy(LastHeardBy(Myself)))
+END
+
+IF
+	Heard([ANYONE],109)
+THEN
+	RESPONSE #100
+		SetGlobal("LastHeard","MYAREA",109)
+		MoveToObject(LastAttackerOf(LastHeardBy(Myself)))
+END
+
+IF
+	OR(2)
+		Heard([ANYONE],106)
+		Died([0.0.YUANTI])
+THEN
+	RESPONSE #100
+		SetGlobal("LastHeard","MYAREA",106)
+		MoveToObject(LastHeardBy(Myself))
+END
+
+IF
+	Heard([ANYONE],111)
+THEN
+	RESPONSE #100
+		SetGlobal("LastHeard","MYAREA",111)
+		RunAwayFrom(LastTargetedBy(LastHeardBy(Myself)),45)
+END
+
+IF
+	Heard([ANYONE],113)
+THEN
+	RESPONSE #100
+		SetGlobal("LastHeard","MYAREA",113)
+		RunAwayFrom(LastHeardBy(Myself),45)
+END
+
+IF
+	Heard([ANYONE],108)
+	!GlobalTimerExpired("IwTimer100","LOCALS")
+THEN
+	RESPONSE #100
+		SetGlobal("LastHeard","MYAREA",108)
+		MoveToObject(LastHeardBy(Myself))
+END
+
+IF
+	!Name("Summoner",Myself)
+	!TriggerOverride("Summoner",Global("Ritual","LOCALS",0))
+	Range("Summoner",7)
+	//OR(2)
+	//	Heard([ANYONE],114)
+	//	Global("LastHeard","MYAREA",114)
+THEN
+	RESPONSE #100
+		SetGlobal("LastHeard","MYAREA",114)
+		RunAwayFromNoLeaveArea("Summoner",60)  // ∆рец юань-ти
+END
+
+IF
+	!Name("Summoner",Myself)
+	TriggerOverride("Summoner",Global("Ritual","LOCALS",1))
+	TriggerOverride("Summoner",GlobalLT("ML_0","LOCALS",4))
+	!Range("Summoner",7)
+	OR(2)
+		Heard([ANYONE],114)
+		Global("LastHeard","MYAREA",114)
+THEN
+	RESPONSE #100
+		SetGlobal("LastHeard","MYAREA",114)
+		MoveToObject("Summoner")
+END
+
+IF
+	Name("Summoner",Myself)
+	Global("Ritual","LOCALS",0)
+	OR(2)
+		Heard([ANYONE],114)
+		Global("LastHeard","MYAREA",114)
+THEN
+	RESPONSE #100
+		SetGlobal("LastHeard","MYAREA",114)
+		//MoveToObject("Summoner")
+END
+
+IF
+	OR(2)
+		Global("LastShout","MYAREA",110)
+		Heard([ANYONE],110)
+	!CheckSpellState(Myself,PROTECTION_FROM_EVIL)
+	OR(4) //3
+		See([0.0.TANARI.0.0.SUMMONED])
+		See([0.0.ELEMENTAL.0.0.SUMMONED])
+		See([0.0.0.0.0.SUMMONED_DEMON])
+		See([0.0.0.TANARI])
+	//StateCheck(LastMarkedObject,STATE_SUMMONED_CREATURE)
+THEN
+	RESPONSE #100
+		RunAwayFrom(LastSeenBy(Myself),45)
+END
+
+IF
+	AttackedBy([0.0.YUANTI],DEFAULT)
+THEN
+	RESPONSE #100
+		RunAwayFrom(LastAttackerOf(Myself),45)
+END
+
+IF
+	!GlobalTimerNotExpired("IwTimer101","LOCALS")
+	//LevelInClass(Myself,10,SORCERER)
+	Class(Myself,SORCERER)
+	LevelGT(Myself,14)
+THEN
+	RESPONSE #100
+		SetGlobal("Level1Spells","LOCALS",7)
+		SetGlobal("Level2Spells","LOCALS",7)
+		SetGlobal("Level3Spells","LOCALS",7)
+		SetGlobal("Level4Spells","LOCALS",7)
+		SetGlobal("Level5Spells","LOCALS",6)
+		SetGlobal("Level6Spells","LOCALS",4)
+		Continue()
+END
+
+IF
+	!GlobalTimerNotExpired("IwTimer101","LOCALS")
+	//Or(2)
+	//	LevelInClass(Myself,9,CLERIC)
+	//	LevelInClass(Myself,10,CLERIC)
+	ClassLevelGT(Myself,PRIEST,14)
+THEN
+	RESPONSE #100
+		SetGlobal("Level1Spells","LOCALS",5)
+		SetGlobal("Level2Spells","LOCALS",5)
+		SetGlobal("Level3Spells","LOCALS",4)
+		SetGlobal("Level4Spells","LOCALS",4)
+		SetGlobal("Level5Spells","LOCALS",2)
+		Continue()
+END
+
+IF
+	!GlobalTimerNotExpired("IwTimer101","LOCALS")
+	//CheckStat(Myself,20,CLASSLEVELSUM)
+	LevelGT(Myself,19)
+THEN
+	RESPONSE #100
+		SetGlobal("Level1Spells","LOCALS",7)
+		SetGlobal("Level2Spells","LOCALS",7)
+		SetGlobal("Level3Spells","LOCALS",7)
+		SetGlobal("Level4Spells","LOCALS",7)
+		SetGlobal("Level5Spells","LOCALS",6)
+		SetGlobal("Level6Spells","LOCALS",6)
+		SetGlobal("Level7Spells","LOCALS",6)
+		SetGlobal("Level8Spells","LOCALS",6)
+		SetGlobal("Level9Spells","LOCALS",6)
+		Continue()
+END
+
+IF
+	!GlobalTimerNotExpired("IwTimer101","LOCALS")
+THEN
+	RESPONSE #100
+		Rest()
+		SetGlobalTimer("IwTimer101","LOCALS",2400)
+END
+

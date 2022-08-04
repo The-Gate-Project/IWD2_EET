@@ -1,0 +1,6 @@
+IF
+	GlobalLT("Shaengarne_Quest","GLOBAL",2)
+THEN
+	RESPONSE #100
+		NoAction()
+END

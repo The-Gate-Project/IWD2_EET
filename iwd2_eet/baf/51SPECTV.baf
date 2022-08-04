@@ -1,0 +1,33 @@
+IF
+	//!IsCreatureAreaFlag(Myself,IGNORE_AI_INHIBIT)
+	!Global("IGNORE_AI_INHIBIT","LOCALS",1)
+THEN
+	RESPONSE #100
+		//SetCreatureAreaFlag(Myself,IGNORE_AI_INHIBIT,TRUE)
+		ApplySpellRES("IWPERAI",Myself)
+		SetGlobal("IGNORE_AI_INHIBIT","LOCALS",1)
+		Continue()
+END
+
+IF
+	!IsActive(Myself)
+	!Global("TEAM_12","MYAREA",0)
+THEN
+	RESPONSE #100
+		Activate(Myself)
+		SetGlobal("IwIHidden","LOCALS",0)
+		//SpellHitEffectSprite(Myself,Myself,SLOW_POISON,10)
+		CreateVisualEffectObject("SPOISOH",Myself)
+		Wait(1)
+		FaceObject([PC])
+		//HideCreature(Myself,FALSE)
+		ApplySpellRES("idinvis5",Myself)
+END
+
+IF
+	!IsActive(Myself)
+THEN
+	RESPONSE #100
+		NoAction()
+END
+

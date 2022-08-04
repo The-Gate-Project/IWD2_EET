@@ -1,0 +1,21 @@
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId(Player1)
+		StartCutSceneMode()
+		MultiPlayerSync()
+		SmallWait(7)
+		LeaveAreaLUAPanic("IW1000","",[2414.897],0)
+		LeaveAreaLUA("IW1000","",[2414.897],0)
+		SetMasterArea("IW1000")
+		ActionOverride(Player2,LeaveAreaLUA("IW1000","",[2321.926],0))
+		ActionOverride(Player3,LeaveAreaLUA("IW1000","",[2383.931],0))
+		ActionOverride(Player4,LeaveAreaLUA("IW1000","",[2383.867],0))
+		ActionOverride(Player5,LeaveAreaLUA("IW1000","",[2351.894],0))
+		ActionOverride(Player6,LeaveAreaLUA("IW1000","",[2330.851],0))
+		//SmallWait(7)
+		MoveViewPoint([2390.860],INSTANT)
+		MultiPlayerSync()
+		EndCutSceneMode()
+END

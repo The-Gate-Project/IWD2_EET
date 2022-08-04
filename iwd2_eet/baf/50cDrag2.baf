@@ -1,0 +1,139 @@
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("Ingrat")
+		HideGUI()
+		//SaveObjectLocation("LOCALS","SavedLoc",Myself)
+		JumpToPoint([20.1125])
+		MoveViewObject(Myself,20)
+		//HideCreature(Myself,FALSE)
+		ApplySpellRES("idinvis5",Myself)
+		//SetVisualRange(100)
+		CreateCreature("cutspy",[-1.-1],0)
+		MultiPlayerSync()
+		MoveViewObject(Myself,20)
+		MoveToPoint([335.990])
+		DisplayStringHead("01_50NWSold_02",@18346)
+		Wait(1)
+		FaceObject("01_50NWSold_02")
+		DisplayStringHead(Myself,@18347)
+		Wait(3)
+		MoveViewObject([PC],20)
+		Wait(2)
+		UnhideGUI()
+		MultiPlayerSync()
+		//SetVisualRange(0)
+		ActionOverride("cutspy",DestroySelf())
+		MultiPlayerSync()
+		EndCutSceneMode()
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("01_50NWSold_02")
+		//SaveObjectLocation("LOCALS","SavedLoc",Myself)
+		WaitRandom(1,2)
+		JumpToPoint([20.1125])
+		//HideCreature(Myself,FALSE)
+		ApplySpellRES("idinvis5",Myself)
+		WaitRandom(0,1)
+		//ReturnToSavedLocation(5)
+		MoveToSavedLocation("SavedLoc","LOCALS")
+		WaitRandom(0,1)
+		//ReturnToSavedLocation(5)
+		MoveToSavedLocation("SavedLoc","LOCALS")
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("01_50NWSold_03")
+		//SaveObjectLocation("LOCALS","SavedLoc",Myself)
+		WaitRandom(1,2)
+		JumpToPoint([20.1125])
+		//HideCreature(Myself,FALSE)
+		ApplySpellRES("idinvis5",Myself)
+		WaitRandom(0,1)
+		//ReturnToSavedLocation(5)
+		MoveToSavedLocation("SavedLoc","LOCALS")
+		WaitRandom(0,1)
+		//ReturnToSavedLocation(5)
+		MoveToSavedLocation("SavedLoc","LOCALS")
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("01_50NWSold_04")
+		//SaveObjectLocation("LOCALS","SavedLoc",Myself)
+		WaitRandom(1,2)
+		JumpToPoint([20.1125])
+		//HideCreature(Myself,FALSE)
+		ApplySpellRES("idinvis5",Myself)
+		WaitRandom(0,1)
+		//ReturnToSavedLocation(5)
+		MoveToSavedLocation("SavedLoc","LOCALS")
+		WaitRandom(0,1)
+		//ReturnToSavedLocation(5)
+		MoveToSavedLocation("SavedLoc","LOCALS")
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("01_50NWSold_05")
+		//SaveObjectLocation("LOCALS","SavedLoc",Myself)
+		WaitRandom(1,2)
+		JumpToPoint([20.1125])
+		//HideCreature(Myself,FALSE)
+		ApplySpellRES("idinvis5",Myself)
+		WaitRandom(0,1)
+		//ReturnToSavedLocation(5)
+		MoveToSavedLocation("SavedLoc","LOCALS")
+		WaitRandom(0,1)
+		//ReturnToSavedLocation(5)
+		MoveToSavedLocation("SavedLoc","LOCALS")
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("01_50NWSold_06")
+		//SaveObjectLocation("LOCALS","SavedLoc",Myself)
+		WaitRandom(1,2)
+		JumpToPoint([20.1125])
+		//HideCreature(Myself,FALSE)
+		ApplySpellRES("idinvis5",Myself)
+		WaitRandom(0,1)
+		//ReturnToSavedLocation(5)
+		MoveToSavedLocation("SavedLoc","LOCALS")
+		WaitRandom(0,1)
+		//ReturnToSavedLocation(5)
+		MoveToSavedLocation("SavedLoc","LOCALS")
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("01_50NWSold_07")
+		//SaveObjectLocation("LOCALS","SavedLoc",Myself)
+		WaitRandom(1,2)
+		JumpToPoint([20.1125])
+		//HideCreature(Myself,FALSE)
+		ApplySpellRES("idinvis5",Myself)
+		WaitRandom(0,1)
+		//ReturnToSavedLocation(5)
+		MoveToSavedLocation("SavedLoc","LOCALS")
+		WaitRandom(0,1)
+		//ReturnToSavedLocation(5)
+		MoveToSavedLocation("SavedLoc","LOCALS")
+END
+

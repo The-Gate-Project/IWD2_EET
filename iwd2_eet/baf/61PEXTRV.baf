@@ -1,0 +1,12 @@
+IF
+	!Global("61PEXTRV_INACTIVE","MYAREA",1)
+	Disarmed([ANYONE])
+THEN
+	RESPONSE #100
+		AmbientActivate("ExitTrap",FALSE)
+		TriggerActivation("ExitTrapHidden",FALSE)
+		TriggerActivation(Myself,FALSE)
+		//ChangeCurrentScript("")
+		SetGlobal("61PEXTRV_INACTIVE","MYAREA",1)
+END
+

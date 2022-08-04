@@ -1,0 +1,25 @@
+IF
+	StateCheck(Myself,STATE_PANIC)
+THEN
+	RESPONSE #100
+		RandomWalkContinuous()
+END
+
+IF
+	See(NearestEnemyOf(Myself))
+	//!IsAnimationID(LastMarkedObject,"""""Mummy, Histachii""""")
+	!TriggerOverride(LastSeenBy(Myself),Global("AnimationId","LOCALS",57408))
+THEN
+	RESPONSE #100
+		//EquipWeapon()
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	AttackedBy([ANYONE],DEFAULT)
+THEN
+	RESPONSE #100
+		//EquipWeapon()
+		AttackOneRound(LastSeenBy(Myself))
+END
+

@@ -1,0 +1,20 @@
+IF
+	Entered([ANYONE])
+	//!Global("41PILLUL_INACTIVE","MYAREA",1)
+THEN
+	RESPONSE #100
+		OpenDoor("AR4101_Door26Dummy1")
+		Continue()
+END
+
+IF
+	Entered([PC])
+	//!Global("41PILLUL_INACTIVE","MYAREA",1)
+THEN
+	RESPONSE #100
+		DisplayString(LastTrigger,@34803)
+		TriggerActivation(Myself,FALSE)
+		//ChangeCurrentScript("")
+		//SetGlobal("41PILLUL_INACTIVE","MYAREA",1)
+END
+

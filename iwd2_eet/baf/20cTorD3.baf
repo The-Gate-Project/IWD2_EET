@@ -1,0 +1,29 @@
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("Torak3")
+		//StopJoinRequests()
+		ClearActions(Player1)
+		ClearActions(Player2)
+		ClearActions(Player3)
+		ClearActions(Player4)
+		ClearActions(Player5)
+		ClearActions(Player6)
+		MultiPlayerSync()
+		//SetDoorFlag("AR2000_Door2_BreakMe",SEETHROUGH,TRUE) //1700.820
+		//HideCreature("Torak3",FALSE)
+		ApplySpellRES("IDINVIS5",Myself)
+		CreateCreature("CUTSPY",[1700.820],0)
+		MoveViewPoint([1680.752],15)
+		MoveToPoint([1680.752])
+		FaceObject([PC])
+		MultiPlayerSync()
+		SetNumTimesTalkedTo(2)
+		SetGlobal("SR_Torak_Talk","GLOBAL",2)
+		//SetDialogueRange(300)
+		//Dialogue(NearestPC)
+		ApplySpellRES("BDCUTSPY",Myself)
+		StartDialogNoSet([PC])
+END
+

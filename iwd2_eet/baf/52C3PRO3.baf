@@ -1,0 +1,67 @@
+IF
+	OnCreation()
+	!Global("CHAMBER_3_SWITCH_ACTIVE","MYAREA",3)
+	//!Sequence("5202P03",SEQ_AWAKE)
+	!Global("5202P03_SEQ","MYAREA",1)
+THEN
+	RESPONSE #100
+		StaticSequence("5202P03",SEQ_AWAKE)
+		SetGlobal("5202P03_SEQ","MYAREA",1)
+END
+
+IF
+	OnCreation()
+	Global("CHAMBER_3_SWITCH_ACTIVE","MYAREA",3)
+	//!Sequence("5202P03",SEQ_ATTACK)
+	!Global("5202P03_SEQ","MYAREA",0)
+THEN
+	RESPONSE #100
+		StaticSequence("5202P03",SEQ_ATTACK)
+		SetGlobal("5202P03_SEQ","MYAREA",0)
+END
+
+IF
+	!Global("CHAMBER_3_SWITCH_ACTIVE","MYAREA",3)
+	//!Sequence("5202P03",SEQ_AWAKE)
+	!Global("5202P03_SEQ","MYAREA",1)
+THEN
+	RESPONSE #100
+		StaticSequence("5202P03",SEQ_AWAKE)
+		SetGlobal("5202P03_SEQ","MYAREA",1)
+		PlaySound("IW5202i")
+		Continue()
+END
+
+IF
+	Global("CHAMBER_3_SWITCH_ACTIVE","MYAREA",3)
+	//!Sequence("5202P03",SEQ_ATTACK)
+	!Global("5202P03_SEQ","MYAREA",0)
+THEN
+	RESPONSE #100
+		StaticSequence("5202P03",SEQ_ATTACK)
+		SetGlobal("5202P03_SEQ","MYAREA",0)
+		PlaySound("IW5202j")
+		Continue()
+END
+
+IF
+	Global("CHAMBER_3_SWITCH_ACTIVE","MYAREA",3)
+	//InTrap([PC])
+	OR(2)
+		Entered([PC])
+		IsOverMe([PC])
+THEN
+	RESPONSE #100
+		ReallyForceSpellRES("IWIN230",LastTrigger)  // SPIN230.SPL INNATE_PROTECTION_FROM_ELECTRICITY
+		StaticSequence("5202P03",SEQ_AWAKE)
+		SetGlobal("5202P03_SEQ","MYAREA",1)
+		SetGlobal("CHAMBER_3_SWITCH_ACTIVE","MYAREA",0)
+END
+
+IF
+	!Global("CHAMBER_3_SWITCH_ACTIVE","MYAREA",3)
+THEN
+	RESPONSE #100
+		NoAction()
+END
+

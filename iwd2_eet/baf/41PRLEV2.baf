@@ -1,0 +1,64 @@
+/* OLD
+IF
+	Clicked([ANYONE])
+	!Global("41PRLEV2_locked","MYAREA",1)
+THEN
+	RESPONSE #100
+		PlaySound("IW4100e")
+		/*ForceSpellPoint([1341.1696],2097)  // SP WI097.SPL (Падающие обломки)
+		ForceSpellPoint([1341.1696],2097)  // SPWI097.SPL (Падающие обломки)
+		ForceSpellPoint([1341.1696],2097)  // SPWI097.SPL (Падающие обломки)
+		ForceSpellPoint([1341.1696],2097)  // SPWI097.SPL (Падающие обломки)
+		ForceSpellPoint([1341.1696],2097)  // SPWI097.SPL (Падающие обломки)
+		ForceSpellPoint([1341.1696],2097)  // SPWI097.SPL (Падающие обломки)
+		ForceSpellPoint([1341.1696],2097)  // SPWI097.SPL (Падающие обломки)
+		ForceSpellPoint([1341.1696],2097)  // SPWI097.SPL (Падающие обломки)*/
+		ForceSpellPointRES("IWWI097",[1341.1696])
+		ForceSpellPointRES("IWWI097",[1341.1696])
+		ForceSpellPointRES("IWWI097",[1341.1696])
+		ForceSpellPointRES("IWWI097",[1341.1696])
+		ForceSpellPointRES("IWWI097",[1341.1696])
+		ForceSpellPointRES("IWWI097",[1341.1696])
+		ForceSpellPointRES("IWWI097",[1341.1696])
+		ForceSpellPointRES("IWWI097",[1341.1696])
+		TriggerActivation("SoldierInfo4",FALSE)
+		//DropInventoryEX("SymbolContainer")
+		ActionOverride("SymbolContainer",DropInventory())
+		ActionOverride("SymbolContainer",DestroySelf())
+		Lock(Myself)
+		//ChangeCurrentScript("")
+		SetGlobal("41PRLEV2_locked","MYAREA",1)
+END*/
+
+IF
+	//Clicked([ANYONE])
+	OpenState(Myself,TRUE)
+	!Global("41PRLEV2_locked","MYAREA",1)
+THEN
+	RESPONSE #100
+		PlaySound("IW4100e")
+		/*ForceSpellPoint([1341.1696],2097)  // SP WI097.SPL (Падающие обломки)
+		ForceSpellPoint([1341.1696],2097)  // SPWI097.SPL (Падающие обломки)
+		ForceSpellPoint([1341.1696],2097)  // SPWI097.SPL (Падающие обломки)
+		ForceSpellPoint([1341.1696],2097)  // SPWI097.SPL (Падающие обломки)
+		ForceSpellPoint([1341.1696],2097)  // SPWI097.SPL (Падающие обломки)
+		ForceSpellPoint([1341.1696],2097)  // SPWI097.SPL (Падающие обломки)
+		ForceSpellPoint([1341.1696],2097)  // SPWI097.SPL (Падающие обломки)
+		ForceSpellPoint([1341.1696],2097)  // SPWI097.SPL (Падающие обломки)*/
+		ForceSpellPointRES("IWWI097",[1341.1696])
+		ForceSpellPointRES("IWWI097",[1341.1696])
+		ForceSpellPointRES("IWWI097",[1341.1696])
+		ForceSpellPointRES("IWWI097",[1341.1696])
+		ForceSpellPointRES("IWWI097",[1341.1696])
+		ForceSpellPointRES("IWWI097",[1341.1696])
+		ForceSpellPointRES("IWWI097",[1341.1696])
+		ForceSpellPointRES("IWWI097",[1341.1696])
+		TriggerActivation("SoldierInfo4",FALSE)
+		//DropInventoryEX("SymbolContainer")
+		ActionOverride("SymbolContainer",DropInventory())
+		ActionOverride("SymbolContainer",DestroySelf())
+		Lock(Myself)
+		//ChangeCurrentScript("")
+		SetGlobal("41PRLEV2_locked","MYAREA",1)
+END
+

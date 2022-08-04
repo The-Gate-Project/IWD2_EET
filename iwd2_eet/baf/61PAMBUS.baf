@@ -1,0 +1,14 @@
+IF
+	OR(3)
+		Entered([PC])
+		Disarmed([ANYONE])
+		DisarmFailed([ANYONE])
+THEN
+	RESPONSE #100
+		DisplayStringNoName(LastTrigger,14381)
+		OpenDoor("AR6103_RockDoor1")
+		OpenDoor("AR6103_RockDoor2")
+		TriggerActivation(Myself,FALSE)
+		//ChangeCurrentScript("")
+END
+

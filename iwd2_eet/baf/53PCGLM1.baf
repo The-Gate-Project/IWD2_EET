@@ -1,0 +1,299 @@
+IF
+	OR(2)
+		Die()
+		StateCheck(Myself,STATE_REALLY_DEAD)
+	!Global("Set_Death_Variable","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("Set_Death_Variable","LOCALS",1)
+		SetGlobal("53PCGolem_Dead","GLOBAL",1)
+		Continue()
+END
+
+IF
+	Global("53PCGolem_Protect","GLOBAL",0)
+THEN
+	RESPONSE #100
+		NoAction()
+END
+
+IF
+	Global("53PCGolem_Dead","GLOBAL",1)
+THEN
+	RESPONSE #100
+		DestroySelf()
+END
+
+IF
+	Global("53PCGolem_OnAwakenUnhide","GLOBAL",0)
+	//CurrentAreaIs(Myself,5301)
+	AreaCheck("IW5301")
+THEN
+	RESPONSE #100
+		Activate(Myself)
+		SetGlobal("IwIHidden","LOCALS",0)
+		SetGlobal("53PCGolem_LastAreaIn","GLOBAL",5301)
+		SetGlobal("53PCGolem_OnAwakenUnhide","GLOBAL",1)
+		//HideCreature(Myself,FALSE)
+		ApplySpellRES("IDINVIS5",Myself)
+END
+
+IF
+	//CurrentAreaIs(Myself,5200)
+	AreaCheck("IW5200")
+	//CreatureHidden(Myself)
+	!IsActive(Myself)
+THEN
+	RESPONSE #100
+		Activate(Myself)
+		SetGlobal("IwIHidden","LOCALS",0)
+		ApplySpellRES("IDINVIS5",Myself)
+		
+		CreateItem("POTN13",1,0,0)
+		DisplayStringHead(Myself,@27336)
+		//SpellHitEffectSprite(Myself,Myself,SHROUD_OF_FLAME,0)
+		CreateVisualEffectObject("SOFLAMC",Myself)
+		UseItem("POTN13",Myself)
+		
+		SetGlobal("53PCGolem_Dead","GLOBAL",1)
+		Kill(Myself)
+END
+
+IF
+	//CurrentAreaIs(Myself,5303)
+	AreaCheck("IW5303")
+	//CreatureHidden(Myself)
+	!IsActive(Myself)
+THEN
+	RESPONSE #100
+		Activate(Myself)
+		SetGlobal("IwIHidden","LOCALS",0)
+		ApplySpellRES("IDINVIS5",Myself)
+		
+		CreateItem("POTN13",1,0,0)
+		DisplayStringHead(Myself,@27336)
+		//SpellHitEffectSprite(Myself,Myself,SHROUD_OF_FLAME,0)
+		CreateVisualEffectObject("SOFLAMC",Myself)
+		UseItem("POTN13",Myself)
+		//Kill(Myself)
+		SetGlobal("53PCGolem_Dead","GLOBAL",1)
+		Kill(Myself)
+END
+
+IF
+	Global("53PCGolem_LastAreaIn","GLOBAL",5201)
+	//CurrentAreaIs(Myself,5200)
+	AreaCheck("IW5200")
+THEN
+	RESPONSE #100
+		Activate(Myself)
+		SetGlobal("IwIHidden","LOCALS",0)
+		SetGlobal("53PCGolem_LastAreaIn","GLOBAL",5200)
+		JumpToPoint([2906.880])
+		Face(SE)
+		ApplySpellRES("IDINVIS5",Myself)
+		//HideCreature(Myself,FALSE)
+END
+
+IF
+	Global("53PCGolem_LastAreaIn","GLOBAL",5200)
+	//CurrentAreaIs(Myself,5201)
+	AreaCheck("IW5201")
+THEN
+	RESPONSE #100
+		Activate(Myself)
+		SetGlobal("IwIHidden","LOCALS",0)
+		SetGlobal("53PCGolem_LastAreaIn","GLOBAL",5201)
+		JumpToPoint([1873.812])
+		Face(NW)
+		ApplySpellRES("IDINVIS5",Myself)
+		//HideCreature(Myself,FALSE)
+END
+
+IF
+	Global("53PCGolem_LastAreaIn","GLOBAL",5202)
+	//CurrentAreaIs(Myself,5201)
+	AreaCheck("IW5201")
+THEN
+	RESPONSE #100
+		Activate(Myself)
+		SetGlobal("IwIHidden","LOCALS",0)
+		SetGlobal("53PCGolem_LastAreaIn","GLOBAL",5201)
+		JumpToPoint([1210.685])
+		Face(SW)
+		ApplySpellRES("IDINVIS5",Myself)
+		//HideCreature(Myself,FALSE)
+END
+
+IF
+	Global("53PCGolem_LastAreaIn","GLOBAL",5201)
+	//CurrentAreaIs(Myself,5202)
+	AreaCheck("IW5202")
+THEN
+	RESPONSE #100
+		Activate(Myself)
+		SetGlobal("IwIHidden","LOCALS",0)
+		SetGlobal("53PCGolem_LastAreaIn","GLOBAL",5202)
+		JumpToPoint([696.658])
+		Face(W)
+		ApplySpellRES("IDINVIS5",Myself)
+		//HideCreature(Myself,FALSE)
+END
+
+IF
+	Global("53PCGolem_LastAreaIn","GLOBAL",5203)
+	//CurrentAreaIs(Myself,5202)
+	AreaCheck("IW5202")
+THEN
+	RESPONSE #100
+		Activate(Myself)
+		SetGlobal("IwIHidden","LOCALS",0)
+		SetGlobal("53PCGolem_LastAreaIn","GLOBAL",5202)
+		JumpToPoint([662.716])
+		Face(N)
+		ApplySpellRES("IDINVIS5",Myself)
+		//HideCreature(Myself,FALSE)
+END
+
+IF
+	Global("53PCGolem_LastAreaIn","GLOBAL",5202)
+	//CurrentAreaIs(Myself,5203)
+	AreaCheck("IW5203")
+THEN
+	RESPONSE #100
+		Activate(Myself)
+		SetGlobal("IwIHidden","LOCALS",0)
+		SetGlobal("53PCGolem_LastAreaIn","GLOBAL",5203)
+		JumpToPoint([271.204])
+		Face(SE)
+		ApplySpellRES("IDINVIS5",Myself)
+		//HideCreature(Myself,FALSE)
+END
+
+IF
+	Global("53PCGolem_LastAreaIn","GLOBAL",5300)
+	//CurrentAreaIs(Myself,5203)
+	AreaCheck("IW5203")
+THEN
+	RESPONSE #100
+		Activate(Myself)
+		SetGlobal("IwIHidden","LOCALS",0)
+		SetGlobal("53PCGolem_LastAreaIn","GLOBAL",5203)
+		JumpToPoint([1429.178])
+		Face(S)
+		ApplySpellRES("IDINVIS5",Myself)
+		//HideCreature(Myself,FALSE)
+END
+
+IF
+	Global("53PCGolem_LastAreaIn","GLOBAL",5203)
+	//CurrentAreaIs(Myself,5300)
+	AreaCheck("IW5300")
+THEN
+	RESPONSE #100
+		Activate(Myself)
+		SetGlobal("IwIHidden","LOCALS",0)
+		SetGlobal("53PCGolem_LastAreaIn","GLOBAL",5300)
+		JumpToPoint([331.419])
+		Face(SE)
+		ApplySpellRES("IDINVIS5",Myself)
+		//HideCreature(Myself,FALSE)
+END
+
+IF
+	Global("53PCGolem_LastAreaIn","GLOBAL",5301)
+	//CurrentAreaIs(Myself,5300)
+	AreaCheck("IW5300")
+THEN
+	RESPONSE #100
+		Activate(Myself)
+		SetGlobal("IwIHidden","LOCALS",0)
+		SetGlobal("53PCGolem_LastAreaIn","GLOBAL",5300)
+		JumpToPoint([3406.1076])
+		Face(W)
+		ApplySpellRES("IDINVIS5",Myself)
+		//HideCreature(Myself,FALSE)
+END
+
+IF
+	Global("53PCGolem_LastAreaIn","GLOBAL",5302)
+	//CurrentAreaIs(Myself,5300)
+	AreaCheck("IW5300")
+THEN
+	RESPONSE #100
+		Activate(Myself)
+		SetGlobal("IwIHidden","LOCALS",0)
+		SetGlobal("53PCGolem_LastAreaIn","GLOBAL",5300)
+		JumpToPoint([2988.648])
+		Face(S)
+		ApplySpellRES("IDINVIS5",Myself)
+		//HideCreature(Myself,FALSE)
+END
+
+IF
+	Global("53PCGolem_LastAreaIn","GLOBAL",5300)
+	//CurrentAreaIs(Myself,5301)
+	AreaCheck("IW5301")
+THEN
+	RESPONSE #100
+		Activate(Myself)
+		SetGlobal("IwIHidden","LOCALS",0)
+		SetGlobal("53PCGolem_LastAreaIn","GLOBAL",5301)
+		JumpToPoint([175.1755])
+		Face(E)
+		ApplySpellRES("IDINVIS5",Myself)
+		//HideCreature(Myself,FALSE)
+END
+
+IF
+	Global("53PCGolem_LastAreaIn","GLOBAL",5300)
+	//CurrentAreaIs(Myself,5302)
+	AreaCheck("IW5302")
+THEN
+	RESPONSE #100
+		Activate(Myself)
+		SetGlobal("IwIHidden","LOCALS",0)
+		SetGlobal("53PCGolem_LastAreaIn","GLOBAL",5302)
+		JumpToPoint([1500.2484])
+		Face(N)
+		ApplySpellRES("IDINVIS5",Myself)
+		//HideCreature(Myself,FALSE)
+END
+
+IF
+	Global("53PCGolem_LastAreaIn","GLOBAL",5303)
+	//CurrentAreaIs(Myself,5302)
+	AreaCheck("IW5302")
+THEN
+	RESPONSE #100
+		Activate(Myself)
+		SetGlobal("IwIHidden","LOCALS",0)
+		SetGlobal("53PCGolem_LastAreaIn","GLOBAL",5302)
+		JumpToPoint([2809.560])
+		Face(SW)
+		ApplySpellRES("IDINVIS5",Myself)
+		//HideCreature(Myself,FALSE)
+END
+
+IF
+	Global("53PCGolem_LastAreaIn","GLOBAL",5302)
+	//CurrentAreaIs(Myself,5303)
+	AreaCheck("IW5303")
+THEN
+	RESPONSE #100
+		Activate(Myself)
+		SetGlobal("IwIHidden","LOCALS",0)
+		SetGlobal("53PCGolem_LastAreaIn","GLOBAL",5303)
+		JumpToPoint([793.373])
+		Face(SE)
+		ApplySpellRES("IDINVIS5",Myself)
+		//HideCreature(Myself,FALSE)
+END
+
+IF
+	OnCreation()
+THEN
+	RESPONSE #100
+		ApplySpellRES("IWIN199",Myself)  // SPIN199.SPL INNATE_DISPEL_MAGIC
+END
+

@@ -1,0 +1,13 @@
+BEGIN ~11LOMAN~
+
+IF ~True()~ THEN BEGIN 0
+  SAY @6520
+  IF ~Global("Dock_Goblin_Quest","GLOBAL",0)~ THEN REPLY @6525 GOTO 1
+  IF ~Global("Dock_Goblin_Quest","GLOBAL",1)~ THEN REPLY @6526 GOTO 1
+  IF ~~ THEN REPLY @6528 EXIT
+END
+
+IF ~~ THEN BEGIN 1
+  SAY @6529
+  IF ~~ THEN REPLY @6530 EXIT
+END

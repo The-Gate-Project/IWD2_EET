@@ -1,0 +1,20 @@
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("Kaitlin")
+		MoveViewPoint([2272.1787],BD_SWIFT)
+		Wait(1)
+		MoveToPoint([2272.1787])
+		FaceObject([PC])
+		Wait(2)
+		MultiPlayerSync()
+		//SetSavedLocation()
+		//SetSavedLocationPoint(2272,1787,W)
+		SaveLocation("LOCALS","SavedLoc",[2272.1787])
+		SetHomeLocation([2272.1787])
+		//SetDialogueRange(300)
+		//Dialogue(NearestPC)
+		StartDialogNoSet([PC])
+END
+

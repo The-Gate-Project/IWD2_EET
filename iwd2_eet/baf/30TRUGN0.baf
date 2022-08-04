@@ -1,0 +1,316 @@
+IF
+	!Global("TEAM_16","MYAREA",1)
+	OR(2)
+		AttackedBy([GOODCUTOFF],DEFAULT)
+		PickPocketFailed([PC])
+THEN
+	RESPONSE #100
+		SetGlobal("TEAM_16","MYAREA",1)
+		Continue()
+END
+
+/*IF
+	!IsTeamBitOn(TEAM_16_BIT)
+THEN
+	RESPONSE #100
+		SetTeamBit(TEAM_16_BIT,TRUE)
+		Continue()
+END*/
+
+IF
+	!Global("TEAM_16","MYAREA",1)
+	Allegiance(Myself,ENEMY)
+	IsActive(Myself)
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		SetGlobal("TEAM_16","MYAREA",1)
+		Continue()
+END
+
+
+IF
+  Global("SaveSavedLoc","LOCALS",0)
+THEN
+  RESPONSE #100
+    SetGlobal("SaveSavedLoc","LOCALS",1)
+    SaveObjectLocation("LOCALS","SavedLoc",Myself)
+    Continue()
+END
+
+IF
+	!GlobalTimerNotExpired("IwTimer21","LOCALS")
+	Global("SUMMON_WORG","LOCALS",0)
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #75
+		DisplayStringHead(Myself,@476)
+		SetGlobalTimerRandom("IwTimer21","LOCALS",6,12)
+		Continue()
+	RESPONSE #25
+		SetGlobalTimerRandom("IwTimer21","LOCALS",6,12)
+		Continue()
+END
+
+IF
+	!GlobalTimerNotExpired("IwTimer21","LOCALS")
+	!Global("SUMMON_WORG","LOCALS",0)
+	Global("AR3000_DRUM_SUMMON","GLOBAL",0)
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,@477)
+		SetGlobalTimerRandom("IwTimer21","LOCALS",25,35)
+		SetGlobal("AR3000_DRUM_SUMMON","GLOBAL",5)
+		SetGlobal("SUMMON_WORG","LOCALS",0)
+		Continue()
+END
+
+//BLOCK SET_VARS
+IF
+	!Global("SET_30TRUGN0","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobal("SET_30TRUGN0","LOCALS",1)
+		SetInterrupt(TRUE)
+END
+//BLOCKEND
+
+IF
+	StateCheck(Myself,STATE_PANIC)
+THEN
+	RESPONSE #100
+		RandomWalkContinuous()
+END
+
+IF
+	!GlobalTimerNotExpired("IWD_Rest","LOCALS")
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IWD_Rest","LOCALS",EIGHT_HOURS)
+		ApplySpell(Myself,RESTORE_FULL_HEALTH)
+		Rest()
+END
+
+IF
+	HaveSpell(CLERIC_CURE_MEDIUM_WOUNDS)
+	HPPercentLT(Myself,75)
+	!StateCheck(Myself,STATE_REALLY_DEAD)
+THEN
+	RESPONSE #100
+		ForceSpell(Myself,CLERIC_CURE_MEDIUM_WOUNDS)
+		Wait(1)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_LIGHT_WOUNDS)
+	HPPercentLT(Myself,90)
+	!StateCheck(Myself,STATE_REALLY_DEAD)
+THEN
+	RESPONSE #100
+		ForceSpell(Myself,CLERIC_CURE_LIGHT_WOUNDS)
+		Wait(1)
+END
+
+IF
+	HasItem("POTN52",Myself) //POTN_08
+	HPPercentLT(Myself,35)
+THEN
+	RESPONSE #100
+		UseItem("POTN52",Myself) //POTN_08
+END
+
+IF
+	HasItem("POTN55",Myself) //POTN_52
+	HPPercentLT(Myself,35)
+THEN
+	RESPONSE #100
+		UseItem("POTN55",Myself) //POTN_52
+END
+
+IF
+	HaveSpell(CLERIC_ENTANGLE)
+	See([PC])
+	!Race(LastSeenBy(Myself),ELEMENTAL)
+	!Race(LastSeenBy(Myself),SHADOW)
+	!Race(LastSeenBy(Myself),SPECTRE)
+	!Race(LastSeenBy(Myself),MIST)
+	!Race(LastSeenBy(Myself),WRAITH)
+	!Race(LastSeenBy(Myself),SLIME)
+	!Race(LastSeenBy(Myself),DRAGON)
+	!Class(LastSeenBy(Myself),GIANT)
+	!Class(LastSeenBy(Myself),GOLEM_IRON)
+	!StateCheck(LastSeenBy(Myself),STATE_HARMLESS)
+	!CheckStatGT(LastSeenBy(Myself),0,ENTANGLE)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_ENTANGLE)
+		Wait(1)
+END
+//BLOCK SPL_1
+/*IF
+	ForceMarkedSpell(MARKED_SPELL)
+	SetSpellTarget(Nothing)
+	See(NearestEnemyOf(Myself),0)
+THEN
+	RESPONSE #100
+		MarkSpellAndObject("13021101",Myself,SPELLCAST_IGNORE_SEE | SPELLCAST_IGNORE_VALID_SPELL_TARGET)  // [CLERIC_CALL_LIGHTNING, CLERIC_BLESS]
+		Continue()
+END
+
+IF
+	!IsMarkedSpell(MARKED_SPELL)
+THEN
+	RESPONSE #100
+		Spell(SpellTarget,MARKED_SPELL)
+		WaitAnimation(Myself,WALK)
+		WaitAnimation(Myself,CONJURE)
+		WaitAnimation(Myself,CAST)
+		ForceMarkedSpell(MARKED_SPELL)
+END*/
+//1 - Myself - [CLERIC_CALL_LIGHTNING, CLERIC_BLESS]
+IF
+	Global("SSPELLS_1_RANDOM_CAST","LOCALS",1)
+	HaveSpell(CLERIC_CALL_LIGHTNING)
+	See(NearestEnemyOf(Myself))
+	AreaType(OUTDOOR)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		Spell(LastSeenBy(Myself),CLERIC_CALL_LIGHTNING)
+		Wait(1)
+END
+
+IF
+	Global("SSPELLS_1_RANDOM_CAST","LOCALS",2)
+	HaveSpell(CLERIC_BLESS)
+	See(NearestEnemyOf(Myself))
+	!StateCheck(Myself,STATE_BLESS)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		Spell(Myself,CLERIC_BLESS)
+		Wait(1)
+END
+
+//BLOCK NO_RND
+//1 - Myself - [CLERIC_CALL_LIGHTNING, CLERIC_BLESS]
+IF
+	HaveSpell(CLERIC_CALL_LIGHTNING)
+	See(NearestEnemyOf(Myself))
+	AreaType(OUTDOOR)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		Spell(LastSeenBy(Myself),CLERIC_CALL_LIGHTNING)
+		Wait(1)
+END
+
+IF
+	HaveSpell(CLERIC_BLESS)
+	See(NearestEnemyOf(Myself))
+	!StateCheck(Myself,STATE_BLESS)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		Spell(Myself,CLERIC_BLESS)
+		Wait(1)
+END
+//BLOCKEND
+//BLOCKEND
+
+IF
+	HaveSpellRES("IWPR111")
+	See([PC])
+	!CheckSpellState(LastSeenBy(Myself),CLERIC_BANE)
+THEN
+	RESPONSE #100
+		SpellRES("IWPR111",LastSeenBy(Myself))
+		Wait(1)
+END
+
+IF
+	Global("HOLD_PERSON_1_CAST","LOCALS",0)
+	HaveSpell(WIZARD_HOLD_PERSON)
+	See([PC])
+	!StateCheck(LastSeenBy(Myself),STATE_DISABLED)
+THEN
+	RESPONSE #100
+		SetGlobal("HOLD_PERSON_1_CAST","LOCALS",1)
+		SetGlobal("SUMMON_WORG","LOCALS",1)
+		Spell(LastSeenBy(Myself),WIZARD_HOLD_PERSON)
+		Wait(1)
+END
+
+IF
+	HaveSpell(CLERIC_COMMAND)
+	See(NearestEnemyOf(Myself))
+	General(LastSeenBy(Myself),HUMANOID)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_COMMAND)
+		Wait(1)
+END
+
+IF
+	Global("HOLD_PERSON_2_CAST","LOCALS",0)
+	HaveSpell(WIZARD_HOLD_PERSON)
+	See(NearestEnemyOf(Myself))
+	!StateCheck(LastSeenBy(Myself),STATE_DISABLED)
+THEN
+	RESPONSE #100
+		SetGlobal("HOLD_PERSON_2_CAST","LOCALS",1)
+		SetGlobal("SUMMON_WORG","LOCALS",1)
+		Spell(LastSeenBy(Myself),WIZARD_HOLD_PERSON)
+		Wait(1)
+END
+
+IF
+	Global("RW_30TRUGN00","LOCALS",0)
+	!NearSavedLocation(Myself,"LOCALSSavedLoc",3)
+THEN
+	RESPONSE #100
+		SetGlobal("RW_30TRUGN00","LOCALS",1)
+		Continue()
+END
+
+IF
+	!Global("RW_30TRUGN00","LOCALS",0)
+	NearSavedLocation(Myself,"LOCALSSavedLoc",3)
+THEN
+	RESPONSE #100
+		SetGlobal("RW_30TRUGN00","LOCALS",0)
+		NoAction()
+END
+
+IF
+	!Global("RW_30TRUGN00","LOCALS",0)
+	!See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		//MoveToPoint([-2.-2])
+		MoveToOffset([-2.-2])
+	RESPONSE #100
+		//MoveToPoint([-2.-2])
+		MoveToOffset([2.-2])
+	RESPONSE #100
+		//MoveToPoint([-2.-2])
+		MoveToOffset([-2.2])
+	RESPONSE #100
+		//MoveToPoint([-2.-2])
+		MoveToOffset([2.2])
+	RESPONSE #100
+		MoveToSavedLocation("SavedLoc","LOCALS")
+END
+
+IF
+	!GlobalTimerNotExpired("IwTimer22","LOCALS")
+	Global("RW_30TRUGN00","LOCALS",0)
+	!See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		RandomWalk()
+		SetGlobalTimerRandom("IwTimer22","LOCALS",5,10)
+END
+

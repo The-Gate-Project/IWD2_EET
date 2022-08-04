@@ -1,0 +1,40 @@
+IF
+	Global("51SPECTRE","GLOBAL",0)
+	//CheckSpellState("12_51SPE_01",TURNED)
+	
+	Allegiance("12_51SPE_01",ENEMY)
+	
+	OR(2)
+		TriggerOverride("12_51SPE_01",See([PC.0.0.CLERIC_ALL]))
+		TriggerOverride("12_51SPE_01",See([PC.0.0.PALADIN_ALL]))
+	//TriggerOverride("12_51SPE_01",ModalStateObject(LastSeenBy(Myself),TURNUNDEAD))
+	ModalStateObject(LastSeenBy("12_51SPE_01"),TURNUNDEAD)
+THEN
+	RESPONSE #100
+		Enemy()
+		ChangeEnemyAlly("12_51SPE_01",NEUTRAL)
+		//ApplySpell("12_51SPE_01",MARKED_SPELL)
+		//ActionOverride("12_51SPE_01",ApplySpellRES("IWNTURN",Myself))
+		//ChangeEnemyAlly("12_51SPE_01",NEUTRAL)
+		ClearActions("12_51SPE_01")
+		ChangeEnemyAlly("12_51SPE_01",NEUTRAL)
+		//ClearSpriteEffects("12_51SPE_01")
+		//ChangeEnemyAlly("12_51SPE_01",NEUTRAL)
+		SetGlobal("51SPECTRE","GLOBAL",1)
+END
+
+IF
+	Global("51SPECTRE","GLOBAL",0)
+	Dead("12_51SPE_01")
+THEN
+	RESPONSE #100
+		SetGlobal("51SPECTRE","GLOBAL",1)
+END
+
+IF
+	!Global("51SPECTRE","GLOBAL",0)
+THEN
+	RESPONSE #100
+		DestroySelf()
+END
+

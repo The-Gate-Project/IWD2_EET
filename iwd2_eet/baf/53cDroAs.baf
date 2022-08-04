@@ -1,0 +1,105 @@
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("53DroPriestess")  // Äðîó-æðèöà
+		FadeToColor([0.0],0)
+		Wait(1)
+		//DestroySelf()
+		ApplySpellRES("idinvis4",Myself)
+		FadeFromColor([0.0],0)
+		Wait(1)
+		EndCutSceneMode()
+		DestroySelf()
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("5300_DrosAssasins_08")
+		Wait(1)
+		DestroySelf()
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("5300_DrosAssasins_09")
+		Wait(1)
+		DestroySelf()
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("5300_DrosAssasins_10")
+		Wait(1)
+		DestroySelf()
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("5300_DrosAssasins_01")
+		Wait(1)
+		DestroySelf()
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("5300_DrosAssasins_02")
+		Wait(1)
+		DestroySelf()
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("5300_DrosAssasins_03")
+		Wait(1)
+		DestroySelf()
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("5300_DrosAssasins_04")
+		Wait(1)
+		DestroySelf()
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("5300_DrosAssasins_05")
+		Wait(1)
+		DestroySelf()
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("5300_DrosAssasins_06")
+		Wait(1)
+		DestroySelf()
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("5300_DrosAssasins_07")
+		Wait(1)
+		DestroySelf()
+END
+

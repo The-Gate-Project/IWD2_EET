@@ -1,0 +1,209 @@
+IF
+	Global("3001_LEADERS_ENEMY","GLOBAL",0)
+THEN
+	RESPONSE #100
+		AddXP2DA("IW2EX5VH")
+		DisplayStringNoName(Player1,@30742)
+		SetGlobal("3001_LEADERS_ENEMY","GLOBAL",4)
+		Continue()
+END
+
+IF
+	Global("3001_LEADERS_ENEMY","GLOBAL",1)
+THEN
+	RESPONSE #100
+		AddXP2DA("IW2EX5H")
+		DisplayStringNoName(Player1,@30743)
+		SetGlobal("3001_LEADERS_ENEMY","GLOBAL",4)
+		Continue()
+END
+
+IF
+	Global("3001_LEADERS_ENEMY","GLOBAL",2)
+THEN
+	RESPONSE #100
+		AddXP2DA("IW2EX5A")
+		DisplayStringNoName(Player1,@30744)
+		SetGlobal("3001_LEADERS_ENEMY","GLOBAL",4)
+		Continue()
+END
+
+IF
+	Global("3001_LEADERS_ENEMY","GLOBAL",3)
+THEN
+	RESPONSE #100
+		AddXP2DA("IW2EX5E")
+		DisplayStringNoName(Player1,@30745)
+		SetGlobal("3001_LEADERS_ENEMY","GLOBAL",4)
+		Continue()
+END
+
+IF
+	!Global("3100_BRASTON_WRONG_WAY_FLOAT","GLOBAL",0)
+THEN
+	RESPONSE #100
+		SetGlobal("3100_BRASTON_WRONG_WAY_FLOAT","GLOBAL",0)
+		Continue()
+END
+
+IF
+	Global("SPAWN_LOCK","MYAREA",0)
+	//!Dead("DRUM_SUMMON_I")
+	Global("SPRITE_IS_DEADDRUM_SUMMON_I","GLOBAL",1)
+	//!Dead("DRUM_SUMMON_J")
+	Global("SPRITE_IS_DEADDRUM_SUMMON_J","GLOBAL",1)
+	OR(2)
+		//CheckAreaDiffLevel(1)
+		DifficultyLT(NORMAL)
+		//!Dead("DRUM_SUMMON_K")
+		Global("SPRITE_IS_DEADDRUM_SUMMON_K","GLOBAL",1)
+	OR(2)
+		//!CheckAreaDiffLevel(3)
+		DifficultyLT(HARDEST)
+		//!Dead("DRUM_SUMMON_L")
+		Global("SPRITE_IS_DEADDRUM_SUMMON_L","GLOBAL",1)
+THEN
+	RESPONSE #100
+		SetGlobal("SPAWN_LOCK","MYAREA",1)
+		Continue()
+END
+
+IF
+	Global("SPAWN_LOCK","MYAREA",2)
+	!GlobalTimerNotExpired("WORG_SPAWN_TIMER","MYAREA")
+THEN
+	RESPONSE #100
+		SetGlobal("SPAWN_LOCK","MYAREA",0)
+		Continue()
+END
+
+IF
+	Global("SPAWN_LOCK","MYAREA",1)
+	OR(2)
+		//Dead("DRUM_SUMMON_I")
+		GlobalGT("SPRITE_IS_DEADDRUM_SUMMON_I","GLOBAL",1)
+		//Dead("DRUM_SUMMON_J")
+		GlobalGT("SPRITE_IS_DEADDRUM_SUMMON_J","GLOBAL",1)
+	OR(2)
+		//CheckAreaDiffLevel(1)
+		DifficultyLT(NORMAL)
+		//Dead("DRUM_SUMMON_K")
+		GlobalGT("SPRITE_IS_DEADDRUM_SUMMON_K","GLOBAL",1)
+	OR(2)
+		//!CheckAreaDiffLevel(3)
+		DifficultyLT(HARDEST)
+		//Dead("DRUM_SUMMON_L")
+		GlobalGT("SPRITE_IS_DEADDRUM_SUMMON_L","GLOBAL",1)
+THEN
+	RESPONSE #100
+		SetGlobalTimerRandom("WORG_SPAWN_TIMER","MYAREA",45,60)
+		SetGlobal("SPAWN_LOCK","MYAREA",2)
+		Continue()
+END
+
+IF
+	!Global("AR3002_DRUM_SUMMON","GLOBAL",0)
+	!Global("SPAWN_LOCK","MYAREA",0)
+THEN
+	RESPONSE #100
+		SetGlobal("AR3002_DRUM_SUMMON","GLOBAL",0)
+		Continue()
+END
+
+IF
+	Global("CAGE_BEETLES_DEAD","MYAREA",0)
+	/*Dead("Fire_Beetle_1")
+	Dead("Fire_Beetle_2")
+	Dead("Fire_Beetle_3")
+	Dead("Fire_Beetle_4")
+	Dead("Fire_Beetle_5")
+	Dead("Fire_Beetle_6")
+	Dead("Fire_Beetle_7")
+	Dead("Fire_Beetle_8")*/
+	Dead("Fire_Beetle_Queen")
+	GlobalGT("SPRITE_IS_DEAD3002Fire_Beetle","GLOBAL",7)
+THEN
+	RESPONSE #100
+		SetGlobal("CAGE_BEETLES_DEAD","MYAREA",1)
+		Continue()
+END
+
+IF
+	Global("CAGE_OTYUGH_DEAD","MYAREA",0)
+	Dead("03_Oty_01")
+	Dead("03_Oty_02")
+	//GlobalGT("SPRITE_IS_DEAD3002Otyugh","GLOBAL",1)
+THEN
+	RESPONSE #100
+		SetGlobal("CAGE_OTYUGH_DEAD","MYAREA",1)
+		Continue()
+END
+
+IF
+	Global("COWS_DEAD","MYAREA",0)
+	/*Dead("Cow_01")
+	Dead("Cow_02")
+	Dead("Cow_03")
+	Dead("Cow_04")
+	Dead("Cow_05")*/
+	GlobalGT("SPRITE_IS_DEAD3002Cow","GLOBAL",4)
+THEN
+	RESPONSE #100
+		//Deactivate("cows")
+		SoundActivate("cows",FALSE)
+		SetGlobal("COWS_DEAD","MYAREA",1)
+		Continue()
+END
+
+IF
+	Global("CHICKENS_DEAD","MYAREA",0)
+	/*Dead("Chicken_01")
+	Dead("Chicken_02")
+	Dead("Chicken_03")
+	Dead("Chicken_04")*/
+	GlobalGT("SPRITE_IS_DEAD3002Chicken","GLOBAL",3)
+THEN
+	RESPONSE #100
+		//Deactivate("chickens")
+		SoundActivate("chickens",FALSE)
+		SetGlobal("CHICKENS_DEAD","MYAREA",1)
+		Continue()
+END
+
+IF
+	Global("ANIMALS_DEAD","MYAREA",0)
+	!Global("COWS_DEAD","MYAREA",0)
+	!Global("CHICKENS_DEAD","MYAREA",0)
+	/*Dead("Dog_01")
+	Dead("Dog_02")*/
+	GlobalGT("SPRITE_IS_DEAD3002Dog","GLOBAL",1)
+THEN
+	RESPONSE #100
+		SetGlobal("ANIMALS_DEAD","MYAREA",1)
+		//Deactivate("animals")
+		SoundActivate("animals",FALSE)
+		Continue()
+END
+
+IF
+	Global("AR3002_TEQUAG_TEAM_DEAD","GLOBAL",0)
+	Dead("Tequag")
+	/*Dead("10_Hardened_Fire_Troll_1")
+	Dead("10_Hardened_Fire_Troll_2")
+	Dead("10_Barghest_Welp_1")
+	Dead("10_Barghest_Welp_2")*/
+	GlobalGT("SPRITE_IS_DEAD3002TeqTeam","GLOBAL",3)
+THEN
+	RESPONSE #100
+		SetGlobal("AR3002_TEQUAG_TEAM_DEAD","GLOBAL",1)
+		Continue()
+END
+
+IF
+	OnCreation()
+THEN
+	RESPONSE #100
+		NoAction()
+		Continue()
+END
+

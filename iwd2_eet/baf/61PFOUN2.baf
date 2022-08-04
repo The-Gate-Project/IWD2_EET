@@ -1,0 +1,38 @@
+IF
+	Clicked([ANYONE])
+	Global("CheckFountain2","MYAREA",0)
+	!BitCheck("FountainTally","MYAREA",2)
+	PartyHasItem("z6genwp")  // яд виверны
+THEN
+	RESPONSE #100
+		SetGlobal("CheckFountain2","MYAREA",1)
+END
+
+IF
+	Global("CheckFountain2","MYAREA",1)
+	Contains("z6genwp",Myself)  // яд виверны
+	Range([PC],25)
+THEN
+	RESPONSE #100
+		//StartCutSceneMode()
+		//EndCutSceneMode()
+		//SpellHitEffectPoint(LastMarkedObject,[610.2130],NEUTRALIZE_POISON,0)
+		CreateVisualEffect("NPOISOH",[610.2130])
+		//FloatMessage("PoolFloat2",35440)
+		DisplayStringPointLog([610.2130],@35440)
+		DestroyItem("z6genwp")  // яд виверны
+		StaticSequence("FountainAnim2",SEQ_AWAKE)
+		IncrementGlobal("FountainCount","MYAREA",1)
+		IncrementGlobal("FountainTally","MYAREA",2)
+		SetGlobal("CheckFountain2","MYAREA",2)
+END
+
+IF
+	Clicked([ANYONE])
+	!BitCheck("FountainTally","MYAREA",2)
+THEN
+	RESPONSE #100
+		//FloatMessage("PoolFloat2",35439)
+		DisplayStringPointLog([610.2130],@35439)
+END
+

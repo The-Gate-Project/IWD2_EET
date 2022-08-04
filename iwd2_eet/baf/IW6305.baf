@@ -1,0 +1,300 @@
+IF
+	Global("TeleportIsairMadaeHP33","MYAREA",0)
+	OR(2)
+		HPPercentLT("Isair",50)
+		HPPercentLT("Madae",50)
+THEN
+	RESPONSE #100
+		StartCutSceneMode()
+		ClearAllActions()
+		MultiPlayerSync()
+		SetGlobal("TeleportIsairMadaeHP33","MYAREA",1)
+		SetGlobal("Ready_To_Retreat","GLOBAL",1)
+		SetGlobal("SH_SpawnGlaberazu_63GlabSL","MYAREA",2)
+		SetGlobal("SH_SpawnGlaberazu_63GlabSR","MYAREA",2)
+		ActionOverride("Madae",FaceObject("Isair"))
+		ActionOverride("Isair",Dialogue([PC]))
+		//SetHP("63GlabSL",10)  // Страж Глабрезу
+		//SetHP("63GlabSR",10)  // Страж Глабрезу
+		ActionOverride("63GlabSL",ApplySpellRES("IWSHP10",Myself))
+		ActionOverride("63GlabSR",ApplySpellRES("IWSHP10",Myself))
+		SetGlobal("SH_SpawnGlaberazu_63GlabSL","MYAREA",-1)
+		SetGlobal("SH_SpawnGlaberazu_63GlabSR","MYAREA",-1)
+		SetGlobal("SH_SpawnGlaberazu_Glaberazu_1","MYAREA",-1)
+		SetGlobal("SH_SpawnGlaberazu_Glaberazu_2","MYAREA",-1)
+		ActionOverride("63GlabSL",NoAction())
+		ActionOverride("63GlabSR",NoAction())
+END
+
+IF
+	Global("WarpSequenceHP33","MYAREA",0)
+	Global("Final_Battle_Part2","MYAREA",1)
+	OR(2)
+		HPPercentLT("Isair2",33)
+		HPPercentLT("Madae2",33)
+THEN
+	RESPONSE #100
+		SetGlobal("WarpSequenceHP33","MYAREA",1)
+		ActionOverride("Isair2",SetSequence(SEQ_ATTACK_BACKSLASH))
+		ActionOverride("Madae2",SetSequence(SEQ_ATTACK_BACKSLASH))
+		Continue()
+END
+
+IF
+	Global("WarpSequenceHP25","MYAREA",0)
+	Global("Final_Battle_Part2","MYAREA",1)
+	OR(2)
+		HPPercentLT("Isair2",25)
+		HPPercentLT("Madae2",25)
+THEN
+	RESPONSE #100
+		SetGlobal("WarpSequenceHP25","MYAREA",1)
+		Activate("Orrick")
+		ActionOverride("Orrick",SetGlobal("IwIHidden","LOCALS",0))
+		StartCutSceneMode()
+		ClearAllActions()
+		MultiPlayerSync()
+		StartCutScene("63cFB05")
+END
+
+IF
+	!Global("SH_SpawnGlaberazu_63GlabSL","MYAREA",1)
+	!Global("SH_SpawnGlaberazu_63GlabSL","MYAREA",-1)
+	!Global("SPRITE_IS_DEAD63GlabSL","GLOBAL",0)
+THEN
+	RESPONSE #100
+		SetGlobal("SH_SpawnGlaberazu_63GlabSL","MYAREA",1)
+		SetGlobal("SPRITE_IS_DEAD63GlabSL","GLOBAL",0)
+		Continue()
+END
+
+IF
+	!Global("SH_SpawnGlaberazu_63GlabSR","MYAREA",1)
+	!Global("SH_SpawnGlaberazu_63GlabSR","MYAREA",-1)
+	!Global("SPRITE_IS_DEAD63GlabSR","GLOBAL",0)
+THEN
+	RESPONSE #100
+		SetGlobal("SH_SpawnGlaberazu_63GlabSR","MYAREA",1)
+		SetGlobal("SPRITE_IS_DEAD63GlabSR","GLOBAL",0)
+		Continue()
+END
+
+IF
+	!Global("SH_SpawnGlaberazu_63GlabSL","MYAREA",-1)
+	!Global("SH_SpawnGlaberazu_63GlabSL","MYAREA",2)
+	Global("SH_SpawnGlaberazu_63GlabSL","MYAREA",1)
+	!Global("SH_SGem_Destroyed","GLOBAL",1)
+THEN
+	RESPONSE #100
+		//SpellHitEffectSprite("63GlabSL","63GlabSL",CURE_SERIOUS_WOUNDS,0)  // Страж Глабрезу
+		CreateVisualEffectObject("CSWOUNH","63GlabSL")
+		CreateCreature("63GlabSL",[806.547],0)  // Страж Глабрезу
+		SetGlobal("SH_SpawnGlaberazu_63GlabSL","MYAREA",2)
+		Continue()
+END
+
+IF
+	!Global("SH_SpawnGlaberazu_63GlabSL","MYAREA",-1)
+	!Global("SH_SpawnGlaberazu_63GlabSL","MYAREA",2)
+	Global("SH_SGem_Destroyed","GLOBAL",1)
+THEN
+	RESPONSE #100
+		SetGlobal("SH_SpawnGlaberazu_63GlabSL","MYAREA",-1)
+		ActionOverride("63GlabSL",DestroySelf())
+		Continue()
+END
+
+IF
+	Global("SH_SpawnGlaberazuXP_Glaberazu_1","MYAREA",0)
+	OR(2)
+		Global("SH_SGem_Destroyed","GLOBAL",1)
+		Global("SH_No_Demons","GLOBAL",1)
+THEN
+	RESPONSE #100
+		SetGlobal("SH_SpawnGlaberazu_63GlabSL","MYAREA",-1)
+		SetGlobal("SH_SpawnGlaberazuXP_Glaberazu_1","MYAREA",1)
+		ActionOverride("63GlabSL",DestroySelf())
+		Activate("Glabrezu_1")
+		ActionOverride("Glabrezu_1",SetGlobal("IwIHidden","LOCALS",0))
+		Continue()
+END
+
+IF
+	!Global("SH_SpawnGlaberazu_63GlabSR","MYAREA",-1)
+	!Global("SH_SpawnGlaberazu_63GlabSR","MYAREA",2)
+	Global("SH_SpawnGlaberazu_63GlabSR","MYAREA",1)
+	!Global("SH_SGem_Destroyed","GLOBAL",1)
+THEN
+	RESPONSE #100
+		//SpellHitEffectSprite("63GlabSR","63GlabSR",CURE_SERIOUS_WOUNDS,0)  // Страж Глабрезу
+		CreateVisualEffectObject("CSWOUNH","63GlabSR")
+		CreateCreature("63GlabSR",[1178.434],0)  // Страж Глабрезу
+		SetGlobal("SH_SpawnGlaberazu_63GlabSR","MYAREA",2)
+		Continue()
+END
+
+IF
+	!Global("SH_SpawnGlaberazu_63GlabSR","MYAREA",-1)
+	!Global("SH_SpawnGlaberazu_63GlabSR","MYAREA",2)
+	Global("SH_SGem_Destroyed","GLOBAL",1)
+THEN
+	RESPONSE #100
+		SetGlobal("SH_SpawnGlaberazu_63GlabSR","MYAREA",-1)
+		ActionOverride("63GlabSR",DestroySelf())
+		Continue()
+END
+
+IF
+	Global("SH_SpawnGlaberazuXP_Glaberazu_2","MYAREA",0)
+	OR(2)
+		Global("SH_SGem_Destroyed","GLOBAL",1)
+		Global("SH_No_Demons","GLOBAL",1)
+THEN
+	RESPONSE #100
+		SetGlobal("SH_SpawnGlaberazu_63GlabSR","MYAREA",-1)
+		SetGlobal("SH_SpawnGlaberazuXP_Glaberazu_2","MYAREA",1)
+		ActionOverride("63GlabSR",DestroySelf())
+		Activate("Glabrezu_2")
+		ActionOverride("Glabrezu_2",SetGlobal("IwIHidden","LOCALS",0))
+		Continue()
+END
+
+IF
+	Global("StartCutscene_63cFB01","MYAREA",0)
+THEN
+	RESPONSE #100
+		SetGlobal("StartCutscene_63cFB01","MYAREA",1)
+		//AllowAreaResting(FALSE)
+		AddAreaFlag(NOREST)
+		SetGlobal("SH_Teleported_To_6303","GLOBAL",1)
+		/*HideCreature("Isair",FALSE)
+		HideCreature("Madae",FALSE)
+		HideCreature("Serak",FALSE)
+		HideCreature("Mourn",FALSE)
+		HideCreature("Zilvar",FALSE)
+		HideCreature("Tilzen",FALSE)
+		HideCreature("Phaen",FALSE)
+		HideCreature("Chimera",FALSE)
+		HideCreature("Buvai_deNaly",FALSE)*/
+		ActionOverride("Isair",ApplySpellRES("idinvis5",Myself))
+		ActionOverride("Madae",ApplySpellRES("idinvis5",Myself))
+		ActionOverride("Serak",ApplySpellRES("idinvis5",Myself))
+		ActionOverride("Mourn",ApplySpellRES("idinvis5",Myself))
+		ActionOverride("Zilvar",ApplySpellRES("idinvis5",Myself))
+		ActionOverride("Tilzen",ApplySpellRES("idinvis5",Myself))
+		ActionOverride("PhaenXiltin",ApplySpellRES("idinvis5",Myself))
+		ActionOverride("Chimera",ApplySpellRES("idinvis5",Myself))
+		ActionOverride("Buvai_deNaly",ApplySpellRES("idinvis5",Myself))
+		ActionOverride("Isair",ReallyForceSpellRES("IWWI909",Myself))  // SPWI909.SPL WIZARD_AEGIS
+		ActionOverride("Isair",ReallyForceSpell(Myself,WIZARD_SPELL_TURNING))  // SPWI710.SPL WIZARD_SEVEN_EYES
+		ActionOverride("Isair",ReallyForceSpell(Myself,WIZARD_FIRE_SHIELD_BLUE))
+		ActionOverride("Madae",ReallyForceSpellRES("IWPR609",Myself))  // SPPR609.SPL CLERIC_DIVINE_SHELL
+		ActionOverride("Madae",ReallyForceSpell(Myself,CLERIC_IRONSKIN))
+		ActionOverride("Madae",ReallyForceSpell(Myself,CLERIC_CLOAK_OF_FEAR))
+		ActionOverride("Madae",ReallyForceSpell(Myself,WIZARD_PROTECTION_FROM_ENERGY))  // SPWI712.SPL WIZARD_ELEMENTAL_BARRIER
+		/*SetCreatureAreaFlag("Isair",IGNORE_AI_INHIBIT,TRUE)
+		SetCreatureAreaFlag("Madae",IGNORE_AI_INHIBIT,TRUE)
+		SetCreatureAreaFlag("Isair2",IGNORE_AI_INHIBIT,TRUE)
+		SetCreatureAreaFlag("Madae2",IGNORE_AI_INHIBIT,TRUE)
+		SetCreatureAreaFlag("Serak",IGNORE_AI_INHIBIT,TRUE)
+		SetCreatureAreaFlag("Mourn",IGNORE_AI_INHIBIT,TRUE)
+		SetCreatureAreaFlag("Zilvar",IGNORE_AI_INHIBIT,TRUE)
+		SetCreatureAreaFlag("Tilzen",IGNORE_AI_INHIBIT,TRUE)
+		SetCreatureAreaFlag("Phaen",IGNORE_AI_INHIBIT,TRUE)
+		SetCreatureAreaFlag("Chimera",IGNORE_AI_INHIBIT,TRUE)
+		SetCreatureAreaFlag("Buvai_deNaly",IGNORE_AI_INHIBIT,TRUE)*/
+		ActionOverride("Isair",ApplySpellRES("IWPERAI",Myself))
+		ActionOverride("Madae",ApplySpellRES("IWPERAI",Myself))
+		ActionOverride("Serak",ApplySpellRES("IWPERAI",Myself))
+		ActionOverride("Mourn",ApplySpellRES("IWPERAI",Myself))
+		ActionOverride("Zilvar",ApplySpellRES("IWPERAI",Myself))
+		ActionOverride("Tilzen",ApplySpellRES("IWPERAI",Myself))
+		ActionOverride("PhaenXiltin",ApplySpellRES("IWPERAI",Myself))
+		ActionOverride("Chimera",ApplySpellRES("IWPERAI",Myself))
+		ActionOverride("Buvai_deNaly",ApplySpellRES("IWPERAI",Myself))
+		ActionOverride("Isair2",ApplySpellRES("IWPERAI",Myself))
+		ActionOverride("Madae2",ApplySpellRES("IWPERAI",Myself))
+		ActionOverride("Isair2",SetGlobal("IwIHidden","LOCALS",1))
+		ActionOverride("Madae2",SetGlobal("IwIHidden","LOCALS",1))
+		Deactivate("Isair2")
+		Deactivate("Madae2")
+END
+
+IF
+	Global("StartCutscene_63cFB01","MYAREA",1)
+THEN
+	RESPONSE #100
+		SetGlobal("StartCutscene_63cFB01","MYAREA",2)
+		SetGlobal("SH_Teleported_To_6303","GLOBAL",2)
+		StartCutScene("63cFB01")
+END
+
+IF
+	Global("StartCutscene_63cFB03","MYAREA",0)
+	//!InCutsceneMode()
+	GlobalGT("StartCutscene_63cFB02","MYAREA",0)
+	Global("TeleportIsairMadaeHP33","MYAREA",1)
+	Dead("Serak")
+	Dead("Mourn")
+	Dead("Zilvar")
+	Dead("Tilzen")
+	Dead("PhaenXiltin")
+	Dead("Chimera")
+	Dead("Buvai_deNaly")
+THEN
+	RESPONSE #100
+		SetGlobal("StartCutscene_63cFB03","MYAREA",1)
+		Activate("Isair2")
+		Activate("Madae2")
+		ActionOverride("Isair2",SetGlobal("IwIHidden","LOCALS",0))
+		ActionOverride("Madae2",SetGlobal("IwIHidden","LOCALS",0))
+		StartCutSceneMode()
+		ClearAllActions()
+		MultiPlayerSync()
+		StartCutScene("63cFB03")
+END
+
+IF
+	Global("LoweredHP","MYAREA",0)
+	Global("Pool_Tainted","GLOBAL",1)
+THEN
+	RESPONSE #100
+		SetGlobal("LoweredHP","MYAREA",1)
+		//SetHPPercent("Isair2",33,MAX_HP)
+		//SetHPPercent("Madae2",33,MAX_HP)
+	//	ChangeStat("Isair2",MAXHITPOINTS,33,SET)
+	//	ChangeStat("Madae2",MAXHITPOINTS,33,SET)
+END
+
+IF
+	Global("StartCutscene_63cFB04","MYAREA",0)
+	Global("StartCutscene_63cFB03","MYAREA",1)
+	//!InCutsceneMode()
+	//CheckDoorFlags("AR6303_Door1",DOOROPEN)
+	OpenState("AR6303_Door1",TRUE)
+THEN
+	RESPONSE #100
+		SetGlobal("StartCutscene_63cFB04","MYAREA",1)
+		StartCutSceneMode()
+		ClearAllActions()
+		MultiPlayerSync()
+		StartCutScene("63cFB04")
+END
+
+IF
+	Global("StartCutscene_63cFB06","MYAREA",1)
+	!GlobalTimerNotExpired("Screenshake","MYAREA")
+THEN
+	RESPONSE #100
+		SetGlobalTimerRandom("Screenshake","MYAREA",5,10)
+		ScreenShake([10.10],15)
+END
+
+IF
+	OnCreation()
+THEN
+	RESPONSE #100
+		NoAction()
+		Continue()
+END
+

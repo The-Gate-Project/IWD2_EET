@@ -1,0 +1,321 @@
+IF
+	!Global("VolcanoCreate","MYAREA",1)
+THEN
+	RESPONSE #100
+		SetGlobal("VolcanoCreate","MYAREA",1)
+		CreateCreature("IDVOLCN",[362.817],0)
+		ActionOverride("Volcano",ChangeAIScript("IW6103VS",OVERRIDE))
+		Continue()
+END
+
+IF
+	Global("6103Visited","MYAREA",0)
+	//CheckAreaDiffLevel(1)
+	DifficultyLT(NORMAL)
+THEN
+	RESPONSE #100
+		SetGlobal("EncounterChance","MYAREA",40)
+		//SetRestEncounterChance(20,40)
+		SetRestEncounterProbabilityDay(2)
+		SetRestEncounterProbabilityNight(4)
+		Continue()
+END
+
+IF
+	Global("6103Visited","MYAREA",0)
+	//CheckAreaDiffLevel(2)
+	Difficulty(NORMAL)
+THEN
+	RESPONSE #100
+		SetGlobal("EncounterChance","MYAREA",60)
+		//SetRestEncounterChance(40,60)
+		SetRestEncounterProbabilityDay(4)
+		SetRestEncounterProbabilityNight(6)
+		Continue()
+END
+
+IF
+	Global("6103Visited","MYAREA",0)
+	//CheckAreaDiffLevel(3)
+	DifficultyGT(NORMAL)
+THEN
+	RESPONSE #100
+		SetGlobal("EncounterChance","MYAREA",80)
+		//SetRestEncounterChance(60,80)
+		SetRestEncounterProbabilityDay(6)
+		SetRestEncounterProbabilityNight(8)
+		Continue()
+END
+
+IF
+	Global("6103Visited","MYAREA",0)
+	//IsHeartOfFuryModeOn()
+	OR(2)
+		StoryModeOn()
+		NightmareModeOn()
+THEN
+	RESPONSE #100
+		//IncrementGlobal("EncounterChance","MYAREA",20)
+		SetGlobal("EncounterChance","MYAREA",100)
+		//SetRestEncounterChance(80,100)
+		SetRestEncounterProbabilityDay(8)
+		SetRestEncounterProbabilityNight(10)
+		Continue()
+END
+
+IF
+	Global("6103Visited","MYAREA",0)
+THEN
+	RESPONSE #100
+		//ActionOverride("IW6103_02_EliteGuard_09",SetGlobal("IwIHidden","LOCALS",1))
+		//Deactivate("IW6103_02_EliteGuard_09")
+		AddJournalEntry(@35756,QUEST)
+		SetGlobal("6103Visited","MYAREA",1)
+		Continue()
+END
+
+IF
+	OnCreation()
+	BitCheck("FountainTally","MYAREA",1)
+THEN
+	RESPONSE #100
+		StaticSequence("FountainAnim1",SEQ_AWAKE)
+		Continue()
+END
+
+IF
+	OnCreation()
+	BitCheck("FountainTally","MYAREA",2)
+THEN
+	RESPONSE #100
+		StaticSequence("FountainAnim2",SEQ_AWAKE)
+		Continue()
+END
+
+IF
+	OnCreation()
+	BitCheck("FountainTally","MYAREA",4)
+THEN
+	RESPONSE #100
+		StaticSequence("FountainAnim3",SEQ_AWAKE)
+		Continue()
+END
+
+IF
+	OnCreation()
+	BitCheck("FountainTally","MYAREA",8)
+THEN
+	RESPONSE #100
+		StaticSequence("FountainAnim4",SEQ_AWAKE)
+		Continue()
+END
+
+IF
+	OnCreation()
+THEN
+	RESPONSE #100
+		NoAction()
+		Continue()
+END
+
+IF
+	Global("TEAM_2","MYAREA",0)
+	Global("SPRITE_IS_DEADThorasskus","GLOBAL",1)
+	OR(2)
+		OpenState("AR6103_Bridge",FALSE)
+		OpenState("AR6103_Treasure_Room",TRUE)
+THEN
+	RESPONSE #100
+		OpenDoor("AR6103_RockDoor1")
+		OpenDoor("AR6103_RockDoor2")
+		SetGlobal("TEAM_2","MYAREA",1)
+END
+
+IF
+	!Global("TEAM_2","MYAREA",0)
+	!IsActive("IW6103_02_EliteGuard_08")
+THEN
+	RESPONSE #100
+		Activate("IW6103_02_EliteGuard_06")
+		ActionOverride("IW6103_02_EliteGuard_06",SetGlobal("IwIHidden","LOCALS",0))
+		Activate("IW6103_02_EliteGuard_07")
+		ActionOverride("IW6103_02_EliteGuard_07",SetGlobal("IwIHidden","LOCALS",0))
+		Activate("IW6103_02_EliteGuard_08")
+		ActionOverride("IW6103_02_EliteGuard_08",SetGlobal("IwIHidden","LOCALS",0))
+END
+
+IF
+	Global("61FeyrWasKilled","GLOBAL",0)
+	!Exists("61feyr")
+THEN
+	RESPONSE #100
+		CreateCreature("61feyr",[3000.1400],2)
+		CreateCreature("61feyr",[2920.1000],6)
+END
+
+IF
+	GlobalGT("61VolcanoStatus","GLOBAL",0)
+THEN
+	RESPONSE #100
+		//ScreenShake(15,4,3)
+		ScreenShake([4.3],15)
+		Continue()
+END
+
+IF
+	GlobalGT("61VolcanoStatus","GLOBAL",0)
+	!GlobalTimerNotExpired("LocalEruptionTimer","MYAREA")
+	//See([ANYONE][0.0.10000.10000],0)
+	TriggerOverride("Volcano",See([ANYONE]))
+	//!InParty(LastMarkedObject)
+	!TriggerOverride("Volcano",InParty(LastSeenBy(Myself)))
+	//CheckStatLT(LastMarkedObject,100,RESISTFIRE)
+	TriggerOverride("Volcano",CheckStatLT(LastSeenBy(Myself),100,RESISTFIRE))
+THEN
+	RESPONSE #100
+		//ApplySpell(LastMarkedObject,2099)  // SPWI099.SPL (No such index)
+		ActionOverride("Volcano",ApplySpellRES("IWWI099",LastSeenBy(Myself)))
+		Continue()
+END
+
+IF
+	GlobalGT("61VolcanoStatus","GLOBAL",0)
+	!GlobalTimerNotExpired("LocalEruptionTimer","MYAREA")
+THEN
+	RESPONSE #100
+		//ScreenShake(75,40,30)
+		ScreenShake([40.30],75)
+		ApplySpellRES("IWWI099",Player1)  // SPWI099.SPL (No such index)
+		ApplySpellRES("IWWI099",Player2)  // SPWI099.SPL (No such index)
+		ApplySpellRES("IWWI099",Player3)  // SPWI099.SPL (No such index)
+		ApplySpellRES("IWWI099",Player4)  // SPWI099.SPL (No such index)
+		ApplySpellRES("IWWI099",Player5)  // SPWI099.SPL (No such index)
+		ApplySpellRES("IWWI099",Player6)  // SPWI099.SPL (No such index)
+		Continue()
+END
+
+IF
+	GlobalGT("61VolcanoStatus","GLOBAL",0)
+	GlobalTimerExpired("EruptionTimer","GLOBAL")
+THEN
+	RESPONSE #100
+		SetGlobal("61VolcanoStatus","GLOBAL",-1)
+		Continue()
+END
+
+IF
+	GlobalGT("61VolcanoStatus","GLOBAL",0)
+	//!AreaRestDisabled()
+	Global("AreaRestDisabled","MYAREA",0)
+THEN
+	RESPONSE #100
+		//Debug("DisableResting")
+		SetGlobal("AreaRestDisabled","MYAREA",1)
+		//AllowAreaResting(FALSE)
+		AddAreaFlag(NOREST)
+		Continue()
+END
+
+IF
+	Global("61VolcanoStatus","GLOBAL",-1)
+	//AreaRestDisabled()
+	!Global("AreaRestDisabled","MYAREA",0)
+THEN
+	RESPONSE #100
+		//Debug("EnableResting")
+		SetGlobal("AreaRestDisabled","MYAREA",0)
+		//AllowAreaResting(TRUE)
+		RemoveAreaFlag(NOREST)
+		Continue()
+END
+
+IF
+	GlobalGT("61VolcanoStatus","GLOBAL",0)
+	!GlobalTimerNotExpired("LocalEruptionTimer","MYAREA")
+THEN
+	RESPONSE #100
+		SetGlobalTimer("LocalEruptionTimer","MYAREA",7)
+		Continue()
+END
+
+IF
+	GlobalGT("61AbominationDied","GLOBAL",0)
+THEN
+	RESPONSE #100
+		IncrementGlobal("EncounterChance","MYAREA",-1)
+		Continue()
+END
+
+IF
+	GlobalGT("61AbominationDied","GLOBAL",0)
+	Global("6102Visited","MYAREA",1)
+	GlobalLT("EncounterChance","MYAREA",80)
+THEN
+	RESPONSE #100
+		//SetRestEncounterChance(60,80)
+		SetRestEncounterProbabilityDay(6)
+		SetRestEncounterProbabilityNight(8)
+		SetGlobal("6102Visited","MYAREA",2)
+		Continue()
+END
+
+IF
+	GlobalGT("61AbominationDied","GLOBAL",0)
+	Global("6102Visited","MYAREA",2)
+	GlobalLT("EncounterChance","MYAREA",60)
+THEN
+	RESPONSE #100
+		//SetRestEncounterChance(40,60)
+		SetRestEncounterProbabilityDay(4)
+		SetRestEncounterProbabilityNight(6)
+		SetGlobal("6102Visited","MYAREA",3)
+		Continue()
+END
+
+IF
+	GlobalGT("61AbominationDied","GLOBAL",0)
+	Global("6102Visited","MYAREA",3)
+	GlobalLT("EncounterChance","MYAREA",40)
+THEN
+	RESPONSE #100
+		//SetRestEncounterChance(20,40)
+		SetRestEncounterProbabilityDay(2)
+		SetRestEncounterProbabilityNight(4)
+		SetGlobal("6102Visited","MYAREA",4)
+		Continue()
+END
+
+IF
+	GlobalGT("61AbominationDied","GLOBAL",0)
+	Global("6102Visited","MYAREA",4)
+	GlobalLT("EncounterChance","MYAREA",20)
+THEN
+	RESPONSE #100
+		//SetRestEncounterChance(0,20)
+		SetRestEncounterProbabilityDay(0)
+		SetRestEncounterProbabilityNight(2)
+		SetGlobal("6102Visited","MYAREA",5)
+		Continue()
+END
+
+IF
+	GlobalGT("61AbominationDied","GLOBAL",0)
+	Global("6102Visited","MYAREA",5)
+	GlobalLT("EncounterChance","MYAREA",1)
+THEN
+	RESPONSE #100
+		//SetRestEncounterChance(0,0)
+		SetRestEncounterProbabilityDay(0)
+		SetRestEncounterProbabilityNight(0)
+		SetGlobal("6102Visited","MYAREA",6)
+		Continue()
+END
+
+IF
+	GlobalGT("61AbominationDied","GLOBAL",0)
+THEN
+	RESPONSE #100
+		IncrementGlobal("61AbominationDied","GLOBAL",-1)
+		Continue()
+END
+

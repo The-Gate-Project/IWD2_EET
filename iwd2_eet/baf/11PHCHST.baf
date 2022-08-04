@@ -1,0 +1,19 @@
+IF
+	Global("TEAM_1","MYAREA",0)
+	OR(3)
+		Unlocked(Myself)
+		Unlocked([PC])
+		Unlocked([ANYONE])
+THEN
+	RESPONSE #100
+		SetGlobal("TEAM_1","MYAREA",1)
+END
+
+IF
+	Global("TEAM_1","MYAREA",0)
+	Opened([PC])
+THEN
+	RESPONSE #100
+		SetGlobal("TEAM_1","MYAREA",1)
+END
+

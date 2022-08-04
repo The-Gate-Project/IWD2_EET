@@ -1,0 +1,20 @@
+IF
+	!GlobalTimerNotExpired("60TRFB04_TIMER","MYAREA")
+	OpenState("AR6051_Blades4",TRUE)
+THEN
+	RESPONSE #100
+		CloseDoor("AR6051_Blades4")
+		SetGlobalTimer("60TRFB04_TIMER","MYAREA",3)
+END
+
+IF
+	!GlobalTimerNotExpired("60TRFB04_TIMER","MYAREA")
+	Entered([PC])
+THEN
+	RESPONSE #100
+		OpenDoor("AR6051_Blades4")
+		ForceSpellRES("IWIN249",LastTrigger)  // SPIN249.SPL TRAP_FLOOR_BLADES
+		DisplayString(LastTrigger,14381)
+		SetGlobalTimer("60TRFB04_TIMER","MYAREA",3)
+END
+

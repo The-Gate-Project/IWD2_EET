@@ -1,0 +1,16 @@
+BEGIN ~10KEG~
+
+IF ~RandomNum(3,1)~ THEN BEGIN 0
+  SAY @18052
+  IF ~~ THEN EXIT
+END
+
+IF ~RandomNum(3,2)~ THEN BEGIN 1
+  SAY @28408
+  IF ~~ THEN EXIT
+END
+
+IF ~RandomNum(3,3)~ THEN BEGIN 2
+  SAY @28409
+  IF ~~ THEN EXIT
+END

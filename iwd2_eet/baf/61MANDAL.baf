@@ -1,0 +1,315 @@
+
+
+IF
+  Global("SaveSavedLoc","LOCALS",0)
+THEN
+  RESPONSE #100
+    SetGlobal("SaveSavedLoc","LOCALS",1)
+    SaveObjectLocation("LOCALS","SavedLoc",Myself)
+    ApplySpellRES("IWPERAI",Myself)
+    Continue()
+END
+
+IF
+	Global("TellStory","LOCALS",0)
+	See([PC])
+	Range([PC],25)
+	PartyHasItem("MYRLOCH")
+THEN
+	RESPONSE #100
+		SetGlobal("TellStory","LOCALS",-1)
+END
+
+IF
+	Global("TellStory","LOCALS",-1)
+THEN
+	RESPONSE #100
+		ClearAllActions()
+		//SetCreatureAreaFlag(Myself,INVULNERABLE,TRUE)
+		ApplySpellRES("IDINVUL",Myself)
+		ChangeEnemyAlly(Myself,NEUTRAL)
+		//SpellHitEffectSprite(Myself,Myself,RESURRECTION,0)
+		CreateVisualEffectObject("RESURRH",Myself)
+		XEquipItem("z0cipfnd",Myself,SLOT_RING_RIGHT,UNEQUIP)
+		DestroyItem("z0cipfnd")
+		//GiveItemCreate("z0citrn1",Myself,0,0,0)
+		CreateItem("z0citrn1",0,0,0)
+		Polymorph(THIEF_MALE_HUMAN)
+		XEquipItem("z0citrn1",Myself,SLOT_RING_RIGHT,EQUIP)
+		TakePartyItem("MYRLOCH")
+		EquipItem("MYRLOCH")
+		SetGlobal("TellStory","LOCALS",1)
+END
+
+IF
+	Global("TellStory","LOCALS",1)
+THEN
+	RESPONSE #100
+		ClearAllActions()
+		MultiPlayerSync()
+		StartCutSceneMode()
+		CutSceneId(Myself)
+		HideGUI()
+		MoveViewObject(Myself,VERY_FAST)
+		ActionOverride(Player1,JumpToObject("Mandal"))
+		ActionOverride(Player2,JumpToObject("Mandal"))
+		ActionOverride(Player3,JumpToObject("Mandal"))
+		ActionOverride(Player4,JumpToObject("Mandal"))
+		ActionOverride(Player5,JumpToObject("Mandal"))
+		ActionOverride(Player6,JumpToObject("Mandal"))
+		/*ApplySpell(Player1,WIZARD_INVISIBILITY)
+		ApplySpell(Player2,WIZARD_INVISIBILITY)
+		ApplySpell(Player3,WIZARD_INVISIBILITY)
+		ApplySpell(Player4,WIZARD_INVISIBILITY)
+		ApplySpell(Player5,WIZARD_INVISIBILITY)
+		ApplySpell(Player6,WIZARD_INVISIBILITY)*/
+		/*ActionOverride(Player1,ApplySpellRES("IDINVIS6",Myself))
+		ActionOverride(Player2,ApplySpellRES("IDINVIS6",Myself))
+		ActionOverride(Player3,ApplySpellRES("IDINVIS6",Myself))
+		ActionOverride(Player4,ApplySpellRES("IDINVIS6",Myself))
+		ActionOverride(Player5,ApplySpellRES("IDINVIS6",Myself))
+		ActionOverride(Player6,ApplySpellRES("IDINVIS6",Myself))*/
+		FaceObject(Player1)
+		DisplayStringHead(Myself,@35385)
+		Wait(5)
+		FaceObject(Player1)
+		DisplayStringHead(Myself,@35386)
+		Wait(5)
+		/*SpellHitEffectSprite(Myself,Myself,PRAYER,0)
+		SpellHitEffectSprite(Myself,Player1,PRAYER,0)
+		SpellHitEffectSprite(Myself,Player2,PRAYER,0)
+		SpellHitEffectSprite(Myself,Player3,PRAYER,0)
+		SpellHitEffectSprite(Myself,Player4,PRAYER,0)
+		SpellHitEffectSprite(Myself,Player5,PRAYER,0)
+		SpellHitEffectSprite(Myself,Player6,PRAYER,0)*/
+		CreateVisualEffectObject("PRAYERH",Myself)
+		CreateVisualEffectObject("PRAYERH",Player1)
+		CreateVisualEffectObject("PRAYERH",Player2)
+		CreateVisualEffectObject("PRAYERH",Player3)
+		CreateVisualEffectObject("PRAYERH",Player4)
+		CreateVisualEffectObject("PRAYERH",Player5)
+		CreateVisualEffectObject("PRAYERH",Player6)
+		Wait(1)
+		FadeToColor([0.0],0)
+		
+		ApplySpell(Player1,DISPEL_NO_SAVE)
+		ActionOverride(Player1,ApplySpellRES("IDINVS13",Myself)) /**/
+		
+		JumpToPoint([2920.2140])
+		ActionOverride(Player1,JumpToPoint([2950.2220])) //2920.2140
+		/*ActionOverride(Player2,JumpToPoint([2920.2140]))
+		ActionOverride(Player3,JumpToPoint([2920.2140]))
+		ActionOverride(Player4,JumpToPoint([2920.2140]))
+		ActionOverride(Player5,JumpToPoint([2920.2140]))
+		ActionOverride(Player6,JumpToPoint([2920.2140]))
+		ActionOverride(Player1,JumpToPoint([2920.2140]))
+		ActionOverride(Player2,JumpToPoint([2920.2140]))
+		ActionOverride(Player3,JumpToPoint([2920.2140]))
+		ActionOverride(Player4,JumpToPoint([2920.2140]))
+		ActionOverride(Player5,JumpToPoint([2920.2140]))
+		ActionOverride(Player6,JumpToPoint([2920.2140]))*/
+		MoveViewObject(Myself,INSTANT)
+		FadeFromColor([0.0],0)
+		FaceObject(Player1)
+		DisplayStringHead(Myself,@35387)
+		Wait(7)
+		FaceObject(Player1)
+		DisplayStringHead(Myself,@35386)
+		Wait(1)
+		/*SpellHitEffectSprite(Myself,Myself,PRAYER,0)
+		SpellHitEffectSprite(Myself,Player1,PRAYER,0)
+		SpellHitEffectSprite(Myself,Player2,PRAYER,0)
+		SpellHitEffectSprite(Myself,Player3,PRAYER,0)
+		SpellHitEffectSprite(Myself,Player4,PRAYER,0)
+		SpellHitEffectSprite(Myself,Player5,PRAYER,0)
+		SpellHitEffectSprite(Myself,Player6,PRAYER,0)*/
+		CreateVisualEffectObject("PRAYERH",Myself)
+		CreateVisualEffectObject("PRAYERH",Player1)
+		CreateVisualEffectObject("PRAYERH",Player2)
+		CreateVisualEffectObject("PRAYERH",Player3)
+		CreateVisualEffectObject("PRAYERH",Player4)
+		CreateVisualEffectObject("PRAYERH",Player5)
+		CreateVisualEffectObject("PRAYERH",Player6)
+		Wait(1)
+		FadeToColor([0.0],0)
+		JumpToPoint([1220.1980])
+		ActionOverride(Player1,JumpToPoint([1160.1945])) //1220.1980
+		/*ActionOverride(Player2,JumpToPoint([1220.1980]))
+		ActionOverride(Player3,JumpToPoint([1220.1980]))
+		ActionOverride(Player4,JumpToPoint([1220.1980]))
+		ActionOverride(Player5,JumpToPoint([1220.1980]))
+		ActionOverride(Player6,JumpToPoint([1220.1980]))
+		ActionOverride(Player1,JumpToPoint([1220.1980]))
+		ActionOverride(Player2,JumpToPoint([1220.1980]))
+		ActionOverride(Player3,JumpToPoint([1220.1980]))
+		ActionOverride(Player4,JumpToPoint([1220.1980]))
+		ActionOverride(Player5,JumpToPoint([1220.1980]))
+		ActionOverride(Player6,JumpToPoint([1220.1980]))*/
+		MoveViewObject(Myself,INSTANT)
+		FadeFromColor([0.0],0)
+		Wait(1)
+		ActionOverride(Player1,MoveToPoint([1590.2040])) //1570.2020
+		/*ActionOverride(Player2,MoveToPoint([1570.2020]))
+		ActionOverride(Player3,MoveToPoint([1570.2020]))
+		ActionOverride(Player4,MoveToPoint([1570.2020]))
+		ActionOverride(Player5,MoveToPoint([1570.2020]))
+		ActionOverride(Player6,MoveToPoint([1570.2020]))*/
+		MoveViewPoint([1570.2020],FAST)
+		MoveToPoint([1570.2020])
+		ClearActions(Player1)
+		ClearActions(Player2)
+		ClearActions(Player3)
+		ClearActions(Player4)
+		ClearActions(Player5)
+		ClearActions(Player6)
+		ActionOverride(Player1,MoveToPoint([1925.2070])) //1973.2056
+		/*ActionOverride(Player2,MoveToPoint([1973.2056]))
+		ActionOverride(Player3,MoveToPoint([1973.2056]))
+		ActionOverride(Player4,MoveToPoint([1973.2056]))
+		ActionOverride(Player5,MoveToPoint([1973.2056]))
+		ActionOverride(Player6,MoveToPoint([1973.2056]))*/
+		MoveViewPoint([1963.2056],FAST) //1973.2056
+		MoveToPoint([1963.2056]) //1973.2056
+		ClearActions(Player1)
+		ClearActions(Player2)
+		ClearActions(Player3)
+		ClearActions(Player4)
+		ClearActions(Player5)
+		ClearActions(Player6)
+		FaceObject(Player1)
+		DisplayStringHead(Myself,@35388)
+		Wait(6)
+		//DropInventoryEX("FakeRoot")
+		ActionOverride("FakeRoot",DropInventory())
+		Wait(6)
+		FaceObject(Player1)
+		DisplayStringHead(Myself,@35386)
+		Wait(1)
+		/*SpellHitEffectSprite(Myself,Myself,PRAYER,0)
+		SpellHitEffectSprite(Myself,Player1,PRAYER,0)
+		SpellHitEffectSprite(Myself,Player2,PRAYER,0)
+		SpellHitEffectSprite(Myself,Player3,PRAYER,0)
+		SpellHitEffectSprite(Myself,Player4,PRAYER,0)
+		SpellHitEffectSprite(Myself,Player5,PRAYER,0)
+		SpellHitEffectSprite(Myself,Player6,PRAYER,0)*/
+		CreateVisualEffectObject("PRAYERH",Myself)
+		CreateVisualEffectObject("PRAYERH",Player1)
+		CreateVisualEffectObject("PRAYERH",Player2)
+		CreateVisualEffectObject("PRAYERH",Player3)
+		CreateVisualEffectObject("PRAYERH",Player4)
+		CreateVisualEffectObject("PRAYERH",Player5)
+		CreateVisualEffectObject("PRAYERH",Player6)
+		Wait(1)
+		FadeToColor([0.0],0)
+		JumpToPoint([3550.1270])
+		Face(N)
+		ActionOverride(Player1,JumpToPoint([3550.1210])) //3550.1270
+		ActionOverride(Player1,FaceObject("Mandal"))
+		ActionOverride(Player2,JumpToPoint([3590.1220])) //3550.1270
+		ActionOverride(Player1,FaceObject("Mandal"))
+		ActionOverride(Player3,JumpToPoint([3510.1295])) //3550.1270
+		ActionOverride(Player1,FaceObject("Mandal"))
+		ActionOverride(Player4,JumpToPoint([3600.1290])) //3550.1270
+		ActionOverride(Player1,FaceObject("Mandal"))
+		ActionOverride(Player5,JumpToPoint([3510.1215])) //3550.1270
+		ActionOverride(Player1,FaceObject("Mandal"))
+		ActionOverride(Player6,JumpToPoint([3550.1315])) //3550.1270
+		ActionOverride(Player1,FaceObject("Mandal"))
+		//ActionOverride(Player1,JumpToPoint([3550.1270]))
+		//ActionOverride(Player2,JumpToPoint([3550.1270]))
+		//ActionOverride(Player3,JumpToPoint([3550.1270]))
+		//ActionOverride(Player4,JumpToPoint([3550.1270]))
+		//ActionOverride(Player5,JumpToPoint([3550.1270]))
+		//ActionOverride(Player6,JumpToPoint([3550.1270]))
+		ActionOverride(Player1,ApplySpellRES("IDINVS14",Myself)) /**/
+		/*ActionOverride(Player2,ApplySpellRES("IDINVIS7",Myself))
+		ActionOverride(Player3,ApplySpellRES("IDINVIS7",Myself))
+		ActionOverride(Player4,ApplySpellRES("IDINVIS7",Myself))
+		ActionOverride(Player5,ApplySpellRES("IDINVIS7",Myself))
+		ActionOverride(Player6,ApplySpellRES("IDINVIS7",Myself))*/
+		MoveViewObject(Myself,INSTANT)
+		FadeFromColor([0.0],0)
+		FaceObject(Player1)
+		DisplayStringHead(Myself,@35389)
+		Wait(7)
+		FaceObject(Player1)
+		DisplayStringHead(Myself,@35390)
+		Wait(7)
+		FaceObject(Player1)
+		DisplayStringHead(Myself,@35385)
+		Wait(5)
+		ActionOverride("FakeRoot",DestroySelf())
+		//SpellHitEffectSprite(Myself,Myself,DEATH_SPELL,0)
+		CreateVisualEffectObject("DSPELLH",Myself)
+		//SetCriticalPathObject(Myself,FALSE)
+		ApplySpellRES("IWCPREM",Myself)
+		ClearActions(Player1)
+		ClearActions(Player2)
+		ClearActions(Player3)
+		ClearActions(Player4)
+		ClearActions(Player5)
+		ClearActions(Player6)
+		UnhideGUI()
+		EndCutSceneMode()
+		DestroySelf()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See([GOODCUTOFF])
+THEN
+	RESPONSE #100
+		//EquipWeapon()
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	//Global("RW_61MANDAL0","LOCALS",0)
+	!NearSavedLocation(Myself,"LOCALSSavedLoc",30)
+THEN
+	RESPONSE #100
+		MoveToSavedLocation("SavedLoc","LOCALS")
+END
+
+IF
+	Global("RW_61MANDAL0","LOCALS",0)
+	!NearSavedLocation(Myself,"LOCALSSavedLoc",5)
+THEN
+	RESPONSE #100
+		SetGlobal("RW_61MANDAL0","LOCALS",1)
+		Continue()
+END
+
+IF
+	!Global("RW_61MANDAL0","LOCALS",0)
+	NearSavedLocation(Myself,"LOCALSSavedLoc",5)
+THEN
+	RESPONSE #100
+		SetGlobal("RW_61MANDAL0","LOCALS",0)
+		NoAction()
+END
+
+IF
+	!Global("RW_61MANDAL0","LOCALS",0)
+THEN
+	RESPONSE #100
+		MoveToOffset([-2.-2])
+	RESPONSE #100
+		MoveToOffset([2.-2])
+	RESPONSE #100
+		MoveToOffset([-2.2])
+	RESPONSE #100
+		MoveToOffset([2.2])
+	RESPONSE #100
+		MoveToSavedLocation("SavedLoc","LOCALS")
+END
+
+IF
+	!GlobalTimerNotExpired("IwTimer22","LOCALS")
+	Global("RW_61MANDAL0","LOCALS",0)
+THEN
+	RESPONSE #100
+		RandomWalk()
+		SetGlobalTimer("IwTimer22","LOCALS",5)
+END
+

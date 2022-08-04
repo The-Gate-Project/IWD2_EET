@@ -1,0 +1,31 @@
+IF
+	Entered([PC])
+	CheckStatLT(LastTrigger,113,STEALTH) //MOVESILENTLY
+	See(LastTrigger)
+THEN
+	RESPONSE #100
+		Shout(106)
+		SetGlobal("LastShout","MYAREA",106)
+		DisplayString(Myself,@35588)
+		IncrementGlobal("YuantiCallForHelp","MYAREA",1)
+		//StartTimer(102,7)
+		SetGlobalTimer("IwTimer102","MYAREA",7)
+		SetGlobal("TEAM_7","MYAREA",1)
+		//StartTimer(101,300)
+		SetGlobalTimer("IwTimer101","MYAREA",300)
+		Continue()
+END
+
+IF
+	Entered([PC])
+	CheckStatLT(LastTrigger,113,STEALTH) //MOVESILENTLY
+	!See(LastTrigger)
+THEN
+	RESPONSE #100
+		Shout(109)
+		SetGlobal("LastShout","MYAREA",109)
+		DisplayString(Myself,@35592)
+		//StartTimer(102,7)
+		SetGlobalTimer("IwTimer102","MYAREA",7)
+END
+

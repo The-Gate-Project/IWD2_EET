@@ -1,0 +1,94 @@
+IF
+  Global("SaveSavedLoc","LOCALS",0)
+THEN
+  RESPONSE #100
+    SetGlobal("SaveSavedLoc","LOCALS",1)
+    SaveObjectLocation("LOCALS","SavedLoc",Myself)
+    Continue()
+END
+
+IF
+	!GlobalTimerNotExpired("IwTimer18","LOCALS")
+	Global("Goblins_Attack_Palisade","GLOBAL",0)
+	OR(2)
+		!Global("KEEP_TRAINING","GLOBAL",0)
+		!Dead("TRAINING_KEG")
+	NearSavedLocation(Myself,"LOCALSSavedLoc",1)
+THEN
+	RESPONSE #25
+		DisplayStringHead(Myself,@16325)
+		SetGlobalTimerRandom("IwTimer18","LOCALS",5,10)
+		Continue()
+	RESPONSE #25
+		DisplayStringHead(Myself,@16326)
+		SetGlobalTimerRandom("IwTimer18","LOCALS",5,10)
+		Continue()
+	RESPONSE #25
+		DisplayStringHead(Myself,@16328)
+		SetGlobalTimerRandom("IwTimer18","LOCALS",5,10)
+		Continue()
+	RESPONSE #25
+		DisplayStringHead(Myself,@16329)
+		SetGlobalTimerRandom("IwTimer18","LOCALS",5,10)
+		Continue()
+	RESPONSE #300
+		FaceObject("TRAINING_KEG")
+		Continue()
+END
+
+IF
+	!GlobalTimerNotExpired("IwTimer18","LOCALS")
+	Global("Goblins_Attack_Palisade","GLOBAL",0)
+	Global("KEEP_TRAINING","GLOBAL",0)
+	Dead("TRAINING_KEG")
+	NearSavedLocation(Myself,"LOCALSSavedLoc",1)
+THEN
+	RESPONSE #25
+		DisplayStringHead(Myself,@16330)
+		SetGlobalTimerRandom("IwTimer18","LOCALS",1,15)
+		Continue()
+	RESPONSE #25
+		DisplayStringHead(Myself,@16331)
+		SetGlobalTimerRandom("IwTimer18","LOCALS",1,15)
+		Continue()
+	RESPONSE #25
+		DisplayStringHead(Myself,@16332)
+		SetGlobalTimerRandom("IwTimer18","LOCALS",1,15)
+		Continue()
+	RESPONSE #225
+		RandomTurn()
+		Continue()
+END
+
+IF
+	!GlobalTimerNotExpired("IwTimer19","LOCALS")
+	!NearSavedLocation(Myself,"LOCALSSavedLoc",1)
+THEN
+	RESPONSE #100
+		MoveToSavedLocation("SavedLoc","LOCALS")
+		SetGlobalTimer("IwTimer19","LOCALS",5)
+END
+
+/*IF
+	!GlobalTimerNotExpired("IwTimer19","LOCALS")
+	NearSavedLocation(Myself,"LOCALSSavedLoc",1)
+THEN
+	RESPONSE #100
+		RandomTurn()
+		SetGlobalTimer("IwTimer19","LOCALS",5)
+END*/
+
+IF
+	Global("Goblins_Attack_Palisade","GLOBAL",0)
+	Global("Goblin_Palisade_Quest","GLOBAL",0)
+	OR(2)
+		!Global("KEEP_TRAINING","GLOBAL",0)
+		!Dead("TRAINING_KEG")
+	NearSavedLocation(Myself,"LOCALSSavedLoc",1)
+THEN
+	RESPONSE #100
+		FaceObject("TRAINING_KEG")
+		SetSequence(SEQ_ATTACK)
+		WaitRandom(3,5)
+END
+

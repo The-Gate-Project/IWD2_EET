@@ -1,0 +1,106 @@
+IF
+  Global("SaveSavedLoc","LOCALS",0)
+THEN
+  RESPONSE #100
+    SetGlobal("SaveSavedLoc","LOCALS",1)
+    SaveObjectLocation("LOCALS","SavedLoc",Myself)
+    Continue()
+END
+
+IF
+	Die()
+THEN
+	RESPONSE #100
+		ChangeSpecifics(Myself,0)
+END
+
+IF
+	!Global("20ORCBM0_INACTIVE","LOCALS",1)
+	Global("SBOT_SpottedParty","LOCALS",0)
+	OR(2)
+		See(NearestEnemyOf(Myself))
+		Heard([ENEMY],1)
+THEN
+	RESPONSE #100
+		SetGlobal("SBOT_SpottedParty","LOCALS",1)
+		ChangeSpecifics(Myself,ORC_RUNNER)
+		Shout(1)
+END
+
+IF
+	!Global("20ORCBM0_INACTIVE","LOCALS",1)
+	Global("SBOT_DropBarrel","LOCALS",0)
+	Heard([ENEMY],1)
+	Range(LastHeardBy(Myself),4)
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		SetGlobal("SBOT_DropBarrel","LOCALS",1)
+		//AddFeat(Myself,DASH)
+		ApplySpellRES("IWDASH",Myself)
+		MoveToObject(LastSeenBy(Myself))
+END
+
+IF
+	!Global("20ORCBM0_INACTIVE","LOCALS",1)
+	Global("SBOT_DropBarrel","LOCALS",1)
+	See(NearestEnemyOf(Myself))
+	!Range(LastSeenBy(Myself),4)
+THEN
+	RESPONSE #100
+		MoveToObject(LastSeenBy(Myself))
+END
+
+IF
+	!Global("20ORCBM0_INACTIVE","LOCALS",1)
+	Global("SBOT_DropBarrel","LOCALS",1)
+	OR(2)
+		CheckSpellState(Myself,ENTANGLE)
+		Range([PC],2)
+THEN
+	RESPONSE #100
+		SetGlobal("SBOT_DropBarrel","LOCALS",2)
+		CreateCreature("DynoKeg",[-1.-1],0)
+		Shout(2)
+		ActionOverride("DynoKeg",ChangeAIScript("20ORCBK0",RACE))
+		ChangeSpecifics("DynoKeg",200)
+		DisplayStringHead(Myself,@35377)
+		MoveToSavedLocation("SavedLoc","LOCALS")
+		RunAwayFrom([PC],90)
+	RESPONSE #100
+		SetGlobal("SBOT_DropBarrel","LOCALS",2)
+		CreateCreature("DynoKeg",[-1.-1],0)
+		Shout(2)
+		ActionOverride("DynoKeg",ChangeAIScript("20ORCBK0",RACE))
+		ChangeSpecifics("DynoKeg",200)
+		DisplayStringHead(Myself,@35377)
+		MoveToSavedLocation("SavedLoc","LOCALS")
+		RunAwayFrom([PC],90)
+END
+
+IF
+	!Global("20ORCBM0_INACTIVE","LOCALS",1)
+	Global("SBOT_DropBarrel","LOCALS",2)
+	OR(2)
+		See([ENEMY.MONSTER.KEG.0.200])
+		See([ENEMY.MONSTER.KEG.0.NORMAL])
+THEN
+	RESPONSE #100
+		RunAwayFrom([PC],90)
+END
+
+IF
+	!Global("20ORCBM0_INACTIVE","LOCALS",1)
+	AttackedBy([ANYONE],DEFAULT)
+THEN
+	RESPONSE #100
+		SetGlobal("20ORCBM0_INACTIVE","LOCALS",1)
+END
+
+IF
+	!Global("20ORCBM0_INACTIVE","LOCALS",1)
+	True()
+THEN
+	RESPONSE #100
+END
+

@@ -1,0 +1,9 @@
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("OrmisDohorLemur")
+		Activate("OrmisDohor")
+		ActionOverride("OrmisDohor",SetGlobal("IwIHidden","LOCALS",0))
+		StartCutScene("67cOrmi0")
+END

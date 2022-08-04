@@ -1,0 +1,11 @@
+IF
+	!GlobalTimerNotExpired("IwTimer18","LOCALS")
+	Global("Goblins_Attack_Palisade","GLOBAL",0)
+THEN
+	RESPONSE #25
+		DisplayStringHead(Myself,@3103)
+		SetGlobalTimer("IwTimer18","LOCALS",30)
+	RESPONSE #75
+		SetGlobalTimer("IwTimer18","LOCALS",30)
+END
+

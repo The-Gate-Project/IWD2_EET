@@ -1,0 +1,91 @@
+IF
+	!Global("61PALARM_INACTIVE","MYAREA",1)
+	Clicked([ANYONE])
+	Global("NheeroSpeakToPlayer","MYAREA",0)
+THEN
+	RESPONSE #100
+		SetGlobal("NheeroSpeakToPlayer","MYAREA",1)
+		Continue()
+END
+
+IF
+	!Global("61PALARM_INACTIVE","MYAREA",1)
+	Disarmed([ANYONE])
+THEN
+	RESPONSE #100
+		SetGlobal("61PrisonAlarmRang","GLOBAL",-1)
+		Continue()
+END
+
+IF
+	!Global("61PALARM_INACTIVE","MYAREA",1)
+	Global("61PrisonAlarmRang","GLOBAL",0)
+	OR(2)
+		OpenState(Myself,TRUE)
+		DisarmFailed([ANYONE])
+THEN
+	RESPONSE #100
+		PlaySound("IW5202k")
+		//DisplayMessage(34926)
+		DisplayStringPointLog([2812.1995],@34926)
+		SetGlobal("TEAM_2","MYAREA",1)
+		//HideCreature("0101_PurebloodThief_07",FALSE)
+		Activate("0101_PurebloodThief_07")
+		ActionOverride("0101_PurebloodThief_07",SetGlobal("IwIHidden","LOCALS",0))
+		//HideCreature("0101_LizardMan_08",FALSE)
+		Activate("0101_LizardMan_08")
+		ActionOverride("0101_LizardMan_08",SetGlobal("IwIHidden","LOCALS",0))
+		//HideCreature("0101_EliteLizardman_09",FALSE)
+		Activate("0101_EliteLizardman_09")
+		ActionOverride("0101_EliteLizardman_09",SetGlobal("IwIHidden","LOCALS",0))
+		//HideCreature("0101_EliteLizardman_10",FALSE)
+		Activate("0101_EliteLizardman_10")
+		ActionOverride("0101_EliteLizardman_10",SetGlobal("IwIHidden","LOCALS",0))
+		//HideCreature("0101_EliteLizardman_11",FALSE)
+		Activate("0101_EliteLizardman_11")
+		ActionOverride("0101_EliteLizardman_11",SetGlobal("IwIHidden","LOCALS",0))
+		//HideCreature("0101_LizardShaman_12",FALSE)
+		Activate("0101_LizardShaman_12")
+		ActionOverride("0101_LizardShaman_12",SetGlobal("IwIHidden","LOCALS",0))
+		//HideCreature("0107_LizardWarrior_19",FALSE)
+		Activate("0107_LizardWarrior_19")
+		ActionOverride("0107_LizardWarrior_19",SetGlobal("IwIHidden","LOCALS",0))
+		//HideCreature("0107_LizardShaman_04",FALSE)
+		Activate("0107_LizardShaman_04")
+		ActionOverride("0107_LizardShaman_04",SetGlobal("IwIHidden","LOCALS",0))
+		//HideCreature("0107_PurebloodFighter_33",FALSE)
+		Activate("0107_PurebloodFighter_33")
+		ActionOverride("0107_PurebloodFighter_33",SetGlobal("IwIHidden","LOCALS",0))
+		SetGlobal("61PrisonAlarmRang","GLOBAL",1)
+		Continue()
+END
+
+IF
+	!Global("61PALARM_INACTIVE","MYAREA",1)
+	OpenState(Myself,TRUE)
+	!Global("61PrisonAlarmRang","GLOBAL",2)
+THEN
+	RESPONSE #100
+		SoundActivate("prisoners",FALSE)
+		//HideCreature("05_TrollPrisoner",FALSE)
+		Activate("05_TrollPrisoner")
+		ActionOverride("05_TrollPrisoner",SetGlobal("IwIHidden","LOCALS",0))
+		//HideCreature("05_WizardPrisoner",FALSE)
+		Activate("05_WizardPrisoner")
+		ActionOverride("05_WizardPrisoner",SetGlobal("IwIHidden","LOCALS",0))
+		//HideCreature("04_DumbPrisoner_03",FALSE)
+		Activate("04_DumbPrisoner_03")
+		ActionOverride("04_DumbPrisoner_03",SetGlobal("IwIHidden","LOCALS",0))
+		//HideCreature("04_SmartPrisoner_04",FALSE)
+		Activate("04_SmartPrisoner_04")
+		ActionOverride("04_SmartPrisoner_04",SetGlobal("IwIHidden","LOCALS",0))
+		//HideCreature("04_FemalePrisoner_07",FALSE)
+		Activate("04_FemalePrisoner_07")
+		ActionOverride("04_FemalePrisoner_07",SetGlobal("IwIHidden","LOCALS",0))
+		//SetCreatureAreaFlag("05_TrollPrisoner",IGNORE_RETURN_TO_START_POS,TRUE)
+		//SetCreatureAreaFlag("05_WizardPrisoner",IGNORE_RETURN_TO_START_POS,TRUE)
+		SetGlobal("61PrisonAlarmRang","GLOBAL",2)
+		//ChangeCurrentScript("")
+		SetGlobal("61PALARM_INACTIVE","MYAREA",1)
+END
+

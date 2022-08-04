@@ -1,0 +1,26 @@
+IF
+	Global("SH_Make_Sleep_Ptn","GLOBAL",1)
+	Contains("z6gentb",Myself)
+	Contains("z6genba",Myself)
+	Contains("z6genva",Myself)
+THEN
+	RESPONSE #100
+		DestroyItem("z6gentb")
+		DestroyItem("z6genba")
+		DestroyItem("z6genva")
+		CreateItem("z6gensp",1,0,0)
+END
+
+IF
+	Global("SH_Make_Poison_Ptn","GLOBAL",1)
+	Contains("z6gendb",Myself)
+	Contains("z6genba",Myself)
+	Contains("z6genva",Myself)
+THEN
+	RESPONSE #100
+		DestroyItem("z6gendb")
+		DestroyItem("z6genba")
+		DestroyItem("z6genva")
+		CreateItem("z6genlp",1,0,0)
+END
+

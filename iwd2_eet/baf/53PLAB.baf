@@ -1,0 +1,61 @@
+IF
+	Clicked([ANYONE])
+	InPartySlot(LastTrigger,0)
+THEN
+	RESPONSE #100
+		//ActionOverride("53Lab",SetDialogueRange(300))
+		ActionOverride("53Lab",StartDialogNoSet(Player1))
+END
+
+IF
+	Clicked([ANYONE])
+	InPartySlot(LastTrigger,1)
+THEN
+	RESPONSE #100
+		//ActionOverride("53Lab",SetDialogueRange(300))
+		ActionOverride("53Lab",StartDialogNoSet(Player2))
+END
+
+IF
+	Clicked([ANYONE])
+	InPartySlot(LastTrigger,2)
+THEN
+	RESPONSE #100
+		//ActionOverride("53Lab",SetDialogueRange(300))
+		ActionOverride("53Lab",StartDialogNoSet(Player3))
+END
+
+IF
+	Clicked([ANYONE])
+	InPartySlot(LastTrigger,3)
+THEN
+	RESPONSE #100
+		//ActionOverride("53Lab",SetDialogueRange(300))
+		ActionOverride("53Lab",StartDialogNoSet(Player4))
+END
+
+IF
+	Clicked([ANYONE])
+	InPartySlot(LastTrigger,4)
+THEN
+	RESPONSE #100
+		//ActionOverride("53Lab",SetDialogueRange(300))
+		ActionOverride("53Lab",StartDialogNoSet(Player5))
+END
+
+IF
+	Clicked([ANYONE])
+	InPartySlot(LastTrigger,5)
+THEN
+	RESPONSE #100
+		//ActionOverride("53Lab",SetDialogueRange(300))
+		ActionOverride("53Lab",StartDialogNoSet(Player6))
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		NoAction()
+END
+

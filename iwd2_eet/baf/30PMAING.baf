@@ -1,0 +1,26 @@
+IF
+	OR(2)
+		Opened([PC])
+		Opened([ANYONE])
+THEN
+	RESPONSE #100
+		SetGlobal("AR3000_Door1_MainGate","GLOBAL",1)
+END
+
+IF
+	OpenState(Myself,FALSE)
+	!Global("AR3000_Door1_MainGate","GLOBAL",0)
+THEN
+	RESPONSE #100
+		Unlock(Myself)
+		OpenDoor(Myself)
+END
+
+IF
+	Global("AR3000_Door1_MainGate","GLOBAL",0)
+	Clicked([ANYONE])
+THEN
+	RESPONSE #100
+		DisplayString(LastTrigger,@16093)  // √лавные ворота крепости заперты. „тобы открыть их, понадобитс€ таран или другое осадное орудие.
+END
+

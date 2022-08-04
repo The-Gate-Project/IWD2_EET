@@ -1,0 +1,51 @@
+IF
+	StateCheck(Myself,STATE_PANIC)
+THEN
+	RESPONSE #100
+		RandomWalkContinuous()
+END
+
+IF
+	Global("Wode_Float_Help_Message","IW5300",1)
+	See(LastAttackerOf("Wode_the_Guileful"))
+THEN
+	RESPONSE #100
+		EquipMostDamagingMelee()
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+  Global("SaveSavedLoc","LOCALS",0)
+THEN
+  RESPONSE #100
+    SetGlobal("SaveSavedLoc","LOCALS",1)
+    SaveObjectLocation("LOCALS","SavedLoc",Myself)
+    Continue()
+END
+
+IF
+	!Allegiance(Myself,ENEMY)
+	AttackedBy([ENEMY.0.DRIDER],DEFAULT)
+THEN
+	RESPONSE #100
+		AttackOneRound(LastAttackerOf(Myself))
+END
+
+IF
+	!Allegiance(Myself,ENEMY)
+	See([ENEMY.0.DRIDER])
+THEN
+	RESPONSE #100
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	ActionListEmpty()
+	!GlobalTimerNotExpired("TinerSavedLoc","LOCALS")
+	!NearSavedLocation(Myself,"LOCALSSavedLoc",8)
+THEN
+	RESPONSE #100
+		SetGlobal("TinerSavedLoc","LOCALS",30)
+		MoveToSavedLocation("SavedLoc","LOCALS")
+END
+

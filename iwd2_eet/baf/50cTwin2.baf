@@ -1,0 +1,34 @@
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("ISAIR")
+		FaceObject([PC])
+		//SpellHitEffectSprite(Myself,Myself,DIMENSION_DOOR_DESTINATION,0)
+		CreateVisualEffectObject("SPDIMNDR",Myself)
+		//HideCreature(Myself,FALSE)
+		ApplySpellRES("idinvis5",Myself)
+		StartCutScene("50cTwin4")
+		//SetDialogueRange(300)
+		Wait(2)
+		UnhideGUI()
+		
+		Wait(3)
+		
+		MultiPlayerSync()
+		//Dialogue(Protagonist)
+		StartDialogNoSet(Player1)
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("MADAE")
+		FaceObject([PC])
+		//SpellHitEffectSprite(Myself,Myself,DIMENSION_DOOR_DESTINATION,0)
+		CreateVisualEffectObject("SPDIMNDR",Myself)
+		//HideCreature(Myself,FALSE)
+		ApplySpellRES("idinvis5",Myself)
+END
+

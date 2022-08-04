@@ -1,0 +1,24 @@
+IF
+	Global("Unhide_Pudu","GLOBAL",1)
+THEN
+	RESPONSE #100
+		DestroySelf()
+END
+
+IF
+	!GlobalTimerNotExpired("IwTimer21","LOCALS")
+	!Allegiance(Myself,ENEMY)
+THEN
+	RESPONSE #59
+		DisplayStringHead(Myself,@33404)
+		SetGlobalTimerRandom("IwTimer21","LOCALS",5,10)
+		Continue()
+	RESPONSE #59
+		DisplayStringHead(Myself,@33405)
+		SetGlobalTimerRandom("IwTimer21","LOCALS",5,10)
+		Continue()
+	RESPONSE #82
+		SetGlobalTimerRandom("IwTimer21","LOCALS",5,10)
+		Continue()
+END
+

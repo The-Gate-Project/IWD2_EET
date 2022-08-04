@@ -1,0 +1,340 @@
+IF
+	Global("RemoveNote1","MYAREA",0)
+	Dead("Elder_Brain")
+THEN
+	RESPONSE #100
+		SetGlobal("RemoveNote1","MYAREA",1)
+		RemoveMapNote([2000.1468],@7844)
+		Continue()
+END
+
+IF
+	!Global("Sounds_Variable","MYAREA",1)
+THEN
+	RESPONSE #100
+		SetGlobal("Elder_Brain_Loop","MYAREA",2)
+		SetGlobal("Elder_Brain_Wiggle","MYAREA",1)
+		SetGlobal("Sounds_Variable","MYAREA",1)
+		Continue()
+END
+
+IF
+	Global("MindHack","MYAREA",0)
+THEN
+	RESPONSE #100
+		SetGlobal("MindHack","MYAREA",1)
+		//SetCreatureAreaFlag("Abdoshanheth",IGNORE_AI_INHIBIT,TRUE)
+		//SetCreatureAreaFlag("Zephulp_Maress",IGNORE_AI_INHIBIT,TRUE)
+		//SetCreatureAreaFlag("Oolay",IGNORE_AI_INHIBIT,TRUE)
+		//SetCreatureAreaFlag("Galoombethshe",IGNORE_AI_INHIBIT,TRUE)
+		//SetCreatureAreaFlag("Ecktarrilsenularr",IGNORE_AI_INHIBIT,TRUE)
+		ActionOverride("Abdoshanheth",ApplySpellRES("IWPERAI",Myself))
+		ActionOverride("ZephulpMaress",ApplySpellRES("IWPERAI",Myself))
+		ActionOverride("Oolay",ApplySpellRES("IWPERAI",Myself))
+		ActionOverride("Galoombethshe",ApplySpellRES("IWPERAI",Myself))
+		ActionOverride("Ecktarrilsenularr",ApplySpellRES("IWPERAI",Myself))
+		Continue()
+END
+
+IF
+	Global("ElderBrain_Sequence","MYAREA",0)
+	HPPercentLT("Elder_Brain",50)
+	!Dead("Elder_Brain")
+THEN
+	RESPONSE #100
+		SetGlobal("ElderBrain_Sequence","MYAREA",1)
+		StaticSequence("5302MS1",SEQ_AWAKE)
+		StaticSequence("5302MS3",SEQ_AWAKE)
+		SetGlobal("5302MS1_SEQ","MYAREA",1)
+		SetGlobal("5302MS3_SEQ","MYAREA",1)
+		//Deactivate("Elder_Brain_Loop")
+		SoundActivate("Elder_Brain_Loop",FALSE)
+		//Activate("Elder_Brain_Wiggle")
+		SoundActivate("Elder_Brain_Wiggle",TRUE)
+		
+		SetGlobal("Elder_Brain_Loop","MYAREA",1)
+		SetGlobal("Elder_Brain_Wiggle","MYAREA",2)
+		
+		PlaySound("IW5302e")
+END
+
+IF
+	!Global("ElderBrain_Sequence","MYAREA",2)
+	Dead("Elder_Brain")
+THEN
+	RESPONSE #100
+		SetGlobal("ElderBrain_Sequence","MYAREA",2)
+		//Deactivate("Elder_Brain_Wiggle")
+		SoundActivate("Elder_Brain_Wiggle",FALSE)
+		SetGlobal("Elder_Brain_Wiggle","MYAREA",1)
+		PlaySound("IW5302e")
+		StaticSequence("5302MS1",SEQ_CAST)
+		StaticSequence("5302MS3",SEQ_CAST)
+		SetGlobal("5302MS1_SEQ","MYAREA",2)
+		SetGlobal("5302MS3_SEQ","MYAREA",2)
+		ActionOverride("Abdoshanheth",ApplySpell("Abdoshanheth",WIZARD_POWER_WORD_STUN))
+		ActionOverride("Abdoshanheth",ApplySpell("ZephulpMaress",WIZARD_POWER_WORD_STUN))
+		ActionOverride("Abdoshanheth",ApplySpell("Oolay",WIZARD_POWER_WORD_STUN))
+		ActionOverride("Abdoshanheth",ApplySpell("Galoombethshe",WIZARD_POWER_WORD_STUN))
+		ActionOverride("Abdoshanheth",ApplySpell("Ecktarrilsenularr",WIZARD_POWER_WORD_STUN))
+END
+
+IF
+	Global("ElderBrain_Sequence","MYAREA",1)
+	OR(4)
+		//!Sequence("5302MS1",SEQ_AWAKE)
+		//!Sequence("5302MS3",SEQ_AWAKE)
+		!Global("5302MS1_SEQ","MYAREA",1)
+		!Global("5302MS3_SEQ","MYAREA",1)
+		//IsActive("Elder_Brain_Loop")
+		//!IsActive("Elder_Brain_Wiggle")
+		Global("Elder_Brain_Loop","MYAREA",2)
+		!Global("Elder_Brain_Wiggle","MYAREA",2)
+THEN
+	RESPONSE #100
+		StaticSequence("5302MS1",SEQ_AWAKE)
+		StaticSequence("5302MS3",SEQ_AWAKE)
+		SetGlobal("5302MS1_SEQ","MYAREA",1)
+		SetGlobal("5302MS3_SEQ","MYAREA",1)
+		//Deactivate("Elder_Brain_Loop")
+		SoundActivate("Elder_Brain_Loop",FALSE)
+		//Activate("Elder_Brain_Wiggle")
+		SoundActivate("Elder_Brain_Wiggle",TRUE)
+		
+		SetGlobal("Elder_Brain_Loop","MYAREA",1)
+		SetGlobal("Elder_Brain_Wiggle","MYAREA",2)
+		
+		Continue()
+END
+
+IF
+	Global("ElderBrain_Sequence","MYAREA",2)
+	OR(4)
+		//!Sequence("5302MS1",SEQ_CAST)
+		//!Sequence("5302MS3",SEQ_CAST)
+		!Global("5302MS1_SEQ","MYAREA",2)
+		!Global("5302MS3_SEQ","MYAREA",2)
+		//IsActive("Elder_Brain_Loop")
+		//IsActive("Elder_Brain_Wiggle")
+		Global("Elder_Brain_Loop","MYAREA",2)
+		Global("Elder_Brain_Wiggle","MYAREA",2)
+THEN
+	RESPONSE #100
+		StaticSequence("5302MS1",SEQ_CAST)
+		StaticSequence("5302MS3",SEQ_CAST)
+		SetGlobal("5302MS1_SEQ","MYAREA",2)
+		SetGlobal("5302MS3_SEQ","MYAREA",2)
+		//Deactivate("Elder_Brain_Loop")
+		SoundActivate("Elder_Brain_Loop",FALSE)
+		//Deactivate("Elder_Brain_Wiggle")
+		SoundActivate("Elder_Brain_Wiggle",FALSE)
+		
+		SetGlobal("Elder_Brain_Loop","MYAREA",1)
+		SetGlobal("Elder_Brain_Wiggle","MYAREA",1)
+		
+		Continue()
+END
+
+IF
+	Global("Unlock_Exits","MYAREA",0)
+	OR(2)
+		!Global("SPRITE_IS_DEADElder_Brain","GLOBAL",0)
+		Global("53ElderB_Permission","GLOBAL",1)
+THEN
+	RESPONSE #100
+		SetGlobal("Unlock_Exits","MYAREA",1)
+		Unlock("AR5302_Door1")
+		Unlock("AR5302_Door2")
+		DisplayStringNoName(Player1,@36871) //[PC]
+		Continue()
+END
+
+IF
+	Global("Disarm_LG1","MYAREA",0)
+	OR(3) //2
+		!HPGT("Lightning_Gens1",0)
+		//!CheckDoorFlags("LightningGeneratorDisarm1",DOORLOCKED)
+		TriggerOverride("LightningGeneratorDisarm1",Opened([ANYONE]))
+		TriggerOverride("LightningGeneratorDisarm1",Unlocked([ANYONE]))
+THEN
+	RESPONSE #100
+		SetGlobal("Disarm_LG1","MYAREA",1)
+		Continue()
+END
+
+IF
+	Global("Disarm_LG1","MYAREA",1)
+	//IsActive("5302MS2_1")
+	!Global("5302MS2_1_ACT","MYAREA",1)
+THEN
+	RESPONSE #100
+		AddXPWorthOnce("Lightning_Gens1",TRUE)
+		ActionOverride("Lightning_Gens1",DestroySelf())
+		//AddExperiencePartyCR(4)
+		//Unlock("5302MS2_1")
+		SetGlobal("5302MS2_1_ACT","MYAREA",1)
+		AmbientActivate("5302MS2_1",FALSE)
+		Continue()
+END
+
+IF
+	Global("Disarm_LG2","MYAREA",0)
+	OR(3) //2
+		!HPGT("Lightning_Gens2",0)
+		//!CheckDoorFlags("LightningGeneratorDisarm2",DOORLOCKED)
+		TriggerOverride("LightningGeneratorDisarm2",Opened([ANYONE]))
+		TriggerOverride("LightningGeneratorDisarm2",Unlocked([ANYONE]))
+THEN
+	RESPONSE #100
+		SetGlobal("Disarm_LG2","MYAREA",1)
+		Continue()
+END
+
+IF
+	Global("Disarm_LG2","MYAREA",1)
+	//IsActive("5302MS2_2")
+	!Global("5302MS2_2_ACT","MYAREA",1)
+THEN
+	RESPONSE #100
+		AddXPWorthOnce("Lightning_Gens2",TRUE)
+		ActionOverride("Lightning_Gens2",DestroySelf())
+		//AddExperiencePartyCR(4)
+		//Unlock("5302MS2_2")
+		SetGlobal("5302MS2_2_ACT","MYAREA",1)
+		AmbientActivate("5302MS2_2",FALSE)
+		Continue()
+END
+
+IF
+	Global("Disarm_LG3","MYAREA",0)
+	OR(3) //2
+		!HPGT("Lightning_Gens3",0)
+		//!CheckDoorFlags("LightningGeneratorDisarm3",DOORLOCKED)
+		TriggerOverride("LightningGeneratorDisarm3",Opened([ANYONE]))
+		TriggerOverride("LightningGeneratorDisarm3",Unlocked([ANYONE]))
+THEN
+	RESPONSE #100
+		SetGlobal("Disarm_LG3","MYAREA",1)
+		Continue()
+END
+
+IF
+	Global("Disarm_LG3","MYAREA",1)
+	//IsActive("5302MS2_3")
+	!Global("5302MS2_3_ACT","MYAREA",1)
+THEN
+	RESPONSE #100
+		AddXPWorthOnce("Lightning_Gens3",TRUE)
+		ActionOverride("Lightning_Gens3",DestroySelf())
+		//AddExperiencePartyCR(4)
+		//Unlock("5302MS2_3")
+		SetGlobal("5302MS2_3_ACT","MYAREA",1)
+		AmbientActivate("5302MS2_3",FALSE)
+		Continue()
+END
+
+IF
+	Global("Disarm_LG4","MYAREA",0)
+	OR(3) //2
+		!HPGT("Lightning_Gens4",0)
+		//!CheckDoorFlags("LightningGeneratorDisarm4",DOORLOCKED)
+		TriggerOverride("LightningGeneratorDisarm4",Opened([ANYONE]))
+		TriggerOverride("LightningGeneratorDisarm4",Unlocked([ANYONE]))
+THEN
+	RESPONSE #100
+		SetGlobal("Disarm_LG4","MYAREA",1)
+		Continue()
+END
+
+IF
+	Global("Disarm_LG4","MYAREA",1)
+	//IsActive("5302MS2_4")
+	!Global("5302MS2_4_ACT","MYAREA",1)
+THEN
+	RESPONSE #100
+		AddXPWorthOnce("Lightning_Gens4",TRUE)
+		ActionOverride("Lightning_Gens4",DestroySelf())
+		//AddExperiencePartyCR(4)
+		//Unlock("5302MS2_4")
+		SetGlobal("5302MS2_4_ACT","MYAREA",1)
+		AmbientActivate("5302MS2_4",FALSE)
+		Continue()
+END
+
+IF
+	Global("Disarm_LG5","MYAREA",0)
+	OR(3) //2
+		!HPGT("Lightning_Gens5",0)
+		//!CheckDoorFlags("LightningGeneratorDisarm5",DOORLOCKED)
+		TriggerOverride("LightningGeneratorDisarm5",Opened([ANYONE]))
+		TriggerOverride("LightningGeneratorDisarm5",Unlocked([ANYONE]))
+THEN
+	RESPONSE #100
+		SetGlobal("Disarm_LG5","MYAREA",1)
+		Continue()
+END
+
+IF
+	Global("Disarm_LG5","MYAREA",1)
+	//IsActive("5302MS2_5")
+	!Global("5302MS2_5_ACT","MYAREA",1)
+THEN
+	RESPONSE #100
+		AddXPWorthOnce("Lightning_Gens5",TRUE)
+		ActionOverride("Lightning_Gens5",DestroySelf())
+		//AddExperiencePartyCR(4)
+		//Unlock("5302MS2_5")
+		SetGlobal("5302MS2_5_ACT","MYAREA",1)
+		AmbientActivate("5302MS2_5",FALSE)
+		Continue()
+END
+
+IF
+	Global("Disarm_LG6","MYAREA",0)
+	OR(3) //2
+		!HPGT("Lightning_Gens6",0)
+		//!CheckDoorFlags("LightningGeneratorDisarm6",DOORLOCKED)
+		TriggerOverride("LightningGeneratorDisarm6",Opened([ANYONE]))
+		TriggerOverride("LightningGeneratorDisarm6",Unlocked([ANYONE]))
+THEN
+	RESPONSE #100
+		SetGlobal("Disarm_LG6","MYAREA",1)
+		Continue()
+END
+
+IF
+	Global("Disarm_LG6","MYAREA",1)
+	//IsActive("5302MS2_6")
+	!Global("5302MS2_6_ACT","MYAREA",1)
+THEN
+	RESPONSE #100
+		AddXPWorthOnce("Lightning_Gens1",TRUE)
+		ActionOverride("Lightning_Gens6",DestroySelf())
+		//AddExperiencePartyCR(4)
+		//Unlock("5302MS2_6")
+		SetGlobal("5302MS2_6_ACT","MYAREA",1)
+		AmbientActivate("5302MS2_6",FALSE)
+		Continue()
+END
+
+IF
+	!Global("Show_Trap_ZZ","MYAREA",1)
+	Allegiance("Abdoshanheth",ENEMY)
+THEN
+	RESPONSE #100
+		UndoExplore()
+		SmallWait(5)
+		CreateCreature("cutspy",[1647.2477],S)  // No such index
+		ActionOverride("cutspy",ChangeAIScript("IDGOLREM",OVERRIDE))
+		SetGlobal("Show_Trap_ZZ","MYAREA",1)
+		Continue()
+END
+
+IF
+	OnCreation()
+THEN
+	RESPONSE #100
+		NoAction()
+		Continue()
+END
+

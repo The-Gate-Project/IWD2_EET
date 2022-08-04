@@ -1,0 +1,1330 @@
+DEFINE_ACTION_MACRO BUILD_THAC0_ARRAYS BEGIN
+	COPY ~thac0.2da~ ~thac0.2da~
+		COUNT_2DA_ROWS 41 row
+		FOR ( i = 0 ; i < row ; ++i ) BEGIN
+			FOR ( j = 1 ; j < 31 ; ++j ) BEGIN
+				READ_2DA_ENTRY i j 41 val
+				PATCH_IF ( i = 0 ) BEGIN
+					PATCH_IF !(VARIABLE_IS_SET $thac0_mage(~%j%~)) BEGIN
+						DEFINE_ASSOCIATIVE_ARRAY thac0_mage BEGIN ~%j%~ => ~%val%~ END
+					END
+				END
+				PATCH_IF ( i = 1 ) BEGIN
+					PATCH_IF !(VARIABLE_IS_SET $thac0_fighter(~%j%~)) BEGIN
+						DEFINE_ASSOCIATIVE_ARRAY thac0_fighter BEGIN ~%j%~ => ~%val%~ END
+					END
+				END
+				PATCH_IF ( i = 2 ) BEGIN
+					PATCH_IF !(VARIABLE_IS_SET $thac0_priest(~%j%~)) BEGIN
+						DEFINE_ASSOCIATIVE_ARRAY thac0_priest BEGIN ~%j%~ => ~%val%~ END
+					END
+				END
+				PATCH_IF ( i = 3 ) BEGIN 
+					PATCH_IF !(VARIABLE_IS_SET $thac0_rogue(~%j%~)) BEGIN
+						DEFINE_ASSOCIATIVE_ARRAY thac0_rogue BEGIN ~%j%~ => ~%val%~ END
+					END
+				END
+			END
+			PATCH_IF ( i > 3 ) BEGIN SET i = row END
+		END
+		BUT_ONLY_IF_IT_CHANGES
+END
+
+DEFINE_ACTION_FUNCTION BUILD_APR_ARRAYS BEGIN
+	COPY ~apr.2da~ ~apr.2da~
+		COUNT_2DA_ROWS 41 row
+		FOR ( i = 0 ; i < row ; ++i ) BEGIN
+			FOR ( j = 1 ; j < 31 ; ++j ) BEGIN
+				READ_2DA_ENTRY i j 41 val
+				PATCH_IF ( i = 0 ) BEGIN
+					PATCH_IF !(VARIABLE_IS_SET $apr_fighter(~%j%~)) BEGIN
+						DEFINE_ASSOCIATIVE_ARRAY apr_fighter BEGIN ~%j%~ => ~%val%~ END
+					END
+				END
+				PATCH_IF ( i = 1 ) BEGIN
+					PATCH_IF !(VARIABLE_IS_SET $apr_monk(~%j%~)) BEGIN
+						DEFINE_ASSOCIATIVE_ARRAY apr_monk BEGIN ~%j%~ => ~%val%~ END
+					END
+				END
+				PATCH_IF ( i = 2 ) BEGIN
+					PATCH_IF !(VARIABLE_IS_SET $apr_other(~%j%~)) BEGIN
+						DEFINE_ASSOCIATIVE_ARRAY apr_other BEGIN ~%j%~ => ~%val%~ END
+					END
+				END
+			END
+		END
+		BUT_ONLY_IF_IT_CHANGES
+END
+
+ACTION_DEFINE_ASSOCIATIVE_ARRAY hp_tab BEGIN
+	65526 => 65526
+    10000 => 10000
+    9999 => 9999
+    3200 => 3200
+    1384 => 1384
+    1120 => 1120
+    1100 => 1100
+    1000 => 1000
+    999 => 999
+    980 => 980
+    840 => 840
+    630 => 630
+    444 => 444
+    380 => 380
+    360 => 360
+    355 => 355
+    320 => 320
+    280 => 280
+    260 => 260
+    252 => 252
+    250 => 250
+    240 => 240
+    228 => 228
+    210 => 210
+    204 => 204
+    200 => 200
+    199 => 199
+    198 => 198
+    196 => 196
+    192 => 192
+    190 => 190
+    188 => 188
+    184 => 184
+    180 => 180
+    178 => 178
+    176 => 176
+    175 => 175
+    165 => 165
+    162 => 162
+    160 => 160
+    156 => 156
+    152 => 152
+    150 => 151
+    146 => 150
+    145 => 149
+    144 => 148
+    140 => 147
+    136 => 146
+    133 => 145
+    131 => 144
+    130 => 143
+    128 => 142
+    126 => 138
+    125 => 140
+    124 => 139
+    120 => 138
+    118 => 137
+    116 => 136
+    114 => 135
+    112 => 134
+    111 => 133
+    110 => 132
+    108 => 131
+    106 => 130
+    105 => 129
+    104 => 128
+    103 => 127
+    102 => 126
+    100 => 125
+    99 => 124
+    97 => 123
+    96 => 122
+    95 => 121
+    94 => 120
+    93 => 119
+    92 => 118
+    90 => 117
+    89 => 116
+    88 => 115
+    86 => 114
+    85 => 113
+    84 => 112
+    82 => 111
+    81 => 110
+    80 => 109
+    79 => 108
+    78 => 107
+    77 => 106
+    76 => 105
+    75 => 104
+    74 => 103
+    73 => 102
+    72 => 101
+    71 => 100
+    70 => 99
+    69 => 98
+    68 => 97
+    66 => 96
+    65 => 95
+    64 => 94
+    63 => 93
+    62 => 92
+    61 => 91
+    60 => 91
+    59 => 90
+    58 => 90
+    57 => 89
+    56 => 89
+    55 => 88
+    54 => 87
+    53 => 87
+    52 => 86
+    51 => 86
+    50 => 85
+    49 => 85
+    48 => 84
+    46 => 84
+    45 => 83
+    44 => 82
+    43 => 81
+    42 => 81
+    41 => 80
+    40 => 80
+    38 => 79
+    36 => 79
+    35 => 78
+    34 => 77
+    33 => 76
+    32 => 75
+    31 => 74
+    30 => 73
+    29 => 72
+    28 => 71
+    27 => 70
+    26 => 69
+    25 => 68
+    24 => 67
+    23 => 66
+    22 => 65
+    21 => 64
+    20 => 63
+    19 => 62
+    18 => 61
+    17 => 60
+    16 => 59
+    15 => 58
+    14 => 57
+    13 => 56
+    12 => 55
+    11 => 54
+    10 => 53
+    9 => 50
+    8 => 45
+    7 => 40
+    6 => 35
+    5 => 30
+    4 => 25
+    3 => 20
+    2 => 15
+    1 => 10
+    0 => 0
+END
+
+ACTION_DEFINE_ASSOCIATIVE_ARRAY xp_table BEGIN
+    700000 => 70000
+    250000 => 62500
+    200000 => 50000
+    75000 => 45000
+    70000 => 42000
+    60000 => 39000
+    50000 => 35000
+    35000 => 29800
+    25000 => 25000
+    21000 => 21000
+    20000 => 20000
+    18000 => 18000
+    17000 => 17000
+    16000 => 16000
+    15000 => 15000
+    14000 => 14000
+    13000 => 13000
+    12000 => 12000
+    11000 => 11000
+    10000 => 10000
+    9000 => 9000
+    8000 => 8000
+    7500 => 7500
+    7000 => 7000
+    6500 => 6500
+    6100 => 6100
+    6000 => 6000
+    5750 => 5750
+    5500 => 5500
+    5400 => 5400
+    5250 => 5250
+    5200 => 5200
+    5000 => 5000
+    4750 => 5000
+    4500 => 4750
+    4400 => 4600
+    4000 => 4200
+    3750 => 3950
+    3500 => 3700
+    3000 => 3150
+    2800 => 2950
+    2750 => 2900
+    2500 => 2750
+    2400 => 2650
+    2300 => 2600
+    2250 => 2550
+    2000 => 2350
+    1800 => 2300
+    1750 => 2200
+    1500 => 2100
+    1400 => 2050
+    1250 => 1950
+    1200 => 1850
+    1100 => 1750
+    1000 => 1700
+    975 => 1650
+    900 => 1550
+    875 => 1500
+    840 => 1450
+    800 => 1350
+    750 => 1300
+    650 => 1250
+    600 => 1150
+    550 => 1050
+    500 => 950
+    420 => 850
+    400 => 800
+    370 => 750
+    350 => 700
+    325 => 650
+    300 => 600
+    275 => 550
+    270 => 550
+    250 => 500
+    225 => 450
+    200 => 400
+    175 => 350
+    150 => 300
+    120 => 250
+    100 => 200
+    85 => 170
+    75 => 150
+    65 => 130
+    50 => 100
+    45 => 90
+    35 => 85
+    34 => 80
+    25 => 75
+    20 => 70
+    18 => 65
+    15 => 55
+    12 => 45
+    10 => 35
+    8 => 30
+    7 => 25
+    5 => 20
+    2 => 5
+    1 => 5
+    0 => 0
+END
+
+ACTION_DEFINE_ASSOCIATIVE_ARRAY ac_table BEGIN
+    20 => 20
+    19 => 19
+    18 => 18
+    17 => 17
+    16 => 16
+    15 => 15
+    14 => 14
+    13 => 13
+    12 => 12
+    11 => 11
+    10 => 10
+    9 => 8
+    8 => 6
+    7 => 6
+    6 => 4
+    5 => 2
+    4 => 2
+    3 => 0
+    2 => "-1"
+    1 => "-1"
+    0 => "-2"
+    "-1" => "-4"
+    "-2" => "-4"
+    "-3" => "-6"
+    "-4" => "-8"
+    "-5" => "-8"
+    "-6" => "-10"
+    "-7" => "-12"
+    "-8" => "-12"
+    "-9" => "-14"
+    "-10" => "-15"
+    "-11" => "-15"
+    "-12" => "-16"
+    "-13" => "-17"
+    "-14" => "-18"
+    "-15" => "-18"
+    "-16" => "-19"
+    "-17" => "-19"
+    "-18" => "-20"
+    "-19" => "-20"
+    "-20" => "-20"
+END
+
+ACTION_DEFINE_ASSOCIATIVE_ARRAY st_table BEGIN
+    20 => 20
+    19 => 13
+    18 => 12
+    17 => 11
+    16 => 10
+    15 => 9
+    14 => 8
+    13 => 8
+    12 => 7
+    11 => 6
+    10 => 5
+    9 => 5
+    8 => 4
+    7 => 3
+    6 => 3
+    5 => 2
+    4 => 1
+    3 => 1
+    2 => 1
+    1 => 0
+    0 => 0
+END
+
+DEFINE_PATCH_MACRO BUILD_TP2_CODE BEGIN
+	SPRINT ~tp2_j~ ~COPY %tl%%cre_folder%/%cname%.cre%tl% %tl%override%tl%%LNL%~
+	PATCH_IF ( name_1 >= 0 ) BEGIN SPRINT ~tp2_j~ ~%tp2_j%%TAB%SAY 0x008 @%name_1%%LNL%~ END
+	PATCH_IF ( name_2 >= 0 ) BEGIN SPRINT ~tp2_j~ ~%tp2_j%%TAB%SAY 0x00c @%name_2%%LNL%~ END
+	SPRINT ~cre_tab~ ~%cre_tab%%tp2_j%%LNL%~
+END
+
+DEFINE_PATCH_MACRO BUILD_CRE_XP BEGIN
+	PHP_EACH xp_table AS old_xp => new_xp BEGIN
+		PATCH_IF ( old_xp = xp_val ) BEGIN SET xp_val = new_xp + 100000 END
+	END
+	PATCH_IF ( xp_val > 95000 ) BEGIN SET xp_val = xp_val - 100000 END
+END
+
+DEFINE_PATCH_MACRO BUILD_CRE_HP BEGIN
+	PHP_EACH hp_tab AS old_hp => new_hp BEGIN
+		PATCH_IF ( old_hp = curr_hp ) BEGIN SET curr_hp   = new_hp + 100000 END
+		PATCH_IF ( old_hp = max_hp )  BEGIN SET max_hp   = new_hp + 100000 END
+	END
+	PATCH_IF ( curr_hp > 95000 )   BEGIN SET curr_hp = curr_hp  - 100000 END
+	PATCH_IF ( max_hp > 95000 )   BEGIN SET max_hp  = max_hp  - 100000 END
+END
+
+DEFINE_ACTION_m BUILD_AC_VAL BEGIN
+	SET ac_val = 10 - (ac_val - 10)
+	PHP_EACH ac_table AS old_ac => new_ac BEGIN
+		PATCH_IF ( old_ac = ac_val ) BEGIN SET ac_val = new_ac + 100000 END
+	END
+	PATCH_IF ( ac_val > 95000 ) BEGIN SET ac_val = ac_val - 100000 END
+	PATCH_IF ( ac_val > 20 ) BEGIN SET ac_val = 20 END
+	SET ddy = ( 0 - 20 )
+	PATCH_IF ( ac_val < ddy ) BEGIN SET ac_val = ddy END
+END
+
+DEFINE_PATCH_MACRO BUILD_SAVING_THROW BEGIN
+	SET st_death  = 20 - st_fort
+	SET st_poly   = 20 - ( st_fort + st_will ) / 2
+	SET st_breath = 20 - ( st_fort + st_refl ) / 2
+	SET st_spell  = 20 - ( st_fort + st_will ) / 2
+	SET st_wand   = 20 - st_refl
+	PHP_EACH st_table AS old_st => new_st BEGIN
+		PATCH_IF ( old_st = st_death )  BEGIN SET st_death  = new_st + 100000 END
+		PATCH_IF ( old_st = st_poly )   BEGIN SET st_poly   = new_st + 100000 END
+		PATCH_IF ( old_st = st_breath ) BEGIN SET st_breath = new_st + 100000 END
+		PATCH_IF ( old_st = st_spell )  BEGIN SET st_spell  = new_st + 100000 END
+		PATCH_IF ( old_st = st_wand )   BEGIN SET st_wand   = new_st + 100000 END
+	END
+	PATCH_IF ( st_death  > 95000 ) BEGIN SET st_death  = st_death  - 100000 END
+	PATCH_IF ( st_poly   > 95000 ) BEGIN SET st_poly   = st_poly   - 100000 END
+	PATCH_IF ( st_breath > 95000 ) BEGIN SET st_breath = st_breath - 100000 END
+	PATCH_IF ( st_spell  > 95000 ) BEGIN SET st_spell  = st_spell  - 100000 END
+	PATCH_IF ( st_wand   > 95000 ) BEGIN SET st_wand   = st_wand   - 100000 END
+	PATCH_IF ( st_death  > 20 ) BEGIN SET st_death  = 20 END
+	PATCH_IF ( st_poly   > 20 ) BEGIN SET st_poly   = 20 END
+	PATCH_IF ( st_breath > 20 ) BEGIN SET st_breath = 20 END
+	PATCH_IF ( st_spell  > 20 ) BEGIN SET st_spell  = 20 END
+	PATCH_IF ( st_wand   > 20 ) BEGIN SET st_wand   = 20 END
+	PATCH_IF ( st_death  < 0 ) BEGIN SET st_death  = 0 END
+	PATCH_IF ( st_poly   < 0 ) BEGIN SET st_poly   = 0 END
+	PATCH_IF ( st_breath < 0 ) BEGIN SET st_breath = 0 END
+	PATCH_IF ( st_spell  < 0 ) BEGIN SET st_spell  = 0 END
+	PATCH_IF ( st_wand   < 0 ) BEGIN SET st_wand   = 0 END
+END
+
+DEFINE_PATCH_FUNCTION CONVERT_RESIST
+	INT_VAR res = 0
+	RET value
+BEGIN
+	SET noedit = 0
+	PATCH_IF ( res = 100 ) BEGIN SET value = 100 SET noedit = 1 END
+	PATCH_IF ( noedit = 0 ) BEGIN
+		SET value = res * 5
+		PATCH_IF ( res = 20 ) BEGIN SET value = 99 END
+	END
+END
+
+DEFINE_PATCH_MACRO CONVERT_CRE_LEVELS BEGIN
+	PATCH_IF ( lvl_barbar > 0 ) AND ( lvl_fighter > 0 ) BEGIN SET lvl_fighter = lvl_fighter + lvl_barbar SET lvl_all = lvl_all - 1
+	END ELSE BEGIN
+		PATCH_IF ( lvl_barbar > 0 ) BEGIN SET lvl_fighter = lvl_barbar END
+	END
+	PATCH_IF ( lvl_sorcerer > 0 ) AND ( lvl_mage > 0 ) BEGIN SET lvl_mage = lvl_mage + lvl_sorcerer SET lvl_all = lvl_all - 1
+	END ELSE BEGIN
+		PATCH_IF ( lvl_sorcerer > 0 ) BEGIN SET lvl_mage = lvl_sorcerer END
+	END
+	PATCH_MATCH lvl_total WITH
+        1 BEGIN SET lvl_total = 8 END 
+        2 BEGIN SET lvl_total = 9 END 
+        3 BEGIN SET lvl_total = 10 END 
+        4 BEGIN SET lvl_total = 11 END 
+        5 BEGIN SET lvl_total = 12 END 
+        6 BEGIN SET lvl_total = 13 END 
+        7 BEGIN SET lvl_total = 14 END 
+        8 9 BEGIN SET lvl_total = 15 END 
+        10 BEGIN SET lvl_total = 16 END 
+        11 BEGIN SET lvl_total = 17 END 
+        12 BEGIN SET lvl_total = 18 END 
+        13 BEGIN SET lvl_total = 19 END 
+        14 BEGIN SET lvl_total = 20 END 
+        15 BEGIN SET lvl_total = 21 END 
+        16 17 BEGIN SET lvl_total = 22 END 
+        18 19 BEGIN SET lvl_total = 23 END 
+        20 BEGIN SET lvl_total = 24 END 
+        21 BEGIN SET lvl_total = 25 END 
+        22 BEGIN SET lvl_total = 26 END 
+        23 24 BEGIN SET lvl_total = 27 END 
+        25 26 BEGIN SET lvl_total = 28 END 
+        27 28 BEGIN SET lvl_total = 29 END 
+        29 30 BEGIN SET lvl_total = 30 END 
+    	DEFAULT
+	END
+	PATCH_IF ( lvl_total > 30 ) BEGIN SET lvl_total = 30 END
+	PATCH_IF ( lvl_total < 1 )  BEGIN SET lvl_total =  1 END
+	SET lvl_done = 0
+	//FIGHTER_MAGE - 7
+	PATCH_IF ( cclass = 7 ) BEGIN
+		PATCH_IF ( lvl_all > 2 ) OR ( lvl_fighter = 0 ) OR (lvl_mage = 0 ) BEGIN
+			PATCH_IF ( lvl_bard > 0 ) BEGIN SET lvl_mage = lvl_mage + lvl_bard SET lvl_bard = 0 END
+			PATCH_IF ( lvl_cleric > 0 ) BEGIN SET lvl_mage = lvl_mage + lvl_cleric SET lvl_cleric = 0 END
+			PATCH_IF ( lvl_druid > 0 ) BEGIN SET lvl_mage = lvl_mage + lvl_druid SET lvl_druid = 0 END
+			PATCH_IF ( lvl_monk > 0 ) BEGIN SET lvl_fighter = lvl_fighter + lvl_monk SET lvl_monk = 0 END
+			PATCH_IF ( lvl_paladin > 0 ) BEGIN SET lvl_fighter = lvl_fighter + lvl_paladin SET lvl_paladin = 0 END
+			PATCH_IF ( lvl_ranger > 0 ) BEGIN SET lvl_fighter = lvl_fighter + lvl_ranger SET lvl_ranger = 0 END
+			PATCH_IF ( lvl_thief > 0 ) BEGIN SET lvl_fighter = lvl_fighter + lvl_thief SET lvl_thief = 0 END
+		END
+		SET lvl_all = lvl_fighter + lvl_mage
+		SET inc = 0
+		PATCH_IF ( lvl_all < lvl_total ) BEGIN
+			WHILE ( lvl_all < lvl_total ) BEGIN
+				PATCH_IF ( inc = 0 ) BEGIN SET lvl_fighter = lvl_fighter + 1 SET lvl_all = lvl_all + 1 SET inc = 1 END
+				PATCH_IF ( inc = 1 ) BEGIN SET lvl_mage = lvl_mage + 1 SET lvl_all = lvl_all + 1 SET inc = 0 END
+			END
+		END
+		PATCH_IF ( lvl_all > lvl_total ) BEGIN
+			WHILE ( lvl_all > lvl_total ) BEGIN
+				PATCH_IF ( inc = 0 ) BEGIN SET lvl_fighter = lvl_fighter - 1 SET lvl_all = lvl_all - 1 SET inc = 1 END
+				PATCH_IF ( inc = 1 ) BEGIN SET lvl_mage = lvl_mage - 1 SET lvl_all = lvl_all - 1 SET inc = 0 END
+			END
+		END
+		SET lvl_1 = lvl_fighter
+		SET lvl_2 = lvl_mage
+		SET lvl_3 = 1
+		SET lvl_done = 1
+	END
+	//FIGHTER_CLERIC - 8
+	PATCH_IF ( cclass = 8 ) BEGIN
+		PATCH_IF ( lvl_all > 2 ) OR ( lvl_fighter = 0 ) OR (lvl_cleric = 0 ) BEGIN
+			PATCH_IF ( lvl_bard > 0 ) BEGIN SET lvl_cleric = lvl_cleric + lvl_bard SET lvl_bard = 0 END
+			PATCH_IF ( lvl_mage > 0 ) BEGIN SET lvl_cleric = lvl_cleric + lvl_mage SET lvl_mage = 0 END
+			PATCH_IF ( lvl_druid > 0 ) BEGIN SET lvl_cleric = lvl_cleric + lvl_druid SET lvl_druid = 0 END
+			PATCH_IF ( lvl_monk > 0 ) BEGIN SET lvl_fighter = lvl_fighter + lvl_monk SET lvl_monk = 0 END
+			PATCH_IF ( lvl_paladin > 0 ) BEGIN SET lvl_fighter = lvl_fighter + lvl_paladin SET lvl_paladin = 0 END
+			PATCH_IF ( lvl_ranger > 0 ) BEGIN SET lvl_fighter = lvl_fighter + lvl_ranger SET lvl_ranger = 0 END
+			PATCH_IF ( lvl_thief > 0 ) BEGIN SET lvl_fighter = lvl_fighter + lvl_thief SET lvl_thief = 0 END
+		END
+		SET lvl_all = lvl_fighter + lvl_cleric
+		SET inc = 0
+		PATCH_IF ( lvl_all < lvl_total ) BEGIN
+			WHILE ( lvl_all < lvl_total ) BEGIN
+				PATCH_IF ( inc = 0 ) BEGIN SET lvl_fighter = lvl_fighter + 1 SET lvl_all = lvl_all + 1 SET inc = 1 END
+				PATCH_IF ( inc = 1 ) BEGIN SET lvl_cleric = lvl_cleric + 1 SET lvl_all = lvl_all + 1 SET inc = 0 END
+			END
+		END
+		PATCH_IF ( lvl_all > lvl_total ) BEGIN
+			WHILE ( lvl_all > lvl_total ) BEGIN
+				PATCH_IF ( inc = 0 ) BEGIN SET lvl_fighter = lvl_fighter - 1 SET lvl_all = lvl_all - 1 SET inc = 1 END
+				PATCH_IF ( inc = 1 ) BEGIN SET lvl_cleric = lvl_cleric - 1 SET lvl_all = lvl_all - 1 SET inc = 0 END
+			END
+		END
+		SET lvl_1 = lvl_fighter
+		SET lvl_2 = lvl_cleric
+		SET lvl_3 = 1
+		SET lvl_done = 1
+	END
+	//FIGJTER_THIEF - 9
+	PATCH_IF ( cclass = 9 ) BEGIN
+		PATCH_IF ( lvl_all > 2 ) OR ( lvl_fighter = 0 ) OR (lvl_thief = 0 ) BEGIN
+			PATCH_IF ( lvl_bard > 0 ) BEGIN SET lvl_thief = lvl_thief + lvl_bard SET lvl_bard = 0 END
+			PATCH_IF ( lvl_mage > 0 ) BEGIN SET lvl_thief = lvl_thief + lvl_mage SET lvl_mage = 0 END
+			PATCH_IF ( lvl_druid > 0 ) BEGIN SET lvl_thief = lvl_thief + lvl_druid SET lvl_druid = 0 END
+			PATCH_IF ( lvl_monk > 0 ) BEGIN SET lvl_fighter = lvl_fighter + lvl_monk SET lvl_monk = 0 END
+			PATCH_IF ( lvl_paladin > 0 ) BEGIN SET lvl_fighter = lvl_fighter + lvl_paladin SET lvl_paladin = 0 END
+			PATCH_IF ( lvl_ranger > 0 ) BEGIN SET lvl_fighter = lvl_fighter + lvl_ranger SET lvl_ranger = 0 END
+			PATCH_IF ( lvl_cleric > 0 ) BEGIN SET lvl_fighter = lvl_fighter + lvl_cleric SET lvl_cleric = 0 END
+		END
+		SET lvl_all = lvl_fighter + lvl_thief
+		SET inc = 0
+		PATCH_IF ( lvl_all < lvl_total ) BEGIN
+			WHILE ( lvl_all < lvl_total ) BEGIN
+				PATCH_IF ( inc = 0 ) BEGIN SET lvl_fighter = lvl_fighter + 1 SET lvl_all = lvl_all + 1 SET inc = 1 END
+				PATCH_IF ( inc = 1 ) BEGIN SET lvl_thief = lvl_thief + 1 SET lvl_all = lvl_all + 1 SET inc = 0 END
+			END
+		END
+		PATCH_IF ( lvl_all > lvl_total ) BEGIN
+			WHILE ( lvl_all > lvl_total ) BEGIN
+				PATCH_IF ( inc = 0 ) BEGIN SET lvl_fighter = lvl_fighter - 1 SET lvl_all = lvl_all - 1 SET inc = 1 END
+				PATCH_IF ( inc = 1 ) BEGIN SET lvl_thief = lvl_thief - 1 SET lvl_all = lvl_all - 1 SET inc = 0 END
+			END
+		END
+		SET lvl_1 = lvl_fighter
+		SET lvl_2 = lvl_thief
+		SET lvl_3 = 1
+		SET lvl_done = 1
+	END
+	//FIGHTER_MAGE_THIEF - 10
+	PATCH_IF ( cclass = 10 ) BEGIN
+		PATCH_IF ( lvl_all > 2 ) OR ( lvl_fighter = 0 ) OR (lvl_mage = 0 ) OR ( lvl_thief = 0) BEGIN
+			PATCH_IF ( lvl_bard > 0 ) BEGIN SET lvl_thief = lvl_thief + lvl_bard SET lvl_bard = 0 END
+			PATCH_IF ( lvl_cleric > 0 ) BEGIN SET lvl_mage = lvl_mage + lvl_cleric SET lvl_cleric = 0 END
+			PATCH_IF ( lvl_druid > 0 ) BEGIN SET lvl_mage = lvl_mage + lvl_druid SET lvl_druid = 0 END
+			PATCH_IF ( lvl_monk > 0 ) BEGIN SET lvl_thief = lvl_thief + lvl_monk SET lvl_monk = 0 END
+			PATCH_IF ( lvl_paladin > 0 ) BEGIN SET lvl_fighter = lvl_fighter + lvl_paladin SET lvl_paladin = 0 END
+			PATCH_IF ( lvl_ranger > 0 ) BEGIN SET lvl_fighter = lvl_fighter + lvl_ranger SET lvl_ranger = 0 END
+		END
+		SET lvl_all = lvl_fighter + lvl_mage + lvl_thief
+		SET inc = 0
+		PATCH_IF ( lvl_all < lvl_total ) BEGIN
+			WHILE ( lvl_all < lvl_total ) BEGIN
+				PATCH_IF ( inc = 0 ) BEGIN SET lvl_fighter = lvl_fighter + 1 SET lvl_all = lvl_all + 1 SET inc = 1 END
+				PATCH_IF ( inc = 1 ) BEGIN SET lvl_mage = lvl_mage + 1 SET lvl_all = lvl_all + 1 SET inc = 2 END
+				PATCH_IF ( inc = 2 ) BEGIN SET lvl_thief = lvl_thief + 1 SET lvl_all = lvl_all + 1 SET inc = 0 END
+			END
+		END
+		PATCH_IF ( lvl_all > lvl_total ) BEGIN
+			WHILE ( lvl_all > lvl_total ) BEGIN
+				PATCH_IF ( inc = 0 ) BEGIN SET lvl_fighter = lvl_fighter - 1 SET lvl_all = lvl_all - 1 SET inc = 1 END
+				PATCH_IF ( inc = 1 ) BEGIN SET lvl_mage = lvl_mage - 1 SET lvl_all = lvl_all - 1 SET inc = 2 END
+				PATCH_IF ( inc = 2 ) BEGIN SET lvl_thief = lvl_thief - 1 SET lvl_all = lvl_all - 1 SET inc = 0 END
+			END
+		END
+		SET lvl_1 = lvl_fighter
+		SET lvl_2 = lvl_mage
+		SET lvl_3 = lvl_thief
+		SET lvl_done = 1
+	END
+	//MAGE_THIEF - 13
+	PATCH_IF ( cclass = 13 ) BEGIN
+		PATCH_IF ( lvl_all > 2 ) OR ( lvl_mage = 0 ) OR (lvl_thief = 0 ) BEGIN
+			PATCH_IF ( lvl_bard > 0 ) BEGIN SET lvl_mage = lvl_mage + lvl_bard SET lvl_bard = 0 END
+			PATCH_IF ( lvl_cleric > 0 ) BEGIN SET lvl_mage = lvl_mage + lvl_cleric SET lvl_cleric = 0 END
+			PATCH_IF ( lvl_druid > 0 ) BEGIN SET lvl_mage = lvl_mage + lvl_druid SET lvl_druid = 0 END
+			PATCH_IF ( lvl_monk > 0 ) BEGIN SET lvl_thief = lvl_thief + lvl_monk SET lvl_monk = 0 END
+			PATCH_IF ( lvl_paladin > 0 ) BEGIN SET lvl_thief = lvl_thief + lvl_paladin SET lvl_paladin = 0 END
+			PATCH_IF ( lvl_ranger > 0 ) BEGIN SET lvl_mage = lvl_mage + lvl_ranger SET lvl_ranger = 0 END
+			PATCH_IF ( lvl_fighter > 0 ) BEGIN SET lvl_thief = lvl_thief + lvl_fighter SET lvl_fighter = 0 END
+		END
+		SET lvl_all = lvl_mage + lvl_thief
+		SET inc = 0
+		PATCH_IF ( lvl_all < lvl_total ) BEGIN
+			WHILE ( lvl_all < lvl_total ) BEGIN
+				PATCH_IF ( inc = 0 ) BEGIN SET lvl_mage = lvl_mage + 1 SET lvl_all = lvl_all + 1 SET inc = 1 END
+				PATCH_IF ( inc = 1 ) BEGIN SET lvl_thief = lvl_thief + 1 SET lvl_all = lvl_all + 1 SET inc = 0 END
+			END
+		END
+		PATCH_IF ( lvl_all > lvl_total ) BEGIN
+			WHILE ( lvl_all > lvl_total ) BEGIN
+				PATCH_IF ( inc = 0 ) BEGIN SET lvl_mage = lvl_mage - 1 SET lvl_all = lvl_all - 1 SET inc = 1 END
+				PATCH_IF ( inc = 1 ) BEGIN SET lvl_thief = lvl_thief - 1 SET lvl_all = lvl_all - 1 SET inc = 0 END
+			END
+		END
+		SET lvl_1 = lvl_mage
+		SET lvl_2 = lvl_thief
+		SET lvl_3 = 1
+		SET lvl_done = 1
+	END
+	//CLERIC_MAGE - 14
+	PATCH_IF ( cclass = 14 ) BEGIN
+		PATCH_IF ( lvl_all > 2 ) OR ( lvl_cleric = 0 ) OR (lvl_mage = 0 ) BEGIN
+			PATCH_IF ( lvl_bard > 0 ) BEGIN SET lvl_mage = lvl_mage + lvl_bard SET lvl_bard = 0 END
+			PATCH_IF ( lvl_thief > 0 ) BEGIN SET lvl_mage = lvl_mage + lvl_thief SET lvl_thief = 0 END
+			PATCH_IF ( lvl_druid > 0 ) BEGIN SET lvl_mage = lvl_mage + lvl_druid SET lvl_druid = 0 END
+			PATCH_IF ( lvl_monk > 0 ) BEGIN SET lvl_cleric = lvl_cleric + lvl_monk SET lvl_monk = 0 END
+			PATCH_IF ( lvl_paladin > 0 ) BEGIN SET lvl_cleric = lvl_cleric + lvl_paladin SET lvl_paladin = 0 END
+			PATCH_IF ( lvl_ranger > 0 ) BEGIN SET lvl_cleric = lvl_cleric + lvl_ranger SET lvl_ranger = 0 END
+			PATCH_IF ( lvl_fighter > 0 ) BEGIN SET lvl_cleric = lvl_cleric + lvl_fighter SET lvl_fighter = 0 END
+		END
+		SET lvl_all = lvl_cleric + lvl_mage
+		SET inc = 0
+		PATCH_IF ( lvl_all < lvl_total ) BEGIN
+			WHILE ( lvl_all < lvl_total ) BEGIN
+				PATCH_IF ( inc = 0 ) BEGIN SET lvl_cleric = lvl_cleric + 1 SET lvl_all = lvl_all + 1 SET inc = 1 END
+				PATCH_IF ( inc = 1 ) BEGIN SET lvl_mage = lvl_mage + 1 SET lvl_all = lvl_all + 1 SET inc = 0 END
+			END
+		END
+		PATCH_IF ( lvl_all > lvl_total ) BEGIN
+			WHILE ( lvl_all > lvl_total ) BEGIN
+				PATCH_IF ( inc = 0 ) BEGIN SET lvl_cleric = lvl_cleric - 1 SET lvl_all = lvl_all - 1 SET inc = 1 END
+				PATCH_IF ( inc = 1 ) BEGIN SET lvl_mage = lvl_mage - 1 SET lvl_all = lvl_all - 1 SET inc = 0 END
+			END
+		END
+		SET lvl_1 = lvl_cleric
+		SET lvl_2 = lvl_mage
+		SET lvl_3 = 1
+		SET lvl_done = 1
+	END
+	//CLERIC_THIEF - 15
+	PATCH_IF ( cclass = 15 ) BEGIN
+		PATCH_IF ( lvl_all > 2 ) OR ( lvl_cleric = 0 ) OR (lvl_thief = 0 ) BEGIN
+			PATCH_IF ( lvl_bard > 0 ) BEGIN SET lvl_thief = lvl_thief + lvl_bard SET lvl_bard = 0 END
+			PATCH_IF ( lvl_mage > 0 ) BEGIN SET lvl_thief = lvl_thief + lvl_mage SET lvl_mage = 0 END
+			PATCH_IF ( lvl_druid > 0 ) BEGIN SET lvl_thief = lvl_thief + lvl_druid SET lvl_druid = 0 END
+			PATCH_IF ( lvl_monk > 0 ) BEGIN SET lvl_cleric = lvl_cleric + lvl_monk SET lvl_monk = 0 END
+			PATCH_IF ( lvl_paladin > 0 ) BEGIN SET lvl_cleric = lvl_cleric + lvl_paladin SET lvl_paladin = 0 END
+			PATCH_IF ( lvl_ranger > 0 ) BEGIN SET lvl_cleric = lvl_cleric + lvl_ranger SET lvl_ranger = 0 END
+			PATCH_IF ( lvl_fighter > 0 ) BEGIN SET lvl_cleric = lvl_cleric + lvl_fighter SET lvl_fighter = 0 END
+		END
+		SET lvl_all = lvl_cleric + lvl_thief
+		SET inc = 0
+		PATCH_IF ( lvl_all < lvl_total ) BEGIN
+			WHILE ( lvl_all < lvl_total ) BEGIN
+				PATCH_IF ( inc = 0 ) BEGIN SET lvl_cleric = lvl_cleric + 1 SET lvl_all = lvl_all + 1 SET inc = 1 END
+				PATCH_IF ( inc = 1 ) BEGIN SET lvl_thief = lvl_thief + 1 SET lvl_all = lvl_all + 1 SET inc = 0 END
+			END
+		END
+		PATCH_IF ( lvl_all > lvl_total ) BEGIN
+			WHILE ( lvl_all > lvl_total ) BEGIN
+				PATCH_IF ( inc = 0 ) BEGIN SET lvl_cleric = lvl_cleric - 1 SET lvl_all = lvl_all - 1 SET inc = 1 END
+				PATCH_IF ( inc = 1 ) BEGIN SET lvl_thief = lvl_thief - 1 SET lvl_all = lvl_all - 1 SET inc = 0 END
+			END
+		END
+		SET lvl_1 = lvl_cleric
+		SET lvl_2 = lvl_thief
+		SET lvl_3 = 1
+		SET lvl_done = 1
+	END
+	//FIGHTER_DRUID - 16
+	PATCH_IF ( cclass = 16 ) BEGIN
+		PATCH_IF ( lvl_all > 2 ) OR ( lvl_fighter = 0 ) OR (lvl_druid = 0 ) BEGIN
+			PATCH_IF ( lvl_bard > 0 ) BEGIN SET lvl_druid = lvl_druid + lvl_bard SET lvl_bard = 0 END
+			PATCH_IF ( lvl_cleric > 0 ) BEGIN SET lvl_druid = lvl_druid + lvl_cleric SET lvl_cleric = 0 END
+			PATCH_IF ( lvl_mage > 0 ) BEGIN SET lvl_druid = lvl_druid + lvl_mage SET lvl_mage = 0 END
+			PATCH_IF ( lvl_monk > 0 ) BEGIN SET lvl_fighter = lvl_fighter + lvl_monk SET lvl_monk = 0 END
+			PATCH_IF ( lvl_paladin > 0 ) BEGIN SET lvl_fighter = lvl_fighter + lvl_paladin SET lvl_paladin = 0 END
+			PATCH_IF ( lvl_ranger > 0 ) BEGIN SET lvl_fighter = lvl_fighter + lvl_ranger SET lvl_ranger = 0 END
+			PATCH_IF ( lvl_thief > 0 ) BEGIN SET lvl_fighter = lvl_fighter + lvl_thief SET lvl_thief = 0 END
+		END
+		SET lvl_all = lvl_fighter + lvl_druid
+		SET inc = 0
+		PATCH_IF ( lvl_all < lvl_total ) BEGIN
+			WHILE ( lvl_all < lvl_total ) BEGIN
+				PATCH_IF ( inc = 0 ) BEGIN SET lvl_fighter = lvl_fighter + 1 SET lvl_all = lvl_all + 1 SET inc = 1 END
+				PATCH_IF ( inc = 1 ) BEGIN SET lvl_druid = lvl_druid + 1 SET lvl_all = lvl_all + 1 SET inc = 0 END
+			END
+		END
+		PATCH_IF ( lvl_all > lvl_total ) BEGIN
+			WHILE ( lvl_all > lvl_total ) BEGIN
+				PATCH_IF ( inc = 0 ) BEGIN SET lvl_fighter = lvl_fighter - 1 SET lvl_all = lvl_all - 1 SET inc = 1 END
+				PATCH_IF ( inc = 1 ) BEGIN SET lvl_druid = lvl_druid - 1 SET lvl_all = lvl_all - 1 SET inc = 0 END
+			END
+		END
+		SET lvl_1 = lvl_fighter
+		SET lvl_2 = lvl_druid
+		SET lvl_3 = 1
+		SET lvl_done = 1
+	END
+	//FIGHTER_MAGE_CLERIC - 17
+	PATCH_IF ( cclass = 10 ) BEGIN
+		PATCH_IF ( lvl_all > 2 ) OR ( lvl_fighter = 0 ) OR (lvl_mage = 0 ) OR ( lvl_cleric = 0) BEGIN
+			PATCH_IF ( lvl_bard > 0 ) BEGIN SET lvl_cleric = lvl_cleric + lvl_bard SET lvl_bard = 0 END
+			PATCH_IF ( lvl_thief > 0 ) BEGIN SET lvl_mage = lvl_mage + lvl_thief SET lvl_thief = 0 END
+			PATCH_IF ( lvl_druid > 0 ) BEGIN SET lvl_mage = lvl_mage + lvl_druid SET lvl_druid = 0 END
+			PATCH_IF ( lvl_monk > 0 ) BEGIN SET lvl_cleric = lvl_cleric + lvl_monk SET lvl_monk = 0 END
+			PATCH_IF ( lvl_paladin > 0 ) BEGIN SET lvl_fighter = lvl_fighter + lvl_paladin SET lvl_paladin = 0 END
+			PATCH_IF ( lvl_ranger > 0 ) BEGIN SET lvl_fighter = lvl_fighter + lvl_ranger SET lvl_ranger = 0 END
+		END
+		SET lvl_all = lvl_fighter + lvl_mage + lvl_cleric
+		SET inc = 0
+		PATCH_IF ( lvl_all < lvl_total ) BEGIN
+			WHILE ( lvl_all < lvl_total ) BEGIN
+				PATCH_IF ( inc = 0 ) BEGIN SET lvl_fighter = lvl_fighter + 1 SET lvl_all = lvl_all + 1 SET inc = 1 END
+				PATCH_IF ( inc = 1 ) BEGIN SET lvl_mage = lvl_mage + 1 SET lvl_all = lvl_all + 1 SET inc = 2 END
+				PATCH_IF ( inc = 2 ) BEGIN SET lvl_cleric = lvl_cleric + 1 SET lvl_all = lvl_all + 1 SET inc = 0 END
+			END
+		END
+		PATCH_IF ( lvl_all > lvl_total ) BEGIN
+			WHILE ( lvl_all > lvl_total ) BEGIN
+				PATCH_IF ( inc = 0 ) BEGIN SET lvl_fighter = lvl_fighter - 1 SET lvl_all = lvl_all - 1 SET inc = 1 END
+				PATCH_IF ( inc = 1 ) BEGIN SET lvl_mage = lvl_mage - 1 SET lvl_all = lvl_all - 1 SET inc = 2 END
+				PATCH_IF ( inc = 2 ) BEGIN SET lvl_cleric = lvl_cleric - 1 SET lvl_all = lvl_all - 1 SET inc = 0 END
+			END
+		END
+		SET lvl_1 = lvl_fighter
+		SET lvl_2 = lvl_mage
+		SET lvl_3 = lvl_cleric
+		SET lvl_done = 1
+	END
+	//CLERIC_RANGER - 18
+	PATCH_IF ( cclass = 18 ) BEGIN
+		PATCH_IF ( lvl_all > 2 ) OR ( lvl_cleric = 0 ) OR (lvl_ranger = 0 ) BEGIN
+			PATCH_IF ( lvl_bard > 0 ) BEGIN SET lvl_ranger = lvl_ranger + lvl_bard SET lvl_bard = 0 END
+			PATCH_IF ( lvl_mage > 0 ) BEGIN SET lvl_ranger = lvl_ranger + lvl_mage SET lvl_mage = 0 END
+			PATCH_IF ( lvl_druid > 0 ) BEGIN SET lvl_ranger = lvl_ranger + lvl_druid SET lvl_druid = 0 END
+			PATCH_IF ( lvl_monk > 0 ) BEGIN SET lvl_cleric = lvl_cleric + lvl_monk SET lvl_monk = 0 END
+			PATCH_IF ( lvl_paladin > 0 ) BEGIN SET lvl_cleric = lvl_cleric + lvl_paladin SET lvl_paladin = 0 END
+			PATCH_IF ( lvl_thief > 0 ) BEGIN SET lvl_cleric = lvl_cleric + lvl_thief SET lvl_thief = 0 END
+			PATCH_IF ( lvl_fighter > 0 ) BEGIN SET lvl_cleric = lvl_cleric + lvl_fighter SET lvl_fighter = 0 END
+		END
+		SET lvl_all = lvl_cleric + lvl_ranger
+		SET inc = 0
+		PATCH_IF ( lvl_all < lvl_total ) BEGIN
+			WHILE ( lvl_all < lvl_total ) BEGIN
+				PATCH_IF ( inc = 0 ) BEGIN SET lvl_cleric = lvl_cleric + 1 SET lvl_all = lvl_all + 1 SET inc = 1 END
+				PATCH_IF ( inc = 1 ) BEGIN SET lvl_ranger = lvl_ranger + 1 SET lvl_all = lvl_all + 1 SET inc = 0 END
+			END
+		END
+		PATCH_IF ( lvl_all > lvl_total ) BEGIN
+			WHILE ( lvl_all > lvl_total ) BEGIN
+				PATCH_IF ( inc = 0 ) BEGIN SET lvl_cleric = lvl_cleric - 1 SET lvl_all = lvl_all - 1 SET inc = 1 END
+				PATCH_IF ( inc = 1 ) BEGIN SET lvl_ranger = lvl_ranger - 1 SET lvl_all = lvl_all - 1 SET inc = 0 END
+			END
+		END
+		SET lvl_1 = lvl_cleric
+		SET lvl_2 = lvl_ranger
+		SET lvl_3 = 1
+		SET lvl_done = 1
+	END
+	PATCH_IF ( lvl_done = 0 ) BEGIN
+		SET lvl_1 = lvl_total
+		SET lvl_2 = 1
+		SET lvl_3 = 1
+		SET lvl_done = 1
+	END
+END
+
+DEFINE_PATCH_MACRO BUILD_THACO BEGIN
+	SET thc_done = 0
+	PATCH_MATCH cclass WITH
+		1 19
+		BEGIN
+			PHP_EACH thac0_mage AS level => value BEGIN
+				PATCH_IF ( level = lvl_total ) BEGIN thac0 = value END
+			END
+			SET thc_done = 1
+		END
+		2 6 7 8 9 10 12 16 17 20
+		BEGIN
+			PHP_EACH thac0_fighter AS level => value BEGIN
+				PATCH_IF ( level = lvl_total ) BEGIN thac0 = value END
+			END
+			SET thc_done = 1
+		END
+		3 11 14 15 18 21
+		BEGIN
+			PHP_EACH thac0_priest AS level => value BEGIN
+				PATCH_IF ( level = lvl_total ) BEGIN thac0 = value END
+			END
+			SET thc_done = 1
+		END
+		4 5 13
+		BEGIN
+			PHP_EACH thac0_rogue AS level => value BEGIN
+				PATCH_IF ( level = lvl_total ) BEGIN thac0 = value END
+			END
+			SET thc_done = 1
+		END
+		DEFAULT
+	END
+	PATCH_IF ( thc_done = 0 ) BEGIN
+		PHP_EACH thac0_fighter AS level => value BEGIN
+			PATCH_IF ( level = lvl_total ) BEGIN thac0 = value END
+		END
+		SET thc_done = 1
+	END
+END
+
+DEFINE_PATCH_MACRO BUILD_ATTACK_PER_ROUND BEGIN
+	SET apr = 1
+	SET thc_done = 0
+	PATCH_IF ( bba = 0 ) BEGIN
+		PATCH_MATCH cclass WITH
+			2 6 7 8 9 10 12 16 17
+			BEGIN
+				PHP_EACH apr_fighter AS level => value BEGIN
+					PATCH_IF ( level = lvl_total ) BEGIN apr = value END
+				END
+				SET thc_done = 1
+			END
+			20
+			BEGIN
+				PHP_EACH apr_monk AS level => value BEGIN
+					PATCH_IF ( level = lvl_total ) BEGIN apr = value END
+				END
+				SET thc_done = 1
+			END
+			1 3 4 5 11 13 14 15 18 19 21
+			BEGIN
+				PHP_EACH apr_other AS level => value BEGIN
+					PATCH_IF ( level = lvl_total ) BEGIN apr = value END
+				END
+				SET thc_done = 1
+			END
+			DEFAULT
+		END
+		PATCH_IF ( thc_done = 0 ) BEGIN
+			PHP_EACH apr_fighter AS level => value BEGIN
+				PATCH_IF ( level = lvl_total ) BEGIN apr = value END
+			END
+			SET thc_done = 1
+		END
+	END
+	PATCH_IF ( bba > 5 ) AND ( thc_done = 0 ) BEGIN SET apr = 5 SET thc_done = 1 END
+	PATCH_IF ( bba > 0 ) AND ( bba < 6 ) AND ( thc_done = 0 ) BEGIN SET apr = bba SET thc_done = 1 END
+END
+
+DEFINE_PATCH_MACRO CHECK_CRE_SOUNDS BEGIN
+	SET snd = 0
+	FOR ( i = 0 ; i < 64 ; ++i ) BEGIN
+		READ_LONG 0xac + i * 0x4 ttt
+		PATCH_IF ( ttt > 0 ) BEGIN SET snd = snd + 1 END
+	END
+	PATCH_IF ( snd > 0 ) BEGIN SPRINT ~ex_snd~ ~%ex_snd%%cname%%TAB%%snd%%LNL%~
+END
+
+DEFINE_PATCH_FUNCTION CHECK_CRE_PROF
+	INT_VAR stars = 0
+	RET value
+BEGIN
+	SET value = 0
+	PATCH_MATCH stars WITH
+		1
+		BEGIN
+			SET value = 1
+		END
+		2
+		BEGIN
+			PATCH_IF ( lvl_total >= 18 ) BEGIN SET value = 4 END
+			ELSE BEGIN
+				PATCH_IF ( lvl_total >= 13 ) BEGIN SET value = 3 END
+				ELSE BEGIN
+					SET value = 2
+				END
+			END
+		END
+		3
+		BEGIN
+			PATCH_IF ( lvl_total >= 18 ) BEGIN SET value = 5 END
+			ELSE BEGIN
+				SET value = 4
+			END
+		END
+		DEFAULT
+	END
+END
+
+DEFINE_PATCH_MACRO CONVERT_PROFISIENCY BEGIN
+	//PATCH_RANDOM_SEED 100
+	SET pr_longsword = 0
+	SET pr_shortsword = 0
+	SET pr_axe = 0
+	SET pr_twohandedsword = 0
+	SET pr_katana = 0
+	SET pr_scimitar = 0
+	SET pr_dagger = 0
+	SET pr_hammer = 0
+	SET pr_club = 0
+	SET pr_spear = 0
+	SET pr_halberd = 0
+	SET pr_flailmorningstar = 0
+	SET pr_mace = 0
+	SET pr_staff = 0
+	SET pr_xbow = 0
+	SET pr_longbow = 0
+	SET pr_shortbow = 0
+	SET pr_dart = 0
+	SET pr_sling = 0
+	PATCH_IF ( ip_ambidex = 1 ) BEGIN
+		PATCH_IF ( cclass = 12 ) BEGIN
+			PATCH_IF ( lvl_total >= 12 ) BEGIN SET pr_twoweapon = 3 END
+	  		ELSE BEGIN
+	  			PATCH_IF ( lvl_total >= 6 ) BEGIN SET pr_twoweapon = 2 END
+	  			ELSE BEGIN
+	  				SET pr_twoweapon = 1
+	  			END
+	  		END
+		END ELSE BEGIN
+			PATCH_IF ( lvl_total >= 20 ) SET pr_twoweapon = 3 END
+			ELSE BEGIN
+				PATCH_IF ( lvl_total >= 14 ) SET pr_twoweapon = 2 END
+				ELSE BEGIN
+					PATCH_IF ( lvl_total >= 8 ) SET pr_twoweapon = 1 END
+				END
+			END
+		END
+	END
+	PATCH_IF ( ip_shield = 1 ) BEGIN
+		PATCH_IF ( lvl_total >= 12 ) BEGIN SET pr_swordandshield = 2 END ELSE BEGIN SET pr_swordandshield = 1 END
+	END
+	PATCH_IF ( ip_2hStyle = 1 ) BEGIN
+		PATCH_IF ( lvl_total >= 12 ) BEGIN SET pr_2handed = 2 END ELSE BEGIN SET pr_2handed = 1 END
+	END
+	PATCH_IF ( ip_singlWeap = 1 ) BEGIN
+		PATCH_IF ( lvl_total >= 12 ) BEGIN SET pr_singleweapon = 2 END ELSE BEGIN SET pr_singleweapon = 1 END
+	END
+	SET check_prof = 0
+	SET all_prof = 0
+	SET no_prof = 0
+	PATCH_IF ( ip_bow > 0 ) BEGIN SET check_prof = check_prof + 1 SET all_prof = all_prof + ip_bow END
+	PATCH_IF ( ip_xbow > 0 ) BEGIN SET check_prof = check_prof + 1 SET all_prof = all_prof + ip_xbow END
+	PATCH_IF ( ip_missile > 0 ) BEGIN SET check_prof = check_prof + 1 SET all_prof = all_prof + ip_missile END
+	PATCH_IF ( ip_axe > 0 ) BEGIN SET check_prof = check_prof + 1 SET all_prof = all_prof + ip_axe END
+	PATCH_IF ( ip_mace > 0 ) BEGIN SET check_prof = check_prof + 1 SET all_prof = all_prof + ip_mace END
+	PATCH_IF ( ip_flail > 0 ) BEGIN SET check_prof = check_prof + 1 SET all_prof = all_prof + ip_flail END
+	PATCH_IF ( ip_halb > 0 ) BEGIN SET check_prof = check_prof + 1 SET all_prof = all_prof + ip_halb END
+	PATCH_IF ( ip_hamm > 0 ) BEGIN SET check_prof = check_prof + 1 SET all_prof = all_prof + ip_hamm END
+	PATCH_IF ( ip_staff > 0 ) BEGIN SET check_prof = check_prof + 1 SET all_prof = all_prof + ip_staff END
+	PATCH_IF ( ip_2hSwd > 0 ) BEGIN SET check_prof = check_prof + 1 SET all_prof = all_prof + ip_2hSwd END
+	PATCH_IF ( ip_LSwd > 0 ) BEGIN SET check_prof = check_prof + 1 SET all_prof = all_prof + ip_LSwd END
+	PATCH_IF ( ip_SSwd > 0 ) BEGIN SET check_prof = check_prof + 1 SET all_prof = all_prof + ip_SSwd END
+	PATCH_IF ( check_prof = 12 ) AND ( check_prof = all_prof ) BEGIN SET no_prof = 1 END
+	PATCH_IF ( no_prof = 0 ) BEGIN
+		LPF CHECK_CRE_PROF INT_VAR stars = ip_LSwd RET pr_longsword = value END
+		LPF CHECK_CRE_PROF INT_VAR stars = ip_SSwd RET pr_shortsword = value END
+		LPF CHECK_CRE_PROF INT_VAR stars = ip_axe RET pr_axe = value END
+		LPF CHECK_CRE_PROF INT_VAR stars = ip_2hSwd RET pr_twohandedsword = value END
+		LPF CHECK_CRE_PROF INT_VAR stars = ip_LSwd RET pr_scimitar = value END
+		LPF CHECK_CRE_PROF INT_VAR stars = ip_SSwd RET pr_dagger = value END
+		LPF CHECK_CRE_PROF INT_VAR stars = ip_hamm RET pr_hammer = value END
+		LPF CHECK_CRE_PROF INT_VAR stars = ip_mace RET pr_club = value END
+		LPF CHECK_CRE_PROF INT_VAR stars = ip_halb RET pr_spear = value END
+		LPF CHECK_CRE_PROF INT_VAR stars = ip_halb RET pr_halberd = value END
+		LPF CHECK_CRE_PROF INT_VAR stars = ip_flail RET pr_flailmorningstar = value END
+		LPF CHECK_CRE_PROF INT_VAR stars = ip_mace RET pr_mace = value END
+		LPF CHECK_CRE_PROF INT_VAR stars = ip_staff RET pr_staff = value END
+		LPF CHECK_CRE_PROF INT_VAR stars = ip_xbow RET pr_xbow = value END
+		LPF CHECK_CRE_PROF INT_VAR stars = ip_bow RET pr_longbow = value END
+		LPF CHECK_CRE_PROF INT_VAR stars = ip_bow RET pr_shortbow = value END
+		LPF CHECK_CRE_PROF INT_VAR stars = ip_missile RET pr_dart = value END
+		LPF CHECK_CRE_PROF INT_VAR stars = ip_missile RET pr_sling = value END
+	END 
+	LPF CHECK_CRE_PROF INT_VAR stars = ip_BSwd RET pr_bastardsword = value END
+END
+
+DEFINE_PATCH_FUNCTION CONVERT_ATTRIBUTES
+	INT_VAR
+		strg = 0
+		attr = 0
+	RET
+		value
+		value2
+BEGIN
+	value = attr
+	value2 = 0
+	PATCH_IF ( attr < 1 ) BEGIN value = 1 END
+	PATCH_IF ( attr < 19 ) BEGIN value = attr END
+	PATCH_IF ( attr > 18 ) BEGIN
+		PATCH_IF ( strg != 0 ) BEGIN
+			PATCH_RANDOM_SEED 100
+			PATCH_MATCH attr WITH
+            	19 BEGIN SET value = 18 SET value2 = RANDOM(1 50) END
+            	20 BEGIN SET value = 18 SET value2 = RANDOM(1 25) + 50 END
+            	21 BEGIN SET value = 18 SET value2 = RANDOM(1 15) + 75 END
+            	22 BEGIN SET value = 18 SET value2 = RANDOM(1 9)  + 90 END
+            	23 BEGIN SET value = 18 SET value2 = 100 END
+            	24 BEGIN SET value = RANDOM(1 2) + 18 END
+            	25 BEGIN SET value = 21 END
+            	26 BEGIN SET value = 22 END
+            	27 BEGIN SET value = 23 END
+            	28 BEGIN SET value = 24 END
+            	29 BEGIN SET value = 25 END
+            	DEFAULT
+            END
+		END ELSE BEGIN
+			PATCH_MATCH attr WITH
+				19 20 BEGIN SET value = 19 END
+				21 22 BEGIN SET value = 20 END
+				23 24 BEGIN SET value = 21 END
+				25 26 BEGIN SET value = 22 END
+            	27 BEGIN SET value = 23 END
+            	28 BEGIN SET value = 24 END
+            	29 BEGIN SET value = 25 END
+            	DEFAULT
+			END
+		END
+	END
+	PATCH_IF ( attr > 29 ) BEGIN SET value = 25 END
+END
+
+DEFINE_PATCH_MACRO READ_IWD_CRE BEGIN
+	READ_LONG  0x008 ~name_1~
+	READ_LONG  0x00c ~name_2~
+	LPM BUILD_TP2_CODE
+	READ_BYTE  0x010 flags_1
+	PATCH_IF ( flags_1 BAND BIT0 )  BEGIN SET flags_1 = ( flags_1 - BIT0 ) END
+	READ_BYTE  0x011 flags_2
+	PATCH_IF ( flags_2 BAND BIT11 ) BEGIN SET flags_2 = ( flags_2 - BIT11 ) END
+	PATCH_IF ( flags_2 BAND BIT13 ) BEGIN SET flags_2 = ( flags_2 - BIT13 ) END
+	PATCH_IF ( flags_2 BAND BIT15 ) BEGIN SET flags_2 = ( flags_2 - BIT15 ) END
+	READ_LONG  0x014 xp_val
+	LPM BUILD_CRE_XP
+	READ_LONG  0x018 xp_pwr_lvl
+	READ_LONG  0x01c gold
+	READ_LONG  0x020 status
+	READ_SHORT 0x024 curr_hp
+	READ_SHORT 0x026 max_hp
+	LPM BUILD_CRE_HP
+	READ_ASCII 0x02c colors (7)
+	//READ_BYTE  0x045 hid_shadows
+	//LPF CONVERT_RESIST INT_VAR res = hid_shadows RET hid_shadows = value END
+	READ_SHORT 0x046 ac_val
+	LPM BUILD_AC_VAL
+	READ_SHORT 0x048 ac_crush
+	READ_SHORT 0x04a ac_missile
+	READ_SHORT 0x04c ac_piers
+	READ_SHORT 0x04e ac_slash
+	READ_BYTE  0x050 bba
+	READ_BYTE  0x052 st_fort
+	READ_BYTE  0x053 st_refl
+	READ_BYTE  0x054 st_will
+	LPM BUILD_SAVING_THROW
+	READ_BYTE  0x055 resist_fire
+	LPF CONVERT_RESIST INT_VAR res = resist_fire RET resist_fire = value END
+	READ_BYTE  0x056 resist_cold
+	LPF CONVERT_RESIST INT_VAR res = resist_cold RET resist_cold = value END
+	READ_BYTE  0x057 resist_electr
+	LPF CONVERT_RESIST INT_VAR res = resist_electr RET resist_electr = value END
+	READ_BYTE  0x058 resist_acid
+	LPF CONVERT_RESIST INT_VAR res = resist_acid RET resist_acid = value END
+	READ_BYTE  0x05a resist_fire_mag
+	LPF CONVERT_RESIST INT_VAR res = resist_fire_mag RET resist_fire_mag = value END
+	READ_BYTE  0x05b resist_cold_mag
+	LPF CONVERT_RESIST INT_VAR res = resist_cold_mag RET resist_cold_mag = value END
+	READ_BYTE  0x05c resist_slash
+	LPF CONVERT_RESIST INT_VAR res = resist_slash RET resist_slash = value END
+	READ_BYTE  0x05d resist_crush
+	LPF CONVERT_RESIST INT_VAR res = resist_crush RET resist_crush = value END
+	READ_BYTE  0x05e resist_piers
+	LPF CONVERT_RESIST INT_VAR res = resist_piers RET resist_piers = value END
+	READ_BYTE  0x05f resist_missile
+	LPF CONVERT_RESIST INT_VAR res = resist_missile RET resist_missile = value END
+	READ_BYTE  0x060 resist_magic
+	LPF CONVERT_RESIST INT_VAR res = resist_magic RET resist_magic = value END
+	READ_BYTE  0x065 fatigue
+	READ_BYTE  0x066 intoxic
+	READ_BYTE  0x067 luck
+	READ_BYTE  0x08a lvl_total
+	SET lvl_all = 0
+	READ_BYTE  0x08b lvl_barbar
+	PATCH_IF ( lvl_barbar > 0) BEGIN SET lvl_all = lvl_all + 1 END
+	READ_BYTE  0x08c lvl_bard
+	PATCH_IF ( lvl_bard > 0) BEGIN SET lvl_all = lvl_all + 1 END
+	READ_BYTE  0x08d lvl_cleric
+	PATCH_IF ( lvl_cleric > 0) BEGIN SET lvl_all = lvl_all + 1 END
+	READ_BYTE  0x08e lvl_druid
+	PATCH_IF ( lvl_druid > 0) BEGIN SET lvl_all = lvl_all + 1 END
+	READ_BYTE  0x08f lvl_fighter
+	PATCH_IF ( lvl_fighter > 0) BEGIN SET lvl_all = lvl_all + 1 END
+	READ_BYTE  0x090 lvl_monk
+	PATCH_IF ( lvl_monk > 0) BEGIN SET lvl_all = lvl_all + 1 END
+	READ_BYTE  0x091 lvl_paladin
+	PATCH_IF ( lvl_paladin > 0) BEGIN SET lvl_all = lvl_all + 1 END
+	READ_BYTE  0x092 lvl_ranger
+	PATCH_IF ( lvl_ranger > 0) BEGIN SET lvl_all = lvl_all + 1 END
+	READ_BYTE  0x093 lvl_thief
+	PATCH_IF ( lvl_thief > 0) BEGIN SET lvl_all = lvl_all + 1 END
+	READ_BYTE  0x094 lvl_sorcerer
+	PATCH_IF ( lvl_sorcerer > 0) BEGIN SET lvl_all = lvl_all + 1 END
+	READ_BYTE  0x095 lvl_mage
+	PATCH_IF ( lvl_mage > 0) BEGIN SET lvl_all = lvl_all + 1 END	
+	LPM CONVERT_CRE_LEVELS
+	LPM BUILD_THACO
+	LPM BUILD_ATTACK_PER_ROUND
+	LPM CHECK_CRE_SOUNDS
+	READ_BYTE  0x1c0 feat_1
+	PATCH_IF ( feat_1 BAND BIT1 ) BEGIN SET ip_ambidex = 1 END
+	READ_BYTE  0x1c6 feat_1
+	PATCH_IF ( feat_1 BAND BIT4 ) BEGIN SET ip_shield = 1 END
+	READ_BYTE  0x1c8 feat_1
+	PATCH_IF ( feat_1 BAND BIT6 ) BEGIN SET ip_2hStyle = 1 END
+	PATCH_IF ( feat_1 BAND BIT7 ) BEGIN SET ip_singlWeap = 1 END
+	READ_BYTE  0x1d8 ip_bow
+	READ_BYTE  0x1d9 ip_xbow
+	READ_BYTE  0x1da ip_missile
+	READ_BYTE  0x1db ip_axe
+	READ_BYTE  0x1dc ip_mace
+	READ_BYTE  0x1dd ip_flail
+	READ_BYTE  0x1de ip_halb
+	READ_BYTE  0x1df ip_hamm
+	READ_BYTE  0x1e0 ip_staff
+	READ_BYTE  0x1e1 ip_2hSwd
+	READ_BYTE  0x1e2 ip_LSwd
+	READ_BYTE  0x1e3 ip_SSwd
+	READ_BYTE  0x1f1 ip_BSwd
+	LPM CONVERT_PROFISIENCY
+	READ_BYTE  0x21d dis_device
+	LPF CONVERT_RESIST INT_VAR res = dis_device RET set_traps = value END
+	READ_BYTE  0x21e hid_shadows
+	LPF CONVERT_RESIST INT_VAR res = hid_shadows RET hid_shadows = value END
+	READ_BYTE  0x220 k_arcana
+	LPF CONVERT_RESIST INT_VAR res = k_arcana RET lore = value END
+	READ_BYTE  0x221 move_silent
+	LPF CONVERT_RESIST INT_VAR res = move_silent RET move_silent = value END
+	READ_BYTE  0x222 open_locks
+	LPF CONVERT_RESIST INT_VAR res = open_locks RET open_locks = value END
+	READ_BYTE  0x223 pick_pocket
+	LPF CONVERT_RESIST INT_VAR res = pick_pocket RET pick_pocket = value END
+	READ_BYTE  0x224 search
+	LPF CONVERT_RESIST INT_VAR res = search RET find_traps = value END
+	LPF CONVERT_RESIST INT_VAR res = search RET detect_illusion = value END
+	READ_BYTE  0x227 wild_lore
+	LPF CONVERT_RESIST INT_VAR res = wild_lore RET tracking = value END
+	READ_BYTE  0x265 sex
+	READ_BYTE  0x266 stren
+	LPF CONVERT_ATTRIBUTES INT_VAR strg = 1 attr = stren RET strengh = value strengh_bonus = value2 END
+	READ_BYTE  0x267 intel
+	LPF CONVERT_ATTRIBUTES INT_VAR attr = intel RET intelligence = value END
+	READ_BYTE  0x268 wist
+	LPF CONVERT_ATTRIBUTES INT_VAR attr = wist RET wisdom = value END
+	READ_BYTE  0x269 dext
+	LPF CONVERT_ATTRIBUTES INT_VAR attr = dext RET dexterity = value END
+	READ_BYTE  0x26a conts
+	LPF CONVERT_ATTRIBUTES INT_VAR attr = conts RET constitution = value END
+	READ_BYTE  0x26b chra
+	LPF CONVERT_ATTRIBUTES INT_VAR attr = chra RET charisma = value END
+	READ_BYTE  0x26c morale
+	READ_BYTE  0x26d morale_break
+	READ_LONG  0x26e morale_recovery
+	READ_BYTE  0x303 no_an_helm
+	PATCH_IF ( no_an_helm BAND BIT1 ) BEGIN SPRINT ~crit_immun~ ~%crit_immun%%LNL%%cname%~
+	READ_BYTE  0x384 allegiance
+	PATCH_IF ( allegiance = 20 ) BEGIN SET allegiance = 199 END
+	READ_BYTE  0x385 general
+	READ_BYTE  0x388 specifics
+	READ_BYTE  0x389 gender
+	READ_BYTE  0x38f alignment
+END
+
+DEFINE_PATCH_MACRO WRITE_IWD_CRE BEGIN
+	WRITE_BYTE   0x010 flags_1
+	WRITE_BYTE   0x011 flags_2
+	WRITE_SHORT  0X012 0
+	WRITE_LONG   0x014 xp_val
+	WRITE_LONG   0x018 xp_pwr_lvl
+	WRITE_LONG   0x01c gold
+	WRITE_LONG   0x020 status
+	WRITE_SHORT  0x024 curr_hp
+	WRITE_SHORT  0x026 max_hp
+	WRITE_ASCIIE 0x02c colors (7)
+	WRITE_BYTE   0x045 hid_shadows
+	WRITE_SHORT  0x046 ac_val
+	WRITE_SHORT  0x048 ac_val
+	WRITE_SHORT  0x04a ac_crush
+	WRITE_SHORT  0x04c ac_missile
+	WRITE_SHORT  0x04e ac_piers
+	WRITE_SHORT  0x050 ac_slash
+	WRITE_BYTE   0x052 thac0
+	WRITE_BYTE   0x053 apr
+	WRITE_BYTE   0x054 st_death
+	WRITE_BYTE   0x055 st_wand
+	WRITE_BYTE   0x056 st_poly
+	WRITE_BYTE   0x057 st_breath
+	WRITE_BYTE   0x058 st_spell
+	WRITE_BYTE   0x059 resist_fire
+	WRITE_BYTE   0x05a resist_cold
+	WRITE_BYTE   0x05b resist_electr
+	WRITE_BYTE   0x05c resist_acid
+	WRITE_BYTE   0x05d resist_magic
+	WRITE_BYTE   0x05e resist_fire_mag
+	WRITE_BYTE   0x05f resist_cold_mag
+	WRITE_BYTE   0x060 resist_slash
+	WRITE_BYTE   0x061 resist_crush
+	WRITE_BYTE   0x062 resist_piers
+	WRITE_BYTE   0x063 resist_missile
+	WRITE_BYTE   0x064 detect_illusion
+	WRITE_BYTE   0x065 set_traps
+	WRITE_BYTE   0x066 lore
+	WRITE_BYTE   0x067 open_locks
+	WRITE_BYTE   0x068 move_silent
+	WRITE_BYTE   0x069 find_traps
+	WRITE_BYTE   0x06a pick_pocket
+	WRITE_BYTE   0x06b fatigue
+	WRITE_BYTE   0x06c intoxic
+	WRITE_BYTE   0x06d luck
+	WRITE_BYTE   0x083 tracking
+	WRITE_BYTE   0x234 lvl_1
+	WRITE_BYTE   0x235 lvl_2
+	WRITE_BYTE   0x236 lvl_3
+	WRITE_BYTE   0x237 sex
+	WRITE_BYTE   0x238 strengh
+	WRITE_BYTE   0x239 strengh_bonus
+	WRITE_BYTE   0x23a intelligence
+	WRITE_BYTE   0x23b wisdom
+	WRITE_BYTE   0x23c dexterity
+	WRITE_BYTE   0x23d constitution
+	WRITE_BYTE   0x23e charisma
+	WRITE_BYTE   0x23f morale
+	WRITE_BYTE   0x240 morale_break
+	WRITE_SHORT  0x242 morale_recovery
+	WRITE_BYTE   0x270 allegiance
+	WRITE_BYTE   0x271 general
+	WRITE_BYTE   0x274 specifics
+	WRITE_BYTE   0x275 gender
+	WRITE_BYTE   0x27b alignment
+	PATCH_IF ( pr_bastardsword > 0 ) BEGIN SET_BG2_PROFICIENCY 89 ~%pr_bastardsword%~ END
+	PATCH_IF ( pr_longsword > 0 ) BEGIN SET_BG2_PROFICIENCY 90 ~%pr_longsword%~ END
+	PATCH_IF ( pr_shortsword > 0 ) BEGIN SET_BG2_PROFICIENCY 91 ~%pr_shortsword%~ END
+	PATCH_IF ( pr_axe > 0 ) BEGIN SET_BG2_PROFICIENCY 92 ~%pr_axe%~ END
+	PATCH_IF ( pr_twohandedsword > 0 ) BEGIN SET_BG2_PROFICIENCY 93 ~%pr_twohandedsword%~ END
+	PATCH_IF ( pr_katana > 0 ) BEGIN SET_BG2_PROFICIENCY 94 ~%pr_katana%~ END
+	PATCH_IF ( pr_scimitar > 0 ) BEGIN SET_BG2_PROFICIENCY 95 ~%pr_scimitar%~ END
+	PATCH_IF ( pr_dagger > 0 ) BEGIN SET_BG2_PROFICIENCY 96 ~%pr_dagger%~ END
+	PATCH_IF ( pr_hammer > 0 ) BEGIN SET_BG2_PROFICIENCY 97 ~%pr_hammer%~ END
+	PATCH_IF ( pr_club > 0 ) BEGIN SET_BG2_PROFICIENCY 115 ~%pr_club%~ END
+	PATCH_IF ( pr_spear > 0 ) BEGIN SET_BG2_PROFICIENCY 98 ~%pr_spear%~ END
+	PATCH_IF ( pr_halberd > 0 ) BEGIN SET_BG2_PROFICIENCY 99 ~%pr_halberd%~ END
+	PATCH_IF ( pr_flailmorningstar > 0 ) BEGIN SET_BG2_PROFICIENCY 100 ~%pr_flailmorningstar%~ END
+	PATCH_IF ( pr_mace > 0 ) BEGIN SET_BG2_PROFICIENCY 101 ~%pr_mace%~ END
+	PATCH_IF ( pr_staff > 0 ) BEGIN SET_BG2_PROFICIENCY 102 ~%pr_staff%~ END
+	PATCH_IF ( pr_xbow > 0 ) BEGIN SET_BG2_PROFICIENCY 103 ~%pr_xbow%~ END
+	PATCH_IF ( pr_longbow > 0 ) BEGIN SET_BG2_PROFICIENCY 104 ~%pr_longbow%~ END
+	PATCH_IF ( pr_shortbow > 0 ) BEGIN SET_BG2_PROFICIENCY 105 ~%pr_shortbow%~ END
+	PATCH_IF ( pr_dart > 0 ) BEGIN SET_BG2_PROFICIENCY 106 ~%pr_dart%~ END
+	PATCH_IF ( pr_sling > 0 ) BEGIN SET_BG2_PROFICIENCY 107 ~%pr_sling%~ END
+	PATCH_IF ( pr_2handed > 0 ) BEGIN SET_BG2_PROFICIENCY 111 ~%pr_2handed%~ END
+	PATCH_IF ( pr_swordandshield > 0 ) BEGIN SET_BG2_PROFICIENCY 112 ~%pr_swordandshield%~ END
+	PATCH_IF ( pr_singleweapon > 0 ) BEGIN SET_BG2_PROFICIENCY 113 ~%pr_singleweapon%~ END
+	PATCH_IF ( pr_twoweapon > 0 ) BEGIN SET_BG2_PROFICIENCY 114 ~%pr_twoweapon%~ END
+END
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

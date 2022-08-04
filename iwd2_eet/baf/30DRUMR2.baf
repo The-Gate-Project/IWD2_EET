@@ -1,0 +1,18 @@
+IF
+	!Global("30DRUMR2_INACTIVE","LOCALS",1)
+	!Global("DRUM_2_STATE","MYAREA",2)
+	!Dead("DRUM_2")
+	OR(4)
+		!Global("TEAM_7","MYAREA",0)
+		Global("DRUM_2_STATE","MYAREA",1)
+		See(NearestEnemyOf(Myself))
+		AttackedBy([PC],DEFAULT)
+THEN
+	RESPONSE #100
+		SetGlobal("I_PLAY_DRUMS","LOCALS",1)
+		//SetCreatureAreaFlag(Myself,IGNORE_RETURN_TO_START_POS,TRUE)
+		SetGlobal("DRUM_2_STATE","MYAREA",2)
+		DisplayStringHead(Myself,@471)
+		SetGlobal("30DRUMR2_INACTIVE","LOCALS",1)
+END
+

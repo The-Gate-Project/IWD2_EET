@@ -1,0 +1,128 @@
+IF
+	OnCreation()
+THEN
+	RESPONSE #100
+		SetGlobal("SH_ResetVisualRange","GLOBAL",1)
+		SetGlobal("MT_ResetVisualRange","GLOBAL",1)
+		Explore()
+		StartCutScene("64cVisR")
+		Continue()
+END
+
+IF
+	!Global("SH_BarracksGuardsReset","GLOBAL",1)
+THEN
+	RESPONSE #100
+		SetGlobal("SH_BarracksGuardsReset","GLOBAL",1)
+		Continue()
+END
+
+IF
+	Global("MT_PortalSequence","GLOBAL",6)
+THEN
+	RESPONSE #100
+		Wait(2)
+		//SetVisualRange(0)
+		ActionOverride("cutspy",DestroySelf())
+		ActionOverride("cutspy2",DestroySelf())
+		StartCutScene("LUA6401a")
+END
+
+IF
+	InMyArea(Player1)
+	OR(3)
+	/*	Exists(Player1[110.520.190.600])
+		Exists(Player1[720.450.830.530])
+		Exists(Player1[350.380.440.440])*/
+		NearLocation(Player1,140,560,4)
+		NearLocation(Player1,770,485,4)
+		NearLocation(Player1,393,411,4)
+THEN
+	RESPONSE #100
+		//ActionOverride(Player1,ChunkCreature(Myself))
+		ActionOverride(Player1,ApplySpellRES("IWCHUNK",Myself))
+END
+
+IF
+	InMyArea(Player2)
+	OR(3)
+	/*	Exists(Player2[110.520.190.600])
+		Exists(Player2[720.450.830.530])
+		Exists(Player2[350.380.440.440])*/
+		NearLocation(Player2,140,560,4)
+		NearLocation(Player2,770,485,4)
+		NearLocation(Player2,393,411,4)
+THEN
+	RESPONSE #100
+		//ActionOverride(Player2,ChunkCreature(Myself))
+		ActionOverride(Player2,ApplySpellRES("IWCHUNK",Myself))
+END
+
+IF
+	InMyArea(Player3)
+	OR(3)
+	/*	Exists(Player3[110.520.190.600])
+		Exists(Player3[720.450.830.530])
+		Exists(Player3[350.380.440.440])*/
+		NearLocation(Player3,140,560,4)
+		NearLocation(Player3,770,485,4)
+		NearLocation(Player3,393,411,4)
+THEN
+	RESPONSE #100
+		//ActionOverride(Player3,ChunkCreature(Myself))
+		ActionOverride(Player3,ApplySpellRES("IWCHUNK",Myself))
+END
+
+IF
+	InMyArea(Player4)
+	OR(3)
+	/*	Exists(Player4[110.520.190.600])
+		Exists(Player4[720.450.830.530])
+		Exists(Player4[350.380.440.440])*/
+		NearLocation(Player4,140,560,4)
+		NearLocation(Player4,770,485,4)
+		NearLocation(Player4,393,411,4)
+THEN
+	RESPONSE #100
+		//ActionOverride(Player4,ChunkCreature(Myself))
+		ActionOverride(Player4,ApplySpellRES("IWCHUNK",Myself))
+END
+
+IF
+	InMyArea(Player5)
+	OR(3)
+	/*	Exists(Player5[110.520.190.600])
+		Exists(Player5[720.450.830.530])
+		Exists(Player5[350.380.440.440])*/
+		NearLocation(Player5,140,560,4)
+		NearLocation(Player5,770,485,4)
+		NearLocation(Player5,393,411,4)
+THEN
+	RESPONSE #100
+		//ActionOverride(Player5,ChunkCreature(Myself))
+		ActionOverride(Player5,ApplySpellRES("IWCHUNK",Myself))
+END
+
+IF
+	InMyArea(Player6)
+	OR(3)
+	/*	Exists(Player6[110.520.190.600])
+		Exists(Player6[720.450.830.530])
+		Exists(Player6[350.380.440.440])*/
+		NearLocation(Player6,140,560,4)
+		NearLocation(Player6,770,485,4)
+		NearLocation(Player6,393,411,4)
+THEN
+	RESPONSE #100
+		//ActionOverride(Player6,ChunkCreature(Myself))
+		ActionOverride(Player6,ApplySpellRES("IWCHUNK",Myself))
+END
+
+IF
+	OnCreation()
+THEN
+	RESPONSE #100
+		NoAction()
+		Continue()
+END
+

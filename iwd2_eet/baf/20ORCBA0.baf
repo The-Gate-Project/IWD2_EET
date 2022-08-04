@@ -1,0 +1,107 @@
+IF
+	!Global("20ORCBA0_INACTIVE","LOCALS",1)
+	Global("SBOT_MarkRunner","LOCALS",0)
+	//See([ENEMY])
+	
+	See([ENEMY.0.ORC.0.ORC_RUNNER])
+THEN
+	RESPONSE #100
+		SetGlobal("SBOT_MarkRunner","LOCALS",1)
+		//SetMyTarget(LastSeenBy(Myself))
+		//ChangeSpecifics(LastSeenBy(Myself),ORC_RUNNER)
+END
+
+IF
+	!Global("20ORCBA0_INACTIVE","LOCALS",1)
+	Global("SBOT_LightKeg","LOCALS",0)
+	Global("SBOT_MarkRunner","LOCALS",1)
+	See([ENEMY.0.ORC.0.ORC_RUNNER])
+	Global("IAmNoSeeMyTarget","LOCALS",1)
+THEN
+	RESPONSE #100
+		ClearActions(Myself)
+		SetGlobal("IAmNoSeeMyTarget","LOCALS",0)
+		Continue()
+END
+
+IF
+	!Global("20ORCBA0_INACTIVE","LOCALS",1)
+	Global("SBOT_LightKeg","LOCALS",0)
+	Global("SBOT_MarkRunner","LOCALS",1)
+	!See([ENEMY.0.ORC.0.ORC_RUNNER])
+	!Global("IAmNoSeeMyTarget","LOCALS",1)
+THEN
+	RESPONSE #100
+		//MoveToObjectUntilSee(MyTarget)
+		SetGlobal("IAmNoSeeMyTarget","LOCALS",1)
+		MoveToObject([ENEMY.0.ORC.0.ORC_RUNNER])
+END
+
+IF
+	!Global("20ORCBA0_INACTIVE","LOCALS",1)
+	Global("SBOT_SpottedParty","LOCALS",0)
+	OR(2)
+		See(NearestEnemyOf(Myself))
+		Heard([ENEMY],1)
+THEN
+	RESPONSE #100
+		SetGlobal("SBOT_SpottedParty","LOCALS",1)
+		Shout(1)
+		DisplayStringHead(Myself,@35375)
+	RESPONSE #100
+		SetGlobal("SBOT_SpottedParty","LOCALS",1)
+		Shout(1)
+		DisplayStringHead(Myself,@35376)
+END
+
+IF
+	!Global("20ORCBA0_INACTIVE","LOCALS",1)
+	StateCheck(Myself,STATE_PANIC)
+THEN
+	RESPONSE #100
+		RandomWalkContinuous()
+END
+
+IF
+	!Global("20ORCBA0_INACTIVE","LOCALS",1)
+	See([ENEMY.MONSTER.KEG.0.200])
+THEN
+	RESPONSE #100
+		SetGlobal("SBOT_LightKeg","LOCALS",2)
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	!Global("20ORCBA0_INACTIVE","LOCALS",1)
+	Global("SBOT_LightKeg","LOCALS",0)
+	Heard([ENEMY],2)
+THEN
+	RESPONSE #100
+		SetGlobal("SBOT_LightKeg","LOCALS",1)
+END
+
+IF
+	!Global("20ORCBA0_INACTIVE","LOCALS",1)
+	Global("SBOT_LightKeg","LOCALS",1)
+THEN
+	RESPONSE #100
+		//MoveToObjectUntilSee([ENEMY.MONSTER.KEG.0.200])
+		MoveToObject([ENEMY.MONSTER.KEG.0.200])
+END
+
+IF
+	!Global("20ORCBA0_INACTIVE","LOCALS",1)
+	Global("SBOT_LightKeg","LOCALS",2)
+THEN
+	RESPONSE #100
+		SetGlobal("20ORCBA0_INACTIVE","LOCALS",1)
+END
+
+IF
+	!Global("20ORCBA0_INACTIVE","LOCALS",1)
+	True()
+THEN
+	RESPONSE #100
+		NoAction()
+END
+

@@ -1,0 +1,121 @@
+IF
+	//IsActive("monks_chanting")
+	!Global("monks_chanting_inactive","MYAREA",1)
+	
+	//!Exists([ENEMY][0.0.10000.10000])
+	!AreaCheckAllegiance(ENEMY)
+THEN
+	RESPONSE #100
+		//Deactivate("monks_chanting")
+		SoundActivate("monks_chanting",FALSE)
+		SetGlobal("monks_chanting_inactive","MYAREA",1)
+END
+
+IF
+	Global("6502_SeeParty","GLOBAL",1)
+THEN
+	RESPONSE #100
+		SetGlobal("6502_SeeParty","GLOBAL",0)
+		SetGlobal("6502_SeeParty_Time","GLOBAL",0)
+		Continue()
+END
+
+IF
+	Global("ShowCutscene","MYAREA",0)
+	Global("65Party_Teleported","GLOBAL",1)
+THEN
+	RESPONSE #100
+		SetGlobal("ShowCutscene","MYAREA",1)
+		SetGlobal("65Party_Teleported","GLOBAL",0)
+		Explore()
+		StartCutSceneMode()
+		ClearAllActions()
+		MultiPlayerSync()
+		StartCutScene("65cTeleA")
+END
+
+IF
+	Global("ShowCutscene","MYAREA",1)
+	Global("65Party_Teleported","GLOBAL",1)
+THEN
+	RESPONSE #100
+		SetGlobal("65Party_Teleported","GLOBAL",0)
+		StartCutSceneMode()
+		ClearAllActions()
+		MultiPlayerSync()
+		StartCutScene("65cTeleB")
+END
+
+IF
+	Global("ADP_1","MYAREA",0)
+	HPLT("Undead_Gaernat_Sharptooth",1)
+THEN
+	RESPONSE #100
+		SetGlobal("ADP_1","MYAREA",1)
+		//SpellHitEffectSprite("Undead_Gaernat_Sharptooth","Undead_Gaernat_Sharptooth",MONSTER_SUMMONING_I,0)
+		CreateVisualEffectObject("MSUMM1X","Undead_Gaernat_Sharptooth")
+		Continue()
+END
+
+IF
+	Global("ADP_2","MYAREA",0)
+	HPLT("Undead_Sherincal",1)
+THEN
+	RESPONSE #100
+		SetGlobal("ADP_2","MYAREA",1)
+		//SpellHitEffectSprite("Undead_Sherincal","Undead_Sherincal",MONSTER_SUMMONING_I,0)
+		CreateVisualEffectObject("MSUMM1X","Undead_Sherincal")
+		Continue()
+END
+
+IF
+	Global("ADP_3","MYAREA",0)
+	HPLT("Undead_Harshom",1)
+THEN
+	RESPONSE #100
+		SetGlobal("ADP_3","MYAREA",1)
+		//SpellHitEffectSprite("Undead_Harshom","Undead_Harshom",MONSTER_SUMMONING_I,0)
+		CreateVisualEffectObject("MSUMM1X","Undead_Harshom")
+		Continue()
+END
+
+IF
+	Global("ADP_4","MYAREA",0)
+	HPLT("Undead_Guthma",1)
+THEN
+	RESPONSE #100
+		SetGlobal("ADP_4","MYAREA",1)
+		//SpellHitEffectSprite("Undead_Guthma","Undead_Guthma",MONSTER_SUMMONING_I,0)
+		CreateVisualEffectObject("MSUMM1X","Undead_Guthma")
+		Continue()
+END
+
+/*IF
+	Global("ADP_","MYAREA",0)
+	HPLT("Undead_Saablic_Tan",1)
+THEN
+	RESPONSE #100
+		SetGlobal("ADP_","MYAREA",1)
+		SpellHitEffectSprite("Undead_Saablic_Tan","Undead_Saablic_Tan",MONSTER_SUMMONING_I,0)
+		Continue()
+END*/
+
+IF
+	OnCreation()
+THEN
+	RESPONSE #100
+		NoAction()
+		Continue()
+END
+
+IF
+	!Global("RJ_AR6503","GLOBAL",0)
+	//!InCutsceneMode()
+THEN
+	RESPONSE #100
+		MultiPlayerSync()
+		//ResetJoinRequests()
+		SetGlobal("RJ_AR6503","GLOBAL",0)
+		Continue()
+END
+

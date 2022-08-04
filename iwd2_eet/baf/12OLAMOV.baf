@@ -1,0 +1,26 @@
+IF
+	OR(2)
+		Die()
+		StateCheck(Myself,STATE_REALLY_DEAD)
+	CheckSpellState(Myself,CRITICAL_PATH)
+	!Global("Set_Death_Variable","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("Set_Death_Variable","LOCALS",1)
+		IncrementGlobal("IwdCriticalDead","GLOBAL",1)
+		Continue()
+END
+
+IF
+	Global("MOVED_TO_NEW_LOC","LOCALS",0)
+	!Global("Goblins_Attack_Palisade","GLOBAL",0)
+THEN
+	RESPONSE #100
+		SetHomeLocation([2714.922])
+		SaveLocation("LOCALS","SavedLoc",[2714.922])
+		JumpToPoint([2714.922])
+		Face(SW)
+		SetGlobal("MOVED_TO_NEW_LOC","LOCALS",1)
+		SetGlobal("SaveSavedLoc","LOCALS",1)
+END
+

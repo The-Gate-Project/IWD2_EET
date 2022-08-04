@@ -1,0 +1,91 @@
+IF
+	IsActive(Myself)
+	Global("60Egenia_Gone","GLOBAL",1)
+THEN
+	RESPONSE #100
+		UseItem("z1veira4",Myself)
+		Wait(1)
+		DestroySelf()
+END
+
+IF
+	IsActive(Myself)
+	OR(4)
+		HPPercentLT(Myself,100)
+		Allegiance(Myself,ENEMY)
+		HitBy([ANYONE],CRUSHING)
+		AttackedBy([ANYONE],DEFAULT)
+THEN
+	RESPONSE #100
+		//SetHPPercent(Myself,100,MAX_HP)
+		ApplySpell(Myself,RESTORE_FULL_HEALTH)
+		//HideCreature(Myself,TRUE)
+		SetGlobal("IwIHidden","LOCALS",1)
+		Deactivate(Myself)
+END
+
+IF
+	Global("60Egenia_Gone","GLOBAL",1)
+THEN
+	RESPONSE #100
+		DestroySelf()
+END
+
+IF
+	IsActive(Myself)
+	Global("60OkayToUnhideEgenia","GLOBAL",1)
+	TimeGT(DAWN_START)
+	TimeLT(DUSK_END)
+THEN
+	RESPONSE #100
+		//HideCreature(Myself,TRUE)
+		SetGlobal("IwIHidden","LOCALS",1)
+		Deactivate(Myself)
+		//Continue()
+END
+
+IF
+	!IsActive(Myself)
+	Global("60OkayToUnhideEgenia","GLOBAL",1)
+	OR(2)
+		TimeLT(DAWN_END)
+		TimeGT(DUSK_START)
+THEN
+	RESPONSE #100
+		//HideCreature(Myself,FALSE)
+		Activate(Myself)
+		SetGlobal("IwIHidden","LOCALS",0)
+		Continue()
+END
+
+IF
+	!GlobalTimerNotExpired("IwTimer21","LOCALS")
+	IsActive(Myself)
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,@28897)
+		SetGlobalTimer("IwTimer21","LOCALS",15)
+		Continue()
+	RESPONSE #100
+		DisplayStringHead(Myself,@28898)
+		SetGlobalTimer("IwTimer21","LOCALS",15)
+		Continue()
+	RESPONSE #100
+		DisplayStringHead(Myself,@28899)
+		SetGlobalTimer("IwTimer21","LOCALS",15)
+		Continue()
+	RESPONSE #100
+		DisplayStringHead(Myself,@28900)
+		SetGlobalTimer("IwTimer21","LOCALS",15)
+		Continue()
+END
+
+IF
+	Global("60OkayToUnhideEgenia","GLOBAL",0)
+	GlobalGT("Kuldahar_6002_UndeadKilled","GLOBAL",0)
+	GlobalGT("60Egenia_Quest","GLOBAL",0)
+THEN
+	RESPONSE #100
+		SetGlobal("60OkayToUnhideEgenia","GLOBAL",1)
+END
+

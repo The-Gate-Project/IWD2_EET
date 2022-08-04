@@ -1,0 +1,171 @@
+IF
+	Global("AllowAreaResting","MYAREA",1)
+	Global("BLACKRAVEN_MONKS_DEAD","GLOBAL",0)
+THEN
+	RESPONSE #100
+		SetGlobal("AllowAreaResting","MYAREA",0)
+		AddAreaFlag(NOREST)
+		Continue()
+END
+
+IF
+	Global("52EXILE","GLOBAL",2)
+THEN
+	RESPONSE #100
+		/*ActionOverride("01_52MNKML_02",DestroySelf())
+		ActionOverride("03_52MNKMLX_02",DestroySelf())
+		ActionOverride("03_52MNKMLX_03",DestroySelf())
+		ActionOverride("03_52MNKMLX_04",DestroySelf())
+		ActionOverride("03_52MNKMLX_05",DestroySelf())
+		ActionOverride("03_52MNKMLX_06",DestroySelf())
+		ActionOverride("03_52MNKFLX_07",DestroySelf())
+		ActionOverride("03_52MNKFLX_08",DestroySelf())*/
+		SetGlobal("52EXILE","GLOBAL",3)
+		Continue()
+END
+
+IF
+	Global("52EXILE","GLOBAL",1)
+	!Global("TEAM_1","MYAREA",0)
+THEN
+	RESPONSE #100
+		SetGlobal("52EXILE","GLOBAL",0)
+		Continue()
+END
+
+IF
+	Global("52Alarm","GLOBAL",0)
+	!Global("TEAM_0","MYAREA",0)
+THEN
+	RESPONSE #100
+		SetGlobal("52Alarm","GLOBAL",1)
+		Continue()
+END
+
+IF
+	Global("TEAM_0","MYAREA",0)
+	!Global("52Alarm","GLOBAL",0)
+THEN
+	RESPONSE #100
+		SetGlobal("TEAM_0","MYAREA",1)
+		Continue()
+END
+
+//////////////////
+IF
+	GlobalGT("52EXILE","GLOBAL",1)
+	!Global("MONKS1_REMOVED","MYAREA",1)
+THEN
+	RESPONSE #100
+		SetGlobal("MONKS1_REMOVED","MYAREA",1)
+		Continue()
+END
+
+IF
+	!Global("MONKS1_REMOVED","MYAREA",1)
+	Dead("Salisam")
+	GlobalGT("SPRITE_IS_DEAD5201Monks01","GLOBAL",6)
+THEN
+	RESPONSE #100
+		SetGlobal("MONKS1_REMOVED","MYAREA",1)
+		Continue()
+END
+//////////////////
+
+IF
+	Global("AR5201_BLACKRAVEN_DEAD","GLOBAL",0)
+	/*Dead("01_52Salisa_01")
+	Dead("01_52MNKML_02")
+	Dead("01_52MNKML_03")
+	Dead("01_52MNKML_04")
+	Dead("01_52MNKML_05")
+	Dead("01_52MNKML_06")
+	Dead("01_52MNKFL_07")
+	Dead("01_52MNKFL_08")*/
+	Global("MONKS1_REMOVED","MYAREA",1)
+	Dead("01_52MNKM_09")
+	Dead("Bered")
+	Dead("Svaltid")
+	/*Dead("02_52MNKM_02")
+	Dead("02_52MNKM_03")
+	Dead("02_52MNKF_15")
+	Dead("02_52MNKM_04")
+	Dead("02_52MNKM_05")
+	Dead("02_52MNKM_06")
+	Dead("02_52MNKM_07")
+	Dead("02_52MNKM_08")
+	Dead("02_52MNKM_09")
+	Dead("02_52MNKF_10")
+	Dead("02_52MNKF_11")
+	Dead("02_52MNKF_12")
+	Dead("02_52MNKF_13")
+	Dead("02_52MNKM_14")*/
+	Dead("Nonin")
+	/*Dead("04_52MNKM_02")
+	Dead("04_52MNKM_03")
+	Dead("04_52MNKM_04")
+	Dead("04_52MNKM_05")
+	Dead("04_52MNKM_06")
+	Dead("04_52MNKM_07")
+	Dead("04_52MNKF_11")
+	Dead("04_52MNKF_12")
+	Dead("04_52MNKF_13")
+	Dead("04_52MNKM_08")
+	Dead("04_52MNKM_09")
+	Dead("04_52MNKM_10")
+	Dead("04_52MNKF_14")*/
+	Dead("Sersa")
+	/*Dead("05_52MNKM_02")
+	Dead("05_52MNKM_03")*/
+	Dead("Aruma")
+	GlobalGT("SPRITE_IS_DEAD5201Monks02","GLOBAL",13)
+	GlobalGT("SPRITE_IS_DEAD5201Monks04","GLOBAL",12)
+	GlobalGT("SPRITE_IS_DEAD5201Monks05","GLOBAL",1)
+THEN
+	RESPONSE #100
+		SetGlobal("AR5201_BLACKRAVEN_DEAD","GLOBAL",1)
+		Continue()
+END
+
+IF
+	Global("BLACKRAVEN_MONKS_DEAD","GLOBAL",0)
+	!Global("AR5201_BLACKRAVEN_DEAD","GLOBAL",0)
+	!Global("AR5202_BLACKRAVEN_DEAD","GLOBAL",0)
+THEN
+	RESPONSE #100
+		DisplayStringNoName(Player1,@27960)
+		SetGlobal("BLACKRAVEN_MONKS_DEAD","GLOBAL",1)
+		Continue()
+END
+
+IF
+	Global("BLACKRAVEN_MONKS_DEAD","GLOBAL",1)
+	Global("SPRITE_IS_DEADBarud","GLOBAL",0)
+	Global("51Barud_Monks","GLOBAL",1)
+THEN
+	RESPONSE #100
+		AddJournalEntry(@28813,QUEST)
+		SetGlobal("BLACKRAVEN_MONKS_DEAD","GLOBAL",2)
+		Continue()
+END
+
+IF
+	//AreaRestDisabled()
+	!Global("AllowAreaResting","MYAREA",1)
+	!Global("BLACKRAVEN_MONKS_DEAD","GLOBAL",0)
+THEN
+	RESPONSE #100
+		//AllowAreaResting(TRUE)
+		SetGlobal("AllowAreaResting","MYAREA",1)
+		RemoveAreaFlag(NOREST)
+		Continue()
+END
+
+IF
+	OnCreation()
+THEN
+	RESPONSE #100
+		NoAction()
+		Continue()
+END
+

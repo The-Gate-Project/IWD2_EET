@@ -1,0 +1,16 @@
+IF
+	!Global("60pSnkSt_HeartMissing","MYAREA",1)
+	!Contains("z6heart1",Myself)
+	//!HasItem("60Heart2",Myself)
+	//!HasItem("60Heart3",Myself)
+	//!HasItem("60Heart4",Myself)
+	//!HasItem("60Heart5",Myself)
+	!Contains("z6HEART6",Myself)
+	!Contains("z6HEART7",Myself)
+	!Contains("z6HEART8",Myself)
+THEN
+	RESPONSE #100
+		SetGlobal("60pSnkSt_HeartMissing","MYAREA",1)
+		Wait(7)
+END
+

@@ -1,0 +1,49 @@
+IF
+	Global("Aocha_Persistent_AI","LOCALS",0)
+THEN
+	RESPONSE #100
+		ApplySpellRES("IWPERAI",Myself)
+		SetGlobal("Aocha_Persistent_AI","LOCALS",1)
+		Continue()
+END
+
+IF
+	Global("41ZackAochaMove","GLOBAL",1)
+	See("41Zack")
+	Range("41Zack",7)
+THEN
+	RESPONSE #100
+		ClearActions(Myself)
+		SetGlobal("41ZackAochaMove","GLOBAL",2)
+END
+
+IF
+	//Global("41ZackTask","GLOBAL",14)
+	Global("41ZackAochaMove","GLOBAL",1)
+	Exists("41Zack")
+	OR(2)
+		!See("41Zack")
+		!Range("41Zack",7)
+THEN
+	RESPONSE #100
+		MoveToObject("41Zack")
+END
+
+IF
+	Global("INITIALIZED_41AOCHA","LOCALS",0)
+THEN
+	RESPONSE #100
+		//SetCreatureAreaFlag(Myself,IGNORE_RETURN_TO_START_POS,TRUE)
+		SetGlobal("INITIALIZED_41AOCHA","LOCALS",1)
+		Continue()
+END
+
+IF
+	AttackedBy([GOODCUTOFF],DEFAULT)
+THEN
+	RESPONSE #100
+		SetGlobal("41PlayerKilledAocha","GLOBAL",1)
+		Enemy()
+		ChangeAIScript("",CLASS)
+END
+

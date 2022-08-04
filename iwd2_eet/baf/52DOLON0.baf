@@ -1,0 +1,252 @@
+IF
+  Global("SaveSavedLoc","LOCALS",0)
+THEN
+  RESPONSE #100
+    SetGlobal("SaveSavedLoc","LOCALS",1)
+    SaveObjectLocation("LOCALS","SavedLoc",Myself)
+    Continue()
+END
+
+IF
+	!Global("52Aruma_Gone","GLOBAL",0)
+	//!CheckDoorFlags("AR5201_Door1",DOORLOCKED)
+	Range("AR5201_Door1",7)
+	OpenState("AR5201_Door1",FALSE)
+THEN
+	RESPONSE #100
+		Unlock("AR5201_Door1")
+		OpenDoor("AR5201_Door1")
+		Continue()
+END
+
+IF
+	!Global("52Aruma_Gone","GLOBAL",0)
+	//!CheckDoorFlags("AR5201_Door2",DOORLOCKED)
+	Range("AR5201_Door2",7)
+	OpenState("AR5201_Door2",FALSE)
+THEN
+	RESPONSE #100
+		Unlock("AR5201_Door2")
+		OpenDoor("AR5201_Door2")
+		Continue()
+END
+
+IF
+	!Global("52Aruma_Gone","GLOBAL",0)
+	//!CheckDoorFlags("AR5201_Door3",DOORLOCKED)
+	Range("AR5201_Door3",7)
+	OpenState("AR5201_Door3",FALSE)
+THEN
+	RESPONSE #100
+		Unlock("AR5201_Door3")
+		OpenDoor("AR5201_Door3")
+		Continue()
+END
+
+IF
+	!Global("52Aruma_Gone","GLOBAL",0)
+	//!CheckDoorFlags("AR5201_Door4",DOORLOCKED)
+	Range("AR5201_Door4",7)
+	OpenState("AR5201_Door4",FALSE)
+THEN
+	RESPONSE #100
+		Unlock("AR5201_Door4")
+		OpenDoor("AR5201_Door4")
+		Continue()
+END
+
+IF
+	!Global("52Aruma_Gone","GLOBAL",0)
+	//!CheckDoorFlags("AR5201_Door5",DOORLOCKED)
+	Range("AR5201_Door5",7)
+	OpenState("AR5201_Door5",FALSE)
+THEN
+	RESPONSE #100
+		Unlock("AR5201_Door5")
+		OpenDoor("AR5201_Door5")
+		Continue()
+END
+
+IF
+	!Global("52Aruma_Gone","GLOBAL",0)
+	//!CheckDoorFlags("AR5201_Door6",DOORLOCKED)
+	Range("AR5201_Door6",7)
+	OpenState("AR5201_Door6",FALSE)
+THEN
+	RESPONSE #100
+		Unlock("AR5201_Door6")
+		OpenDoor("AR5201_Door6")
+		Continue()
+END
+
+IF
+	Global("ML_0","LOCALS",0)
+	ActionListEmpty()
+	NearLocation(Myself,1265,1160,4)
+THEN
+	RESPONSE #100
+		SetHomeLocation([1265.1160])
+		SetGlobal("ML_0","LOCALS",1)
+		Continue()
+END
+
+IF
+	Global("ML_0","LOCALS",0)
+	GlobalGT("52Aruma_Gone","GLOBAL",0)
+THEN
+	RESPONSE #100
+		MoveToPoint([1265.1160])
+END
+
+IF
+	Global("ML_0","LOCALS",1)
+	ActionListEmpty()
+	NearLocation(Myself,1025,960,4)
+THEN
+	RESPONSE #100
+		SetHomeLocation([1025.960])
+		SetGlobal("ML_0","LOCALS",2)
+		Continue()
+END
+
+IF
+	Global("ML_0","LOCALS",1)
+	GlobalGT("52Aruma_Gone","GLOBAL",0)
+THEN
+	RESPONSE #100
+		MoveToPoint([1025.960])
+END
+
+IF
+	Global("ML_0","LOCALS",2)
+	ActionListEmpty()
+	NearLocation(Myself,1195,770,4)
+THEN
+	RESPONSE #100
+		SetHomeLocation([1195.770])
+		SetGlobal("ML_0","LOCALS",3)
+		Continue()
+END
+
+IF
+	Global("ML_0","LOCALS",2)
+	GlobalGT("52Aruma_Gone","GLOBAL",0)
+THEN
+	RESPONSE #100
+		MoveToPoint([1195.770])
+END
+
+IF
+	Global("ML_0","LOCALS",3)
+	ActionListEmpty()
+	NearLocation(Myself,1360,875,4)
+THEN
+	RESPONSE #100
+		SetHomeLocation([1360.875])
+		SetGlobal("ML_0","LOCALS",4)
+		Continue()
+END
+
+IF
+	Global("ML_0","LOCALS",3)
+	GlobalGT("52Aruma_Gone","GLOBAL",0)
+THEN
+	RESPONSE #100
+		MoveToPoint([1360.875])
+END
+
+IF
+	Global("ML_0","LOCALS",4)
+	ActionListEmpty()
+	NearLocation(Myself,1445,775,4)
+THEN
+	RESPONSE #100
+		SetHomeLocation([1445.775])
+		SetGlobal("ML_0","LOCALS",5)
+		Continue()
+END
+
+IF
+	Global("ML_0","LOCALS",4)
+	GlobalGT("52Aruma_Gone","GLOBAL",0)
+THEN
+	RESPONSE #100
+		MoveToPoint([1445.775])
+END
+
+IF
+	Global("ML_0","LOCALS",5)
+	ActionListEmpty()
+	NearLocation(Myself,1975,860,4)
+THEN
+	RESPONSE #100
+		SetHomeLocation([1975.860])
+		SetGlobal("ML_0","LOCALS",6)
+		Continue()
+END
+
+IF
+	Global("ML_0","LOCALS",5)
+	GlobalGT("52Aruma_Gone","GLOBAL",0)
+THEN
+	RESPONSE #100
+		MoveToPoint([1975.860])
+END
+
+IF
+	Global("ML_0","LOCALS",6)
+	GlobalGT("52Aruma_Gone","GLOBAL",0)
+THEN
+	RESPONSE #100
+		DestroySelf()
+END
+
+IF
+	!GlobalTimerNotExpired("IwTimer20","LOCALS")
+	!NearSavedLocation(Myself,"LOCALSSavedLoc",4)
+	Global("52Aruma_Gone","GLOBAL",0)
+THEN
+	RESPONSE #100
+		MoveToSavedLocation("SavedLoc","LOCALS")
+		SetGlobalTimer("IwTimer20","LOCALS",5)
+END
+
+IF
+	Global("ARUMA_DOLON_FLOAT","MYAREA",1)
+	!GlobalTimerNotExpired("ARUMA_DOLON_TIMER","MYAREA")
+	See("Aruma")
+	!See([PC])
+THEN
+	RESPONSE #100
+		FaceObject("Aruma")
+		DisplayStringHead(Myself,@20808)
+		SetGlobalTimer("ARUMA_DOLON_TIMER","MYAREA",5)
+		SetGlobal("ARUMA_DOLON_FLOAT","MYAREA",2)
+END
+
+IF
+	Global("ARUMA_DOLON_FLOAT","MYAREA",3)
+	!GlobalTimerNotExpired("ARUMA_DOLON_TIMER","MYAREA")
+	See("Aruma")
+	!See([PC])
+THEN
+	RESPONSE #100
+		FaceObject("Aruma")
+		DisplayStringHead(Myself,@20811)
+		SetGlobalTimer("ARUMA_DOLON_TIMER","MYAREA",5)
+		SetGlobal("ARUMA_DOLON_FLOAT","MYAREA",4)
+END
+
+IF
+	Global("ARUMA_DOLON_FLOAT","MYAREA",4)
+	!GlobalTimerNotExpired("ARUMA_DOLON_TIMER","MYAREA")
+	See("Aruma")
+	!See([PC])
+THEN
+	RESPONSE #100
+		FaceObject("Aruma")
+		DisplayStringHead(Myself,@20812)
+		SetGlobalTimer("ARUMA_DOLON_TIMER","MYAREA",5)
+		SetGlobal("ARUMA_DOLON_FLOAT","MYAREA",0)
+END
+

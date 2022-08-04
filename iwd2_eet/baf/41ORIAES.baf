@@ -1,0 +1,117 @@
+IF
+	StateCheck(Myself,STATE_REALLY_DEAD)
+THEN
+	RESPONSE #100
+		DropInventory()
+		DestroySelf()
+END
+
+IF
+	IsActive(Myself)
+	!Global("IwEquipItems","LOCALS",1)
+THEN
+	RESPONSE #100
+		XEquipItem("BRAC01",Myself,SLOT_GAUNTLETS,EQUIP)  // Наручи класса защиты 8
+		XEquipItem("RING07",Myself,SLOT_RING_LEFT,EQUIP)  // Кольцо Стража +2
+		XEquipItem("z0cisee2",Myself,SLOT_AMULET,EQUIP)  // No such index
+		XEquipItem("BELT03",Myself,SLOT_BELT,EQUIP)  // Разрушитель холмов
+		XEquipItem("CLCK14",Myself,SLOT_CLOAK,EQUIP)  // Мантия искателя приключений
+		XEquipItem("z0wand20",Myself,SLOT_MISC2,EQUIP)  // Жезл леденящего прикосновения
+		XEquipItem("POTN45",Myself,SLOT_MISC0,EQUIP)  // Зелье свободы
+		XEquipItem("POTN10",Myself,SLOT_MISC1,EQUIP)  // Зелье невидимости
+		//XEquipItem("POTN18",Myself,SLOT_MISC2,EQUIP)  // Зелье поглощения
+		ApplySpellRES("IWWI084",Myself)
+		ApplySpellRES("IDINVUL",Myself)
+		SetGlobal("IwEquipItems","LOCALS",1)
+END
+
+IF
+	Global("EtherealRealmActive","MYAREA",0)
+	!GlobalTimerNotExpired("IwTimer100","LOCALS")
+	See([PC])
+	Range(LastSeenBy(Myself),30)
+THEN
+	RESPONSE #100
+		SetGlobalTimerRandom("IwTimer100","LOCALS",30,120)
+		ApplySpellRES("BDCUTSPY",Myself)  // No such index
+		StartDialogueNoSet(LastSeenBy(Myself))
+END
+
+IF
+	Global("EtherealRealmActive","MYAREA",0)
+	See([PC])
+THEN
+	RESPONSE #100
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	!GlobalTimerNotExpired("IwTimer101","LOCALS")
+	Global("EtherealRealmActive","MYAREA",1)
+	See([PC])
+	Range(LastSeenBy(Myself),5)
+THEN
+	RESPONSE #100
+		AttackOneRound(LastSeenBy(Myself))
+		SetGlobalTimer("IwTimer101","LOCALS",5)
+END
+
+IF
+	Global("INITIALIZED_41ORIAES","LOCALS",0)
+THEN
+	RESPONSE #100
+		//SetDialogueRange(75)
+		SetGlobal("INITIALIZED_41ORIAES","LOCALS",1)
+		Continue()
+END
+
+IF
+	!GlobalTimerNotExpired("IwTimer19","LOCALS")
+	Global("EtherealRealmActive","MYAREA",0)
+THEN
+	RESPONSE #100
+		MoveToObject(Player1)
+		SetGlobalTimer("IwTimer19","LOCALS",5)
+END
+
+
+
+IF
+	!GlobalTimerNotExpired("IwTimer102","LOCALS")
+	Global("EtherealRealmActive","MYAREA",1)
+	See([PC])
+THEN
+	RESPONSE #100
+		SetGlobal("CurrentPath","LOCALS",1)
+		MoveToPoint([2080.2400])
+		SetGlobalTimerRandom("IwTimer102","LOCALS",5,30)
+	RESPONSE #100
+		SetGlobal("CurrentPath","LOCALS",2)
+		MoveToPoint([2300.2400])
+		SetGlobalTimerRandom("IwTimer102","LOCALS",5,30)
+	RESPONSE #100
+		SetGlobal("CurrentPath","LOCALS",3)
+		MoveToPoint([2340.2660])
+		SetGlobalTimerRandom("IwTimer102","LOCALS",5,30)
+	RESPONSE #100
+		SetGlobal("CurrentPath","LOCALS",4)
+		MoveToPoint([2080.2780])
+		SetGlobalTimerRandom("IwTimer102","LOCALS",5,30)
+	RESPONSE #100
+		SetGlobal("CurrentPath","LOCALS",5)
+		MoveToPoint([1691.2736])
+		SetGlobalTimerRandom("IwTimer102","LOCALS",5,30)
+END
+
+IF
+	Global("EtherealRealmActive","MYAREA",1)
+	Global("CurrentPath","LOCALS",5)
+	Range("AR4102_TSwitch1",4)
+THEN
+	RESPONSE #100
+		FaceObject("AR4102_TSwitch1")
+		SetSequence(SEQ_ATTACK)
+		CloseDoor("AR4102_Switch1")
+		SendTrigger("AR4102_TSwitch1",0)
+END
+

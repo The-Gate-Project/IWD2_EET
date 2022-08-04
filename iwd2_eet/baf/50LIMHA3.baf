@@ -1,0 +1,20 @@
+IF
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		EquipMostDamagingMelee()
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	!GlobalTimerNotExpired("IwTimer19","LOCALS")
+	!HaveSpell(WIZARD_MONSTER_SUMMONING_3)
+	!Range([PC],4)
+THEN
+	RESPONSE #100
+		MoveToObject(Player1)
+		SetGlobalTimer("IwTimer19","LOCALS",5)
+END
+
+
+

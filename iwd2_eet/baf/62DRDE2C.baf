@@ -1,0 +1,28 @@
+IF
+	StateCheck(Myself,STATE_PANIC)
+THEN
+	RESPONSE #100
+		RandomWalkContinuous()
+END
+
+IF
+	OR(2)
+		Global("62_Orc_Elf_Combat","GLOBAL",1)
+		Global("Scouts_Join","GLOBAL",1)
+	/////////////
+	OR(2)
+		See(NearestEnemyOf(Myself))
+		See([0.UNDEAD.ORC])
+THEN
+	RESPONSE #100
+		//EquipWeapon()
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		AttackOneRound(LastSeenBy(Myself))
+END
+

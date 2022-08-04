@@ -1,0 +1,90 @@
+IF
+	StateCheck(Myself,STATE_PANIC)
+THEN
+	RESPONSE #100
+		RandomWalkContinuous()
+END
+
+IF
+	!GlobalTimerNotExpired("IWD_Rest","LOCALS")
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IWD_Rest","LOCALS",EIGHT_HOURS)
+		ApplySpell(Myself,RESTORE_FULL_HEALTH)
+		Rest()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	Global("buff","LOCALS",0)
+	HaveSpellRES("IWIN998")  // SPIN998.SPL INNATE_CHAMELEON_POWER
+	//SetLastMarkedObject(Myself)
+	//IsSpellTargetValid(LastMarkedObject,INNATE_CHAMELEON_POWER,0)  // SPIN998.SPL (Сила хамелеона)
+THEN
+	RESPONSE #100
+		SetGlobal("buff","LOCALS",1)
+		ForceSpellRES("IWIN998",Myself)  // SPIN998.SPL INNATE_CHAMELEON_POWER
+		//WaitAnimation(Myself,WALK)
+		//WaitAnimation(Myself,CONJURE)
+		//WaitAnimation(Myself,CAST)
+		Wait(1)
+END
+
+IF
+	Global("1","LOCALS",0)
+	OR(5)
+		See("6051Heartless_Dead8")
+		See("6051Heartless_Dead7")
+		See("6051Heartless_Dead6")
+		See("6051Heartless_Dead1")
+		See(NearestEnemyOf(Myself))
+		//See("6051Heartless_Dead2")
+		//See("6051Heartless_Dead3")
+		//See("6051Heartless_Dead4")
+		//See("6051Heartless_Dead5")
+THEN
+	RESPONSE #100
+		SetGlobal("1","LOCALS",1)
+		ReallyForceSpellRES("IWIN231",Myself)  // SPIN231.SPL INNATE_COAT_WEAPON_WITH_POISON
+END
+
+IF
+	StateCheck(Myself,STATE_NOT_VISIBLE)
+	OR(5)
+		See("6051Heartless_Dead8")
+		See("6051Heartless_Dead7")
+		See("6051Heartless_Dead6")
+		See("6051Heartless_Dead1")
+		See(NearestEnemyOf(Myself))
+		//See("6051Heartless_Dead2")
+		//See("6051Heartless_Dead3")
+		//See("6051Heartless_Dead4")
+		//See("6051Heartless_Dead5")
+THEN
+	RESPONSE #100
+		EquipMostDamagingMelee()
+		//BackStab(LastSeenBy(Myself))
+		AttackReevaluate(LastSeenBy(Myself),30)
+END
+
+IF
+	OR(5)
+		See("6051Heartless_Dead8")
+		See("6051Heartless_Dead7")
+		See("6051Heartless_Dead6")
+		See("6051Heartless_Dead1")
+		See(NearestEnemyOf(Myself))
+		//See("6051Heartless_Dead2")
+		//See("6051Heartless_Dead3")
+		//See("6051Heartless_Dead4")
+		//See("6051Heartless_Dead5")
+	//!Range(LastSeenBy(Myself),4)
+	//CanEquipRanged()
+THEN
+	RESPONSE #100
+		//EquipWeapon()
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+
+

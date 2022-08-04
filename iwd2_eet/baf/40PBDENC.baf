@@ -1,0 +1,45 @@
+IF
+	!Global("40PBDENC_INACTIVE","MYAREA",1)
+	OR(3)
+		Opened([PC])
+		Disarmed([ANYONE])
+		Clicked([ANYONE])
+	Global("BeodaewnWarning","MYAREA",0)
+	Global("SPRITE_IS_DEADBeodaewn","GLOBAL",0)
+THEN
+	RESPONSE #100
+		StartCutSceneMode()
+		EndCutSceneMode()
+		SetGlobal("40PlayerSawDen","GLOBAL",1)
+		SetGlobal("BeodaewnWarning","MYAREA",1)
+END
+
+IF
+	!Global("40PBDENC_INACTIVE","MYAREA",1)
+	OR(3)
+		Opened([PC])
+		Disarmed([ANYONE])
+		Clicked([ANYONE])
+THEN
+	RESPONSE #100
+		ChangeEnemyAlly("Beodaewn",ENEMY)
+		SetGlobal("TEAM_1","MYAREA",1)
+		Continue()
+END
+
+IF
+	!Global("40PBDENC_INACTIVE","MYAREA",1)
+	Opened([PC])
+THEN
+	RESPONSE #100
+		//ForceSpell(LastTrigger,CLERIC_ANIMAL_RAGE)  // SPPR517.SPL (Ярость зверя) - IWPR517
+		ForceSpellRES("IWPR517",LastTrigger)
+		ForceSpell(LastTrigger,WIZARD_CHAOS)  // SPWI509.SPL (Хаос)
+		//ForceSpell(LastTrigger,WIZARD_FLAYING)  // SPWI810.SPL (Сдирание кожи) - IWWI810
+		ForceSpellRES("IWWI810",LastTrigger)
+		ForceSpell(LastTrigger,CLERIC_DOLOROUS_DECAY)  // SPPR616.SPL (Мучительное гниение)
+		DisplayString(LastTrigger,14381)  // Сработала ловушка
+		//ChangeCurrentScript("")
+		SetGlobal("40PBDENC_INACTIVE","MYAREA",1)
+END
+

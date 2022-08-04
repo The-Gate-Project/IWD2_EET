@@ -1,0 +1,16 @@
+IF
+	IsActive(Myself)
+	!GlobalTimerNotExpired("IwTimer5","LOCALS")
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		SetGlobalTimerRandom("IwTimer5","LOCALS",6,18)
+		ForceSpellRES("IWIN182",LastSeenBy(Myself))  // SPIN182.SPL INNATE_MUSTARD_JELLY_VAPOR
+		//WaitAnimation(Myself,WALK)
+		//WaitAnimation(Myself,CONJURE)
+		//WaitAnimation(Myself,CAST)
+		Wait(1)
+	RESPONSE #25
+		Continue()
+END
+

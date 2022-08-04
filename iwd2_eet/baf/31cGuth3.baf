@@ -1,0 +1,33 @@
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("31bugGut")
+		Wait(1)
+		SmallWait(7)
+		DisplayStringHead(Myself,@11813)
+		SetSequence(SEQ_ATTACK_BACKSLASH)
+		Wait(2)
+		MoveToPoint([1000.890])
+		MultiPlayerSync()
+		//SetVisualRange(0)
+		ActionOverride("CUTSPY",DestroySelf())
+		Wait(1)
+		JumpToPoint([1441.878])
+		MultiPlayerSync()
+		SetHomeLocation([1441.878])
+		MultiPlayerSync()
+		//SetSavedLocationPoint(1441,878,NW)
+		SaveObjectLocation("LOCALS","SavedLoc",Myself)
+		MultiPlayerSync()
+		Face(NW)
+		//MultiPlayerSync()
+		//SetSavedLocation()
+		SetNumTimesTalkedTo(0)
+		MultiPlayerSync()
+		MoveViewPoint([478.1197],20)
+		MultiPlayerSync()
+		UnhideGUI()
+		EndCutSceneMode()
+END
+

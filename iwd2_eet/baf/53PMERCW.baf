@@ -1,0 +1,13 @@
+IF
+	Entered([PC])
+THEN
+	RESPONSE #100
+		ClearActions(Player1)
+		ClearActions(Player2)
+		ClearActions(Player3)
+		ClearActions(Player4)
+		ClearActions(Player5)
+		ClearActions(Player6)
+		DisplayStringHead("Myrvek_of_Grackls",@34866)
+END
+

@@ -1,0 +1,12 @@
+IF
+	Global("PlayerSawGuardPost","MYAREA",0)
+	See([PC])
+	LOS(LastSeenBy(Myself),100)
+THEN
+	RESPONSE #100
+		SetGlobal("PlayerSawGuardPost","MYAREA",1)
+		DisplayString(LastSeenBy(Myself),@35855)
+		TriggerActivation(Myself,FALSE)
+		//ChangeCurrentScript("")
+END
+

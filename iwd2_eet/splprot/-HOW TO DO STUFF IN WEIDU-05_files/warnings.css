@@ -1,0 +1,72 @@
+.WarningsForm .P { margin: 20px 0; }
+
+.WarningType .RadioLabel { display: inline-block; min-width: 70px; }
+
+.PhotoWrap.Jailed:before { content: " "; background: url(jailed-80.png) no-repeat transparent; position: absolute; height: 100%; width: 100%; filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='.myBackground.jpg', sizingMethod='scale'); -ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='myBackground.jpg', sizingMethod='scale')"; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover; }
+
+.PhotoWrapLarge.Jailed:before { background-image: url(jailed-200.png); }
+
+.Jailed .ProfilePhotoLarge { height: 200px; }
+
+.PhotoWrap { position: relative; display: inline-block; }
+
+.PhotoWrap * { line-height: 1; }
+
+.DataList-Notes .Meta { line-height: 1.4; }
+
+.Item-Row { float: left; width: 100%; }
+.Item-Row:hover .Options { visibility: visible; }
+.DataList .Item-Row { padding-left: 4px; padding-right: 4px; }
+
+.Popup .DataList .Item { border: 0; }
+
+.Item-Col { float: left; -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; padding-left: 4px; padding-right: 4px; }
+.Item-Col .Media { margin: 0 0 10px 0; }
+.Item-Col .Options { visibility: hidden; margin-right: 8px; }
+.Item-Col .Options .Sprite { display: inline-block; height: 16px; width: 16px; }
+
+.item-col-fullwidth { min-width: 400px; width: 100%; }
+
+.User-Col .ProfilePhoto { width: 32px; height: 32px; }
+.User-Col .Media-Body, .User-Col .Meta { line-height: 16px; font-size: 11px; }
+
+@media screen and (max-width: 768px) { .DataList-Notes .Item-Col { width: 100%; }
+  .DataList-Notes .Item-Col.Item-Col3 { margin-top: 15px; }
+  .Wrap.ReportForm { min-width: 0; }
+  .Profile .PhotoWrap { display: block; }
+  .PhotoWrap.IndexPhoto { display: none; }
+  .WarningType { margin-top: 7px; }
+  .WarningType label { margin-top: 0; } }
+.SpEdit { background-image: url("//vanillicon.com/sprites/sprites-14-000000.png"); background-position: -180px -20px; }
+
+.SpDelete { background-image: url("//vanillicon.com/sprites/sprites-14-000000.png"); background-position: -300px -140px; }
+
+.Item-Col1 { width: 8.33333%; }
+
+.Item-Col2 { width: 16.66667%; }
+
+.Item-Col3 { width: 25%; }
+
+.Item-Col4 { width: 33.33333%; }
+
+.Item-Col5 { width: 41.66667%; }
+
+.Item-Col6 { width: 50%; }
+
+.Item-Col7 { width: 58.33333%; }
+
+.Item-Col8 { width: 66.66667%; }
+
+.Item-Col9 { width: 75%; }
+
+.Item-Col10 { width: 83.33333%; }
+
+.Item-Col11 { width: 91.66667%; }
+
+.NoteType-note { color: #07f; }
+
+.NoteType-warning, .NoteType-ban { color: #d00; }
+
+.Warning-Body > *:first-child { margin-top: 0; }
+.Warning-Body > *:last-child { margin-bottom: 0; }
+.Warning-Body .Quote { margin-top: 15px; margin-bottom: 15px; }

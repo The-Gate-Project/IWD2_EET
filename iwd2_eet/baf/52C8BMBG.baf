@@ -1,0 +1,46 @@
+IF
+	!Allegiance(Myself,ENEMY)
+THEN
+	RESPONSE #100
+		Enemy()
+END
+
+IF
+	Global("52Morohem_Master","GLOBAL",8)
+	!Global("WATCHING_PLAYER","MYAREA",0)
+	//CheckAreaDiffLevel(1)
+	DifficultyLT(NORMAL)
+THEN
+	RESPONSE #100
+		Enemy()
+		SetGlobalTimerRandom("IwTimer5","LOCALS",6,12)
+		SetGlobal("IS_BOMBING","LOCALS",0)
+		ChangeAIScript("52c8Bmb1",RACE)
+END
+
+IF
+	Global("52Morohem_Master","GLOBAL",8)
+	!Global("WATCHING_PLAYER","MYAREA",0)
+	//CheckAreaDiffLevel(2)
+	Difficulty(NORMAL)
+THEN
+	RESPONSE #100
+		Enemy()
+		SetGlobalTimerRandom("IwTimer5","LOCALS",6,12)
+		SetGlobal("IS_BOMBING","LOCALS",0)
+		ChangeAIScript("52c8Bmb2",RACE)
+END
+
+IF
+	Global("52Morohem_Master","GLOBAL",8)
+	!Global("WATCHING_PLAYER","MYAREA",0)
+	//CheckAreaDiffLevel(3)
+	DifficultyGT(NORMAL)
+THEN
+	RESPONSE #100
+		Enemy()
+		SetGlobalTimerRandom("IwTimer5","LOCALS",6,12)
+		SetGlobal("IS_BOMBING","LOCALS",0)
+		ChangeAIScript("52c8Bmb3",RACE)
+END
+

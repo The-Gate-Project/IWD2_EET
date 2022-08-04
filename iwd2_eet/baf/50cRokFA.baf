@@ -1,0 +1,192 @@
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("AR5004_1A")
+		//SetDoorFlag(Myself,HIDDEN,TRUE)
+		Unlock(Myself)
+		OpenDoor("AR5004_1A")
+		StaticSequence("ROCK_1A",SEQ_AWAKE)
+		Lock(Myself)
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("AR5004_2A")
+		//SetDoorFlag(Myself,HIDDEN,TRUE)
+		Unlock(Myself)
+		OpenDoor("AR5004_2A")
+		StaticSequence("ROCK_2A",SEQ_AWAKE)
+		Lock(Myself)
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("AR5004_3A")
+		//SetDoorFlag(Myself,HIDDEN,TRUE)
+		Unlock(Myself)
+		OpenDoor("AR5004_3A")
+		StaticSequence("ROCK_3A",SEQ_AWAKE)
+		Lock(Myself)
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("AR5004_4A")
+		//SetDoorFlag(Myself,HIDDEN,TRUE)
+		Unlock(Myself)
+		OpenDoor("AR5004_4A")
+		StaticSequence("ROCK_4A",SEQ_AWAKE)
+		Lock(Myself)
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("AR5004_1B")
+		//SetDoorFlag(Myself,HIDDEN,TRUE)
+		Unlock(Myself)
+		CloseDoor("AR5004_1B")
+		StaticSequence("ROCK_1B",SEQ_ATTACK)
+		Lock(Myself)
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("AR5004_2B")
+		//SetDoorFlag(Myself,HIDDEN,TRUE)
+		Unlock(Myself)
+		CloseDoor("AR5004_2B")
+		StaticSequence("ROCK_2B",SEQ_ATTACK)
+		Lock(Myself)
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("AR5004_3B")
+		//SetDoorFlag(Myself,HIDDEN,TRUE)
+		Unlock(Myself)
+		CloseDoor("AR5004_3B")
+		StaticSequence("ROCK_3B",SEQ_ATTACK)
+		Lock(Myself)
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("AR5004_4B")
+		//SetDoorFlag(Myself,HIDDEN,TRUE)
+		Unlock(Myself)
+		CloseDoor("AR5004_4B")
+		StaticSequence("ROCK_4B",SEQ_ATTACK)
+		Lock(Myself)
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("AR5004_1C")
+		//SetDoorFlag(Myself,HIDDEN,TRUE)
+		Unlock(Myself)
+		CloseDoor("AR5004_1C")
+		StaticSequence("ROCK_1C",SEQ_ATTACK)
+		Lock(Myself)
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("AR5004_2C")
+		//SetDoorFlag(Myself,HIDDEN,TRUE)
+		Unlock(Myself)
+		CloseDoor("AR5004_2C")
+		StaticSequence("ROCK_2C",SEQ_ATTACK)
+		Lock(Myself)
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("AR5004_3C")
+		//SetDoorFlag(Myself,HIDDEN,TRUE)
+		Unlock(Myself)
+		CloseDoor("AR5004_3C")
+		StaticSequence("ROCK_3C",SEQ_ATTACK)
+		Lock(Myself)
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("AR5004_4C")
+		//SetDoorFlag(Myself,HIDDEN,TRUE)
+		Unlock(Myself)
+		CloseDoor("AR5004_4C")
+		StaticSequence("ROCK_4C",SEQ_ATTACK)
+		Lock(Myself)
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("AR5004_1D")
+		//SetDoorFlag(Myself,HIDDEN,TRUE)
+		Unlock(Myself)
+		CloseDoor("AR5004_1D")
+		StaticSequence("ROCK_1D",SEQ_ATTACK)
+		Lock(Myself)
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("AR5004_2D")
+		//SetDoorFlag(Myself,HIDDEN,TRUE)
+		Unlock(Myself)
+		CloseDoor("AR5004_2D")
+		StaticSequence("ROCK_2D",SEQ_ATTACK)
+		Lock(Myself)
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("AR5004_3D")
+		//SetDoorFlag(Myself,HIDDEN,TRUE)
+		Unlock(Myself)
+		CloseDoor("AR5004_3D")
+		StaticSequence("ROCK_3D",SEQ_ATTACK)
+		Lock(Myself)
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("AR5004_4D")
+		//SetDoorFlag(Myself,HIDDEN,TRUE)
+		Unlock(Myself)
+		CloseDoor("AR5004_4D")
+		StaticSequence("ROCK_4D",SEQ_ATTACK)
+		Lock(Myself)
+END
+

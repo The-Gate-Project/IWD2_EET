@@ -1,0 +1,72 @@
+IF
+	!Allegiance(Myself,ENEMY)
+	AttackedBy([GOODCUTOFF],DEFAULT)
+THEN
+	RESPONSE #100
+		Enemy()
+		Continue()
+END
+
+IF
+	Global("BRASTON_PAUSED_STATE","GLOBAL",2)
+	Allegiance(Myself,ENEMY)
+THEN
+	RESPONSE #100
+		SetGlobal("BRASTON_PAUSED_STATE","GLOBAL",0)
+		Continue()
+END
+
+IF
+	Global("3100_BRASTON_WRONG_WAY_FLOAT","GLOBAL",1)
+	See([PC])
+THEN
+	RESPONSE #100
+		FaceObject(LastSeenBy(Myself))
+		DisplayStringHead(Myself,@2506)
+		SetGlobal("3100_BRASTON_WRONG_WAY_FLOAT","GLOBAL",2)
+		Continue()
+END
+
+IF
+	Global("SAW_ENEMY","LOCALS",0)
+	!Allegiance(Myself,ENEMY)
+	See([ENEMY])
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,@32099)
+		SetGlobal("SAW_ENEMY","LOCALS",1)
+		Continue()
+END
+
+IF
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	AttackedBy([ENEMY],DEFAULT)
+THEN
+	RESPONSE #100
+		RunAwayFrom(LastAttackerOf(Myself),90)
+END
+
+IF
+	!Global("SAW_ENEMY","LOCALS",0)
+	ActionListEmpty()
+	See([ENEMY])
+THEN
+	RESPONSE #100
+		FaceObject(LastSeenBy(Myself))
+END
+
+IF
+	!Global("SAW_ENEMY","LOCALS",0)
+	!See([ENEMY])
+THEN
+	RESPONSE #100
+		SetGlobal("SAW_ENEMY","LOCALS",0)
+		Continue()
+END
+

@@ -1,0 +1,34 @@
+IF
+	IsActive(Myself)
+	Global("Hide_Myself","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobal("Hide_Myself","LOCALS",1)
+		//HideCreature(Myself,TRUE)
+		SetGlobal("IwIHidden","LOCALS",1)
+		Deactivate(Myself)
+		//Continue()
+END
+
+IF
+	!IsActive(Myself)
+	!Global("SPRITE_IS_DEADViciscamera","GLOBAL",0)
+	OR(2)
+		GlobalGT("Viciscamera_Quest","GLOBAL",1)
+		!Global("TEAM_1","MYAREA",0)
+THEN
+	RESPONSE #100
+		SetGlobal("Hide_Myself","LOCALS",2)
+		//HideCreature(Myself,FALSE)
+		Activate(Myself)
+		SetGlobal("IwIHidden","LOCALS",0)
+		Continue()
+END
+
+IF
+	Global("Hide_Myself","LOCALS",2)
+THEN
+	RESPONSE #100
+		ChangeAIScript("",SPECIFICS)
+END
+

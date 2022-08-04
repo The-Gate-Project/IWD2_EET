@@ -1,0 +1,11 @@
+IF
+	//OR(2)
+		
+		Opened([PC])
+		
+	//	Clicked([ANYONE])
+THEN
+	RESPONSE #100
+		ForceSpellPoint([475.359],WIZARD_ABI_DALZIMS_HORRID_WILTING)
+END
+

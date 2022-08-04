@@ -1,0 +1,37 @@
+IF
+	Entered([PC])
+	!PartyHasItem("z3bstone")
+	!PartyHasItem("z3istone")
+THEN
+	RESPONSE #100
+		//ForceSpell(LastTrigger,MARKED_SPELL)
+		ReallyForceSpell(LastTrigger,TRAP_FIREBALL)
+END
+
+IF
+	Entered([PC])
+	!PartyHasItem("z3bstone")
+	PartyHasItem("z3istone")
+THEN
+	RESPONSE #100
+		ReallyForceSpell(LastTrigger,TRAP_FIREBALL)
+END
+
+IF
+	Entered([PC])
+	!PartyHasItem("z3istone")
+	PartyHasItem("z3bstone")
+THEN
+	RESPONSE #100
+		ReallyForceSpell(LastTrigger,TRAP_MAGIC_MISSILE)
+END
+
+IF
+	Entered([PC])
+	PartyHasItem("z3bstone")
+	PartyHasItem("z3istone")
+THEN
+	RESPONSE #100
+		NoAction()
+END
+

@@ -1,0 +1,57 @@
+IF
+	!Global("BRASTON_DELETE_AR3101","GLOBAL",0)
+	Exists("Braston")
+	//!Dead("Braston")
+	!StateCheck("Braston",STATE_REALLY_DEAD)
+THEN
+	RESPONSE #100
+		ActionOverride("Braston",DestroySelf())
+		SetGlobal("BRASTON_DELETE_AR3101","GLOBAL",0)
+		Continue()
+END
+
+IF
+	!Global("TEAM_5","MYAREA",0)
+	OR(3)
+		Global("TEAM_2","MYAREA",0)
+		Global("TEAM_3","MYAREA",0)
+		Global("TEAM_6","MYAREA",0)
+THEN
+	RESPONSE #100
+		SetGlobal("TEAM_2","MYAREA",1)
+		SetGlobal("TEAM_3","MYAREA",1)
+		SetGlobal("TEAM_6","MYAREA",1)
+		Continue()
+END
+
+IF
+	GlobalLT("SP_BATTLE_MUSIC","MYAREA",2)
+	Dead("31bugGut")
+	//!AnyPCSeesEnemy()
+	CombatCounter(0)
+THEN
+	RESPONSE #100
+		SetMusic(COMBAT_NORMAL,0)
+		SetGlobal("SP_BATTLE_MUSIC","MYAREA",2)
+		Continue()
+END
+
+IF
+	Global("SP_BATTLE_MUSIC","MYAREA",0)
+	IsActive("31bugGut")
+	Allegiance("31bugGut",ENEMY)
+THEN
+	RESPONSE #100
+		SetMusic(COMBAT_NORMAL,%WA3101%)
+		SetGlobal("SP_BATTLE_MUSIC","MYAREA",1)
+		Continue()
+END
+
+IF
+	OnCreation()
+THEN
+	RESPONSE #100
+		NoAction()
+		Continue()
+END
+

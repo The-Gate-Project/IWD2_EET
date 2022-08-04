@@ -1,0 +1,143 @@
+IF
+	Global("IW_QUEST_DONE","MYAREA",0)
+	OpenState("AR6101_Door1",TRUE)
+THEN
+	RESPONSE #100
+		SetGlobal("IW_QUEST_DONE","MYAREA",1)
+		EraseJournalEntry(@35047)
+		SetQuestDone(@24633)
+		Continue()
+END
+
+IF
+	OpenState("AR6101_Statue",TRUE)
+	Global("AddNote","MYAREA",0)
+THEN
+	RESPONSE #100
+		SetGlobal("AddNote","MYAREA",1)
+		AddMapNoteColor([3084.424],@55078,RED)
+		Continue()
+END
+
+IF
+	!Global("VolcanoCreate","MYAREA",1)
+THEN
+	RESPONSE #100
+		SetGlobal("VolcanoCreate","MYAREA",1)
+		CreateCreature("IDVOLCN",[1360.450],0)
+		ActionOverride("Volcano",ChangeAIScript("IW6101VS",OVERRIDE))
+		Continue()
+END
+
+IF
+	OnCreation()
+THEN
+	RESPONSE #100
+		NoAction()
+		Continue()
+END
+
+IF
+	Global("6101Visited","MYAREA",0)
+THEN
+	RESPONSE #100
+		//HideCreature("05_TrollPrisoner",TRUE)
+		SetGlobal("6101Visited","MYAREA",1)
+		Continue()
+END
+
+IF
+	OnCreation()
+	OpenState("AR6101_Switch",FALSE)
+THEN
+	RESPONSE #100
+		StaticSequence("PendulumFront",SEQ_AWAKE)
+		StaticSequence("PendulumBack",SEQ_AWAKE)
+		StaticSequence("PendulumShadow",SEQ_AWAKE)
+END
+
+IF
+	GlobalGT("61VolcanoStatus","GLOBAL",0)
+THEN
+	RESPONSE #100
+		//ScreenShake(15,4,3)
+		ScreenShake([4.3],15)
+		Continue()
+END
+
+IF
+	GlobalGT("61VolcanoStatus","GLOBAL",0)
+	!GlobalTimerNotExpired("LocalEruptionTimer","MYAREA")
+	//See([ANYONE][0.0.10000.10000],0)
+	TriggerOverride("Volcano",See([ANYONE]))
+	//!InParty(LastMarkedObject)
+	!TriggerOverride("Volcano",InParty(LastSeenBy(Myself)))
+	//CheckStatLT(LastMarkedObject,100,RESISTFIRE)
+	TriggerOverride("Volcano",CheckStatLT(LastSeenBy(Myself),100,RESISTFIRE))
+THEN
+	RESPONSE #100
+		//ApplySpell(LastMarkedObject,2099)  // SPWI099.SPL (No such index)
+		ActionOverride("Volcano",ApplySpellRES("IWWI099",LastSeenBy(Myself)))
+		Continue()
+END
+
+IF
+	GlobalGT("61VolcanoStatus","GLOBAL",0)
+	!GlobalTimerNotExpired("LocalEruptionTimer","MYAREA")
+THEN
+	RESPONSE #100
+		//ScreenShake(75,40,30)
+		ScreenShake([40.30],75)
+		ApplySpellRES("IWWI099",Player1)  // SPWI099.SPL (No such index)
+		ApplySpellRES("IWWI099",Player2)  // SPWI099.SPL (No such index)
+		ApplySpellRES("IWWI099",Player3)  // SPWI099.SPL (No such index)
+		ApplySpellRES("IWWI099",Player4)  // SPWI099.SPL (No such index)
+		ApplySpellRES("IWWI099",Player5)  // SPWI099.SPL (No such index)
+		ApplySpellRES("IWWI099",Player6)  // SPWI099.SPL (No such index)
+		Continue()
+END
+
+IF
+	GlobalGT("61VolcanoStatus","GLOBAL",0)
+	GlobalTimerExpired("EruptionTimer","GLOBAL")
+THEN
+	RESPONSE #100
+		SetGlobal("61VolcanoStatus","GLOBAL",-1)
+		Continue()
+END
+
+IF
+	GlobalGT("61VolcanoStatus","GLOBAL",0)
+	//!AreaRestDisabled()
+	Global("AreaRestDisabled","MYAREA",0)
+THEN
+	RESPONSE #100
+		//Debug("DisableResting")
+		SetGlobal("AreaRestDisabled","MYAREA",1)
+		//AllowAreaResting(FALSE)
+		AddAreaFlag(NOREST)
+		Continue()
+END
+
+IF
+	Global("61VolcanoStatus","GLOBAL",-1)
+	//AreaRestDisabled()
+	!Global("AreaRestDisabled","MYAREA",0)
+THEN
+	RESPONSE #100
+		//Debug("EnableResting")
+		SetGlobal("AreaRestDisabled","MYAREA",0)
+		//AllowAreaResting(TRUE)
+		RemoveAreaFlag(NOREST)
+		Continue()
+END
+
+IF
+	GlobalGT("61VolcanoStatus","GLOBAL",0)
+	!GlobalTimerNotExpired("LocalEruptionTimer","MYAREA")
+THEN
+	RESPONSE #100
+		SetGlobalTimer("LocalEruptionTimer","MYAREA",7)
+		Continue()
+END
+

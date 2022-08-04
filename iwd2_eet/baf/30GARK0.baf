@@ -1,0 +1,25 @@
+IF
+	!GlobalTimerNotExpired("IwTimer21","LOCALS")
+	Global("30OGRGAR_NODES","GLOBAL",5)
+THEN
+	RESPONSE #50
+		DisplayStringHead(Myself,@478)
+		SetGlobalTimerRandom("IwTimer21","LOCALS",5,8)
+		Continue()
+	RESPONSE #50
+		SetGlobalTimerRandom("IwTimer21","LOCALS",5,8)
+		Continue()
+END
+
+IF
+	!GlobalTimerNotExpired("IwTimer21","LOCALS")
+	See(NearestEnemyOf(Myself))
+	Global("SEE_PC_FLOAT","LOCALS",0)
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,@479)
+		SetGlobalTimer("IwTimer21","LOCALS",5)
+		SetGlobal("SEE_PC_FLOAT","LOCALS",1)
+		Continue()
+END
+

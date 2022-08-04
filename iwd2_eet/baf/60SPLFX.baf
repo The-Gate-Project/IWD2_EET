@@ -1,0 +1,131 @@
+/*IF
+	!CreatureHidden(Myself)
+	!CreatureHidden(Myself)
+THEN
+	RESPONSE #100
+		ChangeEnemyAlly(Myself,NEUTRAL)
+		HideCreature(Myself,TRUE)
+		Continue()
+END*/
+
+/*IF
+	!CheckSpellState(Myself,INVULNERABLE_IWD)
+THEN
+	RESPONSE #100
+		ApplySpellRES("IDINVUL",Myself)
+		Continue()
+END*/
+
+IF
+	Global("Kuldahar_GuardianPlayer1","MYAREA",0)
+	Dead("The_Guardian")
+	//Exists(Player1)
+	InParty(Player1)
+	InMyArea(Player1)
+THEN
+	RESPONSE #100
+		SetGlobal("Kuldahar_GuardianPlayer1","MYAREA",1)
+		ChangeStat(Player1,MAXHITPOINTS,6,ADD) //12
+		ChangeStat(Player1,RESISTACID,5,ADD)
+		ChangeStat(Player1,RESISTPOISON,5,ADD)
+		Continue()
+END
+
+IF
+	Global("Kuldahar_GuardianPlayer2","MYAREA",0)
+	Dead("The_Guardian")
+	//Exists(Player2)
+	InParty(Player2)
+	InMyArea(Player2)
+THEN
+	RESPONSE #100
+		SetGlobal("Kuldahar_GuardianPlayer2","MYAREA",1)
+		ChangeStat(Player2,MAXHITPOINTS,6,ADD) //12
+		ChangeStat(Player2,RESISTACID,5,ADD)
+		ChangeStat(Player2,RESISTPOISON,5,ADD)
+		Continue()
+END
+
+IF
+	Global("Kuldahar_GuardianPlayer3","MYAREA",0)
+	Dead("The_Guardian")
+	//Exists(Player3)
+	InParty(Player3)
+	InMyArea(Player3)
+THEN
+	RESPONSE #100
+		SetGlobal("Kuldahar_GuardianPlayer3","MYAREA",1)
+		ChangeStat(Player3,MAXHITPOINTS,6,ADD) //12
+		ChangeStat(Player3,RESISTACID,5,ADD)
+		ChangeStat(Player3,RESISTPOISON,5,ADD)
+		Continue()
+END
+
+IF
+	Global("Kuldahar_GuardianPlayer4","MYAREA",0)
+	Dead("The_Guardian")
+	//Exists(Player4)
+	InParty(Player4)
+	InMyArea(Player4)
+THEN
+	RESPONSE #100
+		SetGlobal("Kuldahar_GuardianPlayer4","MYAREA",1)
+		ChangeStat(Player4,MAXHITPOINTS,6,ADD) //12
+		ChangeStat(Player4,RESISTACID,5,ADD)
+		ChangeStat(Player4,RESISTPOISON,5,ADD)
+		Continue()
+END
+
+IF
+	Global("Kuldahar_GuardianPlayer5","MYAREA",0)
+	Dead("The_Guardian")
+	//Exists(Player5)
+	InParty(Player5)
+	InMyArea(Player5)
+THEN
+	RESPONSE #100
+		SetGlobal("Kuldahar_GuardianPlayer5","MYAREA",1)
+		ChangeStat(Player5,MAXHITPOINTS,6,ADD) //12
+		ChangeStat(Player5,RESISTACID,5,ADD)
+		ChangeStat(Player5,RESISTPOISON,5,ADD)
+		Continue()
+END
+
+IF
+	Global("Kuldahar_GuardianPlayer6","MYAREA",0)
+	Dead("The_Guardian")
+	//Exists(Player6)
+	InParty(Player6)
+	InMyArea(Player6)
+THEN
+	RESPONSE #100
+		SetGlobal("Kuldahar_GuardianPlayer6","MYAREA",1)
+		ChangeStat(Player6,MAXHITPOINTS,6,ADD) //12
+		ChangeStat(Player6,RESISTACID,5,ADD)
+		ChangeStat(Player6,RESISTPOISON,5,ADD)
+		Continue()
+END
+
+IF
+	OR(6)
+		Global("Kuldahar_GuardianPlayer1","MYAREA",1)
+		Global("Kuldahar_GuardianPlayer2","MYAREA",1)
+		Global("Kuldahar_GuardianPlayer3","MYAREA",1)
+		Global("Kuldahar_GuardianPlayer4","MYAREA",1)
+		Global("Kuldahar_GuardianPlayer5","MYAREA",1)
+		Global("Kuldahar_GuardianPlayer6","MYAREA",1)
+THEN
+	RESPONSE #100
+		SetGlobal("Kuldahar_GuardianPlayer1","MYAREA",2)
+		SetGlobal("Kuldahar_GuardianPlayer2","MYAREA",2)
+		SetGlobal("Kuldahar_GuardianPlayer3","MYAREA",2)
+		SetGlobal("Kuldahar_GuardianPlayer4","MYAREA",2)
+		SetGlobal("Kuldahar_GuardianPlayer5","MYAREA",2)
+		SetGlobal("Kuldahar_GuardianPlayer6","MYAREA",2)
+		SetGlobal("Chult_PortalClosing","GLOBAL",1)
+		DisplayStringNoName(Myself,@32054)
+		RestPartyEx(0,0,TRUE)
+		SetGlobal("Chult_PortalClosing","GLOBAL",1)
+		Continue()
+END
+

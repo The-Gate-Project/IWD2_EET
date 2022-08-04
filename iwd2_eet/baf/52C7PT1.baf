@@ -1,0 +1,69 @@
+IF
+	GlobalGT("52Morohem_Master","GLOBAL",7)
+THEN
+	RESPONSE #100
+		DestroySelf()
+END
+
+IF
+	Global("52Morohem_Master","GLOBAL",7)
+	!Global("WATCHING_PLAYER","MYAREA",0)
+	Global("C7_WATCHER_1_STATE","MYAREA",0)
+	OR(4)
+		Range([PC],2)
+		Range("C7_MONK_1",2)
+		Range("C7_MONK_2",2)
+		Range([ENEMY],2)
+THEN
+	RESPONSE #100
+		SetGlobal("C7_WATCHER_1_STATE","MYAREA",1)
+		Continue()
+END
+
+IF
+	Global("52Morohem_Master","GLOBAL",7)
+	!Global("WATCHING_PLAYER","MYAREA",0)
+	Global("C7_WATCHER_1_STATE","MYAREA",1)
+	OpenState("AR5202_Switch10",FALSE)
+	!Range([PC],2)
+	!Range("C7_MONK_1",2)
+	!Range("C7_MONK_2",2)
+	!Range([ENEMY],2)
+THEN
+	RESPONSE #100
+		SetGlobal("C7_WATCHER_1_STATE","MYAREA",0)
+		Continue()
+END
+
+IF
+	Global("52Morohem_Master","GLOBAL",7)
+	!Global("WATCHING_PLAYER","MYAREA",0)
+	OpenState("AR5202_Switch10",FALSE)
+	//CheckDoorFlags("AR5202_Switch10",DOORLOCKED)
+	Global("AR5202_Switch10_locked","MYAREA",1)
+	Global("C7_WATCHER_1_STATE","MYAREA",1)
+THEN
+	RESPONSE #100
+		Unlock("AR5202_Switch10")
+		SetGlobal("AR5202_Switch10_locked","MYAREA",0)
+		//SpellHitEffectSprite("C7_SWITCH_EFFECT_RIGHT","C7_SWITCH_EFFECT_RIGHT",CURSE,0)
+		CreateVisualEffectObject("CURSEH","C7_SWITCH_EFFECT_RIGHT")
+		DisplayStringNoName("C7_SWITCH_EFFECT_RIGHT",@38104)
+END
+
+IF
+	Global("52Morohem_Master","GLOBAL",7)
+	!Global("WATCHING_PLAYER","MYAREA",0)
+	OpenState("AR5202_Switch10",FALSE)
+	//!CheckDoorFlags("AR5202_Switch10",DOORLOCKED)
+	!Global("AR5202_Switch10_locked","MYAREA",1)
+	Global("C7_WATCHER_1_STATE","MYAREA",0)
+THEN
+	RESPONSE #100
+		Lock("AR5202_Switch10")
+		SetGlobal("AR5202_Switch10_locked","MYAREA",1)
+		//SpellHitEffectSprite("C7_PORTAL_1","C7_PORTAL_1",RECITATION,0)
+		CreateVisualEffectObject("RECITAH","C7_PORTAL_1")
+		DisplayStringNoName("C7_PORTAL_1",@39363)
+END
+

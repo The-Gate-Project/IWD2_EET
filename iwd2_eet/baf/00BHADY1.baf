@@ -1,0 +1,25 @@
+IF
+	//CreatureHidden(Myself)
+	Global("CreatureHidden","LOCALS",0)
+	//!IsCreatureHiddenInShadows(Myself)
+	Global("ForceHide","LOCALS",0)
+	
+THEN
+	RESPONSE #100
+		//ForceHide(Myself)
+		SetGlobal("ForceHide","LOCALS",1)
+		ApplySpellRES("IDINVIS",Myself)
+END
+
+IF
+	Global("CreatureHidden","LOCALS",0)
+	//!IsCreatureHiddenInShadows(Myself)
+	!StateCheck(Myself,STATE_NOT_VISIBLE)
+	!GlobalTimerNotExpired("IwTimer4","LOCALS")
+	!See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		SetGlobalTimerRandom("IwTimer4","LOCALS",3,9)
+		Hide()
+END
+

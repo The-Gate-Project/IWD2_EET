@@ -1,0 +1,10 @@
+IF
+	!Global("40PBDDEN_INACTIVE","MYAREA",1)
+	Clicked([PC])
+THEN
+	RESPONSE #100
+		SetGlobal("40PlayerSawDen","GLOBAL",1)
+		//ChangeCurrentScript("")
+		SetGlobal("40PBDDEN_INACTIVE","MYAREA",1)
+END
+

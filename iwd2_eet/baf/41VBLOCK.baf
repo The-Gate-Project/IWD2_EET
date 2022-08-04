@@ -1,0 +1,23 @@
+IF
+	OpenState("AR4100_Rockwall",TRUE)
+THEN
+	RESPONSE #100
+		//ChangeCurrentScript("")
+		//RemoveTraps("ViewIceBlockade")
+		TriggerActivation("ViewIceBlockade",FALSE)
+		TriggerActivation(Myself,FALSE)
+END
+
+IF
+	OpenState("AR4100_Rockwall",FALSE)
+	Range([PC],25)
+THEN
+	RESPONSE #100
+		SetGlobal("41DestroyBlockade","MYAREA",1)
+		AddJournalEntry(@22968,QUEST)
+		//ChangeCurrentScript("")
+		//RemoveTraps("ViewIceBlockade")
+		TriggerActivation("ViewIceBlockade",FALSE)
+		TriggerActivation(Myself,FALSE)
+END
+

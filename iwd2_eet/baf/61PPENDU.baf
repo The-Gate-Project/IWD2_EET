@@ -1,0 +1,80 @@
+/*IF
+	Entered([PC])
+	IsOverMe([PC])
+	Or(2)
+		Frame("PendulumFront",2,6)
+		Frame("PendulumFront",9,13)
+THEN
+	RESPONSE #100
+		ApplySpell(LastTrigger,CLERIC_CIRCLE_OF_BLADES)  // SPPR610.SPL (Круг клинков)
+END*/
+/* OLD
+IF
+	OR(2)
+		Entered([ANYONE])
+		IsOverMe([ANYONE])
+	Global("61PPSWIT_SEQUENCE","MYAREA",0)
+THEN
+	RESPONSE #100
+		ApplySpellRES("IWPR610",LastTrigger)  // SPPR610.SPL CLERIC_CIRCLE_OF_BLADES
+END
+*/
+
+IF
+	OR(2)
+		Entered([ANYONE])
+		IsOverMe([ANYONE])
+	Global("61PPSWIT_SEQUENCE","MYAREA",0)
+	OR(2)
+		Global("PendulInitTimer","MYAREA",1)
+		Global("PendulInitTimer","MYAREA",3)
+THEN
+	RESPONSE #100
+		ApplySpellRES("IWPR610",LastTrigger)  // SPPR610.SPL CLERIC_CIRCLE_OF_BLADES
+END
+
+IF
+	Global("PendulInitTimer","MYAREA",0)
+THEN
+	RESPONSE #100
+		SmallWait(6)
+		SetGlobal("PendulInitTimer","MYAREA",1) //NO
+		Continue()
+END
+
+IF
+	Global("PendulInitTimer","MYAREA",1)
+THEN
+	RESPONSE #100
+		SmallWait(6)
+		SetGlobal("PendulInitTimer","MYAREA",2) //YES
+		Continue()
+END
+
+IF
+	Global("PendulInitTimer","MYAREA",2)
+THEN
+	RESPONSE #100
+		SmallWait(8)
+		SetGlobal("PendulInitTimer","MYAREA",3) //NO
+		Continue()
+END
+
+IF
+	Global("PendulInitTimer","MYAREA",3)
+THEN
+	RESPONSE #100
+		SmallWait(6)
+		SetGlobal("PendulInitTimer","MYAREA",4) //YES
+		Continue()
+END
+
+IF
+	Global("PendulInitTimer","MYAREA",4)
+THEN
+	RESPONSE #100
+		SmallWait(4)
+		SetGlobal("PendulInitTimer","MYAREA",0) //NO
+		Continue()
+END
+

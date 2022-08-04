@@ -1,0 +1,36 @@
+IF
+	!Allegiance(Myself,ENEMY)
+	See([ENEMY])
+THEN
+	RESPONSE #100
+		FaceObject(LastSeenBy(Myself))
+		Continue()
+END
+
+IF
+	!GlobalTimerNotExpired("IwTimer18","LOCALS")
+	!Allegiance(Myself,ENEMY)
+	!Global("TEAM_1","MYAREA",0)
+	See([ENEMY])
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,@28792)
+		SetGlobalTimerRandom("IwTimer18","LOCALS",8,12)
+		Continue()
+	RESPONSE #100
+		DisplayStringHead(Myself,@28793)
+		SetGlobalTimerRandom("IwTimer18","LOCALS",8,12)
+		Continue()
+END
+
+IF
+	!GlobalTimerNotExpired("IwTimer18","LOCALS")
+	GlobalTimerNotExpired("PUKE_TIMER","MYAREA")
+	!See([ENEMY])
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,@16418)
+		SetGlobalTimerRandom("IwTimer18","LOCALS",6,18)
+		SetSequence(SEQ_DAMAGE)
+END
+

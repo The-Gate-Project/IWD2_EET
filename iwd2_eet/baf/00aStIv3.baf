@@ -1,0 +1,6 @@
+IF
+	!Global("CreatureHidden","LOCALS",0)
+THEN
+	RESPONSE #100
+		NoAction()
+END

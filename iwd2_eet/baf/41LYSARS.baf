@@ -1,0 +1,327 @@
+/* OLD_POSITION IF
+	Global("CurrentSacrifice","MYAREA",0)
+THEN
+	RESPONSE #100
+		//SetMyTarget("04_Prisoner_01")
+		SetGlobal("SacrificeMarked","LOCALS",1)
+		Continue()
+END
+
+IF
+	Global("CurrentSacrifice","MYAREA",1)
+	GlobalTimerExpired("SacrificeTimer1","MYAREA")
+THEN
+	RESPONSE #100
+		//SetMyTarget("04_Prisoner_02")
+		SetGlobal("SacrificeMarked","LOCALS",1)
+		Continue()
+END
+
+IF
+	Global("CurrentSacrifice","MYAREA",2)
+	GlobalTimerExpired("SacrificeTimer2","MYAREA")
+THEN
+	RESPONSE #100
+		//SetMyTarget("04_Prisoner_03")
+		SetGlobal("SacrificeMarked","LOCALS",1)
+		Continue()
+END
+
+IF
+	Global("CurrentSacrifice","MYAREA",3)
+	GlobalTimerExpired("SacrificeTimer3","MYAREA")
+THEN
+	RESPONSE #100
+		//SetMyTarget("04_Prisoner_04")
+		SetGlobal("SacrificeMarked","LOCALS",1)
+		Continue()
+END
+
+IF
+	Global("CurrentSacrifice","MYAREA",4)
+	GlobalTimerExpired("SacrificeTimer4","MYAREA")
+THEN
+	RESPONSE #100
+		//SetMyTarget("04_Prisoner_05")
+		SetGlobal("SacrificeMarked","LOCALS",1)
+		Continue()
+END
+
+IF
+	Global("CurrentSacrifice","MYAREA",5)
+	GlobalTimerExpired("SacrificeTimer5","MYAREA")
+THEN
+	RESPONSE #100
+		//SetMyTarget("Nathaniel")  // Натаниэль
+		SetGlobal("SacrificeMarked","LOCALS",1)
+		Continue()
+END
+
+IF
+	Global("CurrentSacrifice","MYAREA",6)
+	GlobalTimerExpired("SacrificeTimer6","MYAREA")
+THEN
+	RESPONSE #100
+		//SetMyTarget("04_Prisoner_06")
+		SetGlobal("SacrificeMarked","LOCALS",1)
+		Continue()
+END */
+
+//BLOCK 00
+IF
+	Global("SacrificeMarked","LOCALS",1)
+	Global("CurrentSacrifice","MYAREA",0)
+	Exists("04_Prisoner_01")
+	!See("04_Prisoner_01")
+THEN
+	RESPONSE #100
+		ActionOverride("04_Prisoner_01",JumpToPoint([1138.853]))
+END
+
+IF
+	Global("SacrificeMarked","LOCALS",1)
+	Global("CurrentSacrifice","MYAREA",0)
+	See("04_Prisoner_01")
+THEN
+	RESPONSE #100
+		Kill("04_Prisoner_01")
+		Continue()
+END
+//BLOCKEND
+
+//BLOCK 01
+IF
+	Global("SacrificeMarked","LOCALS",1)
+	Global("CurrentSacrifice","MYAREA",1)
+	Exists("04_Prisoner_02")
+	!See("04_Prisoner_02")
+THEN
+	RESPONSE #100
+		ActionOverride("04_Prisoner_02",JumpToPoint([1138.853]))
+END
+
+IF
+	Global("SacrificeMarked","LOCALS",1)
+	Global("CurrentSacrifice","MYAREA",1)
+	See("04_Prisoner_02")
+THEN
+	RESPONSE #100
+		Kill("04_Prisoner_02")
+		Continue()
+END
+//BLOCKEND
+
+//BLOCK 02
+IF
+	Global("SacrificeMarked","LOCALS",1)
+	Global("CurrentSacrifice","MYAREA",2)
+	Exists("04_Prisoner_03")
+	!See("04_Prisoner_03")
+THEN
+	RESPONSE #100
+		ActionOverride("04_Prisoner_03",JumpToPoint([1138.853]))
+END
+
+IF
+	Global("SacrificeMarked","LOCALS",1)
+	Global("CurrentSacrifice","MYAREA",2)
+	See("04_Prisoner_03")
+THEN
+	RESPONSE #100
+		Kill("04_Prisoner_03")
+		Continue()
+END
+//BLOCKEND
+
+//BLOCK 03
+IF
+	Global("SacrificeMarked","LOCALS",1)
+	Global("CurrentSacrifice","MYAREA",3)
+	Exists("04_Prisoner_04")
+	!See("04_Prisoner_04")
+THEN
+	RESPONSE #100
+		ActionOverride("04_Prisoner_04",JumpToPoint([1138.853]))
+END
+
+IF
+	Global("SacrificeMarked","LOCALS",1)
+	Global("CurrentSacrifice","MYAREA",3)
+	See("04_Prisoner_04")
+THEN
+	RESPONSE #100
+		Kill("04_Prisoner_04")
+		Continue()
+END
+//BLOCKEND
+
+//BLOCK 04
+IF
+	Global("SacrificeMarked","LOCALS",1)
+	Global("CurrentSacrifice","MYAREA",4)
+	Exists("04_Prisoner_05")
+	!See("04_Prisoner_05")
+THEN
+	RESPONSE #100
+		ActionOverride("04_Prisoner_05",JumpToPoint([1138.853]))
+END
+
+IF
+	Global("SacrificeMarked","LOCALS",1)
+	Global("CurrentSacrifice","MYAREA",4)
+	See("04_Prisoner_05")
+THEN
+	RESPONSE #100
+		Kill("04_Prisoner_05")
+		Continue()
+END
+//BLOCKEND
+
+//BLOCK 06
+IF
+	Global("SacrificeMarked","LOCALS",1)
+	Global("CurrentSacrifice","MYAREA",6)
+	Exists("04_Prisoner_06")
+	!See("04_Prisoner_06")
+THEN
+	RESPONSE #100
+		ActionOverride("04_Prisoner_06",JumpToPoint([1138.853]))
+END
+
+IF
+	Global("SacrificeMarked","LOCALS",1)
+	Global("CurrentSacrifice","MYAREA",6)
+	See("04_Prisoner_06")
+THEN
+	RESPONSE #100
+		Kill("04_Prisoner_06")
+		Continue()
+END
+//BLOCKEND
+
+IF
+	Global("SacrificeMarked","LOCALS",1)
+	Global("CurrentSacrifice","MYAREA",5)
+	Exists("Nathaniel")
+THEN
+	RESPONSE #100
+		//ActionOverride(MyTarget,SetSavedLocationPoint(800,2655,SSW))
+		ActionOverride("Nathaniel",SaveLocation("LOCALS","SavedLoc",[800.2655]))
+		ActionOverride("Nathaniel",JumpToPoint([800.2655]))
+		ActionOverride("Nathaniel",SetHomeLocation([800.2655]))
+		SetGlobal("41NateFreeQuest","GLOBAL",4)
+		Unlock("AR4101_Door12")
+		OpenDoor("AR4101_Door12")
+		Continue()
+END
+
+IF
+	Global("SacrificeMarked","LOCALS",1)
+THEN
+	RESPONSE #100
+		IncrementGlobal("CurrentSacrifice","MYAREA",1)
+		SetGlobal("SacrificeMarked","LOCALS",0)
+		/*Continue()*/
+END
+
+//BLOCK NEW_POSITION
+IF
+	Global("CurrentSacrifice","MYAREA",0)
+THEN
+	RESPONSE #100
+		//SetMyTarget("04_Prisoner_01")
+		SetGlobal("SacrificeMarked","LOCALS",1)
+		Continue()
+END
+
+IF
+	Global("CurrentSacrifice","MYAREA",1)
+	GlobalTimerExpired("SacrificeTimer1","MYAREA")
+THEN
+	RESPONSE #100
+		//SetMyTarget("04_Prisoner_02")
+		SetGlobal("SacrificeMarked","LOCALS",1)
+		Continue()
+END
+
+IF
+	Global("CurrentSacrifice","MYAREA",2)
+	GlobalTimerExpired("SacrificeTimer2","MYAREA")
+THEN
+	RESPONSE #100
+		//SetMyTarget("04_Prisoner_03")
+		SetGlobal("SacrificeMarked","LOCALS",1)
+		Continue()
+END
+
+IF
+	Global("CurrentSacrifice","MYAREA",3)
+	GlobalTimerExpired("SacrificeTimer3","MYAREA")
+THEN
+	RESPONSE #100
+		//SetMyTarget("04_Prisoner_04")
+		SetGlobal("SacrificeMarked","LOCALS",1)
+		Continue()
+END
+
+IF
+	Global("CurrentSacrifice","MYAREA",4)
+	GlobalTimerExpired("SacrificeTimer4","MYAREA")
+THEN
+	RESPONSE #100
+		//SetMyTarget("04_Prisoner_05")
+		SetGlobal("SacrificeMarked","LOCALS",1)
+		Continue()
+END
+
+IF
+	Global("CurrentSacrifice","MYAREA",5)
+	GlobalTimerExpired("SacrificeTimer5","MYAREA")
+THEN
+	RESPONSE #100
+		//SetMyTarget("Nathaniel")  // Натаниэль
+		SetGlobal("SacrificeMarked","LOCALS",1)
+		Continue()
+END
+
+IF
+	Global("CurrentSacrifice","MYAREA",6)
+	GlobalTimerExpired("SacrificeTimer6","MYAREA")
+THEN
+	RESPONSE #100
+		//SetMyTarget("04_Prisoner_06")
+		SetGlobal("SacrificeMarked","LOCALS",1)
+		Continue()
+END
+//BLOCKEND
+
+IF
+	GlobalGT("CurrentSacrifice","MYAREA",6)
+THEN
+	RESPONSE #100
+		ChangeAIScript("00aatm05",DEFAULT)
+END
+
+IF
+	StateCheck(Myself,STATE_PANIC)
+THEN
+	RESPONSE #100
+		RandomWalkContinuous()
+END
+
+IF
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		EquipMostDamagingMelee()
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	Global("TEAM_5","MYAREA",1)
+	!See([PC])
+THEN
+	RESPONSE #100
+		MoveToObject(Player1)
+END
+

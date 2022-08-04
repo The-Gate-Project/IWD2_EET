@@ -1,0 +1,18 @@
+IF
+	!GlobalTimerNotExpired("IwTimer21","LOCALS")
+	Allegiance(Myself,ENEMY)
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,@37677)
+		SetGlobalTimerRandom("IwTimer21","LOCALS",5,10)
+		Continue()
+END
+
+IF
+	AttackedBy([GOODCUTOFF],DEFAULT)
+THEN
+	RESPONSE #100
+		SetGlobal("TEAM_1","MYAREA",1)
+		RunAwayFrom(LastAttackerOf(Myself),45)
+END
+

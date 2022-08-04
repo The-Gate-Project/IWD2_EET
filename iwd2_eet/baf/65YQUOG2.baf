@@ -1,0 +1,16 @@
+IF
+	Global("SPRITE_IS_DEADYquog","GLOBAL",1)
+THEN
+	RESPONSE #100
+		DestroySelf()
+END
+
+IF
+	OR(2)
+		Allegiance(Myself,ENEMY)
+		!NumberOfTimesTalkedTo(0)
+THEN
+	RESPONSE #100
+		ChangeAIScript("",OVERRIDE)
+END
+

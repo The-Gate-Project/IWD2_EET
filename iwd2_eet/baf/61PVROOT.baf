@@ -1,0 +1,15 @@
+IF
+	Global("61NheeroMissionQuest","GLOBAL",2)
+	See([PC])
+	//Or(2)
+		PartyHasItem("z6genmm")  // Измененный корень мандрагоры
+	//	PartyHasItem("61HFGnMM")  // Измененный корень мандрагоры
+THEN
+	RESPONSE #100
+		DisplayStringHead(LastSeenBy,@50014) //[PC]
+		AddJournalEntry(@34992,QUEST)
+		SetGlobal("61NheeroMissionQuest","GLOBAL",3)
+		//ChangeCurrentScript("")
+		TriggerActivation(Myself,FALSE)
+END
+

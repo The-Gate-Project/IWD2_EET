@@ -1,0 +1,10 @@
+IF
+	OR(2)
+		Opened([PC])
+		Entered([PC])
+THEN
+	RESPONSE #100
+		ForceSpellRES("IWWI094",LastTrigger)  // SPWI094.SPL (No such index)
+		//ChangeCurrentScript("")
+END
+

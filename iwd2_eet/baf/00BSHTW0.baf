@@ -1,0 +1,22 @@
+IF
+	//OR(2)
+	//	HitBy([GOODCUTOFF],CRUSHING)
+		AttackedBy([GOODCUTOFF],DEFAULT)
+	!Specifics(LastAttackerOf(Myself),250)
+THEN
+	RESPONSE #100
+		ChangeSpecifics(LastAttackerOf(Myself),250)
+		Continue()
+END
+
+IF
+	//OR(2)
+		HitBy([GOODCUTOFF],CRUSHING)
+		//AttackedBy([GOODCUTOFF],DEFAULT)
+	!Specifics(LastHitter(Myself),250)
+THEN
+	RESPONSE #100
+		ChangeSpecifics(LastHitter(Myself),250)
+		Continue()
+END
+

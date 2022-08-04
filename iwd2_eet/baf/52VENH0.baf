@@ -1,0 +1,130 @@
+IF
+	GlobalGT("SPRITE_IS_DEADVen","GLOBAL",0)
+	!StateCheck(Myself,STATE_REALLY_DEAD)
+THEN
+	RESPONSE #100
+		DestroySelf()
+END
+
+IF
+	//CreatureHidden(Myself)
+	!Global("52Ven_Loot","GLOBAL",2)
+	OpenState("AR5203_Door1",TRUE)
+THEN
+	RESPONSE #100
+		DestroySelf()
+END
+
+IF
+	Global("52Ven_Loot","GLOBAL",4)
+THEN
+	RESPONSE #100
+		DestroySelf()
+END
+
+IF
+	Global("VEN_GET_LOOT","LOCALS",1)
+	!Range("BR_Tomb",3)
+THEN
+	RESPONSE #100
+		MoveToObject("BR_Tomb")
+END
+
+IF
+	Global("VEN_GET_LOOT","LOCALS",1)
+	Range("BR_Tomb",3)
+THEN
+	RESPONSE #100
+		SetGlobal("VEN_GET_LOOT","LOCALS",2)
+		Face(SW)
+END
+
+IF
+	Global("VEN_GET_LOOT","LOCALS",2)
+THEN
+	RESPONSE #100
+		SetGlobal("VEN_GET_LOOT","LOCALS",3)
+		//TransferInventory("BR_Tomb",Myself)
+		SetInterrupt(FALSE)
+		Unlock("BR_Tomb")
+		ActionOverride("BR_Tomb",DestroyItem("BRAC03"))
+		ActionOverride("BR_Tomb",DestroyItem("z0flalsr"))
+		ActionOverride("BR_Tomb",DestroyItem("MISC50"))
+		CreateItem("BRAC03",0,0,0)
+		CreateItem("z0flalsr",0,0,0)
+		CreateItem("MISC50",0,0,0)
+		SetInterrupt(TRUE)
+END
+
+IF
+	Global("VEN_GET_LOOT","LOCALS",3)
+	OR(2)
+		Allegiance(Myself,ENEMY)
+		!NumTimesTalkedTo(0)
+THEN
+	RESPONSE #100
+		SetGlobal("VEN_GET_LOOT","LOCALS",4)
+		SetGlobal("52Ven_Loot","GLOBAL",3)
+		SetGlobal("52Alarm","GLOBAL",1)
+		SetGlobal("TEAM_1","MYAREA",1)
+		Enemy()
+		//ForceHide(Myself)
+		SetSequence(SEQ_HIDE)
+		ApplySpellRES("idinvis4",Myself)
+		Continue()
+END
+
+IF
+	Global("VEN_GET_LOOT","LOCALS",4)
+THEN
+	RESPONSE #100
+		//SetSavedLocationPoint(388,559,S)
+		SaveLocation("LOCALS","SavedLoc",[388.559])
+		ChangeAIScript("52VenH1",RACE)
+	RESPONSE #100
+		//SetSavedLocationPoint(276,1276,S)
+		SaveLocation("LOCALS","SavedLoc",[276.1276])
+		ChangeAIScript("52VenH2",RACE)
+	RESPONSE #100
+		//SetSavedLocationPoint(1175,1143,S)
+		SaveLocation("LOCALS","SavedLoc",[1175.1143])
+		ChangeAIScript("52VenH3",RACE)
+	RESPONSE #100
+		//SetSavedLocationPoint(2296,946,S)
+		SaveLocation("LOCALS","SavedLoc",[2296.946])
+		ChangeAIScript("52VenH4",RACE)
+END
+
+IF
+	NumTimesTalkedTo(0)
+	!Allegiance(Myself,ENEMY)
+	!StateCheck(Myself,STATE_REALLY_DEAD)
+	Global("VEN_GET_LOOT","LOCALS",3)
+	See([PC])
+THEN
+	RESPONSE #100
+		//SetDialogueRange(300)
+		//Dialogue(LastMarkedObject)
+		ApplySpellRES("BDCUTSPY",Myself)
+		StartDialogNoSet(LastSeenBy(Myself))
+END
+
+IF
+	Global("VEN_GET_LOOT","LOCALS",3)
+	NearLocation(Myself,872,1038,3)
+THEN
+	RESPONSE #100
+		FaceObject([PC])
+END
+
+IF
+	Global("VEN_GET_LOOT","LOCALS",3)
+	!NearLocation(Myself,872,1038,3)
+THEN
+	RESPONSE #100
+		//SetCreatureAreaFlag(Myself,NO_TALK,FALSE)
+		DialogInterrupt(TRUE)
+		
+		MoveToPoint([872.1038])
+END
+

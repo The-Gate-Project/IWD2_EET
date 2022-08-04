@@ -1,0 +1,95 @@
+IF
+	Global("40FomorianDied","GLOBAL",1)
+	!Global("SPRITE_IS_DEAD03_Fomorian_01","GLOBAL",0)
+	!Global("SPRITE_IS_DEAD03_Fomorian_02","GLOBAL",0)
+	!Global("SPRITE_IS_DEAD03_Fomorian_03","GLOBAL",0)
+THEN
+	RESPONSE #100
+		SetGlobal("40FomoriansDefeated","GLOBAL",1)
+		SetGlobal("40FomorianDied","GLOBAL",0)
+		ChangeAIScript("",RACE)
+END
+
+IF
+	Global("40FomorianDied","GLOBAL",1)
+THEN
+	RESPONSE #100
+		SetGlobal("40FomorianDied","GLOBAL",0)
+END
+
+IF
+	!GlobalTimerNotExpired("IwTimer18","LOCALS")
+	Global("40FomoriansDefeated","GLOBAL",0)
+THEN
+	RESPONSE #50
+		DisplayStringHead(Myself,@34108)
+		SetGlobalTimerRandom("IwTimer18","LOCALS",10,30)
+	RESPONSE #50
+		DisplayStringHead(Myself,@34109)
+		SetGlobalTimerRandom("IwTimer18","LOCALS",10,30)
+	RESPONSE #50
+		DisplayStringHead(Myself,@34110)
+		SetGlobalTimerRandom("IwTimer18","LOCALS",10,30)
+	RESPONSE #50
+		DisplayStringHead(Myself,@34111)
+		SetGlobalTimerRandom("IwTimer18","LOCALS",10,30)
+	RESPONSE #50
+		DisplayStringHead(Myself,@34096)
+		SetGlobalTimerRandom("IwTimer18","LOCALS",10,30)
+	RESPONSE #250
+		SetGlobalTimerRandom("IwTimer18","LOCALS",10,30)
+END
+
+/* OLD Continue()
+IF
+	!GlobalTimerNotExpired("IwTimer100","LOCALS")
+	!Global("40FomoriansDefeated","GLOBAL",1)
+	Global("40GoublikaOrder","GLOBAL",0)
+THEN
+	RESPONSE #100
+		SetGlobal("PlayerIsNearYurst","MYAREA",-1)
+		Continue()
+END
+
+IF
+	Global("PlayerIsNearYurst","MYAREA",-1)
+	Range([PC],29)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IwTimer100","LOCALS",10)
+		SetGlobal("PlayerIsNearYurst","MYAREA",1)
+END
+
+IF
+	Global("PlayerIsNearYurst","MYAREA",-1)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IwTimer100","LOCALS",10)
+		SetGlobal("PlayerIsNearYurst","MYAREA",0)
+END*/
+
+//BLOCK NEW Continue()
+IF
+	!GlobalTimerNotExpired("IwTimer100","LOCALS")
+	!Global("40FomoriansDefeated","GLOBAL",1)
+	Global("40GoublikaOrder","GLOBAL",0)
+	!Global("PlayerIsNearYurst","MYAREA",1)
+	Range([PC],29)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IwTimer100","LOCALS",10)
+		SetGlobal("PlayerIsNearYurst","MYAREA",1)
+END
+
+IF
+	!GlobalTimerNotExpired("IwTimer100","LOCALS")
+	!Global("40FomoriansDefeated","GLOBAL",1)
+	Global("40GoublikaOrder","GLOBAL",0)
+	!Global("PlayerIsNearYurst","MYAREA",0)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IwTimer100","LOCALS",10)
+		SetGlobal("PlayerIsNearYurst","MYAREA",0)
+END
+//BLOCKEND
+

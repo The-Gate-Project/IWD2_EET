@@ -1,0 +1,68 @@
+IF
+	Global("UNCRITICAL","LOCALS",0)
+	!Global("LIHMA_OUTSIDE","GLOBAL",0)
+THEN
+	RESPONSE #100
+		//SetCriticalPathObject(Myself,FALSE)
+		ApplySpellRES("IWCPREM",Myself)
+		SetGlobal("UNCRITICAL","LOCALS",1)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	IsActive(Myself)
+	NearLocation(Myself,622,380,2)
+THEN
+	RESPONSE #100
+		//HideCreature(Myself,TRUE)
+		ApplySpellRES("IDINVIS4",Myself)
+		SetGlobal("IwIHidden","LOCALS",1)
+		Deactivate(Myself)
+END
+
+IF
+	IsActive(Myself)
+	Allegiance(Myself,ENEMY)
+	!NearLocation(Myself,622,380,2)
+THEN
+	RESPONSE #100
+		MoveToPoint([622.380])
+END
+
+IF
+	!IsActive(Myself)
+	!NearLocation(Myself,622,380,2)
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		Activate(Myself)
+		//MoveToPoint([622.380])
+		JumpToPoint([622.380])
+		SetInterrupt(TRUE)
+		Deactivate(Myself)
+END
+
+IF
+	!IsActive(Myself)
+THEN
+	RESPONSE #100
+		NoAction()
+END
+
+IF
+	!GlobalTimerNotExpired("IwTimer21","LOCALS")
+THEN
+	RESPONSE #50
+		DisplayStringHead(Myself,@17889)
+		SetGlobalTimerRandom("IwTimer21","LOCALS",5,10)
+	RESPONSE #50
+		DisplayStringHead(Myself,@17890)
+		SetGlobalTimerRandom("IwTimer21","LOCALS",5,10)
+	RESPONSE #50
+		DisplayStringHead(Myself,@17891)
+		SetGlobalTimerRandom("IwTimer21","LOCALS",5,10)
+	RESPONSE #150
+		SetGlobalTimerRandom("IwTimer21","LOCALS",5,10)
+END
+

@@ -1,0 +1,14 @@
+IF
+	Global("VenominSuicide","MYAREA",0)
+	See([PC])
+THEN
+	RESPONSE #100
+		//HideCreature(Myself,FALSE)
+		Activate(Myself)
+		SetGlobal("IwIHidden","LOCALS",0)
+		//SetDialogueRange(300)
+		//Dialogue(LastMarkedObject)
+		ApplySpellRES("BDCUTSPY",Myself)
+		StartDialogNoSet(LastSeenBy(Myself))
+END
+

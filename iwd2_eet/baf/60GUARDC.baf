@@ -1,0 +1,206 @@
+IF
+	!GlobalTimerNotExpired("IwTimer98","LOCALS")
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IwTimer98","LOCALS",7)
+		ReallyForceSpellRES("IWIN226",Myself)  // SPIN226.SPL INNATE_GUARDIAN_INNATE_FEAR
+		Wait(1)
+END
+
+IF
+	!GlobalTimerNotExpired("Acid","LOCALS")
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #40
+		Continue()
+	RESPONSE #60
+		SetGlobalTimer("Acid","LOCALS",21)
+		ReallyForceSpellRES("IWIN225",LastSeenBy(Myself))  // SPIN225.SPL INNATE_GUARDIAN_ACID_BREATH
+		Wait(1)
+END
+
+IF
+	!Global("60GUARDC_MCSE","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobal("60GUARDC_MCSE","LOCALS",0)
+		Continue()
+END
+
+IF
+	Global("60GUARDC_MCSE","LOCALS",0)
+	See(NearestEnemyOf(Myself))
+	!CheckSpellState(LastSeenBy(Myself),OTILUKES_RESILIENT_SPHERE)
+THEN
+	RESPONSE #100
+		SetGlobal("60GUARDC_MCSE","LOCALS",1)
+		//SetMyTarget(LastSeenBy(Myself))
+		Continue()
+END
+
+IF
+	Global("60GUARDC_MCSE","LOCALS",0)
+	See(SecondNearestEnemyOf(Myself))
+	!CheckSpellState(LastSeenBy(Myself),OTILUKES_RESILIENT_SPHERE)
+THEN
+	RESPONSE #100
+		SetGlobal("60GUARDC_MCSE","LOCALS",1)
+		//SetMyTarget(LastSeenBy(Myself))
+		Continue()
+END
+
+IF
+	Global("60GUARDC_MCSE","LOCALS",0)
+	See(ThirdNearestEnemyOf(Myself))
+	!CheckSpellState(LastSeenBy(Myself),OTILUKES_RESILIENT_SPHERE)
+THEN
+	RESPONSE #100
+		SetGlobal("60GUARDC_MCSE","LOCALS",1)
+		//SetMyTarget(LastSeenBy(Myself))
+		Continue()
+END
+
+IF
+	Global("60GUARDC_MCSE","LOCALS",0)
+	See(FourthNearestEnemyOf(Myself))
+	!CheckSpellState(LastSeenBy(Myself),OTILUKES_RESILIENT_SPHERE)
+THEN
+	RESPONSE #100
+		SetGlobal("60GUARDC_MCSE","LOCALS",1)
+		//SetMyTarget(LastSeenBy(Myself))
+		Continue()
+END
+
+IF
+	Global("60GUARDC_MCSE","LOCALS",0)
+	See(FifthNearestEnemyOf(Myself))
+	!CheckSpellState(LastSeenBy(Myself),OTILUKES_RESILIENT_SPHERE)
+THEN
+	RESPONSE #100
+		SetGlobal("60GUARDC_MCSE","LOCALS",1)
+		//SetMyTarget(LastSeenBy(Myself))
+		Continue()
+END
+
+IF
+	Global("60GUARDC_MCSE","LOCALS",0)
+	See(SixthNearestEnemyOf(Myself))
+	!CheckSpellState(LastSeenBy(Myself),OTILUKES_RESILIENT_SPHERE)
+THEN
+	RESPONSE #100
+		SetGlobal("60GUARDC_MCSE","LOCALS",1)
+		//SetMyTarget(LastSeenBy(Myself))
+		Continue()
+END
+
+IF
+	Global("60GUARDC_MCSE","LOCALS",0)
+	See(SeventhNearestEnemyOf(Myself))
+	!CheckSpellState(LastSeenBy(Myself),OTILUKES_RESILIENT_SPHERE)
+THEN
+	RESPONSE #100
+		SetGlobal("60GUARDC_MCSE","LOCALS",1)
+		//SetMyTarget(LastSeenBy(Myself))
+		Continue()
+END
+
+IF
+	Global("60GUARDC_MCSE","LOCALS",0)
+	See(EighthNearestEnemyOf(Myself))
+	!CheckSpellState(LastSeenBy(Myself),OTILUKES_RESILIENT_SPHERE)
+THEN
+	RESPONSE #100
+		SetGlobal("60GUARDC_MCSE","LOCALS",1)
+		//SetMyTarget(LastSeenBy(Myself))
+		Continue()
+END
+
+IF
+	Global("60GUARDC_MCSE","LOCALS",0)
+	See(NinthNearestEnemyOf(Myself))
+	!CheckSpellState(LastSeenBy(Myself),OTILUKES_RESILIENT_SPHERE)
+THEN
+	RESPONSE #100
+		SetGlobal("60GUARDC_MCSE","LOCALS",1)
+		//SetMyTarget(LastSeenBy(Myself))
+		Continue()
+END
+
+IF
+	Global("60GUARDC_MCSE","LOCALS",0)
+	See(TenthNearestEnemyOf(Myself))
+	!CheckSpellState(LastSeenBy(Myself),OTILUKES_RESILIENT_SPHERE)
+THEN
+	RESPONSE #100
+		SetGlobal("60GUARDC_MCSE","LOCALS",1)
+		//SetMyTarget(LastSeenBy(Myself))
+		Continue()
+END
+
+IF
+	Global("60GUARDC_MCSE","LOCALS",0)
+	See(LastAttackerOf(Myself))
+	!CheckSpellState(LastSeenBy(Myself),OTILUKES_RESILIENT_SPHERE)
+THEN
+	RESPONSE #100
+		SetGlobal("60GUARDC_MCSE","LOCALS",1)
+		//SetMyTarget(LastSeenBy(Myself))
+		Continue()
+END
+
+IF
+	!Global("60GUARDC_MCSE","LOCALS",0)
+	OR(2)
+		TargetUnreachable(LastSeenBy(Myself)) //MyTarget
+		!Range(LastSeenBy(Myself),10) //MyTarget
+THEN
+	RESPONSE #40
+		SetInterrupt(FALSE)
+		//SpellHitEffectSprite(Myself,Myself,DIMENSION_DOOR_ORIGIN,0)
+		CreateVisualEffectObject("spdimndr",Myself)
+		//HideCreature(Myself,TRUE)
+		ApplySpellRES("IDINVIS6",Myself)
+		SmallWait(2)
+		DisplayString(Myself,@38707)
+		JumpToObject(LastSeenBy(Myself))
+		ApplySpellRES("IWJUMPOF",Myself)
+		FaceObject(LastSeenBy(Myself))
+		//SpellHitEffectSprite(Myself,Myself,DIMENSION_DOOR_DESTINATION,0)
+		CreateVisualEffectObject("spdimndr",Myself)
+		SmallWait(2)
+		//HideCreature(Myself,FALSE)
+		ApplySpellRES("IDINVIS7",Myself)
+		Continue()
+END
+
+IF
+	See(LastSeenBy(Myself))
+THEN
+	RESPONSE #100
+		SelectWeaponAbility(SLOT_WEAPON0,0)
+		AttackOneRound(LastSeenBy(Myself))
+	RESPONSE #100
+		SelectWeaponAbility(SLOT_WEAPON1,0)
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		SelectWeaponAbility(SLOT_WEAPON0,0)
+		AttackOneRound(LastSeenBy(Myself))
+	RESPONSE #100
+		SelectWeaponAbility(SLOT_WEAPON1,0)
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	!Range([PC],28)
+THEN
+	RESPONSE #100
+		MoveToObject(Player1)
+END
+
+

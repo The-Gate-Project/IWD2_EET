@@ -1,0 +1,15 @@
+IF
+	OR(2)
+		Unlocked([PC])
+		Opened([PC])
+	!Global("5302MS2_4_ACT","MYAREA",1)
+THEN
+	RESPONSE #100
+		AddXPWorthOnce("Lightning_Gens4",TRUE)
+		ActionOverride("Lightning_Gens4",DestroySelf())
+		//AddExperiencePartyCR(4)
+		//Unlock("5302MS2_4")
+		SetGlobal("5302MS2_4_ACT","MYAREA",1)
+		AmbientActivate("5302MS2_4",FALSE)
+END
+

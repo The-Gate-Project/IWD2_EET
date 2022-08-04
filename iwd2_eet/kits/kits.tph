@@ -1,0 +1,1118 @@
+/* возможно, сделать киты для Имоен и Джахиры из НеДжа */
+
+OUTER_SPRINT ~KIT_FOLDER~ ~%MOD_FOLDER%/kits~
+
+INCLUDE ~%KIT_FOLDER%/fl#add_kit_ee.tpa~
+//INCLUDE ~%KIT_FOLDER%/functia.tpa~
+
+/*ACTION_IF FILE_EXISTS_IN_GAME ~OHTEMPUS.2da~ BEGIN
+  PRINT ~Skipping Priest of Tempus Kit...~
+END ELSE BEGIN
+  PRINT ~Installing Priest of Tempus Kit...~
+  INCLUDE ~%KIT_FOLDER%/kit_tempus/kit_tempus.tph~
+END*/
+
+//COPY ~%KIT_FOLDER%/copy~ ~override~
+
+///////////////////////////OHILMATER
+
+PRINT ~Installing Priest of Ilmater Kit...~
+ADD_KIT ~OHILMATER~ //#41
+  // appended to CLASWEAP.2da
+  ~OHILMATER         0           0            1            1             0             1            0            0~
+  // appended column-wise to WEAPPROF.2da
+  ~OHILMATER 0 0 0 0 1 1 0 1 0 0 0 0 0 0 0 0 1 1 0 0 1 1 1 0 0 0 0 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0~
+  // appended to ABCLASRQ.2da
+  ~OHILMATER         0           0            0            0             9             0~
+  // appended to ABCLSMOD.2da
+  ~OHILMATER         0           0            0            0             0             0~
+  // appended to ABDCDSRQ.2da
+  ~OHILMATER         0           0            0            0             17            0~
+  // appended to ABDCSCRQ.2da
+  ~OHILMATER         0           0            0            0             15            0~
+  // appended to ALIGNMNT.2da
+  ~OHILMATER         1           1            0            1             0             0            0            0            0~
+  // appended to DUALCLAS.2da
+  ~OHILMATER         1           0            1            1             0             1~
+  // path to your CLAB-style 2da file
+  ~%KIT_FOLDER%/OHILMATE.2da~
+  // PC races and classes allowed to use this kit, from KITTABLE.2da
+  ~K_C_H  K_C_D  K_C_G  K_C_E  K_C_HE  K_C_HL  K_C_HO~
+  // usability flags, added to the end of the KITLIST.2da entry
+   ~0x00004000       3~
+   // HLA table to use; see LUABBR.2da
+  ~CL0~
+  // list of starting equipment for PCs starting in ToB. Appended column-wise to 25STWEAP.2da
+  ~CHAN09  *  HELM07  BAG20  RING06  RING31  *  BOOT01  AMUL19  BRAC16  BELT06  AROW11,40  BULL03,40  BOLT06,40  POTN52,5  POTN4,2  POTN14,5  HAM07  SW1H27  STAF08~
+  // Lower, mixed, and help kit names and descriptions, added to KITLIST.2da
+  SAY @70784
+  SAY @70785
+  SAY @70786
+
+LAF fl#add_kit_ee
+  INT_VAR
+    briefdesc = 102495
+  STR_VAR
+    kit_name = "OHILMATER"
+    clascolr = "59 46 13 93 102" //METAL	MINOR	MAIN	LEATHER	ARMOR
+END
+
+///////////////////////OHSELUNE
+
+PRINT ~Installing Priest of Selune Kit...~
+ADD_KIT ~OHSELUNE~ //#41
+  // appended to CLASWEAP.2da
+  ~OHSELUNE         0           0            1            1             0             1            0            0~
+  // appended column-wise to WEAPPROF.2da
+  ~OHSELUNE 0 0 0 0 1 1 0 1 0 0 0 0 0 0 0 0 1 1 0 0 1 1 1 0 0 0 0 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0~
+  // appended to ABCLASRQ.2da
+  ~OHSELUNE         0           0            0            0             9             0~
+  // appended to ABCLSMOD.2da
+  ~OHSELUNE         0           0            0            0             0             0~
+  // appended to ABDCDSRQ.2da
+  ~OHSELUNE         0           0            0            0             17            0~
+  // appended to ABDCSCRQ.2da
+  ~OHSELUNE         0           0            0            0             15            0~
+  // appended to ALIGNMNT.2da
+  ~OHSELUNE         0           0            0            1             0             0            1            1            0~
+  // appended to DUALCLAS.2da
+  ~OHSELUNE         1           0            1            1             0             1~
+  // path to your CLAB-style 2da file
+  ~%KIT_FOLDER%/OHSELUNE.2da~
+  // PC races and classes allowed to use this kit, from KITTABLE.2da
+  ~K_C_H  K_C_D  K_C_G  K_C_E  K_C_HE  K_C_HL  K_C_HO~
+  // usability flags, added to the end of the KITLIST.2da entry
+   ~0x00004000       3~
+   // HLA table to use; see LUABBR.2da
+  ~CL0~
+  // list of starting equipment for PCs starting in ToB. Appended column-wise to 25STWEAP.2da
+  ~CHAN09  *  HELM07  BAG20  RING06  RING31  *  BOOT01  AMUL19  BRAC16  BELT06  AROW11,40  BULL03,40  BOLT06,40  POTN52,5  POTN4,2  POTN14,5  HAM07  SW1H27  STAF08~
+  // Lower, mixed, and help kit names and descriptions, added to KITLIST.2da
+  SAY @70787
+  SAY @70788
+  SAY @70789
+
+LAF fl#add_kit_ee
+  INT_VAR
+    briefdesc = 102495
+  STR_VAR
+    kit_name = "OHSELUNE"
+    clascolr = "82 71 58 57 102" //METAL	MINOR	MAIN	LEATHER	ARMOR
+END
+
+//////////////////////OHOGHMA
+
+PRINT ~Installing Priest of Oghma Kit...~
+ADD_KIT ~OHOGHMA~ //#41
+  // appended to CLASWEAP.2da
+  ~OHOGHMA         0           0            1            1             0             1            0            0~
+  // appended column-wise to WEAPPROF.2da
+  ~OHOGHMA 0 0 0 0 1 1 0 1 0 0 0 0 0 0 0 0 1 1 0 0 1 1 1 0 0 0 0 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0~
+  // appended to ABCLASRQ.2da
+  ~OHOGHMA         0           0            0            0             9             0~
+  // appended to ABCLSMOD.2da
+  ~OHOGHMA         0           0            0            0             0             0~
+  // appended to ABDCDSRQ.2da
+  ~OHOGHMA         0           0            0            0             17            0~
+  // appended to ABDCSCRQ.2da
+  ~OHOGHMA         0           0            0            0             15            0~
+  // appended to ALIGNMNT.2da
+  ~OHOGHMA         0           1            0            0             1             0            0            1            0~
+  // appended to DUALCLAS.2da
+  ~OHOGHMA         1           0            1            1             0             1~
+  // path to your CLAB-style 2da file
+  ~%KIT_FOLDER%/OHOGHMA.2da~
+  // PC races and classes allowed to use this kit, from KITTABLE.2da
+  ~K_C_H  K_C_D  K_C_G  K_C_E  K_C_HE  K_C_HL  K_C_HO~
+  // usability flags, added to the end of the KITLIST.2da entry
+   ~0x00004000       3~
+   // HLA table to use; see LUABBR.2da
+  ~CL0~
+  // list of starting equipment for PCs starting in ToB. Appended column-wise to 25STWEAP.2da
+  ~CHAN09  *  HELM07  BAG20  RING06  RING31  *  BOOT01  AMUL19  BRAC16  BELT06  AROW11,40  BULL03,40  BOLT06,40  POTN52,5  POTN4,2  POTN14,5  HAM07  SW1H27  STAF08~
+  // Lower, mixed, and help kit names and descriptions, added to KITLIST.2da
+  SAY @70790
+  SAY @70791
+  SAY @70792
+
+LAF fl#add_kit_ee
+  INT_VAR
+    briefdesc = 102495
+  STR_VAR
+    kit_name = "OHOGHMA"
+    clascolr = "100 95 25 21 28" //METAL	MINOR	MAIN	LEATHER	ARMOR
+END
+
+//////////////////////OHBANE
+
+PRINT ~Installing Priest of Bane Kit...~
+ADD_KIT ~OHBANE~ //#41
+  // appended to CLASWEAP.2da
+  ~OHBANE         0           0            1            1             0             1            0            0~
+  // appended column-wise to WEAPPROF.2da
+  ~OHBANE 0 0 0 0 1 1 0 1 0 0 0 0 0 0 0 0 1 1 0 0 1 1 1 0 0 0 0 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0~
+  // appended to ABCLASRQ.2da
+  ~OHBANE         0           0            0            0             9             0~
+  // appended to ABCLSMOD.2da
+  ~OHBANE         0           0            0            0             0             0~
+  // appended to ABDCDSRQ.2da
+  ~OHBANE         0           0            0            0             17            0~
+  // appended to ABDCSCRQ.2da
+  ~OHBANE         0           0            0            0             15            0~
+  // appended to ALIGNMNT.2da
+  ~OHBANE         0           0            1            0             0             1            0            0            1~
+  // appended to DUALCLAS.2da
+  ~OHBANE         1           0            1            1             0             1~
+  // path to your CLAB-style 2da file
+  ~%KIT_FOLDER%/OHBANE.2da~
+  // PC races and classes allowed to use this kit, from KITTABLE.2da
+  ~K_C_H  K_C_D  K_C_G  K_C_E  K_C_HE  K_C_HL  K_C_HO~
+  // usability flags, added to the end of the KITLIST.2da entry
+   ~0x00004000       3~
+   // HLA table to use; see LUABBR.2da
+  ~CL0~
+  // list of starting equipment for PCs starting in ToB. Appended column-wise to 25STWEAP.2da
+  ~CHAN09  *  HELM07  BAG20  RING06  RING31  *  BOOT01  AMUL19  BRAC16  BELT06  AROW11,40  BULL03,40  BOLT06,40  POTN52,5  POTN4,2  POTN14,5  HAM07  SW1H27  STAF08~
+  // Lower, mixed, and help kit names and descriptions, added to KITLIST.2da
+  SAY @70793
+  SAY @70794
+  SAY @70795
+
+LAF fl#add_kit_ee
+  INT_VAR
+    briefdesc = 102495
+  STR_VAR
+    kit_name = "OHBANE"
+    clascolr = "14 86 27 6 30" //METAL	MINOR	MAIN	LEATHER	ARMOR
+END
+
+
+//////////////////////OHMASK
+
+PRINT ~Installing Priest of Mask Kit...~
+ADD_KIT ~OHMASK~ //#41
+  // appended to CLASWEAP.2da
+  ~OHMASK         0           0            1            1             0             1            0            0~
+  // appended column-wise to WEAPPROF.2da
+  ~OHMASK 0 0 0 0 1 1 0 1 0 0 0 0 0 0 0 0 1 1 0 0 1 1 1 0 0 0 0 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0~
+  // appended to ABCLASRQ.2da
+  ~OHMASK         0           0            0            0             9             0~
+  // appended to ABCLSMOD.2da
+  ~OHMASK         0           0            0            0             0             0~
+  // appended to ABDCDSRQ.2da
+  ~OHMASK         0           0            0            0             17            0~
+  // appended to ABDCSCRQ.2da
+  ~OHMASK         0           0            0            0             15            0~
+  // appended to ALIGNMNT.2da
+  ~OHMASK         0           0            1            0             0             1            0            1            1~
+  // appended to DUALCLAS.2da
+  ~OHMASK         0           0            0            1             0             0~
+  // path to your CLAB-style 2da file
+  ~%KIT_FOLDER%/OHMASK.2da~
+  // PC races and classes allowed to use this kit, from KITTABLE.2da
+  ~K_C_H  K_C_D  K_C_G  K_C_E  K_C_HE  K_C_HL  K_C_HO~
+  // usability flags, added to the end of the KITLIST.2da entry
+   ~0x00004000       3~
+   // HLA table to use; see LUABBR.2da
+  ~CL0~
+  // list of starting equipment for PCs starting in ToB. Appended column-wise to 25STWEAP.2da
+  ~CHAN09  *  HELM07  BAG20  RING06  RING31  *  BOOT01  AMUL19  BRAC16  BELT06  AROW11,40  BULL03,40  BOLT06,40  POTN52,5  POTN4,2  POTN14,5  HAM07  SW1H27  STAF08~
+  // Lower, mixed, and help kit names and descriptions, added to KITLIST.2da
+  SAY @70796
+  SAY @70797
+  SAY @70798
+
+LAF fl#add_kit_ee
+  INT_VAR
+    briefdesc = 102495
+  STR_VAR
+    kit_name = "OHMASK"
+    clascolr = "181 135 97 79 83" //METAL	MINOR	MAIN	LEATHER	ARMOR
+END
+
+//////////////////////PL_ILMATER
+
+PRINT ~Installing Paladin of Ilmater Kit...~
+ADD_KIT ~PL_ILMATER~ //#41
+  // appended to CLASWEAP.2da
+  ~PL_ILMATER         1           1            1            1             1             1            1            1~
+  // appended column-wise to WEAPPROF.2da
+  ~PL_ILMATER 2 2 2 2 2 2 2 2 2 2 2 2 1 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 3 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0~
+  // appended to ABCLASRQ.2da
+  ~PL_ILMATER         12          0            9            0             13            17~
+  // appended to ABCLSMOD.2da
+  ~PL_ILMATER         0           0            0            0             0             0~
+  // appended to ABDCDSRQ.2da
+  ~PL_ILMATER         17          0            0            0             0             17~
+  // appended to ABDCSCRQ.2da
+  ~PL_ILMATER         15          0            0            0             0             15~
+  // appended to ALIGNMNT.2da
+  ~PL_ILMATER         1           0            0            0             0             0            0            0            0~
+  // appended to DUALCLAS.2da
+  ~PL_ILMATER         0           0            0            0             0             0~
+  // path to your CLAB-style 2da file
+  ~%KIT_FOLDER%/OHPLILM.2da~
+  // PC races and classes allowed to use this kit, from KITTABLE.2da
+  ~K_P_H~
+  // usability flags, added to the end of the KITLIST.2da entry
+   ~0x00004000       6~
+   // HLA table to use; see LUABBR.2da
+  ~PA4~
+  // list of starting equipment for PCs starting in ToB. Appended column-wise to 25STWEAP.2da
+  ~CHAN09  *  HELM07  BAG26  RING06  RING31  *  BOOT01  AMUL20  BRAC10  BELT06  AROW11,40  BULL03,40  BOLT06,40  POTN52,5  POTN04,2  POTN14,5  HAMM07  SW1H27  STAF08~
+  // Lower, mixed, and help kit names and descriptions, added to KITLIST.2da
+  SAY @70799
+  SAY @70800
+  SAY @70801
+
+LAF fl#add_kit_ee
+  INT_VAR
+    briefdesc = 102509
+  STR_VAR
+    kit_name = "PL_ILMATER"
+    clascolr = "59 46 13 93 102" //METAL	MINOR	MAIN	LEATHER	ARMOR
+END
+
+//////////////////////PL_HELM
+
+PRINT ~Installing Paladin of Helm Kit...~
+ADD_KIT ~PL_HELM~ //#41
+  // appended to CLASWEAP.2da
+  ~PL_HELM         1           1            1            1             1             1            1            1~
+  // appended column-wise to WEAPPROF.2da
+  ~PL_HELM 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 3 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0~
+  // appended to ABCLASRQ.2da
+  ~PL_HELM         12          0            9            0             13            17~
+  // appended to ABCLSMOD.2da
+  ~PL_HELM         0           0            0            0             0             0~
+  // appended to ABDCDSRQ.2da
+  ~PL_HELM         17          0            0            0             0             17~
+  // appended to ABDCSCRQ.2da
+  ~PL_HELM         15          0            0            0             0             15~
+  // appended to ALIGNMNT.2da
+  ~PL_HELM         1           0            0            1             0             0            0            0            0~
+  // appended to DUALCLAS.2da
+  ~PL_HELM         0           0            0            0             0             0~
+  // path to your CLAB-style 2da file
+  ~%KIT_FOLDER%/OHPLHELM.2da~
+  // PC races and classes allowed to use this kit, from KITTABLE.2da
+  ~K_P_H~
+  // usability flags, added to the end of the KITLIST.2da entry
+   ~0x00000020       6~
+   // HLA table to use; see LUABBR.2da
+  ~PA4~
+  // list of starting equipment for PCs starting in ToB. Appended column-wise to 25STWEAP.2da
+  ~CHAN09  *  HELM07  BAG26  RING06  RING31  *  BOOT01  AMUL20  BRAC10  BELT06  AROW11,40  BULL03,40  BOLT06,40  POTN52,5  POTN04,2  POTN14,5  HAMM07  SW1H27  STAF08~
+  // Lower, mixed, and help kit names and descriptions, added to KITLIST.2da
+  SAY @70802
+  SAY @70803
+  SAY @70804
+
+LAF fl#add_kit_ee
+  INT_VAR
+    briefdesc = 102509
+  STR_VAR
+    kit_name = "PL_HELM"
+    clascolr = "18 5 24 27 30" //METAL	MINOR	MAIN	LEATHER	ARMOR
+END
+
+//////////////////////PL_MYSTRA
+
+PRINT ~Installing Paladin of Helm Kit...~
+ADD_KIT ~PL_MYSTRA~ //#41
+  // appended to CLASWEAP.2da
+  ~PL_MYSTRA         1           1            1            1             1             1            1            1~
+  // appended column-wise to WEAPPROF.2da
+  ~PL_MYSTRA 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 3 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0~
+  // appended to ABCLASRQ.2da
+  ~PL_MYSTRA         12          0            9            0             13            17~
+  // appended to ABCLSMOD.2da
+  ~PL_MYSTRA         0           0            0            0             0             0~
+  // appended to ABDCDSRQ.2da
+  ~PL_MYSTRA         17          0            0            0             0             17~
+  // appended to ABDCSCRQ.2da
+  ~PL_MYSTRA         15          0            0            0             0             15~
+  // appended to ALIGNMNT.2da
+  ~PL_MYSTRA         1           0            0            1             0             0            1            0            0~
+  // appended to DUALCLAS.2da
+  ~PL_MYSTRA         0           0            0            0             0             0~
+  // path to your CLAB-style 2da file
+  ~%KIT_FOLDER%/OHPLMYST.2da~
+  // PC races and classes allowed to use this kit, from KITTABLE.2da
+  ~K_P_H~
+  // usability flags, added to the end of the KITLIST.2da entry
+   ~0x00004000       6~
+   // HLA table to use; see LUABBR.2da
+  ~PA4~
+  // list of starting equipment for PCs starting in ToB. Appended column-wise to 25STWEAP.2da
+  ~CHAN09  *  HELM07  BAG26  RING06  RING31  *  BOOT01  AMUL20  BRAC10  BELT06  AROW11,40  BULL03,40  BOLT06,40  POTN52,5  POTN04,2  POTN14,5  HAMM07  SW1H27  STAF08~
+  // Lower, mixed, and help kit names and descriptions, added to KITLIST.2da
+  SAY @70805
+  SAY @70806
+  SAY @70807
+
+LAF fl#add_kit_ee
+  INT_VAR
+    briefdesc = 102509
+  STR_VAR
+    kit_name = "PL_MYSTRA"
+    clascolr = "141 148 131 97 101" //METAL	MINOR	MAIN	LEATHER	ARMOR
+END
+
+//////////////////////OLD_ORDER
+
+PRINT ~Installing Old Order Monk Kit...~
+ADD_KIT ~OLD_ORDER~ //#41
+  // appended to CLASWEAP.2da
+  ~OLD_ORDER         1           1            1            1             1             0            0            0~
+  // appended column-wise to WEAPPROF.2da
+  ~OLD_ORDER 0 1 0 0 1 0 0 1 0 1 1 0 0 1 1 1 0 1 0 0 0 0 0 0 0 0 1 1 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0~
+  // appended to ABCLASRQ.2da
+  ~OLD_ORDER         0           9            9            0             9             0~
+  // appended to ABCLSMOD.2da
+  ~OLD_ORDER         0           0            0            0             0             0~
+  // appended to ABDCDSRQ.2da
+  ~OLD_ORDER         0           17           17           0             17            0~
+  // appended to ABDCSCRQ.2da
+  ~OLD_ORDER         0           15           15           0             15            0~
+  // appended to ALIGNMNT.2da
+  ~OLD_ORDER         1           1            1            0             0             0            0            0            0~
+  // appended to DUALCLAS.2da
+  ~OLD_ORDER         0           0            0            0             0             0~
+  // path to your CLAB-style 2da file
+  ~%KIT_FOLDER%/OHOLDORD.2da~
+  // PC races and classes allowed to use this kit, from KITTABLE.2da
+  ~K_MN_H~
+  // usability flags, added to the end of the KITLIST.2da entry
+   ~0x00004000       20~
+   // HLA table to use; see LUABBR.2da
+  ~Mo0~
+  // list of starting equipment for PCs starting in ToB. Appended column-wise to 25STWEAP.2da
+  ~*  *  HELM19  BAG23  RING06  RING29  CLCK02  BOOT01  AMUL19  BRAC16  BELT06  AROW11,40  BULL03,40  BOLT06,40  POTN52,5  POTN04,2  POTN14,5  *  *  *~
+  // Lower, mixed, and help kit names and descriptions, added to KITLIST.2da
+  SAY @70808
+  SAY @70809
+  SAY @70810
+
+LAF fl#add_kit_ee
+  INT_VAR
+    briefdesc = 102507
+  STR_VAR
+    kit_name = "OLD_ORDER"
+    clascolr = "30 47 66 66 28" //METAL	MINOR	MAIN	LEATHER	ARMOR
+END
+
+//////////////////////BROKEN_ONES
+
+PRINT ~Installing Broken Ones Monk Kit...~
+ADD_KIT ~BROKEN_ONES~ //#41
+  // appended to CLASWEAP.2da
+  ~BROKEN_ONES         1           1            1            1             1             0            0            0~
+  // appended column-wise to WEAPPROF.2da
+  ~BROKEN_ONES 0 1 0 0 1 0 0 1 0 1 1 0 0 1 1 1 0 1 0 0 0 0 0 0 0 0 1 1 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0~
+  // appended to ABCLASRQ.2da
+  ~BROKEN_ONES         0           9            9            0             9             0~
+  // appended to ABCLSMOD.2da
+  ~BROKEN_ONES         0           0            0            0             0             0~
+  // appended to ABDCDSRQ.2da
+  ~BROKEN_ONES         0           17           17           0             17            0~
+  // appended to ABDCSCRQ.2da
+  ~BROKEN_ONES         0           15           15           0             15            0~
+  // appended to ALIGNMNT.2da
+  ~BROKEN_ONES         1           1            0            1             0             0            0            0            0~
+  // appended to DUALCLAS.2da
+  ~BROKEN_ONES         0           0            0            0             0             0~
+  // path to your CLAB-style 2da file
+  ~%KIT_FOLDER%/OHBRKONE.2da~
+  // PC races and classes allowed to use this kit, from KITTABLE.2da
+  ~K_MN_H~
+  // usability flags, added to the end of the KITLIST.2da entry
+   ~0x00004000       20~
+   // HLA table to use; see LUABBR.2da
+  ~Mo0~
+  // list of starting equipment for PCs starting in ToB. Appended column-wise to 25STWEAP.2da
+  ~*  *  HELM19  BAG23  RING06  RING29  CLCK02  BOOT01  AMUL19  BRAC16  BELT06  AROW11,40  BULL03,40  BOLT06,40  POTN52,5  POTN04,2  POTN14,5  *  *  *~
+  // Lower, mixed, and help kit names and descriptions, added to KITLIST.2da
+  SAY @70811
+  SAY @70812
+  SAY @70813
+
+LAF fl#add_kit_ee
+  INT_VAR
+    briefdesc = 102507
+  STR_VAR
+    kit_name = "BROKEN_ONES"
+    clascolr = "103 57 47 41 103" //METAL	MINOR	MAIN	LEATHER	ARMOR
+END
+
+/*COPY_EXISTING ~CLASWEAP.2da~ ~override~
+              ~WEAPPROF.2da~ ~override~
+              ~ABCLASRQ.2da~ ~override~
+              ~ABCLSMOD.2da~ ~override~
+              ~ABDCDSRQ.2da~ ~override~
+              ~ABDCSCRQ.2da~ ~override~
+              ~ALIGNMNT.2da~ ~override~
+              ~DUALCLAS.2da~ ~override~
+              ~LUABBR.2da~ ~override~
+              ~backstab.2da~ ~override~
+              ~clsrcreq.2da~ ~override~
+              ~clswpbon.2da~ ~override~
+              ~hpclass.2da~ ~override~
+              ~numwslot.2da~ ~override~
+              ~thiefskl.2da~ ~override~
+              ~traplimt.2da~ ~override~
+              ~clascolr.2da~ ~override~
+              ~clasiskl.2da~ ~override~
+              ~clasthac.2da~ ~override~
+              ~thiefscl.2da~ ~override~
+              ~sneakatt.2da~ ~override~
+              ~crippstr.2da~ ~override~
+              ~clastext.2da~ ~override~
+  PRETTY_PRINT_2DA*/
+
+OUTER_SET idx = "-1"
+COPY_EXISTING ~clastext.2da~ ~override~
+  COUNT_2DA_ROWS 5 rows
+  FOR ( i = 0 ; i < rows ; ++i ) BEGIN
+    READ_2DA_ENTRY i 0 5 name
+    PATCH_IF ( ~%name%~ STRING_EQUAL_CASE ~OHTYR~ ) BEGIN
+      READ_2DA_ENTRY i 2 5 idx
+    END
+  END
+  BUT_ONLY
+
+ACTION_IF ( idx >= 0 ) BEGIN
+  ACTION_FOR_EACH file IN BGCLATXT SODCLTXT BEGIN
+    ACTION_IF FILE_EXISTS_IN_GAME ~%file%.2da~ BEGIN
+      COPY_EXISTING ~%file%.2da~ ~override~
+        COUNT_2DA_ROWS 5 rows
+        SET idx2 = "-1"
+        FOR ( i = 0 ; i < rows ; ++i ) BEGIN
+          READ_2DA_ENTRY i 0 5 name
+          PATCH_IF ( ~%name%~ STRING_EQUAL_CASE ~OHTYR~ ) BEGIN
+            READ_2DA_ENTRY i 2 5 idx2
+            PATCH_IF ( idx != idx2 ) BEGIN
+              SET_2DA_ENTRY i 2 5 idx
+            END
+          END
+        END
+        BUT_ONLY
+    END
+  END
+END
+
+
+/* SPELLS */
+
+PRINT ~Installing Kits spells...~
+COPY_EXISTING ~SPWI419.SPL~  ~override/OHOGMA2.SPL~
+  LPM CONVERT_SPL_TO_INNATE
+
+COPY_EXISTING ~SPPR416.SPL~  ~override/OHBANE2.SPL~
+  LPM CONVERT_SPL_TO_INNATE
+
+COPY_EXISTING ~SPPR405.SPL~  ~override/OHBANE3.SPL~
+  LPM CONVERT_SPL_TO_INNATE
+
+COPY_EXISTING ~SPWI120.SPL~  ~override/OHMASK2.SPL~
+  LPM CONVERT_SPL_TO_INNATE
+
+COPY_EXISTING ~SPWI206.SPL~  ~override/OHMASK3.SPL~
+  LPM CONVERT_SPL_TO_INNATE
+
+COPY_EXISTING ~SPWI307.SPL~  ~override/OHMASK4.SPL~
+  LPM CONVERT_SPL_TO_INNATE
+
+COPY_EXISTING ~SPWI405.SPL~  ~override/OHMASK5.SPL~
+  LPM CONVERT_SPL_TO_INNATE
+
+COPY_EXISTING ~SPWI505.SPL~  ~override/OHMASK6.SPL~
+  LPM CONVERT_SPL_TO_INNATE
+
+COPY_EXISTING ~SPPR317.SPL~  ~override/OHPILM2.SPL~
+  LPM CONVERT_SPL_TO_INNATE
+
+COPY_EXISTING ~SPPR507.SPL~  ~override/OHPILM3.SPL~
+  LPM CONVERT_SPL_TO_INNATE
+
+COPY_EXISTING ~SPWI112.SPL~  ~override/OHPMYS3.SPL~
+  LPM CONVERT_SPL_TO_INNATE
+
+COPY_EXISTING ~SPWI224.SPL~  ~override/OHPMYS4.SPL~
+  LPM CONVERT_SPL_TO_INNATE
+
+COPY_EXISTING ~SPWI302.SPL~  ~override/OHPMYS5.SPL~
+  LPM CONVERT_SPL_TO_INNATE
+
+COPY_EXISTING ~SPWI420.SPL~  ~override/OHPMYS6.SPL~
+  LPM CONVERT_SPL_TO_INNATE
+
+COPY_EXISTING ~SPWI420D.SPL~ ~override/OHPMYS6D.SPL~
+              ~SPWI420P.SPL~ ~override/OHPMYS6P.SPL~
+  READ_LONG   0x64 abil_off
+  READ_SHORT  0x68 abil_num
+  PATCH_IF ( abil_num > 0 ) BEGIN //0x28
+    FOR ( i = 0 ; i < abil_num ; ++i ) BEGIN
+      SET offset = abil_off + i * 0x28
+      READ_SHORT offset + 0x1e eff_cnt
+      READ_SHORT offset + 0x20 eff_off
+      PATCH_IF ( eff_cnt > 0) BEGIN //0x30
+        FOR ( j = 0 ; j < eff_cnt ; ++j ) BEGIN
+          SET offs = eff_off + j * 0x30
+          READ_SHORT offs opcode
+          PATCH_IF ( opcode = 258 ) OR
+                   ( opcode = 260 ) BEGIN
+            WRITE_ASCII offs + 0x14 ~OHPMYS6~ (8)
+          END
+        END
+      END
+    END
+  END
+
+COPY_EXISTING ~SPWI514.SPL~  ~override/OHPMYS7.SPL~
+  LPM CONVERT_SPL_TO_INNATE
+
+COPY_EXISTING ~SPPR205.SPL~  ~override/OHOORD2.SPL~
+  LPM CONVERT_SPL_TO_INNATE
+
+/* NEW_SPELLS */
+
+COPY ~%KIT_FOLDER%/copy~ ~override~
+
+OUTER_SET strrefA = RESOLVE_STR_REF (@70814)
+
+LAF APPEND_STATDESC_ENTRY INT_VAR strref = %strrefA% STR_VAR bam_file = "IDSDMNDU" RET index END
+
+COPY ~%KIT_FOLDER%/spl/ILMENDU.spl~ ~override~
+  WRITE_LONG 0x08  ~%strrefA%~
+  SAY        0x50  @70815
+  WRITE_LONG 0x39e ~%strrefA%~
+  WRITE_LONG 0x3d2 ~%index%~
+  LPF COPY_SPL_ABILITY INT_VAR num_copies = 29 END
+
+ADD_PROJECTILE ~%KIT_FOLDER%/spl/idmoonmt.PRO~ ~Selune Moon Motes~
+
+COPY ~%KIT_FOLDER%/spl/OHSELU1.spl~ ~override~
+  SAY 0x08 @70816
+  SAY 0x50 @70817
+  WRITE_SHORT 0x98 ~%idmoonmt%~
+
+COPY ~%KIT_FOLDER%/spl/OHSELU2.spl~ ~override~
+  SAY 0x08 @70818
+  SAY 0x50 @70819
+
+ADD_PROJECTILE ~%KIT_FOLDER%/spl/womoon.pro~ ~Wall of Moonlight~
+
+COPY ~%KIT_FOLDER%/spl/OHSELU3.spl~ ~override~
+  SAY 0x08 @70820
+  SAY 0x50 @70821
+  WRITE_SHORT 0x98 ~%womoon%~
+
+COPY ~%KIT_FOLDER%/spl/OHOGMA1.spl~ ~override~
+     ~%KIT_FOLDER%/spl/OHPILM1.spl~ ~override~
+     ~%KIT_FOLDER%/spl/OHPMYS1.spl~ ~override~
+     ~%KIT_FOLDER%/spl/OHPMYS2.spl~ ~override~
+     ~%KIT_FOLDER%/spl/OHOORD1.spl~ ~override~
+     ~%KIT_FOLDER%/spl/OHBRON1.spl~ ~override~
+     ~%KIT_FOLDER%/spl/EFFWOM1.spl~ ~override~
+     ~%KIT_FOLDER%/spl/EFFWOM2.spl~ ~override~
+
+COPY ~%KIT_FOLDER%/spl/OHBANE1.spl~ ~override~
+  //SAY 0x08  @70820
+  //SAY 0x50  @70821
+  SAY 0x18e @70822
+
+OUTER_SET strrefA = RESOLVE_STR_REF (@70823)
+
+LAF APPEND_STATDESC_ENTRY INT_VAR strref = %strrefA% STR_VAR bam_file = "IDOHMSSS" RET index END
+
+COPY ~%KIT_FOLDER%/spl/OHMASK1.spl~ ~override~
+  WRITE_LONG 0x08  ~%strrefA%~
+  SAY        0x50  @70824
+  WRITE_LONG 0xfe  ~%strrefA%~
+  WRITE_LONG 0xa2  ~%index%~
+  LPF COPY_SPL_ABILITY INT_VAR num_copies = 29 END
+
+OUTER_SET strrefA = RESOLVE_STR_REF (@70825)
+
+LAF APPEND_STATDESC_ENTRY INT_VAR strref = %strrefA% STR_VAR bam_file = "IDOHPLI4" RET index END
+
+COPY ~%KIT_FOLDER%/spl/OHPILM4.spl~ ~override~
+  WRITE_LONG 0x08  ~%strrefA%~
+  SAY        0x50  @70826
+  WRITE_LONG 0x132 ~%index%~
+  WRITE_LONG 0x15e ~%strrefA%~
+  LPF COPY_SPL_ABILITY INT_VAR num_copies = 29 END
+
+ADD_PROJECTILE ~%KIT_FOLDER%/spl/IDDTGOOD.pro~ ~Detect Good IWD Kit~
+ADD_PROJECTILE ~%KIT_FOLDER%/spl/IDHLMAUR.pro~ ~Helm Aura~
+
+OUTER_SET strrefA = RESOLVE_STR_REF (@70827)
+
+LAF APPEND_STATDESC_ENTRY INT_VAR strref = %strrefA% STR_VAR bam_file = "IDOHPLH1" RET index END
+
+COPY ~%KIT_FOLDER%/spl/OHPHLM1.spl~ ~override~
+  SAY        0x08  @70828
+  SAY        0x50  @70829
+  WRITE_SHORT 0x98 0
+  WRITE_LONG  0xa2 ~%index%~
+
+COPY ~%KIT_FOLDER%/spl/OHPHLM12.spl~ ~override~
+  WRITE_SHORT 0x98 ~%IDDTGOOD%~
+
+COPY ~%KIT_FOLDER%/spl/OHPHLM2.spl~ ~override~
+  SAY        0x08  @70830
+  SAY        0x50  @70831
+  WRITE_SHORT 0x98 0
+  WRITE_LONG  0xa2 ~%index%~
+
+COPY ~%KIT_FOLDER%/spl/OHPHLM22.spl~ ~override~
+  WRITE_SHORT 0x98 ~%IDHLMAUR%~
+  WRITE_LONG  0xd2 ~%index%~
+
+COPY ~%KIT_FOLDER%/spl/OHPHLM4.spl~ ~override~
+  SAY        0x08  @70832
+  SAY        0x50  @70833
+  WRITE_SHORT 0x98 0
+  WRITE_LONG  0xa2 ~%index%~
+
+COPY ~%KIT_FOLDER%/spl/OHPHLM42.spl~ ~override~
+  WRITE_SHORT 0x98 ~%IDHLMAUR%~
+  WRITE_LONG  0xd2 ~%index%~
+
+OUTER_SET strrefA = RESOLVE_STR_REF (@70834)
+
+LAF APPEND_STATDESC_ENTRY INT_VAR strref = %strrefA% STR_VAR bam_file = "IDOHPLH3" RET index END
+
+COPY ~%KIT_FOLDER%/spl/OHPHLM3.spl~ ~override~
+  WRITE_LONG 0x08  ~%strrefA%~
+  SAY        0x50  @70835
+  READ_LONG  0x64 abil_off
+  READ_SHORT 0x68 abil_num
+  PATCH_IF ( abil_num > 0 ) BEGIN
+    FOR ( i = 0 ; i < abil_num ; ++i ) BEGIN
+      READ_SHORT abil_off + i * 0x28 + 0x20 f_eff
+      WRITE_LONG abil_off + abil_num * 0x28 + f_eff * 0x30 + 0x08 ~%index%~
+    END
+  END
+
+
+/* ITEMS */
+
+COPY ~%KIT_FOLDER%/itm/MOONBLA.itm~ ~override~
+  SAY        0x08  @70818
+  SAY        0x0c  @70818
+
+COPY ~%KIT_FOLDER%/itm/OHILMATE.itm~ ~override~
+  SAY        0x0c  @70836
+  SAY        0x54  @70837
+
+COPY ~%KIT_FOLDER%/itm/OHSELUNE.itm~ ~override~
+  SAY        0x0c  @70838
+  SAY        0x54  @70839
+
+COPY ~%KIT_FOLDER%/itm/OHOGHMA.itm~ ~override~
+  SAY        0x0c  @70840
+  SAY        0x54  @70841
+
+COPY ~%KIT_FOLDER%/itm/OHBANE.itm~ ~override~
+  SAY        0x0c  @70842
+  SAY        0x54  @70843
+
+COPY ~%KIT_FOLDER%/itm/OHMASK.itm~ ~override~
+  SAY        0x0c  @70844
+  SAY        0x54  @70845
+
+/* SCRIPTS */
+
+<<<<<<<<bld_rep.baf
+IF
+	HasItem("CDHLYSYM",Player6)
+	!Name("Aerie",Player6)
+	!Name("Viconia",Player6)
+	Kit(Player6,OHTEMPUS)
+THEN
+	RESPONSE #100
+		ApplySpellRES("CDHLYSY2",Player6)
+		ActionOverride(Player6,TransformItem("CDHLYSYM","ohtempus")) //BELTTMPS
+END
+>>>>>>>>
+
+<<<<<<<<bld_add.baf
+IF
+	HasItem("CDHLYSYM",Player6)
+	!Name("Aerie",Player6)
+	!Name("Viconia",Player6)
+	Kit(Player6,OHTEMPUS)
+THEN
+	RESPONSE #100
+		ApplySpellRES("CDHLYSY2",Player6)
+		ActionOverride(Player6,TransformItem("CDHLYSYM","ohtempus")) //BELTTMPS
+END
+
+		
+IF		
+	HasItem("CDHLYSYM",Player1)	
+	!Name("Aerie",Player1)	
+	!Name("Viconia",Player1)	
+	Kit(Player1,OHILMATER)	
+THEN		
+	RESPONSE #100	
+		ApplySpellRES("CDHLYSY2",Player1)
+		ActionOverride(Player1,TransformItem("CDHLYSYM","OHILMATE"))
+END		
+		
+IF		
+	HasItem("CDHLYSYM",Player2)	
+	!Name("Aerie",Player2)	
+	!Name("Viconia",Player2)	
+	Kit(Player2,OHILMATER)	
+THEN		
+	RESPONSE #100	
+		ApplySpellRES("CDHLYSY2",Player2)
+		ActionOverride(Player2,TransformItem("CDHLYSYM","OHILMATE"))
+END		
+		
+IF		
+	HasItem("CDHLYSYM",Player3)	
+	!Name("Aerie",Player3)	
+	!Name("Viconia",Player3)	
+	Kit(Player3,OHILMATER)	
+THEN		
+	RESPONSE #100	
+		ApplySpellRES("CDHLYSY2",Player3)
+		ActionOverride(Player3,TransformItem("CDHLYSYM","OHILMATE"))
+END		
+		
+IF		
+	HasItem("CDHLYSYM",Player4)	
+	!Name("Aerie",Player4)	
+	!Name("Viconia",Player4)	
+	Kit(Player4,OHILMATER)	
+THEN		
+	RESPONSE #100	
+		ApplySpellRES("CDHLYSY2",Player4)
+		ActionOverride(Player4,TransformItem("CDHLYSYM","OHILMATE"))
+END		
+		
+IF		
+	HasItem("CDHLYSYM",Player5)	
+	!Name("Aerie",Player5)	
+	!Name("Viconia",Player5)	
+	Kit(Player5,OHILMATER)	
+THEN		
+	RESPONSE #100	
+		ApplySpellRES("CDHLYSY2",Player5)
+		ActionOverride(Player5,TransformItem("CDHLYSYM","OHILMATE"))
+END		
+		
+IF		
+	HasItem("CDHLYSYM",Player6)	
+	!Name("Aerie",Player6)	
+	!Name("Viconia",Player6)	
+	Kit(Player6,OHILMATER)	
+THEN		
+	RESPONSE #100	
+		ApplySpellRES("CDHLYSY2",Player6)
+		ActionOverride(Player6,TransformItem("CDHLYSYM","OHILMATE"))
+END		
+
+IF		
+	HasItem("CDHLYSYM",Player1)	
+	!Name("Aerie",Player1)	
+	!Name("Viconia",Player1)	
+	Kit(Player1,OHSELUNE)	
+THEN		
+	RESPONSE #100	
+		ApplySpellRES("CDHLYSY2",Player1)
+		ActionOverride(Player1,TransformItem("CDHLYSYM","OHSELUNE"))
+END		
+		
+IF		
+	HasItem("CDHLYSYM",Player2)	
+	!Name("Aerie",Player2)	
+	!Name("Viconia",Player2)	
+	Kit(Player2,OHSELUNE)	
+THEN		
+	RESPONSE #100	
+		ApplySpellRES("CDHLYSY2",Player2)
+		ActionOverride(Player2,TransformItem("CDHLYSYM","OHSELUNE"))
+END		
+		
+IF		
+	HasItem("CDHLYSYM",Player3)	
+	!Name("Aerie",Player3)	
+	!Name("Viconia",Player3)	
+	Kit(Player3,OHSELUNE)	
+THEN		
+	RESPONSE #100	
+		ApplySpellRES("CDHLYSY2",Player3)
+		ActionOverride(Player3,TransformItem("CDHLYSYM","OHSELUNE"))
+END		
+		
+IF		
+	HasItem("CDHLYSYM",Player4)	
+	!Name("Aerie",Player4)	
+	!Name("Viconia",Player4)	
+	Kit(Player4,OHSELUNE)	
+THEN		
+	RESPONSE #100	
+		ApplySpellRES("CDHLYSY2",Player4)
+		ActionOverride(Player4,TransformItem("CDHLYSYM","OHSELUNE"))
+END		
+		
+IF		
+	HasItem("CDHLYSYM",Player5)	
+	!Name("Aerie",Player5)	
+	!Name("Viconia",Player5)	
+	Kit(Player5,OHSELUNE)	
+THEN		
+	RESPONSE #100	
+		ApplySpellRES("CDHLYSY2",Player5)
+		ActionOverride(Player5,TransformItem("CDHLYSYM","OHSELUNE"))
+END		
+		
+IF		
+	HasItem("CDHLYSYM",Player6)	
+	!Name("Aerie",Player6)	
+	!Name("Viconia",Player6)	
+	Kit(Player6,OHSELUNE)	
+THEN		
+	RESPONSE #100	
+		ApplySpellRES("CDHLYSY2",Player6)
+		ActionOverride(Player6,TransformItem("CDHLYSYM","OHSELUNE"))
+END		
+
+IF		
+	HasItem("CDHLYSYM",Player1)	
+	!Name("Aerie",Player1)	
+	!Name("Viconia",Player1)	
+	Kit(Player1,OHOGHMA)	
+THEN		
+	RESPONSE #100	
+		ApplySpellRES("CDHLYSY2",Player1)
+		ActionOverride(Player1,TransformItem("CDHLYSYM","OHOGHMA"))
+END		
+		
+IF		
+	HasItem("CDHLYSYM",Player2)	
+	!Name("Aerie",Player2)	
+	!Name("Viconia",Player2)	
+	Kit(Player2,OHOGHMA)	
+THEN		
+	RESPONSE #100	
+		ApplySpellRES("CDHLYSY2",Player2)
+		ActionOverride(Player2,TransformItem("CDHLYSYM","OHOGHMA"))
+END		
+		
+IF		
+	HasItem("CDHLYSYM",Player3)	
+	!Name("Aerie",Player3)	
+	!Name("Viconia",Player3)	
+	Kit(Player3,OHOGHMA)	
+THEN		
+	RESPONSE #100	
+		ApplySpellRES("CDHLYSY2",Player3)
+		ActionOverride(Player3,TransformItem("CDHLYSYM","OHOGHMA"))
+END		
+		
+IF		
+	HasItem("CDHLYSYM",Player4)	
+	!Name("Aerie",Player4)	
+	!Name("Viconia",Player4)	
+	Kit(Player4,OHOGHMA)	
+THEN		
+	RESPONSE #100	
+		ApplySpellRES("CDHLYSY2",Player4)
+		ActionOverride(Player4,TransformItem("CDHLYSYM","OHOGHMA"))
+END		
+		
+IF		
+	HasItem("CDHLYSYM",Player5)	
+	!Name("Aerie",Player5)	
+	!Name("Viconia",Player5)	
+	Kit(Player5,OHOGHMA)	
+THEN		
+	RESPONSE #100	
+		ApplySpellRES("CDHLYSY2",Player5)
+		ActionOverride(Player5,TransformItem("CDHLYSYM","OHOGHMA"))
+END		
+		
+IF		
+	HasItem("CDHLYSYM",Player6)	
+	!Name("Aerie",Player6)	
+	!Name("Viconia",Player6)	
+	Kit(Player6,OHOGHMA)	
+THEN		
+	RESPONSE #100	
+		ApplySpellRES("CDHLYSY2",Player6)
+		ActionOverride(Player6,TransformItem("CDHLYSYM","OHOGHMA"))
+END		
+
+IF		
+	HasItem("CDHLYSYM",Player1)	
+	!Name("Aerie",Player1)	
+	!Name("Viconia",Player1)	
+	Kit(Player1,OHBANE)	
+THEN		
+	RESPONSE #100	
+		ApplySpellRES("CDHLYSY2",Player1)
+		ActionOverride(Player1,TransformItem("CDHLYSYM","OHBANE"))
+END		
+		
+IF		
+	HasItem("CDHLYSYM",Player2)	
+	!Name("Aerie",Player2)	
+	!Name("Viconia",Player2)	
+	Kit(Player2,OHBANE)	
+THEN		
+	RESPONSE #100	
+		ApplySpellRES("CDHLYSY2",Player2)
+		ActionOverride(Player2,TransformItem("CDHLYSYM","OHBANE"))
+END		
+		
+IF		
+	HasItem("CDHLYSYM",Player3)	
+	!Name("Aerie",Player3)	
+	!Name("Viconia",Player3)	
+	Kit(Player3,OHBANE)	
+THEN		
+	RESPONSE #100	
+		ApplySpellRES("CDHLYSY2",Player3)
+		ActionOverride(Player3,TransformItem("CDHLYSYM","OHBANE"))
+END		
+		
+IF		
+	HasItem("CDHLYSYM",Player4)	
+	!Name("Aerie",Player4)	
+	!Name("Viconia",Player4)	
+	Kit(Player4,OHBANE)	
+THEN		
+	RESPONSE #100	
+		ApplySpellRES("CDHLYSY2",Player4)
+		ActionOverride(Player4,TransformItem("CDHLYSYM","OHBANE"))
+END		
+		
+IF		
+	HasItem("CDHLYSYM",Player5)	
+	!Name("Aerie",Player5)	
+	!Name("Viconia",Player5)	
+	Kit(Player5,OHBANE)	
+THEN		
+	RESPONSE #100	
+		ApplySpellRES("CDHLYSY2",Player5)
+		ActionOverride(Player5,TransformItem("CDHLYSYM","OHBANE"))
+END		
+		
+IF		
+	HasItem("CDHLYSYM",Player6)	
+	!Name("Aerie",Player6)	
+	!Name("Viconia",Player6)	
+	Kit(Player6,OHBANE)	
+THEN		
+	RESPONSE #100	
+		ApplySpellRES("CDHLYSY2",Player6)
+		ActionOverride(Player6,TransformItem("CDHLYSYM","OHBANE"))
+END		
+
+IF		
+	HasItem("CDHLYSYM",Player1)	
+	!Name("Aerie",Player1)	
+	!Name("Viconia",Player1)	
+	Kit(Player1,OHMASK)	
+THEN		
+	RESPONSE #100	
+		ApplySpellRES("CDHLYSY2",Player1)
+		ActionOverride(Player1,TransformItem("CDHLYSYM","OHMASK"))
+END		
+		
+IF		
+	HasItem("CDHLYSYM",Player2)	
+	!Name("Aerie",Player2)	
+	!Name("Viconia",Player2)	
+	Kit(Player2,OHMASK)	
+THEN		
+	RESPONSE #100	
+		ApplySpellRES("CDHLYSY2",Player2)
+		ActionOverride(Player2,TransformItem("CDHLYSYM","OHMASK"))
+END		
+		
+IF		
+	HasItem("CDHLYSYM",Player3)	
+	!Name("Aerie",Player3)	
+	!Name("Viconia",Player3)	
+	Kit(Player3,OHMASK)	
+THEN		
+	RESPONSE #100	
+		ApplySpellRES("CDHLYSY2",Player3)
+		ActionOverride(Player3,TransformItem("CDHLYSYM","OHMASK"))
+END		
+		
+IF		
+	HasItem("CDHLYSYM",Player4)	
+	!Name("Aerie",Player4)	
+	!Name("Viconia",Player4)	
+	Kit(Player4,OHMASK)	
+THEN		
+	RESPONSE #100	
+		ApplySpellRES("CDHLYSY2",Player4)
+		ActionOverride(Player4,TransformItem("CDHLYSYM","OHMASK"))
+END		
+		
+IF		
+	HasItem("CDHLYSYM",Player5)	
+	!Name("Aerie",Player5)	
+	!Name("Viconia",Player5)	
+	Kit(Player5,OHMASK)	
+THEN		
+	RESPONSE #100	
+		ApplySpellRES("CDHLYSY2",Player5)
+		ActionOverride(Player5,TransformItem("CDHLYSYM","OHMASK"))
+END		
+		
+IF		
+	HasItem("CDHLYSYM",Player6)	
+	!Name("Aerie",Player6)	
+	!Name("Viconia",Player6)	
+	Kit(Player6,OHMASK)	
+THEN		
+	RESPONSE #100	
+		ApplySpellRES("CDHLYSY2",Player6)
+		ActionOverride(Player6,TransformItem("CDHLYSYM","OHMASK"))
+END		
+>>>>>>>>
+COPY_EXISTING ~baldur.bcs~ ~override~
+              ~baldur25.bcs~ ~override~
+  REPLACE_BCS_BLOCK ~bld_rep.baf~ ~bld_add.baf~
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

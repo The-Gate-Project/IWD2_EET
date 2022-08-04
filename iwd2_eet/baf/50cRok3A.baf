@@ -1,0 +1,43 @@
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("AR5004_3A")
+		PlaySound("IW5101e")
+		OpenDoor(Myself)
+		StaticSequence("ROCK_3A",SEQ_AWAKE)
+		SetGlobal("Rock_Row_3_Moved","MYAREA",1)
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("AR5004_3B")
+		Unlock(Myself)
+		CloseDoor(Myself)
+		StaticSequence("ROCK_3B",SEQ_ATTACK)
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("AR5004_3C")
+		Unlock(Myself)
+		CloseDoor(Myself)
+		Lock(Myself)
+		StaticSequence("ROCK_3C",SEQ_ATTACK)
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("AR5004_3D")
+		Unlock(Myself)
+		CloseDoor(Myself)
+		Lock(Myself)
+		StaticSequence("ROCK_3D",SEQ_ATTACK)
+END
+

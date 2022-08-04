@@ -1,0 +1,22 @@
+IF
+	!IsActive(Myself)
+	!Global("TEAM_6","MYAREA",0)
+THEN
+	RESPONSE #100
+		//Enemy()
+		//FaceObject(NearestEnemyOf(Myself))
+		//HideCreature(Myself,FALSE)
+		Activate(Myself)
+		SetGlobal("IwIHidden","LOCALS",0)
+		FaceObject(NearestEnemyOf(Myself))
+		Enemy()
+		Continue()
+END
+
+IF
+	!IsActive(Myself)
+THEN
+	RESPONSE #100
+		NoAction()
+END
+

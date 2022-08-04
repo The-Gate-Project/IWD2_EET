@@ -1,0 +1,19 @@
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId(Player1)
+		SmallWait(5)
+		LeaveAreaLUAPanic("IW1200","",[1155.825],14)
+		LeaveAreaLUA("IW1200","",[1155.825],14)
+		ActionOverride(Player2,LeaveAreaLUA("IW1200","",[1128.870],12))
+		ActionOverride(Player3,LeaveAreaLUA("IW1200","",[1137.920],10))
+		ActionOverride(Player4,LeaveAreaLUA("IW1200","",[1187.948],8))
+		ActionOverride(Player5,LeaveAreaLUA("IW1200","",[1245.933],6))
+		ActionOverride(Player6,LeaveAreaLUA("IW1200","",[1274.879],4))
+		SmallWait(5)
+		FadeFromColor([0.0],0)
+		MultiPlayerSync()
+		EndCutSceneMode()
+END
+

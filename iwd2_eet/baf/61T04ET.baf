@@ -1,0 +1,47 @@
+IF
+	GlobalLT("61CurrentDay","GLOBAL",4)
+THEN
+	RESPONSE #100
+		CreateVisualEffectObject("ALTERH",Myself)
+		DestroySelf()
+END
+
+IF
+	!Global("TEAM_4","MYAREA",1)
+	OR(2)
+		AttackedBy([GOODCUTOFF],DEFAULT)
+		PickPocketFailed([PC])
+THEN
+	RESPONSE #100
+		SetGlobal("TEAM_4","MYAREA",1)
+		Continue()
+END
+
+IF
+	!Allegiance(Myself,ENEMY)
+	!Global("TEAM_4","MYAREA",0)
+THEN
+	RESPONSE #100
+		Enemy()
+		Continue()
+END
+
+/*IF
+	!IsTeamBitOn(TEAM_4_BIT)
+THEN
+	RESPONSE #100
+		SetTeamBit(TEAM_4_BIT,TRUE)
+		Continue()
+END*/
+
+IF
+	!Global("TEAM_4","MYAREA",1)
+	Allegiance(Myself,ENEMY)
+	IsActive(Myself)
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		SetGlobal("TEAM_4","MYAREA",1)
+		Continue()
+END
+

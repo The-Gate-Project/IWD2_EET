@@ -1,0 +1,16 @@
+IF
+	NumberOfTimesTalkedTo(0)
+	!Allegiance(Myself,ENEMY)
+	!StateCheck(Myself,STATE_REALLY_DEAD)
+	See([PC])
+THEN
+	RESPONSE #100
+		StartCutSceneMode()
+		ClearAllActions()
+		//SetDialogueRange(75)
+		MultiPlayerSync()
+		//Dialogue(LastMarkedObject)
+		ApplySpellRES("BDCUTSPY",Myself)
+		StartDialogNoSet(LastSeenBy(Myself))
+END
+

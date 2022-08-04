@@ -1,0 +1,162 @@
+IF
+  Global("SaveSavedLoc","LOCALS",0)
+THEN
+  RESPONSE #100
+    SetGlobal("SaveSavedLoc","LOCALS",1)
+    SaveObjectLocation("LOCALS","SavedLoc",Myself)
+    Continue()
+END
+
+IF
+	!GlobalTimerNotExpired("IwTimer18","LOCALS")
+	Global("Crandall_Leave","GLOBAL",0)
+	!See([ENEMY.0.GOBLIN])
+THEN
+	RESPONSE #20
+		DisplayStringHead(Myself,@1771)
+		SetGlobalTimerRandom("IwTimer18","LOCALS",10,15)
+		Continue()
+	RESPONSE #20
+		DisplayStringHead(Myself,@1772)
+		SetGlobalTimerRandom("IwTimer18","LOCALS",10,15)
+		Continue()
+	RESPONSE #20
+		DisplayStringHead(Myself,@1773)
+		SetGlobalTimerRandom("IwTimer18","LOCALS",10,15)
+		Continue()
+	RESPONSE #240
+		Continue()
+END
+
+IF
+	Global("ML_0","LOCALS",0)
+	ActionListEmpty()
+	NearLocation(Myself,1317,1489,4)
+THEN
+	RESPONSE #100
+		SetHomeLocation([1317.1489])
+		SetGlobal("ML_0","LOCALS",1)
+		Continue()
+END
+
+IF
+	Global("ML_0","LOCALS",0)
+	!Global("Crandall_Leave","GLOBAL",0)
+THEN
+	RESPONSE #100
+		MoveToPoint([1317.1489])
+END
+
+IF
+	Global("ML_0","LOCALS",1)
+	ActionListEmpty()
+	NearLocation(Myself,733,1450,4)
+THEN
+	RESPONSE #100
+		SetHomeLocation([733.1450])
+		SetGlobal("ML_0","LOCALS",2)
+		Continue()
+END
+
+IF
+	Global("ML_0","LOCALS",1)
+	!Global("Crandall_Leave","GLOBAL",0)
+THEN
+	RESPONSE #100
+		MoveToPoint([733.1450])
+END
+
+IF
+	Global("ML_0","LOCALS",2)
+	ActionListEmpty()
+	NearLocation(Myself,221,1356,4)
+THEN
+	RESPONSE #100
+		SetHomeLocation([221.1356])
+		SetGlobal("ML_0","LOCALS",3)
+		Continue()
+END
+
+IF
+	Global("ML_0","LOCALS",2)
+	!Global("Crandall_Leave","GLOBAL",0)
+THEN
+	RESPONSE #100
+		MoveToPoint([221.1356])
+END
+
+IF
+	Global("ML_0","LOCALS",3)
+	ActionListEmpty()
+	NearLocation(Myself,335,819,4)
+THEN
+	RESPONSE #100
+		SetHomeLocation([335.819])
+		SetGlobal("ML_0","LOCALS",4)
+		Continue()
+END
+
+IF
+	Global("ML_0","LOCALS",3)
+	!Global("Crandall_Leave","GLOBAL",0)
+THEN
+	RESPONSE #100
+		MoveToPoint([335.819])
+END
+
+IF
+	Global("ML_0","LOCALS",4)
+	ActionListEmpty()
+	NearLocation(Myself,225,383,4)
+THEN
+	RESPONSE #100
+		SetHomeLocation([225.383])
+		SetGlobal("ML_0","LOCALS",5)
+		Continue()
+END
+
+IF
+	Global("ML_0","LOCALS",4)
+	!Global("Crandall_Leave","GLOBAL",0)
+THEN
+	RESPONSE #100
+		MoveToPoint([225.383])
+END
+
+IF
+	Global("ML_0","LOCALS",5)
+	ActionListEmpty()
+	NearLocation(Myself,159,31,4)
+THEN
+	RESPONSE #100
+		SetHomeLocation([159.31])
+		SetGlobal("ML_0","LOCALS",6)
+		Continue()
+END
+
+IF
+	Global("ML_0","LOCALS",5)
+	!Global("Crandall_Leave","GLOBAL",0)
+THEN
+	RESPONSE #100
+		MoveToPoint([159.31])
+END
+
+IF
+	Global("ML_0","LOCALS",6)
+	!Global("Crandall_Leave","GLOBAL",0)
+THEN
+	RESPONSE #100
+		DestroySelf()
+END
+
+IF
+	!GlobalTimerNotExpired("IwTimer20","LOCALS")
+	!NearSavedLocation(Myself,"LOCALSSavedLoc",3)
+	!Allegiance(Myself,ENEMY)
+THEN
+	RESPONSE #100
+		MoveToSavedLocation("SavedLoc","LOCALS")
+		SetGlobalTimer("IwTimer20","LOCALS",5)
+END
+

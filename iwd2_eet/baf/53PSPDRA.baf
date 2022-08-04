@@ -1,0 +1,30 @@
+IF
+	Entered([PC])
+THEN
+	RESPONSE #100
+		//HideCreature("06_53SPISWH_01",FALSE)
+		//HideCreature("06_53SPISWH_02",FALSE)
+		//HideCreature("06_53SPISWH_03",FALSE)
+		//HideCreature("06_53SPISWH_04",FALSE)
+		//HideCreature("06_53SPISWH_05",FALSE)
+		//HideCreature("06_53SPISWH_06",FALSE)
+		//HideCreature("06_53SPISWH_07",FALSE)
+		//HideCreature("06_53SPISWH_08",FALSE)
+		Activate("5300_Spider_Team06_01")
+		ActionOverride("5300_Spider_Team06_01",SetGlobal("IwIHidden","LOCALS",0))
+		Activate("5300_Spider_Team06_02")
+		ActionOverride("5300_Spider_Team06_02",SetGlobal("IwIHidden","LOCALS",0))
+		Activate("5300_Spider_Team06_03")
+		ActionOverride("5300_Spider_Team06_03",SetGlobal("IwIHidden","LOCALS",0))
+		Activate("5300_Spider_Team06_04")
+		ActionOverride("5300_Spider_Team06_04",SetGlobal("IwIHidden","LOCALS",0))
+		Activate("5300_Spider_Team06_05")
+		ActionOverride("5300_Spider_Team06_05",SetGlobal("IwIHidden","LOCALS",0))
+		Activate("5300_Spider_Team06_06")
+		ActionOverride("5300_Spider_Team06_06",SetGlobal("IwIHidden","LOCALS",0))
+		Activate("5300_Spider_Team06_07")
+		ActionOverride("5300_Spider_Team06_07",SetGlobal("IwIHidden","LOCALS",0))
+		Activate("5300_Spider_Team06_08")
+		ActionOverride("5300_Spider_Team06_08",SetGlobal("IwIHidden","LOCALS",0))
+END
+

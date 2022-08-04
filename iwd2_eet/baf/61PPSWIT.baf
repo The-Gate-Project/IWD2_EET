@@ -1,0 +1,48 @@
+IF
+	//Clicked([ANYONE])
+	//Sequence("PendulumFront",ATTACK)
+	Global("61PPSWIT_SEQUENCE","MYAREA",0)
+	
+	OpenState(Myself,FALSE)
+THEN
+	RESPONSE #100
+		DisplayStringHead("PendulumSwitch",@41352)
+		SoundActivate("pendulum",FALSE)
+		TriggerActivation("PendulumTrigger1",FALSE)
+		TriggerActivation("PendulumTrigger2",FALSE)
+		TriggerActivation("PendulumTrigger3",FALSE)
+		TriggerActivation("PendulumTrigger4",FALSE)
+		StaticSequence("PendulumFront",SEQ_AWAKE)
+		StaticSequence("PendulumBack",SEQ_AWAKE)
+		StaticSequence("PendulumShadow",SEQ_AWAKE)
+		SetGlobal("61PPSWIT_SEQUENCE","MYAREA",1)
+END
+
+IF
+	//Clicked([ANYONE])
+	//Sequence("PendulumFront",AWAKE)
+	!Global("61PPSWIT_SEQUENCE","MYAREA",0)
+	
+	OpenState(Myself,TRUE)
+THEN
+	RESPONSE #100
+		DisplayStringHead("PendulumSwitch",@41350)
+		//Activate("pendulum")
+		SoundActivate("pendulum",TRUE)
+		TriggerActivation("PendulumTrigger1",TRUE)
+		TriggerActivation("PendulumTrigger2",TRUE)
+		TriggerActivation("PendulumTrigger3",TRUE)
+		TriggerActivation("PendulumTrigger4",TRUE)
+		StaticSequence("PendulumFront",SEQ_ATTACK)
+		StaticSequence("PendulumBack",SEQ_ATTACK)
+		StaticSequence("PendulumShadow",SEQ_ATTACK)
+		SetGlobal("61PPSWIT_SEQUENCE","MYAREA",0)
+END
+
+/*IF
+	Clicked([ANYONE])
+THEN
+	RESPONSE #100
+		NoAction()
+END*/
+

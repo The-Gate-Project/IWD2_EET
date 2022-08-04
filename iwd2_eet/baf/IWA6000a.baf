@@ -1,0 +1,27 @@
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId(Player1)
+		SmallWait(5)
+		LeaveAreaLUAPanic("IW6000","",[817.1499],4)
+		LeaveAreaLUA("IW6000","",[817.1499],4)
+		ActionOverride(Player2,LeaveAreaLUA("IW6000","",[840.1528],4))
+		ActionOverride(Player3,LeaveAreaLUA("IW6000","",[825.1568],4))
+		ActionOverride(Player4,LeaveAreaLUA("IW6000","",[864.1470],4))
+		ActionOverride(Player5,LeaveAreaLUA("IW6000","",[890.1506],4))
+		ActionOverride(Player6,LeaveAreaLUA("IW6000","",[883.1545],4))
+		SmallWait(5)
+		Rest()
+		ActionOverride(Player2,Rest())
+		ActionOverride(Player3,Rest())
+		ActionOverride(Player4,Rest())
+		ActionOverride(Player5,Rest())
+		ActionOverride(Player6,Rest())
+		SmallWait(5)
+		MultiPlayerSync()
+		//EndCutSceneMode() - не было
+		EndCutSceneMode()
+END
+
+

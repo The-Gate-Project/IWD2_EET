@@ -1,0 +1,20 @@
+BEGIN ~66OROC~
+
+IF ~NumTimesTalkedTo(0)~ THEN BEGIN 0
+  SAY @27552
+  IF ~PartyHasItem("z6gendp")~ THEN REPLY @27553 GOTO 1
+  IF ~!PartyHasItem("z6gendp")~ THEN REPLY @27554 GOTO 2
+  IF ~PartyHasItem("z6gendp")~ THEN REPLY @27555 EXIT
+  IF ~~ THEN REPLY @27556 DO ~Enemy()~ EXIT
+END
+
+IF ~~ THEN BEGIN 1
+  SAY @27557
+  IF ~~ THEN REPLY @27558 EXIT
+  IF ~~ THEN REPLY @27559 GOTO 2
+END
+
+IF ~NumTimesTalkedToGT(0)~ THEN BEGIN 2
+  SAY @27560
+  IF ~~ THEN DO ~Enemy()~ EXIT
+END

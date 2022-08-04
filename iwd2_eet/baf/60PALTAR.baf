@@ -1,0 +1,25 @@
+IF
+	Clicked([ANYONE])
+	!Global("60PALTAR_INACTIVE","MYAREA",1)
+	False()
+THEN
+	RESPONSE #100
+		//MarkObject(LastTrigger)
+		NoAction()
+END
+
+IF
+	OR(2)
+		!Contains("Misc07",Myself)
+		!Contains("MISC43",Myself)
+	!Global("60PALTAR_INACTIVE","MYAREA",1)
+THEN
+	RESPONSE #100
+		//Debug("60PALTAR_Altar_Trap")
+		DisplayStringHead(LastTrigger,@34281)
+		ReallyForceSpellRES("IWWI015",LastTrigger)  // SPWI015.SPL TRAP_POISON_DAMAGE_DARTS
+		ReallyForceSpell(LastTrigger,CLERIC_EARTHQUAKE)  // SPPR719.SPL (ִנמזü)
+		//ChangeCurrentScript("")
+		SetGlobal("60PALTAR_INACTIVE","MYAREA",1)
+END
+

@@ -1,0 +1,292 @@
+IF
+	!Global("5005_DRAGON_DEAD","GLOBAL",0)
+THEN
+	RESPONSE #100
+		SetGlobal("SPRITE_IS_DEAD02_51DRAWY_02","GLOBAL",1)
+		DestroySelf()
+END
+
+IF
+	!IsActive(Myself)
+	Global("5005_DRAGON_HP","GLOBAL",100)
+THEN
+	RESPONSE #100
+		Activate(Myself)
+		SetGlobal("IwIHidden","LOCALS",0)
+		ApplySpellRES("IDSHP100",Myself)  // No such index
+		//DisplayStringHead(Myself,666)  // Ну конечно, к тому времени Берт стал таким успешным заводчиком грифонов, что местные власти просто не могли заставить нас держать виверн на цепи. Потери в дворянском сословии – невысокая плата за поддержку этого замечательного спорта. Ничто не поднимает настроение лучше, чем прифигевшая морда грифона.
+		Continue()
+END
+
+IF
+	!IsActive(Myself)
+	Global("5005_DRAGON_HP","GLOBAL",95)
+THEN
+	RESPONSE #100
+		Activate(Myself)
+		SetGlobal("IwIHidden","LOCALS",0)
+		ApplySpellRES("IDSHP95",Myself)  // No such index
+		//DisplayStringHead(Myself,666)  // Ну конечно, к тому времени Берт стал таким успешным заводчиком грифонов, что местные власти просто не могли заставить нас держать виверн на цепи. Потери в дворянском сословии – невысокая плата за поддержку этого замечательного спорта. Ничто не поднимает настроение лучше, чем прифигевшая морда грифона.
+		Continue()
+END
+
+IF
+	!IsActive(Myself)
+	Global("5005_DRAGON_HP","GLOBAL",90)
+THEN
+	RESPONSE #100
+		Activate(Myself)
+		SetGlobal("IwIHidden","LOCALS",0)
+		ApplySpellRES("IDSHP90",Myself)  // No such index
+		//DisplayStringHead(Myself,666)  // Ну конечно, к тому времени Берт стал таким успешным заводчиком грифонов, что местные власти просто не могли заставить нас держать виверн на цепи. Потери в дворянском сословии – невысокая плата за поддержку этого замечательного спорта. Ничто не поднимает настроение лучше, чем прифигевшая морда грифона.
+		Continue()
+END
+
+IF
+	!IsActive(Myself)
+	Global("5005_DRAGON_HP","GLOBAL",85)
+THEN
+	RESPONSE #100
+		Activate(Myself)
+		SetGlobal("IwIHidden","LOCALS",0)
+		ApplySpellRES("IDSHP85",Myself)  // No such index
+		//DisplayStringHead(Myself,666)  // Ну конечно, к тому времени Берт стал таким успешным заводчиком грифонов, что местные власти просто не могли заставить нас держать виверн на цепи. Потери в дворянском сословии – невысокая плата за поддержку этого замечательного спорта. Ничто не поднимает настроение лучше, чем прифигевшая морда грифона.
+		Continue()
+END
+
+IF
+	!IsActive(Myself)
+	Global("5005_DRAGON_HP","GLOBAL",80)
+THEN
+	RESPONSE #100
+		Activate(Myself)
+		SetGlobal("IwIHidden","LOCALS",0)
+		ApplySpellRES("IDSHP80",Myself)  // No such index
+		//DisplayStringHead(Myself,666)  // Ну конечно, к тому времени Берт стал таким успешным заводчиком грифонов, что местные власти просто не могли заставить нас держать виверн на цепи. Потери в дворянском сословии – невысокая плата за поддержку этого замечательного спорта. Ничто не поднимает настроение лучше, чем прифигевшая морда грифона.
+		Continue()
+END
+
+IF
+	!IsActive(Myself)
+	Global("5005_DRAGON_HP","GLOBAL",75)
+THEN
+	RESPONSE #100
+		Activate(Myself)
+		SetGlobal("IwIHidden","LOCALS",0)
+		ApplySpellRES("IDSHP75",Myself)  // No such index
+		//DisplayStringHead(Myself,666)  // Ну конечно, к тому времени Берт стал таким успешным заводчиком грифонов, что местные власти просто не могли заставить нас держать виверн на цепи. Потери в дворянском сословии – невысокая плата за поддержку этого замечательного спорта. Ничто не поднимает настроение лучше, чем прифигевшая морда грифона.
+		Continue()
+END
+
+IF
+	!IsActive(Myself)
+	Global("5005_DRAGON_HP","GLOBAL",70)
+THEN
+	RESPONSE #100
+		Activate(Myself)
+		SetGlobal("IwIHidden","LOCALS",0)
+		ApplySpellRES("IDSHP70",Myself)  // No such index
+		//DisplayStringHead(Myself,666)  // Ну конечно, к тому времени Берт стал таким успешным заводчиком грифонов, что местные власти просто не могли заставить нас держать виверн на цепи. Потери в дворянском сословии – невысокая плата за поддержку этого замечательного спорта. Ничто не поднимает настроение лучше, чем прифигевшая морда грифона.
+		Continue()
+END
+
+IF
+	!IsActive(Myself)
+	Global("5005_DRAGON_HP","GLOBAL",65)
+THEN
+	RESPONSE #100
+		Activate(Myself)
+		SetGlobal("IwIHidden","LOCALS",0)
+		ApplySpellRES("IDSHP65",Myself)  // No such index
+		//DisplayStringHead(Myself,666)  // Ну конечно, к тому времени Берт стал таким успешным заводчиком грифонов, что местные власти просто не могли заставить нас держать виверн на цепи. Потери в дворянском сословии – невысокая плата за поддержку этого замечательного спорта. Ничто не поднимает настроение лучше, чем прифигевшая морда грифона.
+		Continue()
+END
+
+IF
+	!IsActive(Myself)
+	Global("5005_DRAGON_HP","GLOBAL",60)
+THEN
+	RESPONSE #100
+		Activate(Myself)
+		SetGlobal("IwIHidden","LOCALS",0)
+		ApplySpellRES("IDSHP60",Myself)  // No such index
+		//DisplayStringHead(Myself,666)  // Ну конечно, к тому времени Берт стал таким успешным заводчиком грифонов, что местные власти просто не могли заставить нас держать виверн на цепи. Потери в дворянском сословии – невысокая плата за поддержку этого замечательного спорта. Ничто не поднимает настроение лучше, чем прифигевшая морда грифона.
+		Continue()
+END
+
+IF
+	!IsActive(Myself)
+	Global("5005_DRAGON_HP","GLOBAL",55)
+THEN
+	RESPONSE #100
+		Activate(Myself)
+		SetGlobal("IwIHidden","LOCALS",0)
+		ApplySpellRES("IDSHP55",Myself)  // No such index
+		//DisplayStringHead(Myself,666)  // Ну конечно, к тому времени Берт стал таким успешным заводчиком грифонов, что местные власти просто не могли заставить нас держать виверн на цепи. Потери в дворянском сословии – невысокая плата за поддержку этого замечательного спорта. Ничто не поднимает настроение лучше, чем прифигевшая морда грифона.
+		Continue()
+END
+
+IF
+	!IsActive(Myself)
+	Global("5005_DRAGON_HP","GLOBAL",50)
+THEN
+	RESPONSE #100
+		Activate(Myself)
+		SetGlobal("IwIHidden","LOCALS",0)
+		ApplySpellRES("IDSHP50",Myself)  // No such index
+		//DisplayStringHead(Myself,666)  // Ну конечно, к тому времени Берт стал таким успешным заводчиком грифонов, что местные власти просто не могли заставить нас держать виверн на цепи. Потери в дворянском сословии – невысокая плата за поддержку этого замечательного спорта. Ничто не поднимает настроение лучше, чем прифигевшая морда грифона.
+		Continue()
+END
+
+IF
+	!IsActive(Myself)
+	Global("5005_DRAGON_HP","GLOBAL",45)
+THEN
+	RESPONSE #100
+		Activate(Myself)
+		SetGlobal("IwIHidden","LOCALS",0)
+		ApplySpellRES("IDSHP45",Myself)  // No such index
+		//DisplayStringHead(Myself,666)  // Ну конечно, к тому времени Берт стал таким успешным заводчиком грифонов, что местные власти просто не могли заставить нас держать виверн на цепи. Потери в дворянском сословии – невысокая плата за поддержку этого замечательного спорта. Ничто не поднимает настроение лучше, чем прифигевшая морда грифона.
+		Continue()
+END
+
+IF
+	!IsActive(Myself)
+	Global("5005_DRAGON_HP","GLOBAL",40)
+THEN
+	RESPONSE #100
+		Activate(Myself)
+		SetGlobal("IwIHidden","LOCALS",0)
+		ApplySpellRES("IDSHP40",Myself)  // No such index
+		//DisplayStringHead(Myself,666)  // Ну конечно, к тому времени Берт стал таким успешным заводчиком грифонов, что местные власти просто не могли заставить нас держать виверн на цепи. Потери в дворянском сословии – невысокая плата за поддержку этого замечательного спорта. Ничто не поднимает настроение лучше, чем прифигевшая морда грифона.
+		Continue()
+END
+
+IF
+	!IsActive(Myself)
+	Global("5005_DRAGON_HP","GLOBAL",35)
+THEN
+	RESPONSE #100
+		Activate(Myself)
+		SetGlobal("IwIHidden","LOCALS",0)
+		ApplySpellRES("IDSHP35",Myself)  // No such index
+		//DisplayStringHead(Myself,666)  // Ну конечно, к тому времени Берт стал таким успешным заводчиком грифонов, что местные власти просто не могли заставить нас держать виверн на цепи. Потери в дворянском сословии – невысокая плата за поддержку этого замечательного спорта. Ничто не поднимает настроение лучше, чем прифигевшая морда грифона.
+		Continue()
+END
+
+IF
+	!IsActive(Myself)
+	Global("5005_DRAGON_HP","GLOBAL",30)
+THEN
+	RESPONSE #100
+		Activate(Myself)
+		SetGlobal("IwIHidden","LOCALS",0)
+		ApplySpellRES("IDSHP30",Myself)  // No such index
+		//DisplayStringHead(Myself,666)  // Ну конечно, к тому времени Берт стал таким успешным заводчиком грифонов, что местные власти просто не могли заставить нас держать виверн на цепи. Потери в дворянском сословии – невысокая плата за поддержку этого замечательного спорта. Ничто не поднимает настроение лучше, чем прифигевшая морда грифона.
+		Continue()
+END
+
+IF
+	!IsActive(Myself)
+	Global("5005_DRAGON_HP","GLOBAL",25)
+THEN
+	RESPONSE #100
+		Activate(Myself)
+		SetGlobal("IwIHidden","LOCALS",0)
+		ApplySpellRES("IDSHP25",Myself)  // No such index
+		//DisplayStringHead(Myself,666)  // Ну конечно, к тому времени Берт стал таким успешным заводчиком грифонов, что местные власти просто не могли заставить нас держать виверн на цепи. Потери в дворянском сословии – невысокая плата за поддержку этого замечательного спорта. Ничто не поднимает настроение лучше, чем прифигевшая морда грифона.
+		Continue()
+END
+
+IF
+	!IsActive(Myself)
+	Global("5005_DRAGON_HP","GLOBAL",20)
+THEN
+	RESPONSE #100
+		Activate(Myself)
+		SetGlobal("IwIHidden","LOCALS",0)
+		ApplySpellRES("IDSHP20",Myself)  // No such index
+		//DisplayStringHead(Myself,666)  // Ну конечно, к тому времени Берт стал таким успешным заводчиком грифонов, что местные власти просто не могли заставить нас держать виверн на цепи. Потери в дворянском сословии – невысокая плата за поддержку этого замечательного спорта. Ничто не поднимает настроение лучше, чем прифигевшая морда грифона.
+		Continue()
+END
+
+IF
+	!IsActive(Myself)
+	Global("5005_DRAGON_HP","GLOBAL",15)
+THEN
+	RESPONSE #100
+		Activate(Myself)
+		SetGlobal("IwIHidden","LOCALS",0)
+		ApplySpellRES("IDSHP15",Myself)  // No such index
+		//DisplayStringHead(Myself,666)  // Ну конечно, к тому времени Берт стал таким успешным заводчиком грифонов, что местные власти просто не могли заставить нас держать виверн на цепи. Потери в дворянском сословии – невысокая плата за поддержку этого замечательного спорта. Ничто не поднимает настроение лучше, чем прифигевшая морда грифона.
+		Continue()
+END
+
+IF
+	!IsActive(Myself)
+	Global("5005_DRAGON_HP","GLOBAL",10)
+THEN
+	RESPONSE #100
+		Activate(Myself)
+		SetGlobal("IwIHidden","LOCALS",0)
+		ApplySpellRES("IDSHP10",Myself)  // No such index
+		//DisplayStringHead(Myself,666)  // Ну конечно, к тому времени Берт стал таким успешным заводчиком грифонов, что местные власти просто не могли заставить нас держать виверн на цепи. Потери в дворянском сословии – невысокая плата за поддержку этого замечательного спорта. Ничто не поднимает настроение лучше, чем прифигевшая морда грифона.
+		Continue()
+END
+
+IF
+	!IsActive(Myself)
+	Global("5005_DRAGON_HP","GLOBAL",5)
+THEN
+	RESPONSE #100
+		Activate(Myself)
+		SetGlobal("IwIHidden","LOCALS",0)
+		ApplySpellRES("IDSHP5",Myself)  // No such index
+		//DisplayStringHead(Myself,666)  // Ну конечно, к тому времени Берт стал таким успешным заводчиком грифонов, что местные власти просто не могли заставить нас держать виверн на цепи. Потери в дворянском сословии – невысокая плата за поддержку этого замечательного спорта. Ничто не поднимает настроение лучше, чем прифигевшая морда грифона.
+		Continue()
+END
+
+IF
+	Global("UNHIDE_STATE","LOCALS",0)
+	Global("5005_DRAGON_DEAD","GLOBAL",0)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IwTimer4","LOCALS",ONE_MINUTE)
+		SetGlobal("UNHIDE_STATE","LOCALS",1)
+END
+
+IF
+	!GlobalTimerNotExpired("IwTimer4","LOCALS")
+	!Global("UNHIDE_STATE","LOCALS",0)
+THEN
+	RESPONSE #100
+		FaceObject(Player1)
+		ApplySpellRES("idinvis5",Myself)  // No such index
+		//DisplayStringHead(Myself,55555)  // Обязанности паладина: моральная победа Тирианна спасена и жива, находится под опекой своего крёстного отца. Хургис, очевидно, не смог вовремя попасть в дом, поскольку его подстерегла группа убийц, и он едва не распростился с жизнью. Теперь всё хорошо. Мне дали немного свободного времени на то, чтобы заняться своими делами. Орден свяжется со мной, если им от меня понадобятся ещё какие-то услуги.
+		XEquipItem("Z0CIBAR1",Myself,SLOT_RING_LEFT,EQUIP)  // Кольцо
+		//Continue()
+END
+
+IF
+	IsActive(Myself)
+	!Global("UNHIDE_STATE","LOCALS",0)
+THEN
+	RESPONSE #100
+		ChangeAIScript("",SPECIFICS)
+END
+
+IF
+	!IsActive(Myself)
+	!Global("UNHIDE_STATE","LOCALS",0)
+THEN
+	RESPONSE #100
+		NoAction()
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		NoAction()
+END
+

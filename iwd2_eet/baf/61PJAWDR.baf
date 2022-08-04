@@ -1,0 +1,39 @@
+IF
+	Disarmed([ANYONE])
+THEN
+	RESPONSE #100
+		TriggerActivation(Myself,FALSE)
+		//ChangeCurrentScript("")
+END
+
+IF
+	OpenState("AR6103_Spike1",TRUE)
+	//!TimerActive(100)
+	!GlobalTimerNotExpired("61PJAWDR","MYAREA")
+//	OR(2)
+//		Entered([GOODCUTOFF])
+		IsOverMe([GOODCUTOFF])
+THEN
+	RESPONSE #100
+		ForceSpellRES("IWPR610",LastTrigger)  // SPPR610.SPL CLERIC_CIRCLE_OF_BLADES
+		Continue()
+END
+
+IF
+	OpenState("AR6103_Spike1",TRUE)
+	//!TimerActive(100)
+	!GlobalTimerNotExpired("61PJAWDR","MYAREA")
+THEN
+	RESPONSE #100
+		CloseDoor("AR6103_Spike1")
+END
+
+IF
+	OpenState("AR6103_Spike1",FALSE)
+THEN
+	RESPONSE #100
+		//StartRandomTimer(100,0,3)
+		SetGlobalTimerRandom("61PJAWDR","MYAREA",0,3)
+		OpenDoor("AR6103_Spike1")
+END
+

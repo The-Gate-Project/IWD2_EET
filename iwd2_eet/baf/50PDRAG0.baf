@@ -1,0 +1,63 @@
+IF
+	Dead("50DRAWY_01")
+THEN
+	RESPONSE #100
+		//ChangeCurrentScript("")
+		TriggerActivation(Myself,FALSE)
+END
+
+IF
+	GlobalLT("50Dragon","GLOBAL",3)
+	Global("TEAM_1","MYAREA",0)
+	IsActive("Ingrat")
+	!Dead("Ingrat")
+	Entered([PC])
+THEN
+	RESPONSE #100
+		SetGlobal("50Dragon","GLOBAL",3)
+		StartCutSceneMode()
+		ClearAllActions()
+		MultiPlayerSync()
+		////////////////////////////////
+		Activate("50DRAWY_01")
+		ActionOverride("50DRAWY_01",SetGlobal("IwIHidden","LOCALS",0))
+		Activate("02_50WyrWh_01")
+		ActionOverride("02_50WyrWh_01",SetGlobal("IwIHidden","LOCALS",0))
+		Activate("02_50WyrWh_02")
+		ActionOverride("02_50WyrWh_02",SetGlobal("IwIHidden","LOCALS",0))
+		Activate("02_50WyrWh_03")
+		ActionOverride("02_50WyrWh_03",SetGlobal("IwIHidden","LOCALS",0))
+		Activate("02_50WyrWh_04")
+		ActionOverride("02_50WyrWh_04",SetGlobal("IwIHidden","LOCALS",0))
+		////////////////////////////////
+		StartCutScene("50cDrag0")
+END
+
+IF
+	GlobalLT("50Dragon","GLOBAL",3)
+	OR(3)
+		!Global("TEAM_1","MYAREA",0)
+		Dead("Ingrat")
+		!IsActive("Ingrat")
+	Entered([PC])
+THEN
+	RESPONSE #100
+		SetGlobal("50Dragon","GLOBAL",3)
+		StartCutSceneMode()
+		ClearAllActions()
+		MultiPlayerSync()
+		////////////////////////////////
+		Activate("50DRAWY_01")
+		ActionOverride("50DRAWY_01",SetGlobal("IwIHidden","LOCALS",0))
+		Activate("02_50WyrWh_01")
+		ActionOverride("02_50WyrWh_01",SetGlobal("IwIHidden","LOCALS",0))
+		Activate("02_50WyrWh_02")
+		ActionOverride("02_50WyrWh_02",SetGlobal("IwIHidden","LOCALS",0))
+		Activate("02_50WyrWh_03")
+		ActionOverride("02_50WyrWh_03",SetGlobal("IwIHidden","LOCALS",0))
+		Activate("02_50WyrWh_04")
+		ActionOverride("02_50WyrWh_04",SetGlobal("IwIHidden","LOCALS",0))
+		////////////////////////////////
+		StartCutScene("50cDrag1")
+END
+

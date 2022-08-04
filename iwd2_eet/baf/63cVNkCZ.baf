@@ -1,0 +1,209 @@
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("Vese_Nejj")
+		MultiPlayerSync()
+		
+		CreateCreature("IDGOLS1",[-1.-1],0)
+		
+		Wait(1)
+		//SpellHitEffectSprite(Myself,Myself,DIMENSION_DOOR_ORIGIN,0)
+		CreateVisualEffectObject("spdimndr",Myself)
+		//HideCreature(Myself,TRUE)
+		ApplySpellRES("idinvis6",Myself)
+		JumpToPoint([546.1861])
+		Wait(1)
+		MoveViewPoint([546.1861],25)
+		FaceObject("Cedrin_Zil")
+		//Wait(5)
+		
+		Wait(3)
+		CreateCreature("cutspy",[-1.-1],0)
+		Wait(2)
+		
+		//SpellHitEffectSprite(Myself,Myself,DIMENSION_DOOR_DESTINATION,0)
+		CreateVisualEffectObject("spdimndr",Myself)
+		//HideCreature(Myself,FALSE)
+		ApplySpellRES("idinvis7",Myself)
+		Wait(1)
+		DisplayStringHead(Myself,@39364)
+		Wait(11)
+		ForceSpellRES("IWWI422","Cedrin_Zil")  // SPWI422.SPL WIZARD_MORDENKAINENS_FORCE_MISSILES
+		//PlaySequence("Cedrin_Zil",DAMAGE)
+		ActionOverride("Cedrin_Zil",SetSequence(SEQ_DAMAGE))
+		Wait(1)
+		//Kill("Cedrin_Zil")
+		ActionOverride("Cedrin_Zil",Kill(Myself))
+		Wait(5)
+		//SpellHitEffectSprite(Myself,Myself,DIMENSION_DOOR_ORIGIN,0)
+		CreateVisualEffectObject("spdimndr",Myself)
+		//HideCreature(Myself,TRUE)
+		ApplySpellRES("idinvis6",Myself)
+		Wait(3)
+		MoveViewPoint([2684.932],25)
+		//JumpToSavedLocation()
+		//FaceSavedLocation(Myself)
+		JumpToObject("IDGOLMSVLC1")
+		ActionOverride("IDGOLMSVLC1",DestroySelf())
+		//SpellHitEffectSprite(Myself,Myself,DIMENSION_DOOR_DESTINATION,0)
+		CreateVisualEffectObject("spdimndr",Myself)
+		//HideCreature(Myself,FALSE)
+		ApplySpellRES("idinvis7",Myself)
+		Wait(4)
+		
+		ActionOverride("cutspy",DestroySelf())
+		SetGlobal("SPRITE_IS_DEADCedrin_Zil","GLOBAL",1)
+		
+		MultiPlayerSync()
+		EndCutSceneMode()
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("Cedrin_Zil")
+		Wait(8)
+		FaceObject("Vese_Nejj")
+END
+
+/*IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("Cedrin_Zil_Dead")
+END*/
+
+/*IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId(Player1)
+		SetSavedLocation()
+		Wait(5)
+		MultiPlayerSync()
+		HideCreature(Myself,TRUE)
+		JumpToPoint([546.1861])
+		MultiPlayerSync()
+		Wait(5)
+		Wait(5)
+		Wait(5)
+		Wait(5)
+		Wait(5)
+		Wait(5)
+		HideCreature(Myself,FALSE)
+		JumpToSavedLocation()
+		MultiPlayerSync()
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId(Player2)
+		SetSavedLocation()
+		Wait(5)
+		MultiPlayerSync()
+		HideCreature(Myself,TRUE)
+		JumpToPoint([546.1861])
+		MultiPlayerSync()
+		Wait(5)
+		Wait(5)
+		Wait(5)
+		Wait(5)
+		Wait(5)
+		Wait(5)
+		HideCreature(Myself,FALSE)
+		JumpToSavedLocation()
+		MultiPlayerSync()
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId(Player3)
+		SetSavedLocation()
+		Wait(5)
+		MultiPlayerSync()
+		HideCreature(Myself,TRUE)
+		JumpToPoint([546.1861])
+		MultiPlayerSync()
+		Wait(5)
+		Wait(5)
+		Wait(5)
+		Wait(5)
+		Wait(5)
+		Wait(5)
+		HideCreature(Myself,FALSE)
+		JumpToSavedLocation()
+		MultiPlayerSync()
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId(Player4)
+		SetSavedLocation()
+		Wait(5)
+		MultiPlayerSync()
+		HideCreature(Myself,TRUE)
+		JumpToPoint([546.1861])
+		MultiPlayerSync()
+		Wait(5)
+		Wait(5)
+		Wait(5)
+		Wait(5)
+		Wait(5)
+		Wait(5)
+		HideCreature(Myself,FALSE)
+		JumpToSavedLocation()
+		MultiPlayerSync()
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId(Player5)
+		SetSavedLocation()
+		Wait(5)
+		MultiPlayerSync()
+		HideCreature(Myself,TRUE)
+		JumpToPoint([546.1861])
+		MultiPlayerSync()
+		Wait(5)
+		Wait(5)
+		Wait(5)
+		Wait(5)
+		Wait(5)
+		Wait(5)
+		HideCreature(Myself,FALSE)
+		JumpToSavedLocation()
+		MultiPlayerSync()
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId(Player6)
+		SetSavedLocation()
+		Wait(5)
+		MultiPlayerSync()
+		HideCreature(Myself,TRUE)
+		JumpToPoint([546.1861])
+		MultiPlayerSync()
+		Wait(5)
+		Wait(5)
+		Wait(5)
+		Wait(5)
+		Wait(5)
+		Wait(5)
+		HideCreature(Myself,FALSE)
+		JumpToSavedLocation()
+		MultiPlayerSync()
+END*/
+

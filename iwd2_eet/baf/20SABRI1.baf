@@ -1,0 +1,19 @@
+IF
+	!NumberOfTimesTalkedTo(0)
+THEN
+	RESPONSE #100
+		ChangeAIScript("",SPECIFICS)
+END
+
+IF
+	NumberOfTimesTalkedTo(0)
+	!Allegiance(Myself,ENEMY)
+	!StateCheck(Myself,STATE_REALLY_DEAD)
+	Global("SR_Sabrina_Freed","GLOBAL",2)
+	See([PC])
+	CombatCounter(0)
+THEN
+	RESPONSE #100
+		Dialogue(LastSeenBy(Myself))
+END
+

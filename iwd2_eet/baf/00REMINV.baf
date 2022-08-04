@@ -1,0 +1,10 @@
+IF
+  IsActive(Myself)
+  StateCheck(Myself,STATE_NOT_VISIBLE)
+  !Global("NOT_INVIS","LOCALS",1)
+THEN
+  RESPONSE #100
+    ApplySpellRES("IDINVIS5",Myself)
+    SetGlobal("NOT_INVIS","LOCALS",1)
+    Continue()
+END

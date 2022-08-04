@@ -1,0 +1,51 @@
+IF
+	!GlobalTimerNotExpired("IwTimer18","LOCALS")
+	OR(2)
+		Allegiance(Myself,ENEMY)
+		!Global("TEAM_2","MYAREA",0)
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,@27533)
+		SetGlobalTimerRandom("IwTimer18","LOCALS",1,3)
+		Continue()
+	RESPONSE #100
+		DisplayStringHead(Myself,@27534)
+		SetGlobalTimerRandom("IwTimer18","LOCALS",1,3)
+		Continue()
+	RESPONSE #100
+		DisplayStringHead(Myself,@27535)
+		SetGlobalTimerRandom("IwTimer18","LOCALS",1,3)
+		Continue()
+END
+
+IF
+	Global("ML_0","LOCALS",0)
+	ActionListEmpty()
+	NearLocation(Myself,938,748,4)
+THEN
+	RESPONSE #100
+		SetHomeLocation([938.748])
+		SetGlobal("ML_0","LOCALS",1)
+		Continue()
+END
+
+IF
+	Global("ML_0","LOCALS",0)
+	OR(2)
+		Allegiance(Myself,ENEMY)
+		!Global("TEAM_2","MYAREA",0)
+THEN
+	RESPONSE #100
+		MoveToPoint([938.748])
+END
+
+IF
+	Global("ML_0","LOCALS",1)
+	OR(2)
+		Allegiance(Myself,ENEMY)
+		!Global("TEAM_2","MYAREA",0)
+THEN
+	RESPONSE #100
+		DestroySelf()
+END
+

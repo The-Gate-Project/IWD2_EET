@@ -1,0 +1,13 @@
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId(Myself)
+		SetGlobalTimer("PUKE_TIMER","MYAREA",1400)
+		SetSequence(SEQ_DAMAGE)
+		Wait(1)
+		DisplayStringHead(Myself,@16418)
+		Wait(2)
+		EndCutSceneMode()
+END
+

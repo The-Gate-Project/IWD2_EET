@@ -1,0 +1,111 @@
+IF
+	GlobalGT("52Morohem_Master","GLOBAL",8)
+THEN
+	RESPONSE #100
+		DestroySelf()
+END
+
+IF
+	!GlobalTimerNotExpired("IwTimer5","LOCALS")
+	!Global("WATCHING_PLAYER","MYAREA",0)
+	Global("IS_BOMBING","LOCALS",0)
+	GlobalLT("BOMBERS_BOMBING","MYAREA",3)
+	See([PC])
+THEN
+	RESPONSE #100
+		IncrementGlobal("BOMBERS_BOMBING","MYAREA",1)
+		SetGlobal("IS_BOMBING","LOCALS",1)
+		SetGlobalTimerRandom("IwTimer5","LOCALS",6,6)
+		//StartCutScene("52c8Bomb")
+		SetInterrupt(FALSE)
+		//SpellHitEffectSprite(Myself,Myself,FIRE_SUMMONING_CIRCLE,0)
+		//CreateVisualEffectObject("",)
+		WaitRandom(2,3)
+		ReallyForceSpellRES("IWPR503",Myself)  // SPPR503.SPL CLERIC_FLAME_STRIKE
+		IncrementGlobal("BOMBERS_BOMBING","MYAREA",-1)
+		SetGlobal("IS_BOMBING","LOCALS",0)
+		SetInterrupt(TRUE)
+END
+
+IF
+	Range([PC],2)
+THEN
+	RESPONSE #100
+		NoAction()
+END
+
+IF
+	ActionListEmpty()
+	OR(2)
+		NightmareModeOn()
+		!See([PC])
+THEN
+	RESPONSE #100
+		Continue()
+	RESPONSE #100
+		MoveToObject([PC.0.0.0.122])
+	RESPONSE #100
+		JumpToPoint([1080.300])
+	RESPONSE #100
+		JumpToPoint([991.392])
+	RESPONSE #100
+		JumpToPoint([825.488])
+	RESPONSE #100
+		JumpToPoint([1298.401])
+	RESPONSE #100
+		JumpToPoint([1055.596])
+	RESPONSE #100
+		JumpToPoint([1220.687])
+	RESPONSE #100
+		JumpToPoint([1339.593])
+	RESPONSE #100
+		JumpToPoint([1450.505])
+	RESPONSE #100
+		JumpToPoint([1000.491])
+	RESPONSE #100
+		JumpToPoint([1180.615])
+	RESPONSE #100
+		JumpToPoint([1330.511])
+END
+
+IF
+	OR(2)
+		ActionListEmpty()
+		!See([PC])
+THEN
+	RESPONSE #100
+		Continue()
+	RESPONSE #100
+		JumpToObject([PC.0.0.0.122])
+		ApplySpellRES("IWJUMPOF",Myself)
+	RESPONSE #100
+		JumpToPoint([1080.300])
+	RESPONSE #100
+		JumpToPoint([991.392])
+	RESPONSE #100
+		JumpToPoint([825.488])
+	RESPONSE #100
+		JumpToPoint([1298.401])
+	RESPONSE #100
+		JumpToPoint([1055.596])
+	RESPONSE #100
+		JumpToPoint([1220.687])
+	RESPONSE #100
+		JumpToPoint([1339.593])
+	RESPONSE #100
+		JumpToPoint([1450.505])
+	RESPONSE #100
+		JumpToPoint([1000.491])
+	RESPONSE #100
+		JumpToPoint([1180.615])
+	RESPONSE #100
+		JumpToPoint([1330.511])
+END
+
+IF
+	ActionListEmpty()
+THEN
+	RESPONSE #100
+		RandomWalk()
+END
+

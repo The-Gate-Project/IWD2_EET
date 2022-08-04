@@ -1,0 +1,120 @@
+IF
+	Global("TEAM_4","MYAREA",0)
+	OR(2)
+		AttackedBy([GOODCUTOFF],DEFAULT)
+		PickLockFailed([GOODCUTOFF])
+	!StateCheck(Myself,STATE_REALLY_DEAD)
+THEN
+	RESPONSE #100
+		SetGlobal("TEAM_4","MYAREA",1)
+		Continue()
+END
+
+IF
+	!Allegiance(Myself,ENEMY)
+	!Global("TEAM_4","MYAREA",0)
+THEN
+	RESPONSE #100
+		Enemy()
+		Continue()
+END
+
+IF
+	OR(2)
+		Global("TEAM_4","MYAREA",0)
+		Global("SLEEP_TEAM_3_AWAKE","MYAREA",0)
+	//!Sequence(Myself,SLEEP)
+	!Global("Sequence","LOCALS",16)
+	See(NearestEnemyOf(Myself))
+	!StateCheck(Myself,STATE_REALLY_DEAD)
+THEN
+	RESPONSE #100
+		SetGlobal("SLEEP_TEAM_3_AWAKE","MYAREA",1)
+		SetGlobal("TEAM_4","MYAREA",1)
+		Continue()
+END
+
+IF
+	Global("SLEEP_TEAM_3_AWAKE","MYAREA",0)
+	AttackedBy([ENEMY],DEFAULT)
+	!StateCheck(Myself,STATE_REALLY_DEAD)
+THEN
+	RESPONSE #100
+		SetGlobal("SLEEP_TEAM_3_AWAKE","MYAREA",1)
+		Continue()
+END
+
+IF
+	Global("SLEEP_TEAM_3_AWAKE","MYAREA",0)
+	//Sequence(Myself,SLEEP)
+	Global("Sequence","LOCALS",16)
+	OR(2)
+		Heard([ANYONE],66)
+		Heard([ANYONE],77)
+	See(LastHeardBy(Myself))
+	//!Sequence(LastHeardBy(Myself),SLEEP)
+	!TriggerOverride(LastHeardBy(Myself),Global("Sequence","LOCALS",16))
+	!StateCheck(Myself,STATE_REALLY_DEAD)
+THEN
+	RESPONSE #100
+		SetGlobal("SLEEP_TEAM_3_AWAKE","MYAREA",1)
+		Continue()
+END
+
+IF
+	Global("SLEEP_TEAM_3_AWAKE","MYAREA",0)
+	!Global("TEAM_4","MYAREA",0)
+THEN
+	RESPONSE #100
+		SetGlobal("SLEEP_TEAM_3_AWAKE","MYAREA",1)
+		Continue()
+END
+
+IF
+	Global("SLEEP_TEAM_3_AWAKE","MYAREA",0)
+	Global("TEAM_4","MYAREA",0)
+	//!Sequence(Myself,SLEEP)
+	!Global("Sequence","LOCALS",16)
+THEN
+	RESPONSE #100
+		//PlaySequence(Myself,SLEEP)
+		ApplySpellRES("IWGSLEP",Myself)
+		Wait(1)
+END
+
+IF
+	Global("SLEEP_TEAM_3_AWAKE","MYAREA",0)
+	!GlobalTimerNotExpired("TEAM_SLEEP_3_SNORE","MYAREA")
+	Global("TEAM_4","MYAREA",0)
+	//Sequence(Myself,SLEEP)
+	Global("Sequence","LOCALS",16)
+THEN
+	RESPONSE #20
+		Shout(66)
+		DisplayStringHead(Myself,@1015)
+		SetGlobalTimerRandom("TEAM_SLEEP_3_SNORE","MYAREA",2,7)
+	RESPONSE #100
+		NoAction()
+END
+
+IF
+	Global("SLEEP_TEAM_3_AWAKE","MYAREA",0)
+	Global("TEAM_4","MYAREA",0)
+	//Sequence(Myself,SLEEP)
+	Global("Sequence","LOCALS",16)
+THEN
+	RESPONSE #100
+		NoAction()
+END
+
+IF
+	!Global("SLEEP_TEAM_3_AWAKE","MYAREA",0)
+	//Sequence(Myself,SLEEP)
+	Global("Sequence","LOCALS",16)
+THEN
+	RESPONSE #100
+		//PlaySequence(Myself,AWAKE)
+		ApplySpellRES("IWGNSLP",Myself)
+		Wait(1)
+END
+

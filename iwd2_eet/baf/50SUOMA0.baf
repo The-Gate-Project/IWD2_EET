@@ -1,0 +1,11 @@
+IF
+	!GlobalTimerNotExpired("IwTimer18","LOCALS")
+	GlobalGT("50Suoma_Help","Global",3)
+THEN
+	RESPONSE #15
+		DisplayStringHead(Myself,@17034)
+		SetGlobalTimerRandom("IwTimer18","LOCALS",15,20)
+	RESPONSE #85
+		SetGlobalTimerRandom("IwTimer18","LOCALS",15,20)
+END
+

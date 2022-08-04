@@ -1,0 +1,18 @@
+IF
+	Global("GoHome","LOCALS",1)
+	OR(2)
+		AttackedBy([GOODCUTOFF],DEFAULT)
+		Allegiance("Dereth",ENEMY)
+THEN
+	RESPONSE #100
+		Enemy()
+		ChangeAIScript("20SabriC",RACE)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+THEN
+	RESPONSE #100
+		ChangeAIScript("20SabriC",RACE)
+END
+

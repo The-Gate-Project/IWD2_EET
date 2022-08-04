@@ -1,0 +1,49 @@
+IF
+  Global("SaveSavedLoc","LOCALS",0)
+THEN
+  RESPONSE #100
+    SetGlobal("SaveSavedLoc","LOCALS",1)
+    SaveObjectLocation("LOCALS","SavedLoc",Myself)
+    Continue()
+END
+
+IF
+	Global("RW_62AMVW050","LOCALS",0)
+	!NearSavedLocation(Myself,"LOCALSSavedLoc",5)
+THEN
+	RESPONSE #100
+		SetGlobal("RW_62AMVW050","LOCALS",1)
+		Continue()
+END
+
+IF
+	!Global("RW_62AMVW050","LOCALS",0)
+	NearSavedLocation(Myself,"LOCALSSavedLoc",5)
+THEN
+	RESPONSE #100
+		SetGlobal("RW_62AMVW050","LOCALS",0)
+		NoAction()
+END
+
+IF
+	!Global("RW_62AMVW050","LOCALS",0)
+THEN
+	RESPONSE #100
+		MoveToOffset([-2.-2])
+	RESPONSE #100
+		MoveToOffset([2.-2])
+	RESPONSE #100
+		MoveToOffset([-2.2])
+	RESPONSE #100
+		MoveToOffset([2.2])
+	RESPONSE #100
+		MoveToSavedLocation("SavedLoc","LOCALS")
+END
+
+IF
+	Global("RW_62AMVW050","LOCALS",0)
+THEN
+	RESPONSE #100
+		RandomWalk()
+END
+

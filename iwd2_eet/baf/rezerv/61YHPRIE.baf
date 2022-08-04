@@ -1,0 +1,1271 @@
+IF
+	StateCheck(Myself,STATE_PANIC)
+THEN
+	RESPONSE #100
+		RandomWalkContinuous()
+END
+
+IF
+	OR(3)
+		HasItem("IBlade",Myself)
+		HasItem("CDISEAS",Myself)
+		HasItem("MoonBla",Myself)
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	OR(2)
+		Global("LastShout","MYAREA",110)
+		Heard([0.0.YUANTI],110)
+	!CheckStatGT(Myself,0,PROTECTION_FROM_EVIL)
+	GlobalGT("Level4Spells","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobal("LastHeard","MYAREA",110)
+	//	SetGlobal("CurrentTarget","LOCALS",0)
+		IncrementGlobal("Level4Spells","LOCALS",-1)
+		ForceSpell(Myself,CLERIC_PROTECTION_FROM_EVIL_10_FOOT)
+		Wait(1)
+END
+
+IF
+	OR(2)
+		Global("LastShout","MYAREA",110)
+		Heard([0.0.YUANTI],110)
+	!CheckStatGT(Myself,0,PROTECTION_FROM_EVIL)
+	GlobalGT("Level1Spells","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobal("LastHeard","MYAREA",110)
+	//	SetGlobal("CurrentTarget","LOCALS",0)
+		IncrementGlobal("Level1Spells","LOCALS",-1)
+		ForceSpell(Myself,CLERIC_PROTECT_FROM_EVIL)
+		Wait(1)
+END
+
+IF
+	StateCheck(Myself,STATE_POISONED)
+	RandomNum(2,1)
+	GlobalGT("Level2Spells","LOCALS",0)
+THEN
+	RESPONSE #100
+	//	SetGlobal("CurrentTarget","LOCALS",0)
+		IncrementGlobal("Level2Spells","LOCALS",-1)
+		ForceSpell(Myself,CLERIC_SLOW_POISON)
+		Wait(1)
+END
+
+IF
+	StateCheck(Myself,STATE_DISEASED)
+	RandomNum(2,1)
+	GlobalGT("Level3Spells","LOCALS",0)
+THEN
+	RESPONSE #100
+	//	SetGlobal("CurrentTarget","LOCALS",0)
+		IncrementGlobal("Level3Spells","LOCALS",-1)
+		ForceSpell(Myself,CLERIC_CURE_DISEASE)
+		Wait(1)
+END
+
+IF
+	//CheckSpellState(Myself,ENERGY_DRAINED)
+	//OR(2)
+	//	StateCheck(Myself,STATE_DISEASED)
+		CheckStatGT(Myself,0,LEVELDRAIN)
+	RandomNum(3,1)
+	GlobalGT("Level4Spells","LOCALS",0)
+THEN
+	RESPONSE #100
+	//	SetGlobal("CurrentTarget","LOCALS",0)
+		IncrementGlobal("Level4Spells","LOCALS",-1)
+		ForceSpell(Myself,CLERIC_LESSER_RESTORATION)
+		Wait(1)
+END
+
+IF
+	//CheckSpellState(Myself,ENERGY_DRAINED)
+	OR(2)
+		Global("LastShout","MYAREA",110)
+		Heard([0.0.YUANTI],110)
+	OR(2)
+		StateCheck(LastHeardBy(Myself),STATE_DISEASED)
+		CheckStatGT(LastHeardBy(Myself),0,LEVELDRAIN)
+	CheckStat(Myself,0,LEVEL_DRAIN_IMMUNITY)
+	RandomNum(3,2)
+	GlobalGT("Level3Spells","LOCALS",0)
+THEN
+	RESPONSE #100
+	//	SetGlobal("CurrentTarget","LOCALS",0)
+		IncrementGlobal("Level3Spells","LOCALS",-1)
+		ForceSpell(Myself,CLERIC_NEGATIVE_PLANE_PROTECTION)
+		Wait(1)
+END
+
+IF
+	//OR(4)
+	//	CheckSpellState(Myself,HELD)
+	//	CheckSpellState(Myself,ENTANGLE)
+	//	CheckSpellState(Myself,WEB)
+	//	CheckSpellState(Myself,GREASE)
+	OR(4)
+		CheckStatGT(Myself,0,HELD)
+		CheckStatGT(Myself,0,GREASE)
+		CheckStatGT(Myself,0,WEB)
+		CheckStatGT(Myself,0,ENTANGLE)
+	!CheckStatGT(Myself,0,CLERIC_FREE_ACTION)
+	GlobalGT("Level4Spells","LOCALS",0)
+THEN
+	RESPONSE #100
+	//	SetGlobal("CurrentTarget","LOCALS",0)
+		IncrementGlobal("Level4Spells","LOCALS",-1)
+		ForceSpell(Myself,CLERIC_FREE_ACTION)
+		Wait(1)
+		RunAwayFrom(Myself,45)
+END
+
+IF
+	OR(3)
+		Global("LastShout","MYAREA",109)
+		Global("LastHeard","MYAREA",109)
+		Heard([ANYONE],109)
+	CheckStat(Myself,0,TRUE_SIGHT)
+	RandomNum(3,1)
+	GlobalGT("Level3Spells","LOCALS",0)
+THEN
+	RESPONSE #100
+	//	SetGlobal("CurrentTarget","LOCALS",0)
+		IncrementGlobal("Level3Spells","LOCALS",-1)
+		ForceSpell(Myself,CLERIC_INVISIBILITY_PURGE)
+		Wait(1)
+END
+
+IF
+	OR(8)
+		Heard("NoiseTrap1",109)
+		Heard("NoiseTrap2",109)
+		Heard("NoiseTrap3",109)
+		Heard("NoiseTrap4",109)
+		Heard("NoiseTrap5",109)
+		Heard("NoiseTrap6",109)
+		Heard("NoiseTrap7",109)
+		Heard("NoiseTrap8",109)
+	CheckStat(Myself,0,SEEINVISIBLE)
+	RandomNum(3,2)
+	GlobalGT("Level3Spells","LOCALS",0)
+THEN
+	RESPONSE #100
+	//	SetGlobal("CurrentTarget","LOCALS",0)
+		IncrementGlobal("Level3Spells","LOCALS",-1)
+		ForceSpell(LastHeardBy(Myself),CLERIC_DISPEL_MAGIC)
+		Wait(1)
+END
+
+IF
+	OR(2)
+		Global("LastShout","MYAREA",100)
+		Heard([0.0.YUANTI],100)
+	OR(2)
+		CheckStatLT(Myself,30,RESISTFIRE)
+		CheckStatLT(LastSeenBy(Myself),30,RESISTMAGICFIRE)
+	RandomNum(2,1)
+	GlobalGT("Level3Spells","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobal("LastHeard","MYAREA",100)
+	//	SetGlobal("CurrentTarget","LOCALS",0)
+		IncrementGlobal("Level3Spells","LOCALS",-1)
+		ForceSpell(Myself,CLERIC_PROTECTION_FROM_FIRE)
+		Wait(1)
+END
+
+IF
+	OR(4)
+		Global("LastShout","MYAREA",100)
+		Global("LastShout","MYAREA",101)
+		Heard([0.0.YUANTI],100)
+		Heard([0.0.YUANTI],101)
+	OR(3)
+		CheckStatLT(Myself,75,RESISTFIRE)
+		CheckStatLT(Myself,75,RESISTCOLD)
+		CheckStatLT(Myself,75,RESISTELECTRICITY)
+	RandomNum(2,1)
+	GlobalGT("Level2Spells","LOCALS",0)
+THEN
+	RESPONSE #100
+	//	SetGlobal("CurrentTarget","LOCALS",0)
+		IncrementGlobal("Level2Spells","LOCALS",-1)
+		ForceSpell(Myself,WIZARD_PROTECTION_FROM_THE_ELEMENTS)
+		Wait(1)
+END
+
+IF
+	//CheckSpellState(Myself,HELD)
+	OR(2)
+		StateCheck(Myself,STATE_STUNNED)
+		CheckStatGT(Myself,0,HELD)
+	RandomNum(2,1)
+	GlobalGT("Level3Spells","LOCALS",0)
+THEN
+	RESPONSE #100
+	//	SetGlobal("CurrentTarget","LOCALS",0)
+		IncrementGlobal("Level3Spells","LOCALS",-1)
+		ForceSpell(Myself,CLERIC_REMOVE_PARALYSIS)
+		Wait(1)
+END
+
+/*IF
+	Global("LastShout","MYAREA",112)
+	See(NearestEnemyOfType([0.0.0.0.0.SUMMONED]))
+	RandomNum(2,1)
+	GlobalGT("Level4Spells","LOCALS",0)
+THEN
+	RESPONSE #100
+	//	SetGlobal("CurrentTarget","LOCALS",0)
+		IncrementGlobal("Level4Spells","LOCALS",-1)
+		ForceSpellRES("IWWI524",LastSeenBy(Myself))
+		Wait(1)
+END*/
+
+IF
+	Heard([0.0.YUANTI],112)
+	See(NearestEnemyOfType([0.0.0.0.0.SUMMONED]))
+	RandomNum(2,1)
+	GlobalGT("Level4Spells","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobal("LastHeard","MYAREA",112)
+	//	SetGlobal("CurrentTarget","LOCALS",0)
+		IncrementGlobal("Level4Spells","LOCALS",-1)
+		ForceSpellRES("IWWI524",LastSeenBy(Myself))
+		Wait(1)
+END
+
+IF
+//	Global("CurrentTarget","LOCALS",0)
+	HPPercentLT(Myself,90)
+	See(Myself)
+	!CheckSpellState(Myself,BLOOD_RAGE)
+	RandomNum(2,1)
+THEN
+	RESPONSE #100
+		//SetMyTarget(Myself)
+	//	SetGlobal("CurrentTarget","LOCALS",3)
+		Continue()
+END
+
+IF
+//	Global("CurrentTarget","LOCALS",0)
+	AttackedBy([GOODCUTOFF],DEFAULT)
+	See(LastAttackerOf(Myself))
+THEN
+	RESPONSE #100
+		//SetMyTarget(LastAttackerOf(Myself))
+	//	SetGlobal("CurrentTarget","LOCALS",2)
+		Continue()
+END
+
+IF
+//	Global("CurrentTarget","LOCALS",0)
+	RandomNum(5,1)
+	See([0.0.YUANTI])
+THEN
+	RESPONSE #100
+		//SetMyTarget(LastMarkedObject)
+	//	SetGlobal("CurrentTarget","LOCALS",3)
+		Continue()
+END
+
+IF
+//	Global("CurrentTarget","LOCALS",0)
+	!RandomNum(5,1)
+	See(NearestEnemyOf(Myself))
+	!StateCheck(LastSeenBy(Myself),STATE_SLEEPING)
+THEN
+	RESPONSE #100
+		//SetMyTarget(LastMarkedObject)
+	//	SetGlobal("CurrentTarget","LOCALS",2)
+		Continue()
+END
+
+IF
+	// * 3 * // Global("CurrentTarget","LOCALS",3)
+	OR(2)
+		See(Myself)
+		See([0.0.YUANTI])
+	//TimerActive(103)
+	!StateCheck(Myself,STATE_DEAD)
+	!StateCheck(Myself,STATE_SILENCED)
+	!GlobalTimerNotExpired("IwTimer102","LOCALS")
+THEN
+	RESPONSE #100
+		Shout(113)
+		SetGlobal("LastShout","MYAREA",113)
+		DisplayStringHead(Myself,@35596)
+		SetGlobalTimer("IwTimer102","LOCALS",7)
+		Continue()
+END
+
+IF
+	// * 3 * // Global("CurrentTarget","LOCALS",3)
+	OR(2)
+		See(Myself)
+		See([0.0.YUANTI])
+	HPPercentLT(LastSeenBy(Myself),40)
+	!StateCheck(LastSeenBy(Myself),STATE_REALLY_DEAD)
+	!CheckSpellState(LastSeenBy(Myself),BLOOD_RAGE)
+	GlobalGT("Level4Spells","LOCALS",0)
+THEN
+	RESPONSE #100
+	//	SetGlobal("CurrentTarget","LOCALS",0)
+		IncrementGlobal("Level4Spells","LOCALS",-1)
+		ForceSpell(LastSeenBy(Myself),CLERIC_CURE_CRITICAL_WOUNDS)
+		Wait(1)
+END
+
+IF
+	// * 3 * // Global("CurrentTarget","LOCALS",3)
+	OR(2)
+		See(Myself)
+		See([0.0.YUANTI])
+	HPPercentLT(LastSeenBy(Myself),60)
+	!StateCheck(LastSeenBy(Myself),STATE_REALLY_DEAD)
+	!CheckSpellState(LastSeenBy(Myself),BLOOD_RAGE)
+	GlobalGT("Level3Spells","LOCALS",0)
+THEN
+	RESPONSE #100
+	//	SetGlobal("CurrentTarget","LOCALS",0)
+		IncrementGlobal("Level3Spells","LOCALS",-1)
+		ForceSpell(LastSeenBy(Myself),CLERIC_CURE_SERIOUS_WOUNDS)
+		Wait(1)
+END
+
+IF
+	// * 3 * // Global("CurrentTarget","LOCALS",3)
+	OR(2)
+		See(Myself)
+		See([0.0.YUANTI])
+	HPPercentLT(LastSeenBy(Myself),75)
+	!StateCheck(LastSeenBy(Myself),STATE_REALLY_DEAD)
+	!CheckSpellState(LastSeenBy(Myself),BLOOD_RAGE)
+	GlobalGT("Level2Spells","LOCALS",0)
+THEN
+	RESPONSE #100
+	//	SetGlobal("CurrentTarget","LOCALS",0)
+		IncrementGlobal("Level2Spells","LOCALS",-1)
+		ForceSpell(LastSeenBy(Myself),CLERIC_CURE_MEDIUM_WOUNDS)
+		Wait(1)
+END
+
+IF
+	// * 3 * // Global("CurrentTarget","LOCALS",3)
+	OR(2)
+		See(Myself)
+		See([0.0.YUANTI])
+	HPPercentLT(LastSeenBy(Myself),80)
+	!StateCheck(LastSeenBy(Myself),STATE_REALLY_DEAD)
+	!StateCheck(Myself,STATE_AID)
+	!CheckSpellState(LastSeenBy(Myself),BLOOD_RAGE)
+	GlobalGT("Level2Spells","LOCALS",0)
+THEN
+	RESPONSE #100
+	//	SetGlobal("CurrentTarget","LOCALS",0)
+		IncrementGlobal("Level2Spells","LOCALS",-1)
+		ForceSpell(LastSeenBy(Myself),CLERIC_AID)
+		Wait(1)
+END
+
+IF
+	// * 3 * // Global("CurrentTarget","LOCALS",3)
+	OR(2)
+		See(Myself)
+		See([0.0.YUANTI])
+	HPPercentLT(LastSeenBy(Myself),90)
+	!StateCheck(LastSeenBy(Myself),STATE_REALLY_DEAD)
+	!CheckSpellState(LastSeenBy(Myself),BLOOD_RAGE)
+	GlobalGT("Level1Spells","LOCALS",0)
+THEN
+	RESPONSE #100
+	//	SetGlobal("CurrentTarget","LOCALS",0)
+		IncrementGlobal("Level1Spells","LOCALS",-1)
+		ForceSpell(LastSeenBy(Myself),CLERIC_CURE_LIGHT_WOUNDS)
+		Wait(1)
+END
+
+IF
+	// * 2 * // Global("CurrentTarget","LOCALS",2)
+	OR(3)
+		See(LastAttackerOf(Myself))
+		See(NearestEnemyOf(Myself))
+	!Range(LastSeenBy(Myself),10)
+	//TimerActive(103)
+	!StateCheck(LastSeenBy(Myself),STATE_PANIC)
+THEN
+	RESPONSE #100
+		MoveToObject(LastSeenBy(Myself))
+END
+
+IF
+	// * 2 * // Global("CurrentTarget","LOCALS",2)
+	OR(3)
+		See(LastAttackerOf(Myself))
+		See(NearestEnemyOf(Myself))
+	RandomNum(41,1)
+	GlobalGT("Level4Spells","LOCALS",0)
+	!Range(LastSeenBy(Myself),9)
+THEN
+	RESPONSE #100
+	//	SetGlobal("CurrentTarget","LOCALS",0)
+		IncrementGlobal("Level4Spells","LOCALS",-1)
+		ForceSpell(LastSeenBy(Myself),WIZARD_DEATH_FOG)
+		Shout(111)
+		SetGlobal("LastShout","MYAREA",111)
+		DisplayStringHead(Myself,@35594)
+		SetGlobalTimer("IwTimer102","LOCALS",7)
+		Wait(1)
+	RESPONSE #100
+	//	SetGlobal("CurrentTarget","LOCALS",0)
+		IncrementGlobal("Level4Spells","LOCALS",-1)
+		ForceSpell(LastSeenBy(Myself),CLERIC_FLAME_STRIKE)
+		Shout(111)
+		SetGlobal("LastShout","MYAREA",111)
+		DisplayStringHead(Myself,@35594)
+		SetGlobalTimer("IwTimer102","LOCALS",7)
+		Wait(1)
+END
+
+IF
+	// * 3 * // Global("CurrentTarget","LOCALS",3)
+	OR(2)
+		See(Myself)
+		See([0.0.YUANTI])
+	//OR(4)
+	//	CheckSpellState(LastSeenBy(Myself),HELD)
+	//	CheckSpellState(LastSeenBy(Myself),ENTANGLE)
+	//	CheckSpellState(LastSeenBy(Myself),WEB)
+	//	CheckSpellState(LastSeenBy(Myself),GREASE)
+	OR(4)
+		CheckStatGT(LastSeenBy(Myself),0,HELD)
+		CheckStatGT(LastSeenBy(Myself),0,GREASE)
+		CheckStatGT(LastSeenBy(Myself),0,WEB)
+		CheckStatGT(LastSeenBy(Myself),0,ENTANGLE)
+	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_FREE_ACTION)
+	RandomNum(2,1)
+	GlobalGT("Level4Spells","LOCALS",0)
+THEN
+	RESPONSE #100
+	//	SetGlobal("CurrentTarget","LOCALS",0)
+		IncrementGlobal("Level4Spells","LOCALS",-1)
+		ForceSpell(LastSeenBy(Myself),CLERIC_FREE_ACTION)
+		Wait(1)
+END
+
+IF
+	// * 3 * // Global("CurrentTarget","LOCALS",3)
+	OR(2)
+		See(Myself)
+		See([0.0.YUANTI])
+	OR(2)
+		StateCheck(LastSeenBy(Myself),STATE_DISEASED)
+		CheckStatGT(LastSeenBy(Myself),0,LEVELDRAIN)
+	RandomNum(2,1)
+	GlobalGT("Level4Spells","LOCALS",0)
+THEN
+	RESPONSE #100
+	//	SetGlobal("CurrentTarget","LOCALS",0)
+		IncrementGlobal("Level4Spells","LOCALS",-1)
+		ForceSpell(LastSeenBy(Myself),CLERIC_LESSER_RESTORATION)
+		Wait(1)
+END
+
+IF
+	OR(2)
+		Global("LastShout","MYAREA",104)
+		Heard([0.0.YUANTI],104)
+	!CheckStatGT(Myself,0,MINORGLOBE)
+	RandomNum(2,1)
+	GlobalGT("Level4Spells","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobal("LastHeard","MYAREA",104)
+	//	SetGlobal("CurrentTarget","LOCALS",0)
+		IncrementGlobal("Level4Spells","LOCALS",-1)
+		ForceSpell(Myself,WIZARD_MINOR_GLOBE_OF_INVULNERABILITY)
+		Wait(1)
+END
+
+IF
+	OR(2)
+		Global("LastShout","MYAREA",102)
+		Heard([0.0.YUANTI],102)
+	CheckStatLT(Myself,30,RESISTELECTRICITY)
+	RandomNum(2,1)
+	GlobalGT("Level4Spells","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobal("LastHeard","MYAREA",102)
+	//	SetGlobal("CurrentTarget","LOCALS",0)
+		IncrementGlobal("Level4Spells","LOCALS",-1)
+		ForceSpell(Myself,CLERIC_PROTECTION_FROM_LIGHTNING)
+		Wait(1)
+END
+
+IF
+	// * 3 * // Global("CurrentTarget","LOCALS",3)
+	OR(2)
+		See(Myself)
+		See([0.0.YUANTI])
+	OR(4)
+		Heard([0.0.YUANTI],106)
+		Heard([0.0.YUANTI],107)
+		Heard([0.0.YUANTI],109)
+		!Global("LastShout","MYAREA",0)
+	!Global("LastShout","MYAREA",111)
+	Race(LastSeenBy(Myself),YUANTI)
+	!CheckSpellState(LastSeenBy(Myself),BLOOD_RAGE)
+	RandomNum(10,1)
+	HPPercentGT(LastSeenBy(Myself),50)
+	GlobalGT("Level4Spells","LOCALS",0)
+THEN
+	RESPONSE #100
+	//	SetGlobal("CurrentTarget","LOCALS",0)
+		IncrementGlobal("Level4Spells","LOCALS",-1)
+		ForceSpellRES("IWPR415",LastSeenBy(Myself))
+		Shout(111)
+		SetGlobal("LastShout","MYAREA",111)
+		DisplayStringHead(Myself,@35594)
+		SetGlobalTimer("IwTimer102","LOCALS",7)
+		Wait(1)
+		RunAwayFrom(LastSeenBy(Myself),45)
+END
+
+IF
+	// * 2 * // Global("CurrentTarget","LOCALS",2)
+	OR(3)
+		See(LastAttackerOf(Myself))
+		See(NearestEnemyOf(Myself))
+	RandomNum(41,2)
+	GlobalGT("Level4Spells","LOCALS",0)
+THEN
+	RESPONSE #100
+	//	SetGlobal("CurrentTarget","LOCALS",0)
+		IncrementGlobal("Level4Spells","LOCALS",-1)
+		ForceSpell(LastSeenBy(Myself),CLERIC_CREEPING_DOOM)
+		Wait(1)
+END
+
+IF
+	// * 2 * // Global("CurrentTarget","LOCALS",2)
+	OR(3)
+		See(LastAttackerOf(Myself))
+		See(NearestEnemyOf(Myself))
+	!StateCheck(LastSeenBy(Myself),STATE_POISONED)
+	RandomNum(41,3)
+	GlobalGT("Level4Spells","LOCALS",0)
+THEN
+	RESPONSE #100
+	//	SetGlobal("CurrentTarget","LOCALS",0)
+		IncrementGlobal("Level4Spells","LOCALS",-1)
+		ForceSpell(LastSeenBy(Myself),CLERIC_POISON)
+		Wait(1)
+END
+
+IF
+	// * 2 * // Global("CurrentTarget","LOCALS",2)
+	OR(3)
+		See(LastAttackerOf(Myself))
+		See(NearestEnemyOf(Myself))
+	!StateCheck(LastSeenBy(Myself),STATE_PANIC)
+	!StateCheck(LastSeenBy(Myself),STATE_HELPLESS)
+	RandomNum(41,4)
+	GlobalGT("Level4Spells","LOCALS",0)
+THEN
+	RESPONSE #100
+		Shout(113)
+		SetGlobal("LastShout","MYAREA",113)
+		DisplayStringHead(Myself,@35596)
+		SetGlobalTimer("IwTimer102","LOCALS",7)
+	//	SetGlobal("CurrentTarget","LOCALS",0)
+		IncrementGlobal("Level4Spells","LOCALS",-1)
+		ForceSpell(Myself,CLERIC_CLOAK_OF_FEAR)
+		Wait(1)
+		//StartTimer(103,0)
+		SetGlobalTimer("IwTimer103","LOCALS",0)
+		MoveToObject(LastSeenBy(Myself))
+END
+
+IF
+	// * 2 * // Global("CurrentTarget","LOCALS",2)
+	OR(3)
+		See(LastAttackerOf(Myself))
+		See(NearestEnemyOf(Myself))
+	CheckStatLT(Myself,18,STR)
+	!CheckSpellState(Myself,HOLY_POWER)
+	RandomNum(41,5)
+	GlobalGT("Level4Spells","LOCALS",0)
+THEN
+	RESPONSE #100
+	//	SetGlobal("CurrentTarget","LOCALS",0)
+		IncrementGlobal("Level4Spells","LOCALS",-1)
+		ForceSpell(Myself,CLERIC_HOLY_POWER)
+		Wait(1)
+END
+
+IF
+	// * 2 * // Global("CurrentTarget","LOCALS",2)
+	OR(3)
+		See(LastAttackerOf(Myself))
+		See(NearestEnemyOf(Myself))
+	!HasItem("IBlade",Myself)
+	!HasItem("CDISEAS",Myself)
+	!HasItem("MoonBla",Myself)
+	RandomNum(41,6)
+	GlobalGT("Level4Spells","LOCALS",0)
+THEN
+	RESPONSE #100
+	//	SetGlobal("CurrentTarget","LOCALS",0)
+		IncrementGlobal("Level4Spells","LOCALS",-1)
+		ForceSpellRES("IWPR428",Myself)
+		Wait(1)
+END
+
+IF
+	// * 2 * // Global("CurrentTarget","LOCALS",2)
+	OR(3)
+		See(LastAttackerOf(Myself))
+		See(NearestEnemyOf(Myself))
+	CheckStat(Myself,0,CLERIC_DEFENSIVE_HARMONY)
+	RandomNum(41,7)
+	GlobalGT("Level4Spells","LOCALS",0)
+THEN
+	RESPONSE #100
+	//	SetGlobal("CurrentTarget","LOCALS",0)
+		IncrementGlobal("Level4Spells","LOCALS",-1)
+		ForceSpell(Myself,CLERIC_DEFENSIVE_HARMONY)
+		Wait(1)
+END
+
+IF
+	// * 2 * // Global("CurrentTarget","LOCALS",2)
+	OR(3)
+		See(LastAttackerOf(Myself))
+		See(NearestEnemyOf(Myself))
+	!CheckSpellState(Myself,TORTOISE_SHELL)
+	RandomNum(41,8)
+	GlobalGT("Level4Spells","LOCALS",0)
+THEN
+	RESPONSE #100
+	//	SetGlobal("CurrentTarget","LOCALS",0)
+		IncrementGlobal("Level4Spells","LOCALS",-1)
+		ForceSpellRES("IWPR222",Myself)
+		Wait(1)
+END
+
+IF
+	// * 2 * // Global("CurrentTarget","LOCALS",2)
+	OR(3)
+		See(LastAttackerOf(Myself))
+		See(NearestEnemyOf(Myself))
+	CheckStat(Myself,0,DEATH_WARD)
+	RandomNum(41,9)
+	GlobalGT("Level4Spells","LOCALS",0)
+THEN
+	RESPONSE #100
+	//	SetGlobal("CurrentTarget","LOCALS",0)
+		IncrementGlobal("Level4Spells","LOCALS",-1)
+		ForceSpell(Myself,CLERIC_DEATH_WARD)
+		Wait(1)
+END
+
+IF
+	// * 2 * // Global("CurrentTarget","LOCALS",2)
+	OR(3)
+		See(LastAttackerOf(Myself))
+		See(NearestEnemyOf(Myself))
+	RandomNum(41,10)
+	GlobalGT("Level4Spells","LOCALS",0)
+THEN
+	RESPONSE #100
+	//	SetGlobal("CurrentTarget","LOCALS",0)
+		IncrementGlobal("Level4Spells","LOCALS",-1)
+		ForceSpell(LastSeenBy(Myself),WIZARD_MONSTER_SUMMONING_3)
+		Wait(1)
+END
+
+IF
+	// * 2 * // Global("CurrentTarget","LOCALS",2)
+	OR(3)
+		See(LastAttackerOf(Myself))
+		See(NearestEnemyOf(Myself))
+	RandomNum(41,11)
+	GlobalGT("Level3Spells","LOCALS",0)
+	!Range(LastSeenBy(Myself),9)
+THEN
+	RESPONSE #100
+	//	SetGlobal("CurrentTarget","LOCALS",0)
+		IncrementGlobal("Level3Spells","LOCALS",-1)
+		ForceSpell(LastSeenBy(Myself),CLERIC_DISPEL_MAGIC)
+		Shout(111)
+		SetGlobal("LastShout","MYAREA",111)
+		DisplayStringHead(Myself,@35594)
+		SetGlobalTimer("IwTimer102","LOCALS",7)
+		Wait(1)
+	RESPONSE #100
+	//	SetGlobal("CurrentTarget","LOCALS",0)
+		IncrementGlobal("Level3Spells","LOCALS",-1)
+		ForceSpell(LastSeenBy(Myself),CLERIC_GLYPH_OF_WARDING)
+		Shout(111)
+		SetGlobal("LastShout","MYAREA",111)
+		DisplayStringHead(Myself,@35594)
+		SetGlobalTimer("IwTimer102","LOCALS",7)
+		Wait(1)
+	RESPONSE #100
+	//	SetGlobal("CurrentTarget","LOCALS",0)
+		IncrementGlobal("Level3Spells","LOCALS",-1)
+		ForceSpell(LastSeenBy(Myself),CLERIC_DOLOROUS_DECAY)
+		Shout(111)
+		SetGlobal("LastShout","MYAREA",111)
+		DisplayStringHead(Myself,@35594)
+		SetGlobalTimer("IwTimer102","LOCALS",7)
+		Wait(1)
+END
+
+IF
+	// * 3 * // Global("CurrentTarget","LOCALS",3)
+	OR(2)
+		See(Myself)
+		See([0.0.YUANTI])
+	StateCheck(LastSeenBy(Myself),STATE_DISEASED)
+	RandomNum(41,12)
+	GlobalGT("Level3Spells","LOCALS",0)
+THEN
+	RESPONSE #100
+	//	SetGlobal("CurrentTarget","LOCALS",0)
+		IncrementGlobal("Level3Spells","LOCALS",-1)
+		ForceSpell(LastSeenBy(Myself),CLERIC_CURE_DISEASE)
+		Wait(1)
+END
+
+IF
+	// * 3 * // Global("CurrentTarget","LOCALS",3)
+	OR(2)
+		See(Myself)
+		See([0.0.YUANTI])
+	OR(8)
+		StateCheck(LastSeenBy(Myself),STATE_PANIC)
+		StateCheck(LastSeenBy(Myself),STATE_SLEEPING)
+		StateCheck(LastSeenBy(Myself),STATE_FEEBLEMINDED)
+		StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+		StateCheck(LastSeenBy(Myself),STATE_HELPLESS)
+		StateCheck(LastSeenBy(Myself),STATE_BERSERK)
+		StateCheck(LastSeenBy(Myself),STATE_CONFUSED)
+		CheckSpellState(LastSeenBy(Myself),HOPELESSNESS)
+	!StateCheck(LastSeenBy(Myself),STATE_NORMAL)
+	RandomNum(41,13)
+	GlobalGT("Level3Spells","LOCALS",0)
+THEN
+	RESPONSE #100
+	//	SetGlobal("CurrentTarget","LOCALS",0)
+		IncrementGlobal("Level3Spells","LOCALS",-1)
+		ForceSpellRES("IWPR316",LastSeenBy(Myself))
+		Wait(1)
+	RESPONSE #100
+	//	SetGlobal("CurrentTarget","LOCALS",0)
+		IncrementGlobal("Level3Spells","LOCALS",-1)
+		ForceSpell(LastSeenBy(Myself),CLERIC_DISPEL_MAGIC)
+		Wait(1)
+END
+
+IF
+	// * 2 * // Global("CurrentTarget","LOCALS",2)
+	OR(3)
+		See(LastAttackerOf(Myself))
+		See(NearestEnemyOf(Myself))
+	General(LastSeenBy,UNDEAD)
+	!StateCheck(LastSeenBy,STATE_DISABLED)
+	RandomNum(41,14)
+	GlobalGT("Level3Spells","LOCALS",0)
+THEN
+	RESPONSE #100
+	//	SetGlobal("CurrentTarget","LOCALS",0)
+		IncrementGlobal("Level3Spells","LOCALS",-1)
+		ForceSpell(LastSeenBy(Myself),WIZARD_HOLD_UNDEAD)
+		Wait(1)
+END
+
+IF
+	// * 3 * // Global("CurrentTarget","LOCALS",3)
+	OR(2)
+		See(Myself)
+		See([0.0.YUANTI])
+	CheckStat(LastSeenBy(Myself),0,LEVEL_DRAIN_IMMUNITY)
+	RandomNum(41,15)
+	GlobalGT("Level3Spells","LOCALS",0)
+THEN
+	RESPONSE #100
+	//	SetGlobal("CurrentTarget","LOCALS",0)
+		IncrementGlobal("Level3Spells","LOCALS",-1)
+		ForceSpell(LastSeenBy(Myself),CLERIC_NEGATIVE_PLANE_PROTECTION)
+		Wait(1)
+END
+
+IF
+	// * 3 * // Global("CurrentTarget","LOCALS",3)
+	OR(2)
+		See(Myself)
+		See([0.0.YUANTI])
+	//CheckSpellState(LastSeenBy(Myself),HELD)
+	OR(2)
+		StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+		CheckStatGT(LastSeenBy(Myself),0,HELD)
+	RandomNum(41,16)
+	GlobalGT("Level3Spells","LOCALS",0)
+THEN
+	RESPONSE #100
+	//	SetGlobal("CurrentTarget","LOCALS",0)
+		IncrementGlobal("Level3Spells","LOCALS",-1)
+		ForceSpell(LastSeenBy(Myself),CLERIC_REMOVE_PARALYSIS)
+		Wait(1)
+END
+
+IF
+	// * 2 * // Global("CurrentTarget","LOCALS",2)
+	OR(3)
+		See(LastAttackerOf(Myself))
+		See(NearestEnemyOf(Myself))
+	!HasItem("IBlade",Myself)
+	!HasItem("CDISEAS",Myself)
+	!HasItem("MoonBla",Myself)
+	RandomNum(41,17)
+	GlobalGT("Level3Spells","LOCALS",0)
+THEN
+	RESPONSE #100
+	//	SetGlobal("CurrentTarget","LOCALS",0)
+		IncrementGlobal("Level3Spells","LOCALS",-1)
+		ForceSpellRES("IWPR315",Myself)
+		Wait(1)
+END
+
+IF
+	// * 2 * // Global("CurrentTarget","LOCALS",2)
+	OR(3)
+		See(LastAttackerOf(Myself))
+		See(NearestEnemyOf(Myself))
+	!StateCheck(LastSeenBy(Myself),STATE_POISONED)
+	!StateCheck(LastSeenBy(Myself),STATE_SLOWED)
+	RandomNum(41,18)
+	GlobalGT("Level3Spells","LOCALS",0)
+THEN
+	RESPONSE #100
+	//	SetGlobal("CurrentTarget","LOCALS",0)
+		IncrementGlobal("Level3Spells","LOCALS",-1)
+		ForceSpell(LastSeenBy(Myself),CLERIC_DOLOROUS_DECAY)
+		Wait(1)
+END
+
+IF
+	// * 2 * // Global("CurrentTarget","LOCALS",2)
+	OR(3)
+		See(LastAttackerOf(Myself))
+		See(NearestEnemyOf(Myself))
+	!General(LastSeenBy(Myself),UNDEAD)
+	!Race(LastSeenBy(Myself),DEMONIC)
+	!Race(LastSeenBy(Myself),TANARI)
+	!Race(LastSeenBy(Myself),TROLL)
+	!Race(LastSeenBy(Myself),UMBERHULK)
+	!Race(LastSeenBy(Myself),MYCONID)
+	!Race(LastSeenBy(Myself),MINOTAUR)
+	!StateCheck(LastSeenBy(Myself),STATE_DISABLED)
+	RandomNum(41,19)
+	GlobalGT("Level3Spells","LOCALS",0)
+THEN
+	RESPONSE #100
+	//	SetGlobal("CurrentTarget","LOCALS",0)
+		IncrementGlobal("Level3Spells","LOCALS",-1)
+		ForceSpell(LastSeenBy(Myself),CLERIC_RIGID_THINKING)
+		Wait(1)
+END
+
+IF
+	// * 2 * // Global("CurrentTarget","LOCALS",2)
+	OR(3)
+		See(LastAttackerOf(Myself))
+		See(NearestEnemyOf(Myself))
+	Alignment(LastSeenBy(Myself),MASK_GOOD)
+	RandomNum(41,20)
+	GlobalGT("Level3Spells","LOCALS",0)
+THEN
+	RESPONSE #100
+	//	SetGlobal("CurrentTarget","LOCALS",0)
+		IncrementGlobal("Level3Spells","LOCALS",-1)
+		ForceSpell(LastSeenBy(Myself),CLERIC_UNHOLY_BLIGHT)
+		Wait(1)
+END
+
+IF
+	// * 2 * // Global("CurrentTarget","LOCALS",2)
+	OR(3)
+		See(LastAttackerOf(Myself))
+		See(NearestEnemyOf(Myself))
+	!CheckStatGT(Myself,0,CLERIC_BLADE_BARRIER)
+	RandomNum(41,21)
+	GlobalGT("Level3Spells","LOCALS",0)
+THEN
+	RESPONSE #100
+	//	SetGlobal("CurrentTarget","LOCALS",0)
+		IncrementGlobal("Level3Spells","LOCALS",-1)
+		ForceSpell(Myself,CLERIC_BLADE_BARRIER)
+		Wait(1)
+END
+
+IF
+	// * 2 * // Global("CurrentTarget","LOCALS",2)
+	OR(3)
+		See(LastAttackerOf(Myself))
+		See(NearestEnemyOf(Myself))
+	!HasItem("IBlade",Myself)
+	!HasItem("CDISEAS",Myself)
+	!HasItem("MoonBla",Myself)
+	RandomNum(41,22)
+	GlobalGT("Level3Spells","LOCALS",0)
+THEN
+	RESPONSE #100
+	//	SetGlobal("CurrentTarget","LOCALS",0)
+		IncrementGlobal("Level3Spells","LOCALS",-1)
+		ForceSpellRES("IWPR318",Myself)
+		Wait(1)
+END
+
+IF
+	// * 2 * // Global("CurrentTarget","LOCALS",2)
+	OR(3)
+		See(LastAttackerOf(Myself))
+		See(NearestEnemyOf(Myself))
+	!StateCheck(LastSeenBy(Myself),STATE_BLESS)
+	RandomNum(41,23)
+	GlobalGT("Level3Spells","LOCALS",0)
+THEN
+	RESPONSE #100
+	//	SetGlobal("CurrentTarget","LOCALS",0)
+		IncrementGlobal("Level3Spells","LOCALS",-1)
+		ForceSpell(Myself,CLERIC_BLESS)
+		Wait(1)
+END
+
+IF
+	// * 2 * // Global("CurrentTarget","LOCALS",2)
+	OR(3)
+		See(LastAttackerOf(Myself))
+		See(NearestEnemyOf(Myself))
+	!StateCheck(LastSeenBy(Myself),STATE_BLIND)
+	!StateCheck(LastSeenBy(Myself),STATE_DISABLED)
+	RandomNum(41,24)
+	GlobalGT("Level3Spells","LOCALS",0)
+THEN
+	RESPONSE #100
+	//	SetGlobal("CurrentTarget","LOCALS",0)
+		IncrementGlobal("Level3Spells","LOCALS",-1)
+		ForceSpell(LastSeenBy(Myself),WIZARD_BLINDNESS)
+		Wait(1)
+END
+
+IF
+	// * 2 * // Global("CurrentTarget","LOCALS",2)
+	OR(3)
+		See(LastAttackerOf(Myself))
+		See(NearestEnemyOf(Myself))
+	CheckStatLT(Myself,18,STR)
+	!CheckSpellState(Myself,HOLY_POWER)
+	RandomNum(41,25)
+	GlobalGT("Level3Spells","LOCALS",0)
+THEN
+	RESPONSE #100
+	//	SetGlobal("CurrentTarget","LOCALS",0)
+		IncrementGlobal("Level3Spells","LOCALS",-1)
+		ForceSpell(Myself,CLERIC_STRENGTH_OF_ONE)
+		Wait(1)
+END
+
+IF
+	// * 2 * // Global("CurrentTarget","LOCALS",2)
+	OR(3)
+		See(LastAttackerOf(Myself))
+		See(NearestEnemyOf(Myself))
+	RandomNum(41,26)
+	GlobalGT("Level3Spells","LOCALS",0)
+THEN
+	RESPONSE #100
+	//	SetGlobal("CurrentTarget","LOCALS",0)
+		IncrementGlobal("Level3Spells","LOCALS",-1)
+		ForceSpell(LastSeenBy(Myself),WIZARD_ANIMATE_DEAD)
+		Wait(1)
+	RESPONSE #100
+	//	SetGlobal("CurrentTarget","LOCALS",0)
+		IncrementGlobal("Level3Spells","LOCALS",-1)
+		ForceSpell(LastSeenBy(Myself),WIZARD_MONSTER_SUMMONING_3)
+		Wait(1)
+END
+
+IF
+	// * 2 * // Global("CurrentTarget","LOCALS",2)
+	OR(3)
+		See(LastAttackerOf(Myself))
+		See(NearestEnemyOf(Myself))
+	RandomNum(41,27)
+	GlobalGT("Level2Spells","LOCALS",0)
+	!Range(LastSeenBy(Myself),9)
+THEN
+	RESPONSE #100
+	//	SetGlobal("CurrentTarget","LOCALS",0)
+		IncrementGlobal("Level2Spells","LOCALS",-1)
+		ForceSpell(LastSeenBy(Myself),WIZARD_ICE_STORM)
+		Shout(111)
+		SetGlobal("LastShout","MYAREA",111)
+		DisplayStringHead(Myself,@35594)
+		SetGlobalTimer("IwTimer102","LOCALS",7)
+		Wait(1)
+	RESPONSE #100
+	//	SetGlobal("CurrentTarget","LOCALS",0)
+		IncrementGlobal("Level2Spells","LOCALS",-1)
+		ForceSpell(LastSeenBy(Myself),CLERIC_SILENCE_15_FOOT)
+		Shout(111)
+		SetGlobal("LastShout","MYAREA",111)
+		DisplayStringHead(Myself,@35594)
+		SetGlobalTimer("IwTimer102","LOCALS",7)
+		Wait(1)
+END
+
+IF
+	// * 3 * // Global("CurrentTarget","LOCALS",3)
+	OR(2)
+		See(Myself)
+		See([0.0.YUANTI])
+	StateCheck(LastSeenBy(Myself),STATE_POISONED)
+	RandomNum(41,28)
+	GlobalGT("Level2Spells","LOCALS",0)
+THEN
+	RESPONSE #100
+	//	SetGlobal("CurrentTarget","LOCALS",0)
+		IncrementGlobal("Level2Spells","LOCALS",-1)
+		ForceSpell(LastSeenBy(Myself),CLERIC_SLOW_POISON)
+		Wait(1)
+END
+
+IF
+	OR(2)
+		Global("LastShout","MYAREA",104)
+		Heard([0.0.YUANTI],104)
+	!GlobalTimerNotExpired("SpellShieldTimer","LOCALS")
+	RandomNum(41,29)
+	GlobalGT("Level2Spells","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("SpellShieldTimer","LOCALS",35)
+		SetGlobal("LastHeard","MYAREA",104)
+	//	SetGlobal("CurrentTarget","LOCALS",0)
+		IncrementGlobal("Level2Spells","LOCALS",-1)
+		ForceSpellRES("IWPR219",Myself)
+		Wait(1)
+END
+
+IF
+	// * 2 * // Global("CurrentTarget","LOCALS",2)
+	OR(3)
+		See(LastAttackerOf(Myself))
+		See(NearestEnemyOf(Myself))
+	!HasBounceEffects(LastSeenBy(Myself))
+	RandomNum(41,30)
+	GlobalGT("Level2Spells","LOCALS",0)
+THEN
+	RESPONSE #100
+	//	SetGlobal("CurrentTarget","LOCALS",0)
+		IncrementGlobal("Level2Spells","LOCALS",-1)
+		ForceSpellRES("IWPR216",LastSeenBy(Myself))
+		Wait(1)
+END
+
+IF
+	// * 2 * // Global("CurrentTarget","LOCALS",2)
+	OR(3)
+		See(LastAttackerOf(Myself))
+		See(NearestEnemyOf(Myself))
+	!StateCheck(LastSeenBy(Myself),STATE_DISABLED)
+	RandomNum(41,31)
+	GlobalGT("Level2Spells","LOCALS",0)
+THEN
+	RESPONSE #100
+	//	SetGlobal("CurrentTarget","LOCALS",0)
+		IncrementGlobal("Level2Spells","LOCALS",-1)
+		ForceSpell(LastSeenBy(Myself),WIZARD_HOLD_PERSON)
+		Wait(1)
+END
+
+IF
+	// * 2 * // Global("CurrentTarget","LOCALS",2)
+	OR(3)
+		See(LastAttackerOf(Myself))
+		See(NearestEnemyOf(Myself))
+	!StateCheck(Myself,STATE_CHANT)
+	RandomNum(41,32)
+	GlobalGT("Level2Spells","LOCALS",0)
+THEN
+	RESPONSE #100
+	//	SetGlobal("CurrentTarget","LOCALS",0)
+		IncrementGlobal("Level2Spells","LOCALS",-1)
+		ForceSpell(Myself,CLERIC_CHANT)
+		Wait(1)
+END
+
+IF
+	// * 2 * // Global("CurrentTarget","LOCALS",2)
+	OR(3)
+		See(LastAttackerOf(Myself))
+		See(NearestEnemyOf(Myself))
+	!StateCheck(Myself,STATE_DRAWUPONHOLYMIGHT)
+	RandomNum(41,33)
+	GlobalGT("Level2Spells","LOCALS",0)
+THEN
+	RESPONSE #100
+	//	SetGlobal("CurrentTarget","LOCALS",0)
+		IncrementGlobal("Level2Spells","LOCALS",-1)
+		ForceSpell(Myself,CLERIC_DRAW_UPON_HOLY_MIGHT)
+		Wait(1)
+END
+
+IF
+	// * 3 * // Global("CurrentTarget","LOCALS",3)
+	OR(2)
+		See(Myself)
+		See([0.0.YUANTI])
+	CheckStatLT(LastSeenBy(Myself),19,STR)
+	CheckStatLT(LastSeenBy(Myself),100,STREXTRA)
+	RandomNum(41,34)
+	GlobalGT("Level2Spells","LOCALS",0)
+THEN
+	RESPONSE #100
+	//	SetGlobal("CurrentTarget","LOCALS",0)
+		IncrementGlobal("Level2Spells","LOCALS",-1)
+		//ForceSpell(LastSeenBy(Myself),WIZARD_STRENGTH)
+		ForceSpellRES("IWWI214",LastSeenBy(Myself))
+		Wait(1)
+END
+
+IF
+	// * 3 * // Global("CurrentTarget","LOCALS",3)
+	OR(2)
+		See(Myself)
+		See([0.0.YUANTI])
+	StateCheck(LastSeenBy(Myself),STATE_PANIC)
+	RandomNum(41,35)
+	GlobalGT("Level1Spells","LOCALS",0)
+THEN
+	RESPONSE #100
+	//	SetGlobal("CurrentTarget","LOCALS",0)
+		IncrementGlobal("Level1Spells","LOCALS",-1)
+		ForceSpell(LastSeenBy(Myself),CLERIC_REMOVE_FEAR)
+		Wait(1)
+END
+
+IF
+	// * 2 * // Global("CurrentTarget","LOCALS",2)
+	OR(3)
+		See(LastAttackerOf(Myself))
+		See(NearestEnemyOf(Myself))
+	!CheckSpellState(LastSeenBy(Myself),CLERIC_BANE)
+	RandomNum(41,36)
+	GlobalGT("Level1Spells","LOCALS",0)
+THEN
+	RESPONSE #100
+	//	SetGlobal("CurrentTarget","LOCALS",0)
+		IncrementGlobal("Level1Spells","LOCALS",-1)
+		ForceSpellRES("IWPR111",LastSeenBy(Myself))
+		Wait(1)
+END
+
+IF
+	// * 2 * // Global("CurrentTarget","LOCALS",2)
+	OR(3)
+		See(LastAttackerOf(Myself))
+		See(NearestEnemyOf(Myself))
+	!CheckSpellState(LastSeenBy(Myself),DOOM)
+	!StateCheck(LastSeenBy(Myself),STATE_HARMLESS)
+	RandomNum(41,37)
+	GlobalGT("Level1Spells","LOCALS",0)
+THEN
+	RESPONSE #100
+	//	SetGlobal("CurrentTarget","LOCALS",0)
+		IncrementGlobal("Level1Spells","LOCALS",-1)
+		ForceSpell(LastSeenBy(Myself),CLERIC_DOOM)
+		Wait(1)
+END
+
+IF
+	// * 2 * // Global("CurrentTarget","LOCALS",2)
+	OR(3)
+		See(LastAttackerOf(Myself))
+		See(NearestEnemyOf(Myself))
+	Range(LastSeenBy(Myself),5)
+	RandomNum(41,38)
+	GlobalGT("Level1Spells","LOCALS",0)
+THEN
+	RESPONSE #100
+	//	SetGlobal("CurrentTarget","LOCALS",0)
+		IncrementGlobal("Level1Spells","LOCALS",-1)
+		ForceSpellRES("IWPR117",LastSeenBy(Myself))
+		Wait(1)
+END
+
+IF
+	// * 2 * // Global("CurrentTarget","LOCALS",2)
+	OR(3)
+		See(LastAttackerOf(Myself))
+		See(NearestEnemyOf(Myself))
+	!CheckSpellState(Myself,ARMOR_OF_FAITH)
+	RandomNum(41,39)
+	GlobalGT("Level1Spells","LOCALS",0)
+THEN
+	RESPONSE #100
+	//	SetGlobal("CurrentTarget","LOCALS",0)
+		IncrementGlobal("Level1Spells","LOCALS",-1)
+		ForceSpell(Myself,CLERIC_ARMOR_OF_FAITH)
+		Wait(1)
+END
+
+IF
+	// * 2 * // Global("CurrentTarget","LOCALS",2)
+	OR(3)
+		See(LastAttackerOf(Myself))
+		See(NearestEnemyOf(Myself))
+	!StateCheck(LastSeenBy(Myself),STATE_BLESS)
+	RandomNum(41,40)
+	GlobalGT("Level1Spells","LOCALS",0)
+THEN
+	RESPONSE #100
+	//	SetGlobal("CurrentTarget","LOCALS",0)
+		IncrementGlobal("Level1Spells","LOCALS",-1)
+		ForceSpell(Myself,CLERIC_BLESS)
+		Wait(1)
+END
+
+IF
+	// * 2 * // Global("CurrentTarget","LOCALS",2)
+	OR(3)
+		See(LastAttackerOf(Myself))
+		See(NearestEnemyOf(Myself))
+	Global("LastShout","MYAREA",106)
+	//!CheckSpellState(Myself,SANCTUARY)
+	!StateCheck(Myself,STATE_INVISIBLE)
+	!StateCheck(Myself,STATE_IMPROVEDINVISIBILITY)
+	!CheckStat(Myself,1,SANCTUARY)
+	RandomNum(41,41)
+	GlobalGT("Level1Spells","LOCALS",0)
+THEN
+	RESPONSE #100
+	//	SetGlobal("CurrentTarget","LOCALS",0)
+		IncrementGlobal("Level1Spells","LOCALS",-1)
+		ForceSpell(Myself,CLERIC_SANCTUARY)
+		Wait(1)
+END
+

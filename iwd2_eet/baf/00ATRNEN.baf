@@ -1,0 +1,7 @@
+IF
+	See([ENEMY])
+THEN
+	RESPONSE #100
+		FaceObject(LastSeenBy(Myself))
+END
+

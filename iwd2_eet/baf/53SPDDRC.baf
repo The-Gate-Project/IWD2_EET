@@ -1,0 +1,34 @@
+IF
+	StateCheck(Myself,STATE_PANIC)
+THEN
+	RESPONSE #100
+		RandomWalkContinuous()
+END
+
+IF
+	!GlobalTimerNotExpired("IwTimer73","LOCALS")
+	RandomNumLT(99,20)
+	OR(2)
+		See(NearestEnemyOf(Myself))
+		See([0.0.DROW])
+	!CheckSpellState(LastSeenBy(Myself),WEB)
+	!CheckSpellState(LastSeenBy(Myself),HELD)
+THEN
+	RESPONSE #100
+		FaceObject(LastSeenBy(Myself))
+		SetSequence(SEQ_SHOOT)
+		SetInterrupt(FALSE)
+		Wait(1)
+		ReallyForceSpellRES("IWIN281",LastSeenBy(Myself))  // SPIN281.SPL INNATE_DRIDER_WEB
+		SetGlobalTimer("IwTimer73","LOCALS",6)
+		SetInterrupt(TRUE)
+END
+
+IF
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		EquipMostDamagingMelee()
+		AttackOneRound(LastSeenBy(Myself))
+END
+

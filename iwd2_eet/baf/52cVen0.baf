@@ -1,0 +1,77 @@
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("Ven")
+		//SetCreatureAreaFlag(Myself,NO_TALK,TRUE)
+		DialogInterrupt(FALSE)
+		
+		JumpToPoint([518.613])
+		MultiPlayerSync()
+		MoveViewPoint([518.613],25)
+		FaceObject([PC])
+		DisplayString(Myself,4188)
+		PlaySound("WCT_07")
+		//HideCreature(Myself,FALSE)
+		ApplySpellRES("idinvis5",Myself)
+		Wait(2)
+		DisplayStringHead(Myself,@39557)
+		Wait(1)
+		MoveViewPoint([730.833],FAST)
+		MoveToPoint([872.1038])
+		MoveViewPoint([518.613],25)
+		MultiPlayerSync()
+		JumpToPoint([682.1076])
+		MultiPlayerSync()
+		SetGlobal("VEN_GET_LOOT","LOCALS",1)
+		EndCutSceneMode()
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId(Player1)
+		FaceObject("Ven")
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId(Player2)
+		FaceObject("Ven")
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId(Player3)
+		FaceObject("Ven")
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId(Player4)
+		FaceObject("Ven")
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId(Player5)
+		FaceObject("Ven")
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId(Player6)
+		FaceObject("Ven")
+END
+

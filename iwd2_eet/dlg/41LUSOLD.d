@@ -1,0 +1,27 @@
+BEGIN ~41LUSOLD~
+
+IF WEIGHT #2
+~Gender(LastTalkedToBy,MALE)~ THEN BEGIN 0
+  SAY @32542
+  IF ~~ THEN EXIT
+END
+
+IF WEIGHT #3
+~True()~ THEN BEGIN 1
+  SAY @33535
+  IF ~~ THEN EXIT
+END
+
+IF WEIGHT #0
+~Gender(LastTalkedToBy,MALE)
+ Global("41Rahm","GLOBAL",1)~ THEN BEGIN 2
+  SAY @33536
+  IF ~~ THEN EXIT
+END
+
+IF WEIGHT #1
+~!Gender(LastTalkedToBy,MALE)
+ Global("41Rahm","GLOBAL",1)~ THEN BEGIN 3
+  SAY @33537
+  IF ~~ THEN EXIT
+END

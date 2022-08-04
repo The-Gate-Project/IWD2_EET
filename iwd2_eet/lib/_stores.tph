@@ -1,0 +1,284 @@
+PRINT ~Installing stores...~
+SILENT
+
+//ADISEASE
+
+COPY ~%MOD_FOLDER%/sto/10GOHAR.sto~ ~override~
+	SAY 0x0c @743
+	SAY 0xa4 @1949
+	SAY 0xb8 @1950
+	SAY 0xcc @1955
+	SAY 0xe0 @1952
+	SAY 0x108 @26650
+	SAY 0x11c @1953
+
+COPY ~%MOD_FOLDER%/sto/10GUTHE.sto~ ~override~
+	SAY 0x0c @407
+
+COPY ~%MOD_FOLDER%/sto/11CAHLHY.sto~ ~override~
+	SAY 0x0c @409
+
+COPY ~%MOD_FOLDER%/sto/11DEIRD.sto~ ~override~
+	SAY 0x0c @406
+	ADD_STORE_ITEM ~IWKEYR~ LAST #1 #1 #0 ~IDENTIFIED~ (1)
+
+COPY ~%MOD_FOLDER%/sto/11ELYTHA.sto~ ~override~
+	SAY 0x0c @408
+
+COPY ~%MOD_FOLDER%/sto/11OSWALD.sto~ ~override~
+	SAY 0x0c @11694
+	ADD_STORE_ITEM ~ADISEASE~ AFTER ~POTN20~   #1 #0 #0 ~IDENTIFIED~ (5)
+	ADD_STORE_ITEM ~POTN14~   AFTER ~Z0POTN29~ #1 #0 #0 ~IDENTIFIED~ (3)
+	ADD_STORE_ITEM ~POTN39~   AFTER ~POTN36~   #1 #0 #0 ~IDENTIFIED~ (2)
+
+COPY ~%MOD_FOLDER%/sto/11RAGNIB.sto~ ~override~
+	SAY 0x0c @524
+	ADD_STORE_ITEM ~ADISEASE~ AFTER ~POTN20~ #1 #0 #0 ~IDENTIFIED~ (2)
+
+COPY ~%MOD_FOLDER%/sto/20ARTE.sto~ ~override~
+	SAY 0x0c @31030
+
+COPY ~%MOD_FOLDER%/sto/20DERETH.sto~ ~override~
+	SAY 0x0c @16096
+
+COPY ~%MOD_FOLDER%/sto/20EMDIS.sto~ ~override~
+	SAY 0x0c @16097
+
+COPY ~%MOD_FOLDER%/sto/20EMMA.sto~ ~override~
+	SAY 0x0c @16097
+
+COPY ~%MOD_FOLDER%/sto/20SABRIN.sto~ ~override~
+	SAY 0x0c @39757
+
+COPY ~%MOD_FOLDER%/sto/40BDAWN.sto~ ~override~
+	SAY 0x0c @16895
+
+COPY ~%MOD_FOLDER%/sto/41HBGANA.sto~ ~override/z4HBGANA.sto~
+	SAY 0x0c @17043
+
+COPY ~%MOD_FOLDER%/sto/41NATE.sto~ ~override~
+	SAY 0x0c @16103
+
+COPY ~%MOD_FOLDER%/sto/41ZACK1.sto~ ~override~
+	SAY 0x0c @16896
+	ADD_STORE_ITEM ~z4genbe~  AFTER ~WAND08~   #0 #0 #0 ~IDENTIFIED~ (1)
+
+COPY ~%MOD_FOLDER%/sto/41ZACK2.sto~ ~override~
+	SAY 0x0c @16896
+	ADD_STORE_ITEM ~z4genbe~  AFTER ~WAND08~   #0 #0 #0 ~IDENTIFIED~ (1)
+
+COPY ~%MOD_FOLDER%/sto/41ZACK3.sto~ ~override~
+	SAY 0x0c @16896
+	ADD_STORE_ITEM ~fcptn01~  AFTER ~THRYM~    #1 #0 #0 ~IDENTIFIED~ (5)
+	ADD_STORE_ITEM ~POTN39~   AFTER ~THRYM~    #1 #0 #0 ~IDENTIFIED~ (1)
+	ADD_STORE_ITEM ~POTN36~   AFTER ~THRYM~    #1 #0 #0 ~IDENTIFIED~ (2)
+	ADD_STORE_ITEM ~POTN14~   AFTER ~THRYM~    #1 #0 #0 ~IDENTIFIED~ (2)
+	ADD_STORE_ITEM ~z4genbe~  AFTER ~WAND08~   #0 #0 #0 ~IDENTIFIED~ (1)
+
+COPY ~%MOD_FOLDER%/sto/50CARYNA.sto~ ~override~
+	SAY 0x0c @40900
+
+COPY ~%MOD_FOLDER%/sto/50LIMHA.sto~ ~override~
+	SAY 0x0c @11839
+
+COPY ~%MOD_FOLDER%/sto/50NYM.sto~ ~override~
+	SAY 0x0c @11626
+
+COPY ~%MOD_FOLDER%/sto/50NYM2.sto~ ~override~
+	SAY 0x0c @11626
+	ADD_STORE_ITEM ~ADISEASE~ AFTER ~POTN44~   #1 #0 #0 ~IDENTIFIED~ (10)
+	ADD_STORE_ITEM ~fcaml01~  AFTER ~RING06~   #0 #0 #0 ~IDENTIFIED~ (1)
+	ADD_STORE_ITEM ~fcptn01~  AFTER ~POTN10~   #1 #0 #0 ~IDENTIFIED~ (10)
+
+COPY ~%MOD_FOLDER%/sto/50SUOMA.sto~ ~override~
+	SAY 0x0c @16614
+
+COPY ~%MOD_FOLDER%/sto/50TAHVO.sto~ ~override~
+	SAY 0x0c @11840
+
+COPY ~%MOD_FOLDER%/sto/50VENLA.sto~ ~override~
+	SAY 0x0c @11836
+	//ADD_STORE_ITEM ~ADISEASE~ AFTER ~POTN20~ #1 #0 #0 ~IDENTIFIED~ (5)
+	ADD_STORE_ITEM ~fcptn01~  AFTER ~ADISEASE~ #1 #0 #0 ~IDENTIFIED~ (3)
+	ADD_STORE_ITEM ~POTN14~   AFTER ~ADISEASE~    #1 #0 #0 ~IDENTIFIED~ (1)
+
+COPY ~%MOD_FOLDER%/sto/50VENLAA.sto~ ~override~
+	SAY 0x0c @11836
+	//ADD_STORE_ITEM ~ADISEASE~ AFTER ~POTN20~ #1 #0 #0 ~IDENTIFIED~ (5)
+	ADD_STORE_ITEM ~fcptn01~  AFTER ~ADISEASE~ #1 #0 #0 ~IDENTIFIED~ (3)
+	ADD_STORE_ITEM ~POTN14~   AFTER ~ADISEASE~ #1 #0 #0 ~IDENTIFIED~ (1)
+
+COPY ~%MOD_FOLDER%/sto/51DRAGU.sto~ ~override~
+	SAY 0x0c @31147
+
+COPY ~%MOD_FOLDER%/sto/51ZAMA.sto~ ~override~
+	SAY 0x0c @31148
+
+COPY ~%MOD_FOLDER%/sto/52BERED.sto~ ~override~
+	SAY 0x0c @11841
+
+COPY ~%MOD_FOLDER%/sto/52NONIN.sto~ ~override~
+	SAY 0x0c @11842
+	ADD_STORE_ITEM ~POTN39~  AFTER ~PHILTER~   #1 #0 #0 ~IDENTIFIED~ (2)
+
+COPY ~%MOD_FOLDER%/sto/52SERSA.sto~ ~override~
+	SAY 0x0c @11843
+
+COPY ~%MOD_FOLDER%/sto/53HEGGR.sto~ ~override~
+	SAY 0x0c @16102
+
+COPY ~%MOD_FOLDER%/sto/53KADRES.sto~ ~override~
+	SAY 0x0c @16098
+	ADD_STORE_ITEM ~ADISEASE~ AFTER ~Z0RING71~ #1 #0 #0 ~IDENTIFIED~ (5)
+	ADD_STORE_ITEM ~fcptn01~  AFTER ~POTN05~   #1 #0 #0 ~IDENTIFIED~ (5)
+
+COPY ~%MOD_FOLDER%/sto/53MALAVO.sto~ ~override~
+	SAY 0x0c @522
+	ADD_STORE_ITEM ~fcptn01~  AFTER ~POTN45~   #1 #0 #0 ~IDENTIFIED~ (2)
+
+COPY ~%MOD_FOLDER%/sto/53MYRVEK.sto~ ~override~
+	SAY 0x0c @16100
+
+COPY ~%MOD_FOLDER%/sto/53VIIZRA.sto~ ~override~
+	SAY 0x0c @16099
+
+COPY ~%MOD_FOLDER%/sto/53WODE.sto~ ~override~
+	SAY 0x0c @16101
+
+COPY ~%MOD_FOLDER%/sto/60CHEAP.sto~ ~override~
+	SAY 0x0c @38692
+	ADD_STORE_ITEM ~fcptn01~  LAST             #1 #0 #0 ~IDENTIFIED~ (10)
+
+COPY ~%MOD_FOLDER%/sto/60ISELOR.sto~ ~override~
+	SAY 0x0c @41124
+
+COPY ~%MOD_FOLDER%/sto/60NATHAN.sto~ ~override~
+	SAY 0x0c @16103
+	ADD_STORE_ITEM ~fcptn01~  LAST             #1 #0 #0 ~IDENTIFIED~ (10)
+
+COPY ~%MOD_FOLDER%/sto/60SHEEMI.sto~ ~override~
+	SAY 0x0c @30723
+
+COPY ~%MOD_FOLDER%/sto/60SPELLS.sto~ ~override~
+	SAY 0x0c @37760
+
+COPY ~%MOD_FOLDER%/sto/61ARCHON.sto~ ~override~
+	SAY 0x0c @36808
+
+COPY ~%MOD_FOLDER%/sto/61RAKSHA.sto~ ~override~
+	SAY 0x0c @17043
+	//ADD_STORE_ITEM ~ADISEASE~ AFTER ~POTN20~ #1 #0 #0 ~IDENTIFIED~ (5)
+	ADD_STORE_ITEM ~POTN14~   AFTER ~ADISEASE~ #1 #0 #0 ~IDENTIFIED~ (3)
+	ADD_STORE_ITEM ~POTN36~   AFTER ~ADISEASE~ #1 #0 #0 ~IDENTIFIED~ (3)
+	ADD_STORE_ITEM ~POTN39~   AFTER ~ADISEASE~ #1 #0 #0 ~IDENTIFIED~ (3)
+
+COPY ~%MOD_FOLDER%/sto/63ERADRU.sto~ ~override~
+	SAY 0x0c @34235
+
+COPY ~%MOD_FOLDER%/sto/63RIKI.sto~ ~override~
+	SAY 0x0c @24630
+
+COPY ~%MOD_FOLDER%/sto/W#OSWALD.sto~ ~override~
+	SAY 0x0c @41416
+
+COPY ~%MOD_FOLDER%/sto/00BASHS1.sto~ ~override~
+	SAY 0x0c @39256
+
+//BAGS
+COPY	~%MOD_FOLDER%/sto/00GBGA01.sto~ ~override/z0gbga01.sto~
+	~%MOD_FOLDER%/sto/00GBGA02.sto~ ~override/z0gbga02.sto~
+	~%MOD_FOLDER%/sto/00GBGA03.sto~ ~override/z0gbga03.sto~
+	~%MOD_FOLDER%/sto/00GBGA04.sto~ ~override/z0gbga04.sto~
+	~%MOD_FOLDER%/sto/00GBGA05.sto~ ~override/z0gbga05.sto~
+	~%MOD_FOLDER%/sto/00GBGA06.sto~ ~override/z0gbga06.sto~
+	~%MOD_FOLDER%/sto/00GBGA07.sto~ ~override/z0gbga07.sto~
+	~%MOD_FOLDER%/sto/00GBGA08.sto~ ~override/z0gbga08.sto~
+	~%MOD_FOLDER%/sto/00GBGA09.sto~ ~override/z0gbga09.sto~
+	~%MOD_FOLDER%/sto/00GBGA10.sto~ ~override/z0gbga10.sto~
+	
+COPY	~%MOD_FOLDER%/sto/00HBGA01.sto~ ~override/z0hbga01.sto~
+	~%MOD_FOLDER%/sto/00HBGA02.sto~ ~override/z0hbga02.sto~
+	
+COPY	~%MOD_FOLDER%/sto/00PBGA01.sto~ ~override/z0pbga01.sto~
+	~%MOD_FOLDER%/sto/00PBGA02.sto~ ~override/z0pbga02.sto~
+	~%MOD_FOLDER%/sto/00PBGA03.sto~ ~override/z0pbga03.sto~
+	~%MOD_FOLDER%/sto/00PBGA04.sto~ ~override/z0pbga04.sto~
+	~%MOD_FOLDER%/sto/00PBGA05.sto~ ~override/z0pbga05.sto~
+	~%MOD_FOLDER%/sto/00PBGA06.sto~ ~override/z0pbga06.sto~
+	~%MOD_FOLDER%/sto/00PBGA07.sto~ ~override/z0pbga07.sto~
+	~%MOD_FOLDER%/sto/00PBGA08.sto~ ~override/z0pbga08.sto~
+	~%MOD_FOLDER%/sto/00PBGA09.sto~ ~override/z0pbga09.sto~
+	~%MOD_FOLDER%/sto/00PBGA10.sto~ ~override/z0pbga10.sto~
+	~%MOD_FOLDER%/sto/00PBGB01.sto~ ~override/z0pbgb01.sto~
+	~%MOD_FOLDER%/sto/00PBGB02.sto~ ~override/z0pbgb02.sto~
+	~%MOD_FOLDER%/sto/00PBGB03.sto~ ~override/z0pbgb03.sto~
+	~%MOD_FOLDER%/sto/00PBGB04.sto~ ~override/z0pbgb04.sto~
+	~%MOD_FOLDER%/sto/00PBGB05.sto~ ~override/z0pbgb05.sto~
+	~%MOD_FOLDER%/sto/00PBGB06.sto~ ~override/z0pbgb06.sto~
+	~%MOD_FOLDER%/sto/00PBGB07.sto~ ~override/z0pbgb07.sto~
+	~%MOD_FOLDER%/sto/00PBGB08.sto~ ~override/z0pbgb08.sto~
+	~%MOD_FOLDER%/sto/00PBGB09.sto~ ~override/z0pbgb09.sto~
+	~%MOD_FOLDER%/sto/00PBGB10.sto~ ~override/z0pbgb10.sto~
+	
+COPY	~%MOD_FOLDER%/sto/00SBGA01.sto~ ~override/z0sbga01.sto~
+	~%MOD_FOLDER%/sto/00SBGA02.sto~ ~override/z0sbga02.sto~
+	~%MOD_FOLDER%/sto/00SBGA04.sto~ ~override/z0sbga04.sto~
+	~%MOD_FOLDER%/sto/00SBGA05.sto~ ~override/z0sbga05.sto~
+	~%MOD_FOLDER%/sto/00SBGA06.sto~ ~override/z0sbga06.sto~
+	~%MOD_FOLDER%/sto/00SBGA07.sto~ ~override/z0sbga07.sto~
+	~%MOD_FOLDER%/sto/00SBGA08.sto~ ~override/z0sbga08.sto~
+	~%MOD_FOLDER%/sto/00SBGA09.sto~ ~override/z0sbga09.sto~
+	~%MOD_FOLDER%/sto/00SBGA10.sto~ ~override/z0sbga10.sto~
+	
+COPY	~%MOD_FOLDER%/sto/00SBGA03.sto~ ~override/z0sbga03.sto~
+	ADD_STORE_ITEM ~SCRL66~ LAST #1 #1 #0 ~IDENTIFIED~ (1)
+	ADD_STORE_ITEM ~SCRL67~ LAST #1 #1 #0 ~IDENTIFIED~ (1)
+	ADD_STORE_ITEM ~SCRL3H~ LAST #1 #1 #0 ~IDENTIFIED~ (1)
+	ADD_STORE_ITEM ~SCRL95~ LAST #1 #1 #0 ~IDENTIFIED~ (1)
+	ADD_STORE_ITEM ~SCRL2G~ LAST #1 #1 #0 ~IDENTIFIED~ (3)
+	//ADD_STORE_ITEM ~SPWI419Z~ LAST #1 #1 #0 ~NONE~ (1)
+	ADD_STORE_ITEM ~SCRL6R~ LAST #1 #1 #0 ~IDENTIFIED~ (1)
+	ADD_STORE_ITEM ~SCRL2D~ LAST #1 #1 #0 ~IDENTIFIED~ (1)
+	ADD_STORE_ITEM ~SPWI507Z~ LAST #1 #1 #0 ~IDENTIFIED~ (1)
+	ADD_STORE_ITEM ~SCRL5O~ LAST #1 #1 #0 ~IDENTIFIED~ (1)
+	ADD_STORE_ITEM ~SCRL5P~ LAST #1 #1 #0 ~IDENTIFIED~ (1)
+	//ADD_STORE_ITEM ~SPWI512Z~ LAST #1 #1 #0 ~NONE~ (1)
+	//ADD_STORE_ITEM ~SPWI513Z~ LAST #1 #1 #0 ~NONE~ (1)
+	ADD_STORE_ITEM ~SCRL6X~ LAST #1 #1 #0 ~IDENTIFIED~ (1)
+	ADD_STORE_ITEM ~SCRL7C~ LAST #1 #1 #0 ~IDENTIFIED~ (1)
+	//ADD_STORE_ITEM ~SPWI516Z~ LAST #1 #1 #0 ~NONE~ (1)
+	ADD_STORE_ITEM ~SCRL7B~ LAST #1 #1 #0 ~IDENTIFIED~ (1)
+	//ADD_STORE_ITEM ~SPWI524Z~ LAST #1 #1 #0 ~NONE~ (1)
+	//ADD_STORE_ITEM ~~ LAST #1 #1 #0 ~NONE~ (1)
+	//ADD_STORE_ITEM ~~ LAST #1 #1 #0 ~NONE~ (1)
+
+COPY_EXISTING ~BDKEYR.sto~ ~override/IWKEYR.sto~
+COPY_EXISTING ~BDKEYR.itm~ ~override/IWKEYR.itm~
+	WRITE_LONG 0x34 1500
+	READ_BYTE  0x18 bitw
+	LPF GET_BIT INT_VAR number = bitw RET bit_value END
+	PATCH_IF ( bit_value ) BEGIN WRITE_BYTE 0x18 ( bitw - 1 ) END
+
+
+
+
+
+VERBOSE
+PRINT ~Stores installation complete...~
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,131 @@
+/*IF
+	!Global("TEAM_10","MYAREA",0)
+THEN
+	RESPONSE #100
+		ChangeCurrentScript("")
+END*/
+
+IF
+	!Global("TEAM_10","MYAREA",0)
+THEN
+	RESPONSE #100
+		DestroySelf()
+END
+
+IF
+	Global("TEAM_10","MYAREA",0)
+	OpenState("AR5004_1A",TRUE)
+	OpenState("AR5004_2A",TRUE)
+	OpenState("AR5004_3A",TRUE)
+	OpenState("AR5004_4A",TRUE)
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		PlaySound("IW1000J")
+		SetGlobal("TEAM_7","MYAREA",1)
+		SetGlobal("TEAM_5","MYAREA",1)
+		SetGlobal("TEAM_8","MYAREA",1)
+		SetGlobal("TEAM_9","MYAREA",1)
+		SetGlobal("TEAM_10","MYAREA",1)
+		OpenDoor("AR5004_TeleportBlock")
+		AddXP2DA("IW2EX9A")
+		DisplayStringNoName(Myself,@26667)
+		StartCutScene("50cRokFA")
+		/* AddEndCutSceneMode */
+		EndCutSceneMode()
+		SetInterrupt(TRUE)
+END
+
+IF
+	!Global("TEAM_10","MYAREA",0)
+THEN
+	RESPONSE #100
+		DestroySelf()
+END
+
+IF
+	Global("TEAM_10","MYAREA",0)
+	OpenState("AR5004_1B",TRUE)
+	OpenState("AR5004_2B",TRUE)
+	OpenState("AR5004_3B",TRUE)
+	OpenState("AR5004_4B",TRUE)
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		PlaySound("IW1000J")
+		SetGlobal("TEAM_7","MYAREA",1)
+		SetGlobal("TEAM_5","MYAREA",1)
+		SetGlobal("TEAM_8","MYAREA",1)
+		SetGlobal("TEAM_9","MYAREA",1)
+		SetGlobal("TEAM_10","MYAREA",1)
+		OpenDoor("AR5004_TeleportBlock")
+		AddXP2DA("IW2EX9A")
+		DisplayStringNoName(Myself,@26667)
+		StartCutScene("50cRokFB")
+		/* AddEndCutSceneMode */
+		EndCutSceneMode()
+		SetInterrupt(TRUE)
+END
+
+IF
+	!Global("TEAM_10","MYAREA",0)
+THEN
+	RESPONSE #100
+		DestroySelf()
+END
+
+IF
+	Global("TEAM_10","MYAREA",0)
+	OpenState("AR5004_1C",TRUE)
+	OpenState("AR5004_2C",TRUE)
+	OpenState("AR5004_3C",TRUE)
+	OpenState("AR5004_4C",TRUE)
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		PlaySound("IW1000J")
+		SetGlobal("TEAM_7","MYAREA",1)
+		SetGlobal("TEAM_5","MYAREA",1)
+		SetGlobal("TEAM_8","MYAREA",1)
+		SetGlobal("TEAM_9","MYAREA",1)
+		SetGlobal("TEAM_10","MYAREA",1)
+		OpenDoor("AR5004_TeleportBlock")
+		AddXP2DA("IW2EX9A")
+		DisplayStringNoName(Myself,@26667)
+		StartCutScene("50cRokFC")
+		/* AddEndCutSceneMode */
+		EndCutSceneMode()
+		SetInterrupt(TRUE)
+END
+
+IF
+	!Global("TEAM_10","MYAREA",0)
+THEN
+	RESPONSE #100
+		DestroySelf()
+END
+
+IF
+	Global("TEAM_10","MYAREA",0)
+	OpenState("AR5004_1D",TRUE)
+	OpenState("AR5004_2D",TRUE)
+	OpenState("AR5004_3D",TRUE)
+	OpenState("AR5004_4D",TRUE)
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		PlaySound("IW1000J")
+		SetGlobal("TEAM_7","MYAREA",1)
+		SetGlobal("TEAM_5","MYAREA",1)
+		SetGlobal("TEAM_8","MYAREA",1)
+		SetGlobal("TEAM_9","MYAREA",1)
+		SetGlobal("TEAM_10","MYAREA",1)
+		OpenDoor("AR5004_TeleportBlock")
+		AddXP2DA("IW2EX9A")
+		DisplayStringNoName(Myself,@26667)
+		StartCutScene("50cRokFD")
+		/* AddEndCutSceneMode */
+		EndCutSceneMode()
+		SetInterrupt(TRUE)
+END
+

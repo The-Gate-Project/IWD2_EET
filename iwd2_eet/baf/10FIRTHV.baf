@@ -1,0 +1,32 @@
+IF
+	OR(2)
+		!Global("SPRITE_IS_DEADFirtha_Kerdos","GLOBAL",0)
+		!Global("AR1004_GOBLINS_CLEAR","GLOBAL",0)
+THEN
+	RESPONSE #100
+		DestroySelf()
+END
+
+IF
+	!GlobalTimerNotExpired("IwTimer18","LOCALS")
+	Global("AR1004_GOBLINS_CLEAR","GLOBAL",0)
+	Global("SPRITE_IS_DEADFirtha_Kerdos","GLOBAL",0)
+	Detect([PC])
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,@2806)
+		SetGlobalTimerRandom("IwTimer18","LOCALS",10,15)
+	RESPONSE #100
+		DisplayStringHead(Myself,@2807)
+		SetGlobalTimerRandom("IwTimer18","LOCALS",10,15)
+	RESPONSE #100
+		DisplayStringHead(Myself,@2810)
+		SetGlobalTimerRandom("IwTimer18","LOCALS",10,15)
+	RESPONSE #100
+		DisplayStringHead(Myself,@2811)
+		SetGlobalTimerRandom("IwTimer18","LOCALS",10,15)
+	RESPONSE #100
+		DisplayStringHead(Myself,@3105)
+		SetGlobalTimerRandom("IwTimer18","LOCALS",10,15)
+END
+

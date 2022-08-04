@@ -1,0 +1,37 @@
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("Yxbudurzmutkimdu")
+		//SpellHitEffectSprite(Myself,Myself,PORTAL,0)
+		CreateVisualEffectObject("PORTALH",Myself)
+		MultiPlayerSync()
+		//DestroySelf()
+		
+		ApplySpellRES("idinvis6",Myself)
+		SmallWait(10)
+		
+		EndCutSceneMode()
+		DestroySelf()
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("Tutuplimbobo")
+		//SpellHitEffectSprite(Myself,Myself,PORTAL,0)
+		CreateVisualEffectObject("PORTALH",Myself)
+		DestroySelf()
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("Pfinikmillillin")
+		//SpellHitEffectSprite(Myself,Myself,PORTAL,0)
+		CreateVisualEffectObject("PORTALH",Myself)
+		DestroySelf()
+END
+

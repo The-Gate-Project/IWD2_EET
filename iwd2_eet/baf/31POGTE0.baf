@@ -1,0 +1,18 @@
+IF
+	OR(2)
+		Opened([PC])
+		Opened([ANYONE])
+THEN
+	RESPONSE #100
+		SetGlobal("AR3000_Door1_MainGate","GLOBAL",1)
+END
+
+IF
+	OpenState(Myself,FALSE)
+	!Global("AR3000_Door1_MainGate","GLOBAL",0)
+THEN
+	RESPONSE #100
+		Unlock(Myself)
+		OpenDoor(Myself)
+END
+

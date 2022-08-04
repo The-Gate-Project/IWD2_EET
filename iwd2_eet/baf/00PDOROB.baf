@@ -1,0 +1,11 @@
+IF
+	!Global("00PDOROB_INACTIVE","MYAREA",1)
+	OpenState(Myself,TRUE)
+	//!CheckDoorFlags(Myself,BROKEN)
+THEN
+	RESPONSE #100
+		//SetDoorFlag(Myself,BROKEN,TRUE)
+		Lock(Myself)
+		SetGlobal("00PDOROB_INACTIVE","MYAREA",1)
+END
+

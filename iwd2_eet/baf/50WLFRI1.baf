@@ -1,0 +1,21 @@
+IF
+	!IsActive(Myself)
+	GlobalGT("5003_WWOLF_DEAD","GLOBAL",0)
+THEN
+	RESPONSE #100
+		Activate(Myself)
+		SetGlobal("IwIHidden","LOCALS",0)
+		IncrementGlobal("5003_WWOLF_DEAD","GLOBAL",-1)
+		FaceObject([PC])
+		//HideCreature(Myself,FALSE)
+		ApplySpellRES("idinvis5",Myself)
+		Continue()
+END
+
+IF
+	!IsActive(Myself)
+THEN
+	RESPONSE #100
+		NoAction()
+END
+

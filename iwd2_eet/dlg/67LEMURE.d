@@ -1,0 +1,11 @@
+BEGIN ~67LEMURE~
+
+IF ~NumTimesTalkedTo(0)~ THEN BEGIN 0
+  SAY @34085
+  IF ~~ THEN EXIT
+END
+
+IF ~NumTimesTalkedToGT(0)~ THEN BEGIN 1
+  SAY @34087
+  IF ~~ THEN EXIT
+END

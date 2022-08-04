@@ -1,0 +1,40 @@
+IF
+	!GlobalTimerNotExpired("IwTimer67","LOCALS")
+THEN
+	RESPONSE #200
+		SetGlobal("Priority","LOCALS",0)
+		SetGlobalTimer("IwTimer67","LOCALS",60)
+	RESPONSE #100
+		SetGlobal("Priority","LOCALS",1)
+		SetGlobalTimer("IwTimer67","LOCALS",60)
+END
+
+IF
+	StateCheck(Myself,STATE_PANIC)
+THEN
+	RESPONSE #100
+		RandomWalkContinuous()
+END
+
+IF
+	Global("Priority","LOCALS",0)
+	OR(2)
+		See("Iselore")
+		See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		EquipMostDamagingMelee()
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	Global("Priority","LOCALS",1)
+	OR(2)
+		See(NearestEnemyOf(Myself))
+		See("Iselore")
+THEN
+	RESPONSE #100
+		EquipMostDamagingMelee()
+		AttackOneRound(LastSeenBy(Myself))
+END
+

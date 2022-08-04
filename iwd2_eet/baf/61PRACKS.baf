@@ -1,0 +1,44 @@
+IF
+	Clicked([ANYONE])
+	OpenState("AR6101_Door1",FALSE)
+THEN
+	RESPONSE #100
+		SetGlobal("RackVictim","MYAREA",1)
+		ActionOverride(LastTrigger,MoveToPoint([2920.1465]))
+		Continue()
+END
+
+IF
+	OR(2)
+		Clicked([ANYONE])
+		Global("RackVictim","MYAREA",1)
+	GlobalLT("61NheeroGateQuest","GLOBAL",3)
+	Range(LastTrigger,3)
+	Global("61PrisonAlarmRang","GLOBAL",0)
+THEN
+	RESPONSE #100
+		ReallyForceSpell(LastTrigger,WIZARD_DISPEL_MAGIC)
+		Wait(1)
+		ReallyForceSpell(LastTrigger,CLERIC_SYMBOL_FEAR)
+		Continue()
+END
+
+IF
+	OR(2)
+		Clicked([ANYONE])
+		Global("RackVictim","MYAREA",1)
+	GlobalLT("61NheeroGateQuest","GLOBAL",3)
+	Range(LastTrigger,3)
+THEN
+	RESPONSE #100
+		Unlock("AR6101_Door1")
+		OpenDoor("AR6101_Door1")
+		AddJournalEntry(@34983,QUEST)
+		AddXP2DA("IW2EX12E")
+		DisplayStringNoName(Player1,@35013) //[PC]
+		SetGlobal("61NheeroGateQuest","GLOBAL",3)
+		SetGlobal("RackVictim","MYAREA",0)
+		//ChangeCurrentScript("")
+		TriggerActivation(Myself,FALSE)
+END
+

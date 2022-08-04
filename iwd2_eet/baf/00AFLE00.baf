@@ -1,0 +1,8 @@
+IF
+	!Allegiance(Myself,ENEMY)
+	See([ENEMY])
+THEN
+	RESPONSE #100
+		RunAwayFrom(LastSeenBy(Myself),45)
+END
+

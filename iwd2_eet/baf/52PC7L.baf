@@ -1,0 +1,12 @@
+IF
+	Global("52Morohem_Master","GLOBAL",7)
+	!Global("WATCHING_PLAYER","MYAREA",0)
+	//!CheckDoorFlags(Myself,DOORLOCKED)
+	!Global("AR5202_Switch11_locked","MYAREA",1)
+	OpenState(Myself,TRUE)
+THEN
+	RESPONSE #100
+		Lock(Myself)
+		SetGlobal("AR5202_Switch11_locked","MYAREA",1)
+END
+

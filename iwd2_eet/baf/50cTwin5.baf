@@ -1,0 +1,34 @@
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("ISAIR")
+		//SpellHitEffectSprite(Myself,Myself,DIMENSION_DOOR_ORIGIN,0)
+		CreateVisualEffectObject("SPDIMNDR",Myself)
+		//HideCreature(Myself,TRUE)
+		ApplySpellRES("idinvis4",Myself)
+		Wait(1)
+		//MoveViewPointUntilDone([2150.823],25)
+		MoveViewPoint([2150.823],25)
+		Wait(1)
+		UnhideGUI()
+		SetGlobal("ZOMBIE_ATTACK","MYAREA",1)
+		EndCutSceneMode()
+		DestroySelf()
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("MADAE")
+		//SpellHitEffectSprite(Myself,Myself,DIMENSION_DOOR_ORIGIN,0)
+		CreateVisualEffectObject("SPDIMNDR",Myself)
+		
+		SmallWait(10)
+		
+		//HideCreature(Myself,TRUE)
+		ApplySpellRES("idinvis4",Myself)
+		DestroySelf()
+END
+

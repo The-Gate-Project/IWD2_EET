@@ -1,0 +1,9 @@
+IF
+	Global("50Kyosti","GLOBAL",2)
+THEN
+	RESPONSE #100
+		UseItem("z1veira2",Myself)
+		Wait(1)
+		DestroySelf()
+END
+

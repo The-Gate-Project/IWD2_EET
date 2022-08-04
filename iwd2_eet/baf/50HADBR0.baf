@@ -1,0 +1,417 @@
+//BLOCK SET_VARS
+IF
+	!Global("SET_50HADBR0","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,3)
+		SetGlobal("SET_50HADBR0","LOCALS",1)
+		SetInterrupt(TRUE)
+END
+//BLOCKEND
+
+IF
+	StateCheck(Myself,STATE_PANIC)
+THEN
+	RESPONSE #100
+		RandomWalkContinuous()
+END
+
+IF
+	!GlobalTimerNotExpired("IWD_Rest","LOCALS")
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IWD_Rest","LOCALS",EIGHT_HOURS)
+		ApplySpell(Myself,RESTORE_FULL_HEALTH)
+		Rest()
+END
+
+IF
+	HaveSpell(CLERIC_CURE_SERIOUS_WOUNDS)
+	HPPercentLT(Myself,60)
+	!StateCheck(Myself,STATE_REALLY_DEAD)
+THEN
+	RESPONSE #100
+		Spell(Myself,CLERIC_CURE_SERIOUS_WOUNDS)
+		Wait(1)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_MEDIUM_WOUNDS)
+	HPPercentLT(Myself,75)
+	!StateCheck(Myself,STATE_REALLY_DEAD)
+THEN
+	RESPONSE #100
+		Spell(Myself,CLERIC_CURE_MEDIUM_WOUNDS)
+		Wait(1)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_LIGHT_WOUNDS)
+	HPPercentLT(Myself,90)
+	!StateCheck(Myself,STATE_REALLY_DEAD)
+THEN
+	RESPONSE #100
+		Spell(Myself,CLERIC_CURE_LIGHT_WOUNDS)
+		Wait(1)
+END
+
+/*IF
+	HaveSpell(CLERIC_CURE_SERIOUS_WOUNDS)  // SPPR401.SPL (Лечение серьезных ран)
+	See("02_50BARLD_01",0)
+	HPLostGT(LastSeenBy(Myself),37)
+	IsSpellTargetValid(LastSeenBy(Myself),CLERIC_CURE_SERIOUS_WOUNDS,0)  // SPPR401.SPL (Лечение серьезных ран)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_SERIOUS_WOUNDS)  // SPPR401.SPL (Лечение серьезных ран)
+		Wait(1)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_MODERATE_WOUNDS)  // SPPR214.SPL (Лечение средних ран)
+	See("02_50BARLD_01",0)
+	HPLostGT(LastSeenBy(Myself),18)
+	IsSpellTargetValid(LastSeenBy(Myself),CLERIC_CURE_MODERATE_WOUNDS,0)  // SPPR214.SPL (Лечение средних ран)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_MODERATE_WOUNDS)  // SPPR214.SPL (Лечение средних ран)
+		Wait(1)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_LIGHT_WOUNDS)  // SPPR103.SPL (Лечение легких ран)
+	See("02_50BARLD_01",0)
+	HPLostGT(LastSeenBy(Myself),8)
+	IsSpellTargetValid(LastSeenBy(Myself),CLERIC_CURE_LIGHT_WOUNDS,0)  // SPPR103.SPL (Лечение легких ран)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_LIGHT_WOUNDS)  // SPPR103.SPL (Лечение легких ран)
+		Wait(1)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_SERIOUS_WOUNDS)  // SPPR401.SPL (Лечение серьезных ран)
+	See("02_50BARWA_02",0)
+	HPLostGT(LastSeenBy(Myself),37)
+	IsSpellTargetValid(LastSeenBy(Myself),CLERIC_CURE_SERIOUS_WOUNDS,0)  // SPPR401.SPL (Лечение серьезных ран)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_SERIOUS_WOUNDS)  // SPPR401.SPL (Лечение серьезных ран)
+		Wait(1)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_MODERATE_WOUNDS)  // SPPR214.SPL (Лечение средних ран)
+	See("02_50BARWA_02",0)
+	HPLostGT(LastSeenBy(Myself),18)
+	IsSpellTargetValid(LastSeenBy(Myself),CLERIC_CURE_MODERATE_WOUNDS,0)  // SPPR214.SPL (Лечение средних ран)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_MODERATE_WOUNDS)  // SPPR214.SPL (Лечение средних ран)
+		Wait(1)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_LIGHT_WOUNDS)  // SPPR103.SPL (Лечение легких ран)
+	See("02_50BARWA_02",0)
+	HPLostGT(LastSeenBy(Myself),8)
+	IsSpellTargetValid(LastSeenBy(Myself),CLERIC_CURE_LIGHT_WOUNDS,0)  // SPPR103.SPL (Лечение легких ран)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_LIGHT_WOUNDS)  // SPPR103.SPL (Лечение легких ран)
+		Wait(1)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_SERIOUS_WOUNDS)  // SPPR401.SPL (Лечение серьезных ран)
+	See("02_50BARWA_05",0)
+	HPLostGT(LastSeenBy(Myself),37)
+	IsSpellTargetValid(LastSeenBy(Myself),CLERIC_CURE_SERIOUS_WOUNDS,0)  // SPPR401.SPL (Лечение серьезных ран)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_SERIOUS_WOUNDS)  // SPPR401.SPL (Лечение серьезных ран)
+		Wait(1)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_MODERATE_WOUNDS)  // SPPR214.SPL (Лечение средних ран)
+	See("02_50BARWA_05",0)
+	HPLostGT(LastSeenBy(Myself),18)
+	IsSpellTargetValid(LastSeenBy(Myself),CLERIC_CURE_MODERATE_WOUNDS,0)  // SPPR214.SPL (Лечение средних ран)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_MODERATE_WOUNDS)  // SPPR214.SPL (Лечение средних ран)
+		Wait(1)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_LIGHT_WOUNDS)  // SPPR103.SPL (Лечение легких ран)
+	See("02_50BARWA_05",0)
+	HPLostGT(LastSeenBy(Myself),8)
+	IsSpellTargetValid(LastSeenBy(Myself),CLERIC_CURE_LIGHT_WOUNDS,0)  // SPPR103.SPL (Лечение легких ран)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_LIGHT_WOUNDS)  // SPPR103.SPL (Лечение легких ран)
+		Wait(1)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_SERIOUS_WOUNDS)  // SPPR401.SPL (Лечение серьезных ран)
+	See("02_50BARW2_03",0)
+	HPLostGT(LastSeenBy(Myself),37)
+	IsSpellTargetValid(LastSeenBy(Myself),CLERIC_CURE_SERIOUS_WOUNDS,0)  // SPPR401.SPL (Лечение серьезных ран)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_SERIOUS_WOUNDS)  // SPPR401.SPL (Лечение серьезных ран)
+		Wait(1)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_MODERATE_WOUNDS)  // SPPR214.SPL (Лечение средних ран)
+	See("02_50BARW2_03",0)
+	HPLostGT(LastSeenBy(Myself),18)
+	IsSpellTargetValid(LastSeenBy(Myself),CLERIC_CURE_MODERATE_WOUNDS,0)  // SPPR214.SPL (Лечение средних ран)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_MODERATE_WOUNDS)  // SPPR214.SPL (Лечение средних ран)
+		Wait(1)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_LIGHT_WOUNDS)  // SPPR103.SPL (Лечение легких ран)
+	See("02_50BARW2_03",0)
+	HPLostGT(LastSeenBy(Myself),8)
+	IsSpellTargetValid(LastSeenBy(Myself),CLERIC_CURE_LIGHT_WOUNDS,0)  // SPPR103.SPL (Лечение легких ран)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_LIGHT_WOUNDS)  // SPPR103.SPL (Лечение легких ран)
+		Wait(1)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_SERIOUS_WOUNDS)  // SPPR401.SPL (Лечение серьезных ран)
+	See("02_50BARW2_04",0)
+	HPLostGT(LastSeenBy(Myself),37)
+	IsSpellTargetValid(LastSeenBy(Myself),CLERIC_CURE_SERIOUS_WOUNDS,0)  // SPPR401.SPL (Лечение серьезных ран)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_SERIOUS_WOUNDS)  // SPPR401.SPL (Лечение серьезных ран)
+		Wait(1)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_MODERATE_WOUNDS)  // SPPR214.SPL (Лечение средних ран)
+	See("02_50BARW2_04",0)
+	HPLostGT(LastSeenBy(Myself),18)
+	IsSpellTargetValid(LastSeenBy(Myself),CLERIC_CURE_MODERATE_WOUNDS,0)  // SPPR214.SPL (Лечение средних ран)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_MODERATE_WOUNDS)  // SPPR214.SPL (Лечение средних ран)
+		Wait(1)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_LIGHT_WOUNDS)  // SPPR103.SPL (Лечение легких ран)
+	See("02_50BARW2_04",0)
+	HPLostGT(LastSeenBy(Myself),8)
+	IsSpellTargetValid(LastSeenBy(Myself),CLERIC_CURE_LIGHT_WOUNDS,0)  // SPPR103.SPL (Лечение легких ран)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_LIGHT_WOUNDS)  // SPPR103.SPL (Лечение легких ран)
+		Wait(1)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_SERIOUS_WOUNDS)  // SPPR401.SPL (Лечение серьезных ран)
+	See("02_50BARW2_07",0)
+	HPLostGT(LastSeenBy(Myself),37)
+	IsSpellTargetValid(LastSeenBy(Myself),CLERIC_CURE_SERIOUS_WOUNDS,0)  // SPPR401.SPL (Лечение серьезных ран)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_SERIOUS_WOUNDS)  // SPPR401.SPL (Лечение серьезных ран)
+		Wait(1)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_MODERATE_WOUNDS)  // SPPR214.SPL (Лечение средних ран)
+	See("02_50BARW2_07",0)
+	HPLostGT(LastSeenBy(Myself),18)
+	IsSpellTargetValid(LastSeenBy(Myself),CLERIC_CURE_MODERATE_WOUNDS,0)  // SPPR214.SPL (Лечение средних ран)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_MODERATE_WOUNDS)  // SPPR214.SPL (Лечение средних ран)
+		Wait(1)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_LIGHT_WOUNDS)  // SPPR103.SPL (Лечение легких ран)
+	See("02_50BARW2_07",0)
+	HPLostGT(LastSeenBy(Myself),8)
+	IsSpellTargetValid(LastSeenBy(Myself),CLERIC_CURE_LIGHT_WOUNDS,0)  // SPPR103.SPL (Лечение легких ран)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_LIGHT_WOUNDS)  // SPPR103.SPL (Лечение легких ран)
+		Wait(1)
+END*/
+
+IF
+	HasItem("SLAYLIVE",Myself)
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		AttackOneRound(LastSeenBy(Myself))
+END
+//BLOCK SPL_1
+/*IF
+	ForceMarkedSpell(MARKED_SPELL)
+	SetSpellTarget(Nothing)
+	See(NearestEnemyOf(Myself),0)
+THEN
+	RESPONSE #100
+		MarkSpellAndObject("16101515",Myself,SPELLCAST_IGNORE_SEE | SPELLCAST_IGNORE_VALID_SPELL_TARGET)  // [CLERIC_CIRCLE_OF_BLADES, CLERIC_SLAY_LIVING]
+		MarkSpellAndObject("1612",LastMarkedObject,SPELLCAST_IGNORE_SEE | SPELLCAST_IGNORE_VALID_SPELL_TARGET)  // [CLERIC_SPIRITUAL_WRATH]
+		MarkSpellAndObject("1415",Myself,SPELLCAST_IGNORE_SEE | SPELLCAST_IGNORE_VALID_SPELL_TARGET)  // [CLERIC_BLOOD_RAGE]
+		Continue()
+END
+
+IF
+	!IsMarkedSpell(MARKED_SPELL)
+THEN
+	RESPONSE #100
+		Spell(SpellTarget,MARKED_SPELL)
+		WaitAnimation(Myself,WALK)
+		WaitAnimation(Myself,CONJURE)
+		WaitAnimation(Myself,CAST)
+		ForceMarkedSpell(MARKED_SPELL)
+END*/
+/*IF
+	GlobalLT("SSPELLS_1_RANDOM_CAST","LOCALS",4)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,3)
+		Continue()
+END*/
+//1 - Myself - [CLERIC_CIRCLE_OF_BLADES, CLERIC_SLAY_LIVING]
+IF
+	RandomNum(2,1)
+	Global("SSPELLS_1_RANDOM_CAST","LOCALS",1)
+	HaveSpell(CLERIC_GLOBE_OF_BLADES)
+	See(NearestEnemyOf(Myself))
+	!CheckStatGT(Myself,0,CLERIC_BLADE_BARRIER)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,3)
+		Spell(Myself,CLERIC_GLOBE_OF_BLADES)
+		Wait(1)
+END
+
+IF
+	RandomNum(2,2)
+	Global("SSPELLS_1_RANDOM_CAST","LOCALS",1)
+	HaveSpell(CLERIC_SLAY_LIVING)
+	See(NearestEnemyOf(Myself))
+	!HasItem("SLAYLIVE",Myself)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,3)
+		Spell(Myself,CLERIC_SLAY_LIVING)
+		Wait(1)
+END
+//2 - LastMarkedObject - [CLERIC_SPIRITUAL_WRATH]
+IF
+	Global("SSPELLS_1_RANDOM_CAST","LOCALS",2)
+	HaveSpell(CLERIC_BOLT_OF_GLORY)
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,3)
+		Spell(LastSeenBy(Myself),CLERIC_BOLT_OF_GLORY)
+		Wait(1)
+END
+//3 - Myself - [CLERIC_BLOOD_RAGE]
+IF
+	Global("SSPELLS_1_RANDOM_CAST","LOCALS",3)
+	HaveSpellRES("IWPR415")
+	See(NearestEnemyOf(Myself))
+	!CheckSpellState(Myself,BLOOD_RAGE)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,3)
+		SpellRES("IWPR415",Myself)
+		Wait(1)
+END
+//BLOCK NO_RND
+//1 - Myself - [CLERIC_CIRCLE_OF_BLADES, CLERIC_SLAY_LIVING]
+IF
+	HaveSpell(CLERIC_GLOBE_OF_BLADES)
+	See(NearestEnemyOf(Myself))
+	!CheckStatGT(Myself,0,CLERIC_BLADE_BARRIER)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,3)
+		Spell(Myself,CLERIC_GLOBE_OF_BLADES)
+		Wait(1)
+END
+
+IF
+	HaveSpell(CLERIC_SLAY_LIVING)
+	See(NearestEnemyOf(Myself))
+	!HasItem("SLAYLIVE",Myself)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,3)
+		Spell(Myself,CLERIC_SLAY_LIVING)
+		Wait(1)
+END
+//2 - LastMarkedObject - [CLERIC_SPIRITUAL_WRATH]
+IF
+	HaveSpell(CLERIC_BOLT_OF_GLORY)
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,3)
+		Spell(LastSeenBy(Myself),CLERIC_BOLT_OF_GLORY)
+		Wait(1)
+END
+//3 - Myself - [CLERIC_BLOOD_RAGE]
+IF
+	HaveSpellRES("IWPR415")
+	See(NearestEnemyOf(Myself))
+	!CheckSpellState(Myself,BLOOD_RAGE)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,3)
+		SpellRES("IWPR415",Myself)
+		Wait(1)
+END
+//BLOCKEND
+//BLOCKEND
+/*IF
+	HasItem("SLiving",Myself)  // Убить Живое
+	See(NearestEnemyOf(Myself),0)
+THEN
+	RESPONSE #100
+		AttackOneRound(LastMarkedObject)
+END
+
+IF
+	ForceMarkedSpell(MARKED_SPELL)
+	SetSpellTarget(Nothing)
+	See(NearestEnemyOf(Myself),0)
+THEN
+	RESPONSE #100
+		MarkSpellAndObject("1515",Myself,SPELLCAST_IGNORE_SEE | SPELLCAST_IGNORE_VALID_SPELL_TARGET)  // [CLERIC_SLAY_LIVING]
+		MarkSpellAndObject("1612",LastMarkedObject,SPELLCAST_IGNORE_SEE | SPELLCAST_IGNORE_VALID_SPELL_TARGET)  // [CLERIC_SPIRITUAL_WRATH]
+		MarkSpellAndObject("1415",Myself,SPELLCAST_IGNORE_SEE | SPELLCAST_IGNORE_VALID_SPELL_TARGET)  // [CLERIC_BLOOD_RAGE]
+		Continue()
+END
+
+IF
+	!IsMarkedSpell(MARKED_SPELL)
+THEN
+	RESPONSE #100
+		Spell(SpellTarget,MARKED_SPELL)
+		Wait(1)
+		ForceMarkedSpell(MARKED_SPELL)
+END*/
+

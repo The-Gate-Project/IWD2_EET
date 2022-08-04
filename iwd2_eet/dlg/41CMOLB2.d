@@ -1,0 +1,50 @@
+BEGIN ~41CMOLB2~
+
+IF ~False()~ THEN BEGIN 0
+  SAY @40993
+  IF ~~ THEN GOTO 2
+END
+
+IF ~~ THEN BEGIN 1
+  SAY @40995
+  IF ~~ THEN GOTO 2
+END
+
+IF ~~ THEN BEGIN 2
+  SAY @40996
+  IF ~~ THEN EXTERN ~41CMOLB1~ 2
+END
+
+IF ~~ THEN BEGIN 3
+  SAY @40997
+  IF ~Gender(LastTalkedToBy,MALE)~ THEN EXTERN ~41CMOLB1~ 3
+  IF ~!Gender(LastTalkedToBy,MALE)~ THEN EXTERN ~41CMOLB1~ 4
+END
+
+IF ~~ THEN BEGIN 4
+  SAY @40998
+  IF ~NumInParty(6)~ THEN EXTERN ~41CMOLB1~ 5
+  IF ~NumInParty(5)~ THEN EXTERN ~41CMOLB1~ 6
+  IF ~NumInParty(4)~ THEN EXTERN ~41CMOLB1~ 7
+  IF ~NumInParty(3)~ THEN EXTERN ~41CMOLB1~ 8
+  IF ~NumInParty(2)~ THEN EXTERN ~41CMOLB1~ 9
+  IF ~NumInParty(1)~ THEN EXTERN ~41CMOLB1~ 10
+END
+
+IF ~~ THEN BEGIN 5
+  SAY @40999
+  IF ~~ THEN GOTO 6
+END
+
+IF ~~ THEN BEGIN 6
+  SAY @41000
+  IF ~~ THEN DO ~//JumpToPointInstant(LastTalkedToBy,[1950.2530])
+                 StartCutSceneMode()
+                 StartCutScene("41cMOLoc")~ EXIT
+END
+
+IF ~~ THEN BEGIN 7
+  SAY @41001
+  IF ~~ THEN DO ~StartCutSceneMode()
+                 StartCutScene("41cMOLo2")~ EXIT
+END

@@ -1,0 +1,410 @@
+IF
+	GlobalGT("52Morohem_Master","GLOBAL",2)
+THEN
+	RESPONSE #100
+		ChangeAIScript("52Moroh3",SPECIFICS)
+END
+
+IF
+	Global("WATCHING_PLAYER","MYAREA",1)
+	StateCheck(Player1,STATE_REALLY_DEAD)
+THEN
+	RESPONSE #100
+		SetGlobal("WATCHING_PLAYER","MYAREA",0)
+		StartCutScene("52cC2r")
+END
+
+IF
+	Global("WATCHING_PLAYER","MYAREA",2)
+	StateCheck(Player2,STATE_REALLY_DEAD)
+THEN
+	RESPONSE #100
+		SetGlobal("WATCHING_PLAYER","MYAREA",0)
+		StartCutScene("52cC2r")
+END
+
+IF
+	Global("WATCHING_PLAYER","MYAREA",3)
+	StateCheck(Player3,STATE_REALLY_DEAD)
+THEN
+	RESPONSE #100
+		SetGlobal("WATCHING_PLAYER","MYAREA",0)
+		StartCutScene("52cC2r")
+END
+
+IF
+	Global("WATCHING_PLAYER","MYAREA",4)
+	StateCheck(Player4,STATE_REALLY_DEAD)
+THEN
+	RESPONSE #100
+		SetGlobal("WATCHING_PLAYER","MYAREA",0)
+		StartCutScene("52cC2r")
+END
+
+IF
+	Global("WATCHING_PLAYER","MYAREA",5)
+	StateCheck(Player5,STATE_REALLY_DEAD)
+THEN
+	RESPONSE #100
+		SetGlobal("WATCHING_PLAYER","MYAREA",0)
+		StartCutScene("52cC2r")
+END
+
+IF
+	Global("WATCHING_PLAYER","MYAREA",6)
+	StateCheck(Player6,STATE_REALLY_DEAD)
+THEN
+	RESPONSE #100
+		SetGlobal("WATCHING_PLAYER","MYAREA",0)
+		StartCutScene("52cC2r")
+END
+
+IF
+	GlobalGT("C2_MONK_DEAD","GLOBAL",0)
+	GlobalGT("CHAMBER_2_MONK_CNT","MYAREA",0)
+THEN
+	RESPONSE #100
+		IncrementGlobal("C2_MONK_DEAD","GLOBAL",-1)
+		IncrementGlobal("CHAMBER_2_MONK_CNT","MYAREA",-1)
+		Continue()
+END
+
+IF
+	GlobalGT("C2_MONK_DEAD","GLOBAL",0)
+	Global("CHAMBER_2_MONK_CNT","MYAREA",0)
+THEN
+	RESPONSE #100
+		SetGlobal("C2_MONK_DEAD","GLOBAL",0)
+		Continue()
+END
+
+IF
+	GlobalLT("CHAMBER_2_MONK_CNT","MYAREA",5)
+	GlobalGT("CHAMBER_2_MONK_REQUEST","MYAREA",0)
+	!Global("WATCHING_PLAYER","MYAREA",0)
+	Global("52Morohem_Master","GLOBAL",2)
+THEN
+	RESPONSE #100
+		CreateCreature("52MNKSH",[1086.1389],2)
+		//SpellHitEffectSprite(LastMarkedObject,LastMarkedObject,DEATH_SPELL,0)
+		CreateVisualEffectObject("DSPELLH","52MNKSH")
+		//HideCreature(LastMarkedObject,FALSE)
+		ActionOverride("52MNKSH",ApplySpellRES("idinvis5",Myself))
+		IncrementGlobal("CHAMBER_2_MONK_REQUEST","MYAREA",-1)
+		IncrementGlobal("CHAMBER_2_MONK_CNT","MYAREA",1)
+END
+
+IF
+	Global("C_2_MASTERED","MYAREA",0)
+	Global("WATCHING_PLAYER","MYAREA",1)
+	Global("CHAMBER_2_TERROR_LEVEL","MYAREA",4)
+THEN
+	RESPONSE #100
+		StartCutSceneMode()
+		SetGlobal("C_2_MASTERED","MYAREA",1)
+		ClearAllActions()
+		MultiPlayerSync()
+		Wait(1)
+		FadeToColor([0.0],0)
+		Wait(1)
+		//DropInventoryEX(Player1)
+		ActionOverride(Player1,DropInventory())
+		ActionOverride(Player1,ApplySpell(Myself,DISPEL_NO_SAVE))
+		MultiPlayerSync()
+		SetGlobal("WATCHING_PLAYER","MYAREA",0)
+		ActionOverride(Player1,JumpToObject("Target")) 
+		MultiPlayerSync()
+		SetGlobal("52Morohem_Master","GLOBAL",3)
+		Unlock("AR5202_Door3")
+		OpenDoor("AR5202_Door3")
+		AddXP2DA("IW2EX10A")
+		DisplayStringNoName(Player1,@34471)
+		Wait(1)
+		/*ChangeEnemyAlly(Player2,PC)
+		ChangeEnemyAlly(Player3,PC)
+		ChangeEnemyAlly(Player4,PC)
+		ChangeEnemyAlly(Player5,PC)
+		ChangeEnemyAlly(Player6,PC)*/
+		ActionOverride(Player2,ApplySpellRES("IDRUNSEL",Myself))
+		ActionOverride(Player3,ApplySpellRES("IDRUNSEL",Myself))
+		ActionOverride(Player4,ApplySpellRES("IDRUNSEL",Myself))
+		ActionOverride(Player5,ApplySpellRES("IDRUNSEL",Myself))
+		ActionOverride(Player6,ApplySpellRES("IDRUNSEL",Myself))
+		MultiPlayerSync()
+		//ResetJoinRequests()
+		MultiPlayerSync()
+		MoveViewObject(Player1,INSTANT)
+		MultiPlayerSync()
+		MultiPlayerSync()
+		FadeFromColor([0.0],0)
+		Wait(1)
+		MultiPlayerSync()
+		EndCutSceneMode()
+END
+
+IF
+	Global("C_2_MASTERED","MYAREA",0)
+	Global("WATCHING_PLAYER","MYAREA",2)
+	Global("CHAMBER_2_TERROR_LEVEL","MYAREA",4)
+THEN
+	RESPONSE #100
+		StartCutSceneMode()
+		SetGlobal("C_2_MASTERED","MYAREA",1)
+		ClearAllActions()
+		MultiPlayerSync()
+		Wait(1)
+		FadeToColor([0.0],0)
+		Wait(1)
+		ActionOverride(Player2,DropInventory())
+		ActionOverride(Player2,ApplySpell(Myself,DISPEL_NO_SAVE))
+		MultiPlayerSync()
+		SetGlobal("WATCHING_PLAYER","MYAREA",0)
+		ActionOverride(Player2,JumpToObject("Target")) 
+		MultiPlayerSync()
+		SetGlobal("52Morohem_Master","GLOBAL",3)
+		Unlock("AR5202_Door3")
+		OpenDoor("AR5202_Door3")
+		AddXP2DA("IW2EX10A")
+		DisplayStringNoName(Player2,@34471)
+		Wait(1)
+		/*ChangeEnemyAlly(Player1,PC)
+		ChangeEnemyAlly(Player3,PC)
+		ChangeEnemyAlly(Player4,PC)
+		ChangeEnemyAlly(Player5,PC)
+		ChangeEnemyAlly(Player6,PC)*/
+		ActionOverride(Player1,ApplySpellRES("IDRUNSEL",Myself))
+		ActionOverride(Player3,ApplySpellRES("IDRUNSEL",Myself))
+		ActionOverride(Player4,ApplySpellRES("IDRUNSEL",Myself))
+		ActionOverride(Player5,ApplySpellRES("IDRUNSEL",Myself))
+		ActionOverride(Player6,ApplySpellRES("IDRUNSEL",Myself))
+		MultiPlayerSync()
+		//ResetJoinRequests()
+		MultiPlayerSync()
+		MoveViewObject(Player2,INSTANT)
+		MultiPlayerSync()
+		MultiPlayerSync()
+		FadeFromColor([0.0],0)
+		Wait(1)
+		MultiPlayerSync()
+		EndCutSceneMode()
+END
+
+IF
+	Global("C_2_MASTERED","MYAREA",0)
+	Global("WATCHING_PLAYER","MYAREA",3)
+	Global("CHAMBER_2_TERROR_LEVEL","MYAREA",4)
+THEN
+	RESPONSE #100
+		StartCutSceneMode()
+		SetGlobal("C_2_MASTERED","MYAREA",1)
+		ClearAllActions()
+		MultiPlayerSync()
+		Wait(1)
+		FadeToColor([0.0],0)
+		Wait(1)
+		ActionOverride(Player3,DropInventory())
+		ActionOverride(Player3,ApplySpell(Myself,DISPEL_NO_SAVE))
+		MultiPlayerSync()
+		SetGlobal("WATCHING_PLAYER","MYAREA",0)
+		ActionOverride(Player3,JumpToObject("Target")) 
+		MultiPlayerSync()
+		SetGlobal("52Morohem_Master","GLOBAL",3)
+		Unlock("AR5202_Door3")
+		OpenDoor("AR5202_Door3")
+		AddXP2DA("IW2EX10A")
+		DisplayStringNoName(Player3,@34471)
+		Wait(1)
+		/*ChangeEnemyAlly(Player1,PC)
+		ChangeEnemyAlly(Player2,PC)
+		ChangeEnemyAlly(Player4,PC)
+		ChangeEnemyAlly(Player5,PC)
+		ChangeEnemyAlly(Player6,PC)*/
+		ActionOverride(Player1,ApplySpellRES("IDRUNSEL",Myself))
+		ActionOverride(Player2,ApplySpellRES("IDRUNSEL",Myself))
+		ActionOverride(Player4,ApplySpellRES("IDRUNSEL",Myself))
+		ActionOverride(Player5,ApplySpellRES("IDRUNSEL",Myself))
+		ActionOverride(Player6,ApplySpellRES("IDRUNSEL",Myself))
+		MultiPlayerSync()
+		//ResetJoinRequests()
+		MultiPlayerSync()
+		MoveViewObject(Player3,INSTANT)
+		MultiPlayerSync()
+		MultiPlayerSync()
+		FadeFromColor([0.0],0)
+		Wait(1)
+		MultiPlayerSync()
+		EndCutSceneMode()
+END
+
+IF
+	Global("C_2_MASTERED","MYAREA",0)
+	Global("WATCHING_PLAYER","MYAREA",4)
+	Global("CHAMBER_2_TERROR_LEVEL","MYAREA",4)
+THEN
+	RESPONSE #100
+		StartCutSceneMode()
+		SetGlobal("C_2_MASTERED","MYAREA",1)
+		ClearAllActions()
+		MultiPlayerSync()
+		Wait(1)
+		FadeToColor([0.0],0)
+		Wait(1)
+		ActionOverride(Player4,DropInventory())
+		ActionOverride(Player4,ApplySpell(Myself,DISPEL_NO_SAVE))
+		MultiPlayerSync()
+		SetGlobal("WATCHING_PLAYER","MYAREA",0)
+		ActionOverride(Player4,JumpToObject("Target")) 
+		MultiPlayerSync()
+		SetGlobal("52Morohem_Master","GLOBAL",3)
+		Unlock("AR5202_Door3")
+		OpenDoor("AR5202_Door3")
+		AddXP2DA("IW2EX10A")
+		DisplayStringNoName(Player4,@34471)
+		Wait(1)
+		/*ChangeEnemyAlly(Player1,PC)
+		ChangeEnemyAlly(Player2,PC)
+		ChangeEnemyAlly(Player3,PC)
+		ChangeEnemyAlly(Player5,PC)
+		ChangeEnemyAlly(Player6,PC)*/
+		ActionOverride(Player1,ApplySpellRES("IDRUNSEL",Myself))
+		ActionOverride(Player2,ApplySpellRES("IDRUNSEL",Myself))
+		ActionOverride(Player3,ApplySpellRES("IDRUNSEL",Myself))
+		ActionOverride(Player5,ApplySpellRES("IDRUNSEL",Myself))
+		ActionOverride(Player6,ApplySpellRES("IDRUNSEL",Myself))
+		MultiPlayerSync()
+		//ResetJoinRequests()
+		MultiPlayerSync()
+		MoveViewObject(Player4,INSTANT)
+		MultiPlayerSync()
+		MultiPlayerSync()
+		FadeFromColor([0.0],0)
+		Wait(1)
+		MultiPlayerSync()
+		EndCutSceneMode()
+END
+
+IF
+	Global("C_2_MASTERED","MYAREA",0)
+	Global("WATCHING_PLAYER","MYAREA",5)
+	Global("CHAMBER_2_TERROR_LEVEL","MYAREA",4)
+THEN
+	RESPONSE #100
+		StartCutSceneMode()
+		SetGlobal("C_2_MASTERED","MYAREA",1)
+		ClearAllActions()
+		MultiPlayerSync()
+		Wait(1)
+		FadeToColor([0.0],0)
+		Wait(1)
+		ActionOverride(Player5,DropInventory())
+		ActionOverride(Player5,ApplySpell(Myself,DISPEL_NO_SAVE))
+		MultiPlayerSync()
+		SetGlobal("WATCHING_PLAYER","MYAREA",0)
+		ActionOverride(Player5,JumpToObject("Target")) 
+		MultiPlayerSync()
+		SetGlobal("52Morohem_Master","GLOBAL",3)
+		Unlock("AR5202_Door3")
+		OpenDoor("AR5202_Door3")
+		AddXP2DA("IW2EX10A")
+		DisplayStringNoName(Player5,@34471)
+		Wait(1)
+		/*ChangeEnemyAlly(Player1,PC)
+		ChangeEnemyAlly(Player2,PC)
+		ChangeEnemyAlly(Player3,PC)
+		ChangeEnemyAlly(Player4,PC)
+		ChangeEnemyAlly(Player6,PC)*/
+		ActionOverride(Player1,ApplySpellRES("IDRUNSEL",Myself))
+		ActionOverride(Player2,ApplySpellRES("IDRUNSEL",Myself))
+		ActionOverride(Player3,ApplySpellRES("IDRUNSEL",Myself))
+		ActionOverride(Player4,ApplySpellRES("IDRUNSEL",Myself))
+		ActionOverride(Player6,ApplySpellRES("IDRUNSEL",Myself))
+		MultiPlayerSync()
+		//ResetJoinRequests()
+		MultiPlayerSync()
+		MoveViewObject(Player5,INSTANT)
+		MultiPlayerSync()
+		MultiPlayerSync()
+		FadeFromColor([0.0],0)
+		Wait(1)
+		MultiPlayerSync()
+		EndCutSceneMode()
+END
+
+IF
+	Global("C_2_MASTERED","MYAREA",0)
+	Global("WATCHING_PLAYER","MYAREA",6)
+	Global("CHAMBER_2_TERROR_LEVEL","MYAREA",4)
+THEN
+	RESPONSE #100
+		StartCutSceneMode()
+		SetGlobal("C_2_MASTERED","MYAREA",1)
+		ClearAllActions()
+		MultiPlayerSync()
+		Wait(1)
+		FadeToColor([0.0],0)
+		Wait(1)
+		ActionOverride(Player6,DropInventory())
+		ActionOverride(Player6,ApplySpell(Myself,DISPEL_NO_SAVE))
+		MultiPlayerSync()
+		SetGlobal("WATCHING_PLAYER","MYAREA",0)
+		ActionOverride(Player6,JumpToObject("Target")) 
+		MultiPlayerSync()
+		SetGlobal("52Morohem_Master","GLOBAL",3)
+		Unlock("AR5202_Door3")
+		OpenDoor("AR5202_Door3")
+		AddXP2DA("IW2EX10A")
+		DisplayStringNoName(Player6,@34471)
+		Wait(1)
+		/*ChangeEnemyAlly(Player1,PC)
+		ChangeEnemyAlly(Player2,PC)
+		ChangeEnemyAlly(Player3,PC)
+		ChangeEnemyAlly(Player4,PC)
+		ChangeEnemyAlly(Player5,PC)*/
+		ActionOverride(Player1,ApplySpellRES("IDRUNSEL",Myself))
+		ActionOverride(Player2,ApplySpellRES("IDRUNSEL",Myself))
+		ActionOverride(Player3,ApplySpellRES("IDRUNSEL",Myself))
+		ActionOverride(Player4,ApplySpellRES("IDRUNSEL",Myself))
+		ActionOverride(Player5,ApplySpellRES("IDRUNSEL",Myself))
+		MultiPlayerSync()
+		//ResetJoinRequests()
+		MultiPlayerSync()
+		MoveViewObject(Player6,INSTANT)
+		MultiPlayerSync()
+		MultiPlayerSync()
+		FadeFromColor([0.0],0)
+		Wait(1)
+		MultiPlayerSync()
+		EndCutSceneMode()
+END
+
+//00T00ET
+IF
+	!Global("TEAM_0","MYAREA",1)
+	OR(2)
+		AttackedBy([GOODCUTOFF],DEFAULT)
+		PickPocketFailed([PC])
+THEN
+	RESPONSE #100
+		SetGlobal("TEAM_0","MYAREA",1)
+		Continue()
+END
+
+IF
+	!Allegiance(Myself,ENEMY)
+	!Global("TEAM_0","MYAREA",0)
+THEN
+	RESPONSE #100
+		Enemy()
+		Continue()
+END
+
+IF
+	!Global("TEAM_0","MYAREA",1)
+	Allegiance(Myself,ENEMY)
+	IsActive(Myself)
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		SetGlobal("TEAM_0","MYAREA",1)
+		Continue()
+END

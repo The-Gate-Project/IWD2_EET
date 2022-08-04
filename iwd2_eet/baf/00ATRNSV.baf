@@ -1,0 +1,22 @@
+IF
+	!GlobalTimerNotExpired("IwTimer19","LOCALS")
+	//!IsFacingSavedRotation(Myself)
+	GlobalLT("FaceSavedLocation","LOCALS",4)
+THEN
+	RESPONSE #100
+		//FaceSavedLocation(Myself)
+		RandomTurn()
+		SetGlobalRandom("FaceSavedLocation","LOCALS",1,6)
+		SetGlobalTimer("IwTimer19","LOCALS",5)
+END
+
+IF
+	!GlobalTimerNotExpired("IwTimer19","LOCALS")
+	//!IsFacingSavedRotation(Myself)
+	GlobalGT("FaceSavedLocation","LOCALS",3)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("FaceSavedLocation","LOCALS",1,6)
+		SetGlobalTimer("IwTimer19","LOCALS",8)
+END
+

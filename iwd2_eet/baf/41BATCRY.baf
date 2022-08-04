@@ -1,0 +1,9 @@
+IF
+	See([PC])
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,@29192)
+		SetGlobal("41SaidPainting1","GLOBAL",1)
+		ChangeAIScript("",CLASS)
+END
+

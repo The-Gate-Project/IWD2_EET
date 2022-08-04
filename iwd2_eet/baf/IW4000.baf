@@ -1,0 +1,188 @@
+IF
+  !Global("IW4000_VISITED","GLOBAL",1)
+THEN
+  RESPONSE #100
+    SetGlobal("IW4000_VISITED","GLOBAL",1)
+    Continue()
+END
+
+IF
+	Global("RomoveMapNote1","MYAREA",0)
+	OR(2)
+		Allegiance("Beodaewn",ENEMY)
+		Dead("Beodaewn")
+THEN
+	RESPONSE #100
+		SetGlobal("RomoveMapNote1","MYAREA",1)
+		RemoveMapNote([472.523],@55030)
+		Continue()
+END
+
+IF
+	Global("4000Visited","MYAREA",0)
+THEN
+	RESPONSE #100
+		//OswaldsNote
+		//GiveItemCreate("z4genon","OswaldsNote",0,0,0)  //Myself
+		//GiveItemCreate("z0potn96","OswaldsNote",1,0,0)
+		//Sherincal
+		//GiveItemCreate("z0cibar1","Sherincal",0,0,0)
+		//XEquipItem("z0ring82","Sherincal",SLOT_RING_RIGHT,UNEQUIP)
+		//XEquipItem("z0cibar1","Sherincal",SLOT_RING_RIGHT,EQUIP)
+		AddJournalEntry(@18853,QUEST)
+		DisplayString("Yurst",@34108)
+		AddJournalEntry(@34762,QUEST)
+		SetGlobal("4000Visited","MYAREA",1)
+		Continue()
+END
+
+IF
+	OnCreation()
+	Global("41ZackAreaNum","GLOBAL",4000)
+	Global("SPRITE_IS_DEAD41Zack","GLOBAL",0)
+	!Exists("41Zack")
+	GlobalTimerNotExpired("41BelladonnaTimer","GLOBAL")
+THEN
+	RESPONSE #100
+		CreateCreature("41Zack",[1375.1503],12)
+		ActionOverride("41Zack",SetNumTimesTalkedTo(1))
+		Continue()
+END
+
+IF
+	OpenState("AR4000_Boat",TRUE)
+	Global("41WesternPassDone","GLOBAL",1)
+	Global("40DeferDoorClose","GLOBAL",0)
+THEN
+	RESPONSE #100
+		SetGlobal("40DeferDoorClose","GLOBAL",1)
+		Continue()
+END
+
+IF
+	OnCreation()
+THEN
+	RESPONSE #100
+		SetGlobal("WerewolfReturnSpot","MYAREA",0)
+		/*SetGlobal("WerewolfReturnSpot1","MYAREA",0)
+		SetGlobal("WerewolfReturnSpot2","MYAREA",0)
+		SetGlobal("WerewolfReturnSpot4","MYAREA",0)
+		SetGlobal("WerewolfReturnSpot8","MYAREA",0)
+		SetGlobal("WerewolfReturnSpot16","MYAREA",0)
+		SetGlobal("WerewolfReturnSpot32","MYAREA",0)
+		SetGlobal("WerewolfReturnSpot64","MYAREA",0)
+		SetGlobal("WerewolfReturnSpot128","MYAREA",0)
+		SetGlobal("WerewolfReturnSpot256","MYAREA",0)
+		SetGlobal("WerewolfReturnSpot512","MYAREA",0)
+		SetGlobal("WerewolfReturnSpot1024","MYAREA",0)
+		SetGlobal("WerewolfReturnSpot2048","MYAREA",0)*/
+		Continue()
+END
+
+IF
+	OnCreation()
+THEN
+	RESPONSE #100
+		NoAction()
+		Continue()
+END
+
+IF
+	Global("40BeetleAttackOver","GLOBAL",0)
+	!Global("SPRITE_IS_DEADBeetleNest","GLOBAL",0)
+THEN
+	RESPONSE #100
+		EraseJournalEntry(@34762)
+		EraseJournalEntry(@18852)
+		AddJournalEntry(@18864,QUEST_DONE)
+		AddXP2DA("IW2EX7A")
+		DisplayStringNoName(Player1,@18866)
+		CloseDoor("AR4000_Pit")
+		TriggerActivation("BeetleNestInfo",FALSE)
+		RemoveMapNote([436.1821],@18884)
+		SetGlobal("40BeetleAttackOver","GLOBAL",1)
+END
+
+IF
+	Global("40BeetleAttackOver","GLOBAL",0)
+	GlobalGT("40BeetleDied","GLOBAL",0)
+	Global("40BeetleKills","GLOBAL",30)
+THEN
+	RESPONSE #100
+		EraseJournalEntry(@34762)
+		EraseJournalEntry(@18852)
+		AddJournalEntry(@18863,QUEST_DONE)
+		AddXP2DA("IW2EX7A")
+		DisplayStringNoName(Player1,@18866)
+		SetGlobal("40BeetleAttackOver","GLOBAL",1)
+END
+
+IF
+	GlobalGT("40BeetleDied","GLOBAL",0)
+THEN
+	RESPONSE #100
+		IncrementGlobal("40BeetleKills","GLOBAL",1)
+		IncrementGlobal("40BeetleDied","GLOBAL",-1)
+		IncrementGlobal("40CurrentBeetleCount","GLOBAL",-1)
+END
+
+IF
+	Global("40BeetleAttackOver","GLOBAL",0)
+	GlobalLT("40CurrentBeetleCount","GLOBAL",5)
+	!GlobalTimerNotExpired("41BeetleTimer","MYAREA")
+THEN
+	RESPONSE #100
+		CreateCreature("40betBor",[415.1759],8)
+		IncrementGlobal("40BeetleSpawns","GLOBAL",1)
+		IncrementGlobal("40CurrentBeetleCount","GLOBAL",1)
+		SetGlobalTimerRandom("41BeetleTimer","MYAREA",10,30)
+	RESPONSE #100
+		CreateCreature("40betBor",[543.1823],12)
+		IncrementGlobal("40BeetleSpawns","GLOBAL",1)
+		IncrementGlobal("40CurrentBeetleCount","GLOBAL",1)
+		SetGlobalTimerRandom("41BeetleTimer","MYAREA",10,30)
+	RESPONSE #100
+		CreateCreature("40betBor",[479.1951],0)
+		IncrementGlobal("40BeetleSpawns","GLOBAL",1)
+		IncrementGlobal("40CurrentBeetleCount","GLOBAL",1)
+		SetGlobalTimerRandom("41BeetleTimer","MYAREA",10,30)
+END
+
+IF
+	Global("TEAM_6","MYAREA",0)
+	!Global("TEAM_2","MYAREA",0)
+THEN
+	RESPONSE #100
+		SetGlobal("TEAM_6","MYAREA",1)
+END
+
+IF
+	Global("40DeferDoorClose","GLOBAL",1)
+THEN
+	RESPONSE #100
+		SetGlobal("40DeferDoorClose","GLOBAL",2)
+		TriggerActivation("To4001",FALSE)
+		TriggerActivation("ShipWarp",FALSE)
+		//DropInventoryEX("OswaldsNote")
+		ActionOverride("OswaldsNote",DropInventory())
+		ActionOverride("OswaldsNote",DestroySelf())
+		CloseDoor("AR4000_Boat")
+		RemoveMapNote([697.2359],@55031)
+END
+
+IF
+	!Global("Show_Trap_ZZ","MYAREA",1)
+	OR(6)
+		NearLocation(Player1,1900,840,5)
+		NearLocation(Player2,1900,840,5)
+		NearLocation(Player3,1900,840,5)
+		NearLocation(Player4,1900,840,5)
+		NearLocation(Player5,1900,840,5)
+		NearLocation(Player6,1900,840,5)
+THEN
+	RESPONSE #100
+		CreateCreature("cutspy",[2300.870],0)
+		ActionOverride("cutspy",ChangeAIScript("IDGOLREM",OVERRIDE))
+		SetGlobal("Show_Trap_ZZ","MYAREA",1)
+END
+

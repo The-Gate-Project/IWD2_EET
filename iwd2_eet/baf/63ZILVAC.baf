@@ -1,0 +1,41 @@
+
+
+IF
+	!GlobalTimerNotExpired("IWD_Rest","LOCALS")
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IWD_Rest","LOCALS",EIGHT_HOURS)
+		ApplySpell(Myself,RESTORE_FULL_HEALTH)
+		Rest()
+END
+
+IF
+	OR(2)
+		!CheckSpellState(Myself,PROTECTION_FROM_EVIL)
+		CheckStat(Myself,0,PROTECTION_FROM_EVIL)
+	HaveSpell(CLERIC_PROTECT_FROM_EVIL)
+	OR(5) //2 //4
+		/*Race(NearestEnemySummoned(Myself),TANARI)
+		Race(NearestEnemySummoned(Myself),ELEMENTAL)
+		Race(NearestEnemySummoned(Myself),DEMONIC)*/
+		See([0.0.TANARI.0.0.SUMMONED])
+		See([0.0.ELEMENTAL.0.0.SUMMONED])
+		See([0.0.DEMONIC.0.0.SUMMONED])
+		See([0.0.0.0.0.SUMMONED_DEMON])
+		See([0.0.0.TANARI])
+THEN
+	RESPONSE #100
+		Spell(Myself,CLERIC_PROTECT_FROM_EVIL)
+		//WaitAnimation(Myself,WALK)
+		//WaitAnimation(Myself,CONJURE)
+		//WaitAnimation(Myself,CAST)
+		Wait(1)
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		ChangeAIScript("63MadaC3",RACE)
+END
+

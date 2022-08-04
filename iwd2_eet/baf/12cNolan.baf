@@ -1,0 +1,17 @@
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("Nolan")
+		MultiPlayerSync()
+		FaceObject([PC])
+		Wait(1)
+		//SpellCastEffect(Myself,"","","",GLOW_CONJURE,1,ATTACK)
+		SetSequence(SEQ_CONJURE)
+		CreateVisualEffectObject("CONJUCG",Myself)
+		Wait(1)
+		StartCutScene("12cNola2")
+		Wait(1)
+		EndCutSceneMode()
+END
+

@@ -1,0 +1,34 @@
+/*IF
+	!TotalItemCntExclude("z1gencrw",Myself,0)
+THEN
+	RESPONSE #100
+		DropInventoryEXExclude("z1gencrw",Myself)
+		Continue()
+END*/
+
+IF
+	Global("Crane_Wheel","GLOBAL",0)
+	//HasItem("z1gencrw",Myself)
+	Contains("z1gencrw",Myself)
+THEN
+	RESPONSE #100
+		//PlaySoundPoint("am1100e",[948.1831])
+		PlaySound("IW1100e")
+		AddXP2DA("IW2EX1E")
+		DisplayStringNoNameHead(Player1,@26670)
+		SetGlobal("Crane_Wheel","GLOBAL",1)
+		DestroyItem("z1gencrw")
+		OpenDoor("AR1100_Wheel_Door")
+		AddJournalEntry(@27867,QUEST)
+		Lock(Myself)
+END
+
+IF
+	OpenState("AR1100_Wheel_Door",FALSE)
+	!Global("Crane_Wheel","GLOBAL",0)
+THEN
+	RESPONSE #100
+		OpenDoor("AR1100_Wheel_Door")
+		Continue()
+END
+

@@ -1,0 +1,92 @@
+IF
+	StateCheck(Myself,STATE_PANIC)
+THEN
+	RESPONSE #100
+		RandomWalkContinuous()
+END
+
+IF
+	!GlobalTimerNotExpired("IwTimer100","LOCALS")
+	StateCheck(Myself,STATE_POISONED)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IwTimer100","LOCALS",7200)
+		//FaceObject(Myself)
+		ForceSpell(Myself,CLERIC_NEUTRALIZE_POISON)
+		Wait(1)
+END
+
+IF
+	!GlobalTimerNotExpired("IwTimer100","LOCALS")
+	See([0.0.YUANTI])
+	StateCheck(LastSeenBy(Myself),STATE_POISONED)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IwTimer100","LOCALS",7200)
+		FaceObject(LastSeenBy(Myself))
+		ForceSpell(LastSeenBy(Myself),CLERIC_NEUTRALIZE_POISON)
+		Wait(1)
+END
+
+IF
+	!GlobalTimerNotExpired("IwTimer100","LOCALS")
+	RandomNum(4,1)
+	See([GOODCUTOFF.ANIMAL])
+	TriggerOverride(LastSeenBy(Myself),Global("AnimationId","LOCALS",32531)) //Snake
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IwTimer100","LOCALS",7200)
+		FaceObject(LastSeenBy(Myself))
+		ForceSpell(LastSeenBy(Myself),CLERIC_CHARM_PERSON)
+		Wait(1)
+END
+
+IF
+	!GlobalTimerNotExpired("IwTimer100","LOCALS")
+	RandomNum(4,1)
+	See(NearestEnemyOf(Myself))
+	!TriggerOverride(LastSeenBy(Myself),Global("AnimationId","LOCALS",57408)) //Mummy, Histachii
+THEN
+	RESPONSE #100
+		//SetMyTarget(LastMarkedObject)
+		SetGlobal("UsePsionics","LOCALS",1)
+		SetGlobalRandom("2UsePsionics","LOCALS",1,3)
+		Continue()
+END
+
+IF
+	Global("UsePsionics","LOCALS",1)
+	Global("2UsePsionics","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("UsePsionics","LOCALS",0)
+		SetGlobalTimer("IwTimer100","LOCALS",7200)
+		FaceObject(NearestEnemyOf(Myself))
+		ForceSpell(NearestEnemyOf(Myself),BEHOLDER_FEAR)
+		Wait(1)
+END
+
+IF
+	Global("UsePsionics","LOCALS",1)
+	Global("2UsePsionics","LOCALS",2)
+THEN
+	RESPONSE #100
+		SetGlobal("UsePsionics","LOCALS",0)
+		SetGlobalTimer("IwTimer100","LOCALS",7200)
+		FaceObject(NearestEnemyOf(Myself))
+		ForceSpell(NearestEnemyOf(Myself),CLERIC_COMMAND)
+		Wait(1)
+END
+
+IF
+	Global("UsePsionics","LOCALS",1)
+	Global("2UsePsionics","LOCALS",3)
+THEN
+	RESPONSE #100
+		SetGlobal("UsePsionics","LOCALS",0)
+		SetGlobalTimer("IwTimer100","LOCALS",7200)
+		FaceObject(NearestEnemyOf(Myself))
+		ForceSpellRES("IWPR714",NearestEnemyOf(Myself))  // SPPR714.SPL CLERIC_SYMBOL_OF_PAIN
+		Wait(1)
+END
+

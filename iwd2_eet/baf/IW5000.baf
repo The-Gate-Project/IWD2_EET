@@ -1,0 +1,175 @@
+IF
+	Global("AR5000_CHAPTER_SAVED","MYAREA",0)
+	Global("IWD2_CHAPTER","GLOBAL",3)
+	//!InCutsceneMode()
+THEN
+	RESPONSE #100
+		SetGlobal("AR5000_CHAPTER_SAVED","MYAREA",1)
+		SaveGame(0)  // Глава Третья
+END
+
+IF
+	Global("IWD2_CHAPTER","GLOBAL",2)
+	//EntirePartyOnMap()
+	InMyArea(Player1)
+THEN
+	RESPONSE #100
+		//EndCutSceneMode()
+		MultiPlayerSync()
+		//IncrementChapter("")
+		//MultiPlayerSync()
+		IncrementGlobal("IWD2_CHAPTER","GLOBAL",1)
+		TextScreen("IWD2TXT3")
+		SetGlobal("41DestroySoldiers","GLOBAL",1)
+END
+
+/*IF
+	Global("IWD2_CHAPTER","GLOBAL",2)
+	!InCutsceneMode()
+THEN
+	RESPONSE #100
+		StartCutSceneMode()
+END
+
+IF
+	Global("IWD2_CHAPTER","GLOBAL",2)
+THEN
+	RESPONSE #100
+		MultiPlayerSync()
+END*/
+
+IF
+	!Global("SORDIRSIN_NO_XP_SPAWN","GLOBAL",0)
+	GlobalGT("50Wight_Horn","GLOBAL",1)
+THEN
+	RESPONSE #100
+		SetGlobal("SORDIRSIN_NO_XP_SPAWN","GLOBAL",0)
+		Continue()
+END
+
+IF
+	Global("50Barbarians_Leave","GLOBAL",1)
+	//EntirePartyOnMap()
+THEN
+	RESPONSE #100
+		SetGlobal("50Barbarians_Leave","GLOBAL",2)
+		Continue()
+END
+
+IF
+	Global("THVARA_DELETED","MYAREA",0)
+	OR(3)
+		!Global("50Barbarians_Leave","GLOBAL",0)
+		!Global("IW5010_Visited","GLOBAL",0)
+		!Global("IW5002_Visited","GLOBAL",0)
+THEN
+	RESPONSE #100
+		/*HideCreature("01_50GNTFO_01",TRUE)
+		HideCreature("01_50Thvara_02",TRUE)
+		HideCreature("01_50BARWA_03",TRUE)
+		HideCreature("01_50BARWA_04",TRUE)
+		HideCreature("01_50BARW2_05",TRUE)
+		HideCreature("01_50BARW2_06",TRUE)
+		HideCreature("01_50BARWA_07",TRUE)
+		HideCreature("01_50BARSH_08",TRUE)
+		HideCreature("01_50BARSH_09",TRUE)*/
+		SetGlobal("THVARA_DELETED","MYAREA",1)
+		Continue()
+END
+
+IF
+	Global("ZOMBIE_ATTACK","MYAREA",1)
+	GlobalGT("5000_ZOMBIE_DEAD","GLOBAL",4)
+THEN
+	RESPONSE #100
+		SetGlobal("ZOMBIE_ATTACK","MYAREA",2)
+		StartCutSceneMode()
+		ClearAllActions()
+		MultiPlayerSync()
+		StartCutScene("50cVenl0")
+END
+
+IF
+	Dead("03_50WITBA_01")
+	Exists("03_50WITBA_01")
+	//IsActive("03_50WITBA_01")
+	
+	//!GlobalGT("50Wight_Horn","GLOBAL",1)
+THEN
+	RESPONSE #100
+		//SpellHitEffectSprite("03_50WITBA_01","03_50WITBA_01",NECROMANCY,30)
+		CreateVisualEffectObject("NECROH","03_50WITBA_01")
+		SetGlobal("SORDIRSIN_NO_XP_SPAWN","GLOBAL",1)
+		//HideCreature("03_50WITBA_01",TRUE)
+		ActionOverride("03_50WITBA_01",DestroySelf())
+END
+
+IF
+	Global("ar5001_revealed","GLOBAL",0)
+THEN
+	RESPONSE #100
+		SetGlobal("ar5001_revealed","GLOBAL",1)
+		RevealAreaOnMap("IW5001")
+		Continue()
+END
+
+IF
+	//IsActive("dead_king")
+	!Global("dead_king_inactive","MYAREA",1)
+	
+	Dead("03_50WITBA_01")
+THEN
+	RESPONSE #100
+		//Deactivate("dead_king")
+		SoundActivate("dead_king",FALSE)
+		
+		SetGlobal("dead_king_inactive","MYAREA",1)
+		
+		Continue()
+END
+
+IF
+	//!IsActive("dead_king")
+	!Global("dead_king_inactive","MYAREA",2)
+	
+	!Dead("03_50WITBA_01")
+THEN
+	RESPONSE #100
+		//Activate("dead_king")
+		SoundActivate("dead_king",TRUE)
+		
+		SetGlobal("dead_king_inactive","MYAREA",2)
+		
+		Continue()
+END
+
+IF
+	OnCreation()
+	Global("5000_SORDI_TEAM_ANGRY","GLOBAL",0)
+	!Dead("03_50WITBA_01")
+	!Allegiance("03_50WITBA_01",NEUTRAL)
+THEN
+	RESPONSE #100
+		ChangeEnemyAlly("03_50WITBA_01",NEUTRAL)
+		Continue()
+END
+
+IF
+	OnCreation()
+THEN
+	RESPONSE #100
+		NoAction()
+		Continue()
+END
+
+IF
+	GlobalGT("50Venla_Rose","GLOBAL",1)
+	Global("Venla_Store","MYAREA",0)
+THEN
+	RESPONSE #100
+		SetGlobal("Venla_Store","MYAREA",1)
+		AddStoreItem("50Venla","z5potn56",3,3)
+		AddStoreItem("50Venlaa","z5potn56",3,3)
+		Continue()
+END
+

@@ -1,0 +1,70 @@
+IF
+	//IsCreatureHiddenInShadows(Myself)
+	!StateCheck(Myself,STATE_NOT_VISIBLE)
+	!GlobalTimerNotExpired("IwTimer16","LOCALS")
+	Allegiance(Myself,ENEMY)
+	!See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		SetGlobalTimerRandom("IwTimer16","LOCALS",6,18)
+		Hide()
+	RESPONSE #50
+		SetGlobalTimerRandom("IwTimer16","LOCALS",1,6)
+		Continue()
+END
+
+IF
+	!GlobalTimerNotExpired("IwTimer6","LOCALS")
+	//HPLostGT(Myself,33)
+	HPPercentLT(Myself,40)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IwTimer6","LOCALS",43200)
+		ForceSpellRES("IWIN274",Myself)  // SPIN274.SPL INNATE_MONK_WHOLENESS_OF_BODY
+		//WaitAnimation(Myself,WALK)
+		//WaitAnimation(Myself,CONJURE)
+		//WaitAnimation(Myself,CAST)
+		Wait(2)
+END
+
+IF
+	!GlobalTimerNotExpired("IwTimer7","LOCALS")
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IwTimer7","LOCALS",43200)
+		SetGlobal("STUNNING_BLOWS","LOCALS",17)
+		Continue()
+END
+
+IF
+	GlobalGT("STUNNING_BLOWS","LOCALS",0)
+	//IsSpellTargetValid(Myself,INNATE_STUNNING_BLOW,0)  //SPCL811
+	!CheckStat(Myself,2,SCRIPTINGSTATE4)
+	//IsSpellTargetValid(Myself,INNATE_QUIVERING_PALM,0)  //SPCL820
+	!CheckStat(Myself,5,SCRIPTINGSTATE4)
+	See(NearestEnemyOf(Myself))
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+THEN
+	RESPONSE #100
+		ReallyForceSpell(Myself,MONK_STUNNING_BLOW)
+		IncrementGlobal("STUNNING_BLOWS","LOCALS",-1)
+	RESPONSE #100
+		Continue()
+END
+
+IF
+	!GlobalTimerNotExpired("IwTimer8","LOCALS")
+	//IsSpellTargetValid(Myself,INNATE_QUIVERING_PALM,0)  // SPIN233.SPL 
+	!CheckStat(Myself,5,SCRIPTINGSTATE4)
+	//IsSpellTargetValid(Myself,INNATE_STUNNING_BLOW,0)  // SPIN232.SPL 
+	!CheckStat(Myself,2,SCRIPTINGSTATE4)
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #33
+		SetGlobalTimer("IwTimer8","LOCALS",302400)
+		ReallyForceSpell(Myself,MONK_QUIVERING_PALM)
+	RESPONSE #66
+		SetGlobalTimer("IwTimer8","LOCALS",6)
+		Continue()
+END
+

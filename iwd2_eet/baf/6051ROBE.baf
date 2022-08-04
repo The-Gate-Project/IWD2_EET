@@ -1,0 +1,73 @@
+IF
+	!Global("6051_Wearing_Robes","GLOBAL",6)
+	See(Player1)
+THEN
+	RESPONSE #100
+		Enemy()
+		ChangeAIScript("",OVERRIDE)
+END
+
+IF
+	!Global("6051_Wearing_Robes","GLOBAL",6)
+	See(Player2)
+THEN
+	RESPONSE #100
+		Enemy()
+		ChangeAIScript("",OVERRIDE)
+END
+
+IF
+	!Global("6051_Wearing_Robes","GLOBAL",6)
+	See(Player3)
+THEN
+	RESPONSE #100
+		Enemy()
+		ChangeAIScript("",OVERRIDE)
+END
+
+IF
+	!Global("6051_Wearing_Robes","GLOBAL",6)
+	See(Player4)
+THEN
+	RESPONSE #100
+		Enemy()
+		ChangeAIScript("",OVERRIDE)
+END
+
+IF
+	!Global("6051_Wearing_Robes","GLOBAL",6)
+	See(Player5)
+THEN
+	RESPONSE #100
+		Enemy()
+		ChangeAIScript("",OVERRIDE)
+END
+
+IF
+	!Global("6051_Wearing_Robes","GLOBAL",6)
+	See(Player6)
+THEN
+	RESPONSE #100
+		Enemy()
+		ChangeAIScript("",OVERRIDE)
+END
+
+IF
+	OR(2)
+	
+		See([GOODCUTOFF.0.0.0.0.SUMMONED]) //NearestEnemySummoned
+		
+		See([FAMILIAR])
+THEN
+	RESPONSE #100
+		Enemy()
+		ChangeAIScript("",OVERRIDE)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+THEN
+	RESPONSE #100
+		ChangeAIScript("",OVERRIDE)
+END
+

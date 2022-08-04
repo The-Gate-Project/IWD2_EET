@@ -1,0 +1,7 @@
+IF
+	True()
+THEN
+	RESPONSE #100
+		ChangeAIScript("00T03ET",SPECIFICS)
+		ChangeAIScript("00ASTIV4",OVERRIDE)
+END

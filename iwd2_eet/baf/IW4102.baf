@@ -1,0 +1,500 @@
+IF
+	Global("4102Visited","MYAREA",0)
+THEN
+	RESPONSE #100
+		SetGlobal("TEAM_1","MYAREA",1)
+		SetGlobal("TEAM_3","MYAREA",1)
+		SetGlobal("PrismSequence","MYAREA",5)
+		SetGlobal("OriaEssence_dead","GLOBAL",1)
+		ApplySpellRES("IWWI084","02_Assassin_01")
+		ApplySpellRES("IDINVUL","02_Assassin_01")
+		ApplySpellRES("IWWI084","02_Bishop_02")
+		ApplySpellRES("IDINVUL","02_Bishop_02")
+		ApplySpellRES("IWWI084","02_Mystic_03")
+		ApplySpellRES("IDINVUL","02_Mystic_03")
+		ApplySpellRES("IWWI084","02_Warrior_04")
+		ApplySpellRES("IDINVUL","02_Warrior_04")
+		ApplySpellRES("IWWI084","02_Henchman_05")
+		ApplySpellRES("IDINVUL","02_Henchman_05")
+		ApplySpellRES("IWWI084","02_Henchman_06")
+		ApplySpellRES("IDINVUL","02_Henchman_06")
+		ApplySpellRES("IWWI084","02_Henchman_07")
+		ApplySpellRES("IDINVUL","02_Henchman_07")
+		ApplySpellRES("IWWI084","02_Henchman_08")
+		ApplySpellRES("IDINVUL","02_Henchman_08")
+		ApplySpellRES("IWWI084","02_Henchman_09")
+		ApplySpellRES("IDINVUL","02_Henchman_09")
+		ApplySpellRES("IWWI084","02_Henchman_10")
+		ApplySpellRES("IDINVUL","02_Henchman_10")
+		ApplySpellRES("IWWI084","02_Henchman_11")
+		ApplySpellRES("IDINVUL","02_Henchman_11")
+		ApplySpellRES("IWWI084","02_Henchman_12")
+		ApplySpellRES("IDINVUL","02_Henchman_12")
+		ApplySpellRES("IWWI084","02_Henchman_13")
+		ApplySpellRES("IDINVUL","02_Henchman_13")
+		OpenDoor("AR4102_Switch5")
+		OpenDoor("AR4102_Switch6")
+		OpenDoor("AR4102_Switch7")
+		OpenDoor("AR4102_Switch8")
+		OpenDoor("AR4102_Switch9")
+		OpenDoor("AR4102_Switch10")
+		OpenDoor("AR4102_Switch11")
+		OpenDoor("AR4102_Switch12")
+		OpenDoor("AR4102_Switch13")
+		SetGlobal("BattleSquareRank","MYAREA",1)
+		SetGlobal("4102Visited","MYAREA",1)
+		Continue()
+END
+
+IF
+	OnCreation()
+THEN
+	RESPONSE #100
+		NoAction()
+		Continue()
+END
+
+IF
+	OnCreation()
+	Global("41ZackAreaNum","GLOBAL",4102)
+	Global("41ZackTask","GLOBAL",6)
+	Global("SPRITE_IS_DEAD41Zack","GLOBAL",0)
+	!Exists("41Zack")
+THEN
+	RESPONSE #100
+		CreateCreature("41Zack",[2975.1245],6)
+		ActionOverride("41Zack",SetNumTimesTalkedTo(1))
+		Continue()
+END
+
+IF
+	OnCreation()
+	Global("41ZackAreaNum","GLOBAL",4102)
+	Global("41ZackTask","GLOBAL",11)
+	Global("SPRITE_IS_DEAD41Zack","GLOBAL",0)
+	!Exists("41Zack")
+	GlobalTimerNotExpired("41BelladonnaTimer","GLOBAL")
+THEN
+	RESPONSE #100
+		CreateCreature("41Zack",[2975.1245],6)
+		ActionOverride("41Zack",SetNumTimesTalkedTo(1))
+		Continue()
+END
+
+IF
+	OnCreation()
+THEN
+	RESPONSE #100
+		SetGlobal("41PrismFire","MYAREA",0)
+		ActionOverride("Oria",Rest())
+		ActionOverride("OriaEssence",Rest())
+		Continue()
+END
+
+IF
+	OnCreation()
+THEN
+	RESPONSE #100
+		TriggerActivation("To4101a",TRUE)
+		TriggerActivation("To4101b",TRUE)
+		/*Deactivate("GameIcon0")
+		Deactivate("GameIcon1")
+		Deactivate("GameIcon2")
+		Deactivate("GameIcon3")
+		Deactivate("GameIcon4")
+		Deactivate("GameIcon5")
+		Deactivate("GameIcon6")
+		Deactivate("GameIcon7")
+		Deactivate("GameIcon8")*/
+		AmbientActivate("GameIcon0",FALSE)
+		AmbientActivate("GameIcon1",FALSE)
+		AmbientActivate("GameIcon2",FALSE)
+		AmbientActivate("GameIcon3",FALSE)
+		AmbientActivate("GameIcon4",FALSE)
+		AmbientActivate("GameIcon5",FALSE)
+		AmbientActivate("GameIcon6",FALSE)
+		AmbientActivate("GameIcon7",FALSE)
+		AmbientActivate("GameIcon8",FALSE)
+		//AllowAreaResting(TRUE)
+		RemoveAreaFlag(NOREST)
+		//ResetJoinRequests()
+		Continue()
+END
+
+IF
+	OnCreation()
+	Global("BattleSquareActive","MYAREA",1)
+THEN
+	RESPONSE #100
+		TriggerActivation("To4101a",FALSE)
+		TriggerActivation("To4101b",FALSE)
+		//StopJoinRequests()
+		//AllowAreaResting(FALSE)
+		AddAreaFlag(NOREST)
+		Continue()
+END
+
+IF
+	OnCreation()
+	Global("BattleSquareActive","MYAREA",1)
+THEN
+	RESPONSE #100
+		SetGlobal("BattleSquareActive","MYAREA",2)
+		Continue()
+END
+
+IF
+	Global("BattleSquareActive","MYAREA",2)
+	BitCheck("BattleSquarePlayerScore","MYAREA",1)
+THEN
+	RESPONSE #100
+		//Activate("GameIcon0")
+		AmbientActivate("GameIcon0",TRUE)
+		StaticSequence("GameIcon0",SEQ_AWAKE)
+		Continue()
+END
+
+IF
+	Global("BattleSquareActive","MYAREA",2)
+	BitCheck("BattleSquarePlayerScore","MYAREA",2)
+THEN
+	RESPONSE #100
+		//Activate("GameIcon1")
+		AmbientActivate("GameIcon1",TRUE)
+		StaticSequence("GameIcon1",SEQ_AWAKE)
+		Continue()
+END
+
+IF
+	Global("BattleSquareActive","MYAREA",2)
+	BitCheck("BattleSquarePlayerScore","MYAREA",4)
+THEN
+	RESPONSE #100
+		//Activate("GameIcon2")
+		AmbientActivate("GameIcon2",TRUE)
+		StaticSequence("GameIcon2",SEQ_AWAKE)
+		Continue()
+END
+
+IF
+	Global("BattleSquareActive","MYAREA",2)
+	BitCheck("BattleSquarePlayerScore","MYAREA",8)
+THEN
+	RESPONSE #100
+		//Activate("GameIcon3")
+		AmbientActivate("GameIcon3",TRUE)
+		StaticSequence("GameIcon3",SEQ_AWAKE)
+		Continue()
+END
+
+IF
+	Global("BattleSquareActive","MYAREA",2)
+	BitCheck("BattleSquarePlayerScore","MYAREA",16)
+THEN
+	RESPONSE #100
+		//Activate("GameIcon4")
+		AmbientActivate("GameIcon4",TRUE)
+		StaticSequence("GameIcon4",SEQ_AWAKE)
+		Continue()
+END
+
+IF
+	Global("BattleSquareActive","MYAREA",2)
+	BitCheck("BattleSquarePlayerScore","MYAREA",32)
+THEN
+	RESPONSE #100
+		//Activate("GameIcon5")
+		AmbientActivate("GameIcon5",TRUE)
+		StaticSequence("GameIcon5",SEQ_AWAKE)
+		Continue()
+END
+
+IF
+	Global("BattleSquareActive","MYAREA",2)
+	BitCheck("BattleSquarePlayerScore","MYAREA",64)
+THEN
+	RESPONSE #100
+		//Activate("GameIcon6")
+		AmbientActivate("GameIcon6",TRUE)
+		StaticSequence("GameIcon6",SEQ_AWAKE)
+		Continue()
+END
+
+IF
+	Global("BattleSquareActive","MYAREA",2)
+	BitCheck("BattleSquarePlayerScore","MYAREA",128)
+THEN
+	RESPONSE #100
+		//Activate("GameIcon7")
+		AmbientActivate("GameIcon7",TRUE)
+		StaticSequence("GameIcon7",SEQ_AWAKE)
+		Continue()
+END
+
+IF
+	Global("BattleSquareActive","MYAREA",2)
+	BitCheck("BattleSquarePlayerScore","MYAREA",256)
+THEN
+	RESPONSE #100
+		//Activate("GameIcon8")
+		AmbientActivate("GameIcon8",TRUE)
+		StaticSequence("GameIcon8",SEQ_AWAKE)
+		Continue()
+END
+
+IF
+	Global("BattleSquareActive","MYAREA",2)
+	BitCheck("BattleSquareArenaScore","MYAREA",1)
+THEN
+	RESPONSE #100
+		//Activate("GameIcon0")
+		AmbientActivate("GameIcon0",TRUE)
+		StaticSequence("GameIcon0",SEQ_CAST)
+		Continue()
+END
+
+IF
+	Global("BattleSquareActive","MYAREA",2)
+	BitCheck("BattleSquareArenaScore","MYAREA",2)
+THEN
+	RESPONSE #100
+		//Activate("GameIcon1")
+		AmbientActivate("GameIcon1",TRUE)
+		StaticSequence("GameIcon1",SEQ_CAST)
+		Continue()
+END
+
+IF
+	Global("BattleSquareActive","MYAREA",2)
+	BitCheck("BattleSquareArenaScore","MYAREA",4)
+THEN
+	RESPONSE #100
+		//Activate("GameIcon2")
+		AmbientActivate("GameIcon2",TRUE)
+		StaticSequence("GameIcon2",SEQ_CAST)
+		Continue()
+END
+
+IF
+	Global("BattleSquareActive","MYAREA",2)
+	BitCheck("BattleSquareArenaScore","MYAREA",8)
+THEN
+	RESPONSE #100
+		//Activate("GameIcon3")
+		AmbientActivate("GameIcon3",TRUE)
+		StaticSequence("GameIcon3",SEQ_CAST)
+		Continue()
+END
+
+IF
+	Global("BattleSquareActive","MYAREA",2)
+	BitCheck("BattleSquareArenaScore","MYAREA",16)
+THEN
+	RESPONSE #100
+		//Activate("GameIcon4")
+		AmbientActivate("GameIcon4",TRUE)
+		StaticSequence("GameIcon4",SEQ_CAST)
+		Continue()
+END
+
+IF
+	Global("BattleSquareActive","MYAREA",2)
+	BitCheck("BattleSquareArenaScore","MYAREA",32)
+THEN
+	RESPONSE #100
+		//Activate("GameIcon5")
+		AmbientActivate("GameIcon5",TRUE)
+		StaticSequence("GameIcon5",SEQ_CAST)
+		Continue()
+END
+
+IF
+	Global("BattleSquareActive","MYAREA",2)
+	BitCheck("BattleSquareArenaScore","MYAREA",64)
+THEN
+	RESPONSE #100
+		//Activate("GameIcon6")
+		AmbientActivate("GameIcon6",TRUE)
+		StaticSequence("GameIcon6",SEQ_CAST)
+		Continue()
+END
+
+IF
+	Global("BattleSquareActive","MYAREA",2)
+	BitCheck("BattleSquareArenaScore","MYAREA",128)
+THEN
+	RESPONSE #100
+		//Activate("GameIcon7")
+		AmbientActivate("GameIcon7",TRUE)
+		StaticSequence("GameIcon7",SEQ_CAST)
+		Continue()
+END
+
+IF
+	Global("BattleSquareActive","MYAREA",2)
+	BitCheck("BattleSquareArenaScore","MYAREA",256)
+THEN
+	RESPONSE #100
+		//Activate("GameIcon8")
+		AmbientActivate("GameIcon8",TRUE)
+		StaticSequence("GameIcon8",SEQ_CAST)
+		Continue()
+END
+
+IF
+	Global("BattleSquareActive","MYAREA",2)
+THEN
+	RESPONSE #100
+		SetGlobal("BattleSquareActive","MYAREA",1)
+		Continue()
+END
+
+IF
+	OnCreation()
+	Global("PrismSequence","MYAREA",0)
+THEN
+	RESPONSE #100
+		StaticSequence("Prism",SEQ_ATTACK)
+		Continue()
+END
+
+IF
+	OnCreation()
+	Global("PrismSequence","MYAREA",1)
+THEN
+	RESPONSE #100
+		StaticSequence("Prism",SEQ_AWAKE)
+		Continue()
+END
+
+IF
+	OnCreation()
+	Global("PrismSequence","MYAREA",2)
+THEN
+	RESPONSE #100
+		StaticSequence("Prism",SEQ_CAST)
+		Continue()
+END
+
+IF
+	OnCreation()
+	Global("PrismSequence","MYAREA",3)
+THEN
+	RESPONSE #100
+		StaticSequence("Prism",SEQ_CONJURE)
+		Continue()
+END
+
+IF
+	OnCreation()
+	Global("PrismSequence","MYAREA",4)
+THEN
+	RESPONSE #100
+		StaticSequence("Prism",SEQ_DAMAGE)
+		Continue()
+END
+
+IF
+	OnCreation()
+	Global("PrismSequence","MYAREA",5)
+THEN
+	RESPONSE #100
+		StaticSequence("Prism",SEQ_DIE)
+		Continue()
+END
+
+IF
+	OnCreation()
+	Global("PrismSequence","MYAREA",6)
+THEN
+	RESPONSE #100
+		StaticSequence("Prism",SEQ_HEAD_TURN)
+		Continue()
+END
+
+IF
+	OnCreation()
+	Global("PrismSequence","MYAREA",7)
+THEN
+	RESPONSE #100
+		StaticSequence("Prism",SEQ_READY)
+		Continue()
+END
+
+IF
+	OnCreation()
+	Global("MirrorContainerBroke","MYAREA",1)
+THEN
+	RESPONSE #100
+		StaticSequence("LeftMirror",SEQ_AWAKE)
+		Continue()
+END
+
+//////////////////////////////////////////////////
+IF
+	Global("NickGiveCabinetItems","MYAREA",1)
+	Contains("SCRL2G","NickCabinet")
+THEN
+	RESPONSE #100
+		ActionOverride("NickCabinet",DestroyItem("SCRL2G"))
+		GiveItemCreate("SCRL2G",Player1,1,1,0)
+		Continue()
+END
+
+IF
+	Global("NickGiveCabinetItems","MYAREA",1)
+	Contains("Z0DART95","NickCabinet")
+THEN
+	RESPONSE #100
+		ActionOverride("NickCabinet",DestroyItem("Z0DART95"))
+		GiveItemCreate("Z0DART95",Player1,40,0,0)
+		Continue()
+END
+
+IF
+	Global("NickGiveCabinetItems","MYAREA",1)
+	Contains("MISC45","NickCabinet")
+THEN
+	RESPONSE #100
+		ActionOverride("NickCabinet",DestroyItem("MISC45"))
+		GiveItemCreate("MISC45",Player1,1,1,0)
+		Continue()
+END
+
+IF
+	Global("NickGiveCabinetItems","MYAREA",1)
+	Contains("z0genir","NickCabinet")
+THEN
+	RESPONSE #100
+		ActionOverride("NickCabinet",DestroyItem("z0genir"))
+		GiveItemCreate("z0genir",Player1,1,1,0)
+		Continue()
+END
+
+IF
+	Global("NickGiveCabinetItems","MYAREA",1)
+THEN
+	RESPONSE #100
+		SetGlobal("NickGiveCabinetItems","MYAREA",2)
+		Continue()
+END
+
+IF
+	Global("Open_Container_Z","MYAREA",0)
+THEN
+	RESPONSE #100
+		ContainerEnable("BadLuckMirror",FALSE)
+		SetGlobal("Open_Container_Z","MYAREA",1)
+		Continue()
+END
+
+IF
+	Global("Open_Container_Z","MYAREA",1)
+	OpenState("AR4102_MirrorCracked1",TRUE)
+THEN
+	RESPONSE #100
+		ContainerEnable("BadLuckMirror",TRUE)
+		SetGlobal("Open_Container_Z","MYAREA",2)
+		Continue()
+END
+

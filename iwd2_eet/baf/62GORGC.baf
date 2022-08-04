@@ -1,0 +1,49 @@
+IF
+	Global("Kratuuk_Enemy","GLOBAL",1)
+	!Allegiance(Myself,ENEMY)
+THEN
+	RESPONSE #100
+		Enemy()
+		Continue()
+END
+
+IF
+	StateCheck(Myself,STATE_PANIC)
+THEN
+	RESPONSE #100
+		RandomWalkContinuous()
+END
+
+IF
+	OR(2)
+		Global("62_Orc_Elf_Combat","GLOBAL",1)
+		Global("Scouts_Join","GLOBAL",1)
+	OR(2)
+		See([ENEMY.MONSTER.ELF])
+		See([ENEMY.UNDEAD.ELF])
+THEN
+	RESPONSE #100
+		//EquipWeapon()
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		//EquipWeapon()
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+//////
+IF
+	Global("Scouts_Join","GLOBAL",1)
+	!Allegiance(Myself,ENEMY)
+	!Range([PC],4)
+THEN
+	RESPONSE #100
+		MoveToObject(Player1)
+END
+
+
+

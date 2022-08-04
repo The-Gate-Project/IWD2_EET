@@ -1,0 +1,117 @@
+IF
+	Allegiance(Myself,ENEMY)
+	Global("Angry","LOCALS",0)
+	HPPercentLT(Myself,75)
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,@34271)
+		EquipMostDamagingMelee()
+		SetGlobal("Angry","LOCALS",1)
+END
+
+IF
+	Global("SPRITE_IS_DEADRemorhaz_Queen","GLOBAL",0)
+	Global("BecameHappy","LOCALS",0)
+	See([0.0.ANKHEG])
+THEN
+	RESPONSE #100
+		ChangeEnemyAlly(Myself,NEUTRAL)
+		SetGlobal("BecameHappy","LOCALS",1)
+		SetGlobal("SPRITE_IS_DEADRemorhaz_Queen","GLOBAL",2)
+END
+
+IF
+	StateCheck(Myself,STATE_PANIC)
+THEN
+	RESPONSE #100
+		RandomWalkContinuous()
+END
+
+IF
+	See(NearestEnemyOf(Myself))
+	Range(LastSeenBy(Myself),6)
+THEN
+	RESPONSE #100
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	AttackedBy([GOODCUTOFF],DEFAULT)
+	!GlobalTimerNotExpired("BreathTimer","LOCALS")
+	!See(LastAttackerOf(Myself))
+THEN
+	RESPONSE #100
+		FaceObject(LastAttackerOf(Myself))
+		SetSequence(SEQ_ATTACK)
+		SmallWait(10)
+		ReallyForceSpell(Myself,CLERIC_SOL_SEARING_ORB)
+		SetGlobalTimer("BreathTimer","LOCALS",5)
+		Wait(1)
+		AttackOneRound(LastAttackerOf(Myself))
+END
+
+IF
+	!GlobalTimerNotExpired("BreathTimer","LOCALS")
+	See(NearestEnemyOf(Myself))
+	!Range(LastSeenBy(Myself),5)
+THEN
+	RESPONSE #100
+		FaceObject(LastSeenBy(Myself))
+		SetSequence(SEQ_ATTACK)
+		SmallWait(10)
+		ReallyForceSpell(Myself,CLERIC_SOL_SEARING_ORB)
+		SetGlobalTimer("BreathTimer","LOCALS",5)
+		Wait(1)
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	Global("INITIALIZED_41RQUEEN","LOCALS",0)
+THEN
+	RESPONSE #100
+		SaveObjectLocation("LOCALS","SavedLoc",Myself)
+		DialogInterrupt(FALSE)
+		SetGlobal("INITIALIZED_41RQUEEN","LOCALS",1)
+		SetGlobal("SaveSavedLoc","LOCALS",1)
+		Continue()
+END
+
+IF
+	!Allegiance(Myself,ENEMY)
+	AttackedBy([GOODCUTOFF],DEFAULT)
+THEN
+	RESPONSE #100
+		Enemy()
+END
+
+IF
+	!GlobalTimerNotExpired("IwTimer22","LOCALS")
+	//!NearSavedLocation(5)
+	!NearSavedLocation(Myself,"LOCALSSavedLoc",5)
+	OpenState("AR4100_Rockwall",FALSE)
+THEN
+	RESPONSE #100
+		//ReturnToSavedLocation(0)
+		MoveToSavedLocation("SavedLoc","LOCALS")
+		SetGlobalTimer("IwTimer22","LOCALS",7)
+END
+
+IF
+	Global("ML_1","LOCALS",0)
+	ActionListEmpty()
+	NearLocation(Myself,1310,1690,4)
+THEN
+	RESPONSE #100
+		SetHomeLocation([1310.1690])
+		SetGlobal("ML_1","LOCALS",-1)
+		Continue()
+END
+
+IF
+	Global("ML_1","LOCALS",0)
+	Global("BecameHappy","LOCALS",1)
+THEN
+	RESPONSE #100
+		MoveToPoint([1310.1690])
+END
+

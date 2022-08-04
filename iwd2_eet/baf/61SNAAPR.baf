@@ -1,0 +1,9 @@
+IF
+	True()
+THEN
+	RESPONSE #100
+		//SpellHitEffectSprite(Myself,Myself,ALTERATION,0)
+		CreateVisualEffectObject("ALTERH",Myself)
+		ChangeAIScript("",OVERRIDE)
+END
+

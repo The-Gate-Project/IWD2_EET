@@ -1,0 +1,87 @@
+IF
+  Global("SaveSavedLoc","LOCALS",0)
+THEN
+  RESPONSE #100
+    SetGlobal("SaveSavedLoc","LOCALS",1)
+    SaveObjectLocation("LOCALS","SavedLoc",Myself)
+    Continue()
+END
+
+IF
+	StateCheck(Myself,STATE_PANIC)
+THEN
+	RESPONSE #100
+		RandomWalkContinuous()
+END
+
+IF
+	AttackedBy([ANYONE],DEFAULT)
+THEN
+	RESPONSE #100
+		EquipMostDamagingMelee()
+		Continue()
+END
+
+IF
+	!Range(NearestEnemyOf(Myself),3)
+	//!OutOfAmmo()
+	CanEquipRanged()
+THEN
+	RESPONSE #100
+		EquipRanged()
+		Continue()
+END
+
+IF
+	Name("Katchmat",Myself)
+	NumTimesTalkedTo(0)
+	Global("Katchmat_Talked","GLOBAL",0)
+	See([PC])
+THEN
+	RESPONSE #100
+		//SetDialogueRange(300)
+		//Dialogue(LastMarkedObject)
+		ApplySpellRES("BDCUTSPY",Myself)
+		StartDialogNoSet(LastSeenBy(Myself))
+END
+
+IF
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		//EquipMostDamagingMelee()
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	!Allegiance(Myself,ENEMY)
+	See([ENEMY])
+THEN
+	RESPONSE #100
+		//EquipWeapon()
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	!GlobalTimerNotExpired("IwTimer22","LOCALS")
+	!NearSavedLocation(Myself,"LOCALSSavedLoc",4)
+	!Allegiance(Myself,ENEMY)
+	!See([ENEMY])
+THEN
+	RESPONSE #100
+		MoveToSavedLocation("SavedLoc","LOCALS")
+		SetGlobalTimer("IwTimer22","LOCALS",10)
+END
+
+/*IF
+	!GlobalTimerNotExpired("IwTimer23","LOCALS")
+	//!IsFacingSavedRotation(Myself)
+	!Allegiance(Myself,ENEMY)
+	!See([ENEMY])
+THEN
+	RESPONSE #100
+		//FaceSavedLocation(Myself)
+		RandomTurn()
+		SetGlobalTimer("IwTimer23","LOCALS",10)
+END*/
+

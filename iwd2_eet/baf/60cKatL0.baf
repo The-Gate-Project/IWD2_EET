@@ -1,0 +1,106 @@
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("Katchmat")
+		MultiPlayerSync()
+		Wait(1)
+		MoveToPoint([2290.1820])
+		Wait(1)
+		//HideCreature(Myself,TRUE)
+		ApplySpellRES("idinvis4",Myself)
+		Wait(4)
+		EndCutSceneMode()
+		MultiPlayerSync()
+		DestroySelf()
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("IW6050Mezro_Warrior3")
+		MultiPlayerSync()
+		Wait(1)
+		MoveToPoint([2290.1820])
+		Wait(1)
+		//HideCreature(Myself,TRUE)
+		ApplySpellRES("idinvis4",Myself)
+		Wait(4)
+		EndCutSceneMode()
+		MultiPlayerSync()
+		DestroySelf()
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("IW6050Mezro_Warrior5")
+		MultiPlayerSync()
+		Wait(1)
+		MoveToPoint([2290.1820])
+		Wait(1)
+		//HideCreature(Myself,TRUE)
+		ApplySpellRES("idinvis4",Myself)
+		Wait(4)
+		EndCutSceneMode()
+		MultiPlayerSync()
+		DestroySelf()
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("IW6050Mezro_Warrior1")
+		Wait(2)
+		MoveToPoint([2090.1840])
+		Wait(1)
+		DestroySelf()
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("IW6050Mezro_Warrior2")
+		Wait(2)
+		MoveToPoint([2090.1840])
+		Wait(1)
+		DestroySelf()
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("IW6050Mezro_Warrior4")
+		Wait(2)
+		MoveToPoint([2090.1840])
+		Wait(1)
+		DestroySelf()
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("IW6050Mezro_Warrior6")
+		Wait(3)
+		MoveToPoint([2430.1760])
+		Wait(1)
+		DestroySelf()
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("IW6050Mezro_Warrior7")
+		Wait(3)
+		MoveToPoint([2430.1760])
+		Wait(1)
+		DestroySelf()
+END
+

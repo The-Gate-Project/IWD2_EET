@@ -1,0 +1,225 @@
+IF
+	Global("IW_SET_QUEST_DONE","MYAREA",0)
+THEN
+	RESPONSE #100
+		SetGlobal("IW_SET_QUEST_DONE","MYAREA",1)
+		SetQuestDone(@36734)
+		SetQuestDone(@36105)
+		SetQuestDone(@35846)
+		SetQuestDone(@35849)
+		SetQuestDone(@35850)
+		SetQuestDone(@36055)
+		SetQuestDone(@36056)
+		SetQuestDone(@36057)
+		SetQuestDone(@36058)
+		Continue()
+END
+
+IF
+	Global("Purified_Fields","MYAREA",0)
+	Contains("z6genhw","Container_Waterfall")
+THEN
+	RESPONSE #100
+		SetGlobal("Purified_Fields","MYAREA",1)
+		ActionOverride("Container_Waterfall",DestroyItem("z6genhw"))
+		StartCutSceneMode()
+		ClearAllActions()
+		//ActionOverride("Creature_Waterfall",SpellHitEffectSprite("Creature_Waterfall",Myself,SUNSCORCH,0))
+		//ActionOverride("Creature_Waterfall",ForceSpellRES("IDSUNSCH",Myself))
+		//ForceSpellPointRES("IDSUNSCH",[3405.1591])
+		CreateVisualEffectObject("IDSNCH","Creature_Waterfall")
+		Wait(3)
+		FadeToColor([0.0],0)
+		Wait(1)
+		ClearActions(Player1)
+		ClearActions(Player2)
+		ClearActions(Player3)
+		ClearActions(Player4)
+		ClearActions(Player5)
+		ClearActions(Player6)
+		//SetRestEncounterChance(0,0)
+		SetRestEncounterProbabilityDay(0)
+		SetRestEncounterProbabilityNight(0)
+		//SetExtendedNight(FALSE)
+		/*ActionOverride(Player1,SetSavedLocation())
+		ActionOverride(Player2,SetSavedLocation())
+		ActionOverride(Player3,SetSavedLocation())
+		ActionOverride(Player4,SetSavedLocation())
+		ActionOverride(Player5,SetSavedLocation())
+		ActionOverride(Player6,SetSavedLocation())
+		ActionOverride(Player1,SetStartPos([-1.0]))
+		ActionOverride(Player2,SetStartPos([-1.0]))
+		ActionOverride(Player3,SetStartPos([-1.0]))
+		ActionOverride(Player4,SetStartPos([-1.0]))
+		ActionOverride(Player5,SetStartPos([-1.0]))
+		ActionOverride(Player6,SetStartPos([-1.0]))*/
+		StorePartyLocations()
+		DayNight(NOON)
+		
+		ActionOverride("Creature_Waterfall",DestroySelf())
+		
+		/*ActionOverride(Player1,JumpToSavedLocation())
+		ActionOverride(Player2,JumpToSavedLocation())
+		ActionOverride(Player3,JumpToSavedLocation())
+		ActionOverride(Player4,JumpToSavedLocation())
+		ActionOverride(Player5,JumpToSavedLocation())
+		ActionOverride(Player6,JumpToSavedLocation())*/
+		RestorePartyLocations()
+		Wait(1)
+		FadeFromColor([0.0],0)
+		Wait(1)
+		ClearActions(Player1)
+		ClearActions(Player2)
+		ClearActions(Player3)
+		ClearActions(Player4)
+		ClearActions(Player5)
+		ClearActions(Player6)
+		EndCutSceneMode()
+		AddXP2DA("IW2EX13H")
+		DisplayStringNoName(Player1,@27522) //[PC]
+		SetGlobal("Purify_Fields","GLOBAL",2)
+END
+
+/*IF
+	Global("Purified_Fields","MYAREA",1)
+	IsActive("Sound_wind_gusts")
+THEN
+	RESPONSE #100
+		Deactivate("Sound_wind_gusts")
+		Continue()
+END
+
+IF
+	Global("Purified_Fields","MYAREA",1)
+	IsActive("Sound_Snow_Drifts")
+THEN
+	RESPONSE #100
+		Deactivate("Sound_Snow_Drifts")
+		Continue()
+END
+
+IF
+	Global("Purified_Fields","MYAREA",1)
+	!IsActive("Sound_Happy_birds")
+THEN
+	RESPONSE #100
+		Activate("Sound_Happy_birds")
+		Continue()
+END
+
+IF
+	Global("Purified_Fields","MYAREA",1)
+	!IsActive("Sound_waterfall")
+THEN
+	RESPONSE #100
+		Activate("Sound_waterfall")
+		Continue()
+END*/
+
+IF
+	Global("Purified_Fields","MYAREA",1)
+	//!IsActive("Sound_waterfall")
+	Global("FieldsSound","MYAREA",0)
+THEN
+	RESPONSE #100
+		SoundActivate("Sound_wind_gusts",FALSE)
+		SoundActivate("Sound_Snow_Drifts",FALSE)
+		SoundActivate("Sound_Happy_birds",TRUE)
+		SoundActivate("Sound_waterfall",TRUE)
+		SetGlobal("FieldsSound","MYAREA",1)
+		Continue()
+END
+
+IF
+	Global("SetOrcTeamsHostile","MYAREA",0)
+	OR(2)
+		!Global("TEAM_2","MYAREA",0)
+		!Global("TEAM_11","MYAREA",0)
+THEN
+	RESPONSE #100
+		SetGlobal("SetOrcTeamsHostile","MYAREA",1)
+		SetGlobal("TEAM_2","MYAREA",1)
+		SetGlobal("TEAM_11","MYAREA",1)
+		Continue()
+END
+
+IF
+	OR(2)
+		Global("TEAM_2","MYAREA",0)
+		Global("TEAM_11","MYAREA",0)
+	OpenState("AR6200_Tusk_Gate",TRUE)
+THEN
+	RESPONSE #100
+		SetGlobal("TEAM_2","MYAREA",1)
+		SetGlobal("TEAM_11","MYAREA",1)
+		Continue()
+END
+
+IF
+	Global("Team_02_Fighting","MYAREA",0)
+	!Global("TEAM_2","MYAREA",0)
+THEN
+	RESPONSE #100
+		SetGlobal("Team_02_Fighting","MYAREA",1)
+		Continue()
+END
+
+IF
+	Global("Team_02_Fighting","MYAREA",1)
+	Dead("Kratuuk")
+	/*Dead("T2_OrcDreadWarrior")
+	Dead("T2_OrcDreadWarrior5")
+	Dead("T2_OrcDreadWarrior6")
+	Dead("T2_OrcDreadWarrior7")
+	Dead("T2_OrcDreadWarrior8")
+	Dead("T2_OrcDreadWarrior10")
+	Dead("T2_OrcDreadWarrior11")
+	Dead("T2_OrcDreadWarrior12")*/
+	GlobalGT("T2_OrcDreadWarriorDead","GLOBAL",7) //12
+THEN
+	RESPONSE #100
+		SetGlobal("Team_02_Fighting","MYAREA",2)
+		Continue()
+END
+
+IF
+	OnCreation()
+THEN
+	RESPONSE #100
+		NoAction()
+		Continue()
+END
+
+IF
+	Global("Purify_Fields","GLOBAL",1)
+	Global("Journal_Purify_Fields","MYAREA",0)
+THEN
+	RESPONSE #100
+		SetGlobal("Journal_Purify_Fields","MYAREA",1)
+		Continue()
+END
+
+IF
+	GlobalGT("Purify_Fields","GLOBAL",1)
+	Global("Journal_Purify_Fields","MYAREA",0)
+THEN
+	RESPONSE #100
+		SetGlobal("Journal_Purify_Fields","MYAREA",2)
+		EraseJournalEntry(@3003)
+		EraseJournalEntry(@24964)
+		AddJournalEntry(@25735,QUEST_DONE)
+		Continue()
+END
+
+IF
+	GlobalGT("Purify_Fields","GLOBAL",1)
+	Global("Journal_Purify_Fields","MYAREA",1)
+THEN
+	RESPONSE #100
+		SetGlobal("Journal_Purify_Fields","MYAREA",2)
+		EraseJournalEntry(@3003)
+		EraseJournalEntry(@24964)
+		AddJournalEntry(@24955,QUEST_DONE)
+		Continue()
+END
+

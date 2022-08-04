@@ -1,0 +1,58 @@
+IF
+	!Global("StartCutscene_63cFB06","MYAREA",1) //!Global("TeleportIsairMadaeHP33","MYAREA",1)
+	Clicked([ANYONE])
+THEN
+	RESPONSE #100
+		DisplayString(LastTrigger,@40361)
+END
+
+IF
+	Global("StartCutscene_63cFB06","MYAREA",1)
+	Global("6305ExitsClicked","GLOBAL",1)
+	OR(2)
+		Range(Player1,20)
+		StateCheck(Player1,STATE_REALLY_DEAD)
+	OR(3) //2
+		Range(Player2,20)
+		StateCheck(Player2,STATE_REALLY_DEAD)
+		NumInPartyLT(2)
+	OR(3) //2
+		Range(Player3,20)
+		StateCheck(Player3,STATE_REALLY_DEAD)
+		NumInPartyLT(3)
+	OR(3) //2
+		Range(Player4,20)
+		StateCheck(Player4,STATE_REALLY_DEAD)
+		NumInPartyLT(4)
+	OR(3) //2
+		Range(Player5,20)
+		StateCheck(Player5,STATE_REALLY_DEAD)
+		NumInPartyLT(5)
+	OR(3) //2
+		Range(Player6,20)
+		StateCheck(Player6,STATE_REALLY_DEAD)
+		NumInPartyLT(6)
+THEN
+	RESPONSE #100
+		SetGlobal("Iwd2_EndCredits","MYAREA",1)
+		SetGlobal("SH_LeaveSeveredHand","GLOBAL",1)
+		//SaveGame(41118)  // Закончить игру
+		//EndCredits()
+		ClearAllActions()
+		StartCutSceneMode()
+		StartCutScene("IWTO6300")
+END
+
+IF
+	Clicked([ANYONE])
+THEN
+	RESPONSE #100
+		SetGlobal("6305ExitsClicked","GLOBAL",1)
+		ActionOverride(Player1,MoveToPoint([1245.1289]))
+		ActionOverride(Player2,MoveToPoint([1245.1289]))
+		ActionOverride(Player3,MoveToPoint([1245.1289]))
+		ActionOverride(Player4,MoveToPoint([1245.1289]))
+		ActionOverride(Player5,MoveToPoint([1245.1289]))
+		ActionOverride(Player6,MoveToPoint([1245.1289]))
+END
+

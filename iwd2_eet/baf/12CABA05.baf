@@ -1,0 +1,59 @@
+IF
+  IsActive(Myself)
+  Global("IwIHidden","LOCALS",0)
+  Global("FirstIwIHidden","LOCALS",0)
+THEN
+  RESPONSE #100
+    SetGlobal("IwIHidden","LOCALS",1)
+    SetGlobal("FirstIwIHidden","LOCALS",1)
+    Deactivate(Myself)
+    //Continue()
+END
+
+IF
+  IsActive(Myself)
+  !Global("IwIHidden","LOCALS",0)
+THEN
+  RESPONSE #100
+    Deactivate(Myself)
+    //Continue()
+END
+
+IF
+	!Global("Goblins_Attack_Palisade","GLOBAL",0)
+	Global("GOBLIN_TEAM_1_STATE","MYAREA",2)
+	Global("GOBLIN_TEAM_2_STATE","MYAREA",2)
+	Global("GOBLIN_TEAM_3_STATE","MYAREA",2)
+THEN
+	RESPONSE #100
+		StartCutSceneMode()
+		Activate(Myself)
+		SetGlobal("IwIHidden","LOCALS",0)
+		ClearAllActions()
+		MultiPlayerSync()
+		StartCutScene("12cSpn1a")
+END
+
+IF
+  GlobalGT("1200_BATTLE_CLEANUP","GLOBAL",0)
+  !IsActive("05_Ghotrag")
+THEN
+  RESPONSE #100
+    ActionOverride("05_Ghotrag",DestroySelf())
+END
+
+IF
+  GlobalGT("1200_BATTLE_CLEANUP","GLOBAL",0)
+  !IsActive(Myself)
+THEN
+  RESPONSE #100
+    DestroySelf()
+END
+
+IF
+	!IsActive(Myself)
+THEN
+	RESPONSE #100
+		NoAction()
+END
+

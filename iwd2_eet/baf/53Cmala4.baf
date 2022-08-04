@@ -1,0 +1,16 @@
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("Malavon")
+		SmallWait(8)
+		FadeToColor([0.0],0)
+		SmallWait(7)
+		Activate("Ginafae")
+		ActionOverride("Ginafae",SetGlobal("IwIHidden","LOCALS",0))
+		ActionOverride("Ginafae",ApplySpellRES("IDINVIS5",Myself))
+		SmallWait(7)
+		FadeFromColor([0.0],0)
+		SmallWait(8)
+		ActionOverride("Ginafae",StartDialogNoSet([PC]))
+END

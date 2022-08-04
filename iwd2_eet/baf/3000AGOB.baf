@@ -1,0 +1,45 @@
+IF
+	StateCheck(Myself,STATE_PANIC)
+THEN
+	RESPONSE #100
+		RandomWalkContinuous()
+END
+
+IF
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		EquipMostDamagingMelee()
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	!Global("ENNELIA_BRASTON_TEAM","MYAREA",2)
+	See([ENEMY])
+THEN
+	RESPONSE #100
+		EquipMostDamagingMelee()
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	AttackedBy([ENEMY],DEFAULT)
+	!Range(LastAttackerOf(Myself),4)
+	CanEquipRanged()
+THEN
+	RESPONSE #100
+		EquipRanged()
+		AttackReevaluate(LastAttackerOf(Myself),45)
+END
+
+IF
+	AttackedBy([ENEMY],DEFAULT)
+	OR(2)
+		Range(LastAttackerOf(Myself),4)
+		!CanEquipRanged()
+THEN
+	RESPONSE #100
+		EquipMostDamagingMelee()
+		AttackReevaluate(LastAttackerOf(Myself),45)
+END
+

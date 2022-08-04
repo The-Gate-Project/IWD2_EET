@@ -1,0 +1,11 @@
+IF
+	Global("FLOAT_SPECIAL","LOCALS",0)
+	See([PC])
+THEN
+	RESPONSE #100
+		Wait(1)
+		SetGlobal("FLOAT_SPECIAL","LOCALS",1)
+		DisplayStringHead(Myself,@475)
+		Continue()
+END
+

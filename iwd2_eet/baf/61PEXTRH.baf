@@ -1,0 +1,24 @@
+IF
+	Entered([PC])
+THEN
+	RESPONSE #100
+		//Activate("ExitTrap")
+		AmbientActivate("ExitTrap",TRUE)
+		StaticSequence("ExitTrap",SEQ_AWAKE)
+		DisplayString(LastTrigger,14381)
+		SetGlobal("TEAM_7","MYAREA",1)
+		Shout(107)
+		SetGlobal("LastShout","MYAREA",107)
+		DisplayStringPointLog([3020.2275],@35589)
+		//StartTimer(102,7)
+		SetGlobalTimer("IwTimer102","MYAREA",7)
+		IncrementGlobal("YuantiCallForHelp","MYAREA",5)
+		IncrementGlobal("61HalfbreedDied","GLOBAL",5)
+		TriggerActivation("ExitTrapVisible",TRUE)
+		SmallWait(1)
+		ForceSpell(LastTrigger,WIZARD_DISPEL_MAGIC)
+		ForceSpellRES("IWWI095",LastTrigger)  // SPWI095.SPL 
+		Wait(2)
+		AmbientActivate("ExitTrap",FALSE)
+END
+

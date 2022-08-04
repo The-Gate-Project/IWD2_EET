@@ -1,0 +1,19 @@
+IF
+	Global("60PEDES1_Take_Stele","MYAREA",0)
+	OpenState("AR6050_IntPillar1",FALSE)
+	PartyHasItem("z6stele1")
+THEN
+	RESPONSE #100
+		SetGlobal("60PEDES1_Take_Stele","MYAREA",1)
+		TakePartyItem("z6stele1")
+		IncrementGlobal("Chult_Pedestals","GLOBAL",1)
+		Unlock(Myself)
+		CloseDoor(Myself)
+END
+
+IF
+	Clicked([ANYONE])
+THEN
+	RESPONSE #100
+END
+

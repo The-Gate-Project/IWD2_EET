@@ -1,0 +1,42 @@
+IF
+	OR(3)
+		OpenState(Myself,TRUE)
+		Unlocked(Myself)
+		Unlocked([ANYONE])
+THEN
+	RESPONSE #100
+		NoAction()
+END
+IF
+	Clicked([ANYONE])
+	//CheckDoorFlags(Myself,DOORLOCKED)
+	OR(3)
+		//LevelInClassGT(LastTrigger,6,THIEF)
+		ClassLevelGT(LastTrigger,ROGUE,18)
+		//CheckSkillGT(LastTrigger,7,Disable_Device)
+		CheckStatGT(LastTrigger,80,LOCKPICKING)
+		//CheckSkillGT(LastTrigger,7,Search)
+		CheckStatGT(LastTrigger,80,TRAPS)
+	!Class(LastTrigger,BARD)
+THEN
+	RESPONSE #100
+		SetGlobal("41XhaanPlayerKnowsLock","GLOBAL",1)
+		DisplayString(LastTrigger,@24690)
+END
+
+IF
+	Clicked([ANYONE])
+	//CheckDoorFlags(Myself,DOORLOCKED)
+THEN
+	RESPONSE #100
+		SetGlobal("41XhaanPlayerKnowsLock","GLOBAL",1)
+		DisplayString(LastTrigger,@24689)
+END
+
+/*IF
+	OpenState(Myself,TRUE)
+THEN
+	RESPONSE #100
+		ChangeCurrentScript("")
+END*/
+

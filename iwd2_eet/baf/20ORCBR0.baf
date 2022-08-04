@@ -1,0 +1,37 @@
+IF
+	!Global("20ORCBR0_INACTIVE","LOCALS",1)
+	Global("SetRageCount","LOCALS",0)
+	Global("RageCount","LOCALS",0)
+THEN
+	RESPONSE #10
+		SetGlobal("SetRageCount","LOCALS",1)
+		SetGlobal("RageCount","LOCALS",2)
+	RESPONSE #50
+		SetGlobal("SetRageCount","LOCALS",1)
+		SetGlobal("RageCount","LOCALS",1)
+	RESPONSE #40
+		SetGlobal("20ORCBR0_INACTIVE","LOCALS",1)
+END
+
+IF
+	!Global("20ORCBR0_INACTIVE","LOCALS",1)
+	Global("SetRageCount","LOCALS",1)
+	Global("RageCount","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobal("20ORCBR0_INACTIVE","LOCALS",1)
+END
+
+IF
+	!Global("20ORCBR0_INACTIVE","LOCALS",1)
+	!GlobalTimerNotExpired("Rage","LOCALS")
+	!Global("RageCount","LOCALS",0)
+	Range(NearestEnemyOf(Myself),3)
+THEN
+	RESPONSE #100
+		IncrementGlobal("RageCount","LOCALS",-1)
+		SetGlobalTimer("Rage","LOCALS",36)
+		//ForceSpell(Myself,INNATE_BARBARIAN_RAGE)  // SPIN236.SPL (ярость варвара)
+		ForceSpell(Myself,BARBARIAN_RAGE)
+END
+

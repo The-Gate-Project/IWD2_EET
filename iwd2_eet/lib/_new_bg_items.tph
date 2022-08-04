@@ -1,0 +1,556 @@
+//BLOCK EDITED_BG_ITEMS
+ACTION_IF (FILE_EXISTS_IN_GAME ~AMUL01.itm~) BEGIN
+ COPY_EXISTING ~AMUL01.itm~   ~override/ZAMUL01Z.itm~
+  SAY 0x0c @1000001
+  SAY 0x54 @1000002
+ COPY_EXISTING ~40bdawn.sto~  ~override~
+               ~60iselor.sto~ ~override~
+               ~60nathan.sto~ ~override~
+               ~oswald.cre~   ~override~
+  REPLACE_TEXTUALLY ~AMUL01~ ~ZAMUL01Z~ (8)
+  IF_EXISTS
+END
+
+ACTION_IF (FILE_EXISTS_IN_GAME ~AMUL14.itm~) BEGIN
+ COPY_EXISTING ~AMUL14.itm~   ~override/ZAMUL14Z.itm~
+  SAY 0x0c @1000003
+  SAY 0x54 @1000004
+ COPY_EXISTING ~11elytha.sto~ ~override~
+               ~53myrvek.sto~ ~override~
+               ~53kadres.cre~ ~override~
+               ~53wode.cre~   ~override~
+               ~60hiephe.cre~ ~override~
+               ~60sheemh.cre~ ~override~
+               ~60sheemi.cre~ ~override~
+               ~63riki.cre~   ~override~
+               ~ID9602.are~   ~override~
+               ~vera.cre~     ~override~
+  REPLACE_TEXTUALLY ~AMUL14~ ~ZAMUL14Z~ (8)
+  IF_EXISTS
+ COPY_EXISTING ~rndtres.2da~  ~override~
+  REPLACE_TEXTUALLY ~AMUL14~ ~ZAMUL14Z~
+ APPEND ~itemexcl.2da~ ~ZAMUL14Z   1~ UNLESS ~ZAMUL14Z~
+END
+
+ACTION_IF (FILE_EXISTS_IN_GAME ~AX1H03.itm~) BEGIN
+ COPY_EXISTING ~AX1H03.itm~   ~override/ZAX1H03Z.itm~
+  WRITE_LONG 0x0c 93789
+  WRITE_LONG 0x54 6696
+ COPY_EXISTING ~51harhor.cre~ ~override~
+               ~52harhor.cre~ ~override~
+               ~53wode.cre~   ~override~
+  REPLACE_TEXTUALLY ~AX1H03~ ~ZAX1H03Z~ (8)
+  IF_EXISTS
+ COPY_EXISTING ~rndtres.2da~  ~override~
+  REPLACE_TEXTUALLY ~AX1H03~ ~ZAX1H03Z~
+END
+
+ACTION_IF (FILE_EXISTS_IN_GAME ~BOOT01.itm~) BEGIN
+ COPY_EXISTING ~BOOT01.itm~   ~override/ZBOOT01Z.itm~
+  SAY 0x0c @1000005
+  SAY 0x54 @1000006
+ COPY_EXISTING ~60sheemi.sto~ ~override~
+               ~62sarald.cre~ ~override~
+               ~62saralo.cre~ ~override~
+               ~63formis.cre~ ~override~
+               ~63phaen.cre~  ~override~
+               ~63ormis.cre~  ~override~
+               ~kaylessa.cre~ ~override~
+  REPLACE_TEXTUALLY ~BOOT01~ ~ZBOOT01Z~ (8)
+  IF_EXISTS
+ COPY_EXISTING ~icewind2.bcs~ ~override~
+  DECOMPILE_AND_PATCH BEGIN
+   REPLACE_TEXTUALLY ~"BOOT01"~ ~"ZBOOT01Z"~
+  END
+  IF_EXISTS
+END
+
+ACTION_IF (FILE_EXISTS_IN_GAME ~BOOT03.itm~) BEGIN
+ COPY_EXISTING ~BOOT03.itm~   ~override/ZBOOT03Z.itm~
+  SAY 0x0c @1000007
+  SAY 0x54 @1000008
+ COPY_EXISTING ~11elytha.sto~ ~override~
+               ~50nym2.sto~   ~override~
+               ~60sheemi.sto~ ~override~
+               ~61izbel2.cre~ ~override~
+               ~62elfig2.cre~ ~override~
+               ~62elfig.cre~  ~override~
+               ~ID9105.are~   ~override~
+               ~tiernon.sto~  ~override~
+  REPLACE_TEXTUALLY ~BOOT03~ ~ZBOOT03Z~ (8)
+  IF_EXISTS
+END
+
+ACTION_IF (FILE_EXISTS_IN_GAME ~BOW07.itm~) BEGIN
+ COPY_EXISTING ~BOW07.itm~    ~override/ZBOW07Z.itm~
+  SAY 0x0c @1000009
+  SAY 0x54 @1000010
+ COPY_EXISTING ~ID7004.are~   ~override~
+               ~ID9800.are~   ~override~
+  REPLACE_TEXTUALLY ~BOW07~ ~ZBOW07Z~ (8)
+  IF_EXISTS
+ COPY_EXISTING ~rndtres.2da~  ~override~
+  REPLACE_TEXTUALLY ~BOW07~ ~ZBOW07Z~
+END
+
+ACTION_IF (FILE_EXISTS_IN_GAME ~BRAC03.itm~) BEGIN
+ COPY_EXISTING ~BRAC03.itm~   ~override/ZBRAC03Z.itm~
+  SAY 0x0c @1000011
+  SAY 0x54 @1000012
+ COPY_EXISTING ~53majras.cre~ ~override~
+               ~60inhatr.cre~ ~override~
+               ~60sheemi.sto~ ~override~
+               ~61thoras.cre~ ~override~
+               ~63cedrin.cre~ ~override~
+               ~63phaen.cre~  ~override~
+               ~alpheus.cre~  ~override~
+               ~alpheusd.cre~ ~override~
+               ~eldathl.cre~  ~override~
+               ~IW5203.are~   ~override~
+               ~krakmag.cre~  ~override~
+               ~orrick.cre~   ~override~
+               ~waukeen.sto~  ~override~
+  REPLACE_TEXTUALLY ~BRAC03~ ~ZBRAC03Z~ (8)
+  IF_EXISTS
+ COPY_EXISTING ~52venh0.bcs~  ~override~
+               ~icewind2.bcs~ ~override~
+  DECOMPILE_AND_PATCH BEGIN
+   REPLACE_TEXTUALLY ~"BRAC03"~ ~"ZBRAC03Z"~
+  END
+  IF_EXISTS
+ COPY_EXISTING ~rndtres.2da~  ~override~
+  REPLACE_TEXTUALLY ~BRAC03~ ~ZBRAC03Z~
+END
+
+ACTION_IF (FILE_EXISTS_IN_GAME ~BRAC09.itm~) BEGIN
+ COPY_EXISTING ~BRAC09.itm~   ~override/ZBRAC09Z.itm~
+  SAY 0x0c @1000013
+  SAY 0x54 @1000014
+ COPY_EXISTING ~ID3501.are~   ~override~
+  REPLACE_TEXTUALLY ~BRAC09~ ~ZBRAC09Z~ (8)
+  IF_EXISTS
+ COPY_EXISTING ~41zack.dlg~   ~override~
+  DECOMPILE_AND_PATCH BEGIN
+   REPLACE_TEXTUALLY ~"BRAC09"~ ~"ZBRAC09Z"~
+  END
+  IF_EXISTS
+ COPY_EXISTING ~rndtres.2da~  ~override~
+  REPLACE_TEXTUALLY ~BRAC09~ ~ZBRAC09Z~
+END
+
+ACTION_IF (FILE_EXISTS_IN_GAME ~CLCK02.itm~) BEGIN
+ COPY_EXISTING ~CLCK02.itm~   ~override/ZCLCK02Z.itm~
+  SAY 0x0c @1000015
+  SAY 0x54 @1000016
+ COPY_EXISTING ~60sheemi.sto~ ~override~
+               ~63cedrin.cre~ ~override~
+               ~hobart.sto~   ~override~
+               ~ID7004.are~   ~override~
+               ~ID9602.are~   ~override~
+               ~tiernon.sto~  ~override~
+  REPLACE_TEXTUALLY ~CLCK02~ ~ZCLCK02Z~ (8)
+  IF_EXISTS
+ COPY_EXISTING ~rndtres.2da~  ~override~
+  REPLACE_TEXTUALLY ~CLCK02~ ~ZCLCK02Z~
+ APPEND ~itemexcl.2da~ ~ZCLCK02Z   1~ UNLESS ~ZCLCK02Z~
+END
+
+ACTION_IF (FILE_EXISTS_IN_GAME ~DAGG03.itm~) BEGIN
+ COPY_EXISTING ~DAGG03.itm~   ~override/ZDAGG03Z.itm~
+  WRITE_LONG 0x0c 96054
+  SAY 0x54 @1000018
+ COPY_EXISTING ~50tahvo.sto~  ~override~
+               ~53imphra.cre~ ~override~
+               ~orrick.cre~   ~override~
+               ~tiernon.sto~  ~override~
+               ~vera.cre~     ~override~
+  REPLACE_TEXTUALLY ~DAGG03~ ~ZDAGG03Z~ (8)
+  IF_EXISTS
+ COPY_EXISTING ~rndtres.2da~  ~override~
+  REPLACE_TEXTUALLY ~DAGG03~ ~ZDAGG03Z~
+END
+
+ACTION_IF (FILE_EXISTS_IN_GAME ~DAGG04.itm~) BEGIN
+ COPY_EXISTING ~DAGG04.itm~   ~override/ZDAGG04Z.itm~
+  SAY 0x0c @1000019
+  SAY 0x54 @1000020
+ COPY_EXISTING ~41nick.cre~   ~override~
+               ~ID7004.are~   ~override~
+  REPLACE_TEXTUALLY ~DAGG04~ ~ZDAGG04Z~ (8)
+  IF_EXISTS
+ COPY_EXISTING ~rndtres.2da~  ~override~
+  REPLACE_TEXTUALLY ~DAGG04~ ~ZDAGG04Z~
+END
+
+ACTION_IF (FILE_EXISTS_IN_GAME ~HAMM03.itm~) BEGIN
+ COPY_EXISTING ~HAMM03.itm~   ~override/ZHAMM03Z.itm~
+  SAY 0x0c @1000021
+  SAY 0x54 @1000022
+ COPY_EXISTING ~41zack1.sto~  ~override~
+               ~41zack2.sto~  ~override~
+               ~41zack3.sto~  ~override~
+               ~60sheemi.sto~ ~override~
+               ~62sarald.cre~ ~override~
+               ~62saralo.cre~ ~override~
+               ~IW6101.are~   ~override~
+  REPLACE_TEXTUALLY ~HAMM03~ ~ZHAMM03Z~ (8)
+  IF_EXISTS
+ COPY_EXISTING ~61genpri.bcs~ ~override~
+  DECOMPILE_AND_PATCH BEGIN
+   REPLACE_TEXTUALLY ~"HAMM03"~ ~"ZHAMM03Z"~
+  END
+  IF_EXISTS
+ COPY_EXISTING ~rndtres.2da~  ~override~
+  REPLACE_TEXTUALLY ~HAMM03~ ~ZHAMM03Z~
+END
+
+ACTION_IF (FILE_EXISTS_IN_GAME ~HELM02.itm~) BEGIN
+ COPY_EXISTING ~HELM02.itm~ ~override/ZHELM02Z.itm~
+  WRITE_LONG 0x0c 17684
+  SAY 0x54 @1000024
+  WRITE_LONG  0x18 44
+  WRITE_LONG  0x34 5
+  WRITE_SHORT 0x42 0
+  LPF DELETE_ITEM_EQEFFECT INT_VAR opcode_to_delete=56  END
+  LPF DELETE_ITEM_EQEFFECT INT_VAR opcode_to_delete=142 END
+ COPY_EXISTING ~IW5101.are~   ~override~
+  REPLACE_TEXTUALLY ~HELM02~ ~ZHELM02Z~ (8)
+  IF_EXISTS
+END
+
+ACTION_IF (FILE_EXISTS_IN_GAME ~PLAT02.itm~) BEGIN
+ COPY_EXISTING ~PLAT02.itm~   ~override/ZPLAT02Z.itm~
+  SAY 0x0c @1000025
+  SAY 0x54 @1000026
+ COPY_EXISTING ~60sheemi.sto~ ~override~
+               ~cyanimp1.cre~ ~override~
+               ~cyanimp2.cre~ ~override~
+               ~cyanimp3.cre~ ~override~
+               ~kusmith.sto~  ~override~
+               ~presfig.cre~  ~override~
+               ~tiernon.sto~  ~override~
+               ~waukeen.sto~  ~override~
+  REPLACE_TEXTUALLY ~PLAT02~ ~ZPLAT02Z~ (8)
+  IF_EXISTS
+ COPY_EXISTING ~rndtres.2da~  ~override~
+  REPLACE_TEXTUALLY ~PLAT02~ ~ZPLAT02Z~
+ APPEND ~itemexcl.2da~ ~ZPLAT02Z   1~ UNLESS ~ZPLAT02Z~
+END
+
+ACTION_IF (FILE_EXISTS_IN_GAME ~PLAT05.itm~) BEGIN
+ COPY_EXISTING ~PLAT05.itm~   ~override/ZPLAT05Z.itm~
+  SAY 0x0c @1000027
+  SAY 0x54 @1000028
+ COPY_EXISTING ~60sheemi.sto~ ~override~
+               ~63zilvar.cre~ ~override~
+               ~everard.cre~  ~override~
+               ~mercwr1d.cre~ ~override~
+               ~mercwr2d.cre~ ~override~
+  REPLACE_TEXTUALLY ~PLAT05~ ~ZPLAT05Z~ (8)
+  IF_EXISTS
+ COPY_EXISTING ~rndtres.2da~  ~override~
+  REPLACE_TEXTUALLY ~PLAT05~ ~ZPLAT05Z~
+ APPEND ~itemexcl.2da~ ~ZPLAT05Z   1~ UNLESS ~ZPLAT05Z~
+END
+
+ACTION_IF (FILE_EXISTS_IN_GAME ~RING02.itm~) BEGIN
+ COPY_EXISTING ~RING02.itm~   ~override/ZRING02Z.itm~
+  SAY 0x0c @1000029
+  SAY 0x54 @1000030
+ COPY_EXISTING ~53myrvek.cre~ ~override~
+               ~60sheemi.sto~ ~override~
+               ~61pyros.cre~  ~override~
+               ~adran.cre~    ~override~
+  REPLACE_TEXTUALLY ~RING02~ ~ZRING02Z~ (8)
+  IF_EXISTS
+ COPY_EXISTING ~rndtres.2da~  ~override~
+  REPLACE_TEXTUALLY ~RING02~ ~ZRING02Z~
+END
+
+ACTION_IF (FILE_EXISTS_IN_GAME ~RING06.itm~) BEGIN
+ COPY_EXISTING ~RING06.itm~   ~override/ZRING06Z.itm~
+  SAY 0x0c @1000031
+  SAY 0x54 @1000032
+ COPY_EXISTING ~11elytha.sto~ ~override~
+               ~11ulbrec.cre~ ~override~
+               ~50nym2.sto~   ~override~
+               ~waukeen.sto~  ~override~
+  REPLACE_TEXTUALLY ~RING06~ ~ZRING06Z~ (8)
+  IF_EXISTS
+ COPY_EXISTING ~rndtres.2da~  ~override~
+  REPLACE_TEXTUALLY ~RING06~ ~ZRING06Z~
+ APPEND ~itemexcl.2da~ ~ZRING06Z   1~ UNLESS ~ZRING06Z~
+END
+
+ACTION_IF (FILE_EXISTS_IN_GAME ~RING07.itm~) BEGIN
+ COPY_EXISTING ~RING07.itm~   ~override/ZRING07Z.itm~
+  SAY 0x0c @1000033
+  SAY 0x54 @1000034
+ COPY_EXISTING ~41nick.cre~   ~override~
+               ~41oriaes.cre~ ~override~
+               ~41zack1.sto~  ~override~
+               ~41zack2.sto~  ~override~
+               ~41zack3.sto~  ~override~
+               ~53imphra.cre~ ~override~
+               ~53malavo.cre~ ~override~
+               ~60sheemi.sto~ ~override~
+               ~62kratu.cre~  ~override~
+               ~adran.cre~    ~override~
+               ~ID9200.are~   ~override~
+               ~ID9602.are~   ~override~
+               ~IW6051.are~   ~override~
+               ~jklsum.cre~   ~override~
+               ~kontik.cre~   ~override~
+               ~oswald.cre~   ~override~
+               ~vaarglan.cre~ ~override~
+               ~vaarglnd.cre~ ~override~
+               ~waukeen.sto~  ~override~
+  REPLACE_TEXTUALLY ~RING07~ ~ZRING07Z~ (8)
+  IF_EXISTS
+ COPY_EXISTING ~rndtres.2da~  ~override~
+  REPLACE_TEXTUALLY ~RING07~ ~ZRING07Z~
+ APPEND ~itemexcl.2da~ ~ZRING07Z   1~ UNLESS ~ZRING07Z~
+END
+
+ACTION_IF (FILE_EXISTS_IN_GAME ~RING09.itm~) BEGIN
+ COPY_EXISTING ~RING09.itm~   ~override/ZRING09Z.itm~
+  SAY 0x0c @1000035
+  SAY 0x54 @1000036
+ COPY_EXISTING ~53malavo.sto~ ~override~
+               ~60sheemi.sto~ ~override~
+               ~61thoras.cre~ ~override~
+               ~arundel.cre~  ~override~
+               ~harald.cre~   ~override~
+               ~ilair.cre~    ~override~
+               ~minlrd.cre~   ~override~
+               ~orrick.cre~   ~override~
+               ~purvis.cre~   ~override~
+               ~purvish.cre~  ~override~
+               ~vaarglan.sto~ ~override~
+               ~vaarglnd.sto~ ~override~
+  REPLACE_TEXTUALLY ~RING09~ ~ZRING09Z~ (8)
+  IF_EXISTS
+ COPY_EXISTING ~61thoram.bcs~ ~override~
+               ~icewind2.bcs~ ~override~
+  DECOMPILE_AND_PATCH BEGIN
+   REPLACE_TEXTUALLY ~"RING09"~ ~"ZRING09Z"~
+  END
+  IF_EXISTS
+ COPY_EXISTING ~rndtres.2da~  ~override~
+  REPLACE_TEXTUALLY ~RING09~ ~ZRING09Z~
+END
+
+ACTION_IF (FILE_EXISTS_IN_GAME ~RING30.itm~) BEGIN
+ COPY_EXISTING ~RING30.itm~   ~override/ZRING30Z.itm~
+  SAY 0x0c @1000037
+  SAY 0x54 @1000038
+ COPY_EXISTING ~52dolon1.cre~ ~override~
+  REPLACE_TEXTUALLY ~RING30~ ~ZRING30Z~ (8)
+  IF_EXISTS
+ COPY_EXISTING ~52dolon1.bcs~ ~override~
+  DECOMPILE_AND_PATCH BEGIN
+   REPLACE_TEXTUALLY ~"RING30"~ ~"ZRING30Z"~
+  END
+  IF_EXISTS
+ COPY_EXISTING ~rndtres.2da~  ~override~
+  REPLACE_TEXTUALLY ~RING30~ ~ZRING30Z~
+END
+
+/*ACTION_IF (FILE_EXISTS_IN_GAME ~RING31.itm~) BEGIN
+ COPY_EXISTING ~RING31.itm~   ~override/ZRING31Z.itm~
+  SAY 0x54 @1000040
+ COPY_EXISTING ~00swlf.cre~   ~override~
+  REPLACE_TEXTUALLY ~RING31~ ~ZRING31Z~ (8)
+  IF_EXISTS
+END*/
+
+ACTION_IF (FILE_EXISTS_IN_GAME ~RING41.itm~) BEGIN
+ COPY_EXISTING ~RING41.itm~   ~override/ZRING41Z.itm~
+  SAY 0x0c @1000041
+  SAY 0x54 @1000042
+ COPY_EXISTING ~60cedra.cre~  ~override~
+               ~61thoras.cre~ ~override~
+               ~63mourn.cre~  ~override~
+               ~63serak.cre~  ~override~
+  REPLACE_TEXTUALLY ~RING41~ ~ZRING41Z~ (8)
+  IF_EXISTS
+ COPY_EXISTING ~60natha2.dlg~ ~override~
+               ~61cemdes.bcs~ ~override~
+  DECOMPILE_AND_PATCH BEGIN
+   REPLACE_TEXTUALLY ~"RING41"~ ~"ZRING41Z"~
+  END
+  IF_EXISTS
+ COPY_EXISTING ~rndtres.2da~  ~override~
+  REPLACE_TEXTUALLY ~RING41~ ~ZRING41Z~
+ APPEND ~itemexcl.2da~ ~ZRING41Z   1~ UNLESS ~ZRING41Z~
+END
+
+ACTION_IF (FILE_EXISTS_IN_GAME ~SHLD07.itm~) BEGIN
+ COPY_EXISTING ~SHLD07.itm~   ~override/ZSHLD07Z.itm~
+  SAY 0x0c @1000043
+  SAY 0x54 @1000044
+ COPY_EXISTING ~ID6005.are~   ~override~
+  REPLACE_TEXTUALLY ~SHLD07~ ~ZSHLD07Z~ (8)
+  IF_EXISTS
+END
+
+ACTION_IF (FILE_EXISTS_IN_GAME ~SHLD19.itm~) BEGIN
+ COPY_EXISTING ~SHLD19.itm~   ~override/ZSHLD19Z.itm~
+  SAY 0x0c @1000045
+  SAY 0x54 @1000046
+ COPY_EXISTING ~60sheemi.are~ ~override~
+  REPLACE_TEXTUALLY ~SHLD19~ ~ZSHLD19Z~ (8)
+  IF_EXISTS
+ COPY_EXISTING ~rndtres.2da~  ~override~
+  REPLACE_TEXTUALLY ~SHLD19~ ~ZSHLD19Z~
+END
+
+COPY_EXISTING ~rndtres.2da~  ~override~
+              ~itemexcl.2da~ ~override~
+  PRETTY_PRINT_2DA
+
+ACTION_IF (FILE_EXISTS_IN_GAME ~BOOT02.itm~) AND (FILE_EXISTS_IN_GAME ~BOOT02HZ.itm~) BEGIN
+ COPY_EXISTING ~BOOT02.itm~   ~override~
+  READ_LONG 0x0c name
+  READ_LONG 0x54 desc
+  BUT_ONLY_IF_IT_CHANGES
+ COPY_EXISTING ~BOOT02HZ.itm~ ~override~
+  WRITE_LONG 0x0c name
+  WRITE_LONG 0x54 desc
+  BUT_ONLY_IF_IT_CHANGES
+  IF_EXISTS
+END
+//BLOCKEND
+
+//BLOCK EDIT_HIDDEN_CRE
+COPY_EXISTING ~10FIRTHH.cre~ ~override/10FIRTHH.cre~
+	WRITE_BYTE 0x12 (BYTE_AT 0x12) + 128
+
+COPY_EXISTING ~11DEADG.cre~ ~override/11DEADG.cre~
+	WRITE_BYTE 0x12 (BYTE_AT 0x12) + 128
+
+COPY_EXISTING ~11DEADS.cre~ ~override/11DEADS.cre~
+	WRITE_BYTE 0x12 (BYTE_AT 0x12) + 128
+
+COPY_EXISTING ~30HOBDG2.cre~ ~override/30HOBDG2.cre~
+	WRITE_BYTE 0x12 (BYTE_AT 0x12) + 128
+
+COPY_EXISTING ~30OGRGA2.cre~ ~override/30OGRGA2.cre~
+	WRITE_BYTE 0x12 (BYTE_AT 0x12) + 128
+
+COPY_EXISTING ~31BRASTD.cre~ ~override/Z31BRAST.cre~
+	WRITE_BYTE 0x12 (BYTE_AT 0x12) + 128
+COPY_EXISTING ~IW3000.are~ ~override~
+	LPF ALTER_AREA_ACTOR STR_VAR actor_name="Braston_Watcher"   cre_file="Z31BRAST" END
+COPY_EXISTING ~IW3100.are~ ~override~
+	LPF ALTER_AREA_ACTOR STR_VAR actor_name="Braston_Watcher"   cre_file="Z31BRAST" END
+	LPF ALTER_AREA_ACTOR STR_VAR actor_name="Braston_Wrong_Way" cre_file="Z31BRAST" END
+COPY_EXISTING ~IW3101.are~ ~override~
+	LPF ALTER_AREA_ACTOR STR_VAR actor_name="Braston_Watcher"   cre_file="Z31BRAST" END
+
+COPY_EXISTING ~41DEER.cre~ ~override/Z41DEER.cre~
+	WRITE_BYTE 0x12 (BYTE_AT 0x12) + 128
+COPY_EXISTING ~IW4100.are~ ~override~
+	LPF ALTER_AREA_ACTOR STR_VAR actor_name="SymbolContainer"   cre_file="Z41DEER" END
+
+COPY_EXISTING ~41PAINT.cre~ ~override/41PAINT.cre~
+	WRITE_BYTE 0x12 (BYTE_AT 0x12) + 128
+
+COPY_EXISTING ~50BARWAH.cre~ ~override/Z50BARWA.cre~
+	WRITE_BYTE 0x12 (BYTE_AT 0x12) + 128
+COPY_EXISTING ~IW5004.are~ ~override~
+	LPF ALTER_AREA_ACTOR STR_VAR actor_name="STONE_WATCHER"     cre_file="Z50BARWA" END
+
+COPY_EXISTING ~51SPE.cre~ ~override/Z51SPE.cre~
+	WRITE_BYTE 0x12 (BYTE_AT 0x12) + 128
+COPY_EXISTING ~IW5101.are~ ~override~
+	LPF ALTER_AREA_ACTOR STR_VAR actor_name="Spectre_Unturner"  cre_file="Z51SPE" END
+	LPF ALTER_AREA_ACTOR STR_VAR actor_name="WATCHER_I"         cre_file="Z51SPE" END
+	LPF ALTER_AREA_ACTOR STR_VAR actor_name="WATCHER_O"         cre_file="Z51SPE" END
+	LPF ALTER_AREA_ACTOR STR_VAR actor_name="WATCHER_Icssss"    cre_file="Z51SPE" END
+
+COPY_EXISTING ~52PORTAL.cre~ ~override/52PORTAL.cre~
+	WRITE_BYTE 0x12 (BYTE_AT 0x12) + 128
+
+COPY_EXISTING ~52PROXI.cre~ ~override/52PROXI.cre~
+	WRITE_BYTE 0x12 (BYTE_AT 0x12) + 128
+
+COPY_EXISTING ~52YETUH.cre~ ~override/Z52YETUH.cre~
+	WRITE_BYTE 0x12 (BYTE_AT 0x12) + 128
+COPY_EXISTING ~IW4000.are~ ~override~
+	LPF ALTER_AREA_ACTOR STR_VAR actor_name="Beacon_1"          cre_file="Z52YETUH" END
+	LPF ALTER_AREA_ACTOR STR_VAR actor_name="Beacon_2"          cre_file="Z52YETUH" END
+	LPF ALTER_AREA_ACTOR STR_VAR actor_name="Beacon_3"          cre_file="Z52YETUH" END
+COPY_EXISTING ~IW5001.are~ ~override~
+	LPF ALTER_AREA_ACTOR STR_VAR actor_name="Limha_Spotter_01"  cre_file="Z52YETUH" script_class="iwLimDel" END
+	LPF ALTER_AREA_ACTOR STR_VAR actor_name="Limha_Spotter_02"  cre_file="Z52YETUH" END
+	LPF ALTER_AREA_ACTOR STR_VAR actor_name="Limha_Spotter_03"  cre_file="Z52YETUH" END
+	LPF ALTER_AREA_ACTOR STR_VAR actor_name="Limha_Spotter_04"  cre_file="Z52YETUH" END
+	LPF ALTER_AREA_ACTOR STR_VAR actor_name="Limha_Spotter_05"  cre_file="Z52YETUH" END
+	LPF ALTER_AREA_ACTOR STR_VAR actor_name="Limha_Spotter_06"  cre_file="Z52YETUH" END
+	LPF ALTER_AREA_ACTOR STR_VAR actor_name="Limha_Spotter_00"  cre_file="Z52YETUH" END
+	LPF ALTER_AREA_ACTOR STR_VAR actor_name="Limha_Spotter_07"  cre_file="Z52YETUH" script_class="iwLimDel" END
+	LPF ALTER_AREA_ACTOR STR_VAR actor_name="Limha_Spotter_08"  cre_file="Z52YETUH" script_class="iwLimDel" END
+	LPF ALTER_AREA_ACTOR STR_VAR actor_name="Limha_Spotter_09"  cre_file="Z52YETUH" script_class="iwLimDel" END
+COPY_EXISTING ~IW5202.are~ ~override~
+	LPF ALTER_AREA_ACTOR STR_VAR actor_name="Target" cre_file="Z52YETUH" END
+	
+<<<<<<<<iwLimDel.baf
+IF
+	Dead("Limha")
+THEN
+	RESPONSE #100
+		DestroySelf()
+END
+>>>>>>>>
+COMPILE ~iwLimDel.baf~
+
+COPY_EXISTING ~53FORGE.cre~ ~override/53FORGE.cre~
+	WRITE_BYTE 0x12 (BYTE_AT 0x12) + 128
+
+COPY_EXISTING ~53LAB.cre~ ~override/53LAB.cre~
+	SAY 0x0c @35519
+	WRITE_BYTE 0x12 (BYTE_AT 0x12) + 128
+
+COPY_EXISTING ~60HEART.cre~ ~override/60HEART.cre~
+	WRITE_BYTE 0x12 (BYTE_AT 0x12) + 128
+
+COPY_EXISTING ~60MEZWAR.cre~ ~override/Z60MEZWA.cre~
+	WRITE_BYTE 0x12 (BYTE_AT 0x12) + 128
+COPY_EXISTING ~IW6050.are~ ~override~
+	LPF ALTER_AREA_ACTOR STR_VAR actor_name="Spell_FX"          cre_file="Z60MEZWA" END
+
+COPY_EXISTING ~61GRISHU.cre~ ~override/Z61GRISH.cre~
+	WRITE_BYTE 0x12 (BYTE_AT 0x12) + 128
+COPY_EXISTING ~IW6103.are~ ~override~
+	LPF ALTER_AREA_ACTOR STR_VAR actor_name="SsethEye"          cre_file="Z61GRISH" END
+
+COPY_EXISTING ~61WEBGEN.cre~ ~override/61WEBGEN.cre~
+	WRITE_BYTE 0x12 (BYTE_AT 0x12) + 128
+
+COPY_EXISTING ~65FLRART.cre~ ~override/65FLRART.cre~
+	WRITE_BYTE 0x12 (BYTE_AT 0x12) + 128
+
+
+//BLOCKEND
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

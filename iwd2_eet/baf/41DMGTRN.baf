@@ -1,0 +1,50 @@
+IF
+	!Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("DamageTimer","LOCALS")
+	//HPLostGT(Myself,1)
+	HPPercentLT(Myself,100)
+THEN
+	RESPONSE #100
+		Enemy()
+		Continue()
+END
+
+IF
+	!GlobalTimerNotExpired("DamageTimer","LOCALS")
+	HPPercentLT(Myself,100)
+	!See([GOODCUTOFF])
+THEN
+	RESPONSE #100
+		MoveToObject(Player1)
+		Continue()
+END
+
+IF
+	!GlobalTimerNotExpired("DamageTimer","LOCALS")
+THEN
+	RESPONSE #100
+		SetGlobalTimer("DamageTimer","LOCALS",5)
+END
+
+IF
+	!GlobalTimerNotExpired("IwTimer1","LOCALS")
+	//!IsFacingSavedRotation(Myself)
+	GlobalLT("FaceSavedLocation","LOCALS",4)
+THEN
+	RESPONSE #100
+		//FaceSavedLocation(Myself)
+		RandomTurn()
+		SetGlobalRandom("FaceSavedLocation","LOCALS",1,6)
+		SetGlobalTimerRandom("IwTimer1","LOCALS",2,15)
+END
+
+IF
+	!GlobalTimerNotExpired("IwTimer1","LOCALS")
+	//!IsFacingSavedRotation(Myself)
+	GlobalGT("FaceSavedLocation","LOCALS",3)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("FaceSavedLocation","LOCALS",1,6)
+		SetGlobalTimerRandom("IwTimer1","LOCALS",2,15)
+END
+

@@ -1,0 +1,210 @@
+IF
+  Global("SaveSavedLoc","LOCALS",0)
+THEN
+  RESPONSE #100
+    SetGlobal("SaveSavedLoc","LOCALS",1)
+    SaveObjectLocation("LOCALS","SavedLoc",Myself)
+    Continue()
+END
+
+//BLOCK SET_VARS
+IF
+	!Global("SET_60PBSO2C","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobal("SET_60PBSO2C","LOCALS",1)
+		SetInterrupt(TRUE)
+END
+//BLOCKEND
+
+IF
+	StateCheck(Myself,STATE_PANIC)
+THEN
+	RESPONSE #100
+		RandomWalkContinuous()
+END
+
+IF
+	!GlobalTimerNotExpired("IWD_Rest","LOCALS")
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IWD_Rest","LOCALS",EIGHT_HOURS)
+		ApplySpell(Myself,RESTORE_FULL_HEALTH)
+		Rest()
+END
+
+//BLOCK SPL_1
+/*IF
+	ForceMarkedSpell(MARKED_SPELL)
+	SetSpellTarget(Nothing)
+	Global("Buffed","LOCALS",0)
+	See(NearestEnemyOf(Myself),0)
+THEN
+	RESPONSE #100
+		MarkSpellAndObject("21022114",Myself,SPELLCAST_IGNORE_SEE | SPELLCAST_IGNORE_VALID_SPELL_TARGET | SPELLCAST_RANDOM)  // [WIZARD_ARMOR, WIZARD_SHIELD]
+		Continue()
+END
+
+IF
+	!IsMarkedSpell(MARKED_SPELL)
+THEN
+	RESPONSE #100
+		SetGlobal("Buffed","LOCALS",1)
+		Spell(SpellTarget,MARKED_SPELL)
+		WaitAnimation(Myself,WALK)
+		WaitAnimation(Myself,CONJURE)
+		WaitAnimation(Myself,CAST)
+		ForceMarkedSpell(MARKED_SPELL)
+END*/
+/*IF
+	GlobalLT("SSPELLS_1_RANDOM_CAST","LOCALS",3)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		Continue()
+END*/
+//1 - Myself - [WIZARD_ARMOR, WIZARD_SHIELD]
+IF
+	Global("SSPELLS_1_RANDOM_CAST","LOCALS",1)
+	HaveSpell(WIZARD_ARMOR)
+	Global("Buffed","LOCALS",0)
+	See(NearestEnemyOf(Myself))
+	CheckStatGT(Myself,5,ARMORCLASS)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobal("Buffed","LOCALS",1)
+		Spell(Myself,WIZARD_ARMOR)
+		Wait(1)
+END
+
+IF
+	Global("SSPELLS_1_RANDOM_CAST","LOCALS",2)
+	HaveSpell(WIZARD_SHIELD)
+	Global("Buffed","LOCALS",0)
+	See(NearestEnemyOf(Myself))
+	CheckStatGT(Myself,4,ARMORCLASS)
+	!CheckSpellState(Myself,WIZARD_SHIELD)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobal("Buffed","LOCALS",1)
+		Spell(Myself,WIZARD_SHIELD)
+		Wait(1)
+END
+//BLOCK NO_RND
+IF
+	HaveSpell(WIZARD_ARMOR)
+	Global("Buffed","LOCALS",0)
+	See(NearestEnemyOf(Myself))
+	CheckStatGT(Myself,5,ARMORCLASS)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobal("Buffed","LOCALS",1)
+		Spell(Myself,WIZARD_ARMOR)
+		Wait(1)
+END
+
+IF
+	HaveSpell(WIZARD_SHIELD)
+	Global("Buffed","LOCALS",0)
+	See(NearestEnemyOf(Myself))
+	CheckStatGT(Myself,4,ARMORCLASS)
+	!CheckSpellState(Myself,WIZARD_SHIELD)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobal("Buffed","LOCALS",1)
+		Spell(Myself,WIZARD_SHIELD)
+		Wait(1)
+END
+//BLOCKEND
+//BLOCKEND
+
+//BLOCK SPL_2
+/*IF
+	ForceMarkedSpell(MARKED_SPELL)
+	SetSpellTarget(Nothing)
+	SetLastMarkedObject(Myself) //snachala POWER, potom AFFINITY
+THEN
+	RESPONSE #100
+		MarkSpellAndObject("39983999",Myself,SPELLCAST_IGNORE_SEE | SPELLCAST_IGNORE_VALID_SPELL_TARGET | SPELLCAST_IGNORE_HAS_CHECK)  // [INNATE_CHAMELEON_POWER, INNATE_ANIMAL_AFFINITY]
+		Continue()
+END
+
+IF
+	!IsMarkedSpell(MARKED_SPELL)
+THEN
+	RESPONSE #100
+		ForceSpell(SpellTarget,MARKED_SPELL)
+		WaitAnimation(Myself,WALK)
+		WaitAnimation(Myself,CONJURE)
+		WaitAnimation(Myself,CAST)
+		ForceMarkedSpell(MARKED_SPELL)
+END*/
+IF
+	HaveSpellRES("IWIN998")
+	See(NearestEnemyOf(Myself))
+	GlobalLT("CHAMELEON_ANIMAL","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("CHAMELEON_ANIMAL","LOCALS",1)
+		SpellRES("IWIN998",Myself)
+		Wait(1)
+END
+
+IF
+	HaveSpellRES("IWIN999")
+	See(NearestEnemyOf(Myself))
+	GlobalLT("CHAMELEON_ANIMAL","LOCALS",2)
+THEN
+	RESPONSE #100
+		SetGlobal("CHAMELEON_ANIMAL","LOCALS",2)
+		SpellRES("IWIN999",Myself)
+		Wait(1)
+END
+//BLOCKEND
+
+IF
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		EquipMostDamagingMelee()
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	OR(4)
+		See("6051Heartless_Dead1")
+		//See("6051Heartless_Dead2",0)
+		//See("6051Heartless_Dead3",0)
+		//See("6051Heartless_Dead4",0)
+		//See("6051Heartless_Dead5",0)
+		See("6051Heartless_Dead6")
+		See("6051Heartless_Dead7")
+		See("6051Heartless_Dead8")
+THEN
+	RESPONSE #100
+		SetGlobal("Fleeing","LOCALS",1)
+		RunAwayFrom(LastSeenBy(Myself),45)
+END
+
+IF
+	Global("Fleeing","LOCALS",1)
+	!See("6051Heartless_Dead1")
+	//!See("6051Heartless_Dead2",0)
+	//!See("6051Heartless_Dead3",0)
+	//!See("6051Heartless_Dead4",0)
+	//!See("6051Heartless_Dead5",0)
+	!See("6051Heartless_Dead6")
+	!See("6051Heartless_Dead7")
+	!See("6051Heartless_Dead8")
+THEN
+	RESPONSE #100
+		MoveToSavedLocation("SavedLoc","LOCALS")
+		SetGlobal("Fleeing","LOCALS",0)
+END
+

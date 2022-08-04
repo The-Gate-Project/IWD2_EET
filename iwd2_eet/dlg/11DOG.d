@@ -1,0 +1,6 @@
+BEGIN ~11DOG~
+
+IF ~True()~ THEN BEGIN 0
+  SAY @28489
+  IF ~~ THEN EXIT
+END

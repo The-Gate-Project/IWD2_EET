@@ -1,0 +1,203 @@
+IF
+	Global("MT_PortalSequence","GLOBAL",0)
+	Clicked([ANYONE])
+THEN
+	RESPONSE #100
+		IncrementGlobal("MT_PortalSequence","GLOBAL",1)
+		PlaySound("IW6400c") //,[412.350]
+END
+
+IF
+	Global("MT_PortalSequence","GLOBAL",1)
+	Clicked([ANYONE])
+THEN
+	RESPONSE #100
+		SetGlobal("MT_PortalSequence","GLOBAL",0)
+		ActionOverride("PortalFire1",ReallyForceSpellRES("IWIN967",Player1))  // SPIN967.SPL TRAP_MAGE_TOWER_PORTAL
+		ActionOverride("PortalFire2",ReallyForceSpellRES("IWIN967",Player2))  // SPIN967.SPL TRAP_MAGE_TOWER_PORTAL
+		ActionOverride("PortalFire3",ReallyForceSpellRES("IWIN967",Player3))  // SPIN967.SPL TRAP_MAGE_TOWER_PORTAL
+		ActionOverride("PortalFire4",ReallyForceSpellRES("IWIN967",Player4))  // SPIN967.SPL TRAP_MAGE_TOWER_PORTAL
+		ActionOverride("PortalFire5",ReallyForceSpellRES("IWIN967",Player5))  // SPIN967.SPL TRAP_MAGE_TOWER_PORTAL
+		Wait(1)
+		ActionOverride("PortalFire1",ReallyForceSpellRES("IWIN967",Player6))  // SPIN967.SPL TRAP_MAGE_TOWER_PORTAL
+		ActionOverride("PortalFire2",ReallyForceSpellRES("IWIN967",Player1))  // SPIN967.SPL TRAP_MAGE_TOWER_PORTAL
+		ActionOverride("PortalFire3",ReallyForceSpellRES("IWIN967",Player2))  // SPIN967.SPL TRAP_MAGE_TOWER_PORTAL
+		ActionOverride("PortalFire4",ReallyForceSpellRES("IWIN967",Player3))  // SPIN967.SPL TRAP_MAGE_TOWER_PORTAL
+		ActionOverride("PortalFire5",ReallyForceSpellRES("IWIN967",Player4))  // SPIN967.SPL TRAP_MAGE_TOWER_PORTAL
+		Wait(1)
+		ActionOverride("PortalFire1",ReallyForceSpellRES("IWIN967",Player5))  // SPIN967.SPL TRAP_MAGE_TOWER_PORTAL
+		ActionOverride("PortalFire2",ReallyForceSpellRES("IWIN967",Player6))  // SPIN967.SPL TRAP_MAGE_TOWER_PORTAL
+		ActionOverride("PortalFire3",ReallyForceSpellRES("IWIN967",Player1))  // SPIN967.SPL TRAP_MAGE_TOWER_PORTAL
+		ActionOverride("PortalFire4",ReallyForceSpellRES("IWIN967",Player2))  // SPIN967.SPL TRAP_MAGE_TOWER_PORTAL
+		ActionOverride("PortalFire5",ReallyForceSpellRES("IWIN967",Player3))  // SPIN967.SPL TRAP_MAGE_TOWER_PORTAL
+		Wait(1)
+		ActionOverride("PortalFire1",ReallyForceSpellRES("IWIN967",Player4))  // SPIN967.SPL TRAP_MAGE_TOWER_PORTAL
+		ActionOverride("PortalFire2",ReallyForceSpellRES("IWIN967",Player5))  // SPIN967.SPL TRAP_MAGE_TOWER_PORTAL
+		ActionOverride("PortalFire3",ReallyForceSpellRES("IWIN967",Player6))  // SPIN967.SPL TRAP_MAGE_TOWER_PORTAL
+		ActionOverride("PortalFire4",ReallyForceSpellRES("IWIN967",Player1))  // SPIN967.SPL TRAP_MAGE_TOWER_PORTAL
+		ActionOverride("PortalFire5",ReallyForceSpellRES("IWIN967",Player2))  // SPIN967.SPL TRAP_MAGE_TOWER_PORTAL
+		Wait(1)
+		ActionOverride("PortalFire1",ReallyForceSpellRES("IWIN967",Player3))  // SPIN967.SPL TRAP_MAGE_TOWER_PORTAL
+		ActionOverride("PortalFire2",ReallyForceSpellRES("IWIN967",Player4))  // SPIN967.SPL TRAP_MAGE_TOWER_PORTAL
+		ActionOverride("PortalFire3",ReallyForceSpellRES("IWIN967",Player5))  // SPIN967.SPL TRAP_MAGE_TOWER_PORTAL
+		ActionOverride("PortalFire4",ReallyForceSpellRES("IWIN967",Player6))  // SPIN967.SPL TRAP_MAGE_TOWER_PORTAL
+		ActionOverride("PortalFire5",ReallyForceSpellRES("IWIN967",Player1))  // SPIN967.SPL TRAP_MAGE_TOWER_PORTAL
+		Wait(1)
+		ActionOverride("PortalFire1",ReallyForceSpellRES("IWIN967",Player2))  // SPIN967.SPL TRAP_MAGE_TOWER_PORTAL
+		ActionOverride("PortalFire2",ReallyForceSpellRES("IWIN967",Player3))  // SPIN967.SPL TRAP_MAGE_TOWER_PORTAL
+		ActionOverride("PortalFire3",ReallyForceSpellRES("IWIN967",Player4))  // SPIN967.SPL TRAP_MAGE_TOWER_PORTAL
+		ActionOverride("PortalFire4",ReallyForceSpellRES("IWIN967",Player5))  // SPIN967.SPL TRAP_MAGE_TOWER_PORTAL
+		ActionOverride("PortalFire5",ReallyForceSpellRES("IWIN967",Player6))  // SPIN967.SPL TRAP_MAGE_TOWER_PORTAL
+		Wait(1)
+END
+
+IF
+	Global("MT_PortalSequence","GLOBAL",2)
+	Clicked([ANYONE])
+THEN
+	RESPONSE #100
+		SetGlobal("MT_PortalSequence","GLOBAL",0)
+		ActionOverride("PortalFire1",ReallyForceSpellRES("IWIN967",Player1))  // SPIN967.SPL TRAP_MAGE_TOWER_PORTAL
+		ActionOverride("PortalFire2",ReallyForceSpellRES("IWIN967",Player2))  // SPIN967.SPL TRAP_MAGE_TOWER_PORTAL
+		ActionOverride("PortalFire3",ReallyForceSpellRES("IWIN967",Player3))  // SPIN967.SPL TRAP_MAGE_TOWER_PORTAL
+		ActionOverride("PortalFire4",ReallyForceSpellRES("IWIN967",Player4))  // SPIN967.SPL TRAP_MAGE_TOWER_PORTAL
+		ActionOverride("PortalFire5",ReallyForceSpellRES("IWIN967",Player5))  // SPIN967.SPL TRAP_MAGE_TOWER_PORTAL
+		Wait(1)
+		ActionOverride("PortalFire1",ReallyForceSpellRES("IWIN967",Player6))  // SPIN967.SPL TRAP_MAGE_TOWER_PORTAL
+		ActionOverride("PortalFire2",ReallyForceSpellRES("IWIN967",Player1))  // SPIN967.SPL TRAP_MAGE_TOWER_PORTAL
+		ActionOverride("PortalFire3",ReallyForceSpellRES("IWIN967",Player2))  // SPIN967.SPL TRAP_MAGE_TOWER_PORTAL
+		ActionOverride("PortalFire4",ReallyForceSpellRES("IWIN967",Player3))  // SPIN967.SPL TRAP_MAGE_TOWER_PORTAL
+		ActionOverride("PortalFire5",ReallyForceSpellRES("IWIN967",Player4))  // SPIN967.SPL TRAP_MAGE_TOWER_PORTAL
+		Wait(1)
+		ActionOverride("PortalFire1",ReallyForceSpellRES("IWIN967",Player5))  // SPIN967.SPL TRAP_MAGE_TOWER_PORTAL
+		ActionOverride("PortalFire2",ReallyForceSpellRES("IWIN967",Player6))  // SPIN967.SPL TRAP_MAGE_TOWER_PORTAL
+		ActionOverride("PortalFire3",ReallyForceSpellRES("IWIN967",Player1))  // SPIN967.SPL TRAP_MAGE_TOWER_PORTAL
+		ActionOverride("PortalFire4",ReallyForceSpellRES("IWIN967",Player2))  // SPIN967.SPL TRAP_MAGE_TOWER_PORTAL
+		ActionOverride("PortalFire5",ReallyForceSpellRES("IWIN967",Player3))  // SPIN967.SPL TRAP_MAGE_TOWER_PORTAL
+		Wait(1)
+		ActionOverride("PortalFire1",ReallyForceSpellRES("IWIN967",Player4))  // SPIN967.SPL TRAP_MAGE_TOWER_PORTAL
+		ActionOverride("PortalFire2",ReallyForceSpellRES("IWIN967",Player5))  // SPIN967.SPL TRAP_MAGE_TOWER_PORTAL
+		ActionOverride("PortalFire3",ReallyForceSpellRES("IWIN967",Player6))  // SPIN967.SPL TRAP_MAGE_TOWER_PORTAL
+		ActionOverride("PortalFire4",ReallyForceSpellRES("IWIN967",Player1))  // SPIN967.SPL TRAP_MAGE_TOWER_PORTAL
+		ActionOverride("PortalFire5",ReallyForceSpellRES("IWIN967",Player2))  // SPIN967.SPL TRAP_MAGE_TOWER_PORTAL
+		Wait(1)
+		ActionOverride("PortalFire1",ReallyForceSpellRES("IWIN967",Player3))  // SPIN967.SPL TRAP_MAGE_TOWER_PORTAL
+		ActionOverride("PortalFire2",ReallyForceSpellRES("IWIN967",Player4))  // SPIN967.SPL TRAP_MAGE_TOWER_PORTAL
+		ActionOverride("PortalFire3",ReallyForceSpellRES("IWIN967",Player5))  // SPIN967.SPL TRAP_MAGE_TOWER_PORTAL
+		ActionOverride("PortalFire4",ReallyForceSpellRES("IWIN967",Player6))  // SPIN967.SPL TRAP_MAGE_TOWER_PORTAL
+		ActionOverride("PortalFire5",ReallyForceSpellRES("IWIN967",Player1))  // SPIN967.SPL TRAP_MAGE_TOWER_PORTAL
+		Wait(1)
+		ActionOverride("PortalFire1",ReallyForceSpellRES("IWIN967",Player2))  // SPIN967.SPL TRAP_MAGE_TOWER_PORTAL
+		ActionOverride("PortalFire2",ReallyForceSpellRES("IWIN967",Player3))  // SPIN967.SPL TRAP_MAGE_TOWER_PORTAL
+		ActionOverride("PortalFire3",ReallyForceSpellRES("IWIN967",Player4))  // SPIN967.SPL TRAP_MAGE_TOWER_PORTAL
+		ActionOverride("PortalFire4",ReallyForceSpellRES("IWIN967",Player5))  // SPIN967.SPL TRAP_MAGE_TOWER_PORTAL
+		ActionOverride("PortalFire5",ReallyForceSpellRES("IWIN967",Player6))  // SPIN967.SPL TRAP_MAGE_TOWER_PORTAL
+		Wait(1)
+END
+
+IF
+	Global("MT_PortalSequence","GLOBAL",3)
+	Clicked([ANYONE])
+THEN
+	RESPONSE #100
+		SetGlobal("MT_PortalSequence","GLOBAL",0)
+		ActionOverride("PortalFire1",ReallyForceSpellRES("IWIN967",Player1))  // SPIN967.SPL TRAP_MAGE_TOWER_PORTAL
+		ActionOverride("PortalFire2",ReallyForceSpellRES("IWIN967",Player2))  // SPIN967.SPL TRAP_MAGE_TOWER_PORTAL
+		ActionOverride("PortalFire3",ReallyForceSpellRES("IWIN967",Player3))  // SPIN967.SPL TRAP_MAGE_TOWER_PORTAL
+		ActionOverride("PortalFire4",ReallyForceSpellRES("IWIN967",Player4))  // SPIN967.SPL TRAP_MAGE_TOWER_PORTAL
+		ActionOverride("PortalFire5",ReallyForceSpellRES("IWIN967",Player5))  // SPIN967.SPL TRAP_MAGE_TOWER_PORTAL
+		Wait(1)
+		ActionOverride("PortalFire1",ReallyForceSpellRES("IWIN967",Player6))  // SPIN967.SPL TRAP_MAGE_TOWER_PORTAL
+		ActionOverride("PortalFire2",ReallyForceSpellRES("IWIN967",Player1))  // SPIN967.SPL TRAP_MAGE_TOWER_PORTAL
+		ActionOverride("PortalFire3",ReallyForceSpellRES("IWIN967",Player2))  // SPIN967.SPL TRAP_MAGE_TOWER_PORTAL
+		ActionOverride("PortalFire4",ReallyForceSpellRES("IWIN967",Player3))  // SPIN967.SPL TRAP_MAGE_TOWER_PORTAL
+		ActionOverride("PortalFire5",ReallyForceSpellRES("IWIN967",Player4))  // SPIN967.SPL TRAP_MAGE_TOWER_PORTAL
+		Wait(1)
+		ActionOverride("PortalFire1",ReallyForceSpellRES("IWIN967",Player5))  // SPIN967.SPL TRAP_MAGE_TOWER_PORTAL
+		ActionOverride("PortalFire2",ReallyForceSpellRES("IWIN967",Player6))  // SPIN967.SPL TRAP_MAGE_TOWER_PORTAL
+		ActionOverride("PortalFire3",ReallyForceSpellRES("IWIN967",Player1))  // SPIN967.SPL TRAP_MAGE_TOWER_PORTAL
+		ActionOverride("PortalFire4",ReallyForceSpellRES("IWIN967",Player2))  // SPIN967.SPL TRAP_MAGE_TOWER_PORTAL
+		ActionOverride("PortalFire5",ReallyForceSpellRES("IWIN967",Player3))  // SPIN967.SPL TRAP_MAGE_TOWER_PORTAL
+		Wait(1)
+		ActionOverride("PortalFire1",ReallyForceSpellRES("IWIN967",Player4))  // SPIN967.SPL TRAP_MAGE_TOWER_PORTAL
+		ActionOverride("PortalFire2",ReallyForceSpellRES("IWIN967",Player5))  // SPIN967.SPL TRAP_MAGE_TOWER_PORTAL
+		ActionOverride("PortalFire3",ReallyForceSpellRES("IWIN967",Player6))  // SPIN967.SPL TRAP_MAGE_TOWER_PORTAL
+		ActionOverride("PortalFire4",ReallyForceSpellRES("IWIN967",Player1))  // SPIN967.SPL TRAP_MAGE_TOWER_PORTAL
+		ActionOverride("PortalFire5",ReallyForceSpellRES("IWIN967",Player2))  // SPIN967.SPL TRAP_MAGE_TOWER_PORTAL
+		Wait(1)
+		ActionOverride("PortalFire1",ReallyForceSpellRES("IWIN967",Player3))  // SPIN967.SPL TRAP_MAGE_TOWER_PORTAL
+		ActionOverride("PortalFire2",ReallyForceSpellRES("IWIN967",Player4))  // SPIN967.SPL TRAP_MAGE_TOWER_PORTAL
+		ActionOverride("PortalFire3",ReallyForceSpellRES("IWIN967",Player5))  // SPIN967.SPL TRAP_MAGE_TOWER_PORTAL
+		ActionOverride("PortalFire4",ReallyForceSpellRES("IWIN967",Player6))  // SPIN967.SPL TRAP_MAGE_TOWER_PORTAL
+		ActionOverride("PortalFire5",ReallyForceSpellRES("IWIN967",Player1))  // SPIN967.SPL TRAP_MAGE_TOWER_PORTAL
+		Wait(1)
+		ActionOverride("PortalFire1",ReallyForceSpellRES("IWIN967",Player2))  // SPIN967.SPL TRAP_MAGE_TOWER_PORTAL
+		ActionOverride("PortalFire2",ReallyForceSpellRES("IWIN967",Player3))  // SPIN967.SPL TRAP_MAGE_TOWER_PORTAL
+		ActionOverride("PortalFire3",ReallyForceSpellRES("IWIN967",Player4))  // SPIN967.SPL TRAP_MAGE_TOWER_PORTAL
+		ActionOverride("PortalFire4",ReallyForceSpellRES("IWIN967",Player5))  // SPIN967.SPL TRAP_MAGE_TOWER_PORTAL
+		ActionOverride("PortalFire5",ReallyForceSpellRES("IWIN967",Player6))  // SPIN967.SPL TRAP_MAGE_TOWER_PORTAL
+		Wait(1)
+END
+
+IF
+	Global("MT_PortalSequence","GLOBAL",4)
+	Clicked([ANYONE])
+THEN
+	RESPONSE #100
+		SetGlobal("MT_PortalSequence","GLOBAL",0)
+		ActionOverride("PortalFire1",ReallyForceSpellRES("IWIN967",Player1))  // SPIN967.SPL TRAP_MAGE_TOWER_PORTAL
+		ActionOverride("PortalFire2",ReallyForceSpellRES("IWIN967",Player2))  // SPIN967.SPL TRAP_MAGE_TOWER_PORTAL
+		ActionOverride("PortalFire3",ReallyForceSpellRES("IWIN967",Player3))  // SPIN967.SPL TRAP_MAGE_TOWER_PORTAL
+		ActionOverride("PortalFire4",ReallyForceSpellRES("IWIN967",Player4))  // SPIN967.SPL TRAP_MAGE_TOWER_PORTAL
+		ActionOverride("PortalFire5",ReallyForceSpellRES("IWIN967",Player5))  // SPIN967.SPL TRAP_MAGE_TOWER_PORTAL
+		Wait(1)
+		ActionOverride("PortalFire1",ReallyForceSpellRES("IWIN967",Player6))  // SPIN967.SPL TRAP_MAGE_TOWER_PORTAL
+		ActionOverride("PortalFire2",ReallyForceSpellRES("IWIN967",Player1))  // SPIN967.SPL TRAP_MAGE_TOWER_PORTAL
+		ActionOverride("PortalFire3",ReallyForceSpellRES("IWIN967",Player2))  // SPIN967.SPL TRAP_MAGE_TOWER_PORTAL
+		ActionOverride("PortalFire4",ReallyForceSpellRES("IWIN967",Player3))  // SPIN967.SPL TRAP_MAGE_TOWER_PORTAL
+		ActionOverride("PortalFire5",ReallyForceSpellRES("IWIN967",Player4))  // SPIN967.SPL TRAP_MAGE_TOWER_PORTAL
+		Wait(1)
+		ActionOverride("PortalFire1",ReallyForceSpellRES("IWIN967",Player5))  // SPIN967.SPL TRAP_MAGE_TOWER_PORTAL
+		ActionOverride("PortalFire2",ReallyForceSpellRES("IWIN967",Player6))  // SPIN967.SPL TRAP_MAGE_TOWER_PORTAL
+		ActionOverride("PortalFire3",ReallyForceSpellRES("IWIN967",Player1))  // SPIN967.SPL TRAP_MAGE_TOWER_PORTAL
+		ActionOverride("PortalFire4",ReallyForceSpellRES("IWIN967",Player2))  // SPIN967.SPL TRAP_MAGE_TOWER_PORTAL
+		ActionOverride("PortalFire5",ReallyForceSpellRES("IWIN967",Player3))  // SPIN967.SPL TRAP_MAGE_TOWER_PORTAL
+		Wait(1)
+		ActionOverride("PortalFire1",ReallyForceSpellRES("IWIN967",Player4))  // SPIN967.SPL TRAP_MAGE_TOWER_PORTAL
+		ActionOverride("PortalFire2",ReallyForceSpellRES("IWIN967",Player5))  // SPIN967.SPL TRAP_MAGE_TOWER_PORTAL
+		ActionOverride("PortalFire3",ReallyForceSpellRES("IWIN967",Player6))  // SPIN967.SPL TRAP_MAGE_TOWER_PORTAL
+		ActionOverride("PortalFire4",ReallyForceSpellRES("IWIN967",Player1))  // SPIN967.SPL TRAP_MAGE_TOWER_PORTAL
+		ActionOverride("PortalFire5",ReallyForceSpellRES("IWIN967",Player2))  // SPIN967.SPL TRAP_MAGE_TOWER_PORTAL
+		Wait(1)
+		ActionOverride("PortalFire1",ReallyForceSpellRES("IWIN967",Player3))  // SPIN967.SPL TRAP_MAGE_TOWER_PORTAL
+		ActionOverride("PortalFire2",ReallyForceSpellRES("IWIN967",Player4))  // SPIN967.SPL TRAP_MAGE_TOWER_PORTAL
+		ActionOverride("PortalFire3",ReallyForceSpellRES("IWIN967",Player5))  // SPIN967.SPL TRAP_MAGE_TOWER_PORTAL
+		ActionOverride("PortalFire4",ReallyForceSpellRES("IWIN967",Player6))  // SPIN967.SPL TRAP_MAGE_TOWER_PORTAL
+		ActionOverride("PortalFire5",ReallyForceSpellRES("IWIN967",Player1))  // SPIN967.SPL TRAP_MAGE_TOWER_PORTAL
+		Wait(1)
+		ActionOverride("PortalFire1",ReallyForceSpellRES("IWIN967",Player2))  // SPIN967.SPL TRAP_MAGE_TOWER_PORTAL
+		ActionOverride("PortalFire2",ReallyForceSpellRES("IWIN967",Player3))  // SPIN967.SPL TRAP_MAGE_TOWER_PORTAL
+		ActionOverride("PortalFire3",ReallyForceSpellRES("IWIN967",Player4))  // SPIN967.SPL TRAP_MAGE_TOWER_PORTAL
+		ActionOverride("PortalFire4",ReallyForceSpellRES("IWIN967",Player5))  // SPIN967.SPL TRAP_MAGE_TOWER_PORTAL
+		ActionOverride("PortalFire5",ReallyForceSpellRES("IWIN967",Player6))  // SPIN967.SPL TRAP_MAGE_TOWER_PORTAL
+		Wait(1)
+END
+
+IF
+	Global("MT_PortalSequence","GLOBAL",5)
+	Clicked([ANYONE])
+THEN
+	RESPONSE #100
+		IncrementGlobal("MT_PortalSequence","GLOBAL",1)
+		PlaySound("IW6400c") //,[412.350]
+END
+
+IF
+	!GlobalTimerNotExpired("IwTimer1_5","MYAREA")
+	GlobalGT("MT_PortalSequence","GLOBAL",1)
+THEN
+	RESPONSE #100
+		ForceSpellPoint([460.620],WIZARD_AGANNAZAR_SCORCHER)
+		SetGlobalTimer("IwTimer1_5","MYAREA",4)
+END
+

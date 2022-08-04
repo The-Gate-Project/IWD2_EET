@@ -1,0 +1,86 @@
+IF
+	Global("52Ven_Loot","GLOBAL",4)
+THEN
+	RESPONSE #100
+		DestroySelf()
+END
+
+IF
+	Global("VEN_GET_LOOT","LOCALS",4)
+	//!IsCreatureHiddenInShadows(Myself)
+	!StateCheck(Myself,STATE_NOT_VISIBLE)
+	!GlobalTimerNotExpired("IwTimer4","LOCALS")
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		SetGlobalTimerRandom("IwTimer4","LOCALS",3,9)
+		//ForceHide(Myself)
+		SetSequence(SEQ_HIDE)
+		ApplySpellRES("idinvis4",Myself)
+END
+
+IF
+	AttackedBy([GOODCUTOFF],DEFAULT)
+	NearSavedLocation(Myself,"LOCALSSavedLoc",3)
+THEN
+	RESPONSE #100
+		//SetSavedLocationPoint(388,559,S)
+		SaveLocation("LOCALS","SavedLoc",[388.559])
+		ChangeAIScript("52VenH1",RACE)
+	RESPONSE #100
+		//SetSavedLocationPoint(276,1276,S)
+		SaveLocation("LOCALS","SavedLoc",[276.1276])
+		ChangeAIScript("52VenH2",RACE)
+	RESPONSE #100
+		//SetSavedLocationPoint(1175,1143,S)
+		SaveLocation("LOCALS","SavedLoc",[1175.1143])
+		ChangeAIScript("52VenH3",RACE)
+END
+
+IF
+	//!IsCreatureHiddenInShadows(Myself)
+	!StateCheck(Myself,STATE_NOT_VISIBLE)
+	See(NearestEnemyOf(Myself))
+	NearSavedLocation(Myself,"LOCALSSavedLoc",3)
+THEN
+	RESPONSE #100
+		//SetSavedLocationPoint(388,559,S)
+		SaveLocation("LOCALS","SavedLoc",[388.559])
+		ChangeAIScript("52VenH1",RACE)
+	RESPONSE #100
+		//SetSavedLocationPoint(276,1276,S)
+		SaveLocation("LOCALS","SavedLoc",[276.1276])
+		ChangeAIScript("52VenH2",RACE)
+	RESPONSE #100
+		//SetSavedLocationPoint(1175,1143,S)
+		SaveLocation("LOCALS","SavedLoc",[1175.1143])
+		ChangeAIScript("52VenH3",RACE)
+END
+
+IF
+	//!IsCreatureHiddenInShadows(Myself)
+	!StateCheck(Myself,STATE_NOT_VISIBLE)
+	!NearSavedLocation(Myself,"LOCALSSavedLoc",3)
+	OR(2)
+		See(NearestEnemyOf(Myself))
+		AttackedBy(NearestEnemyOf(Myself),DEFAULT)
+THEN
+	RESPONSE #100
+		RunAwayFrom(LastSeenBy,45)
+END
+
+IF
+	!NearSavedLocation(Myself,"LOCALSSavedLoc",3)
+THEN
+	RESPONSE #100
+		MoveToOffset([-2.-2])
+	RESPONSE #100
+		MoveToOffset([2.-2])
+	RESPONSE #100
+		MoveToOffset([-2.2])
+	RESPONSE #100
+		MoveToOffset([2.2])
+	RESPONSE #100
+		MoveToSavedLocation("SavedLoc","LOCALS")
+END
+

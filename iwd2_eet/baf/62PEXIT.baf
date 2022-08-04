@@ -1,0 +1,20 @@
+IF
+	Global("SPRITE_IS_DEADSaablic_Tan","GLOBAL",1)
+	//!CheckDoorFlags(Myself,DOOROPEN)
+	OpenState(Myself,FALSE)
+	OR(6)
+		NearLocation(Player1,1730,880,15)
+		NearLocation(Player2,1730,880,15)
+		NearLocation(Player3,1730,880,15)
+		NearLocation(Player4,1730,880,15)
+		NearLocation(Player5,1730,880,15)
+		NearLocation(Player6,1730,880,15)
+THEN
+	RESPONSE #100
+		OpenDoor(Myself)
+		//Deactivate("Barrier")
+		TriggerActivation("ExitCoverTrigger",FALSE)
+		AmbientActivate("Barrier",FALSE)
+		SetGlobal("IW6300_REVEALED","GLOBAL",1)
+END
+

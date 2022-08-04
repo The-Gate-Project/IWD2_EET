@@ -1,0 +1,267 @@
+//BLOCK SET_VARS
+IF
+	!Global("SET_11OSWAL0","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,4)
+		SetGlobal("SET_11OSWAL0","LOCALS",1)
+		SetInterrupt(TRUE)
+END
+//BLOCKEND
+
+IF
+	StateCheck(Myself,STATE_PANIC)
+THEN
+	RESPONSE #100
+		RandomWalkContinuous()
+END
+
+IF
+	!GlobalTimerNotExpired("IWD_Rest","LOCALS")
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IWD_Rest","LOCALS",EIGHT_HOURS)
+		ApplySpell(Myself,RESTORE_FULL_HEALTH)
+		Rest()
+END
+
+IF
+	OR(20)	
+		HasItem("SGRASP01",Myself)
+		HasItem("SGRASP02",Myself)
+		HasItem("SGRASP03",Myself)
+		HasItem("SGRASP04",Myself)
+		HasItem("SGRASP05",Myself)
+		HasItem("SGRASP06",Myself)
+		HasItem("SGRASP07",Myself)
+		HasItem("SGRASP08",Myself)
+		HasItem("SGRASP09",Myself)
+		HasItem("SGRASP10",Myself)
+		HasItem("SGRASP11",Myself)
+		HasItem("SGRASP12",Myself)
+		HasItem("SGRASP13",Myself)
+		HasItem("SGRASP14",Myself)
+		HasItem("SGRASP15",Myself)
+		HasItem("SGRASP16",Myself)
+		HasItem("SGRASP17",Myself)
+		HasItem("SGRASP18",Myself)
+		HasItem("SGRASP19",Myself)
+		HasItem("SGRASP20",Myself)
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+//BLOCK SPELLS_1
+/*IF
+	ForceMarkedSpell(MARKED_SPELL)
+	SetSpellTarget(Nothing)
+	//See(NearestEnemyOf(Myself),0)
+THEN
+	RESPONSE #100
+		MarkSpellAndObject("2201",Myself,SPELLCAST_IGNORE_SEE | SPELLCAST_IGNORE_VALID_SPELL_TARGET)  // [WIZARD_BLUR]
+		MarkSpellAndObject("2217241725112118",LastMarkedObject,SPELLCAST_IGNORE_SEE | SPELLCAST_IGNORE_VALID_SPELL_TARGET)  // [WIZARD_AGANNAZAR_SCORCHER, WIZARD_BELTYNS_BURNING_BLOOD, WIZARD_SHROUD_OF_FLAME, WIZARD_CHROMATIC_ORB]
+		MarkSpellAndObject("2115",Myself,SPELLCAST_IGNORE_SEE | SPELLCAST_IGNORE_VALID_SPELL_TARGET)  // [WIZARD_SHOCKING_GRASP]
+		MarkSpellAndObject("2105",LastMarkedObject,SPELLCAST_IGNORE_SEE | SPELLCAST_IGNORE_VALID_SPELL_TARGET)  // [WIZARD_COLOR_SPRAY]
+		Continue()
+END
+
+IF
+	!IsMarkedSpell(MARKED_SPELL)
+THEN
+	RESPONSE #100
+		Spell(SpellTarget,MARKED_SPELL)
+		WaitAnimation(Myself,WALK)
+		WaitAnimation(Myself,CONJURE)
+		WaitAnimation(Myself,CAST)
+		ForceMarkedSpell(MARKED_SPELL)
+END*/
+
+/*IF
+	GlobalLT("SSPELLS_1_RANDOM_CAST","LOCALS",5)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,4)
+		Continue()
+END*/
+
+IF
+	Global("SPELLS_1_RANDOM_CAST","LOCALS",1)
+	HaveSpell(WIZARD_BLUR)
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,4)
+		//SetGlobalTimer("TSPELLS_1_RANDOM_CAST","LOCALS",9)
+		Spell(Myself,WIZARD_BLUR)
+		Wait(1)
+END
+
+//WIZARD_AGANNAZAR_SCORCHER, WIZARD_BELTYNS_BURNING_BLOOD, WIZARD_SHROUD_OF_FLAME, WIZARD_CHROMATIC_ORB - LastMarkedObject
+IF
+	Global("SPELLS_1_RANDOM_CAST","LOCALS",2)
+	HaveSpell(WIZARD_AGANNAZAR_SCORCHER)
+	See(NearestEnemyOf(Myself))
+	RandomNum(4,1)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,4)
+		//SetGlobalTimer("TSPELLS_1_RANDOM_CAST","LOCALS",9)
+		Spell(LastSeenBy(Myself),WIZARD_AGANNAZAR_SCORCHER)
+		Wait(1)
+END
+
+IF
+	Global("SPELLS_1_RANDOM_CAST","LOCALS",2)
+	HaveSpellRES("IWWI417")
+	See(NearestEnemyOf(Myself))
+	RandomNum(4,2)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,4)
+		//SetGlobalTimer("TSPELLS_1_RANDOM_CAST","LOCALS",9)
+		SpellRES("IWWI417",LastSeenBy(Myself))
+		Wait(1)
+END
+
+IF
+	Global("SPELLS_1_RANDOM_CAST","LOCALS",2)
+	HaveSpellRES("IWWI511")
+	See(NearestEnemyOf(Myself))
+	RandomNum(4,3)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,4)
+		//SetGlobalTimer("TSPELLS_1_RANDOM_CAST","LOCALS",9)
+		SpellRES("IWWI511",LastSeenBy(Myself))
+		Wait(1)
+END
+
+IF
+	Global("SPELLS_1_RANDOM_CAST","LOCALS",2)
+	HaveSpell(WIZARD_CHROMATIC_ORB)
+	See(NearestEnemyOf(Myself))
+	RandomNum(4,4)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,4)
+		//SetGlobalTimer("TSPELLS_1_RANDOM_CAST","LOCALS",9)
+		Spell(LastSeenBy(Myself),WIZARD_CHROMATIC_ORB)
+		Wait(1)
+END
+//WIZARD_SHOCKING_GRASP - Myself
+IF
+	Global("SPELLS_1_RANDOM_CAST","LOCALS",3)
+	HaveSpell(WIZARD_SHOCKING_GRASP)
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,4)
+		//SetGlobalTimer("TSPELLS_1_RANDOM_CAST","LOCALS",9)
+		Spell(Myself,WIZARD_SHOCKING_GRASP)
+		Wait(1)
+END
+//WIZARD_COLOR_SPRAY - LastMarkedObject
+IF
+	Global("SPELLS_1_RANDOM_CAST","LOCALS",4)
+	HaveSpell(WIZARD_COLOR_SPRAY)
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,4)
+		//SetGlobalTimer("TSPELLS_1_RANDOM_CAST","LOCALS",9)
+		Spell(LastSeenBy(Myself),WIZARD_COLOR_SPRAY)
+		Wait(1)
+END
+
+//BLOCK NO_RANDOM
+IF
+	//!GlobalTimerNotExpired("TSPELLS_1_RANDOM_CAST","LOCALS")
+	HaveSpell(WIZARD_BLUR)
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,4)
+		Spell(Myself,WIZARD_BLUR)
+		Wait(1)
+END
+
+//WIZARD_AGANNAZAR_SCORCHER, WIZARD_BELTYNS_BURNING_BLOOD, WIZARD_SHROUD_OF_FLAME, WIZARD_CHROMATIC_ORB - LastMarkedObject
+IF
+	HaveSpell(WIZARD_AGANNAZAR_SCORCHER)
+	See(NearestEnemyOf(Myself))
+	//!GlobalTimerNotExpired("TSPELLS_1_RANDOM_CAST","LOCALS")
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,4)
+		Spell(LastSeenBy(Myself),WIZARD_AGANNAZAR_SCORCHER)
+		Wait(1)
+END
+
+IF
+	HaveSpellRES("IWWI417")
+	See(NearestEnemyOf(Myself))
+	//!GlobalTimerNotExpired("TSPELLS_1_RANDOM_CAST","LOCALS")
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,4)
+		SpellRES("IWWI417",LastSeenBy(Myself))
+		Wait(1)
+END
+
+IF
+	HaveSpellRES("IWWI511")
+	See(NearestEnemyOf(Myself))
+	//!GlobalTimerNotExpired("TSPELLS_1_RANDOM_CAST","LOCALS")
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,4)
+		SpellRES("IWWI511",LastSeenBy(Myself))
+		Wait(1)
+END
+
+IF
+	HaveSpell(WIZARD_CHROMATIC_ORB)
+	See(NearestEnemyOf(Myself))
+	//!GlobalTimerNotExpired("TSPELLS_1_RANDOM_CAST","LOCALS")
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,4)
+		Spell(LastSeenBy(Myself),WIZARD_CHROMATIC_ORB)
+		Wait(1)
+END
+//WIZARD_SHOCKING_GRASP - Myself
+IF
+	HaveSpell(WIZARD_SHOCKING_GRASP)
+	See(NearestEnemyOf(Myself))
+	//!GlobalTimerNotExpired("TSPELLS_1_RANDOM_CAST","LOCALS")
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,4)
+		Spell(Myself,WIZARD_SHOCKING_GRASP)
+		Wait(1)
+END
+//WIZARD_COLOR_SPRAY - LastMarkedObject
+IF
+	HaveSpell(WIZARD_COLOR_SPRAY)
+	See(NearestEnemyOf(Myself))
+	//!GlobalTimerNotExpired("TSPELLS_1_RANDOM_CAST","LOCALS")
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,4)
+		Spell(LastSeenBy(Myself),WIZARD_COLOR_SPRAY)
+		Wait(1)
+END
+//BLOCKEND
+
+//BLOCKEND
+
+
+
+
+
+
+
+

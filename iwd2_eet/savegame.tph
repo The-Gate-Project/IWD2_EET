@@ -1,0 +1,58 @@
+DEFINE_ACTION_FUNCTION ADD_SAVE_GAME
+	INT_VAR
+		strref    = "-1"
+		num_saves = 1
+		start     = "-1"
+	STR_VAR
+		
+	RET
+		index
+BEGIN
+	OUTER_SET index = "-1"
+	COPY_EXISTING ~savename.2da~ ~override~
+		PATCH_IF ( num_saves < 0 ) BEGIN SET num_saves = 1 END
+		COUNT_2DA_ROWS 4 num_rows
+		FOR ( i = 0 ; i < num_rows ; ++i ) BEGIN
+			READ_2DA_ENTRY i 0 4 val
+			PATCH_IF (!VARIABLE_IS_SET $values(~%val%~)) BEGIN
+				DEFINE_ASSOCIATIVE_ARRAY values BEGIN ~%val%~ => ~~ END
+			END
+		END //65535
+		FOR ( i = 0 ; i < 65535 ; ++i ) BEGIN
+			PATCH_IF (!VARIABLE_IS_SET $values(~%i%~)) BEGIN
+				PATCH_IF ( start < 0 ) BEGIN SET start = i END
+				INSERT_2DA_ROW i 4 ~%i%  %strref%  %start%  %num_saves%~
+				SET index = i
+				SET i = 65535 + 1
+			END
+		END
+		PRETTY_PRINT_2DA
+END
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

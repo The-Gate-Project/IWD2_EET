@@ -1,0 +1,11 @@
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("Mdarfein")
+		MoveViewObject(Player1,25) //PC]
+		Wait(3)
+		ActionOverride("CUTSPY",DestroySelf())
+		EndCutSceneMode()
+END
+

@@ -1,0 +1,36 @@
+IF
+	StateCheck(Myself,STATE_PANIC)
+THEN
+	RESPONSE #100
+		RandomWalkContinuous()
+END
+
+IF
+	IsWeaponRanged(Myself)
+	Allegiance(Myself,ENEMY)
+	Range([PC],4)
+THEN
+	RESPONSE #100
+		RunAwayFrom([PC],45)
+END
+
+IF
+	IsWeaponRanged(Myself)
+	Allegiance(Myself,ENEMY)
+	Range(NearestEnemyOf(Myself),4)
+THEN
+	RESPONSE #100
+		RunAwayFrom(NearestEnemyOf(Myself),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	OR(2)
+		See(NearestEnemyOf(Myself))
+		See([PC])
+THEN
+	RESPONSE #100
+		//EquipWeapon()
+		AttackOneRound(LastSeenBy(Myself))
+END
+

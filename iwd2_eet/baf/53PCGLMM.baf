@@ -1,0 +1,90 @@
+
+
+IF
+	Global("InCombat","LOCALS",1)
+	!GlobalTimerNotExpired("IwTimer0","LOCALS")
+	!GlobalTimerNotExpired("IwTimer95","LOCALS")
+THEN
+	RESPONSE #100
+		SetGlobal("InCombat","LOCALS",0)
+		DisplayStringHead(Myself,@27334)
+		SetGlobalTimer("IwTimer0","LOCALS",3)
+		SetGlobalTimer("IwTimer95","LOCALS",7)
+		Continue()
+END
+
+IF
+	Global("53PCGolem_Protect","GLOBAL",1)
+	!StateCheck(Player1,STATE_REALLY_DEAD)
+	!Range(Player1,5)
+THEN
+	RESPONSE #100
+		MoveToObject(Player1)
+		SetHomeLocation([-1.-1])
+		SaveObjectLocation("LOCALS","SavedLoc",Myself)
+END
+
+IF
+	Global("53PCGolem_Protect","GLOBAL",2)
+	!StateCheck(Player2,STATE_REALLY_DEAD)
+	!Range(Player2,5)
+THEN
+	RESPONSE #100
+		MoveToObject(Player2)
+		SetHomeLocation([-1.-1])
+		SaveObjectLocation("LOCALS","SavedLoc",Myself)
+END
+
+IF
+	Global("53PCGolem_Protect","GLOBAL",3)
+	!StateCheck(Player3,STATE_REALLY_DEAD)
+	!Range(Player3,5)
+THEN
+	RESPONSE #100
+		MoveToObject(Player3)
+		SetHomeLocation([-1.-1])
+		SaveObjectLocation("LOCALS","SavedLoc",Myself)
+END
+
+IF
+	Global("53PCGolem_Protect","GLOBAL",4)
+	!StateCheck(Player4,STATE_REALLY_DEAD)
+	!Range(Player4,5)
+THEN
+	RESPONSE #100
+		MoveToObject(Player4)
+		SetHomeLocation([-1.-1])
+		SaveObjectLocation("LOCALS","SavedLoc",Myself)
+END
+
+IF
+	Global("53PCGolem_Protect","GLOBAL",5)
+	!StateCheck(Player5,STATE_REALLY_DEAD)
+	!Range(Player5,5)
+THEN
+	RESPONSE #100
+		MoveToObject(Player5)
+		SetHomeLocation([-1.-1])
+		SaveObjectLocation("LOCALS","SavedLoc",Myself)
+END
+
+IF
+	Global("53PCGolem_Protect","GLOBAL",6)
+	!StateCheck(Player6,STATE_REALLY_DEAD)
+	!Range(Player6,5)
+THEN
+	RESPONSE #100
+		MoveToObject(Player6)
+		SetHomeLocation([-1.-1])
+		SaveObjectLocation("LOCALS","SavedLoc",Myself)
+END
+
+IF
+	!Range([PC],5)
+THEN
+	RESPONSE #100
+		MoveToObject(Player1)
+		SetHomeLocation([-1.-1])
+		SaveObjectLocation("LOCALS","SavedLoc",Myself)
+END
+

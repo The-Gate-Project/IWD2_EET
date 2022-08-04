@@ -1,0 +1,3299 @@
+//ADD_AREA_TYPE IWDAREA
+OUTER_SET dummy = IDS_OF_SYMBOL (AREATYPE IWDAREA)
+PRINT ~IWDAREA = %dummy%~
+
+COPY ~%MOD_FOLDER%/are~ ~%MOD_FOLDER%/are~
+  //WRITE_SHORT 0x48 THIS | (1 << IWDAREA)
+  WRITE_SHORT 0x48 SHORT_AT 0x48 + dummy
+  
+  /*
+Note Color key:
+gray      - Caves & Dungeon Entrances
+violet    - Inns & Taverns
+green     - Temples
+orange    - Info points
+red       - Open space locations (i.e. city squares)
+blue      - Buildings of note
+darkblue  - People
+lightgray - Stores
+
+ADD_MAP_NOTE #3782 #2142 ~red~       ~Выход из города~
+*/
+
+PRINT ~Installing area files...~
+SILENT
+COPY ~%MOD_FOLDER%/are/IW1000.are~ ~override~
+	SAY 0x403c @1117 //region #7 / 17
+	SAY 0x4100 @1120 //region #8 / 17
+	SAY 0x41c4 @1121 //region #9 / 17
+	SAY 0x4288 @1124 //region #10 / 17
+	SAY 0x434c @1129 //region #11 / 17
+	SAY 0x4410 @1130 //region #12 / 17
+	SAY 0x44d4 @1209 //region #13 / 17
+	SAY 0x4598 @28759 //region #14 / 17
+	/* - IW1000.are
+		song_0 = 6
+		song_1 = 6
+		*/
+	WRITE_LONG 0x77f8 ~%IW1000%~
+	WRITE_LONG 0x77fc ~%IW1000%~
+	LPF fj_are_structure
+		INT_VAR
+			fj_type = 0
+			fj_box_left = 1922
+			fj_box_top = 747
+			fj_box_right = 2749
+			fj_box_bottom = 986
+			fj_cursor_idx = 0
+			fj_flags = 2
+			fj_trap_active = 1
+			fj_loc_x = 2280
+			fj_loc_y = 870
+			fj_vertex_0  = 1922 + ( 790 << 16 )
+			fj_vertex_1  = 1972 + ( 756 << 16 )
+			fj_vertex_2  = 2043 + ( 747 << 16 )
+			fj_vertex_3  = 2723 + ( 833 << 16 )
+			fj_vertex_4  = 2749 + ( 866 << 16 )
+			fj_vertex_5  = 2723 + ( 966 << 16 )
+			fj_vertex_6  = 2668 + ( 986 << 16 )
+			fj_vertex_7  = 2013 + ( 892 << 16 )
+			fj_vertex_8  = 1926 + ( 844 << 16 )
+		STR_VAR
+			fj_structure_type = region
+			fj_name = "OnBoat"
+			fj_reg_script = "IwOnBoat"
+	END
+	ADD_MAP_NOTE #2288 #843  ~blue~      @55000
+	ADD_MAP_NOTE #980  #360  ~blue~      @55001
+	ADD_MAP_NOTE #2440 #344  ~blue~      @55001
+	ADD_MAP_NOTE #1022 #1606 ~violet~    @28759
+	ADD_MAP_NOTE #840  #2067 ~darkblue~  @55002
+	ADD_MAP_NOTE #2599 #1992 ~orange~    @55003
+	ADD_MAP_NOTE #204  #129  ~red~       @55004
+	ADD_MAP_NOTE #366  #1536 ~darkblue~  @55094
+
+COPY ~%MOD_FOLDER%/are/IW1001.are~ ~override~
+	SAY 0x1454 @1927 //region #1 / 9
+	SAY 0x1518 @1927 //region #2 / 9
+	SAY 0x15dc @1927 //region #3 / 9
+	SAY 0x16a0 @1928 //region #4 / 9
+	SAY 0x1764 @1929 //region #5 / 9
+	SAY 0x1828 @1930 //region #6 / 9
+	SAY 0x18ec @1931 //region #7 / 9
+	SAY 0x19b0 @1928 //region #8 / 9
+
+COPY ~%MOD_FOLDER%/are/IW1002.are~ ~override~
+
+COPY ~%MOD_FOLDER%/are/IW1003.are~ ~override~
+	SAY 0x0794 @1932 //region #1 / 3
+	SAY 0x0858 @1933 //region #2 / 3
+
+COPY ~%MOD_FOLDER%/are/IW1004.are~ ~override~
+
+COPY ~%MOD_FOLDER%/are/IW1005.are~ ~override~
+
+COPY ~%MOD_FOLDER%/are/IW1006.are~ ~override~
+	SAY 0x0244 @1934 //region #1 / 3
+
+COPY ~%MOD_FOLDER%/are/IW1007.are~ ~override~
+	SAY 0x4250 @3110 //region #0 / 3
+	SAY 0x4314 @3115 //region #1 / 3
+	ADD_MAP_NOTE #1227 #259  ~orange~    @55005
+	ADD_MAP_NOTE #334  #692  ~orange~    @55005
+	ADD_MAP_NOTE #2528 #946  ~red~       @55006
+
+COPY ~%MOD_FOLDER%/are/IW1100.are~ ~override~
+	SAY 0x0be0 @9163 //region #8 / 25
+	SAY 0x0ca4 @9164 //region #9 / 25
+	SAY 0x0d68 @9165 //region #10 / 25
+	SAY 0x0e2c @9166 //region #11 / 25
+	SAY 0x0ef0 @9167 //region #12 / 25
+	SAY 0x0fb4 @9168 //region #13 / 25
+	SAY 0x1078 @9169 //region #14 / 25
+	SAY 0x113c @9170 //region #15 / 25
+	SAY 0x1200 @9171 //region #16 / 25
+	SAY 0x12c4 @24299 //region #17 / 25
+	SAY 0x1388 @24299 //region #18 / 25
+	SAY 0x144c @24336 //region #19 / 25
+	SAY 0x1510 @24337 //region #20 / 25
+	SAY 0x15d4 @24338 //region #21 / 25
+	SAY 0x1698 @24339 //region #22 / 25
+	SAY 0x175c @24340 //region #23 / 25
+	SAY 0x1820 @28757 //region #24 / 25
+	SAY 0x323c @15493 //door #5 / 11
+	/* - IW1100.are
+		song_0 = 7
+		song_1 = 7
+		*/
+	WRITE_LONG 0x568c ~%IW1100%~
+	WRITE_LONG 0x5690 ~%IW1100%~
+	ADD_MAP_NOTE #1188 #309  ~green~     @55007
+	ADD_MAP_NOTE #1089 #1913 ~orange~    @55008
+	ADD_MAP_NOTE #721  #1422 ~violet~    @9163
+	ADD_MAP_NOTE #1588 #1574 ~lightgray~ @28757
+	ADD_MAP_NOTE #2383 #1273 ~blue~      @55009
+	ADD_MAP_NOTE #160  #1854 ~red~       @55010
+	ADD_MAP_NOTE #1629 #204  ~red~       @55011
+	LPF fj_are_structure INT_VAR fj_con_itm_idx=14 fj_charge0=1 STR_VAR fj_structure_type=itm fj_name="potn36" END
+
+COPY ~%MOD_FOLDER%/are/IW1101.are~ ~override~
+	SAY 0x0464 @9309 //region #1 / 6
+	SAY 0x0528 @9310 //region #2 / 6
+	SAY 0x05ec @9311 //region #3 / 6
+	SAY 0x06b0 @9312 //region #4 / 6
+	SAY 0x0774 @9313 //region #5 / 6
+
+COPY ~%MOD_FOLDER%/are/IW1102.are~ ~override~
+	SAY 0x0574 @9314 //region #1 / 5
+	SAY 0x0638 @9315 //region #2 / 5
+	SAY 0x06fc @9316 //region #3 / 5
+	SAY 0x07c0 @9317 //region #4 / 5
+
+COPY ~%MOD_FOLDER%/are/IW1103.are~ ~override~
+	SAY 0x0ac4 @9318 //region #1 / 2
+
+COPY ~%MOD_FOLDER%/are/IW1104.are~ ~override~
+	SAY 0x0748 @9319 //region #2 / 6
+	SAY 0x080c @9319 //region #3 / 6
+	SAY 0x08d0 @9319 //region #4 / 6
+	SAY 0x0994 @9320 //region #5 / 6
+	LPF FC_EDIT_AREA_REGION
+		INT_VAR
+			vertex_0 = 675 + (600 << 16)
+			vertex_1 = 724 + (597 << 16)
+			vertex_2 = 732 + (664 << 16)
+			vertex_3 = 672 + (672 << 16)
+		STR_VAR
+			match_name = To1100
+	END
+	LPF FC_EDIT_AREA_REGION
+		INT_VAR
+			vertex_0 = 287 + (392 << 16)
+			vertex_1 = 350 + (404 << 16)
+			vertex_2 = 370 + (452 << 16)
+			vertex_3 = 292 + (420 << 16)
+		STR_VAR
+			match_name = To1105
+	END
+
+COPY ~%MOD_FOLDER%/are/IW1105.are~ ~override~
+	SAY 0x0244 @9321 //region #1 / 3
+	SAY 0x0308 @9322 //region #2 / 3
+	SAY 0x0bd4 @24354 //door #4 / 5
+
+COPY ~%MOD_FOLDER%/are/IW1106.are~ ~override~
+	SAY 0x0354 @9323 //region #1 / 3
+	SAY 0x0418 @9324 //region #2 / 3
+
+COPY ~%MOD_FOLDER%/are/IW1107.are~ ~override~
+	SAY 0x08a4 @9325 //region #1 / 2
+
+COPY ~%MOD_FOLDER%/are/IW1200.are~ ~override~
+	SAY 0x73a8 @9167 //region #2 / 30
+	SAY 0x746c @10252 //region #3 / 30
+	SAY 0x7530 @10257 //region #4 / 30
+	SAY 0x75f4 @10261 //region #5 / 30
+	SAY 0x76b8 @9167 //region #6 / 30
+	SAY 0x777c @10268 //region #7 / 30
+	SAY 0x7840 @10269 //region #8 / 30
+	SAY 0x7904 @9167 //region #9 / 30
+	SAY 0x79c8 @10274 //region #10 / 30
+	SAY 0x7a8c @10276 //region #11 / 30
+	SAY 0x7b50 @9167 //region #12 / 30
+	SAY 0x7c14 @10278 //region #13 / 30
+	SAY 0x7cd8 @30077 //region #14 / 30
+	SAY 0x7d9c @10439 //region #15 / 30
+	SAY 0x7e60 @9167 //region #16 / 30
+	SAY 0x7f24 @9167 //region #17 / 30
+	SAY 0x7fe8 @10446 //region #18 / 30
+	SAY 0x80ac @10447 //region #19 / 30
+	SAY 0x8170 @10448 //region #20 / 30
+	SAY 0x8234 @10449 //region #21 / 30
+	SAY 0x82f8 @10452 //region #22 / 30
+	SAY 0x83bc @10452 //region #23 / 30
+	SAY 0x8480 @9167 //region #24 / 30
+	SAY 0x8544 @9167 //region #25 / 30
+	SAY 0x8608 @10452 //region #26 / 30
+	SAY 0x86cc @10452 //region #27 / 30
+	SAY 0x8790 @10452 //region #28 / 30
+	SAY 0x8854 @10452 //region #29 / 30
+	SAY 0x9be8 @15775 //door #0 / 7
+	SAY 0xa098 @35940 //door #6 / 7
+	/* - IW1200.are
+		song_0 = 8
+		song_1 = 8
+		*/
+	WRITE_LONG 0xad94 ~%IW1200%~
+	WRITE_LONG 0xad98 ~%IW1200%~
+	ADD_MAP_NOTE #2839 #2402 ~blue~      @55012
+	ADD_MAP_NOTE #1725 #2414 ~blue~      @55013
+	ADD_MAP_NOTE #1125 #790  ~orange~    @55014
+	ADD_MAP_NOTE #54   #62   ~red~       @55006
+	ADD_MAP_NOTE #2352 #2780 ~red~       @55004
+	LPF ALTER_AREA_ACTOR STR_VAR actor_name="Soldier_1_Gate" script_race="SGAATGN" END
+	LPF ALTER_AREA_ACTOR STR_VAR actor_name="Soldier_2_Gate" script_race="SGAATGN" END
+	LPF fj_are_structure INT_VAR fj_con_itm_idx=9 fj_charge0=2 STR_VAR fj_structure_type=itm fj_name="potn14" END
+
+COPY ~%MOD_FOLDER%/are/IW1201.are~ ~override~
+	SAY 0x0684 @10461 //region #1 / 3
+	SAY 0x0748 @10461 //region #2 / 3
+
+COPY ~%MOD_FOLDER%/are/IW2000.are~ ~override~
+	SAY 0x7ff0 @7096 //region #0 / 6
+	SAY 0x8e24 @30313 //door #0 / 6
+	SAY 0x9144 @39544 //door #4 / 6
+	SAY 0x920c @39544 //door #5 / 6
+	ADD_MAP_NOTE #2820 #1440 ~orange~    @55015
+	ADD_MAP_NOTE #1180 #2800 ~red~       @55006
+	ADD_MAP_NOTE #2232 #55   ~red~       @55006
+	ADD_MAP_NOTE #2205 #510  ~orange~    @55095
+
+COPY ~%MOD_FOLDER%/are/IW2001.are~ ~override~
+	SAY 0x6450 @7096 //region #0 / 8
+	SAY 0x6514 @8107 //region #1 / 8
+	SAY 0x65d8 @8107 //region #2 / 8
+	SAY 0x69ac @27520 //region #7 / 8
+	SAY 0x7584 @10280 //door #0 / 3
+	ADD_MAP_NOTE #576  #710  ~orange~    @55015
+	ADD_MAP_NOTE #320  #1498 ~orange~    @55015
+	ADD_MAP_NOTE #872  #996  ~darkblue~  @55016
+	ADD_MAP_NOTE #1937 #1177 ~orange~    @55014
+	ADD_MAP_NOTE #2800 #1187 ~orange~    @55014
+	ADD_MAP_NOTE #2623 #847  ~darkblue~  @55017
+	ADD_MAP_NOTE #2648 #252  ~gray~      @55018
+	ADD_MAP_NOTE #286  #2009 ~red~       @55006
+	ADD_MAP_NOTE #950  #90   ~red~       @55006
+	ADD_MAP_NOTE #2776 #1595 ~orange~    @55019
+
+COPY ~%MOD_FOLDER%/are/IW2002.are~ ~override~
+
+COPY ~%MOD_FOLDER%/are/IW2100.are~ ~override~
+	SAY 0x3150 @7096 //region #0 / 7
+	SAY 0x3214 @25049 //region #1 / 7
+	SAY 0x32d8 @8114 //region #2 / 7
+	SAY 0x339c @8114 //region #3 / 7
+	SAY 0x35e8 @28325 //region #6 / 7
+	ADD_MAP_NOTE #1913 #286  ~orange~    @55015
+	ADD_MAP_NOTE #878  #492  ~orange~    @55020
+	ADD_MAP_NOTE #2109 #1280 ~red~       @55006
+	ADD_MAP_NOTE #64   #553  ~red~       @55006
+	ADD_MAP_NOTE #330  #747  ~orange~    @55095
+
+COPY ~%MOD_FOLDER%/are/IW2101.are~ ~override~
+	SAY 0x3590 @8115 //region #0 / 8
+	SAY 0x3654 @8115 //region #1 / 8
+	SAY 0x3718 @8115 //region #2 / 8
+	SAY 0x37dc @8115 //region #3 / 8
+	SAY 0x38a0 @8115 //region #4 / 8
+	SAY 0x4210 @27521 //door #0 / 5
+	ADD_MAP_NOTE #133  #604  ~orange~    @55021
+	ADD_MAP_NOTE #1258 #487  ~orange~    @55021
+	ADD_MAP_NOTE #2435 #383  ~orange~    @55021
+	ADD_MAP_NOTE #1484 #1357 ~darkblue~  @55022
+	ADD_MAP_NOTE #244  #1139 ~orange~    @55023
+	ADD_MAP_NOTE #2557 #691  ~red~       @55006
+	ADD_MAP_NOTE #55   #1141 ~red~       @55006
+
+COPY ~%MOD_FOLDER%/are/IW2102.are~ ~override~
+	ADD_MAP_NOTE #2235 #599  ~blue~      @55025
+	ADD_MAP_NOTE #59   #1104 ~red~       @55006
+	ADD_MAP_NOTE #1540 #1652 ~red~       @55006
+
+COPY ~%MOD_FOLDER%/are/IW3000.are~ ~override~
+	SAY 0x81fc @39910 //region #11 / 13
+	SAY 0x82c0 @39910 //region #12 / 13
+	SAY 0x9590 @16093 //door #0 / 5
+	SAY 0x9658 @28753 //door #1 / 5
+	SAY 0x9c30 @28202
+	SAY 0x9c34 @28202
+	ADD_MAP_NOTE #2983 #2274 ~orange~    @55014
+	ADD_MAP_NOTE #3738 #2313 ~darkblue~  @55018
+	ADD_MAP_NOTE #2130 #147  ~blue~      @55027
+	ADD_MAP_NOTE #677  #2772 ~red~       @55006
+	ADD_MAP_NOTE #513  #744  ~orange~    @55095
+	ADD_MAP_NOTE #3414 #880  ~orange~    @55095
+
+COPY ~%MOD_FOLDER%/are/IW3001.are~ ~override~
+	SAY 0x9058 @10591 //region #2 / 8
+	SAY 0x911c @10591 //region #3 / 8
+	SAY 0x91e0 @10591 //region #4 / 8
+	SAY 0xa4fc @28752 //door #2 / 4
+	SAY 0xb9f0 @28202
+	SAY 0xb9f4 @28202
+	ADD_MAP_NOTE #3676 #1106 ~red~       @55006
+	ADD_MAP_NOTE #3298 #109  ~red~       @55006
+	LPF fj_are_structure INT_VAR fj_con_itm_idx=0  fj_charge0=40 STR_VAR fj_name=arow04 fj_structure_type=itm END
+	LPF fj_are_structure INT_VAR fj_con_itm_idx=8  fj_charge0=40 STR_VAR fj_name=arow04 fj_structure_type=itm END
+	LPF fj_are_structure INT_VAR fj_con_itm_idx=9  fj_charge0=40 STR_VAR fj_name=arow09 fj_structure_type=itm END
+	LPF fj_are_structure INT_VAR fj_con_itm_idx=4  fj_charge0=40 STR_VAR fj_name=arow09 fj_structure_type=itm END
+	LPF fj_are_structure INT_VAR fj_con_itm_idx=11 fj_charge0=40 STR_VAR fj_name=arow09 fj_structure_type=itm END
+
+COPY ~%MOD_FOLDER%/are/IW3002.are~ ~override~
+	SAY 0x9750 @2066 //region #0 / 11
+	SAY 0x9814 @2066 //region #1 / 11
+	SAY 0x9cac @16111 //region #7 / 11
+	SAY 0x9d70 @35398 //region #8 / 11
+	SAY 0x9e34 @40321 //region #9 / 11
+	SAY 0x9ef8 @40321 //region #10 / 11
+	SAY 0xc8f8 @28202
+	SAY 0xc8fc @28202
+	ADD_MAP_NOTE #3158 #2722 ~red~       @55006
+	ADD_MAP_NOTE #2348 #229  ~red~       @55006
+
+COPY ~%MOD_FOLDER%/are/IW3100.are~ ~override~
+	SAY 0x625c @29193 //region #3 / 8
+	SAY 0x6320 @29193 //region #4 / 8
+	SAY 0x63e4 @39910 //region #5 / 8
+	SAY 0x64a8 @39910 //region #6 / 8
+	SAY 0x656c @24341 //region #7 / 8
+	SAY 0x76dc @16095 //door #0 / 4
+	SAY 0x7934 @24341 //door #3 / 4
+	SAY 0x8278 @28202
+	ADD_MAP_NOTE #1812 #1087 ~gray~      @55028
+	ADD_MAP_NOTE #833  #1050 ~blue~      @55029
+	ADD_MAP_NOTE #789  #1657 ~blue~      @55027
+	LPF fj_are_structure INT_VAR fj_con_itm_idx=0 fj_charge0=2 STR_VAR fj_structure_type=itm fj_name="potn36" END
+	LPF fj_are_structure INT_VAR fj_con_itm_idx=2 fj_charge0=1 STR_VAR fj_structure_type=itm fj_name="potn14" END
+
+COPY ~%MOD_FOLDER%/are/IW3101.are~ ~override~
+	SAY 0x2e98 @1974 //region #2 / 11
+	SAY 0x2f5c @1974 //region #3 / 11
+	SAY 0x3020 @1974 //region #4 / 11
+	SAY 0x30e4 @1974 //region #5 / 11
+	SAY 0x31a8 @1974 //region #6 / 11
+	SAY 0x326c @11184 //region #7 / 11
+	SAY 0x33f4 @17884 //region #9 / 11
+	SAY 0x34b8 @17884 //region #10 / 11
+	LPF fj_are_structure INT_VAR fj_con_itm_idx=19 fj_charge0=2 STR_VAR fj_structure_type=itm fj_name="potn39" END
+	LPF fj_are_structure INT_VAR fj_con_itm_idx=18 fj_charge0=1 STR_VAR fj_structure_type=itm fj_name="potn36" END
+
+COPY ~%MOD_FOLDER%/are/IW4000.are~ ~override~
+	SAY 0x6b40 @18752 //region #16 / 25
+	SAY 0x6c04 @18758 //region #17 / 25
+	SAY 0x6cc8 @18760 //region #18 / 25
+	SAY 0x6fd8 @32696 //region #22 / 25
+	SAY 0x709c @32696 //region #23 / 25
+	SAY 0x7160 @32696 //region #24 / 25
+	ADD_MAP_NOTE #472  #523  ~darkblue~  @55030
+	ADD_MAP_NOTE #436  #1821 ~darkblue~  @18884
+	ADD_MAP_NOTE #697  #2359 ~blue~      @55031
+	ADD_MAP_NOTE #2835 #414  ~orange~    @55032
+	ADD_MAP_NOTE #3464 #570  ~red~       @55006
+	LPF fj_are_structure
+		INT_VAR fj_con_itm_idx=3 fj_charge0=20 fj_charge1=20 fj_charge2=20
+		STR_VAR fj_structure_type=itm fj_name=RAMO_D1
+	END
+
+COPY ~%MOD_FOLDER%/are/IW4001.are~ ~override~
+
+COPY ~%MOD_FOLDER%/are/IW4100.are~ ~override~
+	SAY 0x5bb0 @22959 //region #4 / 29
+	SAY 0x5c74 @22959 //region #5 / 29
+	SAY 0x5d38 @22959 //region #6 / 29
+	SAY 0x5dfc @22960 //region #7 / 29
+	SAY 0x61d0 @32697 //region #12 / 29
+	SAY 0x6294 @32697 //region #13 / 29
+	SAY 0x6358 @32697 //region #14 / 29
+	SAY 0x641c @32697 //region #15 / 29
+	SAY 0x64e0 @32697 //region #16 / 29
+	SAY 0x65a4 @32697 //region #17 / 29
+	SAY 0x6668 @32697 //region #18 / 29
+	SAY 0x672c @32697 //region #19 / 29
+	SAY 0x67f0 @32697 //region #20 / 29
+	SAY 0x68b4 @32697 //region #21 / 29
+	SAY 0x6978 @32697 //region #22 / 29
+	SAY 0x6a3c @32697 //region #23 / 29
+	SAY 0x6b00 @32697 //region #24 / 29
+	SAY 0x6bc4 @32697 //region #25 / 29
+	SAY 0x6c88 @32697 //region #26 / 29
+	SAY 0x6d4c @32697 //region #27 / 29
+	SAY 0x81fc @29203 //door #2 / 24
+	SAY 0x85e4 @22955 //door #7 / 24
+	SAY 0x86ac @22955 //door #8 / 24
+	SAY 0x8774 @22955 //door #9 / 24
+	SAY 0x883c @22955 //door #10 / 24
+	SAY 0x8904 @22955 //door #11 / 24
+	SAY 0x89cc @22955 //door #12 / 24
+	SAY 0x8a94 @22955 //door #13 / 24
+	SAY 0x8b5c @22955 //door #14 / 24
+	SAY 0x8c24 @22955 //door #15 / 24
+	SAY 0x8cec @22955 //door #16 / 24
+	SAY 0x8db4 @23048 //door #17 / 24
+	SAY 0x8f44 @31993 //door #19 / 24
+	SAY 0x900c @22961 //door #20 / 24
+	ADD_MAP_NOTE #2657 #671  ~blue~      @55033
+	ADD_MAP_NOTE #3015 #856  ~blue~      @55033
+	ADD_MAP_NOTE #1696 #1537 ~orange~    @55034
+	ADD_MAP_NOTE #91   #2435 ~red~       @55006
+	LPF FC_EDIT_AREA_DOOR
+		INT_VAR
+			vertex_open_0 = 35 + (12 << 16)
+			vertex_open_1 = 52 + (13 << 16)
+			vertex_open_2 = 51 + (19 << 16)
+		STR_VAR
+			match_name = AR4100_Lever1_RocksDumped
+			script     = ""
+	END
+	LPF FC_EDIT_AREA_DOOR
+		INT_VAR
+			vertex_open_0 = 14 + (45 << 16)
+			vertex_open_1 = 21 + (51 << 16)
+			vertex_open_2 = 14 + (58 << 16)
+		STR_VAR
+			match_name = AR4100_Lever3_RocksDumped
+			script     = ""
+	END
+	LPF FC_EDIT_AREA_DOOR
+		INT_VAR
+			flags = 1600
+			unlock_message = RESOLVE_STR_REF ( @31992 )
+		STR_VAR
+			match_script = 41PRLEV1
+			key = z4genrp
+	END
+	LPF FC_EDIT_AREA_DOOR
+		INT_VAR
+			flags = 1600
+			unlock_message = RESOLVE_STR_REF ( @31992 )
+		STR_VAR
+			match_script = 41PRLEV3
+			key = z4genrp
+	END
+	LPF FC_EDIT_AREA_DOOR
+		INT_VAR
+			flags = 512
+		STR_VAR
+			match_name = AR4100_LeftSlide
+	END
+	LPF FC_EDIT_AREA_DOOR
+		INT_VAR
+			flags = 512
+		STR_VAR
+			match_name = AR4100_RightSlide
+	END
+	/*LPF fj_are_structure
+		INT_VAR
+			fj_loc_x          = 1407
+			fj_loc_y          = 1573
+			fj_type           = 4
+			fj_flags          = 72
+			fj_trap_detect    = 100
+			fj_trap_active    = 1
+			fj_trap_loc_x     = 1547
+			fj_trap_loc_y     = 1667
+		STR_VAR
+			fj_structure_type = container
+			fj_name           = AR4100_Lever1_Container 
+			fj_trap_script    = 41PROCK1
+	END
+	LPF fj_are_structure
+		INT_VAR
+			fj_loc_x          = 1649
+			fj_loc_y          = 1731
+			fj_type           = 4
+			fj_flags          = 72
+			fj_trap_detect    = 100
+			fj_trap_active    = 1
+			fj_trap_loc_x     = 1547
+			fj_trap_loc_y     = 1667
+		STR_VAR
+			fj_structure_type = container
+			fj_name           = AR4100_Lever3_Container 
+			fj_trap_script    = 41PROCK3
+	END
+	LPF fj_are_structure
+		INT_VAR
+			fj_type           = 0
+			fj_box_left       = 1124
+			fj_box_top        = 1464
+			fj_box_right      = 1763
+			fj_box_bottom     = 1865
+			fj_cursor_idx     = 4
+			fj_flags          = 2
+			fj_trap_detect    = 100
+			fj_trap_remove    = 100
+			fj_trap_active    = 1
+			fj_trap_loc_x     = 1547
+			fj_trap_loc_y     = 1667
+			fj_vertex_0       = 1213 + ( 1465 << 16 )
+			fj_vertex_1       = 1388 + ( 1464 << 16 )
+			fj_vertex_2       = 1484 + ( 1594 << 16 )
+			fj_vertex_3       = 1763 + ( 1766 << 16 )
+			fj_vertex_4       = 1581 + ( 1862 << 16 )
+			fj_vertex_5       = 1321 + ( 1865 << 16 )
+			fj_vertex_6       = 1146 + ( 1796 << 16 )
+			fj_vertex_7       = 1124 + ( 1562 << 16 )
+			fj_vertex_8       = 1192 + ( 1502 << 16 )
+		STR_VAR
+			fj_structure_type = region
+			fj_name           = ContainerTrap
+			fj_reg_script     = 41PROCKS
+	END*/
+	LPF fj_are_structure
+		INT_VAR
+			fj_type           = 1
+			fj_box_left       = 1364
+			fj_box_top        = 1543
+			fj_box_right      = 1450
+			fj_box_bottom     = 1624
+			fj_cursor_idx     = 2
+			fj_flags          = 256
+			fj_loc_x          = 1557
+			fj_loc_y          = 1628
+			fj_vertex_0       = 1388 + (1543 << 16)
+			fj_vertex_1       = 1402 + (1552 << 16)
+			fj_vertex_2       = 1405 + (1569 << 16)
+			fj_vertex_3       = 1416 + (1578 << 16)
+			fj_vertex_4       = 1438 + (1567 << 16)
+			fj_vertex_5       = 1450 + (1584 << 16)
+			fj_vertex_6       = 1432 + (1617 << 16)
+			fj_vertex_7       = 1417 + (1624 << 16)
+			fj_vertex_8       = 1386 + (1612 << 16)
+			fj_vertex_9       = 1364 + (1568 << 16)
+		STR_VAR
+			fj_structure_type = region
+			fj_name           = AR4100_Lever1_Reg
+			fj_reg_script     = 41PROCK1
+	END
+	LPF fj_are_structure
+		INT_VAR
+			fj_type           = 1
+			fj_box_left       = 1624
+			fj_box_top        = 1712
+			fj_box_right      = 1692
+			fj_box_bottom     = 1781
+			fj_cursor_idx     = 2
+			fj_flags          = 256
+			fj_loc_x          = 1557
+			fj_loc_y          = 1628
+			fj_vertex_0       = 1647 + (1712 << 16)
+			fj_vertex_1       = 1669 + (1723 << 16)
+			fj_vertex_2       = 1686 + (1740 << 16)
+			fj_vertex_3       = 1692 + (1762 << 16)
+			fj_vertex_4       = 1679 + (1780 << 16)
+			fj_vertex_5       = 1659 + (1781 << 16)
+			fj_vertex_6       = 1640 + (1775 << 16)
+			fj_vertex_7       = 1626 + (1756 << 16)
+			fj_vertex_8       = 1624 + (1746 << 16)
+			fj_vertex_9       = 1634 + (1736 << 16)
+			fj_vertex_10      = 1634 + (1725 << 16)
+		STR_VAR
+			fj_structure_type = region
+			fj_name           = AR4100_Lever3_Reg
+			fj_reg_script     = 41PROCK3
+	END
+
+COPY ~%MOD_FOLDER%/are/IW4101.are~ ~override~
+	SAY 0x96c4 @24026 //region #9 / 34
+	SAY 0x9788 @24027 //region #10 / 34
+	SAY 0x984c @24028 //region #11 / 34
+	SAY 0x9910 @24029 //region #12 / 34
+	SAY 0x99d4 @24030 //region #13 / 34
+	SAY 0x9a98 @24031 //region #14 / 34
+	SAY 0x9b5c @24032 //region #15 / 34
+	SAY 0x9c20 @24033 //region #16 / 34
+	SAY 0xa79c @30951 //region #31 / 34
+	SAY 0xa860 @30951 //region #32 / 34
+	SAY 0xd61c @32280 //door #18 / 28
+	SAY 0xd874 @25231 //door #21 / 28
+	/* - IW4101.are
+		song_0 = 32
+		song_1 = 32
+		*/
+	WRITE_LONG 0xeef0 ~%IW7%~
+	WRITE_LONG 0xeef4 ~%IW7%~
+	ADD_MAP_NOTE #827  #1501 ~orange~    @55035
+	ADD_MAP_NOTE #1122 #834  ~orange~    @55036
+	ADD_MAP_NOTE #3193 #1355 ~darkblue~  @55037
+	ADD_MAP_NOTE #413  #2627 ~red~       @55006
+	ADD_MAP_NOTE #2604 #754  ~red~       @55006
+	ADD_MAP_NOTE #1638 #435  ~red~       @55006
+	ADD_MAP_NOTE #1341 #537  ~darkblue~  @55096
+	LPF fj_are_structure
+		INT_VAR fj_con_itm_idx=7 fj_charge0=20 fj_charge1=20 fj_charge2=20
+		STR_VAR fj_structure_type=itm fj_name=RAMO_D1
+	END
+	LPF fj_are_structure
+		INT_VAR fj_con_itm_idx=7 fj_charge0=20 fj_charge1=20 fj_charge2=20
+		STR_VAR fj_structure_type=itm fj_name=RAMO_D1
+	END
+	LPF fj_are_structure
+		INT_VAR fj_con_itm_idx=7 fj_charge0=20 fj_charge1=20 fj_charge2=20
+		STR_VAR fj_structure_type=itm fj_name=RAMO_D1
+	END
+	LPF fj_are_structure
+		INT_VAR fj_con_itm_idx=7 fj_charge0=20 fj_charge1=20 fj_charge2=20
+		STR_VAR fj_structure_type=itm fj_name=RAMO_D1
+	END
+	LPF ALTER_AREA_ACTOR STR_VAR actor_name=Acolyte_01 script_override=41ARSPEP END
+	LPF ALTER_AREA_ACTOR STR_VAR actor_name=Acolyte_02 script_override=41ARSPEP END
+	LPF ALTER_AREA_ACTOR STR_VAR actor_name=Acolyte_03 script_override=41ARSPEP END
+	LPF ALTER_AREA_ACTOR STR_VAR actor_name=Acolyte_04 script_override=41ARSPEP END
+	LPF fj_are_structure INT_VAR fj_con_itm_idx=19 fj_charge0=2 STR_VAR fj_structure_type=itm fj_name="potn14" END
+	LPF fj_are_structure INT_VAR fj_con_itm_idx=24 fj_charge0=1 STR_VAR fj_structure_type=itm fj_name="potn36" END
+
+COPY ~%MOD_FOLDER%/are/IW4102.are~ ~override~
+	SAY 0x779c @24024 //region #3 / 98
+	SAY 0x7860 @24024 //region #4 / 98
+	SAY 0x7aac @24194 //region #7 / 98
+	SAY 0x8254 @24021 //region #17 / 98
+	SAY 0x8318 @24021 //region #18 / 98
+	SAY 0x83dc @24021 //region #19 / 98
+	SAY 0x84a0 @24021 //region #20 / 98
+	SAY 0x8564 @24021 //region #21 / 98
+	SAY 0x8628 @24021 //region #22 / 98
+	SAY 0x86ec @24023 //region #23 / 98
+	SAY 0x87b0 @24024 //region #24 / 98
+	SAY 0x8874 @24024 //region #25 / 98
+	SAY 0x8938 @24022 //region #26 / 98
+	SAY 0x89fc @24022 //region #27 / 98
+	SAY 0x8ac0 @24025 //region #28 / 98
+	SAY 0x8b84 @24025 //region #29 / 98
+	SAY 0x8c48 @24025 //region #30 / 98
+	SAY 0x8d0c @24025 //region #31 / 98
+	SAY 0x8e94 @24050 //region #33 / 98
+	SAY 0x8f58 @24051 //region #34 / 98
+	SAY 0x901c @24052 //region #35 / 98
+	SAY 0x91a4 @39551 //region #37 / 98
+	SAY 0xa340 @25016 //region #60 / 98
+	SAY 0xa404 @29739 //region #61 / 98
+	SAY 0xaa24 @30928 //region #69 / 98
+	SAY 0xaae8 @30929 //region #70 / 98
+	SAY 0xabac @30930 //region #71 / 98
+	SAY 0xac70 @30931 //region #72 / 98
+	SAY 0xad34 @30932 //region #73 / 98
+	SAY 0xadf8 @30933 //region #74 / 98
+	SAY 0xaebc @30934 //region #75 / 98
+	SAY 0xaf80 @30935 //region #76 / 98
+	SAY 0xb044 @30936 //region #77 / 98
+	SAY 0xb108 @39551 //region #78 / 98
+	SAY 0xb1cc @39551 //region #79 / 98
+	SAY 0xb290 @39551 //region #80 / 98
+	SAY 0xb354 @39551 //region #81 / 98
+	SAY 0xb418 @39551 //region #82 / 98
+	SAY 0xb4dc @39551 //region #83 / 98
+	SAY 0xb5a0 @39551 //region #84 / 98
+	SAY 0xb664 @39551 //region #85 / 98
+	SAY 0xb728 @39551 //region #86 / 98
+	SAY 0xb7ec @39551 //region #87 / 98
+	SAY 0xb8b0 @39551 //region #88 / 98
+	SAY 0xb974 @39551 //region #89 / 98
+	SAY 0xba38 @39551 //region #90 / 98
+	SAY 0xbafc @39551 //region #91 / 98
+	SAY 0xbbc0 @39551 //region #92 / 98
+	SAY 0xbc84 @39551 //region #93 / 98
+	SAY 0xbd48 @40951 //region #94 / 98
+	SAY 0xbe0c @40952 //region #95 / 98
+	SAY 0xbed0 @40953 //region #96 / 98
+	SAY 0xbf94 @40954 //region #97 / 98
+	SAY 0xe490 @34531 //door #1 / 33
+	SAY 0xe620 @25080 //door #3 / 33
+	SAY 0xe940 @32445 //door #7 / 33
+	SAY 0xea08 @25080 //door #8 / 33
+	SAY 0xead0 @30528 //door #9 / 33
+	SAY 0xedf0 @25080 //door #13 / 33
+	SAY 0xef80 @30036 //door #15 / 33
+	SAY 0xf4f8 @40950 //door #22 / 33
+	SAY 0xf5c0 @40950 //door #23 / 33
+	SAY 0xf688 @40950 //door #24 / 33
+	SAY 0xf750 @40950 //door #25 / 33
+	SAY 0xf818 @40950 //door #26 / 33
+	SAY 0xf8e0 @40950 //door #27 / 33
+	SAY 0xf9a8 @40950 //door #28 / 33
+	SAY 0xfa70 @40950 //door #29 / 33
+	SAY 0xfb38 @40950 //door #30 / 33
+	SAY 0xfc00 @40950 //door #31 / 33
+	ADD_MAP_NOTE #2048 #1460 ~orange~    @55038
+	ADD_MAP_NOTE #1265 #1409 ~darkblue~  @55039
+	ADD_MAP_NOTE #1834 #342  ~darkblue~  @55040
+	ADD_MAP_NOTE #194  #1955 ~orange~    @55041
+	ADD_MAP_NOTE #2141 #2562 ~darkblue~  @55042
+	ADD_MAP_NOTE #1059 #763  ~darkblue~  @55043
+	ADD_MAP_NOTE #1503 #1039 ~orange~    @55041
+	ADD_MAP_NOTE #2761 #331  ~red~       @55006
+	ADD_MAP_NOTE #3602 #2110 ~red~       @55006
+	ADD_MAP_NOTE #2930 #795  ~darkblue~  @55040
+	ADD_MAP_NOTE #1060 #2365 ~orange~    @55097
+	LPF FC_EDIT_AREA_DOOR
+		INT_VAR
+			vertex_open_0   = 30 + (10 << 16)
+			vertex_open_1   = 35 + (15 << 16)
+			vertex_open_2   = 30 + (15 << 16)
+			vertex_closed_0 = 25 + (5  << 16)
+			vertex_closed_1 = 30 + (10 << 16)
+			vertex_closed_2 = 25 + (10 << 16)
+		STR_VAR
+			match_name = AR4102_Switch1
+			script     = ""
+	END
+	LPF FC_EDIT_AREA_DOOR
+		INT_VAR
+			vertex_open_0   = 5  + (85 << 16)
+			vertex_open_1   = 10 + (90 << 16)
+			vertex_open_2   = 5  + (90 << 16)
+			vertex_closed_0 = 15 + (85 << 16)
+			vertex_closed_1 = 20 + (90 << 16)
+			vertex_closed_2 = 15 + (90 << 16)
+		STR_VAR
+			match_name = AR4102_Switch2
+			script     = ""
+	END
+	LPF FC_EDIT_AREA_DOOR
+		INT_VAR
+			vertex_open_0   = 55 + (40 << 16)
+			vertex_open_1   = 60 + (45 << 16)
+			vertex_open_2   = 55 + (45 << 16)
+			vertex_closed_0 = 55 + (50 << 16)
+			vertex_closed_1 = 60 + (55 << 16)
+			vertex_closed_2 = 55 + (55 << 16)
+		STR_VAR
+			match_name = AR4102_Switch3
+			script     = ""
+	END
+	LPF FC_EDIT_AREA_DOOR
+		INT_VAR
+			vertex_open_0 = 10 + (165 << 16)
+			vertex_open_1 = 15 + (170 << 16)
+			vertex_open_2 = 10 + (170 << 16)
+		STR_VAR
+			match_name = AR4102_Switch4
+			script     = ""
+	END
+	LPF FC_EDIT_AREA_DOOR
+		INT_VAR
+			vertex_open_0 = 10 + (175 << 16)
+			vertex_open_1 = 15 + (180 << 16)
+			vertex_open_2 = 10 + (180 << 16)
+		STR_VAR
+			match_name = AR4102_Switch5
+			script     = ""
+	END
+	LPF FC_EDIT_AREA_DOOR
+		INT_VAR
+			vertex_open_0 = 20 + (175 << 16)
+			vertex_open_1 = 25 + (180 << 16)
+			vertex_open_2 = 20 + (180 << 16)
+		STR_VAR
+			match_name = AR4102_Switch6
+			script     = ""
+	END
+	LPF FC_EDIT_AREA_DOOR
+		INT_VAR
+			vertex_open_0 = 65 + (65 << 16)
+			vertex_open_1 = 70 + (70 << 16)
+			vertex_open_2 = 65 + (70 << 16)
+		STR_VAR
+			match_name = AR4102_Switch7
+			script     = ""
+	END
+	LPF FC_EDIT_AREA_DOOR
+		INT_VAR
+			vertex_open_0 = 65 + (75 << 16)
+			vertex_open_1 = 70 + (80 << 16)
+			vertex_open_2 = 65 + (80 << 16)
+		STR_VAR
+			match_name = AR4102_Switch8
+			script     = ""
+	END
+	LPF FC_EDIT_AREA_DOOR
+		INT_VAR
+			vertex_open_0 = 75 + (75 << 16)
+			vertex_open_1 = 80 + (80 << 16)
+			vertex_open_2 = 75 + (80 << 16)
+		STR_VAR
+			match_name = AR4102_Switch9
+			script     = ""
+	END
+	LPF FC_EDIT_AREA_DOOR
+		INT_VAR
+			vertex_open_0 = 75 + (85 << 16)
+			vertex_open_1 = 80 + (90 << 16)
+			vertex_open_2 = 75 + (90 << 16)
+		STR_VAR
+			match_name = AR4102_Switch10
+			script     = ""
+	END
+	LPF FC_EDIT_AREA_DOOR
+		INT_VAR
+			vertex_open_0 = 85 + (85 << 16)
+			vertex_open_1 = 90 + (90 << 16)
+			vertex_open_2 = 85 + (90 << 16)
+		STR_VAR
+			match_name = AR4102_Switch11
+			script     = ""
+	END
+	LPF FC_EDIT_AREA_DOOR
+		INT_VAR
+			vertex_open_0 = 45 + (140 << 16)
+			vertex_open_1 = 50 + (145 << 16)
+			vertex_open_2 = 45 + (145 << 16)
+		STR_VAR
+			match_name = AR4102_Switch12
+			script     = ""
+	END
+	LPF FC_EDIT_AREA_DOOR
+		INT_VAR
+			vertex_open_0 = 55 + (140 << 16)
+			vertex_open_1 = 60 + (145 << 16)
+			vertex_open_2 = 55 + (145 << 16)
+		STR_VAR
+			match_name = AR4102_Switch13
+			script     = ""
+	END
+	LPF FC_EDIT_AREA_REGION
+		INT_VAR
+			vertex_0 = 1621 + (2701 << 16)
+			vertex_1 = 1649 + (2713 << 16)
+			vertex_2 = 1659 + (2703 << 16)
+			vertex_3 = 1662 + (2711 << 16)
+			vertex_4 = 1648 + (2724 << 16)
+			vertex_5 = 1621 + (2710 << 16)
+		STR_VAR
+			match_name = InfoSwitch1
+	END
+	LPF FC_EDIT_AREA_REGION
+		INT_VAR
+			vertex_0 = 1688 + (2665 << 16)
+			vertex_1 = 1714 + (2676 << 16)
+			vertex_2 = 1726 + (2666 << 16)
+			vertex_3 = 1730 + (2674 << 16)
+			vertex_4 = 1716 + (2687 << 16)
+			vertex_5 = 1685 + (2674 << 16)
+		STR_VAR
+			match_name = InfoSwitch2
+	END
+	LPF FC_EDIT_AREA_REGION
+		INT_VAR
+			vertex_0 = 1744 + (2604 << 16)
+			vertex_1 = 1770 + (2614 << 16)
+			vertex_2 = 1780 + (2605 << 16)
+			vertex_3 = 1784 + (2613 << 16)
+			vertex_4 = 1772 + (2626 << 16)
+			vertex_5 = 1739 + (2612 << 16)
+		STR_VAR
+			match_name = InfoSwitch3
+	END
+	LPF FC_EDIT_AREA_REGION
+		INT_VAR
+			vertex_0 = 1878 + (2413 << 16)
+			vertex_1 = 1904 + (2424 << 16)
+			vertex_2 = 1914 + (2415 << 16)
+			vertex_3 = 1919 + (2422 << 16)
+			vertex_4 = 1905 + (2438 << 16)
+			vertex_5 = 1874 + (2424 << 16)
+		STR_VAR
+			match_name = InfoSwitch4
+	END
+	LPF FC_EDIT_AREA_REGION
+		INT_VAR
+			vertex_0 = 1937 + (2348 << 16)
+			vertex_1 = 1964 + (2358 << 16)
+			vertex_2 = 1974 + (2349 << 16)
+			vertex_3 = 1978 + (2356 << 16)
+			vertex_4 = 1965 + (2371 << 16)
+			vertex_5 = 1932 + (2356 << 16)
+		STR_VAR
+			match_name = InfoSwitch5
+	END
+	LPF FC_EDIT_AREA_REGION
+		INT_VAR
+			vertex_0 = 1993 + (2288 << 16)
+			vertex_1 = 2018 + (2299 << 16)
+			vertex_2 = 2029 + (2290 << 16)
+			vertex_3 = 2033 + (2298 << 16)
+			vertex_4 = 2020 + (2312 << 16)
+			vertex_5 = 1988 + (2299 << 16)
+		STR_VAR
+			match_name = InfoSwitch6
+	END
+	LPF FC_EDIT_AREA_REGION
+		INT_VAR
+			vertex_0 = 2058 + (2291 << 16)
+			vertex_1 = 2073 + (2298 << 16)
+			vertex_2 = 2089 + (2280 << 16)
+			vertex_3 = 2094 + (2288 << 16)
+			vertex_4 = 2074 + (2310 << 16)
+			vertex_5 = 2053 + (2301 << 16)
+		STR_VAR
+			match_name = InfoSwitch7
+	END
+	LPF FC_EDIT_AREA_REGION
+		INT_VAR
+			vertex_0 = 2124 + (2312 << 16)
+			vertex_1 = 2137 + (2320 << 16)
+			vertex_2 = 2154 + (2302 << 16)
+			vertex_3 = 2158 + (2308 << 16)
+			vertex_4 = 2138 + (2331 << 16)
+			vertex_5 = 2118 + (2322 << 16)
+		STR_VAR
+			match_name = InfoSwitch8
+	END
+	LPF FC_EDIT_AREA_REGION
+		INT_VAR
+			vertex_0 = 2192 + (2344 << 16)
+			vertex_1 = 2207 + (2349 << 16)
+			vertex_2 = 2223 + (2332 << 16)
+			vertex_3 = 2227 + (2339 << 16)
+			vertex_4 = 2208 + (2360 << 16)
+			vertex_5 = 2187 + (2353 << 16)
+		STR_VAR
+			match_name = InfoSwitch9
+	END
+	LPF FC_EDIT_AREA_REGION
+		INT_VAR
+			vertex_0 = 2373 + (2426 << 16)
+			vertex_1 = 2390 + (2433 << 16)
+			vertex_2 = 2404 + (2414 << 16)
+			vertex_3 = 2409 + (2422 << 16)
+			vertex_4 = 2390 + (2444 << 16)
+			vertex_5 = 2368 + (2435 << 16)
+		STR_VAR
+			match_name = InfoSwitch10
+	END
+	LPF FC_EDIT_AREA_REGION
+		INT_VAR
+			vertex_0 = 2438 + (2454 << 16)
+			vertex_1 = 2453 + (2460 << 16)
+			vertex_2 = 2470 + (2442 << 16)
+			vertex_3 = 2474 + (2451 << 16)
+			vertex_4 = 2454 + (2474 << 16)
+			vertex_5 = 2434 + (2464 << 16)
+		STR_VAR
+			match_name = InfoSwitch11
+	END
+	LPF FC_EDIT_AREA_REGION
+		INT_VAR
+			vertex_0 = 2508 + (2485 << 16)
+			vertex_1 = 2524 + (2492 << 16)
+			vertex_2 = 2539 + (2473 << 16)
+			vertex_3 = 2544 + (2482 << 16)
+			vertex_4 = 2526 + (2504 << 16)
+			vertex_5 = 2504 + (2494 << 16)
+		STR_VAR
+			match_name = InfoSwitch12
+	END
+	LPF FC_EDIT_AREA_REGION
+		INT_VAR
+			vertex_0 = 2571 + (2513 << 16)
+			vertex_1 = 2587 + (2520 << 16)
+			vertex_2 = 2602 + (2500 << 16)
+			vertex_3 = 2606 + (2508 << 16)
+			vertex_4 = 2588 + (2531 << 16)
+			vertex_5 = 2567 + (2522 << 16)
+		STR_VAR
+			match_name = InfoSwitch13
+	END
+	LPF fj_are_structure
+		INT_VAR
+			fj_type           = 1
+			fj_box_left       = 1623
+			fj_box_top        = 2689
+			fj_box_right      = 1660
+			fj_box_bottom     = 2710
+			fj_cursor_idx     = 2
+			fj_flags          = 2
+			fj_trap_detect    = 100
+			fj_trap_remove    = 100
+			fj_trap_active    = 1
+			fj_loc_x          = 2170
+			fj_loc_y          = 2575
+			fj_vertex_0       = 1632 + (2689 << 16)
+			fj_vertex_1       = 1660 + (2701 << 16)
+			fj_vertex_2       = 1647 + (2710 << 16)
+			fj_vertex_3       = 1623 + (2699 << 16)
+		STR_VAR
+			fj_structure_type = region
+			fj_name           = AR4102_TSwitch1
+			fj_reg_script     = 41PARES1
+	END
+	LPF fj_are_structure
+		INT_VAR
+			fj_type           = 1
+			fj_box_left       = 1690
+			fj_box_top        = 2653
+			fj_box_right      = 1724
+			fj_box_bottom     = 2673
+			fj_cursor_idx     = 2
+			fj_flags          = 2
+			fj_trap_detect    = 100
+			fj_trap_remove    = 100
+			fj_trap_active    = 1
+			fj_loc_x          = 2170
+			fj_loc_y          = 2575
+			fj_vertex_0       = 1698 + (2653 << 16)
+			fj_vertex_1       = 1724 + (2664 << 16)
+			fj_vertex_2       = 1715 + (2673 << 16)
+			fj_vertex_3       = 1690 + (2664 << 16)
+		STR_VAR
+			fj_structure_type = region
+			fj_name           = AR4102_TSwitch2
+			fj_reg_script     = 41PARES2
+	END
+	LPF fj_are_structure
+		INT_VAR
+			fj_type           = 1
+			fj_box_left       = 1745
+			fj_box_top        = 2591
+			fj_box_right      = 1779
+			fj_box_bottom     = 2613
+			fj_cursor_idx     = 2
+			fj_flags          = 2
+			fj_trap_detect    = 100
+			fj_trap_remove    = 100
+			fj_trap_active    = 1
+			fj_loc_x          = 2170
+			fj_loc_y          = 2575
+			fj_vertex_0       = 1753 + (2591 << 16)
+			fj_vertex_1       = 1779 + (2603 << 16)
+			fj_vertex_2       = 1770 + (2613 << 16)
+			fj_vertex_3       = 1745 + (2602 << 16)
+		STR_VAR
+			fj_structure_type = region
+			fj_name           = AR4102_TSwitch3
+			fj_reg_script     = 41PARES3
+	END
+	LPF fj_are_structure
+		INT_VAR
+			fj_type           = 1
+			fj_box_left       = 1880
+			fj_box_top        = 2401
+			fj_box_right      = 1914
+			fj_box_bottom     = 2422
+			fj_cursor_idx     = 2
+			fj_flags          = 2
+			fj_trap_detect    = 100
+			fj_trap_remove    = 100
+			fj_trap_active    = 1
+			fj_loc_x          = 2170
+			fj_loc_y          = 2575
+			fj_vertex_0       = 1888 + (2401 << 16)
+			fj_vertex_1       = 1914 + (2414 << 16)
+			fj_vertex_2       = 1905 + (2422 << 16)
+			fj_vertex_3       = 1880 + (2411 << 16)
+		STR_VAR
+			fj_structure_type = region
+			fj_name           = AR4102_TSwitch4
+			fj_reg_script     = 41PARER1
+	END
+	LPF fj_are_structure
+		INT_VAR
+			fj_type           = 1
+			fj_box_left       = 1939
+			fj_box_top        = 2336
+			fj_box_right      = 1973
+			fj_box_bottom     = 2357
+			fj_cursor_idx     = 2
+			fj_flags          = 2
+			fj_trap_detect    = 100
+			fj_trap_remove    = 100
+			fj_trap_active    = 1
+			fj_loc_x          = 2170
+			fj_loc_y          = 2575
+			fj_vertex_0       = 1947 + (2336 << 16)
+			fj_vertex_1       = 1973 + (2348 << 16)
+			fj_vertex_2       = 1965 + (2357 << 16)
+			fj_vertex_3       = 1939 + (2347 << 16)
+		STR_VAR
+			fj_structure_type = region
+			fj_name           = AR4102_TSwitch5
+			fj_reg_script     = 41PARER2
+	END
+	LPF fj_are_structure
+		INT_VAR
+			fj_type           = 1
+			fj_box_left       = 1994
+			fj_box_top        = 2278
+			fj_box_right      = 2028
+			fj_box_bottom     = 2298
+			fj_cursor_idx     = 2
+			fj_flags          = 2
+			fj_trap_detect    = 100
+			fj_trap_remove    = 100
+			fj_trap_active    = 1
+			fj_loc_x          = 2170
+			fj_loc_y          = 2575
+			fj_vertex_0       = 2002 + (2278 << 16)
+			fj_vertex_1       = 2028 + (2290 << 16)
+			fj_vertex_2       = 2020 + (2298 << 16)
+			fj_vertex_3       = 1994 + (2288 << 16)
+		STR_VAR
+			fj_structure_type = region
+			fj_name           = AR4102_TSwitch6
+			fj_reg_script     = 41PARER3
+	END
+	LPF fj_are_structure
+		INT_VAR
+			fj_type           = 1
+			fj_box_left       = 2059
+			fj_box_top        = 2273
+			fj_box_right      = 2088
+			fj_box_bottom     = 2297
+			fj_cursor_idx     = 2
+			fj_flags          = 2
+			fj_trap_detect    = 100
+			fj_trap_remove    = 100
+			fj_trap_active    = 1
+			fj_loc_x          = 2170
+			fj_loc_y          = 2575
+			fj_vertex_0       = 2074 + (2273 << 16)
+			fj_vertex_1       = 2088 + (2280 << 16)
+			fj_vertex_2       = 2072 + (2297 << 16)
+			fj_vertex_3       = 2059 + (2291 << 16)
+		STR_VAR
+			fj_structure_type = region
+			fj_name           = AR4102_TSwitch7
+			fj_reg_script     = 41PARER4
+	END
+	LPF fj_are_structure
+		INT_VAR
+			fj_type           = 1
+			fj_box_left       = 2123
+			fj_box_top        = 2292
+			fj_box_right      = 2152
+			fj_box_bottom     = 2318
+			fj_cursor_idx     = 2
+			fj_flags          = 2
+			fj_trap_detect    = 100
+			fj_trap_remove    = 100
+			fj_trap_active    = 1
+			fj_loc_x          = 2170
+			fj_loc_y          = 2575
+			fj_vertex_0       = 2138 + (2292 << 16)
+			fj_vertex_1       = 2152 + (2300 << 16)
+			fj_vertex_2       = 2137 + (2318 << 16)
+			fj_vertex_3       = 2123 + (2311 << 16)
+		STR_VAR
+			fj_structure_type = region
+			fj_name           = AR4102_TSwitch8
+			fj_reg_script     = 41PAREO1
+	END
+	LPF fj_are_structure
+		INT_VAR
+			fj_type           = 1
+			fj_box_left       = 2192
+			fj_box_top        = 2322
+			fj_box_right      = 2222
+			fj_box_bottom     = 2348
+			fj_cursor_idx     = 2
+			fj_flags          = 2
+			fj_trap_detect    = 100
+			fj_trap_remove    = 100
+			fj_trap_active    = 1
+			fj_loc_x          = 2170
+			fj_loc_y          = 2575
+			fj_vertex_0       = 2207 + (2322 << 16)
+			fj_vertex_1       = 2222 + (2330 << 16)
+			fj_vertex_2       = 2206 + (2348 << 16)
+			fj_vertex_3       = 2192 + (2342 << 16)
+		STR_VAR
+			fj_structure_type = region
+			fj_name           = AR4102_TSwitch9
+			fj_reg_script     = 41PAREO2
+	END
+	LPF fj_are_structure
+		INT_VAR
+			fj_type           = 1
+			fj_box_left       = 2374
+			fj_box_top        = 2406
+			fj_box_right      = 2404
+			fj_box_bottom     = 2432
+			fj_cursor_idx     = 2
+			fj_flags          = 2
+			fj_trap_detect    = 100
+			fj_trap_remove    = 100
+			fj_trap_active    = 1
+			fj_loc_x          = 2170
+			fj_loc_y          = 2575
+			fj_vertex_0       = 2390 + (2406 << 16)
+			fj_vertex_1       = 2404 + (2414 << 16)
+			fj_vertex_2       = 2390 + (2432 << 16)
+			fj_vertex_3       = 2374 + (2426 << 16)
+		STR_VAR
+			fj_structure_type = region
+			fj_name           = AR4102_TSwitch10
+			fj_reg_script     = 41PAREO3
+	END
+	LPF fj_are_structure
+		INT_VAR
+			fj_type           = 1
+			fj_box_left       = 2440
+			fj_box_top        = 2434
+			fj_box_right      = 2468
+			fj_box_bottom     = 2459
+			fj_cursor_idx     = 2
+			fj_flags          = 2
+			fj_trap_detect    = 100
+			fj_trap_remove    = 100
+			fj_trap_active    = 1
+			fj_loc_x          = 2170
+			fj_loc_y          = 2575
+			fj_vertex_0       = 2454 + (2434 << 16)
+			fj_vertex_1       = 2468 + (2442 << 16)
+			fj_vertex_2       = 2453 + (2459 << 16)
+			fj_vertex_3       = 2440 + (2454 << 16)
+		STR_VAR
+			fj_structure_type = region
+			fj_name           = AR4102_TSwitch11
+			fj_reg_script     = 41PAREO4
+	END
+	LPF fj_are_structure
+		INT_VAR
+			fj_type           = 1
+			fj_box_left       = 2509
+			fj_box_top        = 2466
+			fj_box_right      = 2538
+			fj_box_bottom     = 2491
+			fj_cursor_idx     = 2
+			fj_flags          = 2
+			fj_trap_detect    = 100
+			fj_trap_remove    = 100
+			fj_trap_active    = 1
+			fj_loc_x          = 2170
+			fj_loc_y          = 2575
+			fj_vertex_0       = 2524 + (2466 << 16)
+			fj_vertex_1       = 2538 + (2472 << 16)
+			fj_vertex_2       = 2524 + (2491 << 16)
+			fj_vertex_3       = 2509 + (2484 << 16)
+		STR_VAR
+			fj_structure_type = region
+			fj_name           = AR4102_TSwitch12
+			fj_reg_script     = 41PAREO5
+	END
+	LPF fj_are_structure
+		INT_VAR
+			fj_type           = 1
+			fj_box_left       = 2571
+			fj_box_top        = 2492
+			fj_box_right      = 2602
+			fj_box_bottom     = 2519
+			fj_cursor_idx     = 2
+			fj_flags          = 2
+			fj_trap_detect    = 100
+			fj_trap_remove    = 100
+			fj_trap_active    = 1
+			fj_loc_x          = 2170
+			fj_loc_y          = 2575
+			fj_vertex_0       = 2586 + (2492 << 16)
+			fj_vertex_1       = 2602 + (2500 << 16)
+			fj_vertex_2       = 2588 + (2519 << 16)
+			fj_vertex_3       = 2571 + (2512 << 16)
+		STR_VAR
+			fj_structure_type = region
+			fj_name           = AR4102_TSwitch13
+			fj_reg_script     = 41PAREO6
+	END
+	LPF ALTER_AREA_ACTOR STR_VAR actor_name=Nickademus script_override=41ARSPEP END
+	LPF fj_are_structure INT_VAR fj_con_itm_idx=15 fj_charge0=1 STR_VAR fj_structure_type=itm fj_name="potn14" END
+	LPF fj_are_structure INT_VAR fj_con_itm_idx=14 fj_charge0=1 STR_VAR fj_structure_type=itm fj_name="potn36" END
+	LPF fj_are_structure INT_VAR fj_con_itm_idx=13 fj_charge0=2 STR_VAR fj_structure_type=itm fj_name="potn39" END
+
+COPY ~%MOD_FOLDER%/are/IW4103.are~ ~override~
+	SAY 0x37b0 @24024 //region #0 / 77
+	SAY 0x3874 @24024 //region #1 / 77
+	SAY 0x3ac0 @24021 //region #4 / 77
+	SAY 0x3b84 @24021 //region #5 / 77
+	SAY 0x3c48 @24021 //region #6 / 77
+	SAY 0x3d0c @24021 //region #7 / 77
+	SAY 0x3dd0 @24021 //region #8 / 77
+	SAY 0x3e94 @24021 //region #9 / 77
+	SAY 0x3f58 @24023 //region #10 / 77
+	SAY 0x401c @24024 //region #11 / 77
+	SAY 0x40e0 @24024 //region #12 / 77
+	SAY 0x41a4 @24022 //region #13 / 77
+	SAY 0x4268 @24022 //region #14 / 77
+	SAY 0x432c @24025 //region #15 / 77
+	SAY 0x43f0 @24025 //region #16 / 77
+	SAY 0x44b4 @24025 //region #17 / 77
+	SAY 0x4578 @24025 //region #18 / 77
+	SAY 0x463c @24050 //region #19 / 77
+	SAY 0x4700 @24051 //region #20 / 77
+	SAY 0x47c4 @24052 //region #21 / 77
+	SAY 0x494c @39551 //region #23 / 77
+	SAY 0x5ae8 @25016 //region #46 / 77
+	SAY 0x5bac @30928 //region #47 / 77
+	SAY 0x5c70 @30929 //region #48 / 77
+	SAY 0x5d34 @30930 //region #49 / 77
+	SAY 0x5df8 @30931 //region #50 / 77
+	SAY 0x5ebc @30932 //region #51 / 77
+	SAY 0x5f80 @30933 //region #52 / 77
+	SAY 0x6044 @30934 //region #53 / 77
+	SAY 0x6108 @30935 //region #54 / 77
+	SAY 0x61cc @30936 //region #55 / 77
+	SAY 0x6354 @39551 //region #57 / 77
+	SAY 0x6418 @39551 //region #58 / 77
+	SAY 0x64dc @39551 //region #59 / 77
+	SAY 0x65a0 @39551 //region #60 / 77
+	SAY 0x6664 @39551 //region #61 / 77
+	SAY 0x6728 @39551 //region #62 / 77
+	SAY 0x67ec @39551 //region #63 / 77
+	SAY 0x68b0 @39551 //region #64 / 77
+	SAY 0x6974 @39551 //region #65 / 77
+	SAY 0x6a38 @39551 //region #66 / 77
+	SAY 0x6afc @39551 //region #67 / 77
+	SAY 0x6bc0 @39551 //region #68 / 77
+	SAY 0x6c84 @39551 //region #69 / 77
+	SAY 0x6d48 @39551 //region #70 / 77
+	SAY 0x6e0c @39551 //region #71 / 77
+	SAY 0x6ed0 @39551 //region #72 / 77
+	SAY 0x6f94 @40951 //region #73 / 77
+	SAY 0x7058 @40952 //region #74 / 77
+	SAY 0x711c @40953 //region #75 / 77
+	SAY 0x71e0 @40954 //region #76 / 77
+	ADD_MAP_NOTE #2048 #1460 ~orange~    @55038
+	ADD_MAP_NOTE #1265 #1409 ~darkblue~  @55039
+	ADD_MAP_NOTE #1834 #342  ~darkblue~  @55040
+	ADD_MAP_NOTE #194  #1955 ~orange~    @55041
+	ADD_MAP_NOTE #2141 #2562 ~darkblue~  @55042
+	ADD_MAP_NOTE #1059 #763  ~darkblue~  @55043
+	ADD_MAP_NOTE #1503 #1039 ~orange~    @55041
+	ADD_MAP_NOTE #3602 #2110 ~red~       @55006
+	ADD_MAP_NOTE #2930 #795  ~darkblue~  @55040
+	ADD_MAP_NOTE #1060 #2365 ~orange~    @55097
+	LPF ALTER_AREA_ACTOR STR_VAR actor_name=Nickademus script_override=41ARSPEP END
+
+COPY ~%MOD_FOLDER%/are/IW5000.are~ ~override~
+	WRITE_ASCII 0x24 ~IW5001~
+	WRITE_LONG  0x2c 3
+	SAY 0x40f4 @24039 //region #1 / 3
+	SAY 0x41b8 @24040 //region #2 / 3
+	ADD_MAP_NOTE #2163 #611  ~blue~      @32034
+	ADD_MAP_NOTE #750  #1456 ~orange~    @55044
+	ADD_MAP_NOTE #644  #530  ~orange~    @55045
+	ADD_MAP_NOTE #36   #1529 ~red~       @55006
+	ADD_MAP_NOTE #2722 #1493 ~red~       @55006
+
+COPY ~%MOD_FOLDER%/are/IW5001.are~ ~override~
+	SAY 0x3718 @24041 //region #2 / 5
+	SAY 0x37dc @24041 //region #3 / 5
+	SAY 0x38a0 @24042 //region #4 / 5
+	SAY 0x47e4 @28206
+	SAY 0x47e8 @28206
+	SAY 0x47ec @28206
+	ADD_MAP_NOTE #2535 #448  ~blue~      @55046
+	ADD_MAP_NOTE #564  #558  ~orange~    @55047
+	ADD_MAP_NOTE #27   #1275 ~red~       @55006
+	ADD_MAP_NOTE #2965 #1018 ~red~       @55006
+	LPF fj_are_structure
+		INT_VAR
+			fj_type              = 1
+			fj_box_left          = 517
+			fj_box_top           = 532
+			fj_box_right         = 594
+			fj_box_bottom        = 598
+			fj_cursor_idx        = 22
+			fj_flags             = 256
+			fj_info_point_strref = RESOLVE_STR_REF ( @80090 )
+			fj_loc_x             = 560
+			fj_loc_y             = 568
+			fj_vertex_0          = 532 + (532 << 16)
+			fj_vertex_1          = 559 + (541 << 16)
+			fj_vertex_2          = 583 + (559 << 16)
+			fj_vertex_3          = 594 + (583 << 16)
+			fj_vertex_4          = 580 + (598 << 16)
+			fj_vertex_5          = 552 + (591 << 16)
+			fj_vertex_6          = 529 + (567 << 16)
+			fj_vertex_7          = 517 + (558 << 16)
+		STR_VAR
+			fj_structure_type    = region
+			fj_name              = Kyotsi_Grave
+	END
+
+COPY ~%MOD_FOLDER%/are/IW5002.are~ ~override~
+	SAY 0x0574 @24043 //region #1 / 11
+	SAY 0x0638 @24044 //region #2 / 11
+	SAY 0x06fc @24044 //region #3 / 11
+	SAY 0x07c0 @24045 //region #4 / 11
+	SAY 0x0884 @24048 //region #5 / 11
+	SAY 0x0948 @24049 //region #6 / 11
+	SAY 0x0a0c @24049 //region #7 / 11
+	SAY 0x0ad0 @24049 //region #8 / 11
+	SAY 0x0b94 @24049 //region #9 / 11
+	SAY 0x0c58 @24049 //region #10 / 11
+	/* - IW5002.are
+		song_0 = 11
+		song_1 = 11
+		*/
+	WRITE_LONG 0x1380 ~%IW5001%~
+	WRITE_LONG 0x1384 ~%IW5001%~
+
+COPY ~%MOD_FOLDER%/are/IW5004.are~ ~override~
+	WRITE_ASCII 0x18 ~IW5005~ (8)
+	WRITE_LONG  0x20 3
+	SAY 0x6430 @24047 //region #4 / 7
+	SAY 0x704c @25733 //door #0 / 21
+	SAY 0x7114 @25733 //door #1 / 21
+	SAY 0x71dc @25733 //door #2 / 21
+	SAY 0x72a4 @25733 //door #3 / 21
+	SAY 0x736c @25733 //door #4 / 21
+	SAY 0x7434 @25733 //door #5 / 21
+	SAY 0x74fc @25733 //door #6 / 21
+	SAY 0x75c4 @25733 //door #7 / 21
+	SAY 0x768c @25733 //door #8 / 21
+	SAY 0x7754 @25733 //door #9 / 21
+	SAY 0x781c @25733 //door #10 / 21
+	SAY 0x78e4 @25733 //door #11 / 21
+	SAY 0x79ac @25733 //door #12 / 21
+	SAY 0x7a74 @25733 //door #13 / 21
+	SAY 0x7b3c @25733 //door #14 / 21
+	SAY 0x7c04 @25733 //door #15 / 21
+	SAY 0xa350 @28206
+	SAY 0xa354 @28206
+	SAY 0xa358 @28206
+	SAY 0xa35c @28212
+	ADD_MAP_NOTE #3262 #984  ~orange~    @55048
+	ADD_MAP_NOTE #1888 #1776 ~orange~    @55049
+	ADD_MAP_NOTE #45   #1566 ~red~       @55006
+	ADD_MAP_NOTE #3289 #26   ~red~       @55006
+
+COPY ~%MOD_FOLDER%/are/IW5005.are~ ~override~
+	SAY 0x0fc8 @24078 //region #2 / 3
+	/* - IW5005.are
+		song_3 = 28
+		*/
+	WRITE_LONG 0x15f4 ~%WA5005%~
+	ADD_MAP_NOTE #500  #484  ~orange~    @55050
+	ADD_MAP_NOTE #1145 #597  ~gray~      @55018
+	ADD_MAP_NOTE #29   #1098 ~red~       @55006
+
+COPY ~%MOD_FOLDER%/are/IW5010.are~ ~override~
+	/* - IW5010.are
+		song_0 = 12
+		song_1 = 12
+		*/
+	WRITE_LONG 0x15e8 ~%IW5003%~
+	WRITE_LONG 0x15ec ~%IW5003%~
+
+COPY ~%MOD_FOLDER%/are/IW5011.are~ ~override~
+	SAY 0x07ec @24077 //region #7 / 11
+	SAY 0x08b0 @24077 //region #8 / 11
+	SAY 0x0974 @24077 //region #9 / 11
+	SAY 0x0a38 @24077 //region #10 / 11
+
+COPY ~%MOD_FOLDER%/are/IW5012.are~ ~override~
+
+COPY ~%MOD_FOLDER%/are/IW5013.are~ ~override~
+
+COPY ~%MOD_FOLDER%/are/IW5014.are~ ~override~
+
+COPY ~%MOD_FOLDER%/are/IW5015.are~ ~override~
+
+COPY ~%MOD_FOLDER%/are/IW5016.are~ ~override~
+
+COPY ~%MOD_FOLDER%/are/IW5017.are~ ~override~
+
+COPY ~%MOD_FOLDER%/are/IW5018.are~ ~override~
+
+COPY ~%MOD_FOLDER%/are/IW5019.are~ ~override~
+
+COPY ~%MOD_FOLDER%/are/IW5020.are~ ~override~
+
+COPY ~%MOD_FOLDER%/are/IW5021.are~ ~override~
+
+COPY ~%MOD_FOLDER%/are/IW5022.are~ ~override~
+
+COPY ~%MOD_FOLDER%/are/IW5023.are~ ~override~
+
+COPY ~%MOD_FOLDER%/are/IW5024.are~ ~override~
+	SAY 0x128c @24040 //region #7 / 8
+	ADD_MAP_NOTE #719  #340  ~orange~    @55045
+
+COPY ~%MOD_FOLDER%/are/IW5025.are~ ~override~
+
+COPY ~%MOD_FOLDER%/are/IW5026.are~ ~override~
+
+COPY ~%MOD_FOLDER%/are/IW5027.are~ ~override~
+
+COPY ~%MOD_FOLDER%/are/IW5028.are~ ~override~
+
+COPY ~%MOD_FOLDER%/are/IW5029.are~ ~override~
+
+COPY ~%MOD_FOLDER%/are/IW5030.are~ ~override~
+
+COPY ~%MOD_FOLDER%/are/IW5100.are~ ~override~
+	SAY 0x1b50 @25006 //door #0 / 2
+	SAY 0x1c18 @34349 //door #1 / 2
+	ADD_MAP_NOTE #725  #317  ~orange~    @55051
+	ADD_MAP_NOTE #1035 #405  ~gray~      @55052
+	ADD_MAP_NOTE #32   #749  ~red~       @55006
+	LPF FC_EDIT_AREA_DOOR
+		INT_VAR
+			vertex_closed_0 = 882  + ( 321 << 16 )
+			vertex_closed_1 = 1002 + ( 287 << 16 )
+			vertex_closed_2 = 1077 + ( 317 << 16 )
+			vertex_closed_3 = 990  + ( 349 << 16 )
+			vertex_closed_4 = 958  + ( 373 << 16 )
+			vertex_closed_5 = 894  + ( 381 << 16 )
+			vertex_closed_6 = 873  + ( 360 << 16 )
+			open_loc_x      = 874
+			open_loc_y      = 395
+			close_loc_x     = 874
+			close_loc_y     = 395
+		STR_VAR
+			match_name      = AR5100_Ropes
+	END
+	LPF FC_EDIT_AREA_DOOR
+		INT_VAR
+			flags           = 742
+		STR_VAR
+			match_name      = AR5100_HoleCover
+	END
+	LPF FC_EDIT_AREA_REGION
+		INT_VAR
+			vertex_0        = 1010 + ( 327 << 16 )
+			vertex_1        = 1094 + ( 314 << 16 )
+			vertex_2        = 1085 + ( 349 << 16 )
+			vertex_3        = 1035 + ( 383 << 16 )
+			vertex_4        = 1030 + ( 442 << 16 )
+			vertex_5        = 958  + ( 402 << 16 )
+			vertex_6        = 963  + ( 357 << 16 )
+		STR_VAR
+			match_name      = To5101
+	END
+
+COPY ~%MOD_FOLDER%/are/IW5101.are~ ~override~
+	SAY 0xb75c @24125 //region #3 / 25
+	SAY 0xb820 @24125 //region #4 / 25
+	SAY 0xb8e4 @24126 //region #5 / 25
+	SAY 0xb9a8 @24127 //region #6 / 25
+	SAY 0xba6c @24128 //region #7 / 25
+	SAY 0xbb30 @24129 //region #8 / 25
+	SAY 0xbbf4 @24129 //region #9 / 25
+	SAY 0xbcb8 @24129 //region #10 / 25
+	SAY 0xbd7c @24130 //region #11 / 25
+	SAY 0xbe40 @24130 //region #12 / 25
+	SAY 0xbf04 @24135 //region #13 / 25
+	SAY 0xbfc8 @24136 //region #14 / 25
+	SAY 0xc08c @24136 //region #15 / 25
+	SAY 0xc150 @24136 //region #16 / 25
+	SAY 0xc214 @24128 //region #17 / 25
+	SAY 0xc2d8 @24137 //region #18 / 25
+	SAY 0xc39c @24137 //region #19 / 25
+	SAY 0xc460 @24137 //region #20 / 25
+	SAY 0xc524 @24138 //region #21 / 25
+	SAY 0xdc1c @25015 //door #0 / 18
+	/* - IW5101.are
+		song_0 = 13
+		song_1 = 13
+		*/
+	WRITE_LONG 0xfab4 ~%IW5101%~
+	WRITE_LONG 0xfab8 ~%IW5101%~
+	ADD_MAP_NOTE #289  #1099 ~green~     @55053
+	ADD_MAP_NOTE #317  #381  ~orange~    @55043
+	ADD_MAP_NOTE #1288 #1752 ~gray~      @55018
+	ADD_MAP_NOTE #1781 #1706 ~gray~      @55018
+	ADD_MAP_NOTE #342  #1924 ~red~       @55054
+	ADD_MAP_NOTE #3470 #621  ~red~       @55006
+	ADD_MAP_NOTE #2410 #485  ~orange~    @55098
+	LPF FC_EDIT_AREA_REGION
+		INT_VAR
+			vertex_0 = 406 + ( 1864 << 16 )
+			vertex_1 = 433 + ( 2030 << 16 )
+			vertex_2 = 313 + ( 2098 << 16 )
+			vertex_3 = 292 + ( 2015 << 16 )
+			vertex_4 = 322 + ( 1944 << 16 )
+		STR_VAR
+			match_name = To5100
+	END
+	LPF fj_are_structure INT_VAR fj_con_itm_idx=0 fj_charge0=1 STR_VAR fj_structure_type=itm fj_name="potn14" END
+	LPF fj_are_structure INT_VAR fj_con_itm_idx=1 fj_charge0=1 STR_VAR fj_structure_type=itm fj_name="potn14" END
+	LPF fj_are_structure INT_VAR fj_con_itm_idx=3 fj_charge0=1 STR_VAR fj_structure_type=itm fj_name="potn39" END
+
+COPY ~%MOD_FOLDER%/are/IW5102.are~ ~override~
+	SAY 0x1a48 @24141 //region #6 / 8
+	SAY 0x1b0c @24141 //region #7 / 8
+	SAY 0x2fc8 @28213
+	SAY 0x2fcc @28213
+	SAY 0x2fd0 @28213
+	SAY 0x2fd4 @28214
+	ADD_MAP_NOTE #1522 #336  ~orange~    @55014
+	ADD_MAP_NOTE #486  #1435 ~red~       @55006
+	ADD_MAP_NOTE #2037 #59   ~red~       @55006
+
+COPY ~%MOD_FOLDER%/are/IW5200.are~ ~override~
+	SAY 0x2644 @24142 //region #5 / 7
+	SAY 0x2708 @24143 //region #6 / 7
+	SAY 0x3258 @28213
+	SAY 0x325c @28213
+	SAY 0x3260 @28213
+	SAY 0x3264 @28215
+	/* - IW5200.are
+		song_0 = 9
+		song_1 = 9
+		*/
+	WRITE_LONG 0x31a8 ~%IW2102%~
+	WRITE_LONG 0x31ac ~%IW2102%~
+	ADD_MAP_NOTE #830  #217  ~orange~    @55051
+	ADD_MAP_NOTE #1181 #1204 ~orange~    @55051
+	ADD_MAP_NOTE #2797 #749  ~blue~      @55055
+	ADD_MAP_NOTE #2732 #1372 ~gray~      @55018
+	ADD_MAP_NOTE #3138 #986  ~gray~      @55018
+	ADD_MAP_NOTE #571  #1860 ~red~       @55006
+
+COPY ~%MOD_FOLDER%/are/IW5201.are~ ~override~
+	SAY 0x3828 @24145 //region #2 / 7
+	SAY 0x38ec @24144 //region #3 / 7
+	SAY 0x39b0 @24150 //region #4 / 7
+	SAY 0x3a74 @24151 //region #5 / 7
+	SAY 0x3b38 @24152 //region #6 / 7
+	/* - IW5201.are
+		song_0 = 14
+		song_1 = 14
+		*/
+	WRITE_LONG 0x5b2c ~%IW5201%~
+	WRITE_LONG 0x5b30 ~%IW5201%~
+	LPF FC_EDIT_AREA_REGION
+		INT_VAR
+			vertex_0 = 2014 + ( 832 << 16 )
+			vertex_1 = 2018 + ( 868 << 16 )
+			vertex_2 = 2060 + ( 892 << 16 )
+			vertex_3 = 1995 + ( 945 << 16 )
+			vertex_4 = 1979 + ( 857 << 16 )
+		STR_VAR
+			match_name = To5200
+	END
+
+COPY ~%MOD_FOLDER%/are/IW5202.are~ ~override~
+	SAY 0x5074 @37824 //door #0 / 26
+	SAY 0x513c @37824 //door #1 / 26
+	SAY 0x5204 @37824 //door #2 / 26
+	SAY 0x52cc @37824 //door #3 / 26
+	SAY 0x5394 @37824 //door #4 / 26
+	SAY 0x545c @37824 //door #5 / 26
+	SAY 0x5524 @37824 //door #6 / 26
+	SAY 0x55ec @37824 //door #7 / 26
+	SAY 0x56b4 @37824 //door #8 / 26
+	SAY 0x577c @37824 //door #9 / 26
+	SAY 0x5844 @37824 //door #10 / 26
+	SAY 0x590c @37824 //door #11 / 26
+	SAY 0x59d4 @37824 //door #12 / 26
+	SAY 0x5a9c @37824 //door #13 / 26
+	SAY 0x5b64 @37824 //door #14 / 26
+	SAY 0x5c2c @37824 //door #15 / 26
+	SAY 0x5cf4 @37824 //door #16 / 26
+	SAY 0x5dbc @37824 //door #17 / 26
+	SAY 0x5e84 @37824 //door #18 / 26
+	SAY 0x5f4c @37824 //door #19 / 26
+	SAY 0x6014 @37824 //door #20 / 26
+	SAY 0x60dc @37824 //door #21 / 26
+	SAY 0x61a4 @37824 //door #22 / 26
+	SAY 0x626c @37824 //door #23 / 26
+	SAY 0x6334 @37824 //door #24 / 26
+	SAY 0x63fc @37824 //door #25 / 26
+	ADD_MAP_NOTE #734  #859  ~gray~      @55056
+	LPF ALTER_AREA_ACTOR
+		INT_VAR x_coord=812 y_coord=1366 dest_x=812 dest_y=1366
+		STR_VAR actor_name=C2_ARCH_6_EFFECT
+	END
+	LPF ALTER_AREA_ACTOR
+		INT_VAR x_coord=984 y_coord=1465 dest_x=984 dest_y=1465
+		STR_VAR actor_name=C2_ARCH_5_EFFECT
+	END
+	LPF ALTER_AREA_ACTOR
+		INT_VAR x_coord=1166 y_coord=1576 dest_x=1166 dest_y=1576
+		STR_VAR actor_name=C2_ARCH_4_EFFECT
+	END
+	LPF FC_EDIT_AREA_REGION
+		INT_VAR
+			vertex_0 = 812 + ( 1347 << 16 )
+			vertex_1 = 843 + ( 1371 << 16 )
+			vertex_2 = 815 + ( 1411 << 16 )
+			vertex_3 = 758 + ( 1380 << 16 )
+		STR_VAR
+			match_name = C2Arch4
+	END
+	LPF FC_EDIT_AREA_REGION
+		INT_VAR
+			vertex_0 = 975  + ( 1444 << 16 )
+			vertex_1 = 1008 + ( 1466 << 16 )
+			vertex_2 = 980  + ( 1508 << 16 )
+			vertex_3 = 927  + ( 1476 << 16 )
+		STR_VAR
+			match_name = C2Arch5
+	END
+	LPF FC_EDIT_AREA_REGION
+		INT_VAR
+			vertex_0 = 1155 + ( 1551 << 16 )
+			vertex_1 = 1198 + ( 1574 << 16 )
+			vertex_2 = 1171 + ( 1623 << 16 )
+			vertex_3 = 1105 + ( 1587 << 16 )
+		STR_VAR
+			match_name = C2Arch6
+	END
+
+COPY ~%MOD_FOLDER%/are/IW5203.are~ ~override~
+	ADD_MAP_NOTE #493  #536  ~orange~    @55014
+	ADD_MAP_NOTE #1447 #448  ~orange~    @55014
+	ADD_MAP_NOTE #541  #1098 ~orange~    @55057
+	ADD_MAP_NOTE #169  #48   ~red~       @55058
+	ADD_MAP_NOTE #1422 #35   ~red~       @55059
+
+COPY ~%MOD_FOLDER%/are/IW5300.are~ ~override~
+	SAY 0x7c08 @25732 //region #6 / 27
+	SAY 0x7ccc @25684 //region #7 / 27
+	SAY 0x7d90 @25734 //region #8 / 27
+	SAY 0x7e54 @25734 //region #9 / 27
+	SAY 0x7f18 @25734 //region #10 / 27
+	SAY 0x7fdc @25731 //region #11 / 27
+	SAY 0x80a0 @25731 //region #12 / 27
+	SAY 0x8164 @25731 //region #13 / 27
+	SAY 0x8228 @25731 //region #14 / 27
+	SAY 0x82ec @25731 //region #15 / 27
+	SAY 0xa014 @25729 //door #2 / 4
+	SAY 0xa0dc @25729 //door #3 / 4
+	ADD_MAP_NOTE #724  #845  ~darkblue~  @55060
+	ADD_MAP_NOTE #331  #2305 ~darkblue~  @55061
+	ADD_MAP_NOTE #214  #225  ~red~       @55006
+	ADD_MAP_NOTE #3711 #1308 ~red~       @55006
+	ADD_MAP_NOTE #3103 #471  ~red~       @55006
+	LPF fj_are_structure INT_VAR fj_con_itm_idx=9 fj_charge0=2 STR_VAR fj_name="POTN29ZZ" fj_structure_type=itm END
+	LPF fj_are_structure INT_VAR fj_con_itm_idx=8 fj_charge0=1 STR_VAR fj_name="POTN29ZZ" fj_structure_type=itm END
+
+COPY ~%MOD_FOLDER%/are/IW5301.are~ ~override~
+	SAY 0x47cc @27528 //region #3 / 37
+	SAY 0x4890 @27529 //region #4 / 37
+	SAY 0x4954 @27529 //region #5 / 37
+	SAY 0x6110 @36876 //region #36 / 37
+	ADD_MAP_NOTE #1612 #1725 ~orange~    @35519
+	ADD_MAP_NOTE #3614 #981  ~darkblue~  @7845
+	ADD_MAP_NOTE #923  #658  ~darkblue~  @7843
+	ADD_MAP_NOTE #62   #1705 ~red~       @55006
+	LPF fj_are_structure INT_VAR fj_con_itm_idx=0 fj_charge0=1 STR_VAR fj_name="POTN29ZZ" fj_structure_type=itm END
+	LPF fj_are_structure INT_VAR fj_con_itm_idx=1 fj_charge0=3 STR_VAR fj_name="POTN29ZZ" fj_structure_type=itm END
+
+COPY ~%MOD_FOLDER%/are/IW5302.are~ ~override~
+	SAY 0x5330 @36939 //region #4 / 31
+	SAY 0x53f4 @36939 //region #5 / 31
+	SAY 0x54b8 @36939 //region #6 / 31
+	SAY 0x557c @36940 //region #7 / 31
+	SAY 0x5640 @36940 //region #8 / 31
+	SAY 0x5704 @24151 //region #9 / 31
+	SAY 0x57c8 @24151 //region #10 / 31
+	SAY 0x588c @24151 //region #11 / 31
+	SAY 0x5950 @24151 //region #12 / 31
+	SAY 0x5a14 @24151 //region #13 / 31
+	SAY 0x5ad8 @24151 //region #14 / 31
+	SAY 0x5b9c @36941 //region #15 / 31
+	SAY 0x5c60 @36941 //region #16 / 31
+	SAY 0x5d24 @36942 //region #17 / 31
+	SAY 0x5de8 @36942 //region #18 / 31
+	SAY 0x5eac @36943 //region #19 / 31
+	SAY 0x5f70 @36946 //region #20 / 31
+	SAY 0x6034 @36945 //region #21 / 31
+	SAY 0x60f8 @36944 //region #22 / 31
+	SAY 0x61bc @36943 //region #23 / 31
+	SAY 0x6280 @36948 //region #24 / 31
+	SAY 0x6344 @36948 //region #25 / 31
+	SAY 0x6408 @36948 //region #26 / 31
+	SAY 0x64cc @36948 //region #27 / 31
+	SAY 0x6590 @36948 //region #28 / 31
+	SAY 0x6654 @36948 //region #29 / 31
+	SAY 0x7cb0 @37561 //door #0 / 2
+	SAY 0x7d78 @37561 //door #1 / 2
+	ADD_MAP_NOTE #626  #1629  ~orange~    @35868
+	ADD_MAP_NOTE #2000 #1468  ~darkblue~  @7844
+	ADD_MAP_NOTE #2963 #443   ~red~       @55006
+	ADD_MAP_NOTE #1670 #2652  ~red~       @55006
+
+COPY ~%MOD_FOLDER%/are/IW5303.are~ ~override~
+	SAY 0x1c9c @33610 //door #0 / 2
+	SAY 0x1d64 @33610 //door #1 / 2
+	/* - IW5303.are
+		song_3 = 24
+		*/
+	WRITE_LONG 0x2024 ~%IWBTLE6%~
+
+COPY ~%MOD_FOLDER%/are/IW6000.are~ ~override~
+	SAY 0x4de0 @30727 //region #4 / 16
+	SAY 0x4ea4 @30728 //region #5 / 16
+	SAY 0x4f68 @30729 //region #6 / 16
+	SAY 0x502c @30729 //region #7 / 16
+	SAY 0x50f0 @30729 //region #8 / 16
+	SAY 0x51b4 @30729 //region #9 / 16
+	SAY 0x5400 @35364 //region #12 / 16
+	SAY 0x54c4 @35365 //region #13 / 16
+	SAY 0x5588 @35366 //region #14 / 16
+	SAY 0x564c @35366 //region #15 / 16
+	ADD_MAP_NOTE #315  #1261  ~orange~    @55062
+	ADD_MAP_NOTE #1694 #720   ~orange~    @55063
+	ADD_MAP_NOTE #3092 #553   ~orange~    @55064
+	ADD_MAP_NOTE #1526 #229   ~red~       @55065
+	ADD_MAP_NOTE #3766 #1137  ~red~       @55066
+	
+
+COPY ~%MOD_FOLDER%/are/IW6001.are~ ~override~
+	SAY 0x6934 @30474 //region #5 / 28
+	SAY 0x69f8 @30732 //region #6 / 28
+	SAY 0x6abc @30733 //region #7 / 28
+	SAY 0x6b80 @30734 //region #8 / 28
+	SAY 0x6c44 @30735 //region #9 / 28
+	SAY 0x6d08 @30735 //region #10 / 28
+	SAY 0x6dcc @35498 //region #11 / 28
+	SAY 0x6e90 @35498 //region #12 / 28
+	SAY 0x6f54 @35499 //region #13 / 28
+	SAY 0x7018 @35500 //region #14 / 28
+	SAY 0x70dc @35501 //region #15 / 28
+	SAY 0x71a0 @35502 //region #16 / 28
+	SAY 0x7264 @35499 //region #17 / 28
+	SAY 0x7328 @35503 //region #18 / 28
+	SAY 0x73ec @35725 //region #19 / 28
+	SAY 0x74b0 @35507 //region #20 / 28
+	SAY 0x7574 @35508 //region #21 / 28
+	SAY 0x7638 @35509 //region #22 / 28
+	SAY 0x76fc @35510 //region #23 / 28
+	SAY 0x77c0 @35511 //region #24 / 28
+	SAY 0x7884 @35512 //region #25 / 28
+	SAY 0x8534 @14334 //door #2 / 7
+	SAY 0x85fc @14334 //door #3 / 7
+	SAY 0x86c4 @33754 //door #4 / 7
+	ADD_MAP_NOTE #2025 #806   ~violet~    @55068
+	ADD_MAP_NOTE #1195 #584   ~violet~    @55074
+	ADD_MAP_NOTE #377  #689   ~blue~      @55063
+	ADD_MAP_NOTE #1627 #334   ~blue~      @55075
+	ADD_MAP_NOTE #2893 #662   ~darkblue~  @55069
+	ADD_MAP_NOTE #1094 #1748  ~darkblue~  @55076
+	ADD_MAP_NOTE #1429 #1884  ~orange~    @55070
+	ADD_MAP_NOTE #2473 #1760  ~orange~    @55071
+	ADD_MAP_NOTE #1600 #2453  ~orange~    @55073
+	ADD_MAP_NOTE #66   #2212  ~red~       @55077
+	//ADD_MAP_NOTE #3715 #1666  ~red~       @55006
+	LPF FC_EDIT_AREA_DOOR
+		INT_VAR
+			vertex_closed_0   = 40 + ( 20 << 16 )
+			vertex_closed_1   = 40 + ( 30 << 16 )
+			vertex_closed_2   = 30 + ( 30 << 16 )
+		STR_VAR
+			match_name = AR6001_HideMe_North_WMap
+	END
+	LPF FC_EDIT_AREA_DOOR
+		INT_VAR
+			vertex_closed_0   = 50 + ( 30 << 16 )
+			vertex_closed_1   = 50 + ( 40 << 16 )
+			vertex_closed_2   = 40 + ( 40 << 16 )
+		STR_VAR
+			match_name = AR6001_HideMe_East_WMap
+	END
+	LPF FC_EDIT_AREA_DOOR
+		INT_VAR
+			vertex_closed_0   = 20 + ( 20 << 16 )
+			vertex_closed_1   = 20 + ( 30 << 16 )
+			vertex_closed_2   = 30 + ( 20 << 16 )
+		STR_VAR
+			match_name = AR6001_HideMe_Root
+	END
+
+COPY ~%MOD_FOLDER%/are/IW6002.are~ ~override~
+	SAY 0x1a1c @30737 //region #3 / 28
+	SAY 0x1ae0 @30738 //region #4 / 28
+	SAY 0x1ba4 @30739 //region #5 / 28
+	SAY 0x1c68 @30740 //region #6 / 28
+	SAY 0x1d2c @30741 //region #7 / 28
+	SAY 0x1df0 @30746 //region #8 / 28
+	SAY 0x1eb4 @30747 //region #9 / 28
+	SAY 0x1f78 @30748 //region #10 / 28
+	SAY 0x203c @10494 //region #11 / 28
+	SAY 0x2100 @30806 //region #12 / 28
+	SAY 0x21c4 @30807 //region #13 / 28
+	SAY 0x2288 @30808 //region #14 / 28
+	SAY 0x234c @30809 //region #15 / 28
+	SAY 0x2410 @30834 //region #16 / 28
+	SAY 0x24d4 @30835 //region #17 / 28
+	SAY 0x2598 @30836 //region #18 / 28
+	SAY 0x265c @30839 //region #19 / 28
+	SAY 0x2720 @30840 //region #20 / 28
+	SAY 0x27e4 @30841 //region #21 / 28
+	SAY 0x28a8 @30842 //region #22 / 28
+	SAY 0x296c @30843 //region #23 / 28
+	SAY 0x2a30 @30844 //region #24 / 28
+	SAY 0x2af4 @30846 //region #25 / 28
+	SAY 0x2bb8 @30847 //region #26 / 28
+	SAY 0x2c7c @34914 //region #27 / 28
+
+COPY ~%MOD_FOLDER%/are/IW6003.are~ ~override~
+	SAY 0x1234 @30852 //region #1 / 2
+
+COPY ~%MOD_FOLDER%/are/IW6004.are~ ~override~
+	SAY 0x0354 @30853 //region #1 / 2
+
+COPY ~%MOD_FOLDER%/are/IW6005.are~ ~override~
+	SAY 0x0308 @30854 //region #2 / 3
+	LPF FC_EDIT_AREA_REGION
+		INT_VAR
+			vertex_0 = 309 + ( 220 << 16 )
+			vertex_1 = 370 + ( 234 << 16 )
+			vertex_2 = 345 + ( 281 << 16 )
+			vertex_3 = 286 + ( 328 << 16 )
+			vertex_4 = 250 + ( 288 << 16 )
+		STR_VAR
+			match_name = To6006
+	END
+
+COPY ~%MOD_FOLDER%/are/IW6006.are~ ~override~
+	LPF FC_EDIT_AREA_REGION
+		INT_VAR
+			vertex_0 = 250 + ( 128 << 16 )
+			vertex_1 = 333 + ( 185 << 16 )
+			vertex_2 = 301 + ( 228 << 16 )
+			vertex_3 = 224 + ( 174 << 16 )
+		STR_VAR
+			match_name = To6005
+	END
+
+COPY ~%MOD_FOLDER%/are/IW6007.are~ ~override~
+	SAY 0x0464 @35361 //region #1 / 5
+	SAY 0x0528 @35362 //region #2 / 5
+	SAY 0x05ec @35363 //region #3 / 5
+	SAY 0x06b0 @35363 //region #4 / 5
+
+COPY ~%MOD_FOLDER%/are/IW6008.are~ ~override~
+
+COPY ~%MOD_FOLDER%/are/IW6009.are~ ~override~
+	SAY 0x0464 @38703 //region #1 / 3
+	SAY 0x0528 @38704 //region #2 / 3
+
+COPY ~%MOD_FOLDER%/are/IW6010.are~ ~override~
+	SAY 0x0354 @38705 //region #1 / 3
+	SAY 0x0418 @38706 //region #2 / 3
+
+COPY ~%MOD_FOLDER%/are/IW6050.are~ ~override~
+	SAY 0x25cc @35400 //region #3 / 14
+	SAY 0x2690 @35401 //region #4 / 14
+	SAY 0x2754 @35401 //region #5 / 14
+	SAY 0x2818 @35401 //region #6 / 14
+	SAY 0x28dc @35402 //region #7 / 14
+	SAY 0x29a0 @35401 //region #8 / 14
+	SAY 0x2a64 @35401 //region #9 / 14
+	SAY 0x2b28 @35407 //region #10 / 14
+	SAY 0x2bec @35407 //region #11 / 14
+	SAY 0x2cb0 @35408 //region #12 / 14
+	SAY 0x2d74 @35409 //region #13 / 14
+	SAY 0x383c @34256 //door #4 / 9
+	SAY 0x3904 @34256 //door #5 / 9
+	SAY 0x39cc @34256 //door #6 / 9
+	SAY 0x3a94 @34256 //door #7 / 9
+	SAY 0x3b5c @34256 //door #8 / 9
+	SAY 0x4624 @33626
+	/* - IW6050.are
+		song_5 = 16
+		song_6 = 16
+		song_7 = 16
+		song_8 = 16
+		song_9 = 16
+		*/
+	WRITE_LONG 0x4588 ~%IW6050%~
+	WRITE_LONG 0x458c ~%IW6050%~
+	WRITE_LONG 0x4590 ~%IW6050%~
+	WRITE_LONG 0x4594 ~%IW6050%~
+	WRITE_LONG 0x4598 ~%IW6050%~
+	ADD_MAP_NOTE #2230 #154   ~red~       @55067
+	ADD_MAP_NOTE #322  #1652  ~gray~      @55052
+	ADD_MAP_NOTE #1341 #978   ~green~     @55099
+
+COPY ~%MOD_FOLDER%/are/IW6051.are~ ~override~
+	SAY 0x5388 @35410 //region #10 / 19
+	SAY 0x544c @35410 //region #11 / 19
+	SAY 0x5510 @35411 //region #12 / 19
+	SAY 0x55d4 @35411 //region #13 / 19
+	SAY 0x5698 @35412 //region #14 / 19
+	SAY 0x575c @35413 //region #15 / 19
+	SAY 0x5820 @35413 //region #16 / 19
+	SAY 0x58e4 @35414 //region #17 / 19
+	SAY 0x59a8 @35420 //region #18 / 19
+	SAY 0x724c @30475 //door #7 / 50
+	SAY 0x7314 @30475 //door #8 / 50
+	SAY 0x756c @35889 //door #11 / 50
+	SAY 0x7634 @35889 //door #12 / 50
+	SAY 0x76fc @35889 //door #13 / 50
+	SAY 0x77c4 @35889 //door #14 / 50
+	SAY 0x788c @35889 //door #15 / 50
+	SAY 0x7954 @35889 //door #16 / 50
+	SAY 0x7a1c @35889 //door #17 / 50
+	SAY 0x7ae4 @35889 //door #18 / 50
+	SAY 0x7bac @35889 //door #19 / 50
+	SAY 0x7c74 @35889 //door #20 / 50
+	SAY 0x7d3c @35889 //door #21 / 50
+	SAY 0x8da4 @33596 //door #42 / 50
+	ADD_MAP_NOTE #2523 #669   ~orange~    @55071
+	ADD_MAP_NOTE #1927 #1402  ~red~       @55006
+	LPF FC_EDIT_AREA_DOOR
+		INT_VAR
+			vertex_open_0   = 55 + (70 << 16)
+			vertex_open_1   = 60 + (75 << 16)
+			vertex_open_2   = 55 + (75 << 16)
+			vertex_closed_0 = 65 + (70 << 16)
+			vertex_closed_1 = 70 + (75 << 16)
+			vertex_closed_2 = 65 + (75 << 16)
+		STR_VAR
+			match_name = AR6051_Brick1 script = ""
+	END
+	LPF FC_EDIT_AREA_DOOR
+		INT_VAR
+			vertex_open_0   = 10 + (35 << 16)
+			vertex_open_1   = 15 + (40 << 16)
+			vertex_open_2   = 10 + (40 << 16)
+			vertex_closed_0 = 20 + (35 << 16)
+			vertex_closed_1 = 25 + (40 << 16)
+			vertex_closed_2 = 20 + (40 << 16)
+		STR_VAR
+			match_name = AR6051_Brick2 script = ""
+	END
+	LPF FC_EDIT_AREA_DOOR
+		INT_VAR
+			vertex_open_0   = 80 + (10 << 16)
+			vertex_open_1   = 85 + (15 << 16)
+			vertex_open_2   = 80 + (15 << 16)
+			vertex_closed_0 = 80 + (20 << 16)
+			vertex_closed_1 = 85 + (25 << 16)
+			vertex_closed_2 = 80 + (25 << 16)
+		STR_VAR
+			match_name = AR6051_Brick3 script = ""
+	END
+	LPF FC_EDIT_AREA_DOOR
+		INT_VAR
+			vertex_open_0   = 40 + (35 << 16)
+			vertex_open_1   = 45 + (40 << 16)
+			vertex_open_2   = 40 + (40 << 16)
+			vertex_closed_0 = 50 + (35 << 16)
+			vertex_closed_1 = 55 + (40 << 16)
+			vertex_closed_2 = 50 + (40 << 16)
+		STR_VAR
+			match_name = AR6051_Brick4 script = ""
+	END
+	LPF FC_EDIT_AREA_DOOR
+		INT_VAR
+			vertex_open_0   = 30 + (80 << 16)
+			vertex_open_1   = 35 + (85 << 16)
+			vertex_open_2   = 30 + (85 << 16)
+			vertex_closed_0 = 40 + (80 << 16)
+			vertex_closed_1 = 45 + (85 << 16)
+			vertex_closed_2 = 40 + (85 << 16)
+		STR_VAR
+			match_name = AR6051_Brick5 script = ""
+	END
+	LPF FC_EDIT_AREA_DOOR
+		INT_VAR
+			vertex_open_0   = 50 + (80 << 16)
+			vertex_open_1   = 55 + (85 << 16)
+			vertex_open_2   = 50 + (85 << 16)
+			vertex_closed_0 = 60 + (80 << 16)
+			vertex_closed_1 = 65 + (85 << 16)
+			vertex_closed_2 = 60 + (85 << 16)
+		STR_VAR
+			match_name = AR6051_Brick6 script = ""
+	END
+	LPF FC_EDIT_AREA_DOOR
+		INT_VAR
+			vertex_open_0   = 15 + (160 << 16)
+			vertex_open_1   = 20 + (165 << 16)
+			vertex_open_2   = 15 + (165 << 16)
+			vertex_closed_0 = 25 + (160 << 16)
+			vertex_closed_1 = 30 + (165 << 16)
+			vertex_closed_2 = 25 + (165 << 16)
+		STR_VAR
+			match_name = AR6051_Brick7 script = ""
+	END
+	LPF FC_EDIT_AREA_DOOR
+		INT_VAR
+			vertex_open_0   = 35 + (160 << 16)
+			vertex_open_1   = 40 + (165 << 16)
+			vertex_open_2   = 35 + (165 << 16)
+			vertex_closed_0 = 45 + (160 << 16)
+			vertex_closed_1 = 50 + (165 << 16)
+			vertex_closed_2 = 45 + (165 << 16)
+		STR_VAR
+			match_name = AR6051_Brick8 script = ""
+	END
+	LPF FC_EDIT_AREA_DOOR
+		INT_VAR
+			vertex_open_0   = 3740 + (2790 << 16)
+			vertex_open_1   = 3745 + (2795 << 16)
+			vertex_open_2   = 3740 + (2795 << 16)
+			vertex_closed_0 = 3750 + (2790 << 16)
+			vertex_closed_1 = 3755 + (2795 << 16)
+			vertex_closed_2 = 3750 + (2795 << 16)
+		STR_VAR
+			match_name = AR6051_Brick9 script = ""
+	END
+	LPF FC_EDIT_AREA_DOOR
+		INT_VAR
+			vertex_open_0   = 3760 + (2790 << 16)
+			vertex_open_1   = 3765 + (2795 << 16)
+			vertex_open_2   = 3760 + (2795 << 16)
+			vertex_closed_0 = 3770 + (2790 << 16)
+			vertex_closed_1 = 3775 + (2795 << 16)
+			vertex_closed_2 = 3770 + (2795 << 16)
+		STR_VAR
+			match_name = AR6051_Brick10 script = ""
+	END
+	LPF FC_EDIT_AREA_DOOR
+		INT_VAR
+			vertex_open_0   = 3780 + (2790 << 16)
+			vertex_open_1   = 3785 + (2795 << 16)
+			vertex_open_2   = 3780 + (2795 << 16)
+			vertex_closed_0 = 3790 + (2790 << 16)
+			vertex_closed_1 = 3795 + (2795 << 16)
+			vertex_closed_2 = 3790 + (2795 << 16)
+		STR_VAR
+			match_name = AR6051_Brick11 script = ""
+	END
+	LPF fj_are_structure
+		INT_VAR
+			fj_type           = 1
+			fj_box_left       = 3090
+			fj_box_top        = 1503
+			fj_box_right      = 3117
+			fj_box_bottom     = 1518
+			fj_cursor_idx     = 8
+			fj_flags          = 2
+			fj_trap_detect    = 100
+			fj_trap_remove    = 100
+			fj_trap_active    = 1
+			fj_loc_x          = 3368
+			fj_loc_y          = 1567
+			fj_vertex_0       = 3096 + (1503 << 16)
+			fj_vertex_1       = 3117 + (1511 << 16)
+			fj_vertex_2       = 3112 + (1518 << 16)
+			fj_vertex_3       = 3090 + (1509 << 16)
+		STR_VAR
+			fj_structure_type = region
+			fj_name           = AR6051_TBrick1
+			fj_reg_script     = 60TPDR01
+	END
+	LPF fj_are_structure
+		INT_VAR
+			fj_type           = 1
+			fj_box_left       = 3086
+			fj_box_top        = 1445
+			fj_box_right      = 3112
+			fj_box_bottom     = 1461
+			fj_cursor_idx     = 8
+			fj_flags          = 2
+			fj_trap_detect    = 100
+			fj_trap_remove    = 100
+			fj_trap_active    = 1
+			fj_loc_x          = 3368
+			fj_loc_y          = 1567
+			fj_vertex_0       = 3086 + (1452 << 16)
+			fj_vertex_1       = 3091 + (1445 << 16)
+			fj_vertex_2       = 3112 + (1453 << 16)
+			fj_vertex_3       = 3107 + (1461 << 16)
+		STR_VAR
+			fj_structure_type = region
+			fj_name           = AR6051_TBrick2
+			fj_reg_script     = 60TPDR02
+	END
+	LPF fj_are_structure
+		INT_VAR
+			fj_type           = 1
+			fj_box_left       = 3149
+			fj_box_top        = 1415
+			fj_box_right      = 3171
+			fj_box_bottom     = 1433
+			fj_cursor_idx     = 8
+			fj_flags          = 2
+			fj_trap_detect    = 100
+			fj_trap_remove    = 100
+			fj_trap_active    = 1
+			fj_loc_x          = 3368
+			fj_loc_y          = 1567
+			fj_vertex_0       = 3149 + (1415 << 16)
+			fj_vertex_1       = 3149 + (1424 << 16)
+			fj_vertex_2       = 3171 + (1433 << 16)
+			fj_vertex_3       = 3171 + (1423 << 16)
+		STR_VAR
+			fj_structure_type = region
+			fj_name           = AR6051_TBrick3
+			fj_reg_script     = 60TPDR03
+	END
+	LPF fj_are_structure
+		INT_VAR
+			fj_type           = 1
+			fj_box_left       = 3153
+			fj_box_top        = 1506
+			fj_box_right      = 3180
+			fj_box_bottom     = 1521
+			fj_cursor_idx     = 8
+			fj_flags          = 2
+			fj_trap_detect    = 100
+			fj_trap_remove    = 100
+			fj_trap_active    = 1
+			fj_loc_x          = 3368
+			fj_loc_y          = 1567
+			fj_vertex_0       = 3159 + (1506 << 16)
+			fj_vertex_1       = 3153 + (1512 << 16)
+			fj_vertex_2       = 3175 + (1521 << 16)
+			fj_vertex_3       = 3180 + (1514 << 16)
+		STR_VAR
+			fj_structure_type = region
+			fj_name           = AR6051_TBrick4
+			fj_reg_script     = 60TPDR04
+	END
+	LPF fj_are_structure
+		INT_VAR
+			fj_type           = 1
+			fj_box_left       = 3217
+			fj_box_top        = 1509
+			fj_box_right      = 3244
+			fj_box_bottom     = 1525
+			fj_cursor_idx     = 8
+			fj_flags          = 2
+			fj_trap_detect    = 100
+			fj_trap_remove    = 100
+			fj_trap_active    = 1
+			fj_loc_x          = 3368
+			fj_loc_y          = 1567
+			fj_vertex_0       = 3217 + (1516 << 16)
+			fj_vertex_1       = 3222 + (1509 << 16)
+			fj_vertex_2       = 3244 + (1517 << 16)
+			fj_vertex_3       = 3240 + (1525 << 16)
+		STR_VAR
+			fj_structure_type = region
+			fj_name           = AR6051_TBrick5
+			fj_reg_script     = 60TPDR05
+	END
+	LPF fj_are_structure
+		INT_VAR
+			fj_type           = 1
+			fj_box_left       = 3277
+			fj_box_top        = 1444
+			fj_box_right      = 3299
+			fj_box_bottom     = 1462
+			fj_cursor_idx     = 8
+			fj_flags          = 2
+			fj_trap_detect    = 100
+			fj_trap_remove    = 100
+			fj_trap_active    = 1
+			fj_loc_x          = 3368
+			fj_loc_y          = 1567
+			fj_vertex_0       = 3277 + (1444 << 16)
+			fj_vertex_1       = 3277 + (1453 << 16)
+			fj_vertex_2       = 3299 + (1462 << 16)
+			fj_vertex_3       = 3299 + (1452 << 16)
+		STR_VAR
+			fj_structure_type = region
+			fj_name           = AR6051_TBrick6
+			fj_reg_script     = 60TPDR06
+	END
+	LPF fj_are_structure
+		INT_VAR
+			fj_type           = 1
+			fj_box_left       = 3275
+			fj_box_top        = 1567
+			fj_box_right      = 3303
+			fj_box_bottom     = 1583
+			fj_cursor_idx     = 8
+			fj_flags          = 2
+			fj_trap_detect    = 100
+			fj_trap_remove    = 100
+			fj_trap_active    = 1
+			fj_loc_x          = 3368
+			fj_loc_y          = 1567
+			fj_vertex_0       = 3281 + (1567 << 16)
+			fj_vertex_1       = 3303 + (1575 << 16)
+			fj_vertex_2       = 3298 + (1583 << 16)
+			fj_vertex_3       = 3275 + (1574 << 16)
+		STR_VAR
+			fj_structure_type = region
+			fj_name           = AR6051_TBrick7
+			fj_reg_script     = 60TPDR07
+	END
+	LPF fj_are_structure
+		INT_VAR
+			fj_type           = 1
+			fj_box_left       = 3405
+			fj_box_top        = 1619
+			fj_box_right      = 3434
+			fj_box_bottom     = 1634
+			fj_cursor_idx     = 8
+			fj_flags          = 2
+			fj_trap_detect    = 100
+			fj_trap_remove    = 100
+			fj_trap_active    = 1
+			fj_loc_x          = 3368
+			fj_loc_y          = 1567
+			fj_vertex_0       = 3405 + (1625 << 16)
+			fj_vertex_1       = 3411 + (1619 << 16)
+			fj_vertex_2       = 3434 + (1627 << 16)
+			fj_vertex_3       = 3428 + (1634 << 16)
+		STR_VAR
+			fj_structure_type = region
+			fj_name           = AR6051_TBrick8
+			fj_reg_script     = 60TPDR08
+	END
+	LPF fj_are_structure
+		INT_VAR
+			fj_type           = 1
+			fj_box_left       = 3549
+			fj_box_top        = 1563
+			fj_box_right      = 3571
+			fj_box_bottom     = 1580
+			fj_cursor_idx     = 8
+			fj_flags          = 2
+			fj_trap_detect    = 100
+			fj_trap_remove    = 100
+			fj_trap_active    = 1
+			fj_loc_x          = 3368
+			fj_loc_y          = 1567
+			fj_vertex_0       = 3549 + (1563 << 16)
+			fj_vertex_1       = 3549 + (1571 << 16)
+			fj_vertex_2       = 3571 + (1580 << 16)
+			fj_vertex_3       = 3571 + (1571 << 16)
+		STR_VAR
+			fj_structure_type = region
+			fj_name           = AR6051_TBrick9
+			fj_reg_script     = 60TPDR09
+	END
+	LPF fj_are_structure
+		INT_VAR
+			fj_type           = 1
+			fj_box_left       = 3539
+			fj_box_top        = 1637
+			fj_box_right      = 3568
+			fj_box_bottom     = 1653
+			fj_cursor_idx     = 8
+			fj_flags          = 2
+			fj_trap_detect    = 100
+			fj_trap_remove    = 100
+			fj_trap_active    = 1
+			fj_loc_x          = 3368
+			fj_loc_y          = 1567
+			fj_vertex_0       = 3545 + (1637 << 16)
+			fj_vertex_1       = 3568 + (1646 << 16)
+			fj_vertex_2       = 3562 + (1653 << 16)
+			fj_vertex_3       = 3539 + (1644 << 16)
+		STR_VAR
+			fj_structure_type = region
+			fj_name           = AR6051_TBrick10
+			fj_reg_script     = 60TPDR10
+	END
+	LPF fj_are_structure
+		INT_VAR
+			fj_type           = 1
+			fj_box_left       = 3601
+			fj_box_top        = 1684
+			fj_box_right      = 3629
+			fj_box_bottom     = 1700
+			fj_cursor_idx     = 8
+			fj_flags          = 2
+			fj_trap_detect    = 100
+			fj_trap_remove    = 100
+			fj_trap_active    = 1
+			fj_loc_x          = 3368
+			fj_loc_y          = 1567
+			fj_vertex_0       = 3607 + (1684 << 16)
+			fj_vertex_1       = 3629 + (1692 << 16)
+			fj_vertex_2       = 3623 + (1700 << 16)
+			fj_vertex_3       = 3601 + (1691 << 16)
+		STR_VAR
+			fj_structure_type = region
+			fj_name           = AR6051_TBrick11
+			fj_reg_script     = 60TPDR11
+	END
+	LPF fj_are_structure INT_VAR fj_con_itm_idx=5 fj_charge0=1 STR_VAR fj_structure_type=itm fj_name="potn14" END
+	LPF fj_are_structure INT_VAR fj_con_itm_idx=0 fj_charge0=2 STR_VAR fj_structure_type=itm fj_name="potn14" END
+	LPF fj_are_structure INT_VAR fj_con_itm_idx=2 fj_charge0=1 STR_VAR fj_structure_type=itm fj_name="potn36" END
+	LPF fj_are_structure INT_VAR fj_con_itm_idx=1 fj_charge0=1 STR_VAR fj_structure_type=itm fj_name="potn39" END
+
+COPY ~%MOD_FOLDER%/are/IW6100.are~ ~override~
+	/* - IW6100.are
+		song_0 = 17
+		song_1 = 17
+		*/
+	WRITE_LONG 0x2628 ~%IW6100%~
+	WRITE_LONG 0x262c ~%IW6100%~
+
+COPY ~%MOD_FOLDER%/are/IW6101.are~ ~override~
+	SAY 0x7ddc @34912 //region #7 / 27
+	SAY 0x7ea0 @34927 //region #8 / 27
+	SAY 0x7f64 @34921 //region #9 / 27
+	SAY 0x8028 @34922 //region #10 / 27
+	SAY 0x80ec @34922 //region #11 / 27
+	SAY 0x81b0 @34922 //region #12 / 27
+	SAY 0x8274 @34922 //region #13 / 27
+	SAY 0x8338 @34922 //region #14 / 27
+	SAY 0x84c0 @34979 //region #16 / 27
+	SAY 0x8584 @34979 //region #17 / 27
+	SAY 0x8648 @34980 //region #18 / 27
+	SAY 0x870c @34980 //region #19 / 27
+	SAY 0x8c68 @37604 //region #26 / 27
+	SAY 0xa424 @34913 //door #1 / 4
+	ADD_MAP_NOTE #2975 #1526  ~orange~    @55082
+	ADD_MAP_NOTE #1896 #1900  ~red~       @55078
+	ADD_MAP_NOTE #194  #1207  ~red~       @55006
+	ADD_MAP_NOTE #2895 #2380  ~darkblue~  @55102
+	LPF fj_are_structure INT_VAR fj_con_itm_idx=1 fj_charge0=1 STR_VAR fj_name="POTN29ZZ" fj_structure_type=itm END
+	LPF fj_are_structure INT_VAR fj_con_itm_idx=3 fj_charge0=1 STR_VAR fj_name="POTN29ZZ" fj_structure_type=itm END
+
+COPY ~%MOD_FOLDER%/are/IW6102.are~ ~override~
+	SAY 0x4f48 @35467 //region #10 / 37
+	SAY 0x500c @35468 //region #11 / 37
+	SAY 0x8074 @41379 //door #2 / 3
+	ADD_MAP_NOTE #1624 #2515  ~orange~    @55081
+	ADD_MAP_NOTE #2293 #198   ~red~       @55079
+	ADD_MAP_NOTE #1834 #1608  ~red~       @55079
+	ADD_MAP_NOTE #2905 #2048  ~red~       @55080
+	ADD_MAP_NOTE #645  #1990  ~orange~    @55100
+	LPF fj_are_structure INT_VAR fj_con_itm_idx=11 fj_charge0=2 STR_VAR fj_name="POTN29ZZ" fj_structure_type=itm END
+	LPF FC_EDIT_AREA_DOOR
+		INT_VAR
+			lock_diff = 0
+			vertex_open_0   = 10 + (2800 << 16)
+			vertex_open_1   = 15 + (2805 << 16)
+			vertex_open_2   = 10 + (2805 << 16)
+			vertex_closed_0 = 20 + (2800 << 16)
+			vertex_closed_1 = 25 + (2805 << 16)
+			vertex_closed_2 = 20 + (2805 << 16)
+		STR_VAR
+			match_name = AR6102_Lever1
+			script = ""
+	END
+	LPF FC_EDIT_AREA_DOOR
+		INT_VAR
+			//lock_diff = 0
+			vertex_open_0   = 10 + (2790 << 16)
+			vertex_open_1   = 15 + (2795 << 16)
+			vertex_open_2   = 10 + (2795 << 16)
+			vertex_closed_0 = 20 + (2790 << 16)
+			vertex_closed_1 = 25 + (2795 << 16)
+			vertex_closed_2 = 20 + (2795 << 16)
+		STR_VAR
+			match_name = AR6102_Lever2
+			script = ""
+	END
+	LPF fj_are_structure
+		INT_VAR
+			fj_type           = 1
+			fj_box_left       = 577
+			fj_box_top        = 1754
+			fj_box_right      = 622
+			fj_box_bottom     = 1805
+			fj_cursor_idx     = 8
+			fj_flags          = 2
+			fj_trap_detect    = 100
+			fj_trap_remove    = 100
+			fj_trap_active    = 1
+			fj_loc_x          = 635
+			fj_loc_y          = 1985
+			fj_vertex_0       = 577 + (1754 << 16)
+			fj_vertex_1       = 598 + (1754 << 16)
+			fj_vertex_2       = 622 + (1765 << 16)
+			fj_vertex_3       = 617 + (1791 << 16)
+			fj_vertex_4       = 601 + (1805 << 16)
+			fj_vertex_5       = 581 + (1805 << 16)
+		STR_VAR
+			fj_structure_type = region
+			fj_name           = AR6102_TLever1
+			fj_reg_script     = 61PSCTOG
+	END
+	LPF fj_are_structure
+		INT_VAR
+			fj_type           = 1
+			fj_box_left       = 646
+			fj_box_top        = 2410
+			fj_box_right      = 686
+			fj_box_bottom     = 2463
+			fj_cursor_idx     = 8
+			fj_flags          = 2
+			fj_trap_detect    = 100
+			fj_trap_remove    = 100
+			fj_trap_active    = 1
+			fj_loc_x          = 635
+			fj_loc_y          = 1985
+			fj_vertex_0       = 646 + (2410 << 16)
+			fj_vertex_1       = 659 + (2410 << 16)
+			fj_vertex_2       = 686 + (2437 << 16)
+			fj_vertex_3       = 682 + (2451 << 16)
+			fj_vertex_4       = 666 + (2463 << 16)
+			fj_vertex_5       = 646 + (2463 << 16)
+		STR_VAR
+			fj_structure_type = region
+			fj_name           = AR6102_TLever2
+			fj_reg_script     = 61PWRLEV
+	END
+	LPF fj_are_structure INT_VAR fj_con_itm_idx=11 fj_charge0=3 STR_VAR fj_structure_type=itm fj_name="potn14" END
+	LPF fj_are_structure INT_VAR fj_con_itm_idx=11 fj_charge0=1 STR_VAR fj_structure_type=itm fj_name="potn39" END
+
+COPY ~%MOD_FOLDER%/are/IW6103.are~ ~override~
+	SAY 0x8f48 @35441 //region #2 / 41
+	SAY 0x9258 @35445 //region #6 / 41
+	SAY 0x931c @35445 //region #7 / 41
+	SAY 0x94a4 @35446 //region #9 / 41
+	SAY 0x96f0 @35462 //region #12 / 41
+	SAY 0xa020 @35757 //region #24 / 41
+	SAY 0xd924 @35444 //door #4 / 15
+	SAY 0xdd0c @34913 //door #9 / 15
+	SAY 0xddd4 @34913 //door #10 / 15
+	SAY 0xde9c @34913 //door #11 / 15
+	SAY 0xdf64 @34913 //door #12 / 15
+	SAY 0xe02c @34913 //door #13 / 15
+	SAY 0xe0f4 @35435 //door #14 / 15
+	ADD_MAP_NOTE #506  #342   ~orange~    @55081
+	ADD_MAP_NOTE #1662 #1339  ~orange~    @55084
+	ADD_MAP_NOTE #1740 #541   ~orange~    @55085
+	ADD_MAP_NOTE #3022 #1335  ~red~       @55083
+	ADD_MAP_NOTE #3111 #1086  ~red~       @55078
+	LPF fj_are_structure INT_VAR fj_con_itm_idx=10 fj_charge0=2 STR_VAR fj_name="POTN29ZZ" fj_structure_type=itm END
+	LPF fj_are_structure INT_VAR fj_con_itm_idx=10 fj_charge0=1 STR_VAR fj_structure_type=itm fj_name="potn14" END
+	LPF fj_are_structure INT_VAR fj_con_itm_idx=14 fj_charge0=2 STR_VAR fj_structure_type=itm fj_name="potn14" END
+	LPF fj_are_structure INT_VAR fj_con_itm_idx=10 fj_charge0=1 STR_VAR fj_structure_type=itm fj_name="potn36" END
+	LPF fj_are_structure INT_VAR fj_con_itm_idx=14 fj_charge0=1 STR_VAR fj_structure_type=itm fj_name="potn39" END
+	LPF fj_are_structure INT_VAR fj_con_itm_idx=16 fj_charge0=1 STR_VAR fj_structure_type=itm fj_name="potn36" END
+	LPF FC_EDIT_AREA_CONTAINER
+		INT_VAR
+			is_trapped = 1
+			type = 8
+			trap_detect_dif = 100
+			flags = 72
+			//2645.685
+			vertex_0 = 2647 + ( 674 << 16 )
+			vertex_1 = 2657 + ( 686 << 16 )
+			vertex_2 = 2651 + ( 695 << 16 )
+			vertex_3 = 2632 + ( 686 << 16 )
+		STR_VAR
+			match_name = "DeadEndLure1"
+			script = "IWDELUR1"
+	END
+	LPF FC_EDIT_AREA_CONTAINER
+		INT_VAR
+			is_trapped = 1
+			type = 8
+			trap_detect_dif = 100
+			flags = 72
+			//2632.567
+			vertex_0 = 2634 + ( 556 << 16 )
+			vertex_1 = 2644 + ( 568 << 16 )
+			vertex_2 = 2636 + ( 577 << 16 )
+			vertex_3 = 2619 + ( 568 << 16 )
+		STR_VAR
+			match_name = "DeadEndLure2"
+			script = "IWDELUR2"
+	END
+	LPF FC_EDIT_AREA_CONTAINER
+		INT_VAR
+			is_trapped = 1
+			type = 8
+			trap_detect_dif = 100
+			flags = 72
+			//2884.619
+			vertex_0 = 2886 + ( 608 << 16 )
+			vertex_1 = 2896 + ( 620 << 16 )
+			vertex_2 = 2888 + ( 629 << 16 )
+			vertex_3 = 2871 + ( 620 << 16 )
+		STR_VAR
+			match_name = "DeadEndLure3"
+			script = "IWDELUR3"
+	END
+	LPF FC_EDIT_AREA_CONTAINER
+		INT_VAR
+			is_trapped = 1
+			type = 8
+			trap_detect_dif = 100
+			flags = 72
+			//2390.1588
+			vertex_0 = 2382 + ( 1580 << 16 )
+			vertex_1 = 2410 + ( 1575 << 16 )
+			vertex_2 = 2389 + ( 1595 << 16 )
+			vertex_3 = 2374 + ( 1593 << 16 )
+		STR_VAR
+			match_name = "MandalSword"
+			script = "IWMYRL01"
+	END
+	LPF fj_are_structure
+		INT_VAR
+			fj_loc_x = 2645
+			fj_loc_y = 685
+			fj_flags = 4375
+		STR_VAR
+			fj_structure_type = animation
+			fj_name = Anim_DEL1
+			fj_bam_resref = GTREAS01
+	END
+	LPF fj_are_structure
+		INT_VAR
+			fj_loc_x = 2632
+			fj_loc_y = 567
+			fj_flags = 4375
+		STR_VAR
+			fj_structure_type = animation
+			fj_name = Anim_DEL2
+			fj_bam_resref = GTREAS01
+	END
+	LPF fj_are_structure
+		INT_VAR
+			fj_loc_x = 2884
+			fj_loc_y = 619
+			fj_flags = 4375
+		STR_VAR
+			fj_structure_type = animation
+			fj_name = Anim_DEL3
+			fj_bam_resref = GTREAS01
+	END
+	LPF fj_are_structure
+		INT_VAR
+			fj_loc_x = 2390
+			fj_loc_y = 1588
+			fj_flags = 4375
+		STR_VAR
+			fj_structure_type = animation
+			fj_name = Anim_Myrloch
+			fj_bam_resref = GSW1H01
+	END
+
+<<<<<<<< IWDELUR1.baf
+IF
+	!Global("Anim_DEL1","MYAREA",1)
+	!Contains("MISC07",Myself)
+THEN
+	RESPONSE #100
+		AmbientActivate("Anim_DEL1",FALSE)
+		SetGlobal("Anim_DEL1","MYAREA",1)
+END
+>>>>>>>>
+COMPILE ~IWDELUR1.baf~
+
+<<<<<<<< IWDELUR2.baf
+IF
+	!Global("Anim_DEL2","MYAREA",1)
+	!Contains("MISC07",Myself)
+THEN
+	RESPONSE #100
+		AmbientActivate("Anim_DEL2",FALSE)
+		SetGlobal("Anim_DEL2","MYAREA",1)
+END
+>>>>>>>>
+COMPILE ~IWDELUR2.baf~
+
+<<<<<<<< IWDELUR3.baf
+IF
+	!Global("Anim_DEL3","MYAREA",1)
+	!Contains("MISC07",Myself)
+THEN
+	RESPONSE #100
+		AmbientActivate("Anim_DEL3",FALSE)
+		SetGlobal("Anim_DEL3","MYAREA",1)
+END
+>>>>>>>>
+COMPILE ~IWDELUR3.baf~
+
+<<<<<<<< IWMYRL01.baf
+IF
+	!Global("Anim_Myrloch","MYAREA",1)
+	!Contains("MYRLOCH",Myself)
+THEN
+	RESPONSE #100
+		AmbientActivate("Anim_Myrloch",FALSE)
+		SetGlobal("Anim_Myrloch","MYAREA",1)
+END
+>>>>>>>>
+COMPILE ~IWMYRL01.baf~
+
+COPY ~%MOD_FOLDER%/are/IW6104.are~ ~override~
+	SAY 0x944c @35802 //region #3 / 31
+	SAY 0x9510 @35803 //region #4 / 31
+	SAY 0x95d4 @35804 //region #5 / 31
+	SAY 0x98e4 @35858 //region #9 / 31
+	SAY 0x99a8 @35857 //region #10 / 31
+	SAY 0x9a6c @35859 //region #11 / 31
+	SAY 0x9b30 @35860 //region #12 / 31
+	SAY 0x9bf4 @35861 //region #13 / 31
+	SAY 0x9cb8 @35862 //region #14 / 31
+	SAY 0x9d7c @35863 //region #15 / 31
+	SAY 0x9e40 @35864 //region #16 / 31
+	SAY 0x9f04 @35865 //region #17 / 31
+	SAY 0x9fc8 @35866 //region #18 / 31
+	SAY 0xa2d8 @36827 //region #22 / 31
+	SAY 0xa39c @36826 //region #23 / 31
+	SAY 0xb9d0 @35854 //door #4 / 15
+	ADD_MAP_NOTE #2426 #1047  ~orange~    @55086
+	ADD_MAP_NOTE #2426 #1479  ~orange~    @55087
+	ADD_MAP_NOTE #2659 #2001  ~orange~    @55088
+	ADD_MAP_NOTE #1955 #2056  ~orange~    @55089
+	ADD_MAP_NOTE #1226 #1962  ~orange~    @55090
+	ADD_MAP_NOTE #1526 #2531  ~orange~    @55091
+	ADD_MAP_NOTE #1647 #1012  ~orange~    @55092
+	ADD_MAP_NOTE #1920 #377   ~red~       @55080
+	ADD_MAP_NOTE #1920 #580   ~red~       @55006
+	PATCH_FOR_EACH aname IN Lothar4 Lothar3 Lothar2 Jasper5 Jasper4 Jasper3 Venomin4 Venomin3 Venomin2 Pyros3 Pyros2 Izbelah2 BEGIN
+		LPF ALTER_AREA_ACTOR STR_VAR actor_name = EVAL ~%aname%~ script_override = "IWCPRDYE" END
+	END
+<<<<<<<<IWCPRDYE.baf
+IF
+	OR(2)
+		Die()
+		StateCheck(Myself,STATE_REALLY_DEAD)
+	CheckSpellState(Myself,CRITICAL_PATH)
+	!Global("Set_Death_Variable","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("Set_Death_Variable","LOCALS",1)
+		IncrementGlobal("IwdCriticalDead","GLOBAL",1)
+		Continue()
+END
+
+IF
+	IsActive(Myself)
+	!Global("IW6104_RemoveCritical","GLOBAL",0)
+	CheckSpellState(Myself,CRITICAL_PATH)
+THEN
+	RESPONSE #100
+		ApplySpellRES("IWCPREM",Myself)
+		Continue()
+END
+>>>>>>>>
+COMPILE ~IWCPRDYE.baf~
+
+COPY ~%MOD_FOLDER%/are/IW6200.are~ ~override~
+	SAY 0x8650 @25665 //region #0 / 24
+	SAY 0x8714 @25666 //region #1 / 24
+	SAY 0x87d8 @25685 //region #2 / 24
+	SAY 0x889c @25685 //region #3 / 24
+	SAY 0x8960 @25686 //region #4 / 24
+	SAY 0x8bac @28330 //region #7 / 24
+	SAY 0x8c70 @28330 //region #8 / 24
+	SAY 0x8d34 @28330 //region #9 / 24
+	SAY 0x9108 @25677 //region #14 / 24
+	SAY 0x91cc @25677 //region #15 / 24
+	SAY 0x9290 @25677 //region #16 / 24
+	SAY 0x9354 @25677 //region #17 / 24
+	SAY 0x9418 @25677 //region #18 / 24
+	SAY 0x94dc @25677 //region #19 / 24
+	SAY 0x95a0 @25677 //region #20 / 24
+	SAY 0x9664 @25677 //region #21 / 24
+	SAY 0x9728 @23984 //region #22 / 24
+	SAY 0xacdc @26665 //door #0 / 3
+	SAY 0xada4 @26666 //door #1 / 3
+	SAY 0xae6c @26666 //door #2 / 3
+	SAY 0xbcbc @27977
+	SAY 0xbcc0 @30482
+	SAY 0xbcc4 @27977
+	SAY 0xbcc8 @28286
+	ADD_MAP_NOTE #3388 #1585  ~orange~    @55093
+	ADD_MAP_NOTE #175  #2714  ~red~       @55006
+	ADD_MAP_NOTE #3723 #1070  ~red~       @55006
+	ADD_MAP_NOTE #852  #525   ~orange~    @55017
+	ADD_MAP_NOTE #1863 #2130  ~orange~    @55101
+	ADD_MAP_NOTE #1455 #1120  ~darkblue~  @55102
+
+COPY ~%MOD_FOLDER%/are/IW6201.are~ ~override~
+	SAY 0x19f0 @22956 //region #0 / 5
+	SAY 0x1ab4 @22957 //region #1 / 5
+	SAY 0x1b78 @22957 //region #2 / 5
+	SAY 0x1c3c @22958 //region #3 / 5
+	SAY 0x2614 @31025 //door #0 / 1
+	SAY 0x2a70 @28286
+	SAY 0x2a74 @28286
+	/* - IW6201.are
+		song_3 = 24
+		*/
+	WRITE_LONG 0x29cc ~%IWBTLE6%~
+	LPF FC_EDIT_AREA_DOOR
+		INT_VAR
+			vertex_closed_0  = 19  + ( 2 << 16)
+			vertex_closed_1  = 23  + (11 << 16)
+			vertex_closed_2  = 17  + ( 6 << 16)
+			impeded_closed_0 = 111 + ( 0 << 16)
+		STR_VAR
+			match_name = AR6201_ExitCover
+	END
+	LPF fj_are_structure
+		INT_VAR
+			fj_type              = 1
+			fj_box_left          = 1730
+			fj_box_top           = 680
+			fj_box_right         = 1790
+			fj_box_bottom        = 920
+			fj_cursor_idx        = 20
+			fj_info_point_strref = RESOLVE_STR_REF ( @31025 )
+			fj_loc_x             = 1580
+			fj_loc_y             = 930
+			fj_vertex_0          = 1740 + ( 680 << 16 )
+			fj_vertex_1          = 1790 + ( 765 << 16 )
+			fj_vertex_2          = 1790 + ( 920 << 16 )
+			fj_vertex_3          = 1730 + ( 835 << 16 )
+		STR_VAR
+			fj_structure_type    = region
+			fj_name              = ExitCoverTrigger
+	END
+
+COPY ~%MOD_FOLDER%/are/IW6300.are~ ~override~
+	READ_LONG  0x54 act_off
+	READ_SHORT 0x58 act_cnt
+	PATCH_IF ( act_cnt > 0 ) BEGIN
+		FOR ( i = 0 ; i < act_cnt ; ++i ) BEGIN
+			WRITE_ASCII act_off + i * 0x110 + 0x50 ~IW63ESCP~ (8)
+		END
+	END
+
+COPY ~%MOD_FOLDER%/are/IW6301.are~ ~override~
+	/* - IW6301.are
+		song_0 = 18
+		song_1 = 18
+		*/
+	WRITE_LONG 0x5914 ~%IW6301%~
+	WRITE_LONG 0x5918 ~%IW6301%~
+
+COPY ~%MOD_FOLDER%/are/IW6302.are~ ~override~
+	SAY 0x3bd0 @35553 //region #4 / 6
+	SAY 0x3c94 @41333 //region #5 / 6
+	LPF FC_EDIT_AREA_REGION
+		INT_VAR
+			vertex_0 = 1910 + ( 1234 << 16 )
+			vertex_1 = 1872 + ( 1344 << 16 )
+			vertex_2 = 1760 + ( 1330 << 16 )
+			vertex_3 = 1790 + ( 1233 << 16 )
+			vertex_4 = 1886 + ( 1160 << 16 )
+			vertex_5 = 1888 + ( 1218 << 16 )
+		STR_VAR
+			match_name = To6301a
+	END
+
+COPY ~%MOD_FOLDER%/are/IW6303.are~ ~override~
+	SAY 0x3718 @34648 //region #2 / 16
+	SAY 0x37dc @34649 //region #3 / 16
+	SAY 0x38a0 @34650 //region #4 / 16
+	SAY 0x4048 @34649 //region #14 / 16
+	SAY 0x410c @41310 //region #15 / 16
+
+COPY ~%MOD_FOLDER%/are/IW6304.are~ ~override~
+	SAY 0x3150 @27530 //region #0 / 11
+	SAY 0x35e8 @36571 //region #6 / 11
+	SAY 0x36ac @41334 //region #7 / 11
+	SAY 0x3770 @41335 //region #8 / 11
+	SAY 0x3834 @41336 //region #9 / 11
+	SAY 0x38f8 @41337 //region #10 / 11
+	LPF fj_are_structure INT_VAR fj_con_itm_idx=4 fj_charge0=2 STR_VAR fj_structure_type=itm fj_name="potn14" END
+	LPF fj_are_structure INT_VAR fj_con_itm_idx=2 fj_charge0=2 STR_VAR fj_structure_type=itm fj_name="potn36" END
+	LPF fj_are_structure INT_VAR fj_con_itm_idx=6 fj_charge0=2 STR_VAR fj_structure_type=itm fj_name="potn39" END
+
+COPY ~%MOD_FOLDER%/are/IW6305.are~ ~override~
+	SAY 0x1bc4 @34648 //region #1 / 7
+	SAY 0x1c88 @34649 //region #2 / 7
+	SAY 0x1d4c @34650 //region #3 / 7
+	SAY 0x1e10 @34649 //region #4 / 7
+	SAY 0x1ed4 @41310 //region #5 / 7
+	SAY 0x1f98 @40361 //region #6 / 7
+	/* - IW6305.are
+		song_3 = 23
+		*/
+	WRITE_LONG 0x4870 ~%IWBTLE5%~
+
+COPY ~%MOD_FOLDER%/are/IW6400.are~ ~override~
+	SAY 0x0180 @25593 //region #0 / 12
+
+COPY ~%MOD_FOLDER%/are/IW6401.are~ ~override~
+	SAY 0x08f0 @25600 //region #0 / 7
+	SAY 0x09b4 @25617 //region #1 / 7
+	SAY 0x0a78 @25618 //region #2 / 7
+	SAY 0x0b3c @25660 //region #3 / 7
+
+COPY ~%MOD_FOLDER%/are/IW6402.are~ ~override~
+
+COPY ~%MOD_FOLDER%/are/IW6403.are~ ~override~
+	SAY 0x03a0 @25662 //region #0 / 8
+	SAY 0x0464 @25663 //region #1 / 8
+	SAY 0x0528 @25664 //region #2 / 8
+	SAY 0x05ec @25664 //region #3 / 8
+	SAY 0x06b0 @25664 //region #4 / 8
+	SAY 0x0774 @25664 //region #5 / 8
+	SAY 0x0838 @25664 //region #6 / 8
+
+COPY ~%MOD_FOLDER%/are/IW6500.are~ ~override~
+	SAY 0x2940 @30482
+
+COPY ~%MOD_FOLDER%/are/IW6501.are~ ~override~
+	SAY 0x0da8 @33544 //region #2 / 4
+
+COPY ~%MOD_FOLDER%/are/IW6502.are~ ~override~
+
+COPY ~%MOD_FOLDER%/are/IW6503.are~ ~override~
+
+COPY ~%MOD_FOLDER%/are/IW6600.are~ ~override~
+	LPF FC_EDIT_AREA_REGION
+		INT_VAR
+			vertex_0 = 538 + ( 1070 << 16 )
+			vertex_1 = 342 + ( 1033 << 16 )
+			vertex_2 = 393 + (  964 << 16 )
+			vertex_3 = 574 + (  992 << 16 )
+		STR_VAR
+			match_name = To6304
+	END
+
+COPY ~%MOD_FOLDER%/are/IW6601.are~ ~override~
+	LPF FC_EDIT_AREA_REGION
+		INT_VAR
+			vertex_0 = 558 + ( 1056 << 16 )
+			vertex_1 = 396 + (  994 << 16 )
+			vertex_2 = 423 + (  960 << 16 )
+			vertex_3 = 585 + (  980 << 16 )
+		STR_VAR
+			match_name = To6600
+	END
+
+COPY ~%MOD_FOLDER%/are/IW6602.are~ ~override~
+	SAY 0x0fcc @34001
+	SAY 0x0fd0 @34001
+	LPF FC_EDIT_AREA_REGION
+		INT_VAR
+			vertex_0 = 722 + ( 857 << 16 )
+			vertex_1 = 847 + ( 861 << 16 )
+			vertex_2 = 869 + ( 897 << 16 )
+			vertex_3 = 741 + ( 925 << 16 )
+		STR_VAR
+			match_name = To6601
+	END
+
+COPY ~%MOD_FOLDER%/are/IW6603.are~ ~override~
+	SAY 0x0574 @34011 //region #1 / 2
+
+COPY ~%MOD_FOLDER%/are/IW6700.are~ ~override~
+	SAY 0x1820 @35580 //door #0 / 3
+	SAY 0x18e8 @35580 //door #1 / 3
+	SAY 0x19b0 @35580 //door #2 / 3
+	SAY 0x1eb0 @34001
+	SAY 0x1eb4 @28286
+	SAY 0x1eb8 @28286
+	LPF FC_EDIT_AREA_REGION
+		INT_VAR
+			vertex_0 = 758 + ( 797 << 16 )
+			vertex_1 = 912 + ( 782 << 16 )
+			vertex_2 = 926 + ( 844 << 16 )
+			vertex_3 = 800 + ( 865 << 16 )
+		STR_VAR
+			match_name = To6304
+	END
+
+COPY ~%MOD_FOLDER%/are/IW6701.are~ ~override~
+	SAY 0x0fc8 @26668 //region #2 / 3
+	SAY 0x1b80 @34001
+	SAY 0x1b84 @34001
+	SAY 0x1b88 @30482
+	LPF FC_EDIT_AREA_REGION
+		INT_VAR
+			vertex_0 = 500 + ( 626 << 16 )
+			vertex_1 = 664 + ( 610 << 16 )
+			vertex_2 = 681 + ( 665 << 16 )
+			vertex_3 = 550 + ( 683 << 16 )
+		STR_VAR
+			match_name = To6700
+	END
+
+COPY ~%MOD_FOLDER%/are/IW6702.are~ ~override~
+	SAY 0x16ec @27632 //door #0 / 3
+	SAY 0x17b4 @27632 //door #1 / 3
+	SAY 0x1d84 @28540
+	SAY 0x1d88 @28540
+	LPF FC_EDIT_AREA_REGION
+		INT_VAR
+			vertex_0 = 599 + ( 644 << 16 )
+			vertex_1 = 725 + ( 633 << 16 )
+			vertex_2 = 757 + ( 684 << 16 )
+			vertex_3 = 621 + ( 707 << 16 )
+		STR_VAR
+			match_name = To6701
+	END
+
+
+COPY ~%MOD_FOLDER%/are/IW6703.are~ ~override~
+	SAY 0x16b8 @30482
+
+COPY ~%MOD_FOLDER%/are/IW6800.are~ ~override~
+	SAY 0x06c0 @30482
+
+//BLOCK REMOVE_ACTORS
+COPY ~override/IW2000.are~ ~override~
+	LPF fj_are_structure INT_VAR fj_delete_mode=41  STR_VAR fj_structure_type=actor END
+	LPF fj_are_structure INT_VAR fj_delete_mode=40  STR_VAR fj_structure_type=actor END
+	LPF fj_are_structure INT_VAR fj_delete_mode=36  STR_VAR fj_structure_type=actor END
+	LPF fj_are_structure INT_VAR fj_delete_mode=35  STR_VAR fj_structure_type=actor END
+	LPF fj_are_structure INT_VAR fj_delete_mode=34  STR_VAR fj_structure_type=actor END
+
+COPY ~override/IW2001.are~ ~override~
+	LPF fj_are_structure INT_VAR fj_delete_mode=39  STR_VAR fj_structure_type=actor END
+	LPF fj_are_structure INT_VAR fj_delete_mode=38  STR_VAR fj_structure_type=actor END
+	LPF fj_are_structure INT_VAR fj_delete_mode=34  STR_VAR fj_structure_type=actor END
+	LPF fj_are_structure INT_VAR fj_delete_mode=12  STR_VAR fj_structure_type=actor END
+	LPF fj_are_structure INT_VAR fj_delete_mode=8   STR_VAR fj_structure_type=actor END
+	LPF fj_are_structure INT_VAR fj_delete_mode=2   STR_VAR fj_structure_type=actor END
+
+COPY ~override/IW2101.are~ ~override~
+	LPF fj_are_structure INT_VAR fj_delete_mode=13  STR_VAR fj_structure_type=actor END
+	LPF fj_are_structure INT_VAR fj_delete_mode=12  STR_VAR fj_structure_type=actor END
+
+COPY ~override/IW3000.are~ ~override~
+	LPF fj_are_structure INT_VAR fj_delete_mode=105 STR_VAR fj_structure_type=actor END
+	LPF fj_are_structure INT_VAR fj_delete_mode=102 STR_VAR fj_structure_type=actor END
+
+COPY ~override/IW4103.are~ ~override~
+	LPF fj_are_structure INT_VAR fj_delete_mode=49  STR_VAR fj_structure_type=actor END
+	LPF fj_are_structure INT_VAR fj_delete_mode=44  STR_VAR fj_structure_type=actor END
+	LPF fj_are_structure INT_VAR fj_delete_mode=42  STR_VAR fj_structure_type=actor END
+	LPF fj_are_structure INT_VAR fj_delete_mode=40  STR_VAR fj_structure_type=actor END
+	LPF fj_are_structure INT_VAR fj_delete_mode=39  STR_VAR fj_structure_type=actor END
+	LPF fj_are_structure INT_VAR fj_delete_mode=38  STR_VAR fj_structure_type=actor END
+	LPF fj_are_structure INT_VAR fj_delete_mode=36  STR_VAR fj_structure_type=actor END
+	LPF fj_are_structure INT_VAR fj_delete_mode=31  STR_VAR fj_structure_type=actor END
+	LPF fj_are_structure INT_VAR fj_delete_mode=30  STR_VAR fj_structure_type=actor END
+	LPF fj_are_structure INT_VAR fj_delete_mode=29  STR_VAR fj_structure_type=actor END
+	LPF fj_are_structure INT_VAR fj_delete_mode=28  STR_VAR fj_structure_type=actor END
+	LPF fj_are_structure INT_VAR fj_delete_mode=26  STR_VAR fj_structure_type=actor END
+	LPF fj_are_structure INT_VAR fj_delete_mode=25  STR_VAR fj_structure_type=actor END
+	LPF fj_are_structure INT_VAR fj_delete_mode=24  STR_VAR fj_structure_type=actor END
+	LPF fj_are_structure INT_VAR fj_delete_mode=23  STR_VAR fj_structure_type=actor END
+	LPF fj_are_structure INT_VAR fj_delete_mode=22  STR_VAR fj_structure_type=actor END
+	LPF fj_are_structure INT_VAR fj_delete_mode=19  STR_VAR fj_structure_type=actor END
+	LPF fj_are_structure INT_VAR fj_delete_mode=17  STR_VAR fj_structure_type=actor END
+
+COPY ~override/IW5030.are~ ~override~
+	LPF fj_are_structure INT_VAR fj_delete_mode=3   STR_VAR fj_structure_type=actor END
+	LPF fj_are_structure INT_VAR fj_delete_mode=1   STR_VAR fj_structure_type=actor END
+
+COPY ~override/IW6103.are~ ~override~
+	LPF fj_are_structure INT_VAR fj_delete_mode=34  STR_VAR fj_structure_type=actor END
+	LPF fj_are_structure INT_VAR fj_delete_mode=33  STR_VAR fj_structure_type=actor END
+	LPF fj_are_structure INT_VAR fj_delete_mode=31  STR_VAR fj_structure_type=actor END
+	LPF fj_are_structure INT_VAR fj_delete_mode=30  STR_VAR fj_structure_type=actor END
+	LPF fj_are_structure INT_VAR fj_delete_mode=29  STR_VAR fj_structure_type=actor END
+	LPF fj_are_structure INT_VAR fj_delete_mode=28  STR_VAR fj_structure_type=actor END
+	LPF fj_are_structure INT_VAR fj_delete_mode=27  STR_VAR fj_structure_type=actor END
+	LPF fj_are_structure INT_VAR fj_delete_mode=26  STR_VAR fj_structure_type=actor END
+	LPF fj_are_structure INT_VAR fj_delete_mode=18  STR_VAR fj_structure_type=actor END
+	LPF fj_are_structure INT_VAR fj_delete_mode=17  STR_VAR fj_structure_type=actor END
+	LPF fj_are_structure INT_VAR fj_delete_mode=16  STR_VAR fj_structure_type=actor END
+
+COPY ~override/IW6200.are~ ~override~
+	LPF fj_are_structure INT_VAR fj_delete_mode=124 STR_VAR fj_structure_type=actor END
+	LPF fj_are_structure INT_VAR fj_delete_mode=122 STR_VAR fj_structure_type=actor END
+	LPF fj_are_structure INT_VAR fj_delete_mode=22  STR_VAR fj_structure_type=actor END
+	LPF fj_are_structure INT_VAR fj_delete_mode=20  STR_VAR fj_structure_type=actor END
+	LPF fj_are_structure INT_VAR fj_delete_mode=16  STR_VAR fj_structure_type=actor END
+
+COPY ~override/IW6201.are~ ~override~
+	LPF fj_are_structure INT_VAR fj_delete_mode=22  STR_VAR fj_structure_type=actor END
+	LPF fj_are_structure INT_VAR fj_delete_mode=10  STR_VAR fj_structure_type=actor END
+
+COPY ~override/IW6302.are~ ~override~
+	LPF fj_are_structure INT_VAR fj_delete_mode=51  STR_VAR fj_structure_type=actor END
+	LPF fj_are_structure INT_VAR fj_delete_mode=48  STR_VAR fj_structure_type=actor END
+
+COPY ~override/IW6303.are~ ~override~
+	LPF fj_are_structure INT_VAR fj_delete_mode=20  STR_VAR fj_structure_type=actor END
+	LPF fj_are_structure INT_VAR fj_delete_mode=19  STR_VAR fj_structure_type=actor END
+	LPF fj_are_structure INT_VAR fj_delete_mode=15  STR_VAR fj_structure_type=actor END
+	LPF fj_are_structure INT_VAR fj_delete_mode=14  STR_VAR fj_structure_type=actor END
+
+COPY ~override/IW6500.are~ ~override~
+	LPF fj_are_structure INT_VAR fj_delete_mode=26  STR_VAR fj_structure_type=actor END
+	LPF fj_are_structure INT_VAR fj_delete_mode=20  STR_VAR fj_structure_type=actor END
+
+COPY ~override/IW6600.are~ ~override~
+	LPF fj_are_structure INT_VAR fj_delete_mode=14  STR_VAR fj_structure_type=actor END
+	LPF fj_are_structure INT_VAR fj_delete_mode=13  STR_VAR fj_structure_type=actor END
+	LPF fj_are_structure INT_VAR fj_delete_mode=10  STR_VAR fj_structure_type=actor END
+
+COPY ~override/IW6701.are~ ~override~
+	LPF fj_are_structure INT_VAR fj_delete_mode=6   STR_VAR fj_structure_type=actor END
+	LPF fj_are_structure INT_VAR fj_delete_mode=4   STR_VAR fj_structure_type=actor END
+//BLOCKEND
+
+//BLOCK AR2102_HideExit
+COPY ~override/IW2102.are~ ~override~
+	LPF fj_are_structure
+		INT_VAR
+			fj_flags = 0x202
+			fj_open_box_left = 10
+			fj_open_box_top = 10
+			fj_open_box_right = 12
+			fj_open_box_bottom = 12
+			fj_closed_box_left = 15
+			fj_closed_box_top = 15
+			fj_closed_box_right = 17
+			fj_closed_box_bottom = 17
+			fj_door_open_vert_0 = 10 + ( 10 << 16 )
+			fj_door_open_vert_1 = 12 + ( 10 << 16 )
+			fj_door_open_vert_2 = 10 + ( 12 << 16 )
+			fj_door_closed_vert_0 = 15 + ( 15 << 16 )
+			fj_door_closed_vert_1 = 17 + ( 15 << 16 )
+			fj_door_closed_vert_2 = 15 + ( 17 << 16 )
+			//BLOCK  impeded_block
+			fj_cell_closed_vert_0 = 3 + ( 111 << 16 )
+			fj_cell_closed_vert_1 = 2 + ( 111 << 16 )
+			fj_cell_closed_vert_2 = 1 + ( 111 << 16 )
+			fj_cell_closed_vert_3 = 0 + ( 111 << 16 )
+			fj_cell_closed_vert_4 = 3 + ( 110 << 16 )
+			fj_cell_closed_vert_5 = 2 + ( 110 << 16 )
+			fj_cell_closed_vert_6 = 1 + ( 110 << 16 )
+			fj_cell_closed_vert_7 = 0 + ( 110 << 16 )
+			fj_cell_closed_vert_8 = 3 + ( 109 << 16 )
+			fj_cell_closed_vert_9 = 2 + ( 109 << 16 )
+			fj_cell_closed_vert_10 = 1 + ( 109 << 16 )
+			fj_cell_closed_vert_11 = 0 + ( 109 << 16 )
+			fj_cell_closed_vert_12 = 3 + ( 108 << 16 )
+			fj_cell_closed_vert_13 = 2 + ( 108 << 16 )
+			fj_cell_closed_vert_14 = 1 + ( 108 << 16 )
+			fj_cell_closed_vert_15 = 0 + ( 108 << 16 )
+			fj_cell_closed_vert_16 = 3 + ( 107 << 16 )
+			fj_cell_closed_vert_17 = 2 + ( 107 << 16 )
+			fj_cell_closed_vert_18 = 1 + ( 107 << 16 )
+			fj_cell_closed_vert_19 = 0 + ( 107 << 16 )
+			fj_cell_closed_vert_20 = 3 + ( 106 << 16 )
+			fj_cell_closed_vert_21 = 2 + ( 106 << 16 )
+			fj_cell_closed_vert_22 = 1 + ( 106 << 16 )
+			fj_cell_closed_vert_23 = 0 + ( 106 << 16 )
+			fj_cell_closed_vert_24 = 3 + ( 105 << 16 )
+			fj_cell_closed_vert_25 = 2 + ( 105 << 16 )
+			fj_cell_closed_vert_26 = 1 + ( 105 << 16 )
+			fj_cell_closed_vert_27 = 0 + ( 105 << 16 )
+			fj_cell_closed_vert_28 = 3 + ( 104 << 16 )
+			fj_cell_closed_vert_29 = 2 + ( 104 << 16 )
+			fj_cell_closed_vert_30 = 1 + ( 104 << 16 )
+			fj_cell_closed_vert_31 = 0 + ( 104 << 16 )
+			fj_cell_closed_vert_32 = 3 + ( 103 << 16 )
+			fj_cell_closed_vert_33 = 2 + ( 103 << 16 )
+			fj_cell_closed_vert_34 = 1 + ( 103 << 16 )
+			fj_cell_closed_vert_35 = 0 + ( 103 << 16 )
+			fj_cell_closed_vert_36 = 3 + ( 102 << 16 )
+			fj_cell_closed_vert_37 = 2 + ( 102 << 16 )
+			fj_cell_closed_vert_38 = 1 + ( 102 << 16 )
+			fj_cell_closed_vert_39 = 0 + ( 102 << 16 )
+			fj_cell_closed_vert_40 = 3 + ( 101 << 16 )
+			fj_cell_closed_vert_41 = 2 + ( 101 << 16 )
+			fj_cell_closed_vert_42 = 1 + ( 101 << 16 )
+			fj_cell_closed_vert_43 = 0 + ( 101 << 16 )
+			fj_cell_closed_vert_44 = 3 + ( 100 << 16 )
+			fj_cell_closed_vert_45 = 2 + ( 100 << 16 )
+			fj_cell_closed_vert_46 = 1 + ( 100 << 16 )
+			fj_cell_closed_vert_47 = 0 + ( 100 << 16 )
+			fj_cell_closed_vert_48 = 3 + ( 99 << 16 )
+			fj_cell_closed_vert_49 = 2 + ( 99 << 16 )
+			fj_cell_closed_vert_50 = 1 + ( 99 << 16 )
+			fj_cell_closed_vert_51 = 0 + ( 99 << 16 )
+			fj_cell_closed_vert_52 = 3 + ( 98 << 16 )
+			fj_cell_closed_vert_53 = 2 + ( 98 << 16 )
+			fj_cell_closed_vert_54 = 1 + ( 98 << 16 )
+			fj_cell_closed_vert_55 = 0 + ( 98 << 16 )
+			fj_cell_closed_vert_56 = 3 + ( 97 << 16 )
+			fj_cell_closed_vert_57 = 2 + ( 97 << 16 )
+			fj_cell_closed_vert_58 = 1 + ( 97 << 16 )
+			fj_cell_closed_vert_59 = 0 + ( 97 << 16 )
+			fj_cell_closed_vert_60 = 3 + ( 96 << 16 )
+			fj_cell_closed_vert_61 = 2 + ( 96 << 16 )
+			fj_cell_closed_vert_62 = 1 + ( 96 << 16 )
+			fj_cell_closed_vert_63 = 0 + ( 96 << 16 )
+			fj_cell_closed_vert_64 = 3 + ( 95 << 16 )
+			fj_cell_closed_vert_65 = 2 + ( 95 << 16 )
+			fj_cell_closed_vert_66 = 1 + ( 95 << 16 )
+			fj_cell_closed_vert_67 = 0 + ( 95 << 16 )
+			fj_cell_closed_vert_68 = 3 + ( 94 << 16 )
+			fj_cell_closed_vert_69 = 2 + ( 94 << 16 )
+			fj_cell_closed_vert_70 = 1 + ( 94 << 16 )
+			fj_cell_closed_vert_71 = 0 + ( 94 << 16 )
+			fj_cell_closed_vert_72 = 3 + ( 93 << 16 )
+			fj_cell_closed_vert_73 = 2 + ( 93 << 16 )
+			fj_cell_closed_vert_74 = 1 + ( 93 << 16 )
+			fj_cell_closed_vert_75 = 0 + ( 93 << 16 )
+			fj_cell_closed_vert_76 = 3 + ( 92 << 16 )
+			fj_cell_closed_vert_77 = 2 + ( 92 << 16 )
+			fj_cell_closed_vert_78 = 1 + ( 92 << 16 )
+			fj_cell_closed_vert_79 = 0 + ( 92 << 16 )
+			fj_cell_closed_vert_80 = 3 + ( 91 << 16 )
+			fj_cell_closed_vert_81 = 2 + ( 91 << 16 )
+			fj_cell_closed_vert_82 = 1 + ( 91 << 16 )
+			fj_cell_closed_vert_83 = 0 + ( 91 << 16 )
+			fj_cell_closed_vert_84 = 3 + ( 90 << 16 )
+			fj_cell_closed_vert_85 = 2 + ( 90 << 16 )
+			fj_cell_closed_vert_86 = 1 + ( 90 << 16 )
+			fj_cell_closed_vert_87 = 0 + ( 90 << 16 )
+			fj_cell_closed_vert_88 = 3 + ( 89 << 16 )
+			fj_cell_closed_vert_89 = 2 + ( 89 << 16 )
+			fj_cell_closed_vert_90 = 1 + ( 89 << 16 )
+			fj_cell_closed_vert_91 = 0 + ( 89 << 16 )
+			fj_cell_closed_vert_92 = 3 + ( 88 << 16 )
+			fj_cell_closed_vert_93 = 2 + ( 88 << 16 )
+			fj_cell_closed_vert_94 = 1 + ( 88 << 16 )
+			fj_cell_closed_vert_95 = 0 + ( 88 << 16 )
+			fj_cell_closed_vert_96 = 3 + ( 87 << 16 )
+			fj_cell_closed_vert_97 = 2 + ( 87 << 16 )
+			fj_cell_closed_vert_98 = 1 + ( 87 << 16 )
+			fj_cell_closed_vert_99 = 0 + ( 87 << 16 )
+			fj_cell_closed_vert_100 = 3 + ( 86 << 16 )
+			fj_cell_closed_vert_101 = 2 + ( 86 << 16 )
+			fj_cell_closed_vert_102 = 1 + ( 86 << 16 )
+			fj_cell_closed_vert_103 = 0 + ( 86 << 16 )
+			fj_cell_closed_vert_104 = 3 + ( 85 << 16 )
+			fj_cell_closed_vert_105 = 2 + ( 85 << 16 )
+			fj_cell_closed_vert_106 = 1 + ( 85 << 16 )
+			fj_cell_closed_vert_107 = 0 + ( 85 << 16 )
+			fj_cell_closed_vert_108 = 3 + ( 84 << 16 )
+			fj_cell_closed_vert_109 = 2 + ( 84 << 16 )
+			fj_cell_closed_vert_110 = 1 + ( 84 << 16 )
+			fj_cell_closed_vert_111 = 0 + ( 84 << 16 )
+			fj_cell_closed_vert_112 = 3 + ( 83 << 16 )
+			fj_cell_closed_vert_113 = 2 + ( 83 << 16 )
+			fj_cell_closed_vert_114 = 1 + ( 83 << 16 )
+			fj_cell_closed_vert_115 = 0 + ( 83 << 16 )
+			fj_cell_closed_vert_116 = 3 + ( 82 << 16 )
+			fj_cell_closed_vert_117 = 2 + ( 82 << 16 )
+			fj_cell_closed_vert_118 = 1 + ( 82 << 16 )
+			fj_cell_closed_vert_119 = 0 + ( 82 << 16 )
+			fj_cell_closed_vert_120 = 3 + ( 81 << 16 )
+			fj_cell_closed_vert_121 = 2 + ( 81 << 16 )
+			fj_cell_closed_vert_122 = 1 + ( 81 << 16 )
+			fj_cell_closed_vert_123 = 0 + ( 81 << 16 )
+			fj_cell_closed_vert_124 = 3 + ( 80 << 16 )
+			fj_cell_closed_vert_125 = 2 + ( 80 << 16 )
+			fj_cell_closed_vert_126 = 1 + ( 80 << 16 )
+			fj_cell_closed_vert_127 = 0 + ( 80 << 16 )
+			fj_cell_closed_vert_128 = 3 + ( 79 << 16 )
+			fj_cell_closed_vert_129 = 2 + ( 79 << 16 )
+			fj_cell_closed_vert_130 = 1 + ( 79 << 16 )
+			fj_cell_closed_vert_131 = 0 + ( 79 << 16 )
+			//BLOCKEND
+			fj_cursor_idx = 30
+			fj_trap_loc_x = 442
+			fj_trap_loc_y = 770
+			fj_open_loc_x = 150
+			fj_open_loc_y = 1100
+			fj_closed_loc_x = 150
+			fj_closed_loc_y = 1100
+		STR_VAR
+			fj_structure_type = door
+			fj_name = AR2102_HideExit
+			fj_door_wed_id = BLANK1
+			fj_door_open_wav = SILENTDH
+			fj_door_close_wav = SILENTDH
+			fj_travel_trigger = ""
+	END
+	/*
+	
+	*/
+	PATCH_FOR_EACH idx IN 49 48 40 39 38 34 33 27 26 25 24 23 22 13 12 11 10 9 BEGIN
+		LPF fj_are_structure
+			INT_VAR fj_delete_mode    = idx
+			STR_VAR fj_structure_type = actor
+		END
+	END
+	/*READ_LONG 0x54 act_off
+	READ_SHORT 0x58 act_cnt
+	PATCH_IF ( act_cnt > 0 ) BEGIN
+		FOR ( i = act_cnt ; i ; --i ) BEGIN
+			
+		END
+	END*/
+//BLOCKEND
+
+VERBOSE
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

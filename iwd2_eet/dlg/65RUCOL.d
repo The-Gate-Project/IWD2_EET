@@ -1,0 +1,6 @@
+BEGIN ~65RUCOL~
+
+IF ~NumTimesTalkedTo(0)~ THEN BEGIN 0
+  SAY @28608
+  IF ~~ THEN DO ~Enemy()~ EXIT
+END

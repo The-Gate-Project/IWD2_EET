@@ -1,0 +1,81 @@
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("Shawford_Crale")
+		DisplayStringHead(Myself,@16360)
+		Wait(4)
+		FaceObject(LastTalkedToBy(Myself))
+		Wait(1)
+		DisplayStringHead(Myself,@16821)
+		Wait(11)
+		DisplayStringHead(Myself,@16822)
+		Wait(2)
+		MoveViewPoint([219.417],VERY_FAST)
+		MoveToPoint([219.417])
+		//HideCreature(Myself,TRUE)
+		ApplySpellRES("IDINVIS4",Myself)
+		MultiPlayerSync()
+		UnhideGUI()
+		MoveViewObject([PC],VERY_FAST)
+		JumpToPoint([496.268])
+		Face(S)
+		EndCutSceneMode()
+		SetGlobal("IwIHidden","LOCALS",1)
+		Deactivate(Myself)
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId(Player1)
+		SmallWait(1)
+		FaceObject("Shawford_Crale")
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId(Player2)
+		SmallWait(3)
+		FaceObject("Shawford_Crale")
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId(Player3)
+		SmallWait(2)
+		FaceObject("Shawford_Crale")
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId(Player4)
+		SmallWait(3)
+		FaceObject("Shawford_Crale")
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId(Player5)
+		SmallWait(2)
+		FaceObject("Shawford_Crale")
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId(Player6)
+		SmallWait(1)
+		FaceObject("Shawford_Crale")
+END
+

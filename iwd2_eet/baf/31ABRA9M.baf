@@ -1,0 +1,17 @@
+IF
+	See("Braston")
+THEN
+	RESPONSE #100
+		//EquipWeapon()
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	Global("TEAM_9","MYAREA",1)
+	!See([PC])
+THEN
+	RESPONSE #100
+		MoveToObject(Player1)
+END
+
+

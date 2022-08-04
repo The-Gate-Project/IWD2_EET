@@ -1,0 +1,51 @@
+IF
+	!CheckSpellState(Myself,RED_FIRESHIELD)
+THEN
+	RESPONSE #100
+		ReallyForceSpell(Myself,WIZARD_FIRE_SHIELD_RED)  // SPWI427.SPL (Огненный Щит (Красный))
+		//SpellWait(WIZARD_FIRESHIELD_RED)  // SPWI427.SPL (Огненный Щит (Красный))
+		Wait(2)
+		Continue()
+END
+
+IF
+	StateCheck(Myself,STATE_PANIC)
+THEN
+	RESPONSE #100
+		RandomWalkContinuous()
+END
+
+IF
+	!Allegiance(Myself,ENEMY)
+	AttackedBy([GOODCUTOFF],DEFAULT)
+THEN
+	RESPONSE #100
+		Enemy()
+		EquipMostDamagingMelee()
+		AttackOneRound(LastAttackerOf(Myself))
+END
+
+IF
+	GlobalLT("Action","LOCALS",2)
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Action","LOCALS",1)
+		EquipMostDamagingMelee()
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	See(NearestEnemyOf(Myself))
+	//Range(LastSeenBy(Myself),)
+	//IsSpellTargetValid(LastMarkedObject,WIZARD_BURNING_HANDS,SPELLCAST_IGNORE_HAS_CHECK)  // SPWI103.SPL (Горящие руки)
+THEN
+	RESPONSE #100
+		SetGlobal("Action","LOCALS",0)
+		ForceSpell(LastSeenBy(Myself),WIZARD_BURNING_HANDS)  // SPWI103.SPL (Горящие руки)
+		//WaitAnimation(Myself,WALK)
+		//WaitAnimation(Myself,CONJURE)
+		//WaitAnimation(Myself,CAST)
+		Wait(2)
+END
+

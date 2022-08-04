@@ -1,0 +1,121 @@
+/*
+Copyright (c) 2003-2012, CKSource - Frederico Knabben. All rights reserved.
+For licensing, see LICENSE.html or http://ckeditor.com/license
+*/
+body
+{
+     /* Font */
+     font-family: 'Helvetica Neue', Arial, Verdana, sans-serif;
+     font-size: 14px;
+
+     /* Text color */
+     color: #222;
+
+     /* Remove the background color to make it transparent */
+     background-color: #fff;
+}
+
+
+p { margin: 0px; }
+
+img:-moz-broken
+{
+     -moz-force-broken-image-icon : 1;
+     width : 24px;
+     height : 24px;
+}
+img, input, textarea
+{
+     cursor: default;
+}
+
+/* Changed from just bbc_emoticon because we vertically align all posted images, while editor baseline-aligns */
+img { vertical-align: middle; }
+
+strong.bbc				{	font-weight: bold !important; }
+em.bbc 					{	font-style: italic !important; }
+span.bbc_underline 		{ 	text-decoration: underline !important; }
+acronym.bbc 			{ 	border-bottom: 1px dotted #000; }
+span.bbc_center, div.bbc_center, p.bbc_center	{	text-align: center; display: block; }
+span.bbc_left, div.bbc_left, p.bbc_left	{	text-align: left; display: block; }
+span.bbc_right, div.bbc_right, p.bbc_right	{	text-align: right; display: block; }
+div.bbc_indent 			{	margin-left: 50px; }
+del.bbc 				{	text-decoration: line-through !important; }
+ul, ul.bbc                               {     list-style: disc outside; margin: 12px 0 12px 0px; }
+     ul ul,ul.bbc ul.bbc                {     list-style-type: circle; }
+          ul ul ul,ul.bbc ul.bbc ul.bbc {     list-style-type: square; }
+ul.decimal,ul .decimal, ul.bbc.decimal                     { list-style-type: decimal !important; }
+     ul.lower-alpha,ul.bbc.lower-alpha          { margin-left: 0px; list-style-type: lower-alpha; }
+     ul.upper-alpha,ul.bbc.upper-alpha          { margin-left: 0px; list-style-type: upper-alpha; }
+     ul.lower-roman     ,ul.bbc.lower-roman          { margin-left: 0px; list-style-type: lower-roman; }
+     ul.upper-roman,ul.bbc.upper-roman          { margin-left: 0px; list-style-type: upper-roman; }
+
+ol,ul,dl
+{
+	/* IE7: reset rtl list margin. (#7334) */
+	*margin-right:0px;
+	/* preserved spaces for list items with text direction other than the list. (#6249,#8049)*/
+    padding:0 40px;
+}
+
+blockquote.ipsBlockquote {
+	font-size: 12px;
+	padding: 10px 10px 10px 10px;
+	border: 2px solid #e5e5e5;
+	border-left: 2px solid #989898;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	background: #f7f7f7;
+	margin: 0 0;
+	overflow-x: none;
+}
+
+blockquote.ipsBlockquote blockquote.ipsBlockquote {
+	margin: 0 10px 0 0;
+}
+
+blockquote.ipsBlockquote p.citation {
+	margin: 6px 10px 0 0;
+}
+
+cite.ipb {
+	font-size: 12px;
+	padding: 0px 10px 8px 10px;
+	border-left: 2px solid #989898;
+	background: #f6f6f6;
+	background: -moz-linear-gradient(top, #f6f6f6 0%, #e5e5e5 100%); /* firefox */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f6f6f6), color-stop(100%,#e5e5e5)); /* webkit */
+	background-image: -o-linear-gradient(top, #f6f6f6, #e5e5e5);
+	border-top: 0px;
+	border-bottom: 2px solid #e5e5e5;
+	border-right: 2px solid #e5e5e5;
+	/* -moz-border-radius: 5px 5px 0 0;
+	-webkit-border-radius: 5px 5px 0 0;
+	border-radius: 5px 5px 0 0; */
+	font-weight: bold;
+	font-style: normal;
+	overflow-x: auto;
+	margin-top: -1px;
+	margin-bottom: 8px;
+	margin-left: -12px;
+	margin-right: -12px;
+	width: 100%;
+	display: block;
+	user-select:none;
+	-webkit-user-select:none;
+	-moz-user-select:none;
+}
+
+
+pre._prettyXprint {
+    background-color: #fafafa !important;
+    color: #000000;
+    border: 1px solid #c9c9c9;
+    margin-left: 10px;
+    font-size: 13px;
+    line-height: 140%;
+    margin: 1em auto;
+    padding: 1em;
+    overflow: auto;
+}

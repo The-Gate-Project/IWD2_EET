@@ -1,0 +1,152 @@
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("Zigma")
+		SetGlobal("63cGMeet_Stopper","MYAREA",1)
+		SetGlobal("TEAM_1","MYAREA",1)
+		HideGUI()
+		MultiPlayerSync()
+		MoveViewObject(Myself,15)
+		Wait(3)
+		DisplayStringHead(Myself,@32169)
+		Wait(8)
+		DisplayStringHead(Myself,@32170)
+		Wait(9)
+		DisplayStringHead(Myself,@32171)
+		Wait(4)
+		FaceObject([PC])
+		Wait(4)
+		MoveViewObject([PC],VERY_FAST)
+		MultiPlayerSync()
+		UnhideGUI()
+		EndCutSceneMode()
+		MultiPlayerSync()
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("IW6301_Zigma_Guard01")
+		WaitRandom(24,26)
+		FaceObject([PC])
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("IW6301_Zigma_Guard02")
+		WaitRandom(24,26)
+		FaceObject([PC])
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("IW6301_Zigma_Guard03")
+		WaitRandom(24,26)
+		FaceObject([PC])
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("IW6301_Zigma_Guard04")
+		WaitRandom(24,26)
+		FaceObject([PC])
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("IW6301_Zigma_Guard05")
+		WaitRandom(24,26)
+		FaceObject([PC])
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("IW6301_Zigma_Guard06")
+		WaitRandom(24,26)
+		FaceObject([PC])
+END
+
+/*IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("IW6301_Zigma_Guard07")
+		WaitRandom(24,26)
+		FaceObject([PC])
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("IW6301_Zigma_Guard08")
+		WaitRandom(24,26)
+		FaceObject([PC])
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("IW6301_Zigma_Guard09")
+		WaitRandom(24,26)
+		FaceObject([PC])
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("IW6301_Zigma_Guard10")
+		WaitRandom(24,26)
+		FaceObject([PC])
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("IW6301_Zigma_Guard11")
+		WaitRandom(24,26)
+		FaceObject([PC])
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("IW6301_Zigma_Guard12")
+		WaitRandom(24,26)
+		FaceObject([PC])
+END*/
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("Slayer_Knight_of_Xvi1")
+		WaitRandom(24,26)
+		FaceObject([PC])
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("Slayer_Knight_of_Xvi2")
+		WaitRandom(24,26)
+		FaceObject([PC])
+END
+

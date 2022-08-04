@@ -1,0 +1,10 @@
+IF
+  !Global("CREATE_ITEMS","LOCALS",1)
+THEN
+  RESPONSE #100
+		GiveItemCreate("z0cibar1",Myself,0,0,0)
+		XEquipItem("z0ring82",Myself,SLOT_RING_RIGHT,UNEQUIP)
+		XEquipItem("z0cibar1",Myself,SLOT_RING_RIGHT,EQUIP)
+		SetGlobal("CREATE_ITEMS","LOCALS",1)
+		Continue()
+END

@@ -1,0 +1,9 @@
+IF
+ !Global("SET_INVISIBLE","LOCALS",1)
+THEN
+ RESPONSE #100
+  ApplySpellRES("IDINVUL",Myself)
+  ApplySpellRES("IDINVIS6",Myself)
+  SetGlobal("SET_INVISIBLE","LOCALS",1)
+  //Continue()
+END

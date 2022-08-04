@@ -1,0 +1,16 @@
+IF
+	Global("TEAM_7","MYAREA",1)
+	!See([PC])
+THEN
+	RESPONSE #100
+		MoveToObject(Player1)
+END
+
+IF
+	!GlobalTimerNotExpired("IwTimer19","LOCALS")
+THEN
+	RESPONSE #100
+		RandomWalk()
+		SetGlobalTimerRandom("IwTimer19","LOCALS",2,5)
+END
+

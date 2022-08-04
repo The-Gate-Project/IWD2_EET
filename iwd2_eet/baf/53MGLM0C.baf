@@ -1,0 +1,37 @@
+IF
+	!Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("Mind_Fog_Timer","LOCALS")
+	Range([PC],10)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("Mind_Fog_Timer","LOCALS",7)
+		ReallyForceSpellRES("IWIN221",Myself) //INNATE_MIND_FOG
+		Wait(1)
+		Continue()
+END
+
+IF
+	!GlobalTimerNotExpired("Mind_Fog_Timer","LOCALS")
+	//HaveSpell(INNATE_MIND_FOG)  // SPIN221.SPL (Выдыхает туман разума)
+	See(NearestEnemyOf(Myself))
+	//IsSpellTargetValid(Myself,INNATE_MIND_FOG,0)  // SPIN221.SPL (Выдыхает туман разума)
+	Range(LastSeenBy(Myself),10)
+THEN
+	RESPONSE #100
+		SetGlobalTimerRandom("Mind_Fog_Timer","LOCALS",7,14)
+		//Spell(Myself,INNATE_MIND_FOG)  // SPIN221.SPL (Выдыхает туман разума)
+		//WaitAnimation(Myself,WALK)
+		//WaitAnimation(Myself,CONJURE)
+		//WaitAnimation(Myself,CAST)
+		ForceSpellRES("IWIN221",Myself) //INNATE_MIND_FOG
+		Wait(1)
+END
+
+IF
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		EquipMostDamagingMelee()
+		AttackOneRound(LastSeenBy(Myself))
+END
+

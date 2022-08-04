@@ -1,0 +1,49 @@
+BEGIN ~63LVLGRD~
+
+IF WEIGHT #1
+~!PartyHasItem("z6gendp")~ THEN BEGIN 0
+  SAY @31495
+  IF ~~ THEN REPLY @31496 GOTO 1
+  IF ~~ THEN REPLY @31497 GOTO 3
+  IF ~~ THEN REPLY @31498 GOTO 4
+END
+
+IF ~~ THEN BEGIN 1
+  SAY @31499
+  IF ~~ THEN REPLY @31500 DO ~SetGlobal("SH_Need_Pass","GLOBAL",1)~ GOTO 2
+  IF ~~ THEN REPLY @31497 GOTO 3
+  IF ~~ THEN REPLY @31498 GOTO 4
+END
+
+IF ~~ THEN BEGIN 2
+  SAY @31501
+  IF ~~ THEN REPLY @31497 GOTO 3
+  IF ~~ THEN REPLY @31498 GOTO 4
+END
+
+IF ~~ THEN BEGIN 3
+  SAY @31502
+  IF ~~ THEN REPLY @31503 DO ~SetGlobal("SH_Still_NoPass","GLOBAL",1)
+                              StartCutSceneMode()
+                              StartCutScene("63cGExit")~ EXIT
+END
+
+IF ~~ THEN BEGIN 4
+  SAY @31504
+  IF ~~ THEN REPLY @31505 DO ~Enemy()~ EXIT
+  IF ~~ THEN REPLY @31497 GOTO 3
+END
+
+IF WEIGHT #2
+~PartyHasItem("z6gendp")~ THEN BEGIN 5
+  SAY @34815
+  IF ~~ THEN REPLY @2188 EXIT
+END
+
+IF WEIGHT #0
+~Global("SH_Still_NoPass","GLOBAL",1)
+ 
+ !PartyHasItem("z6gendp")~ THEN BEGIN 6
+  SAY @39453
+  IF ~~ THEN REPLY @39454 DO ~Enemy()~ EXIT
+END

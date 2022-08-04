@@ -1,0 +1,433 @@
+//BLOCK SET_VARS
+IF
+	!Global("SET_20ORCSH1","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		SetGlobalRandom("SSPELLS_3_RANDOM_CAST","LOCALS",1,3)
+		SetGlobal("SET_20ORCSH1","LOCALS",1)
+		SetInterrupt(TRUE)
+END
+//BLOCKEND
+
+IF
+	StateCheck(Myself,STATE_PANIC)
+THEN
+	RESPONSE #100
+		RandomWalkContinuous()
+END
+
+IF
+	!GlobalTimerNotExpired("IWD_Rest","LOCALS")
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IWD_Rest","LOCALS",EIGHT_HOURS)
+		ApplySpell(Myself,RESTORE_FULL_HEALTH)
+		Rest()
+END
+
+IF
+	HaveSpell(CLERIC_CURE_MEDIUM_WOUNDS)
+	HPPercentLT(Myself,75)
+	!StateCheck(Myself,STATE_REALLY_DEAD)
+THEN
+	RESPONSE #100
+		Spell(Myself,CLERIC_CURE_MEDIUM_WOUNDS)
+		Wait(1)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_MEDIUM_WOUNDS)
+	HPPercentLT(Nearest(Myself),75)
+	Allegiance(Nearest(Myself),ENEMY)
+	See(Nearest(Myself))
+	!StateCheck(Nearest(Myself),STATE_REALLY_DEAD)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_MEDIUM_WOUNDS)
+		Wait(1)
+END
+
+/*IF
+	!IsMarkedSpell(MARKED_SPELL)
+THEN
+	RESPONSE #100
+		Spell(SpellTarget,MARKED_SPELL)
+		WaitAnimation(Myself,WALK)
+		WaitAnimation(Myself,CONJURE)
+		WaitAnimation(Myself,CAST)
+		ForceMarkedSpell(MARKED_SPELL)
+END*/
+
+IF
+	HaveSpell(WIZARD_GHOST_ARMOR)
+	HPPercentLT(Myself,100)
+	CheckStatGT(Myself,2,ARMORCLASS)
+THEN
+	RESPONSE #100
+		Spell(Myself,WIZARD_GHOST_ARMOR)
+		Wait(1)
+END
+//BLOCK SPELLS_1
+/*IF
+	ForceMarkedSpell(MARKED_SPELL)
+	SetSpellTarget(Nothing)
+	!Global("OBJ_SP_20ORCSH1_1","LOCALS",-1)
+	See(NearestEnemyOf(Myself),0)
+THEN
+	RESPONSE #100
+		MarkSpellAndObject("2230",FarthestEnemyOf(Myself),SPELLCAST_RANDOM)  // [WIZARD_SUMMON_MONSTER_II]
+		MarkSpellAndObject("1201",[ENEMY.0.ORC],SPELLCAST_RANDOM)  // [CLERIC_AID]
+		Continue()
+	RESPONSE #100
+		MarkSpellAndObject("1201",[ENEMY.0.ORC],SPELLCAST_RANDOM)  // [CLERIC_AID]
+		MarkSpellAndObject("2230",FarthestEnemyOf(Myself),SPELLCAST_RANDOM)  // [WIZARD_SUMMON_MONSTER_II]
+		Continue()
+END
+
+IF
+	!IsMarkedSpell(MARKED_SPELL)
+THEN
+	RESPONSE #100
+		Spell(SpellTarget,MARKED_SPELL)
+		WaitAnimation(Myself,WALK)
+		WaitAnimation(Myself,CONJURE)
+		WaitAnimation(Myself,CAST)
+		ForceMarkedSpell(MARKED_SPELL)
+		SetGlobal("OBJ_SP_20ORCSH1_1","LOCALS",-1)
+END*/
+IF
+	RandomNum(2,1)
+	HaveSpell(WIZARD_MONSTER_SUMMONING_2)
+	!Global("OBJ_SP_20ORCSH1_1","LOCALS",-1)
+	See(FarthestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),WIZARD_MONSTER_SUMMONING_2)
+		Wait(1)
+		SetGlobal("OBJ_SP_20ORCSH1_1","LOCALS",-1)
+END
+
+IF
+	RandomNum(2,2)
+	HaveSpell(CLERIC_AID)
+	!Global("OBJ_SP_20ORCSH1_1","LOCALS",-1)
+	See([ENEMY.0.ORC])
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_AID)
+		Wait(1)
+		SetGlobal("OBJ_SP_20ORCSH1_1","LOCALS",-1)
+END
+//BLOCKEND
+//BLOCK SPELLS_2
+/*IF
+	ForceMarkedSpell(MARKED_SPELL)
+	SetSpellTarget(Nothing)
+	!Global("OBJ_SP_20ORCSH1_2","LOCALS",-1)
+	See(NearestEnemyOf(Myself),0)
+THEN
+	RESPONSE #100
+		MarkSpellAndObject("1203",LastMarkedObject,SPELLCAST_IGNORE_SEE | SPELLCAST_IGNORE_VALID_SPELL_TARGET | SPELLCAST_RANDOM)  // [CLERIC_CHANT]
+		MarkSpellAndObject("2230",FarthestEnemyOf(Myself),SPELLCAST_RANDOM)  // [WIZARD_SUMMON_MONSTER_II]
+		Continue()
+	RESPONSE #100
+		MarkSpellAndObject("2230",FarthestEnemyOf(Myself),SPELLCAST_RANDOM)  // [WIZARD_SUMMON_MONSTER_II]
+		MarkSpellAndObject("1203",LastMarkedObject,SPELLCAST_IGNORE_SEE | SPELLCAST_IGNORE_VALID_SPELL_TARGET | SPELLCAST_RANDOM)  // [CLERIC_CHANT]
+		Continue()
+END
+
+IF
+	!IsMarkedSpell(MARKED_SPELL)
+THEN
+	RESPONSE #100
+		Spell(SpellTarget,MARKED_SPELL)
+		WaitAnimation(Myself,WALK)
+		WaitAnimation(Myself,CONJURE)
+		WaitAnimation(Myself,CAST)
+		ForceMarkedSpell(MARKED_SPELL)
+		SetGlobal("OBJ_SP_20ORCSH1_2","LOCALS",-1)
+END*/
+IF
+	RandomNum(2,1)
+	HaveSpell(WIZARD_MONSTER_SUMMONING_2)
+	!Global("OBJ_SP_20ORCSH1_2","LOCALS",-1)
+	See(FarthestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),WIZARD_MONSTER_SUMMONING_2)
+		Wait(1)
+		SetGlobal("OBJ_SP_20ORCSH1_2","LOCALS",-1)
+END
+
+IF
+	RandomNum(2,2)
+	HaveSpell(CLERIC_CHANT)
+	!Global("OBJ_SP_20ORCSH1_2","LOCALS",-1)
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		Spell(Myself,CLERIC_CHANT)
+		Wait(1)
+		SetGlobal("OBJ_SP_20ORCSH1_2","LOCALS",-1)
+END
+//BLOCKEND
+/*//BLOCK CHECK_TARGET
+
+
+//Check for the nearest target
+IF
+	Allegiance(Myself,ENEMY)
+	//!InParty(SixthNearestEnemyOf())
+	!StateCheck(SixthNearestEnemyOf(),STATE_NOT_VISIBLE)
+	!StateCheck(SixthNearestEnemyOf(),STATE_HARMLESS)
+	See(SixthNearestEnemyOf())
+	False()
+THEN
+	RESPONSE #100
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	//!InParty(FifthNearestEnemyOf())
+	!StateCheck(FifthNearestEnemyOf(),STATE_NOT_VISIBLE)
+	!StateCheck(FifthNearestEnemyOf(),STATE_HARMLESS)
+	See(FifthNearestEnemyOf())
+	False()
+THEN
+	RESPONSE #100
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	//!InParty(FourthNearestEnemyOf())
+	!StateCheck(FourthNearestEnemyOf(),STATE_NOT_VISIBLE)
+	!StateCheck(FourthNearestEnemyOf(),STATE_HARMLESS)
+	See(FourthNearestEnemyOf())
+	False()
+THEN
+	RESPONSE #100
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	//!InParty(ThirdNearestEnemyOf())
+	!StateCheck(ThirdNearestEnemyOf(),STATE_NOT_VISIBLE)
+	!StateCheck(NearestEnemyOf(),STATE_HARMLESS)
+	See(ThirdNearestEnemyOf())
+	False()
+THEN
+	RESPONSE #100
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	//!InParty(SecondNearestEnemyOf())
+	!StateCheck(SecondNearestEnemyOf(),STATE_NOT_VISIBLE)
+	!StateCheck(SecondNearestEnemyOf(),STATE_HARMLESS)
+	See(SecondNearestEnemyOf())
+	False()
+THEN
+	RESPONSE #100
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	//!InParty(NearestEnemyOf())
+	!StateCheck(NearestEnemyOf(),STATE_NOT_VISIBLE)
+	!StateCheck(NearestEnemyOf(),STATE_HARMLESS)
+	See(NearestEnemyOf())
+	False()
+THEN
+	RESPONSE #100
+		Continue()
+END
+
+//We should have a target by now but get the weakest if possible
+IF
+	Allegiance(Myself,ENEMY)
+	See(WeakestOf(GroupOf(NearestEnemyOf(Myself))))
+	False()
+THEN
+	RESPONSE #100
+		Continue()
+END
+//BLOCKEND */
+//BLOCK SPELLS_3
+/*IF
+	ForceMarkedSpell(MARKED_SPELL)
+	SetSpellTarget(Nothing)
+	See(NearestEnemyOf(Myself),0)
+THEN
+	RESPONSE #100
+		MarkSpellAndObject("110223061117",LastMarkedObject,SPELLCAST_IGNORE_SEE | SPELLCAST_IGNORE_VALID_SPELL_TARGET | SPELLCAST_RANDOM)  // [CLERIC_COMMAND, WIZARD_HOLD_PERSON, CLERIC_FROST_FINGERS]
+		MarkSpellAndObject("2214",[ENEMY.0.ORC],SPELLCAST_RANDOM)  // [WIZARD_STRENGTH]
+		MarkSpellAndObject("2230",FarthestEnemyOf(Myself),SPELLCAST_RANDOM)  // [WIZARD_SUMMON_MONSTER_II]
+		Continue()
+	RESPONSE #100
+		MarkSpellAndObject("2214",[ENEMY.0.ORC],SPELLCAST_RANDOM)  // [WIZARD_STRENGTH]
+		MarkSpellAndObject("2230",FarthestEnemyOf(Myself),SPELLCAST_RANDOM)  // [WIZARD_SUMMON_MONSTER_II]
+		MarkSpellAndObject("110223061117",LastMarkedObject,SPELLCAST_IGNORE_SEE | SPELLCAST_IGNORE_VALID_SPELL_TARGET | SPELLCAST_RANDOM)  // [CLERIC_COMMAND, WIZARD_HOLD_PERSON, CLERIC_FROST_FINGERS]
+		Continue()
+	RESPONSE #100
+		MarkSpellAndObject("2230",FarthestEnemyOf(Myself),SPELLCAST_RANDOM)  // [WIZARD_SUMMON_MONSTER_II]
+		MarkSpellAndObject("110223061117",LastMarkedObject,SPELLCAST_IGNORE_SEE | SPELLCAST_IGNORE_VALID_SPELL_TARGET | SPELLCAST_RANDOM)  // [CLERIC_COMMAND, WIZARD_HOLD_PERSON, CLERIC_FROST_FINGERS]
+		MarkSpellAndObject("2214",[ENEMY.0.ORC],SPELLCAST_RANDOM)  // [WIZARD_STRENGTH]
+		Continue()
+END
+
+IF
+	!IsMarkedSpell(MARKED_SPELL)
+THEN
+	RESPONSE #100
+		Spell(SpellTarget,MARKED_SPELL)
+		WaitAnimation(Myself,WALK)
+		WaitAnimation(Myself,CONJURE)
+		WaitAnimation(Myself,CAST)
+		ForceMarkedSpell(MARKED_SPELL)
+END*/
+/*IF
+	GlobalLT("SSPELLS_3_RANDOM_CAST","LOCALS",4)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_3_RANDOM_CAST","LOCALS",1,3)
+		Continue()
+END*/
+
+//1 - LastMarkedObject - [CLERIC_COMMAND, WIZARD_HOLD_PERSON, CLERIC_FROST_FINGERS]
+IF
+	RandomNum(3,1)
+	Global("SSPELLS_3_RANDOM_CAST","LOCALS",1)
+	HaveSpell(CLERIC_COMMAND)
+	See(NearestEnemyOf(Myself))
+	General(LastSeenBy(Myself),HUMANOID)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_3_RANDOM_CAST","LOCALS",1,3)
+		Spell(LastSeenBy(Myself),CLERIC_COMMAND)
+		Wait(1)
+END
+
+IF
+	RandomNum(3,2)
+	Global("SSPELLS_3_RANDOM_CAST","LOCALS",1)
+	HaveSpell(WIZARD_HOLD_PERSON)
+	See(NearestEnemyOf(Myself))
+	!StateCheck(LastSeenBy(Myself),STATE_DISABLED)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_3_RANDOM_CAST","LOCALS",1,3)
+		Spell(LastSeenBy(Myself),WIZARD_HOLD_PERSON)
+		Wait(1)
+END
+
+IF
+	RandomNum(3,3)
+	Global("SSPELLS_3_RANDOM_CAST","LOCALS",1)
+	HaveSpellRES("IWPR117")
+	See(NearestEnemyOf(Myself))
+	Range(LastSeenBy(Myself),5)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_3_RANDOM_CAST","LOCALS",1,3)
+		SpellRES("IWPR117",LastSeenBy(Myself))
+		Wait(1)
+END
+//2 - [ENEMY.0.ORC] - [WIZARD_STRENGTH]
+IF
+	Global("SSPELLS_3_RANDOM_CAST","LOCALS",2)
+	HaveSpellRES("IWWI214") //WIZARD_STRENGTH
+	See([ENEMY.0.ORC])
+	CheckStatLT(LastSeenBy(Myself),19,STR)
+	CheckStatLT(LastSeenBy(Myself),100,STREXTRA)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_3_RANDOM_CAST","LOCALS",1,3)
+		SpellRES("IWWI214",LastSeenBy(Myself))
+		Wait(1)
+END
+//3 - FarthestEnemyOf(Myself) - [WIZARD_SUMMON_MONSTER_II]
+IF
+	Global("SSPELLS_3_RANDOM_CAST","LOCALS",3)
+	HaveSpell(WIZARD_MONSTER_SUMMONING_2)
+	See(FarthestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_3_RANDOM_CAST","LOCALS",1,3)
+		Spell(LastSeenBy(Myself),WIZARD_MONSTER_SUMMONING_2)
+		Wait(1)
+END
+
+//BLOCK NO_RANDOM
+//1 - LastMarkedObject - [CLERIC_COMMAND, WIZARD_HOLD_PERSON, CLERIC_FROST_FINGERS]
+IF
+	HaveSpell(CLERIC_COMMAND)
+	See(NearestEnemyOf(Myself))
+	General(LastSeenBy(Myself),HUMANOID)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_3_RANDOM_CAST","LOCALS",1,3)
+		Spell(LastSeenBy(Myself),CLERIC_COMMAND)
+		Wait(1)
+END
+
+IF
+	HaveSpell(WIZARD_HOLD_PERSON)
+	See(NearestEnemyOf(Myself))
+	!StateCheck(LastSeenBy(Myself),STATE_DISABLED)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_3_RANDOM_CAST","LOCALS",1,3)
+		Spell(LastSeenBy(Myself),WIZARD_HOLD_PERSON)
+		Wait(1)
+END
+
+IF
+	HaveSpellRES("IWPR117")
+	See(NearestEnemyOf(Myself))
+	Range(LastSeenBy(Myself),5)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_3_RANDOM_CAST","LOCALS",1,3)
+		SpellRES("IWPR117",LastSeenBy(Myself))
+		Wait(1)
+END
+//2 - [ENEMY.0.ORC] - [WIZARD_STRENGTH]
+IF
+	HaveSpellRES("IWWI214") //WIZARD_STRENGTH
+	See([ENEMY.0.ORC])
+	CheckStatLT(LastSeenBy(Myself),19,STR)
+	CheckStatLT(LastSeenBy(Myself),100,STREXTRA)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_3_RANDOM_CAST","LOCALS",1,3)
+		SpellRES("IWWI214",LastSeenBy(Myself))
+		Wait(1)
+END
+//3 - FarthestEnemyOf(Myself) - [WIZARD_SUMMON_MONSTER_II]
+IF
+	HaveSpell(WIZARD_MONSTER_SUMMONING_2)
+	See(FarthestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_3_RANDOM_CAST","LOCALS",1,3)
+		Spell(LastSeenBy(Myself),WIZARD_MONSTER_SUMMONING_2)
+		Wait(1)
+END
+//BLOCKEND
+
+//BLOCKEND
+
+IF
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		//EquipWeapon()
+		AttackOneRound(LastSeenBy(Myself))
+END
+

@@ -1,0 +1,68 @@
+BEGIN ~12MERC~
+
+IF WEIGHT #2
+~RandomNum(9,1)~ THEN BEGIN 0
+  SAY @24103
+  IF ~~ THEN EXIT
+END
+
+IF WEIGHT #3
+~RandomNum(9,2)~ THEN BEGIN 1
+  SAY @24105
+  IF ~~ THEN EXIT
+END
+
+IF WEIGHT #4
+~RandomNum(9,3)~ THEN BEGIN 2
+  SAY @24107
+  IF ~~ THEN EXIT
+END
+
+IF WEIGHT #5
+~RandomNum(9,4)~ THEN BEGIN 3
+  SAY @24108
+  IF ~~ THEN EXIT
+END
+
+IF WEIGHT #6
+~RandomNum(9,5)~ THEN BEGIN 4
+  SAY @24109
+  IF ~~ THEN EXIT
+END
+
+IF WEIGHT #7
+~RandomNum(9,6)~ THEN BEGIN 5
+  SAY @24110
+  IF ~~ THEN EXIT
+END
+
+IF WEIGHT #8
+~RandomNum(9,7)~ THEN BEGIN 6
+  SAY @24111
+  IF ~~ THEN EXIT
+END
+
+IF WEIGHT #9
+~RandomNum(9,8)~ THEN BEGIN 7
+  SAY @24189
+  IF ~~ THEN EXIT
+END
+
+IF WEIGHT #10
+~RandomNum(9,9)~ THEN BEGIN 8
+  SAY @24190
+  IF ~~ THEN EXIT
+END
+
+IF WEIGHT #0
+~GlobalGT("Goblin_Palisade_Quest","GLOBAL",0)~ THEN BEGIN 9
+  SAY @24191
+  IF ~~ THEN EXIT
+END
+
+IF WEIGHT #1
+~GlobalGT("Goblin_Palisade_Quest","GLOBAL",0)
+ Global("Goblins_Attack_Palisade","GLOBAL",1)~ THEN BEGIN 10
+  SAY @24261
+  IF ~~ THEN REPLY @24262 EXIT
+END

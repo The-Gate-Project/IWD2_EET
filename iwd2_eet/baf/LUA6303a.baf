@@ -1,0 +1,16 @@
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId(Player1)
+		SmallWait(5)
+		LeaveAreaLUAPanic("IW6305","",[1052.552],10)
+		LeaveAreaLUA("IW6305","",[1052.552],10)
+		ActionOverride(Player2,LeaveAreaLUA("IW6305","",[1113.575],10))
+		ActionOverride(Player3,LeaveAreaLUA("IW6305","",[1030.601],10))
+		ActionOverride(Player4,LeaveAreaLUA("IW6305","",[1017.658],10))
+		ActionOverride(Player5,LeaveAreaLUA("IW6305","",[1177.603],10))
+		ActionOverride(Player6,LeaveAreaLUA("IW6305","",[1105.661],10))
+		SmallWait(5)
+END
+

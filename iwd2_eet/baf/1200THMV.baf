@@ -1,0 +1,29 @@
+IF
+  IsActive(Myself)
+  !Global("IwIHidden","LOCALS",0)
+THEN
+  RESPONSE #100
+    Deactivate(Myself)
+    //Continue()
+END
+
+IF
+	Global("CHANGED_START","LOCALS",0)
+	!Global("Goblins_Attack_Palisade","GLOBAL",0)
+THEN
+	RESPONSE #100
+		SetHomeLocation([1217.859])
+		SaveLocation("LOCALS","SavedLoc",[1217.859])
+		JumpToPoint([1217.859])
+		Face(SE)
+		SetGlobal("CHANGED_START","LOCALS",1)
+END
+
+IF
+	!Global("SPRITE_IS_DEADSwift_Thomas","GLOBAL",0)
+	!StateCheck(Myself,STATE_REALLY_DEAD)
+THEN
+	RESPONSE #100
+		DestroySelf()
+END
+

@@ -1,0 +1,263 @@
+IF
+	!GlobalTimerNotExpired("IwTimer14","LOCALS")
+	Heard([ENEMY],0)
+	Range(LastHeardBy(Myself),10)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IwTimer14","LOCALS",21)
+		ForceSpell(LastHeardBy(Myself),CLERIC_INVISIBILITY_PURGE)
+		Wait(1)
+END
+
+IF
+	!GlobalTimerNotExpired("IwTimer13","LOCALS")
+	//Or(2)
+		StateCheck(LastAttackerOf(Myself),STATE_NOT_VISIBLE)
+	//	IsCreatureHiddenInShadows(LastAttackerOf(Myself))
+	StateCheck(LastAttackerOf(Myself),STATE_NONDETECTION)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IwTimer13","LOCALS",7)
+		ForceSpell(LastAttackerOf(Myself),CLERIC_INVISIBILITY_PURGE)  // SPPR309.SPL (Прерывание невидимости)
+		Wait(1)
+END
+
+IF
+	!GlobalTimerNotExpired("IwTimer21","LOCALS")
+	HPPercentGT(Myself,10)
+THEN
+	RESPONSE #80
+		DisplayStringHead(Myself,@33959)
+		SetGlobalTimerRandom("IwTimer21","LOCALS",5,10)
+		Continue()
+	RESPONSE #80
+		DisplayStringHead(Myself,@33960)
+		SetGlobalTimerRandom("IwTimer21","LOCALS",5,10)
+		Continue()
+	RESPONSE #80
+		DisplayStringHead(Myself,@33961)
+		SetGlobalTimerRandom("IwTimer21","LOCALS",5,10)
+		Continue()
+	RESPONSE #60
+		SetGlobalTimerRandom("IwTimer21","LOCALS",5,10)
+		Continue()
+END
+
+IF
+	!GlobalTimerNotExpired("IwTimer21","LOCALS")
+	HPPercentLT(Myself,11)
+THEN
+	RESPONSE #90
+		DisplayStringHead(Myself,@33962)
+		SetGlobalTimerRandom("IwTimer21","LOCALS",5,10)
+		SetGlobal("Desperate","LOCALS",1)
+		Continue()
+	RESPONSE #90
+		DisplayStringHead(Myself,@33963)
+		SetGlobalTimerRandom("IwTimer21","LOCALS",5,10)
+		SetGlobal("Desperate","LOCALS",1)
+		Continue()
+	RESPONSE #20
+		SetGlobalTimerRandom("IwTimer21","LOCALS",5,10)
+		Continue()
+END
+
+IF
+	Global("Desperate","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("Desperate","LOCALS",2)
+		ReallyForceSpell(Myself,CLERIC_PROTECT_FROM_EVIL)
+		Wait(1)
+		ForceSpell(NearestEnemyOf(Myself),WIZARD_GATE)
+		Wait(1)
+END
+
+IF
+	GlobalLT("Action","LOCALS",3)
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Action","LOCALS",1)
+		//EquipWeapon()
+		AttackOneRound(LastSeenBy(Myself))
+END
+//BLOCK SET_VARS
+IF
+	!Global("SET_65IYACHC","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobal("SET_65IYACHC","LOCALS",1)
+		SetInterrupt(TRUE)
+END
+//BLOCKEND
+
+IF
+	!GlobalTimerNotExpired("IWD_Rest","LOCALS")
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IWD_Rest","LOCALS",EIGHT_HOURS)
+		ApplySpell(Myself,RESTORE_FULL_HEALTH)
+		Rest()
+END
+
+//BLOCK SPL_1
+/*IF
+	ForceMarkedSpell(MARKED_SPELL)
+	SetSpellTarget(Nothing)
+	See(NearestEnemyOf(Myself),0)
+THEN
+	RESPONSE #100
+		MarkSpellAndObject("2519",Myself,SPELLCAST_IGNORE_SEE | SPELLCAST_IGNORE_VALID_SPELL_TARGET | SPELLCAST_RANDOM)  // [WIZARD_SUNFIRE]
+		MarkSpellAndObject("2603280628022908",LastMarkedObject,SPELLCAST_IGNORE_SEE | SPELLCAST_IGNORE_VALID_SPELL_TARGET | SPELLCAST_RANDOM)  // [WIZARD_CHAIN_LIGHTNING, WIZARD_GREAT_SHOUT, WIZARD_FIERY_CLOUD, WIZARD_METEOR_SWARM]
+		Continue()
+	RESPONSE #100
+		MarkSpellAndObject("2603280628022908",LastMarkedObject,SPELLCAST_IGNORE_SEE | SPELLCAST_IGNORE_VALID_SPELL_TARGET | SPELLCAST_RANDOM)  // [WIZARD_CHAIN_LIGHTNING, WIZARD_GREAT_SHOUT, WIZARD_FIERY_CLOUD, WIZARD_METEOR_SWARM]
+		MarkSpellAndObject("2519",Myself,SPELLCAST_IGNORE_SEE | SPELLCAST_IGNORE_VALID_SPELL_TARGET | SPELLCAST_RANDOM)  // [WIZARD_SUNFIRE]
+		Continue()
+END
+
+IF
+	!IsMarkedSpell(MARKED_SPELL)
+THEN
+	RESPONSE #100
+		SetGlobal("Action","LOCALS",0)
+		Spell(SpellTarget,MARKED_SPELL)
+		Wait(1)
+		ForceMarkedSpell(MARKED_SPELL)
+END*/
+/*IF
+	GlobalLT("SSPELLS_1_RANDOM_CAST","LOCALS",3)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		Continue()
+END*/
+//1 - Myself - [WIZARD_SUNFIRE]
+IF
+	Global("SSPELLS_1_RANDOM_CAST","LOCALS",1)
+	HaveSpell(WIZARD_SUN_FIRE)
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		Spell(Myself,WIZARD_SUN_FIRE)
+		Wait(1)
+END
+//2 - LastMarkedObject - [WIZARD_CHAIN_LIGHTNING, WIZARD_GREAT_SHOUT, WIZARD_FIERY_CLOUD, WIZARD_METEOR_SWARM]
+IF
+	RandomNum(4,1)
+	Global("SSPELLS_1_RANDOM_CAST","LOCALS",2)
+	HaveSpell(WIZARD_CHAIN_LIGHTNING)
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		Spell(LastSeenBy(Myself),WIZARD_CHAIN_LIGHTNING)
+		Wait(1)
+END
+
+IF
+	RandomNum(4,2)
+	Global("SSPELLS_1_RANDOM_CAST","LOCALS",2)
+	HaveSpell(WIZARD_WAIL_OF_THE_BANSHEE)
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		Spell(LastSeenBy(Myself),WIZARD_WAIL_OF_THE_BANSHEE)
+		Wait(1)
+END
+
+IF
+	RandomNum(4,3)
+	Global("SSPELLS_1_RANDOM_CAST","LOCALS",2)
+	HaveSpell(WIZARD_COMET)
+	See(NearestEnemyOf(Myself))
+	!Race(LastSeenBy(Myself),GOLEM)
+	!Race(LastSeenBy(Myself),DEMILICH)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		Spell(LastSeenBy(Myself),WIZARD_COMET)
+		Wait(1)
+END
+
+IF
+	RandomNum(4,4)
+	Global("SSPELLS_1_RANDOM_CAST","LOCALS",2)
+	HaveSpell(WIZARD_METEOR_SWARM)
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		Spell(LastSeenBy(Myself),WIZARD_METEOR_SWARM)
+		Wait(1)
+END
+//BLOCK NO_RND
+//1 - Myself - [WIZARD_SUNFIRE]
+IF
+	HaveSpell(WIZARD_SUN_FIRE)
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		Spell(Myself,WIZARD_SUN_FIRE)
+		Wait(1)
+END
+//2 - LastMarkedObject - [WIZARD_CHAIN_LIGHTNING, WIZARD_GREAT_SHOUT, WIZARD_FIERY_CLOUD, WIZARD_METEOR_SWARM]
+IF
+	HaveSpell(WIZARD_CHAIN_LIGHTNING)
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		Spell(LastSeenBy(Myself),WIZARD_CHAIN_LIGHTNING)
+		Wait(1)
+END
+
+IF
+	HaveSpell(WIZARD_WAIL_OF_THE_BANSHEE)
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		Spell(LastSeenBy(Myself),WIZARD_WAIL_OF_THE_BANSHEE)
+		Wait(1)
+END
+
+IF
+	HaveSpell(WIZARD_COMET)
+	See(NearestEnemyOf(Myself))
+	!Race(LastSeenBy(Myself),GOLEM)
+	!Race(LastSeenBy(Myself),DEMILICH)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		Spell(LastSeenBy(Myself),WIZARD_COMET)
+		Wait(1)
+END
+
+IF
+	HaveSpell(WIZARD_METEOR_SWARM)
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		Spell(LastSeenBy(Myself),WIZARD_METEOR_SWARM)
+		Wait(1)
+END
+//BLOCKEND
+//BLOCKEND
+
+IF
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		SetGlobal("Action","LOCALS",0)
+		//EquipWeapon()
+		AttackOneRound(LastSeenBy(Myself))
+END
+

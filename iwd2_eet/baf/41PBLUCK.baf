@@ -1,0 +1,15 @@
+IF
+	OR(2)
+		Opened([ANYONE])
+		Clicked([ANYONE])
+	!Global("41PBLUCK_INACTIVE","MYAREA",1)
+THEN
+	RESPONSE #100
+		PlaySound("IW4102c")
+		ForceSpellRES("IWWI093",LastTrigger)
+		StaticSequence("LeftMirror",SEQ_AWAKE)
+		SetGlobal("MirrorContainerBroke","MYAREA",1)
+		//ChangeCurrentScript("")
+		SetGlobal("41PBLUCK_INACTIVE","MYAREA",1)
+END
+

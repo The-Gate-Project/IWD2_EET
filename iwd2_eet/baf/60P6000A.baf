@@ -1,0 +1,30 @@
+IF
+	GlobalGT("60Key_Quest","GLOBAL",2)
+	//CheckDoorFlags(Myself,DOORLOCKED)
+	!Global("60P6000A_UNLOCKED","MYAREA",1)
+THEN
+	RESPONSE #100
+		//SetGlobal("Unlocked","LOCALS",1)
+		SetGlobal("Unlocked_60P6000A","MYAREA",1)
+		Unlock(Myself)
+		SetGlobal("60P6000A_UNLOCKED","MYAREA",1)
+END
+
+IF
+	//Global("Unlocked","LOCALS",1)
+	Global("Unlocked_60P6000A","MYAREA",1)
+	!Global("60P6000A_UNLOCKED","MYAREA",1)
+THEN
+	RESPONSE #100
+		Unlock(Myself)
+		SetGlobal("60P6000A_UNLOCKED","MYAREA",1)
+END
+
+IF
+	OpenState(Myself,TRUE)
+	!Global("Unlocked_60P6000A","MYAREA",1)
+THEN
+	RESPONSE #100
+		SetGlobal("Unlocked_60P6000A","MYAREA",1)
+END
+

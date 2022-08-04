@@ -1,0 +1,60 @@
+IF
+	Global("51SPECTRE","GLOBAL",2)
+	AttackedBy("12_51SPE_01",DEFAULT)
+	!Range("12_51SPE_01",4)
+	CanEquipRanged()
+THEN
+	RESPONSE #100
+		EquipRanged()
+		AttackReevaluate(LastAttackerOf(Myself),45)
+END
+
+IF
+	Global("51SPECTRE","GLOBAL",2)
+	AttackedBy("12_51SPE_01",DEFAULT)
+	OR(2)
+		Range("12_51SPE_01",4)
+		!CanEquipRanged()
+THEN
+	RESPONSE #100
+		EquipMostDamagingMelee()
+		AttackReevaluate(LastAttackerOf(Myself),45)
+END
+
+IF
+	Global("51SPECTRE","GLOBAL",2)
+	See("12_51SPE_01")
+	!StateCheck(LastSeenBy(Myself),STATE_REALLY_DEAD)
+	!Range(LastSeenBy(Myself),4)
+	CanEquipRanged()
+THEN
+	RESPONSE #100
+		EquipRanged()
+		AttackReevaluate(LastSeenBy(Myself),45)
+END
+
+IF
+	Global("51SPECTRE","GLOBAL",2)
+	See("12_51SPE_01")
+	!StateCheck(LastSeenBy(Myself),STATE_REALLY_DEAD)
+	OR(2)
+		Range(LastSeenBy(Myself),4)
+		!CanEquipRanged()
+THEN
+	RESPONSE #100
+		EquipRanged()
+		AttackReevaluate(LastSeenBy(Myself),45)
+END
+
+IF
+	!GlobalTimerNotExpired("DUERGAR_BEEP","MYAREA")
+	Global("51SPECTRE","GLOBAL",2)
+	!See(NearestEnemyOf(Myself))
+	RandomNum(3,1)
+THEN
+	RESPONSE #100
+		SetGlobalTimerRandom("DUERGAR_BEEP","MYAREA",1,5)
+		Shout(175)
+		Continue()
+END
+

@@ -1,0 +1,40 @@
+IF
+	!Global("40TRAPL4_INACTIVE","MYAREA",1)
+	Entered([PC])
+THEN
+	RESPONSE #100
+		ForceSpell(LastTrigger,WIZARD_CONE_OF_COLD)
+		DisplayString(LastTrigger,14381)
+		Continue()
+END
+
+IF
+	!Global("40TRAPL4_INACTIVE","MYAREA",1)
+	OR(2)
+		Entered([PC])
+		Disarmed([ANYONE])
+THEN
+	RESPONSE #100
+		SetGlobal("TEAM_2","MYAREA",1)
+		AddJournalEntry(@34231,QUEST)
+		Continue()
+END
+
+IF
+	!Global("40TRAPL4_INACTIVE","MYAREA",1)
+	OR(3)
+		Entered([PC])
+		Disarmed([ANYONE])
+		Trigger(0)
+THEN
+	RESPONSE #100
+		PlaySound("IW4000j")
+		//Deactivate("AndoraArchwayTrap")
+		AmbientActivate("AndoraArchwayTrap",FALSE)
+		//Deactivate("forcefield")
+		SoundActivate("forcefield",FALSE)
+		//ChangeCurrentScript("")
+		SetGlobal("40TRAPL4_INACTIVE","MYAREA",1)
+		TriggerActivation(Myself,FALSE)
+END
+

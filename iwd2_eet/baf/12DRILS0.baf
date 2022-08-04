@@ -1,0 +1,122 @@
+IF
+	Global("Goblins_Attack_Palisade","GLOBAL",0)
+	!GlobalTimerNotExpired("IwTimer18","LOCALS")
+	Name("Drill_Sergeant_E",Myself)
+THEN
+	RESPONSE #100
+		FaceObject("RECRUIT_1_E")
+		Continue()
+	RESPONSE #100
+		FaceObject("RECRUIT_2_E")
+		Continue()
+	RESPONSE #100
+		FaceObject("RECRUIT_3_E")
+		Continue()
+	RESPONSE #100
+		FaceObject("RECRUIT_4_E")
+		Continue()
+	RESPONSE #100
+		FaceObject("RECRUIT_5_E")
+		Continue()
+END
+
+IF
+	Global("Goblins_Attack_Palisade","GLOBAL",0)
+	!GlobalTimerNotExpired("IwTimer18","LOCALS")
+	Name("Drill_Sergeant_West",Myself)
+THEN
+	RESPONSE #100
+		FaceObject("RECRUIT_1_W")
+		Continue()
+	RESPONSE #100
+		FaceObject("RECRUIT_2_W")
+		Continue()
+	RESPONSE #100
+		FaceObject("RECRUIT_3_W")
+		Continue()
+	RESPONSE #100
+		FaceObject("RECRUIT_4_W")
+		Continue()
+	RESPONSE #100
+		FaceObject("RECRUIT_5_W")
+		Continue()
+END
+
+IF
+	Global("FL_0","LOCALS",0)
+	!GlobalTimerNotExpired("IwTimer18","LOCALS")
+	Global("Goblins_Attack_Palisade","GLOBAL",0)
+	!Allegiance(Myself,ENEMY)
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,@16364)
+		SetGlobalTimerRandom("IwTimer18","LOCALS",9,11)
+		IncrementGlobal("FL_0","LOCALS",1)
+		Continue()
+END
+
+IF
+	Global("FL_0","LOCALS",1)
+	!GlobalTimerNotExpired("IwTimer18","LOCALS")
+	Global("Goblins_Attack_Palisade","GLOBAL",0)
+	!Allegiance(Myself,ENEMY)
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,@16365)
+		SetGlobalTimerRandom("IwTimer18","LOCALS",9,11)
+		IncrementGlobal("FL_0","LOCALS",1)
+		Continue()
+END
+
+IF
+	Global("FL_0","LOCALS",2)
+	!GlobalTimerNotExpired("IwTimer18","LOCALS")
+	Global("Goblins_Attack_Palisade","GLOBAL",0)
+	!Allegiance(Myself,ENEMY)
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,@16366)
+		SetGlobalTimerRandom("IwTimer18","LOCALS",9,11)
+		IncrementGlobal("FL_0","LOCALS",1)
+		Continue()
+END
+
+IF
+	Global("FL_0","LOCALS",3)
+	!GlobalTimerNotExpired("IwTimer18","LOCALS")
+	Global("Goblins_Attack_Palisade","GLOBAL",0)
+	!Allegiance(Myself,ENEMY)
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,@16367)
+		SetGlobalTimerRandom("IwTimer18","LOCALS",9,11)
+		IncrementGlobal("FL_0","LOCALS",1)
+		Continue()
+END
+
+IF
+	Global("FL_0","LOCALS",4)
+	!GlobalTimerNotExpired("IwTimer18","LOCALS")
+	Global("Goblins_Attack_Palisade","GLOBAL",0)
+	!Allegiance(Myself,ENEMY)
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,@16368)
+		SetGlobalTimerRandom("IwTimer18","LOCALS",9,11)
+		IncrementGlobal("FL_0","LOCALS",1)
+		Continue()
+END
+
+IF
+	Global("FL_0","LOCALS",5)
+	!GlobalTimerNotExpired("IwTimer18","LOCALS")
+	Global("Goblins_Attack_Palisade","GLOBAL",0)
+	!Allegiance(Myself,ENEMY)
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,@16369)
+		SetGlobalTimerRandom("IwTimer18","LOCALS",9,11)
+		SetGlobal("FL_0","LOCALS",0)
+		Continue()
+END
+

@@ -1,0 +1,27 @@
+IF
+	!IsActive(Myself)
+	GlobalGT("Goblin_Palisade_Quest","GLOBAL",0)
+THEN
+	RESPONSE #100
+		//HideCreature(Myself,FALSE)
+		Activate(Myself)
+		SetGlobal("IwIHidden","LOCALS",0)
+		ApplySpellRES("IDINVIS5",Myself)
+		//Continue()
+END
+
+IF
+	IsActive(Myself)
+	GlobalGT("Goblin_Palisade_Quest","GLOBAL",0)
+THEN
+	RESPONSE #100
+		ChangeAIScript("",CLASS)
+END
+
+IF
+	!IsActive(Myself)
+THEN
+	RESPONSE #100
+		NoAction()
+END
+

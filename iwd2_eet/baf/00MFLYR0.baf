@@ -1,0 +1,405 @@
+IF
+	HPPercentLT(Myself,50)
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		//SpellCastEffect(Myself,"","","",GLOW_ALTERATION,1,ATTACK)
+		SetSequence(SEQ_CAST)
+		CreateVisualEffectObject("ALTERCG",Myself)
+		SmallWait(7)
+		//SpellHitEffectSprite(Myself,Myself,DIMENSION_DOOR_ORIGIN,0)
+		CreateVisualEffectObject("SPDIMNDR",Myself)
+		SmallWait(5)
+		//HideCreature(Myself,TRUE)
+		ApplySpellRES("idinvis4",Myself)
+		DisplayStringHead(Myself,@24096)
+		SmallWait(5)
+		SetInterrupt(TRUE)
+		DestroySelf()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(LastAttackerOf(Myself))
+	!General(LastSeenBy(Myself),UNDEAD)
+	//!CheckSpellState(LastSeenBy(Myself),MENTAL_DOMINATION)
+	!StateCheck(LastSeenBy(Myself),STATE_CHARMED)
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+THEN
+	RESPONSE #100
+		ForceSpell(LastSeenBy(Myself),MIND_FLAYER_PSIONIC_BLAST)
+		Wait(1)
+	RESPONSE #100
+		ForceSpell(LastSeenBy(Myself),MIND_FLAYER_DOMINATION)
+		Wait(1)
+END
+
+IF
+	!Global("00MFLYR0_MCSE","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobal("00MFLYR0_MCSE","LOCALS",0)
+		Continue()
+END
+
+IF
+	Global("00MFLYR0_MCSE","LOCALS",0)
+	See(NearestEnemyOf(Myself))
+	//!CheckSpellState(LastSeenBy(Myself),MENTAL_DOMINATION)
+	!StateCheck(LastSeenBy(Myself),STATE_CHARMED)
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+THEN
+	RESPONSE #100
+		SetGlobal("00MFLYR0_MCSE","LOCALS",1)
+		//SetMyTarget(LastSeenBy(Myself))
+		Continue()
+END
+
+IF
+	Global("00MFLYR0_MCSE","LOCALS",0)
+	See(SecondNearestEnemyOf(Myself))
+	//!CheckSpellState(LastSeenBy(Myself),MENTAL_DOMINATION)
+	!StateCheck(LastSeenBy(Myself),STATE_CHARMED)
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+THEN
+	RESPONSE #100
+		SetGlobal("00MFLYR0_MCSE","LOCALS",1)
+		//SetMyTarget(LastSeenBy(Myself))
+		Continue()
+END
+
+IF
+	Global("00MFLYR0_MCSE","LOCALS",0)
+	See(ThirdNearestEnemyOf(Myself))
+	//!CheckSpellState(LastSeenBy(Myself),MENTAL_DOMINATION)
+	!StateCheck(LastSeenBy(Myself),STATE_CHARMED)
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+THEN
+	RESPONSE #100
+		SetGlobal("00MFLYR0_MCSE","LOCALS",1)
+		//SetMyTarget(LastSeenBy(Myself))
+		Continue()
+END
+
+IF
+	Global("00MFLYR0_MCSE","LOCALS",0)
+	See(FourthNearestEnemyOf(Myself))
+	//!CheckSpellState(LastSeenBy(Myself),MENTAL_DOMINATION)
+	!StateCheck(LastSeenBy(Myself),STATE_CHARMED)
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+THEN
+	RESPONSE #100
+		SetGlobal("00MFLYR0_MCSE","LOCALS",1)
+		//SetMyTarget(LastSeenBy(Myself))
+		Continue()
+END
+
+IF
+	Global("00MFLYR0_MCSE","LOCALS",0)
+	See(FifthNearestEnemyOf(Myself))
+	//!CheckSpellState(LastSeenBy(Myself),MENTAL_DOMINATION)
+	!StateCheck(LastSeenBy(Myself),STATE_CHARMED)
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+THEN
+	RESPONSE #100
+		SetGlobal("00MFLYR0_MCSE","LOCALS",1)
+		//SetMyTarget(LastSeenBy(Myself))
+		Continue()
+END
+
+IF
+	Global("00MFLYR0_MCSE","LOCALS",0)
+	See(SixthNearestEnemyOf(Myself))
+	//!CheckSpellState(LastSeenBy(Myself),MENTAL_DOMINATION)
+	!StateCheck(LastSeenBy(Myself),STATE_CHARMED)
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+THEN
+	RESPONSE #100
+		SetGlobal("00MFLYR0_MCSE","LOCALS",1)
+		//SetMyTarget(LastSeenBy(Myself))
+		Continue()
+END
+
+IF
+	Global("00MFLYR0_MCSE","LOCALS",0)
+	See(SeventhNearestEnemyOf(Myself))
+	//!CheckSpellState(LastSeenBy(Myself),MENTAL_DOMINATION)
+	!StateCheck(LastSeenBy(Myself),STATE_CHARMED)
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+THEN
+	RESPONSE #100
+		SetGlobal("00MFLYR0_MCSE","LOCALS",1)
+		//SetMyTarget(LastSeenBy(Myself))
+		Continue()
+END
+
+IF
+	Global("00MFLYR0_MCSE","LOCALS",0)
+	See(EighthNearestEnemyOf(Myself))
+	//!CheckSpellState(LastSeenBy(Myself),MENTAL_DOMINATION)
+	!StateCheck(LastSeenBy(Myself),STATE_CHARMED)
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+THEN
+	RESPONSE #100
+		SetGlobal("00MFLYR0_MCSE","LOCALS",1)
+		//SetMyTarget(LastSeenBy(Myself))
+		Continue()
+END
+
+IF
+	Global("00MFLYR0_MCSE","LOCALS",0)
+	See(NinthNearestEnemyOf(Myself))
+	//!CheckSpellState(LastSeenBy(Myself),MENTAL_DOMINATION)
+	!StateCheck(LastSeenBy(Myself),STATE_CHARMED)
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+THEN
+	RESPONSE #100
+		SetGlobal("00MFLYR0_MCSE","LOCALS",1)
+		//SetMyTarget(LastSeenBy(Myself))
+		Continue()
+END
+
+IF
+	Global("00MFLYR0_MCSE","LOCALS",0)
+	See(TenthNearestEnemyOf(Myself))
+	//!CheckSpellState(LastSeenBy(Myself),MENTAL_DOMINATION)
+	!StateCheck(LastSeenBy(Myself),STATE_CHARMED)
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+THEN
+	RESPONSE #100
+		SetGlobal("00MFLYR0_MCSE","LOCALS",1)
+		//SetMyTarget(LastSeenBy(Myself))
+		Continue()
+END
+
+IF
+	Global("00MFLYR0_MCSE","LOCALS",0)
+	See(LastAttackerOf(Myself))
+	//!CheckSpellState(LastSeenBy(Myself),MENTAL_DOMINATION)
+	!StateCheck(LastSeenBy(Myself),STATE_CHARMED)
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+THEN
+	RESPONSE #100
+		SetGlobal("00MFLYR0_MCSE","LOCALS",1)
+		//SetMyTarget(LastSeenBy(Myself))
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(LastSeenBy(Myself)) //MyTarget
+	!General(LastSeenBy(Myself),UNDEAD)
+	//!CheckSpellState(LastSeenBy(Myself),MENTAL_DOMINATION)
+	!StateCheck(LastSeenBy(Myself),STATE_CHARMED)
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+THEN
+	RESPONSE #100
+		SetGlobal("00MFLYR0_MCSE","LOCALS",0) /* NEW */
+		ForceSpell(LastSeenBy(Myself),MIND_FLAYER_PSIONIC_BLAST)
+		Wait(1)
+	RESPONSE #100
+		SetGlobal("00MFLYR0_MCSE","LOCALS",0) /* NEW */
+		ForceSpell(LastSeenBy(Myself),MIND_FLAYER_DOMINATION)
+		Wait(1)
+END
+/* OLD
+IF
+	!Global("00MFLYR0_MCSE","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobal("00MFLYR0_MCSE","LOCALS",0)
+		Continue()
+END*/
+
+IF
+	Global("00MFLYR0_MCSE","LOCALS",0)
+	See(NearestEnemyOf(Myself))
+	//CheckSpellState(LastSeenBy(Myself),MENTAL_DOMINATION)
+	//StateCheck(LastSeenBy(Myself),STATE_CHARMED)
+	StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+THEN
+	RESPONSE #100
+		SetGlobal("00MFLYR0_MCSE","LOCALS",1)
+		//SetMyTarget(LastSeenBy(Myself))
+		Continue()
+END
+
+IF
+	Global("00MFLYR0_MCSE","LOCALS",0)
+	See(SecondNearestEnemyOf(Myself))
+	//CheckSpellState(LastSeenBy(Myself),MENTAL_DOMINATION)
+	//StateCheck(LastSeenBy(Myself),STATE_CHARMED)
+	StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+THEN
+	RESPONSE #100
+		SetGlobal("00MFLYR0_MCSE","LOCALS",1)
+		//SetMyTarget(LastSeenBy(Myself))
+		Continue()
+END
+
+IF
+	Global("00MFLYR0_MCSE","LOCALS",0)
+	See(ThirdNearestEnemyOf(Myself))
+	//CheckSpellState(LastSeenBy(Myself),MENTAL_DOMINATION)
+	//StateCheck(LastSeenBy(Myself),STATE_CHARMED)
+	StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+THEN
+	RESPONSE #100
+		SetGlobal("00MFLYR0_MCSE","LOCALS",1)
+		//SetMyTarget(LastSeenBy(Myself))
+		Continue()
+END
+
+IF
+	Global("00MFLYR0_MCSE","LOCALS",0)
+	See(FourthNearestEnemyOf(Myself))
+	//CheckSpellState(LastSeenBy(Myself),MENTAL_DOMINATION)
+	//StateCheck(LastSeenBy(Myself),STATE_CHARMED)
+	StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+THEN
+	RESPONSE #100
+		SetGlobal("00MFLYR0_MCSE","LOCALS",1)
+		//SetMyTarget(LastSeenBy(Myself))
+		Continue()
+END
+
+IF
+	Global("00MFLYR0_MCSE","LOCALS",0)
+	See(FifthNearestEnemyOf(Myself))
+	//CheckSpellState(LastSeenBy(Myself),MENTAL_DOMINATION)
+	//StateCheck(LastSeenBy(Myself),STATE_CHARMED)
+	StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+THEN
+	RESPONSE #100
+		SetGlobal("00MFLYR0_MCSE","LOCALS",1)
+		//SetMyTarget(LastSeenBy(Myself))
+		Continue()
+END
+
+IF
+	Global("00MFLYR0_MCSE","LOCALS",0)
+	See(SixthNearestEnemyOf(Myself))
+	//CheckSpellState(LastSeenBy(Myself),MENTAL_DOMINATION)
+	//StateCheck(LastSeenBy(Myself),STATE_CHARMED)
+	StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+THEN
+	RESPONSE #100
+		SetGlobal("00MFLYR0_MCSE","LOCALS",1)
+		//SetMyTarget(LastSeenBy(Myself))
+		Continue()
+END
+
+IF
+	Global("00MFLYR0_MCSE","LOCALS",0)
+	See(SeventhNearestEnemyOf(Myself))
+	//CheckSpellState(LastSeenBy(Myself),MENTAL_DOMINATION)
+	//StateCheck(LastSeenBy(Myself),STATE_CHARMED)
+	StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+THEN
+	RESPONSE #100
+		SetGlobal("00MFLYR0_MCSE","LOCALS",1)
+		//SetMyTarget(LastSeenBy(Myself))
+		Continue()
+END
+
+IF
+	Global("00MFLYR0_MCSE","LOCALS",0)
+	See(EighthNearestEnemyOf(Myself))
+	//CheckSpellState(LastSeenBy(Myself),MENTAL_DOMINATION)
+	//StateCheck(LastSeenBy(Myself),STATE_CHARMED)
+	StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+THEN
+	RESPONSE #100
+		SetGlobal("00MFLYR0_MCSE","LOCALS",1)
+		//SetMyTarget(LastSeenBy(Myself))
+		Continue()
+END
+
+IF
+	Global("00MFLYR0_MCSE","LOCALS",0)
+	See(NinthNearestEnemyOf(Myself))
+	//CheckSpellState(LastSeenBy(Myself),MENTAL_DOMINATION)
+	//StateCheck(LastSeenBy(Myself),STATE_CHARMED)
+	StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+THEN
+	RESPONSE #100
+		SetGlobal("00MFLYR0_MCSE","LOCALS",1)
+		//SetMyTarget(LastSeenBy(Myself))
+		Continue()
+END
+
+IF
+	Global("00MFLYR0_MCSE","LOCALS",0)
+	See(TenthNearestEnemyOf(Myself))
+	//CheckSpellState(LastSeenBy(Myself),MENTAL_DOMINATION)
+	//StateCheck(LastSeenBy(Myself),STATE_CHARMED)
+	StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+THEN
+	RESPONSE #100
+		SetGlobal("00MFLYR0_MCSE","LOCALS",1)
+		//SetMyTarget(LastSeenBy(Myself))
+		Continue()
+END
+
+IF
+	Global("00MFLYR0_MCSE","LOCALS",0)
+	See(LastAttackerOf(Myself))
+	//CheckSpellState(LastSeenBy(Myself),MENTAL_DOMINATION)
+	//StateCheck(LastSeenBy(Myself),STATE_CHARMED)
+	StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+THEN
+	RESPONSE #100
+		SetGlobal("00MFLYR0_MCSE","LOCALS",1)
+		//SetMyTarget(LastSeenBy(Myself))
+		Continue()
+END
+
+IF
+	See(LastAttackerOf(Myself))
+	General(LastSeenBy(Myself),UNDEAD)
+THEN
+	RESPONSE #100
+		SetGlobal("00MFLYR0_MCSE","LOCALS",0) /* NEW */
+		//EquipItem("P1-20",0)  // No such index
+		//EquipItem("P1-4",0)  // No such index
+		SelectWeaponAbility(SLOT_WEAPON0,0)
+		ChangeStat(Myself,STR,10,SET)
+		//EquipWeapon()
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	//CheckSpellState(LastSeenBy(Myself),MENTAL_DOMINATION)
+	//StateCheck(LastSeenBy(Myself),STATE_CHARMED)
+	StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+THEN
+	RESPONSE #100
+		SetGlobal("00MFLYR0_MCSE","LOCALS",0) /* NEW */
+		//EquipItem("P1-4",0)  // No such index
+		//EquipItem("P1-20",0)  // No such index
+		SelectWeaponAbility(SLOT_WEAPON1,0)
+		ChangeStat(Myself,STR,20,SET)
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		SetGlobal("00MFLYR0_MCSE","LOCALS",0) /* NEW */
+		//EquipItem("P1-20",0)  // No such index
+		//EquipItem("P1-4",0)  // No such index
+		SelectWeaponAbility(SLOT_WEAPON0,0)
+		ChangeStat(Myself,STR,10,SET)
+		AttackOneRound(LastSeenBy(Myself))
+END
+//BLOCK NEW
+IF
+	!Global("00MFLYR0_MCSE","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobal("00MFLYR0_MCSE","LOCALS",0)
+		Continue()
+END
+//BLOCKEND
+

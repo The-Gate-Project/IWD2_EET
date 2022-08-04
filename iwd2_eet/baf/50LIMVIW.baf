@@ -1,0 +1,33 @@
+IF
+	//CreatureHidden(Myself)
+	!Global("CreatureHidden","LOCALS",0)
+	Global("LIHMA_OUTSIDE","GLOBAL",2)
+THEN
+	RESPONSE #100
+		FaceObject(NearestEnemyOf(Myself))
+		//SpellHitEffectSprite(Myself,Myself,MONSTER_SUMMONING_CIRCLE,30)
+		CreateVisualEffectObject("MSUMM1X",Myself)
+		Wait(1)
+		//HideCreature(Myself,FALSE)
+		ChangeEnemyAlly(Myself,ENEMY)
+		ApplySpellRES("IDRINVUL",Myself)
+		ApplySpellRES("IDINVIS9",Myself)
+END
+
+IF
+	//!CreatureHidden(Myself)
+	Global("CreatureHidden","LOCALS",0)
+	Global("LIHMA_OUTSIDE","GLOBAL",2)
+THEN
+	RESPONSE #100
+		ChangeAIScript("",SPECIFICS)
+END
+
+IF
+	//CreatureHidden(Myself)
+	!Global("CreatureHidden","LOCALS",0)
+THEN
+	RESPONSE #100
+		NoAction()
+END
+

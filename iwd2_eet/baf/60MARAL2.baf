@@ -1,0 +1,26 @@
+IF
+	Allegiance(Myself,ENEMY)
+THEN
+	RESPONSE #100
+		ChangeAIScript("",CLASS)
+END
+
+IF
+	!GlobalTimerNotExpired("IwTimer21","LOCALS")
+	Global("Kuldahar_Undead_Cleared","GLOBAL",0)
+	!Allegiance(Myself,ENEMY)
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,@39553)
+		SetGlobalTimer("IwTimer21","LOCALS",15)
+		Continue()
+	RESPONSE #100
+		DisplayStringHead(Myself,@39554)
+		SetGlobalTimer("IwTimer21","LOCALS",15)
+		Continue()
+	RESPONSE #100
+		DisplayStringHead(Myself,@39555)
+		SetGlobalTimer("IwTimer21","LOCALS",15)
+		Continue()
+END
+

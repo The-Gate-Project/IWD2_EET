@@ -1,0 +1,28 @@
+IF
+	IsOverMe([ANYONE])
+THEN
+	RESPONSE #100
+		ActionOverride(LastTrigger,JumpToPoint([3300.1310]))
+		
+		SetGlobal("61PKEWAL_baf","MYAREA",1)
+	RESPONSE #100
+		ActionOverride(LastTrigger,JumpToPoint([3230.1440]))
+		
+		SetGlobal("61PKEWAL_baf","MYAREA",1)
+	RESPONSE #100
+		ActionOverride(LastTrigger,JumpToPoint([3260.1560]))
+		
+		SetGlobal("61PKEWAL_baf","MYAREA",1)
+END
+
+IF
+	!IsOverMe([ANYONE])
+	Global("61PKEWAL_baf","MYAREA",1)
+THEN
+	RESPONSE #100
+		ScreenShake([16.12],50)
+		CloseDoor("AR6104_East_Rocks")
+		//ChangeCurrentScript("")
+		TriggerActivation(Myself,FALSE)
+END
+

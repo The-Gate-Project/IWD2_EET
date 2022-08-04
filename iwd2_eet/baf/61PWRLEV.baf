@@ -1,0 +1,157 @@
+/*IF
+	!Global("61PWRLEV_HIDDEN","MYAREA",0)
+THEN
+	RESPONSE #100
+		NoAction()
+END*/
+
+IF
+	Clicked([ANYONE])
+	!Global("AR6102_Lever2_Locked","MYAREA",0)
+THEN
+	RESPONSE #100
+		PlaySound("amb_d20")
+		NoAction()
+END
+
+
+IF
+	Clicked([ANYONE])
+	OpenState("AR6102_Lever2",FALSE)
+	Global("WorkRoomActive","MYAREA",0)
+	//CheckSkillGT(LastTrigger,15,Alchemy)
+	CheckStatGT(LastTrigger,75,LORE)
+	PartyHasItem("z6gendn")  // Записи Д'эй-джазерриона
+	Global("61PWRLEV_HIDDEN","MYAREA",0)
+THEN
+	RESPONSE #100
+		SetGlobal("BrewTime","MYAREA",-1)
+		SetGlobal("PlayerMadeBrew","MYAREA",-1)
+		Continue()
+END
+
+IF
+	Clicked([ANYONE])
+	OpenState("AR6102_Lever2",FALSE)
+	Global("WorkRoomActive","MYAREA",0)
+	OR(2)
+		//!CheckSkillGT(LastTrigger,15,Alchemy)
+		!CheckStatGT(LastTrigger,75,LORE)
+		!HasItem("z6gendn",LastTrigger)  // Записи Д'эй-джазерриона
+	Global("61PWRLEV_HIDDEN","MYAREA",0)
+THEN
+	RESPONSE #100
+		SetGlobal("BrewTime","MYAREA",0)
+		Continue()
+END
+
+IF
+	Clicked([ANYONE])
+	OpenState("AR6102_Lever2",FALSE)
+	Global("61PWRLEV_HIDDEN","MYAREA",0)
+THEN
+	RESPONSE #100
+		OpenDoor("AR6102_Lever2")
+		Continue()
+END
+
+IF
+	Clicked([ANYONE])
+	OpenState("AR6102_Lever2",TRUE)
+	Global("61PWRLEV_HIDDEN","MYAREA",0)
+THEN
+	RESPONSE #100
+		CloseDoor("AR6102_Lever2")
+		Continue()
+END
+
+IF
+	Trigger(0)
+	Global("61PWRLEV_HIDDEN","MYAREA",0)
+THEN
+	RESPONSE #100
+		CloseDoor("AR6102_Lever2")
+		SetGlobal("BrewTime","MYAREA",-1)
+		Continue()
+END
+
+IF
+	OR(2)
+		Clicked([ANYONE])
+		Trigger(0)
+	OpenState("AR6102_Lever2",FALSE)
+	Global("61PWRLEV_HIDDEN","MYAREA",0)
+THEN
+	RESPONSE #100
+		//SetDoorFlag(Myself,HIDDEN,TRUE)
+		SetGlobal("61PWRLEV_HIDDEN","MYAREA",1)
+		//StartCutSceneMode()
+		//EndCutSceneMode()
+		Lock("Bookcase1")
+		Lock("Bookcase2")
+		Lock("Bookcase3")
+		Lock("Bookcase4")
+		Lock("Bookcase5")
+		Lock("Bookcase6")
+		Lock("Bookcase7")
+		Lock("PoisonTable")
+		Lock("RootTable")
+		Lock("BrewTable")
+		DisplayString(LastTrigger,@35374)
+		//SetMyTarget(LastTrigger)
+		SetGlobalTimer("BrewTimer","MYAREA",30)
+		SetGlobal("WorkRoomActive","MYAREA",1)
+		
+		//Lock(Myself)
+END
+
+IF
+	Global("WorkRoomActive","MYAREA",1)
+	GlobalTimerExpired("BrewTimer","MYAREA")
+THEN
+	RESPONSE #100
+		IncrementGlobal("BrewTime","MYAREA",2)
+		Unlock("Bookcase1")
+		Unlock("Bookcase2")
+		Unlock("Bookcase3")
+		Unlock("Bookcase4")
+		Unlock("Bookcase5")
+		Unlock("Bookcase6")
+		Unlock("Bookcase7")
+		Unlock("PoisonTable")
+		Unlock("RootTable")
+		Unlock("BrewTable")
+		DisplayString(LastTrigger,@35373)
+		//Unlock("AR6102_Lever2")
+		OpenDoor("AR6102_Lever2")
+		//Lock("AR6102_Lever2")
+		//SetDoorFlag(Myself,HIDDEN,FALSE)
+		SetGlobal("61PWRLEV_HIDDEN","MYAREA",0)
+		//Unlock(Myself)
+		SetGlobal("WorkRoomActive","MYAREA",0)
+END
+
+IF
+	Global("WorkRoomActive","MYAREA",1)
+	!GlobalTimerExpired("BrewTimer","MYAREA")
+THEN
+	RESPONSE #100
+		//SpellHitEffectPoint("INVISIBLE",[1792.2464],ENCHANTMENT,0)
+		CreateVisualEffect("ENCHAH",[1792.2464])
+	RESPONSE #100
+		//SpellHitEffectPoint("INVISIBLE",[1856.2526],ENCHANTMENT,0)
+		CreateVisualEffect("ENCHAH",[1856.2526])
+	RESPONSE #100
+		//SpellHitEffectPoint("INVISIBLE",[1950.2550],ENCHANTMENT,0)
+		CreateVisualEffect("ENCHAH",[1950.2550])
+	RESPONSE #100
+		//SpellHitEffectPoint("INVISIBLE",[2015.2495],ENCHANTMENT,0)
+		CreateVisualEffect("ENCHAH",[2015.2495])
+	RESPONSE #100
+		//SpellHitEffectPoint("INVISIBLE",[2015.2430],ENCHANTMENT,0)
+		CreateVisualEffect("ENCHAH",[2015.2430])
+	RESPONSE #100
+		//SpellHitEffectPoint("INVISIBLE",[2160.2510],ENCHANTMENT,0)
+		CreateVisualEffect("ENCHAH",[2160.2510])
+END
+

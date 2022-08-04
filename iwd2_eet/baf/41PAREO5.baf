@@ -1,0 +1,58 @@
+IF
+	Clicked([ANYONE])
+	!Range(LastTrigger,10)
+THEN
+	RESPONSE #100
+		ActionOverride(LastTrigger,MoveToPoint([2494.2521]))
+END
+
+IF
+	Clicked([ANYONE])
+	!Global("AR4102_Switch12_hidden","MYAREA",0)
+THEN
+	RESPONSE #100
+		//OpenDoor(Myself)
+		NoAction()
+END
+
+IF
+	Clicked([ANYONE])
+	!Global("AR4102_Switch12_locked","MYAREA",0)
+THEN
+	RESPONSE #100
+		DisplayString(LastTrigger,@40943)
+		PlaySound("amb_d20")
+		//OpenDoor(Myself)
+		NoAction()
+END
+
+IF
+	Clicked([ANYONE])
+	OpenState("AR4102_Switch12",FALSE)
+THEN
+	RESPONSE #100
+		//OpenDoor(Myself)
+		NoAction()
+END
+
+IF
+	Clicked([ANYONE])
+	//OpenState(Myself,FALSE)
+	OpenState("AR4102_Switch12",TRUE)
+THEN
+	RESPONSE #100
+		CloseDoor("AR4102_Switch12")
+		
+		OpenDoor("AR4102_Switch4")
+		OpenDoor("AR4102_Switch5")
+		OpenDoor("AR4102_Switch6")
+		OpenDoor("AR4102_Switch7")
+		OpenDoor("AR4102_Switch8")
+		OpenDoor("AR4102_Switch9")
+		OpenDoor("AR4102_Switch10")
+		OpenDoor("AR4102_Switch11")
+		OpenDoor("AR4102_Switch13")
+		DisplayStringHead("GameMaster",@40935)
+		SetGlobal("BattleSquareRank","MYAREA",9)
+END
+

@@ -1,0 +1,41 @@
+IF
+	OR(2)
+		!Global("52Morohem_Master","GLOBAL",5)
+		Global("WATCHING_PLAYER","MYAREA",0)
+	OR(2)
+		//!//CheckDoorFlags(Myself,DOORLOCKED)
+		Global("AR5202_SWITCH7_locked","MYAREA",0)
+		OpenState(Myself,TRUE)
+THEN
+	RESPONSE #100
+		Unlock(Myself)
+		CloseDoor(Myself)
+		Lock(Myself)
+		SetGlobal("AR5202_SWITCH7_locked","MYAREA",1)
+END
+
+IF
+	Global("CHAMBER_5_NO_FIRE","MYAREA",0)
+	!Global("WATCHING_PLAYER","MYAREA",0)
+	Global("52Morohem_Master","GLOBAL",5)
+	//!//CheckDoorFlags(Myself,DOORLOCKED)
+	Global("AR5202_SWITCH7_locked","MYAREA",0)
+	OpenState(Myself,TRUE)
+THEN
+	RESPONSE #100
+		Lock(Myself)
+		SetGlobal("AR5202_SWITCH7_locked","MYAREA",1)
+		//ForceSpellPoint([2440.1255],WIZARD_AGANNAZAR_SCORCHER)
+		ForceSpellPointRES("IWWI217",[2440.1255])
+END
+
+IF
+	OR(2)
+		//CheckDoorFlags(Myself,DOORLOCKED)
+		!Global("AR5202_SWITCH7_locked","MYAREA",0)
+		!Global("CHAMBER_5_NO_FIRE","MYAREA",0)
+THEN
+	RESPONSE #100
+		NoAction()
+END
+

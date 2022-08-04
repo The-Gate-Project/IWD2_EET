@@ -1,0 +1,135 @@
+IF
+  Global("CH_SPEC_2001","MYAREA",0)
+THEN
+  RESPONSE #100
+    ChangeSpecifics(Myself,51)
+    SetGlobal("CH_SPEC_2001","MYAREA",1)
+    ChangeAIScript("",OVERRIDE)
+END
+
+IF
+  Global("CH_SPEC_2001","MYAREA",1)
+THEN
+  RESPONSE #100
+    ChangeSpecifics(Myself,52)
+    SetGlobal("CH_SPEC_2001","MYAREA",2)
+    ChangeAIScript("",OVERRIDE)
+END
+
+IF
+  Global("CH_SPEC_2001","MYAREA",2)
+THEN
+  RESPONSE #100
+    ChangeSpecifics(Myself,53)
+    SetGlobal("CH_SPEC_2001","MYAREA",3)
+    ChangeAIScript("",OVERRIDE)
+END
+
+IF
+  Global("CH_SPEC_2001","MYAREA",3)
+THEN
+  RESPONSE #100
+    ChangeSpecifics(Myself,54)
+    SetGlobal("CH_SPEC_2001","MYAREA",4)
+    ChangeAIScript("",OVERRIDE)
+END
+
+IF
+  Global("CH_SPEC_2001","MYAREA",4)
+THEN
+  RESPONSE #100
+    ChangeSpecifics(Myself,55)
+    SetGlobal("CH_SPEC_2001","MYAREA",5)
+    ChangeAIScript("",OVERRIDE)
+END
+
+IF
+  Global("CH_SPEC_2001","MYAREA",5)
+THEN
+  RESPONSE #100
+    ChangeSpecifics(Myself,56)
+    SetGlobal("CH_SPEC_2001","MYAREA",6)
+    ChangeAIScript("",OVERRIDE)
+END
+
+IF
+  Global("CH_SPEC_2001","MYAREA",6)
+THEN
+  RESPONSE #100
+    ChangeSpecifics(Myself,57)
+    SetGlobal("CH_SPEC_2001","MYAREA",7)
+    ChangeAIScript("",OVERRIDE)
+END
+
+IF
+  Global("CH_SPEC_2001","MYAREA",7)
+THEN
+  RESPONSE #100
+    ChangeSpecifics(Myself,58)
+    SetGlobal("CH_SPEC_2001","MYAREA",8)
+    ChangeAIScript("",OVERRIDE)
+END
+
+IF
+  Global("CH_SPEC_2001","MYAREA",8)
+THEN
+  RESPONSE #100
+    ChangeSpecifics(Myself,59)
+    SetGlobal("CH_SPEC_2001","MYAREA",9)
+    ChangeAIScript("",OVERRIDE)
+END
+
+IF
+  Global("CH_SPEC_2001","MYAREA",9)
+THEN
+  RESPONSE #100
+    ChangeSpecifics(Myself,60)
+    SetGlobal("CH_SPEC_2001","MYAREA",10)
+    ChangeAIScript("",OVERRIDE)
+END
+
+IF
+  Global("CH_SPEC_2001","MYAREA",10)
+THEN
+  RESPONSE #100
+    ChangeSpecifics(Myself,61)
+    SetGlobal("CH_SPEC_2001","MYAREA",11)
+    ChangeAIScript("",OVERRIDE)
+END
+
+IF
+  Global("CH_SPEC_2001","MYAREA",11)
+THEN
+  RESPONSE #100
+    ChangeSpecifics(Myself,62)
+    SetGlobal("CH_SPEC_2001","MYAREA",12)
+    ChangeAIScript("",OVERRIDE)
+END
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

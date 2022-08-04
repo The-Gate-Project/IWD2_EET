@@ -1,0 +1,167 @@
+PRINT ~Installing area music...~
+SILENT
+
+OUTER_SPRINT ~MUS_FOLDER~ ~%MOD_FOLDER%/musics~
+///////////////////////////////////////////
+ADD_MUSIC ~IWTHM~  ~%MUS_FOLDER%/IWTHM.mus~
+MKDIR ~music/IWTHM~
+COPY  ~%MUS_FOLDER%/IWTHM~  ~music/IWTHM~
+///////////////////////////////////////////
+ADD_MUSIC ~IW1000~ ~%MUS_FOLDER%/IW1000.mus~
+MKDIR ~music/IW1000~
+COPY  ~%MUS_FOLDER%/IW1000~ ~music/IW1000~
+///////////////////////////////////////////
+ADD_MUSIC ~IW1100~ ~%MUS_FOLDER%/IW1100.mus~
+MKDIR ~music/IW1100~
+COPY  ~%MUS_FOLDER%/IW1100~ ~music/IW1100~
+///////////////////////////////////////////
+ADD_MUSIC ~IW1200~ ~%MUS_FOLDER%/IW1200.mus~
+MKDIR ~music/IW1200~
+COPY  ~%MUS_FOLDER%/IW1200~ ~music/IW1200~
+///////////////////////////////////////////
+ADD_MUSIC ~IW2102~ ~%MUS_FOLDER%/IW2102.mus~
+MKDIR ~music/IW2102~
+COPY  ~%MUS_FOLDER%/IW2102~ ~music/IW2102~
+///////////////////////////////////////////
+ADD_MUSIC ~IW4101~ ~%MUS_FOLDER%/IW4101.mus~
+MKDIR ~music/IW4101~
+COPY  ~%MUS_FOLDER%/IW4101~ ~music/IW4101~
+///////////////////////////////////////////
+ADD_MUSIC ~IW5001~ ~%MUS_FOLDER%/IW5001.mus~
+MKDIR ~music/IW5001~
+COPY  ~%MUS_FOLDER%/IW5001~ ~music/IW5001~
+///////////////////////////////////////////
+ADD_MUSIC ~IW5003~ ~%MUS_FOLDER%/IW5003.mus~
+MKDIR ~music/IW5003~
+COPY  ~%MUS_FOLDER%/IW5003~ ~music/IW5003~
+///////////////////////////////////////////
+ADD_MUSIC ~IW5101~ ~%MUS_FOLDER%/IW5101.mus~
+MKDIR ~music/IW5101~
+COPY  ~%MUS_FOLDER%/IW5101~ ~music/IW5101~
+///////////////////////////////////////////
+ADD_MUSIC ~IW5201~ ~%MUS_FOLDER%/IW5201.mus~
+MKDIR ~music/IW5201~
+COPY  ~%MUS_FOLDER%/IW5201~ ~music/IW5201~
+///////////////////////////////////////////
+ADD_MUSIC ~IW6000~ ~%MUS_FOLDER%/IW6000.mus~
+MKDIR ~music/IW6000~
+COPY  ~%MUS_FOLDER%/IW6000~ ~music/IW6000~
+///////////////////////////////////////////
+ADD_MUSIC ~IW6050~ ~%MUS_FOLDER%/IW6050.mus~
+MKDIR ~music/IW6050~
+COPY  ~%MUS_FOLDER%/IW6050~ ~music/IW6050~
+///////////////////////////////////////////
+ADD_MUSIC ~IW6100~ ~%MUS_FOLDER%/IW6100.mus~
+MKDIR ~music/IW6100~
+COPY  ~%MUS_FOLDER%/IW6100~ ~music/IW6100~
+///////////////////////////////////////////
+ADD_MUSIC ~IW6301~ ~%MUS_FOLDER%/IW6301.mus~
+MKDIR ~music/IW6301~
+COPY  ~%MUS_FOLDER%/IW6301~ ~music/IW6301~
+///////////////////////////////////////////
+ADD_MUSIC ~IW6050~ ~%MUS_FOLDER%/IW6050.mus~
+MKDIR ~music/IW6050~
+COPY  ~%MUS_FOLDER%/IW6050~ ~music/IW6050~
+///////////////////////////////////////////
+ADD_MUSIC ~WA3101~ ~%MUS_FOLDER%/WA3101.mus~
+MKDIR ~music/WA3101~
+COPY  ~%MUS_FOLDER%/WA3101~ ~music/WA3101~
+///////////////////////////////////////////
+ADD_MUSIC ~WA5002~ ~%MUS_FOLDER%/WA5002.mus~
+MKDIR ~music/WA5002~
+COPY  ~%MUS_FOLDER%/WA5002~ ~music/WA5002~
+///////////////////////////////////////////
+ADD_MUSIC ~WA5005~ ~%MUS_FOLDER%/WA5005.mus~
+MKDIR ~music/WA5005~
+COPY  ~%MUS_FOLDER%/WA5005~ ~music/WA5005~
+///////////////////////////////////////////
+ADD_MUSIC ~WA5102~ ~%MUS_FOLDER%/WA5102.mus~
+MKDIR ~music/WA5102~
+COPY  ~%MUS_FOLDER%/WA5102~ ~music/WA5102~
+///////////////////////////////////////////
+ADD_MUSIC ~IWBTLE1~ ~%MUS_FOLDER%/W1.mus~
+MKDIR ~music/W1~
+COPY  ~%MUS_FOLDER%/W1~ ~music/W1~
+///////////////////////////////////////////
+ADD_MUSIC ~IWBTLE2~ ~%MUS_FOLDER%/W2.mus~
+MKDIR ~music/W2~
+COPY  ~%MUS_FOLDER%/W2~ ~music/W2~
+///////////////////////////////////////////
+ADD_MUSIC ~IWBTLE3~ ~%MUS_FOLDER%/W3.mus~
+MKDIR ~music/W3~
+COPY  ~%MUS_FOLDER%/W3~ ~music/W3~
+///////////////////////////////////////////
+ADD_MUSIC ~IWBTLE4~ ~%MUS_FOLDER%/W4.mus~
+MKDIR ~music/W4~
+COPY  ~%MUS_FOLDER%/W4~ ~music/W4~
+///////////////////////////////////////////
+ADD_MUSIC ~IWBTLE5~ ~%MUS_FOLDER%/W5.mus~
+MKDIR ~music/W5~
+COPY  ~%MUS_FOLDER%/W5~ ~music/W5~
+///////////////////////////////////////////
+ADD_MUSIC ~IWBTLE6~ ~%MUS_FOLDER%/W6.mus~
+MKDIR ~music/W6~
+COPY  ~%MUS_FOLDER%/W6~ ~music/W6~
+///////////////////////////////////////////
+ADD_MUSIC ~IWBTLE7~ ~%MUS_FOLDER%/W7.mus~
+MKDIR ~music/W7~
+COPY  ~%MUS_FOLDER%/W7~ ~music/W7~
+///////////////////////////////////////////
+ADD_MUSIC ~IW7~ ~%MUS_FOLDER%/IW7.mus~
+MKDIR ~music/IW7~
+COPY  ~%MUS_FOLDER%/IW7~ ~music/IW7~
+
+
+
+
+APPEND ~songlist.ids~ ~%IWTHM% IWTHM
+%IW1000% IW1000
+%IW1100% IW1100
+%IW1200% IW1200
+%IW2102% IW2102
+%IW4101% IW4101
+%IW5001% IW5001
+%IW5003% IW5003
+%IW5101% IW5101
+%IW5201% IW5201
+%IW6000% IW6000
+%IW6050% IW6050
+%IW6100% IW6100
+%IW6301% IW6301
+%IW6050% IW6050
+%WA3101% WA3101
+%WA5002% WA5002
+%WA5005% WA5005
+%WA5102% WA5102
+%IWBTLE1% IWBTLE1
+%IWBTLE2% IWBTLE2
+%IWBTLE3% IWBTLE3
+%IWBTLE4% IWBTLE4
+%IWBTLE5% IWBTLE5
+%IWBTLE6% IWBTLE6
+%IWBTLE7% IWBTLE7
+%IW7% IW7~
+
+
+
+
+VERBOSE
+PRINT ~Area music installation complete...~
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

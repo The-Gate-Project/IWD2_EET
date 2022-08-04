@@ -1,0 +1,30 @@
+IF
+	//CreatureHidden(Myself)
+	Global("CreatureHidden","LOCALS",1)
+	Global("KOOL_AID_MAN_SPAWN","GLOBAL",1)
+	//IsHeartOfFuryModeOn()
+	OR(2)
+		NightmareModeOn()
+		StoryModeOn()
+THEN
+	RESPONSE #100
+		GiveItemCreate("z0ciabi1",Myself,1,1,1)
+		SetGlobal("KOOL_AID_MAN_SPAWN","GLOBAL",2)
+		XEquipItem("z0ciabi1",Myself,SLOT_RING_LEFT,EQUIP)
+		//HideCreature(Myself,FALSE)
+		ApplySpellRES("idinvis9",Myself)
+		DisplayStringHead(Myself,@20830)
+END
+
+IF
+	//CreatureHidden(Myself)
+	Global("CreatureHidden","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("FACTORY_NO_SPAWN","MYAREA",0)
+		FaceObject(NearestEnemyOf(Myself))
+		//HideCreature(Myself,FALSE)
+		ApplySpellRES("idinvis9",Myself)
+		Continue()
+END
+

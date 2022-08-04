@@ -1,0 +1,1156 @@
+PRINT ~Installing spells...~
+SILENT
+
+
+/* NEW_SPELLS */
+COPY ~%MOD_FOLDER%/spl/IDRINVUL.spl~ ~override~
+	LPF ALTER_EFFECT INT_VAR match_opcode=321 target=2 END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 insert_point = 1 target = 2 STR_VAR resource = "IDINVULS" END
+
+COPY ~%MOD_FOLDER%/spl/IDINVUL.spl~ ~override~
+	WRITE_LONG 0x10f2 ~%petrification%~
+	WRITE_LONG 0x19c2 ~%INVULNERABLE_IWD%~
+	/*READ_LONG 0x1122 petrif
+	BUT_ONLY_IF_IT_CHANGES
+
+COPY ~%MOD_FOLDER%/spl/IDINVUL.spl~ ~override~
+	WRITE_LONG 0x1122 petrif
+	WRITE_LONG 0x19f2 ~%INVULNERABLE_IWD%~*/
+	LPF ALTER_EFFECT INT_VAR match_opcode="-1" target=2 END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 insert_point = 1 target = 2 STR_VAR resource = "IDINVULS" END
+COPY ~override/IDINVUL.spl~ ~override/IDINVULS.spl~
+	LPF DELETE_SPELL_EFFECT INT_VAR opcode_to_delete = 32 END
+	LPF DELETE_SPELL_EFFECT INT_VAR opcode_to_delete = 98 END
+	LPF DELETE_SPELL_EFFECT INT_VAR opcode_to_delete = 232 END
+
+COPY ~%MOD_FOLDER%/spl/spell.spl~  ~override/IWSHP15.spl~
+	LPF ADD_SPELL_EFFECT INT_VAR opcode=17 power=1 target=1 timing=1 parameter1=15 parameter2=1 END
+
+COPY ~%MOD_FOLDER%/spl/spell.spl~  ~override/IWCPSET.spl~
+	LPF ADD_SPELL_EFFECT INT_VAR opcode=328 power=1 target=2 timing=9 parameter2=%CRITICAL_PATH% special=1 END
+
+COPY ~%MOD_FOLDER%/spl/spell.spl~  ~override/IWCPREM.spl~
+	LPF ADD_SPELL_EFFECT INT_VAR opcode=321 power=1 target=2 timing=0 STR_VAR resource="IWCPSET" END
+
+COPY ~%MOD_FOLDER%/spl/spell.spl~  ~override/IWPERAI.spl~
+	LPF ADD_SPELL_EFFECT INT_VAR opcode=293 power=1 target=2 timing=9 parameter2=1 END
+
+COPY ~%MOD_FOLDER%/spl/spell.spl~  ~override/IWDASH.spl~
+	LPF ADD_SPELL_EFFECT INT_VAR opcode=176 power=1 target=2 timing=1 parameter1=150 parameter2=2 END 
+
+COPY ~%MOD_FOLDER%/spl/spell.spl~  ~override/IDINVIS2.spl~
+	LPF ADD_SPELL_EFFECT INT_VAR opcode=20 power=1 target=2 duration=2 END 
+
+COPY ~%MOD_FOLDER%/spl/spell.spl~  ~override/IWGSLEP.spl~
+	LPF ADD_SPELL_EFFECT INT_VAR opcode=272 power=1 target=2 timing=1 parameter1=3 parameter2=3 STR_VAR resource="IWGSLEP" END 
+	LPF ADD_SPELL_EFFECT INT_VAR opcode=309 power=1 target=2 timing=1 parameter1=16 STR_VAR resource="Sequence" END 
+
+COPY ~%MOD_FOLDER%/spl/spell.spl~  ~override/IWGNSLP.spl~
+	LPF ADD_SPELL_EFFECT INT_VAR opcode=321 power=1 target=2 timing=0 STR_VAR resource="IWGSLEP" END 
+	LPF ADD_SPELL_EFFECT INT_VAR opcode=309 power=1 target=2 timing=1 parameter1=1 STR_VAR resource="Sequence" END 
+
+COPY ~%MOD_FOLDER%/spl/spell.spl~  ~override/IWSHP0.spl~
+	LPF ADD_SPELL_EFFECT INT_VAR opcode=17 power=1 target=2 timing=1 parameter1=0 parameter2=1 END 
+
+COPY_EXISTING ~%MOD_FOLDER%/spl/spell.spl~ ~override/IDINVIS6.spl~
+	LPF ADD_SPELL_EFFECT INT_VAR opcode=342 timing=9 target=2 parameter2=4 END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode=315 timing=9 target=2 parameter2=1 END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode=287 timing=9 target=2 END
+	//LPF ADD_SPELL_EFFECT INT_VAR opcode=300 timing=9 target=2 parameter2=1 END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode=328 target=2 timing=9 parameter2=%CRE_INVISIBLE_IWD% special=1 END
+
+COPY ~%MOD_FOLDER%/spl/spell.spl~  ~override/IDINVIS7.spl~
+	LPF ADD_SPELL_EFFECT INT_VAR opcode=321 power=1 target=2 timing=0 duration=1 STR_VAR resource="IDINVIS6" END 
+
+COPY ~%MOD_FOLDER%/spl/spell.spl~  ~override/IWCHUNK.spl~
+	LPF ADD_SPELL_EFFECT INT_VAR opcode=174 power=1 target=2 timing=1 STR_VAR resource="EFF_M26" END 
+	LPF ADD_SPELL_EFFECT INT_VAR opcode=141 power=1 target=2 timing=1 parameter2=37 END 
+	LPF ADD_SPELL_EFFECT INT_VAR opcode=13 power=1 target=2 timing=1 parameter1=1 parameter2=8 END 
+
+COPY ~%MOD_FOLDER%/spl/spell.spl~  ~override/IDINVIS8.spl~
+	LPF ADD_SPELL_EFFECT INT_VAR opcode=342 timing=9 target=2 parameter2=4 END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode=20  power=1 target=2 timing=9 END 
+	LPF ADD_SPELL_EFFECT INT_VAR opcode=315 power=1 target=2 timing=9 parameter1=1 END 
+	LPF ADD_SPELL_EFFECT INT_VAR opcode=287 power=1 target=2 timing=9 END 
+	LPF ADD_SPELL_EFFECT INT_VAR opcode=177 power=1 target=2 timing=1 parameter2=2 STR_VAR resource="IDINVIS8" END 
+
+COPY ~%MOD_FOLDER%/spl/spell.spl~  ~override/IDINVIS9.spl~
+	LPF ADD_SPELL_EFFECT INT_VAR opcode=321 power=1 target=2 timing=0 STR_VAR resource="IDINVIS8" END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode=47  power=1 target=2 timing=0 END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode=177 power=1 target=2 timing=0 parameter2=2 STR_VAR resource="IDINVIS9" END
+
+/* COPY ~%MOD_FOLDER%/spl/IDINVUL.spl~  ~override/IDINVS10.spl~
+	WRITE_LONG 0x1122 petrif
+	WRITE_LONG 0x19f2 ~%INVULNERABLE_IWD%~
+	LPF ADD_SPELL_EFFECT INT_VAR opcode=315 power=1 target=1 timing=9 parameter1=1 END 
+	LPF ADD_SPELL_EFFECT INT_VAR opcode=287 power=1 target=1 timing=9 END 
+	LPF ADD_SPELL_EFFECT INT_VAR opcode=300 power=1 target=1 timing=9 parameter2=2 END 
+	LPF ADD_SPELL_EFFECT INT_VAR opcode=342 power=1 target=1 timing=9 parameter1=0 parameter2=4 END 
+	LPF ADD_SPELL_EFFECT INT_VAR opcode=177 power=1 target=1 timing=1 parameter2=2 STR_VAR resource="IDINVIS8" END 
+	LPF ADD_SPELL_EFFECT INT_VAR insert_point=1 opcode=321 power=1 target=1 timing=1 STR_VAR resource="IDINVS10" END
+
+COPY ~%MOD_FOLDER%/spl/spell.spl~  ~override/IDINVS11.spl~
+	LPF ADD_SPELL_EFFECT INT_VAR opcode=321 power=1 target=1 timing=1 STR_VAR resource="IDINVS10" END 
+	LPF ADD_SPELL_EFFECT INT_VAR opcode=177 power=1 target=1 timing=1 parameter2=2 STR_VAR resource="IDINVIS9" END  */
+
+COPY ~%MOD_FOLDER%/spl/spell.spl~  ~override/IDUNSEL.spl~
+	LPF ADD_SPELL_EFFECT INT_VAR opcode=365 power=1 target=2 timing=1 END 
+
+COPY ~%MOD_FOLDER%/spl/spell.spl~  ~override/IDRUNSEL.spl~
+	LPF ADD_SPELL_EFFECT INT_VAR opcode=321 power=1 target=2 timing=0 STR_VAR resource="IDUNSEL" END 
+
+COPY ~%MOD_FOLDER%/spl/spell.spl~  ~override/IWSHP1.spl~
+	LPF ADD_SPELL_EFFECT INT_VAR opcode=17 power=1 target=2 timing=1 parameter1=1 parameter2=1 END 
+
+ADD_PROJECTILE ~%MOD_FOLDER%/spl/CALLLIH.pro~ ~Call Lightning~
+COPY ~%MOD_FOLDER%/spl/spell.spl~  ~override/IDCALLIH.spl~
+	WRITE_BYTE  0x7e 4
+	WRITE_SHORT 0x98 ~%CALLLIH%~
+
+COPY ~%MOD_FOLDER%/spl/spell.spl~  ~override/IWSHP10.spl~
+	LPF ADD_SPELL_EFFECT INT_VAR opcode=17 power=1 target=2 timing=1 parameter1=10 parameter2=1 END 
+
+OUTER_FOR ( i = 25 ; i < 101 ; i = i + 25 ) BEGIN
+	COPY ~%MOD_FOLDER%/spl/spell.spl~  ~override/IWSHP%i%.spl~
+		LPF ADD_SPELL_EFFECT INT_VAR opcode=17 power=1 target=2 timing=1 parameter1=%i% parameter2=1 END 
+END
+
+COPY ~%MOD_FOLDER%/spl/spell.spl~  ~override/50HIDEAH.spl~
+	LPF ADD_SPELL_EFFECT INT_VAR opcode=321 target=1 timing=0 STR_VAR resource=50HIDEAH END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode=120 target=1 parameter2=2 timing=0 duration=6 resist_dispel=2 probability1=25 END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode=120 target=1 parameter1=1 timing=0 duration=6 resist_dispel=2 probability1=25 END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode=120 target=1 parameter2=2 timing=0 duration=12 resist_dispel=2 probability1=39 probability2=26 END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode=120 target=1 parameter1=1 timing=0 duration=12 resist_dispel=2 probability1=39 probability2=26 END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode=120 target=1 parameter2=2 timing=0 duration=18 resist_dispel=2 probability1=50 probability2=40 END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode=120 target=1 parameter1=1 timing=0 duration=18 resist_dispel=2 probability1=50 probability2=40 END
+
+COPY ~override/IDCALLIH.spl~ ~override/IDFSTRIK.spl~
+	WRITE_SHORT  0x98 (IDS_OF_SYMBOL(~projectl~ ~FSTRIKH~) + 1)
+
+COPY_EXISTING ~FSTRIKH.pro~ ~override/SUNSCOH.pro~
+	WRITE_ASCII 0x104 ~SUNSCOH~ (8)
+ADD_PROJECTILE ~override/SUNSCOH.pro~ ~Sunscorch~
+COPY ~override/IDCALLIH.spl~ ~override/IDSUNSCH.spl~
+	WRITE_SHORT  0x98 ~%SUNSCOH%~
+
+COPY ~%MOD_FOLDER%/spl/spell.spl~  ~override/IWFTIW1.spl~
+	SAY 0xc @36330
+	LPF ADD_SPELL_EFFECT INT_VAR opcode=33 power=1 target=1 timing=9 parameter1=1 END 
+
+COPY ~%MOD_FOLDER%/spl/spell.spl~  ~override/IWFTGF1.spl~
+	SAY 0xc @36324
+	LPF ADD_SPELL_EFFECT INT_VAR opcode=36 power=1 target=1 timing=9 parameter1=1 END 
+
+COPY ~%MOD_FOLDER%/spl/spell.spl~  ~override/IWFTLR1.spl~
+	SAY 0xc @36324
+	LPF ADD_SPELL_EFFECT INT_VAR opcode=34 power=1 target=1 timing=9 parameter1=1 END 
+
+//BLOCK Set HP % Spells
+//BLOCK WORG_RAIDERS
+/*//30GOBWR2 - 78
+//30GOBWRC - 78
+//30GOBWR  - 71
+//12VGHOTA - 78
+//30GOBWR1 - 71
+//30GOBWRS - 71 */
+//00WORG25.BCS, 00WORG50.BCS, 00WORG70.BCS
+COPY ~%MOD_FOLDER%/spl/spell.spl~  ~override/IWHPWRG.spl~
+//BLOCK 
+	SET val = 74 * 80 / 100
+	LPF ADD_SPELL_EFFECT INT_VAR opcode=17 power=1 target=2 timing=1 probability1=100 probability2=81 parameter1=val parameter2=1 END 
+	SET val = 74 * 70 / 100
+	LPF ADD_SPELL_EFFECT INT_VAR opcode=17 power=1 target=2 timing=1 probability1=80 probability2=61 parameter1=val parameter2=1 END
+	SET val = 74 * 60 / 100
+	LPF ADD_SPELL_EFFECT INT_VAR opcode=17 power=1 target=2 timing=1 probability1=60 probability2=41 parameter1=val parameter2=1 END
+	SET val = 74 * 50 / 100
+	LPF ADD_SPELL_EFFECT INT_VAR opcode=17 power=1 target=2 timing=1 probability1=40 probability2=21 parameter1=val parameter2=1 END
+	SET val = 74 * 40 / 100
+	LPF ADD_SPELL_EFFECT INT_VAR opcode=17 power=1 target=2 timing=1 probability1=20 probability2=0 parameter1=val parameter2=1 END
+//BLOCKEND
+COPY ~%MOD_FOLDER%/spl/spell.spl~  ~override/IWHP50P.spl~
+	LPF ADD_SPELL_EFFECT INT_VAR opcode=17 power=1 target=2 timing=1 parameter1=42 parameter2=1 END 
+COPY_EXISTING ~00WORG25.BCS~ ~override~
+              ~00WORG50.BCS~ ~override~
+              ~00WORG75.BCS~ ~override~
+	DECOMPILE_AND_PATCH BEGIN
+		REPLACE_TEXTUALLY ~ActionOverride("00WorgRA",ApplySpellRES("IWHP50P",Myself))~ ~~
+	END
+//BLOCKEND
+
+//51DRAWYV
+OUTER_FOR ( i = 5 ; i < 101 ; i = i + 5 ) BEGIN
+	COPY ~%MOD_FOLDER%/spl/spell.spl~  ~override/DRAWY%i%.spl~
+		SET val = 180 * i / 100
+		LPF ADD_SPELL_EFFECT INT_VAR opcode=17 power=1 target=2 timing=1 parameter1=val parameter2=1 END 
+END
+COPY_EXISTING ~51DRAWYV.BCS~ ~override~
+	DECOMPILE_AND_PATCH BEGIN
+		FOR ( i = 5 ; i < 101 ; i = i + 5 ) BEGIN
+			REPLACE_TEXTUALLY ~ApplySpellRES("IDSHP%i%"~ ~ApplySpellRES("DRAWY%i%"~
+		END
+	END
+//5001AGOG
+OUTER_FOR ( i = 5 ; i < 101 ; i = i + 5 ) BEGIN
+	COPY ~%MOD_FOLDER%/spl/spell.spl~  ~override/AGOG%i%.spl~
+		SET val = 101 * i / 100
+		LPF ADD_SPELL_EFFECT INT_VAR opcode=17 power=1 target=2 timing=1 parameter1=val parameter2=1 END 
+END
+COPY_EXISTING ~5001AGOG.BCS~ ~override~
+	DECOMPILE_AND_PATCH BEGIN
+		FOR ( i = 5 ; i < 101 ; i = i + 5 ) BEGIN
+			REPLACE_TEXTUALLY ~ApplySpellRES("IDSHP%i%"~ ~ApplySpellRES("AGOG%i%"~
+		END
+	END
+//63ISAIR2
+//63MADAE2
+OUTER_FOR ( i = 35 ; i < 101 ; i = i + 5 ) BEGIN
+	COPY ~%MOD_FOLDER%/spl/spell.spl~  ~override/ISMAD%i%.spl~
+		SET val = 280 * i / 100
+		LPF ADD_SPELL_EFFECT INT_VAR opcode=17 power=1 target=2 timing=1 parameter1=val parameter2=1 END 
+END
+COPY_EXISTING ~63ISAIR2.BCS~ ~override~
+              ~63MADAE2.BCS~ ~override~
+	DECOMPILE_AND_PATCH BEGIN
+		FOR ( i = 35 ; i < 101 ; i = i + 5 ) BEGIN
+			REPLACE_TEXTUALLY ~ApplySpellRES("IDSHP%i%"~ ~ApplySpellRES("ISMAD%i%"~
+		END
+	END
+//53GOLIMX
+COPY_EXISTING ~53GOLIMX.BCS~ ~override~
+	DECOMPILE_AND_PATCH BEGIN
+		REPLACE_TEXTUALLY ~ApplySpellRES("IDSHP100",Myself)~ ~ApplySpell(Myself,RESTORE_FULL_HEALTH)~
+	END
+//00OJDIV0 - HP = 91
+COPY ~%MOD_FOLDER%/spl/spell.spl~  ~override/OJDIV01.spl~
+	SET prob2 = 0
+	SET val = 0
+	SET delta = 100 / 15
+	SET minus = 0 - 1
+	FOR ( i = 1 ; i < 99 ; ++i ) BEGIN
+		SET prob1 = prob2 + delta
+		SET val = ( i * 3 ) * minus
+		PATCH_IF ( prob1 > 100 ) BEGIN SET prob1 = 100 SET i = 100 END
+		LPF ADD_SPELL_EFFECT INT_VAR opcode=17 power=1 target=2 timing=1 probability1=prob1 probability2=prob2 parameter1=val END
+		SET prob2 = prob1 + 1
+	END
+COPY_EXISTING ~00OJDIV0.BCS~ ~override~
+	DECOMPILE_AND_PATCH BEGIN
+		REPLACE_TEXTUALLY ~ApplySpellRES("IDSHP50",Myself)~ ~ApplySpellRES("OJDIV01",Myself)~
+		REPLACE_TEXTUALLY ~ApplySpellRES("IDSHPX1",Myself)~ ~ApplySpellRES("OJDIV01",Myself)~
+	END
+
+//52C7MONK - 20.25.30.40.50% - IDSHPxxM - HP = 101
+OUTER_SET zzz = 20
+OUTER_WHILE ( zzz < 51 ) BEGIN
+	COPY ~%MOD_FOLDER%/spl/spell.spl~  ~override/IDSHP%zzz%M.spl~
+		SET val = 101 * zzz / 100
+		LPF ADD_SPELL_EFFECT INT_VAR opcode=17 power=1 target=2 timing=1 parameter1=100 parameter2=2 END 
+		LPF ADD_SPELL_EFFECT INT_VAR opcode=17 power=1 target=2 timing=1 parameter1=val parameter2=1 END
+	ACTION_IF ( zzz < 30 ) BEGIN OUTER_SET zzz = zzz + 5 END ELSE BEGIN OUTER_SET zzz = zzz + 10 END
+END
+//BLOCKEND
+
+COPY_EXISTING ~FSTRIKH.pro~ ~override/SUNRAYX.pro~
+	WRITE_ASCII 0x104 ~SUNRAYX~ (8)
+	WRITE_LONG  0x2c  131208
+ADD_PROJECTILE ~override/SUNRAYX.pro~ ~Sunray~
+COPY ~override/IDCALLIH.spl~ ~override/IWSUNRX.spl~
+	WRITE_SHORT  0x98 ~%SUNRAYX%~
+
+COPY ~%MOD_FOLDER%/spl/IWPR609.SPL~ ~override~
+	SAY 0x08 @2927
+
+COPY ~%MOD_FOLDER%/spl/IWLUCKS.SPL~ ~override~
+
+COPY_EXISTING ~idin971.spl~ ~override/iwin971.spl~
+	WRITE_LONG 0x116 5
+	WRITE_LONG 0x146 3
+	WRITE_ASCII 0xde ~iwin971~ (8)
+
+ADD_PROJECTILE ~%MOD_FOLDER%/spl/boulder.pro~ ~Boulder~
+COPY ~%MOD_FOLDER%/spl/IWWI098.SPL~ ~override~
+	WRITE_SHORT 0x98 ~%boulder%~
+
+COPY ~%MOD_FOLDER%/spl/IWWI097.SPL~ ~override~
+	SAY 0x08 @20671
+
+ADD_PROJECTILE ~%MOD_FOLDER%/spl/lightbnb.pro~ ~Half-dragon lightning breath~
+COPY ~%MOD_FOLDER%/spl/IWIN224.SPL~ ~override~
+	SAY 0x08 @21463
+	WRITE_SHORT 0x98 ~%lightbnb%~
+
+COPY_EXISTING ~idpr517.spl~ ~override/iwpr517.spl~
+	WRITE_LONG  0x18e 3
+	WRITE_LONG  0x1be 25
+	WRITE_LONG  0x1ee 21
+	WRITE_LONG  0x21e 140
+	WRITE_ASCII 0xae  ~iwpr517~ (8)
+	WRITE_ASCII 0x34e ~iwpr517~ (8)
+	LPF ADD_SPELL_EFFECT INT_VAR opcode=328 power=1 target=2 duration=90 parameter2=39 special=1 END 
+
+COPY_EXISTING ~idpr517.spl~ ~override~
+	LPF ADD_SPELL_EFFECT INT_VAR opcode=328 power=1 target=2 duration=90 parameter2=39 special=1 END 
+
+/* EXISTING_SPELLS */
+
+COPY ~%MOD_FOLDER%/spl/iwWI810.spl~ ~override~
+	SAY 0x08 @18650
+
+// ADD_PROJECTILE ~%MOD_FOLDER%/spl/gate.pro~ ~Gate IWD~
+COPY ~%MOD_FOLDER%/spl/IWIN228.spl~ ~override~
+	SAY 0x08 @21504
+	//WRITE_SHORT 0x98 ~%gate%~
+	WRITE_SHORT 0x98 1
+	SAY 0xfe @21505
+
+COPY_EXISTING ~IDPR613.SPL~ ~override/IWPR613.SPL~
+	WRITE_LONG 0x1a6 2
+	WRITE_LONG 0x1aa 8
+	WRITE_LONG 0x1d6 2
+	WRITE_LONG 0x1da 8
+	WRITE_ASCII 0xae  ~IWPR613~ (8)
+	WRITE_ASCII 0xde  ~IWPR613~ (8)
+	WRITE_ASCII 0x10e ~IWPR613~ (8)
+	WRITE_ASCII 0x13e ~IWPR613~ (8)
+	WRITE_ASCII 0x28e ~IWPR613~ (8)
+
+COPY_EXISTING ~IDWI417.SPL~ ~override~
+	WRITE_BYTE  0x1c6 4
+COPY_EXISTING ~IDWI417.SPL~ ~override/IWWI417.SPL~
+	WRITE_ASCII 0x10e ~IWWI417~ (8)
+	WRITE_ASCII 0x13e ~IWWI417X~ (8)
+	WRITE_ASCII 0xae  ~IWWI417~ (8)
+	WRITE_ASCII 0xde  ~IWWI417~ (8)
+	WRITE_ASCII 0x1ce ~IWWI417~ (8)
+COPY_EXISTING ~IDWI417X.SPL~ ~override/IWWI417X.SPL~
+	WRITE_LONG  0xb6 3
+
+COPY_EXISTING ~IDWI318.SPL~ ~override/IWWI318.SPL~
+	WRITE_LONG 0x176 5
+	WRITE_ASCII 0xae ~IWWI318~ (8)
+
+COPY ~%MOD_FOLDER%/spl/IWWI087.spl~ ~override~
+	SAY 0x08 @2419
+	WRITE_LONG 0xd2 ~%IWAMSHEL%~
+
+COPY ~%MOD_FOLDER%/spl/IWWI094.spl~ ~override~
+	SAY 0xfe @28983
+
+COPY_EXISTING ~IDWI220.SPL~ ~override/IWWI220.SPL~
+	WRITE_LONG 0xea 8
+	WRITE_LONG 0x11a 8
+	WRITE_ASCII 0xae ~IWWI220~ (8)
+
+ADD_PROJECTILE ~%MOD_FOLDER%/spl/emotion.pro~ ~Emotion~
+COPY ~%MOD_FOLDER%/spl/IWWI420.spl~ ~override~
+	SAY 0x08 @1863
+	WRITE_SHORT 0x98 ~%emotion%~
+
+ADD_PROJECTILE ~%MOD_FOLDER%/spl/PIWWI122.PRO~ ~Ice Dagger Area~
+COPY ~%MOD_FOLDER%/spl/IWWI122.spl~ ~override~
+	SAY 0x08 @16865
+	WRITE_SHORT 0x98 (IDS_OF_SYMBOL (~projectl~ ~idpro251~) + 1)
+COPY ~%MOD_FOLDER%/spl/EFFIK.spl~ ~override~
+	WRITE_SHORT 0x98 ~%PIWWI122%~
+
+ADD_PROJECTILE ~%MOD_FOLDER%/spl/ffinger.PRO~ ~Frost Fingers IWD~
+COPY ~%MOD_FOLDER%/spl/IWPR117.spl~ ~override~
+	SAY 0x08 @16928
+	WRITE_SHORT 0x98 ~%ffinger%~
+
+COPY ~%MOD_FOLDER%/spl/IWWI093.spl~ ~override~
+	SAY 0xce @24195
+
+COPY_EXISTING ~IDIN996.SPL~ ~override/IWIN996.SPL~
+	WRITE_ASCII 0xae ~IWIN996X~ (8)
+COPY_EXISTING ~IDIN996X.SPL~ ~override/IWIN996X.SPL~
+	WRITE_ASCII 0xae ~IWIN996X~ (8)
+	WRITE_LONG  0xe6 2
+
+COPY_EXISTING ~IDIN994.SPL~ ~override/IWIN994.SPL~
+	WRITE_ASCII 0xae ~IWIN994X~ (8)
+COPY_EXISTING ~IDIN994X.SPL~ ~override/IWIN994X.SPL~
+	WRITE_ASCII 0xae ~IWIN994X~ (8)
+	WRITE_LONG  0x108 24
+	WRITE_LONG  0x168 24
+
+COPY_EXISTING ~IDIN992.SPL~ ~override/IWIN992.SPL~
+	WRITE_ASCII 0xae ~IWIN992~ (8)
+	WRITE_ASCII 0xde ~IWIN992~ (8)
+	WRITE_LONG  0x138 36
+
+COPY ~%MOD_FOLDER%/spl/IWWI421.spl~ ~override~
+	SAY 0x08 @1864
+	WRITE_SHORT 0x98 ~%emotion%~
+	WRITE_LONG  0x162 ~%IWHOPE%~
+
+COPY ~%MOD_FOLDER%/spl/IWWI090.spl~ ~override~
+	SAY 0x08 @25349
+
+ADD_PROJECTILE ~%MOD_FOLDER%/spl/dbreath.pro~ ~Dragon breath~
+COPY ~%MOD_FOLDER%/spl/IWIN241.spl~ ~override~
+	SAY 0x08 @27633
+	WRITE_SHORT 0x98 ~%dbreath%~
+
+COPY ~%MOD_FOLDER%/spl/IWIN255.spl~ ~override~
+	SAY 0x08 @33340
+
+COPY ~%MOD_FOLDER%/spl/IWIN257.spl~ ~override~
+	WRITE_SHORT 0x98 (IDS_OF_SYMBOL (~projectl~ ~idpro230~) + 1)
+
+COPY_EXISTING ~IDIN991.SPL~ ~override/IWIN991.SPL~
+	WRITE_LONG 0xb6 5
+	WRITE_LONG 0xe6 9
+	WRITE_LONG 0xea 6
+	WRITE_LONG 0x116 2
+	WRITE_LONG 0x11a 6
+	LPF ALTER_EFFECT INT_VAR match_opcode=318 STR_VAR resource=IWIN991 END
+
+COPY ~%MOD_FOLDER%/spl/IWIN274.spl~ ~override~
+	SAY 0x08 @39768
+
+COPY ~%MOD_FOLDER%/spl/IWIN249.spl~ ~override~
+	SAY 0x08 @30855
+
+ADD_PROJECTILE ~%MOD_FOLDER%/spl/DISPEL.pro~ ~Dispel magic IWD~
+COPY ~%MOD_FOLDER%/spl/IWIN199.spl~ ~override~
+	WRITE_SHORT 0x98 ~%DISPEL%~
+COPY ~%MOD_FOLDER%/spl/EFFDM1.spl~ ~override~
+	WRITE_SHORT 0x98 ~%DISPEL%~
+COPY ~%MOD_FOLDER%/spl/EFFDM2.spl~ ~override~
+	WRITE_SHORT 0x98 ~%DISPEL%~
+
+ADD_PROJECTILE ~%MOD_FOLDER%/spl/ELOOP.pro~ ~Gedlee's electric loop~
+COPY ~%MOD_FOLDER%/spl/IWWI227.spl~ ~override~
+	SAY 0x08 @18313
+	WRITE_SHORT 0x98 ~%ELOOP%~
+
+ADD_PROJECTILE ~%MOD_FOLDER%/spl/iwstchrg.pro~ ~Static charge~
+COPY ~%MOD_FOLDER%/spl/IWPR523.spl~ ~override~
+	SAY 0x08 @1902
+COPY ~%MOD_FOLDER%/spl/EFFSC.spl~ ~override~
+	SAY 0x08 @1902
+	WRITE_SHORT 0x98 ~%iwstchrg%~
+
+COPY_EXISTING ~IDIN990.SPL~ ~override/IWIN990.SPL~
+	WRITE_LONG 0xa8 36
+	WRITE_LONG 0x108 36
+	WRITE_LONG 0x138 45
+	WRITE_LONG 0x198 45
+	WRITE_LONG 0x1c8 45
+	WRITE_LONG 0x228 45
+
+ADD_PROJECTILE ~%MOD_FOLDER%/spl/acidfog.pro~ ~Acid fog~
+COPY ~%MOD_FOLDER%/spl/IWWI605.spl~ ~override~
+	SAY 0x08 @7621
+	WRITE_SHORT 0x98 ~%acidfog%~
+APPEND ~clearair.2da~ ~Acid_fog    %acidfog%~ UNLESS ~Acid_fog~
+ACTION_IF FILE_EXISTS_IN_GAME ~clearcld.2da~ BEGIN
+	APPEND ~clearcld.2da~ ~Acid_fog    %acidfog%~ UNLESS ~Acid_fog~
+END
+
+COPY_EXISTING ~IDIN165.SPL~ ~override/IWIN165.SPL~
+	WRITE_ASCII 0xae ~IWIN165X~ (8)
+COPY_EXISTING ~IDIN165X.SPL~ ~override/IWIN165X.SPL~
+	WRITE_LONG 0x198 45
+	WRITE_LONG 0x1c8 45
+	WRITE_ASCII 0xae  ~IWIN165X~ (8)
+	WRITE_ASCII 0xde  ~IWIN165X~ (8)
+	WRITE_ASCII 0x10e ~IWIN165X~ (8)
+	WRITE_ASCII 0x13e ~IWIN165X~ (8)
+	WRITE_ASCII 0x28e ~IWIN165X~ (8)
+
+COPY ~%MOD_FOLDER%/spl/IWIN226.spl~ ~override~
+	WRITE_SHORT 0x98 ~%iwstchrg%~
+
+ADD_PROJECTILE ~%MOD_FOLDER%/spl/GABREATH.pro~ ~Guardian acid breath~
+COPY ~%MOD_FOLDER%/spl/IWIN225.spl~ ~override~
+	SAY 0x08 @21456
+	WRITE_SHORT 0x98 ~%GABREATH%~
+
+COPY_EXISTING ~IDIN999.SPL~ ~override/IWIN999.SPL~
+	WRITE_ASCII 0xae ~WPSNZOM1~ (8)
+COPY_EXISTING ~WPSNZOM.itm~ ~override/WPSNZOM1.itm~
+	WRITE_BYTE  0x88 12
+	WRITE_LONG  0xae 2
+	WRITE_LONG  0xb8 12
+
+COPY_EXISTING ~IDIN998.SPL~ ~override/IWIN998.SPL~
+	WRITE_LONG 0xce 6
+
+COPY ~%MOD_FOLDER%/spl/IWIN231.spl~ ~override~
+	SAY 0x08 @25681
+
+COPY ~%MOD_FOLDER%/spl/IWIN251.spl~ ~override~
+	SAY 0x08 @30857
+
+ADD_PROJECTILE ~%MOD_FOLDER%/spl/trap.pro~ ~Acid/Fire trap~
+COPY ~%MOD_FOLDER%/spl/IWIN253.spl~ ~override~
+	SAY 0x08 @30858
+	WRITE_SHORT 0x98 ~%trap%~
+
+COPY ~%MOD_FOLDER%/spl/IWIN254.spl~ ~override~
+	SAY 0x08 @30859
+	WRITE_SHORT 0x98 ~%trap%~
+
+COPY ~%MOD_FOLDER%/spl/IWWI099.spl~ ~override~
+	WRITE_SHORT 0x98 (IDS_OF_SYMBOL(~projectl~ ~idpro271~) + 1)
+
+COPY_EXISTING ~IDIN182.SPL~ ~override/IWIN182.SPL~
+	WRITE_LONG 0xd8 24
+	WRITE_LONG 0x108 24
+	WRITE_LONG 0x168 24
+	WRITE_ASCII 0xae ~IWIN182~ (8)
+
+COPY ~%MOD_FOLDER%/spl/IWWI902.spl~ ~override~
+	SAY 0x08 @38137
+
+COPY_EXISTING ~IDIN163.SPL~ ~override/IWIN163.SPL~
+
+COPY_EXISTING ~IDIN169.SPL~ ~override/IWIN169.SPL~
+	WRITE_LONG 0xa8 45
+	WRITE_LONG 0x108 45
+
+COPY ~%MOD_FOLDER%/spl/IWWI089.spl~ ~override~
+	WRITE_LONG 0xce ~%CRE_BLINDED_IWD%~
+COPY ~%MOD_FOLDER%/spl/EFFDD1.spl~ ~override~
+	SAY 0xce @16352
+
+ADD_PROJECTILE ~%MOD_FOLDER%/spl/bbarrier.pro~ ~Blade Barrier IWD~
+COPY ~%MOD_FOLDER%/spl/IWPR610.spl~ ~override~
+	WRITE_SHORT 0x98 ~%bbarrier%~
+
+ADD_PROJECTILE ~%MOD_FOLDER%/spl/BIGBOLDR.pro~ ~Boulder big (trap)~
+COPY ~%MOD_FOLDER%/spl/IWWI088.spl~ ~override~
+	WRITE_SHORT 0x98 ~%BIGBOLDR%~
+
+ADD_PROJECTILE ~%MOD_FOLDER%/spl/mfmiss.pro~  ~Mordenkainen's force missiles 1~
+OUTER_SET imis1 = ~%mfmiss%~
+ADD_PROJECTILE ~%MOD_FOLDER%/spl/mfmiss2.pro~ ~Mordenkainen's force missiles 2~
+OUTER_SET imis2 = ~%mfmiss2%~
+OUTER_SET num1 = imis2
+OUTER_SET num2 = imis2 + 1
+OUTER_SPRINT ~prot~ ~~
+OUTER_SPRINT ~misl~ ~~
+OUTER_FOR ( i = 3 ; i < 12 ; ++i ) BEGIN
+  OUTER_SPRINT ~prot~ ~%prot%%num1% mfmiss2%LNL%~
+  OUTER_SPRINT ~misl~ ~%misl%%num2% Mordenkainen's force missiles %i%%LNL%~
+  OUTER_SET num1 = num1 + 1
+  OUTER_SET num2 = num2 + 1
+END
+APPEND ~projectl.ids~ ~%prot%~
+APPEND ~missile.ids~  ~%misl%~
+COPY ~%MOD_FOLDER%/spl/IWWI422.spl~ ~override~
+	SAY 0x08 @21435
+	REPLACE_TEXTUALLY ~#FF_~ ~WIF_~
+	REPLACE_TEXTUALLY ~SPWI430B~ ~IWWI422B~
+	READ_LONG  0x64 abil_off
+	READ_SHORT 0x68 abil_num
+	FOR ( i = 0 ; i < abil_num ; ++i ) BEGIN
+		SET offset = abil_off + i * 0x28 + 0x26
+		PATCH_MATCH i WITH
+			0 1 2
+			BEGIN
+				WRITE_SHORT offset imis1
+			END
+			3 4 5
+			BEGIN
+				WRITE_SHORT offset imis2
+			END
+			6 7 8
+			BEGIN
+				WRITE_SHORT offset imis2 + 1
+			END
+			9 10 11
+			BEGIN
+				WRITE_SHORT offset imis2 + 2
+			END
+			12 13 14
+			BEGIN
+				WRITE_SHORT offset imis2 + 3
+			END
+			15 16 17
+			BEGIN
+				WRITE_SHORT offset imis2 + 4
+			END
+			DEFAULT
+				WRITE_SHORT offset imis2 + 5
+		END
+	END
+
+COPY ~override/ohselu2.spl~ ~override/IWPR318.spl~
+	WRITE_LONG 0x18 0
+	WRITE_SHORT 0x1c 2
+	WRITE_SHORT 0x74 2
+
+COPY ~%MOD_FOLDER%/spl/IWWI909.spl~ ~override~
+	SAY 0x08 @11814
+	WRITE_LONG 0x4f2 ~%AEGIS%~
+
+COPY_EXISTING ~spwi402.spl~ ~override/IWWI526.spl~
+	SAY 0x08 @18364
+
+COPY_EXISTING ~IDWI619.SPL~ ~override/IWWI619.SPL~
+	WRITE_LONG 0x146 3
+	WRITE_LONG 0x14a 8
+	WRITE_ASCII 0xae  ~IWWI619~ (8)
+	WRITE_ASCII 0xde  ~IWWI619~ (8)
+	WRITE_ASCII 0x10e ~IWWI619~ (8)
+
+ADD_PROJECTILE ~%MOD_FOLDER%/spl/PIWWI910.PRO~ ~Executioner Eye~
+COPY ~%MOD_FOLDER%/spl/IWWI910.spl~ ~override~
+	SAY 0x08 @11816
+	WRITE_SHORT 0x98 ~%PIWWI910%~
+
+ADD_PROJECTILE ~%MOD_FOLDER%/spl/PROTEVIL.pro~ ~Protection from evil 10' radius~
+COPY ~%MOD_FOLDER%/spl/IWPR801.spl~ ~override~
+	SAY 0x08 @38568
+	WRITE_SHORT 0x98 ~%PROTEVIL%~
+
+COPY_EXISTING ~IDWI707.SPL~ ~override/IWWI707.SPL~
+	WRITE_LONG 0x116 10
+	WRITE_LONG 0x146 10
+	WRITE_ASCII 0xde ~IWWI707~ (8)
+
+COPY ~%MOD_FOLDER%/spl/IWIN969.spl~ ~override~
+	SAY 0x08 @18076
+	WRITE_SHORT 0x98 (IDS_OF_SYMBOL(~projectl~ ~idpro299~) + 1)
+
+COPY ~%MOD_FOLDER%/spl/IWIN967.spl~ ~override~
+	SAY 0x08 @16865
+	WRITE_SHORT 0x98 (IDS_OF_SYMBOL(~projectl~ ~idpro251~) + 1)
+
+COPY_EXISTING ~IDPR113.SPL~ ~override/IWPR113.SPL~
+	WRITE_LONG 0x9e 15
+	WRITE_LONG 0xce 15
+	WRITE_LONG 0x1ee 15
+	WRITE_ASCII 0x1ce ~IWPR113~ (8)
+
+COPY ~%MOD_FOLDER%/spl/IWPR428.spl~ ~override~
+	SAY 0x08 @17463
+
+COPY ~override/ohselu3.spl~ ~override/IWPR423.spl~
+	WRITE_SHORT 0x1c 2
+	WRITE_SHORT 0x74 2
+	WRITE_ASCII 0xde ~IWPR423~ (8)
+	WRITE_ASCII 0x13e ~IWPR423~ (8)
+	WRITE_ASCII 0x16e ~IWPR423~ (8)
+
+COPY ~override/ohselu1.spl~ ~override/IWPR226.spl~
+	WRITE_SHORT 0x1c 2
+	WRITE_SHORT 0x74 2
+	WRITE_ASCII 0x19e ~IWPR226~ (8)
+
+COPY ~%MOD_FOLDER%/spl/IWPR217.spl~ ~override~
+	SAY 0x08 @21423
+
+COPY ~%MOD_FOLDER%/spl/IWIN107.spl~ ~override~
+	SAY 0x08 @19794
+
+COPY ~%MOD_FOLDER%/spl/IWPR111.spl~ ~override~
+	SAY 0x08 @757
+	WRITE_SHORT 0x98 (IDS_OF_SYMBOL(~projectl~ ~idpro237~) + 1)
+	WRITE_LONG 0x102 ~%CLERIC_BANE_STATE%~
+	WRITE_LONG 0x132 ~%IWBANE%~
+
+COPY ~%MOD_FOLDER%/spl/IWPR323.spl~ ~override~
+	SAY 0x08 @21422
+
+ADD_PROJECTILE ~%MOD_FOLDER%/spl/ALANCE.pro~ ~Alicorn lance~
+COPY ~%MOD_FOLDER%/spl/IWPR216.spl~ ~override~
+	SAY 0x08 @21421
+	WRITE_SHORT 0x98 ~%ALANCE%~
+
+COPY ~%MOD_FOLDER%/spl/IWPR222.spl~ ~override~
+	SAY 0x08 @17100
+	WRITE_LONG 0x522 ~%TORTOISE_SHELL%~
+
+COPY ~%MOD_FOLDER%/spl/IWPR316.spl~ ~override~
+	SAY 0x08 @21414
+	WRITE_LONG 0xd2 ~%IWEXALT%~
+
+COPY ~%MOD_FOLDER%/spl/IWPR219.spl~ ~override~
+	SAY 0x08 @26228
+	WRITE_LONG 0x132 ~%IWSPSHLD%~
+
+COPY ~%MOD_FOLDER%/spl/IWPR315.spl~ ~override~
+	SAY 0x08 @21413
+
+COPY_EXISTING ~IDPR415.SPL~ ~override~
+	WRITE_LONG  0x282 2
+COPY_EXISTING ~IDPR415.SPL~ ~override/IWPR415.SPL~
+	WRITE_ASCII 0xae  ~IWPR415~ (8)
+	WRITE_ASCII 0xde  ~IWPR415~ (8)
+	WRITE_ASCII 0x40e ~IWPR714~ (8)
+	WRITE_ASCII 0x58e ~IWPR415~ (8)
+
+COPY ~%MOD_FOLDER%/spl/IWPR716.spl~ ~override~
+	SAY 0x08 @3071
+	WRITE_LONG 0x252 ~%IWISOM%~
+
+ADD_PROJECTILE ~%MOD_FOLDER%/spl/ALTERAPS.pro~ ~Aura of vitality~
+COPY ~%MOD_FOLDER%/spl/IWPR729.spl~ ~override~
+	SAY 0x08 @17895
+	WRITE_SHORT 0x98 ~%ALTERAPS%~
+	WRITE_LONG 0x132 ~%IWAUVIT%~
+
+ADD_PROJECTILE ~%MOD_FOLDER%/spl/UWARD.pro~ ~Undead ward~
+COPY ~%MOD_FOLDER%/spl/IWPR516.spl~ ~override~
+	SAY 0x08 @21401
+	WRITE_SHORT 0x98 ~%UWARD%~
+
+COPY ~%MOD_FOLDER%/spl/IWPR717.spl~ ~override~
+	SAY 0x08 @21393
+
+COPY ~%MOD_FOLDER%/spl/IWWI524.spl~ ~override~
+	SAY 0x08 @18354
+	SAY 0xfe @18356
+	WRITE_LONG 0xa2 ~%NOT_SUMMONED_CREATURE%~
+
+COPY_EXISTING ~sppr720.spl~ ~override/IWPR719.spl~
+	SAY 0x08 @21395
+COPY_EXISTING ~SPPR720.spl~ ~override/iwpr720.spl~
+	SAY 0x08 @21395
+	LPF ALTER_EFFECT INT_VAR match_opcode=67 parameter2=2 END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode=324 target=2 parameter2=13 duration=2 insert_point=0 STR_VAR resource = EVAL ~%DEST_RES%~ END
+
+ADD_PROJECTILE ~%MOD_FOLDER%/spl/WOFIRE.pro~ ~Wall of fire~
+COPY ~%MOD_FOLDER%/spl/IWPR427.spl~ ~override~
+	SAY 0x08 @12063
+	WRITE_SHORT 0x98 ~%WOFIRE%~
+	WRITE_LONG 0xce ~%CRE_BLINDED_IWD%~
+
+COPY_EXISTING ~IDPR714.SPL~ ~override/IWPR714.SPL~
+	WRITE_ASCII 0xae ~IWPR714~ (8)
+
+COPY ~%MOD_FOLDER%/spl/IWPR514.spl~ ~override~
+	SAY 0x08 @21400
+	WRITE_LONG 0xa2 ~%IWSHOLAT%~
+
+COPY ~%MOD_FOLDER%/spl/IWPR524.spl~ ~override~
+	SAY 0x08 @17473
+
+ADD_PROJECTILE ~%MOD_FOLDER%/spl/LODISR.pro~ ~Lance of disruption IWD2~
+COPY ~%MOD_FOLDER%/spl/IWWI319.spl~ ~override~
+	SAY 0x08 @21439
+	WRITE_SHORT 0x98 ~%LODISR%~
+
+COPY ~%MOD_FOLDER%/spl/IWPR723.spl~ ~override~
+	SAY 0x08 @21621
+
+ADD_PROJECTILE ~%MOD_FOLDER%/spl/GSHOUT.pro~ ~Ultrablast~
+COPY ~%MOD_FOLDER%/spl/IWIN219.spl~ ~override~
+	SAY 0x08 @21454
+	WRITE_SHORT 0x98 ~%GSHOUT%~
+
+ADD_PROJECTILE ~%MOD_FOLDER%/spl/PIWIN220.pro~ ~Mass Dominate 6'~
+COPY ~%MOD_FOLDER%/spl/IWIN220.spl~ ~override~
+	SAY 0x08 @18656
+	WRITE_SHORT 0x98 ~%PIWIN220%~
+
+ADD_PROJECTILE ~%MOD_FOLDER%/spl/MFOG.pro~ ~Mind Fog~
+COPY ~%MOD_FOLDER%/spl/IWIN221.spl~ ~override~
+	SAY 0x08 @21455
+	WRITE_SHORT 0x98 ~%MFOG%~
+	WRITE_LONG 0x102 ~%IWMNDFOG%~
+
+COPY_EXISTING ~IDWI511.SPL~ ~override/IWWI511.SPL~
+	WRITE_ASCII 0xae ~IWWI511~ (8)
+	WRITE_ASCII 0xde ~IWWI511X~ (8)
+	WRITE_ASCII 0x10e ~IWWI511Y~ (8)
+	WRITE_ASCII 0x19e ~IWWI511~ (8)
+COPY_EXISTING ~IDWI511X.SPL~ ~override/IWWI511X.SPL~
+	WRITE_LONG 0xb6 3
+	WRITE_LONG 0xba 6
+COPY_EXISTING ~IDWI511Y.SPL~ ~override/IWWI511Y.SPL~
+	WRITE_ASCII 0xde ~IWWI511~ (8)
+
+COPY ~%MOD_FOLDER%/spl/IWWI117.spl~ ~override~
+	SAY 0x08 @12067
+
+COPY ~%MOD_FOLDER%/spl/IWWI223.spl~ ~override~
+	SAY 0x08 @21440
+	WRITE_LONG 0xd2 ~%IWCATGRC%~
+
+ADD_PROJECTILE ~%MOD_FOLDER%/spl/SUFFOC.pro~ ~Suffocate~
+COPY ~%MOD_FOLDER%/spl/IWWI711.spl~ ~override~
+	SAY 0x08 @21430
+	WRITE_SHORT 0x98 ~%SUFFOC%~
+
+COPY ~%MOD_FOLDER%/spl/IWWI620.spl~ ~override~
+	SAY 0x08 @21433
+
+COPY ~%MOD_FOLDER%/spl/IWWI719.spl~ ~override~
+	SAY 0x08 @18637
+	WRITE_LONG 0x132 ~%IWVPGOUT%~
+	WRITE_LONG 0x162 ~%VIPERGOUT%~
+COPY ~%MOD_FOLDER%/spl/EFFV1.spl~ ~override~
+	SAY 0x08 @18637
+	SAY 0xce @18649
+
+COPY ~%MOD_FOLDER%/spl/IWWI525.spl~ ~override~
+	SAY 0x08 @18360
+
+COPY ~%MOD_FOLDER%/spl/IWWI804.spl~ ~override~
+	SAY 0x08 @3072
+	WRITE_LONG 0x312 ~%IWMNBLNK%~
+
+COPY ~%MOD_FOLDER%/spl/IWWI081.spl~ ~override~
+	SAY 0x08 @39909
+
+COPY_EXISTING ~IDWI612.SPL~ ~override/IWWI612.SPL~
+	WRITE_LONG 0xb6 20
+
+COPY ~%MOD_FOLDER%/spl/IWWI618.spl~ ~override~
+	SAY 0x08 @21431
+
+COPY ~%MOD_FOLDER%/spl/IWWI601.spl~ ~override~
+	SAY 0x08 @2419
+	WRITE_LONG 0x102 ~%IWAMSHEL%~
+	WRITE_LONG 0x372 ~%ANTIMAGIC_SHELL%~
+
+ADD_PROJECTILE ~%MOD_FOLDER%/spl/IWVITRIO.PRO~ ~Vitriolic sphere~
+COPY ~%MOD_FOLDER%/spl/iwWI424.SPL~ ~override~
+	SAY 0x08 @21438
+	READ_LONG 0x64 abil_off
+	READ_SHORT 0x68 abil_num
+	FOR ( i = 0 ; i < abil_num ; ++i ) BEGIN
+		WRITE_SHORT abil_off + i * 0x28 + 0x26 ~%IWVITRIO%~
+	END
+
+COPY ~%MOD_FOLDER%/spl/IWIN277.spl~ ~override~
+	 ~%MOD_FOLDER%/spl/IWIN277X.spl~ ~override~
+	SAY 0x08 @39819
+
+COPY ~%MOD_FOLDER%/spl/IWIN278.spl~ ~override~
+	 ~%MOD_FOLDER%/spl/IWIN278X.spl~ ~override~
+	SAY 0x08 @39820
+
+COPY ~%MOD_FOLDER%/spl/IWHLHND.spl~ ~override~
+	WRITE_LONG 0x12e ~%CRE_BLINDED_IWD%~
+	WRITE_LONG 0x132 76
+
+
+COPY ~override/IWWI526.spl~ ~override/iwin195.spl~
+	LPM CONVERT_SPL_TO_INNATE
+
+COPY_EXISTING ~spwi214.spl~ ~override/iwwi214.spl~
+	LPF ALTER_EFFECT INT_VAR match_opcode = 321 timing=0 STR_VAR resource = ~iwwi214~ END
+
+COPY_EXISTING ~sppr109.spl~ ~override/iwpr109.spl~
+	WRITE_BYTE 0x7e 1
+	WRITE_BYTE 0x9c 2
+	WRITE_BYTE 0xcc 2
+
+COPY_EXISTING ~sppr312.spl~ ~override/iwpr312.spl~
+	WRITE_BYTE 0x7e 1
+
+COPY ~%MOD_FOLDER%/spl/IWWI610.spl~ ~override~
+	SAY 0x08 @2839
+
+COPY_EXISTING ~SPWI807.spl~ ~override/IWWI807.spl~
+	LPF ALTER_EFFECT INT_VAR match_opcode=177 STR_VAR resource="PIWWI807" END
+COPY_EXISTING ~SPFIEND.EFF~ ~override/PIWWI807.eff~
+	//WRITE_ASCII 0x30 ~00SGLB~  (8)
+	WRITE_ASCII 0x70 ~~ (8)
+	
+
+
+	
+
+ /* OTHER_SPELLS */ 
+
+COPY ~%MOD_FOLDER%/spl/IWPR503.SPL~ ~override~
+     ~%MOD_FOLDER%/spl/IWWI313.SPL~ ~override~
+     ~%MOD_FOLDER%/spl/IWWI096.SPL~ ~override~
+     ~%MOD_FOLDER%/spl/iwWI085.spl~ ~override~
+     ~%MOD_FOLDER%/spl/igwi615.spl~ ~override~
+     ~%MOD_FOLDER%/spl/IWWI084.spl~ ~override~
+     ~%MOD_FOLDER%/spl/iwWI091.spl~ ~override~
+     ~%MOD_FOLDER%/spl/iwWI082.spl~ ~override~
+     ~%MOD_FOLDER%/spl/IWWI086.spl~ ~override~
+     ~%MOD_FOLDER%/spl/IWWI092.spl~ ~override~
+     ~%MOD_FOLDER%/spl/IWIN230.spl~ ~override~
+     ~%MOD_FOLDER%/spl/IWIN259.spl~ ~override~
+     ~%MOD_FOLDER%/spl/IWIN281.spl~ ~override~
+     ~%MOD_FOLDER%/spl/IWIN231X.spl~ ~override~
+     ~%MOD_FOLDER%/spl/IWWI015.spl~ ~override~
+     ~%MOD_FOLDER%/spl/IWWI017.spl~ ~override~
+     ~%MOD_FOLDER%/spl/IWWI095.spl~ ~override~
+     ~%MOD_FOLDER%/spl/IWWI016.spl~ ~override~
+     ~%MOD_FOLDER%/spl/IWWI014.spl~ ~override~
+     ~%MOD_FOLDER%/spl/IWWI422B.spl~ ~override~
+     ~%MOD_FOLDER%/spl/EFFPFE.spl~ ~override~
+     ~%MOD_FOLDER%/spl/iwWI424Z.SPL~ ~override~
+     ~%MOD_FOLDER%/spl/iwWI424Y.SPL~ ~override~
+     ~%MOD_FOLDER%/spl/IWIN968.spl~ ~override~
+     ~%MOD_FOLDER%/spl/IWWI217.spl~ ~override~
+     ~%MOD_FOLDER%/spl/53golimx.spl~ ~override~
+     ~%MOD_FOLDER%/spl/IDINVS12.spl~ ~override~
+     ~%MOD_FOLDER%/spl/IDINVS13.spl~ ~override~
+     ~%MOD_FOLDER%/spl/IDINVS14.spl~ ~override~
+     ~%MOD_FOLDER%/spl/IWDBUMP.spl~ ~override~
+     ~%MOD_FOLDER%/spl/IWPR719P.spl~ ~override~
+     ~%MOD_FOLDER%/spl/IWJUMPOF.spl~ ~override~
+     
+
+/* EFFECTS */
+//COPY ~%MOD_FOLDER%/spl/effect.eff~  ~override/IWCPSETS.eff~ //IwdCriticalDead
+//	WRITE_LONG 0x10 265
+//	WRITE_LONG 0x14 2
+//	WRITE_LONG 0x1c 1
+//	WRITE_LONG 0x24 1
+//	WRITE_ASCII 0x30 ~IwdCriti~ (8)
+//	WRITE_ASCII 0x70 ~calDead~ (8)
+
+COPY ~%MOD_FOLDER%/spl/effect.eff~  ~override/IWGSLEP.eff~
+	WRITE_LONG 0x10 138
+	WRITE_LONG 0x14 2
+	WRITE_LONG 0x20 16
+	WRITE_LONG 0x28 6
+
+COPY ~%MOD_FOLDER%/spl/effect.eff~  ~override/IDINVIS8.eff~
+	WRITE_LONG 0x10 309
+	WRITE_LONG 0x14 2
+	WRITE_LONG 0x1c 1
+	WRITE_LONG 0x24 1
+	WRITE_ASCII 0x30 ~Creature~ (8)
+	WRITE_ASCII 0x70 ~Hidden~ (8)
+
+COPY ~%MOD_FOLDER%/spl/effect.eff~  ~override/IDINVIS9.eff~
+	WRITE_LONG 0x10 309
+	WRITE_LONG 0x14 2
+	WRITE_LONG 0x1c 0
+	WRITE_LONG 0x24 1
+	WRITE_ASCII 0x30 ~Creature~ (8)
+	WRITE_ASCII 0x70 ~Hidden~ (8)
+
+COPY ~%MOD_FOLDER%/spl/effect.eff~  ~override/EFFWA1.eff~
+	WRITE_LONG 0x10 67
+	WRITE_LONG 0x14 1
+	WRITE_LONG 0x24 1
+	WRITE_LONG 0x28 2400
+	WRITE_ASCII 0x30 ~00SLMR~ (8)
+	WRITE_LONG 0x38 2
+	WRITE_LONG 0x3c 6
+	WRITE_LONG 0x5c 2
+	WRITE_ASCII 0x70 ~GATEX~ (8) //MSUMM1H
+
+COPY ~%MOD_FOLDER%/spl/effect.eff~  ~override/EFFWA2.eff~
+	WRITE_LONG 0x10 67
+	WRITE_LONG 0x14 1
+	WRITE_LONG 0x24 1
+	WRITE_LONG 0x28 2400
+	WRITE_ASCII 0x30 ~00SLMR~ (8)
+	WRITE_LONG 0x38 2
+	WRITE_LONG 0x3c 6
+	WRITE_LONG 0x5c 2
+	WRITE_ASCII 0x70 ~GATEX~ (8) //MSUMM1H
+
+COPY ~%MOD_FOLDER%/spl/effect.eff~  ~override/IWIN231.eff~
+	WRITE_LONG 0x10 146
+	WRITE_LONG 0x14 2
+	WRITE_LONG 0x20 1
+	WRITE_LONG 0x24 1
+	WRITE_ASCII 0x30 ~IWIN231X~ (8)
+	WRITE_LONG 0x5c 2
+
+COPY ~%MOD_FOLDER%/spl/effect.eff~  ~override/IWIN231X.eff~
+	WRITE_LONG 0x10 25
+	WRITE_LONG 0x18 4
+	WRITE_LONG 0x1c 2
+	WRITE_LONG 0x20 4
+	WRITE_LONG 0x60 3
+
+COPY ~%MOD_FOLDER%/spl/effect.eff~  ~override/IWWI015.eff~
+	WRITE_LONG 0x10 25
+	WRITE_LONG 0x1c 6
+	WRITE_LONG 0x20 4
+	WRITE_LONG 0x24 1
+	WRITE_LONG 0x60 4
+
+COPY ~%MOD_FOLDER%/spl/effect.eff~  ~override/IWWI902A.eff~
+	WRITE_LONG 0x10 67
+	WRITE_LONG 0x14 1
+	WRITE_LONG 0x24 1
+	WRITE_LONG 0x28 192
+	WRITE_ASCII 0x30 ~00SFRGNT~ (8)
+	WRITE_LONG 0x38 2
+	WRITE_LONG 0x3c 6
+	WRITE_LONG 0x5c 2
+	WRITE_ASCII 0x70 ~MSUMM1X~ (8)
+
+COPY ~%MOD_FOLDER%/spl/effect.eff~  ~override/IWWI902B.eff~
+	WRITE_LONG 0x10 67
+	WRITE_LONG 0x14 1
+	WRITE_LONG 0x24 1
+	WRITE_LONG 0x28 192
+	WRITE_ASCII 0x30 ~00SGFYR~ (8)
+	WRITE_LONG 0x38 2
+	WRITE_LONG 0x3c 6
+	WRITE_LONG 0x5c 2
+	WRITE_ASCII 0x70 ~MSUMM1X~ (8)
+
+COPY ~%MOD_FOLDER%/spl/effect.eff~  ~override/IWWI902C.eff~
+	WRITE_LONG 0x10 67 
+	WRITE_LONG 0x14 1
+	WRITE_LONG 0x24 1
+	WRITE_LONG 0x28 192
+	WRITE_ASCII 0x30 ~00SGWWLF~ (8)
+	WRITE_LONG 0x38 2
+	WRITE_LONG 0x3c 6
+	WRITE_LONG 0x5c 2
+	WRITE_ASCII 0x70 ~MSUMM1X~ (8)
+
+COPY ~%MOD_FOLDER%/spl/effect.eff~  ~override/IWWI902D.eff~
+	WRITE_LONG 0x10 67 
+	WRITE_LONG 0x14 1
+	WRITE_LONG 0x24 1
+	WRITE_LONG 0x28 192
+	WRITE_ASCII 0x30 ~00SREM~ (8)
+	WRITE_LONG 0x38 2
+	WRITE_LONG 0x3c 6
+	WRITE_LONG 0x5c 2
+	WRITE_ASCII 0x70 ~MSUMM1X~ (8)
+
+COPY ~%MOD_FOLDER%/spl/effect.eff~  ~override/IWWI016.eff~
+	WRITE_LONG 0x10 25
+	WRITE_LONG 0x1c 6
+	WRITE_LONG 0x20 4
+	WRITE_LONG 0x24 1
+	WRITE_LONG 0x60 3
+
+COPY ~%MOD_FOLDER%/spl/effect.eff~  ~override/00SSHM.eff~
+	WRITE_LONG 0x10 67 
+	WRITE_LONG 0x14 1
+	WRITE_LONG 0x28 2400
+	WRITE_ASCII 0x30 ~00SSHM~ (8)
+	WRITE_LONG 0x3c 3
+	WRITE_LONG 0x5c 2
+	WRITE_ASCII 0x70 ~ASUMM1X~ (8)
+
+COPY ~%MOD_FOLDER%/spl/effect.eff~  ~override/iwwi620.eff~
+	WRITE_LONG 0x10 98
+	WRITE_LONG 0x1c 6
+	WRITE_LONG 0x20 4
+	WRITE_LONG 0x28 120
+	WRITE_LONG 0x5c 3
+	WRITE_LONG 0x60 5
+
+COPY ~%MOD_FOLDER%/spl/effect.eff~  ~override/EFFV1.eff~
+	WRITE_LONG 0x10 67 
+	WRITE_LONG 0x14 1
+	WRITE_LONG 0x28 18
+	WRITE_ASCII 0x30 ~00SVPRG~ (8)
+	WRITE_LONG 0x38 2
+	WRITE_LONG 0x3c 6
+	WRITE_LONG 0x5c 3
+	WRITE_ASCII 0x70 ~MSUMM1H~ (8)
+
+COPY ~%MOD_FOLDER%/spl/effect.eff~  ~override/IWWI968A.eff~
+	WRITE_LONG 0x10 67 
+	WRITE_LONG 0x14 1
+	WRITE_LONG 0x24 1
+	WRITE_LONG 0x28 192
+	WRITE_ASCII 0x30 ~00SDOG~ (8)
+	WRITE_LONG 0x38 2
+	WRITE_LONG 0x3c 6
+	WRITE_LONG 0x5c 2
+	WRITE_ASCII 0x70 ~MSUMM1X~ (8)
+
+COPY ~%MOD_FOLDER%/spl/effect.eff~  ~override/IWWI968B.eff~
+	WRITE_LONG 0x10 67 
+	WRITE_LONG 0x14 1
+	WRITE_LONG 0x24 1
+	WRITE_LONG 0x28 192
+	WRITE_ASCII 0x30 ~00SBEETL~ (8)
+	WRITE_LONG 0x38 2
+	WRITE_LONG 0x3c 6
+	WRITE_LONG 0x5c 2
+	WRITE_ASCII 0x70 ~MSUMM1X~ (8)
+
+COPY ~%MOD_FOLDER%/spl/effect.eff~  ~override/IWWI968C.eff~
+	WRITE_LONG 0x10 67 
+	WRITE_LONG 0x14 1
+	WRITE_LONG 0x24 1
+	WRITE_LONG 0x28 192
+	WRITE_ASCII 0x30 ~00SGOBLN~ (8)
+	WRITE_LONG 0x38 2
+	WRITE_LONG 0x3c 6
+	WRITE_LONG 0x5c 2
+	WRITE_ASCII 0x70 ~MSUMM1X~ (8)
+
+COPY ~%MOD_FOLDER%/spl/effect.eff~  ~override/IWWI968D.eff~
+	WRITE_LONG 0x10 67 
+	WRITE_LONG 0x14 1
+	WRITE_LONG 0x24 1
+	WRITE_LONG 0x28 192
+	WRITE_ASCII 0x30 ~00SBEETL~ (8)
+	WRITE_LONG 0x38 2
+	WRITE_LONG 0x3c 6
+	WRITE_LONG 0x5c 2
+	WRITE_ASCII 0x70 ~MSUMM1X~ (8)
+
+COPY ~%MOD_FOLDER%/spl/effect.eff~  ~override/IWIN277.eff~
+	WRITE_LONG 0x10 146
+	WRITE_LONG 0x14 2
+	WRITE_LONG 0x20 1
+	WRITE_LONG 0x24 1
+	WRITE_ASCII 0x30 ~IWIN277X~ (8)
+
+COPY ~%MOD_FOLDER%/spl/effect.eff~  ~override/IWIN277X.eff~
+	WRITE_LONG 0x10 12
+	WRITE_LONG 0x1c 4
+	WRITE_SHORT 0x22 16
+
+COPY ~%MOD_FOLDER%/spl/effect.eff~  ~override/IWIN278.eff~
+	WRITE_LONG 0x10 146
+	WRITE_LONG 0x14 2
+	WRITE_LONG 0x20 1
+	WRITE_LONG 0x24 1
+	WRITE_ASCII 0x30 ~IWIN278X~ (8)
+
+COPY ~%MOD_FOLDER%/biffs/IW2BAMS/ALTERCG.vvc~ ~%MOD_FOLDER%/biffs/IW2BAMS/ALTERCI.vvc~
+	WRITE_ASCII 0x78 ~Was_PP8M~ (8)
+	WRITE_ASCII 0x80 ~Was_EN6~ (8)
+	WRITE_ASCII 0x94 ~WRE_P02~ (8)
+
+COPY ~%MOD_FOLDER%/biffs/IW2BAMS/ALTERCG.vvc~ ~%MOD_FOLDER%/biffs/IW2BAMS/ALTERCM.vvc~
+	WRITE_ASCII 0x78 ~Was_PP8F~ (8)
+	WRITE_ASCII 0x80 ~Was_EN2c~ (8)
+	WRITE_ASCII 0x94 ~WRE_M04~ (8)
+
+COPY ~%MOD_FOLDER%/biffs/IW2BAMS/CONJUCG.vvc~ ~%MOD_FOLDER%/biffs/IW2BAMS/CONJUCI.vvc~
+	WRITE_ASCII 0x78 ~WAS_PP2M~ (8)
+	WRITE_ASCII 0x80 ~WHT_07~ (8)
+	WRITE_ASCII 0x94 ~WIF_P78~ (8)
+
+COPY ~%MOD_FOLDER%/biffs/IW2BAMS/ABJURCG.vvc~ ~%MOD_FOLDER%/biffs/IW2BAMS/ABJURCI.vvc~
+	WRITE_ASCII 0x78 ~CWA_MM05~ (8)
+	WRITE_ASCII 0x80 ~WAS_EN10~ (8)
+	WRITE_ASCII 0x94 ~WRE_P08~ (8)
+
+/* PILLARS */
+COPY ~%MOD_FOLDER%/spl/pillar~ ~override~
+
+/* END */
+VERBOSE
+PRINT ~Spells installation complete...~
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

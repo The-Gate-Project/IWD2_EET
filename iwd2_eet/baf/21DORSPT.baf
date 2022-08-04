@@ -1,0 +1,10 @@
+IF
+	Opened([ANYONE])
+THEN
+	RESPONSE #100
+		GiveItemCreate("z2genwp",[PC],1,0,0)
+		PlaySound("IW2101F")
+		RemoveMapNote([133.604],@55021)
+		DisplayStringNoName(Player1,@29271)
+END
+

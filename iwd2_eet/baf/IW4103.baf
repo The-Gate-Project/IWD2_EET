@@ -1,0 +1,204 @@
+IF
+	Global("4103Visited","MYAREA",0)
+	!Global("FirstVisited","MYAREA",1)
+THEN
+	RESPONSE #100
+		/*HideCreature(Player1,TRUE)
+		HideCreature(Player2,TRUE)
+		HideCreature(Player3,TRUE)
+		HideCreature(Player4,TRUE)
+		HideCreature(Player5,TRUE)
+		HideCreature(Player6,TRUE)*/
+		ActionOverride(Player1,ApplySpellRES("IDINVIS6",Myself))
+		ActionOverride(Player2,ApplySpellRES("IDINVIS6",Myself))
+		ActionOverride(Player3,ApplySpellRES("IDINVIS6",Myself))
+		ActionOverride(Player4,ApplySpellRES("IDINVIS6",Myself))
+		ActionOverride(Player5,ApplySpellRES("IDINVIS6",Myself))
+		ActionOverride(Player6,ApplySpellRES("IDINVIS6",Myself))
+		MoveViewPoint([0.0],INSTANT)
+		//SetCriticalPathObject("Nickademus",FALSE)  // Никадем
+		ActionOverride("Nickademus",ApplySpellRES("IWCPREM",Myself))
+		ActionOverride("Nickademus",Polymorph(MAGE_MALE_HUMAN))
+		SetGlobal("FirstVisited","MYAREA",1)
+		SetGlobal("4103Visited","MYAREA",-1)
+END
+
+/*IF
+	Global("4103Visited","MYAREA",-1)
+	Or(2)
+		!IsAnimationID("Nickademus",MAGE_MALE_HUMAN)  // Никадем
+		!EntirePartyOnMap()
+THEN
+	RESPONSE #100
+		HideCreature(Player1,TRUE)
+		HideCreature(Player2,TRUE)
+		HideCreature(Player3,TRUE)
+		HideCreature(Player4,TRUE)
+		HideCreature(Player5,TRUE)
+		HideCreature(Player6,TRUE)
+		MultiPlayerSync()
+END*/
+
+IF
+	Global("4103Visited","MYAREA",-1)
+	//IsAnimationID("Nickademus",MAGE_MALE_HUMAN)  // Никадем
+	//EntirePartyOnMap()
+THEN
+	RESPONSE #100
+		MultiPlayerSync()
+		MoveViewPoint([1100.440],INSTANT)
+		SetGlobal("PrismSequence","MYAREA",5)
+		SetGlobal("41XhaanMindQuest","GLOBAL",4)
+		SetGlobal("41NumAbishaiKilled","GLOBAL",5)
+		SetGlobal("41NumFiendsKilled","GLOBAL",0)
+		SetGlobal("4103Visited","MYAREA",0)
+		//Continue()
+END
+
+IF
+	Global("4103Visited","MYAREA",0)
+	Global("61RakshasaSaidGlacier","GLOBAL",1)
+THEN
+	RESPONSE #100
+		SetGlobal("61RakshasaSaidGlacier","GLOBAL",2)
+		Continue()
+END
+
+IF
+	Global("4103Visited","MYAREA",0)
+THEN
+	RESPONSE #100
+		//RestUntilHealed()
+		RestPartyEx(0,0,TRUE)
+		SetGlobal("41NickHelp","GLOBAL",5)
+		SetGlobal("4103Visited","MYAREA",1)
+		StartCutSceneMode()
+		ClearAllActions()
+		MultiPlayerSync()
+		StartCutScene("41cFavor")
+END
+
+IF
+	GlobalGT("41NumFiendsKilled","GLOBAL",30)
+	!Global("41NickHelp","GLOBAL",6)
+THEN
+	RESPONSE #100
+		ScreenShake([40.30],120)
+		/*SpellHitEffectSprite(Player1,Player1,SUNSCORCH,0)
+		SpellHitEffectSprite(Player2,Player2,SUNSCORCH,0)
+		SpellHitEffectSprite(Player3,Player3,SUNSCORCH,0)
+		SpellHitEffectSprite(Player4,Player4,SUNSCORCH,0)
+		SpellHitEffectSprite(Player5,Player5,SUNSCORCH,0)
+		SpellHitEffectSprite(Player6,Player6,SUNSCORCH,0)*/
+		/*CreateVisualEffectObject("SUNSCOH",Player1)
+		CreateVisualEffectObject("SUNSCOH",Player2)
+		CreateVisualEffectObject("SUNSCOH",Player3)
+		CreateVisualEffectObject("SUNSCOH",Player4)
+		CreateVisualEffectObject("SUNSCOH",Player5)
+		CreateVisualEffectObject("SUNSCOH",Player6)*/
+		//ActionOverride(Player1,ForceSpellRES("IDSUNSCH",Myself))
+		//ActionOverride(Player2,ForceSpellRES("IDSUNSCH",Myself))
+		//ActionOverride(Player3,ForceSpellRES("IDSUNSCH",Myself))
+		//ActionOverride(Player4,ForceSpellRES("IDSUNSCH",Myself))
+		//ActionOverride(Player5,ForceSpellRES("IDSUNSCH",Myself))
+		//ActionOverride(Player6,ForceSpellRES("IDSUNSCH",Myself))
+		CreateVisualEffectObject("IDSNCH",Player1)
+		CreateVisualEffectObject("IDSNCH",Player2)
+		CreateVisualEffectObject("IDSNCH",Player3)
+		CreateVisualEffectObject("IDSNCH",Player4)
+		CreateVisualEffectObject("IDSNCH",Player5)
+		CreateVisualEffectObject("IDSNCH",Player6)
+		TriggerActivation("To6200",TRUE)
+		DisplayStringNoName(Player1,@41375)
+		SetGlobal("41NickHelp","GLOBAL",6)
+		SetGlobal("41NumFiendsKilled","GLOBAL",0)
+END
+
+IF
+	OnCreation()
+THEN
+	RESPONSE #100
+		SetGlobal("41PrismFire","MYAREA",0)
+		Continue()
+END
+
+IF
+	OnCreation()
+	Global("PrismSequence","MYAREA",0)
+THEN
+	RESPONSE #100
+		StaticSequence("Prism",SEQ_ATTACK)
+		Continue()
+END
+
+IF
+	OnCreation()
+	Global("PrismSequence","MYAREA",1)
+THEN
+	RESPONSE #100
+		StaticSequence("Prism",SEQ_AWAKE)
+		Continue()
+END
+
+IF
+	OnCreation()
+	Global("PrismSequence","MYAREA",2)
+THEN
+	RESPONSE #100
+		StaticSequence("Prism",SEQ_CAST)
+		Continue()
+END
+
+IF
+	OnCreation()
+	Global("PrismSequence","MYAREA",3)
+THEN
+	RESPONSE #100
+		StaticSequence("Prism",SEQ_CONJURE)
+		Continue()
+END
+
+IF
+	OnCreation()
+	Global("PrismSequence","MYAREA",4)
+THEN
+	RESPONSE #100
+		StaticSequence("Prism",SEQ_DAMAGE)
+		Continue()
+END
+
+IF
+	OnCreation()
+	Global("PrismSequence","MYAREA",5)
+THEN
+	RESPONSE #100
+		StaticSequence("Prism",SEQ_DIE)
+		Continue()
+END
+
+IF
+	OnCreation()
+	Global("PrismSequence","MYAREA",6)
+THEN
+	RESPONSE #100
+		StaticSequence("Prism",SEQ_HEAD_TURN)
+		Continue()
+END
+
+IF
+	OnCreation()
+	Global("PrismSequence","MYAREA",7)
+THEN
+	RESPONSE #100
+		StaticSequence("Prism",SEQ_READY)
+		Continue()
+END
+
+IF
+	OnCreation()
+THEN
+	RESPONSE #100
+		NoAction()
+		Continue()
+END
+

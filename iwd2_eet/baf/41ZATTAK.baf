@@ -1,0 +1,35 @@
+IF
+	Global("INITIALIZED_41ZATTAK","LOCALS",0)
+THEN
+	RESPONSE #100
+		Enemy()
+		SetGlobal("INITIALIZED_41ZATTAK","LOCALS",1)
+		Continue()
+END
+
+IF
+	See("41Zack")
+THEN
+	RESPONSE #100
+		EquipMostDamagingMelee()
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	OR(2)
+		Global("SPRITE_IS_DEAD41Zack","GLOBAL",1)
+		!Exists("41Zack")
+THEN
+	RESPONSE #100
+		MoveToObject(Player1)
+END
+
+
+
+IF
+	!See("41Zack")
+THEN
+	RESPONSE #100
+		MoveToObject("41Zack")
+END
+

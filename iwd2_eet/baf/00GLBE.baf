@@ -1,0 +1,302 @@
+//BLOCK SET_VARS
+IF
+	!Global("SET_00GLBE","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobal("SET_00GLBE","LOCALS",1)
+		SetInterrupt(TRUE)
+END
+//BLOCKEND
+
+/*IF
+	Global("OncePerDaySummoning","LOCALS",0)
+	!Global("00GLBE_Mark","LOCALS",0)
+	HPPercentLT(Myself,35)
+THEN
+	RESPONSE #100
+		SetGlobal("OncePerDaySummoning","LOCALS",1)
+		ForceSpell(MyTarget,INNATE_SUMMONED_GLABREZU_SUMMONING)  // SPIN283.SPL (ѕытаетс€ впустить своих)
+		WaitAnimation(Myself,WALK)
+		WaitAnimation(Myself,CONJURE)
+		WaitAnimation(Myself,CAST)
+		Continue()
+END*/
+
+IF
+	CheckSpellState(Myself,%CRE_INVISIBLE_IWD%)
+THEN
+	RESPONSE #100
+		ApplySpellRES("IDINVIS7",Myself)
+END
+
+IF
+	GlobalLT("Action","LOCALS",2)
+	See(NearestEnemyOf(Myself))
+	!Range(LastSeenBy(Myself),8)
+THEN
+	RESPONSE #100
+		//SpellHitEffectSprite(Myself,Myself,DIMENSION_DOOR_ORIGIN,0)
+		SetInterrupt(FALSE)
+		CreateVisualEffectObject("SPDIMNDR",Myself)
+		//HideCreature(Myself,TRUE)
+		ApplySpellRES("IDINVIS6",Myself)
+		SmallWait(8)
+		DisplayStringHead(Myself,@38707)
+		JumpToObject(LastSeenBy(Myself))
+		ApplySpellRES("IWJUMPOF",Myself)
+		FaceObject(LastSeenBy(Myself))
+		//SpellHitEffectSprite(Myself,Myself,DIMENSION_DOOR_DESTINATION,0)
+		CreateVisualEffectObject("SPDIMNDR",Myself)
+		//HideCreature(Myself,FALSE)
+		ApplySpellRES("IDINVIS7",Myself)
+		SmallWait(7)
+		SetInterrupt(TRUE)
+		//Continue()
+END
+
+IF
+	See(NearestEnemyOf(Myself))
+	GlobalLT("Action","LOCALS",2)
+THEN
+	RESPONSE #100
+		IncrementGlobal("Action","LOCALS",1)
+		EquipMostDamagingMelee()
+		AttackOneRound(LastSeenBy(Myself))
+END
+//BLOCK SPL_1
+/*IF
+	ForceMarkedSpell(MARKED_SPELL)
+	SetSpellTarget(Nothing)
+	See(NearestEnemyOf(Myself),0)
+	Global("Action","LOCALS",2)
+THEN
+	RESPONSE #100
+		MarkSpellAndObject("221222122212",Myself,SPELLCAST_IGNORE_SEE | SPELLCAST_IGNORE_VALID_SPELL_TARGET | SPELLCAST_RANDOM)  // [WIZARD_MIRROR_IMAGE, WIZARD_MIRROR_IMAGE, WIZARD_MIRROR_IMAGE]
+		MarkSpellAndObject("210321042411242013252705",LastMarkedObject,SPELLCAST_IGNORE_SEE | SPELLCAST_IGNORE_VALID_SPELL_TARGET | SPELLCAST_RANDOM)  // [WIZARD_BURNING_HANDS, WIZARD_CHARM_PERSON, WIZARD_EMOTION_HOPELESSNESS, WIZARD_EMOTION_FEAR, CLERIC_UNHOLY_BLIGHT, WIZARD_POWER_WORD_STUN]
+		Continue()
+	RESPONSE #100
+		MarkSpellAndObject("210321042411242013252705",LastMarkedObject,SPELLCAST_IGNORE_SEE | SPELLCAST_IGNORE_VALID_SPELL_TARGET | SPELLCAST_RANDOM)  // [WIZARD_BURNING_HANDS, WIZARD_CHARM_PERSON, WIZARD_EMOTION_HOPELESSNESS, WIZARD_EMOTION_FEAR, CLERIC_UNHOLY_BLIGHT, WIZARD_POWER_WORD_STUN]
+		MarkSpellAndObject("221222122212",Myself,SPELLCAST_IGNORE_SEE | SPELLCAST_IGNORE_VALID_SPELL_TARGET | SPELLCAST_RANDOM)  // [WIZARD_MIRROR_IMAGE, WIZARD_MIRROR_IMAGE, WIZARD_MIRROR_IMAGE]
+		Continue()
+END
+
+IF
+	!IsMarkedSpell(MARKED_SPELL)
+THEN
+	RESPONSE #100
+		SetGlobal("Action","LOCALS",0)
+		Spell(SpellTarget,MARKED_SPELL)
+		WaitAnimation(Myself,WALK)
+		WaitAnimation(Myself,CONJURE)
+		WaitAnimation(Myself,CAST)
+		ForceMarkedSpell(MARKED_SPELL)
+END*/
+/*IF
+	GlobalLT("SSPELLS_1_RANDOM_CAST","LOCALS",3)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		Continue()
+END*/
+//1 - Myself - [WIZARD_MIRROR_IMAGE, WIZARD_MIRROR_IMAGE, WIZARD_MIRROR_IMAGE]
+IF
+	Global("SSPELLS_1_RANDOM_CAST","LOCALS",1)
+	HaveSpell(WIZARD_MIRROR_IMAGE)
+	See(NearestEnemyOf(Myself))
+	Global("Action","LOCALS",2)
+	!StateCheck(Myself,STATE_MIRRORIMAGE)
+	CheckStat(Myself,0,STONESKINS)
+THEN
+	RESPONSE #100
+		SetGlobal("Action","LOCALS",0)
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		Spell(Myself,WIZARD_MIRROR_IMAGE)
+		Wait(1)
+END
+//2 - LastMarkedObject - [WIZARD_BURNING_HANDS, WIZARD_CHARM_PERSON, WIZARD_EMOTION_HOPELESSNESS, WIZARD_EMOTION_FEAR, CLERIC_UNHOLY_BLIGHT, WIZARD_POWER_WORD_STUN]
+IF
+	RandomNum(6,1)
+	Global("SSPELLS_1_RANDOM_CAST","LOCALS",2)
+	HaveSpell(WIZARD_BURNING_HANDS)
+	See(NearestEnemyOf(Myself))
+	Global("Action","LOCALS",2)
+	Range(LastSeenBy(Myself),8)
+THEN
+	RESPONSE #100
+		SetGlobal("Action","LOCALS",0)
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		Spell(LastSeenBy(Myself),WIZARD_BURNING_HANDS)
+		Wait(1)
+END
+
+IF
+	RandomNum(6,2)
+	Global("SSPELLS_1_RANDOM_CAST","LOCALS",2)
+	HaveSpell(WIZARD_CHARM_PERSON)
+	See(NearestEnemyOf(Myself))
+	Global("Action","LOCALS",2)
+THEN
+	RESPONSE #100
+		SetGlobal("Action","LOCALS",0)
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		Spell(LastSeenBy(Myself),WIZARD_CHARM_PERSON)
+		Wait(1)
+END
+
+IF
+	RandomNum(6,3)
+	Global("SSPELLS_1_RANDOM_CAST","LOCALS",2)
+	HaveSpell(WIZARD_EMOTION_HOPELESSNESS)
+	See(NearestEnemyOf(Myself))
+	Global("Action","LOCALS",2)
+THEN
+	RESPONSE #100
+		SetGlobal("Action","LOCALS",0)
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		Spell(LastSeenBy(Myself),WIZARD_EMOTION_HOPELESSNESS)
+		Wait(1)
+END
+
+IF
+	RandomNum(6,4)
+	Global("SSPELLS_1_RANDOM_CAST","LOCALS",2)
+	HaveSpell(WIZARD_SYMBOL_FEAR)
+	See(NearestEnemyOf(Myself))
+	Global("Action","LOCALS",2)
+THEN
+	RESPONSE #100
+		SetGlobal("Action","LOCALS",0)
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		Spell(LastSeenBy(Myself),WIZARD_SYMBOL_FEAR)
+		Wait(1)
+END
+
+IF
+	RandomNum(6,5)
+	Global("SSPELLS_1_RANDOM_CAST","LOCALS",2)
+	HaveSpell(CLERIC_UNHOLY_BLIGHT)
+	See(NearestEnemyOf(Myself))
+	Global("Action","LOCALS",2)
+	Alignment(LastSeenBy(Myself),MASK_GOOD)
+THEN
+	RESPONSE #100
+		SetGlobal("Action","LOCALS",0)
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		Spell(LastSeenBy(Myself),CLERIC_UNHOLY_BLIGHT)
+		Wait(1)
+END
+
+IF
+	RandomNum(6,6)
+	Global("SSPELLS_1_RANDOM_CAST","LOCALS",2)
+	HaveSpell(WIZARD_POWER_WORD_STUN)
+	See(NearestEnemyOf(Myself))
+	Global("Action","LOCALS",2)
+THEN
+	RESPONSE #100
+		SetGlobal("Action","LOCALS",0)
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		Spell(LastSeenBy(Myself),WIZARD_POWER_WORD_STUN)
+		Wait(1)
+END
+//BLOCK NO_RND
+//1 - Myself - [WIZARD_MIRROR_IMAGE, WIZARD_MIRROR_IMAGE, WIZARD_MIRROR_IMAGE]
+IF
+	HaveSpell(WIZARD_MIRROR_IMAGE)
+	See(NearestEnemyOf(Myself))
+	Global("Action","LOCALS",2)
+	!StateCheck(Myself,STATE_MIRRORIMAGE)
+	CheckStat(Myself,0,STONESKINS)
+THEN
+	RESPONSE #100
+		SetGlobal("Action","LOCALS",0)
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		Spell(Myself,WIZARD_MIRROR_IMAGE)
+		Wait(1)
+END
+//2 - LastMarkedObject - [WIZARD_BURNING_HANDS, WIZARD_CHARM_PERSON, WIZARD_EMOTION_HOPELESSNESS, WIZARD_EMOTION_FEAR, CLERIC_UNHOLY_BLIGHT, WIZARD_POWER_WORD_STUN]
+IF
+	HaveSpell(WIZARD_BURNING_HANDS)
+	See(NearestEnemyOf(Myself))
+	Global("Action","LOCALS",2)
+	Range(LastSeenBy(Myself),8)
+THEN
+	RESPONSE #100
+		SetGlobal("Action","LOCALS",0)
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		Spell(LastSeenBy(Myself),WIZARD_BURNING_HANDS)
+		Wait(1)
+END
+
+IF
+	HaveSpell(WIZARD_CHARM_PERSON)
+	See(NearestEnemyOf(Myself))
+	Global("Action","LOCALS",2)
+THEN
+	RESPONSE #100
+		SetGlobal("Action","LOCALS",0)
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		Spell(LastSeenBy(Myself),WIZARD_CHARM_PERSON)
+		Wait(1)
+END
+
+IF
+	HaveSpell(WIZARD_EMOTION_HOPELESSNESS)
+	See(NearestEnemyOf(Myself))
+	Global("Action","LOCALS",2)
+THEN
+	RESPONSE #100
+		SetGlobal("Action","LOCALS",0)
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		Spell(LastSeenBy(Myself),WIZARD_EMOTION_HOPELESSNESS)
+		Wait(1)
+END
+
+IF
+	HaveSpell(WIZARD_SYMBOL_FEAR)
+	See(NearestEnemyOf(Myself))
+	Global("Action","LOCALS",2)
+THEN
+	RESPONSE #100
+		SetGlobal("Action","LOCALS",0)
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		Spell(LastSeenBy(Myself),WIZARD_SYMBOL_FEAR)
+		Wait(1)
+END
+
+IF
+	HaveSpell(CLERIC_UNHOLY_BLIGHT)
+	See(NearestEnemyOf(Myself))
+	Global("Action","LOCALS",2)
+	Alignment(LastSeenBy(Myself),MASK_GOOD)
+THEN
+	RESPONSE #100
+		SetGlobal("Action","LOCALS",0)
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		Spell(LastSeenBy(Myself),CLERIC_UNHOLY_BLIGHT)
+		Wait(1)
+END
+
+IF
+	HaveSpell(WIZARD_POWER_WORD_STUN)
+	See(NearestEnemyOf(Myself))
+	Global("Action","LOCALS",2)
+THEN
+	RESPONSE #100
+		SetGlobal("Action","LOCALS",0)
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		Spell(LastSeenBy(Myself),WIZARD_POWER_WORD_STUN)
+		Wait(1)
+END
+//BLOCKEND
+//BLOCKEND
+IF
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		//EquipWeapon()
+		AttackOneRound(LastSeenBy(Myself))
+END
+

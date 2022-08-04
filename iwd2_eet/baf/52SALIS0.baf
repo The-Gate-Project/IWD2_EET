@@ -1,0 +1,71 @@
+IF
+  Global("SaveSavedLoc","LOCALS",0)
+THEN
+  RESPONSE #100
+    SetGlobal("SaveSavedLoc","LOCALS",1)
+    SaveObjectLocation("LOCALS","SavedLoc",Myself)
+    Continue()
+END
+
+IF
+	!GlobalTimerNotExpired("IwTimer18","LOCALS")
+	Global("52Aruma_Gone","GLOBAL",0)
+	NearSavedLocation(Myself,"LOCALSSavedLoc",1)
+THEN
+	RESPONSE #50
+		DisplayStringHead(Myself,@20710)
+		SetGlobalTimerRandom("IwTimer18","LOCALS",5,10)
+		Continue()
+	RESPONSE #50
+		DisplayStringHead(Myself,@20711)
+		SetGlobalTimerRandom("IwTimer18","LOCALS",5,10)
+		Continue()
+	RESPONSE #50
+		DisplayStringHead(Myself,@20712)
+		SetGlobalTimerRandom("IwTimer18","LOCALS",5,10)
+		Continue()
+	RESPONSE #150
+		SetGlobalTimerRandom("IwTimer18","LOCALS",5,10)
+		Continue()
+END
+
+IF
+	!GlobalTimerNotExpired("IwTimer18","LOCALS")
+	GlobalGT("52Aruma_Gone","GLOBAL",0)
+THEN
+	RESPONSE #50
+		DisplayStringHead(Myself,@20719)
+		SetGlobalTimerRandom("IwTimer18","LOCALS",5,10)
+		Continue()
+	RESPONSE #50
+		DisplayStringHead(Myself,@20720)
+		SetGlobalTimerRandom("IwTimer18","LOCALS",5,10)
+		Continue()
+	RESPONSE #50
+		DisplayStringHead(Myself,@20727)
+		SetGlobalTimerRandom("IwTimer18","LOCALS",5,10)
+		Continue()
+	RESPONSE #150
+		SetGlobalTimerRandom("IwTimer18","LOCALS",5,10)
+		Continue()
+END
+
+IF
+	NumTimesTalkedTo(0)
+	!Allegiance(Myself,ENEMY)
+	!StateCheck(Myself,STATE_REALLY_DEAD)
+	See([PC])
+THEN
+	RESPONSE #100
+		Dialogue(LastSeenBy(Myself))
+END
+
+IF
+	!GlobalTimerNotExpired("IwTimer19","LOCALS")
+	!NearSavedLocation(Myself,"LOCALSSavedLoc",4)
+THEN
+	RESPONSE #100
+		MoveToSavedLocation("SavedLoc","LOCALS")
+		SetGlobalTimer("IwTimer19","LOCALS",5)
+END
+

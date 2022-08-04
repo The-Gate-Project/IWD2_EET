@@ -1,0 +1,292 @@
+IF
+	StateCheck(Myself,STATE_PANIC)
+THEN
+	RESPONSE #100
+		RandomWalkContinuous()
+END
+
+IF
+	See([ENEMY.0.GOBLIN])
+	//NearLocation(LastSeenBy(Myself),-2,-2,9)
+	Range(LastSeenBy(Myself),11)
+THEN
+	RESPONSE #100
+		EquipMostDamagingMelee()
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+/*IF
+	See("1000_Goblin_01",0)
+	NearLocation(LastSeenBy(Myself),-2,-2,9)
+THEN
+	RESPONSE #100
+		EquipWeapon()
+		AttackOneRound(LastMarkedObject)
+END
+
+IF
+	See("1000_Goblin_02",0)
+	NearLocation(LastSeenBy(Myself),-2,-2,9)
+THEN
+	RESPONSE #100
+		EquipWeapon()
+		AttackOneRound(LastMarkedObject)
+END
+
+IF
+	See("1000_Goblin_03",0)
+	NearLocation(LastSeenBy(Myself),-2,-2,9)
+THEN
+	RESPONSE #100
+		EquipWeapon()
+		AttackOneRound(LastMarkedObject)
+END
+
+IF
+	See("1000_Goblin_04",0)
+	NearLocation(LastSeenBy(Myself),-2,-2,9)
+THEN
+	RESPONSE #100
+		EquipWeapon()
+		AttackOneRound(LastMarkedObject)
+END
+
+IF
+	See("1000_Goblin_05",0)
+	NearLocation(LastSeenBy(Myself),-2,-2,9)
+THEN
+	RESPONSE #100
+		EquipWeapon()
+		AttackOneRound(LastMarkedObject)
+END
+
+IF
+	See("1000_Goblin_06",0)
+	NearLocation(LastSeenBy(Myself),-2,-2,9)
+THEN
+	RESPONSE #100
+		EquipWeapon()
+		AttackOneRound(LastMarkedObject)
+END
+
+IF
+	See("1000_Goblin_Archer_01",0)
+	NearLocation(LastSeenBy(Myself),-2,-2,9)
+THEN
+	RESPONSE #100
+		EquipWeapon()
+		AttackOneRound(LastMarkedObject)
+END
+
+IF
+	See("1000_Goblin_07",0)
+	NearLocation(LastSeenBy(Myself),-2,-2,9)
+THEN
+	RESPONSE #100
+		EquipWeapon()
+		AttackOneRound(LastMarkedObject)
+END
+
+IF
+	See("1000_Goblin_19",0)
+	NearLocation(LastSeenBy(Myself),-2,-2,9)
+THEN
+	RESPONSE #100
+		EquipWeapon()
+		AttackOneRound(LastMarkedObject)
+END
+
+IF
+	See("1000_Goblin_Archer_02",0)
+	NearLocation(LastSeenBy(Myself),-2,-2,9)
+THEN
+	RESPONSE #100
+		EquipWeapon()
+		AttackOneRound(LastMarkedObject)
+END
+
+IF
+	See("1000_Goblin_08",0)
+	NearLocation(LastSeenBy(Myself),-2,-2,9)
+THEN
+	RESPONSE #100
+		EquipWeapon()
+		AttackOneRound(LastMarkedObject)
+END
+
+IF
+	See("1000_Goblin_Archer_03",0)
+	NearLocation(LastSeenBy(Myself),-2,-2,9)
+THEN
+	RESPONSE #100
+		EquipWeapon()
+		AttackOneRound(LastMarkedObject)
+END
+
+IF
+	See("1000_Goblin_09",0)
+	NearLocation(LastSeenBy(Myself),-2,-2,9)
+THEN
+	RESPONSE #100
+		EquipWeapon()
+		AttackOneRound(LastMarkedObject)
+END
+
+IF
+	See("1000_Goblin_10",0)
+	NearLocation(LastSeenBy(Myself),-2,-2,9)
+THEN
+	RESPONSE #100
+		EquipWeapon()
+		AttackOneRound(LastMarkedObject)
+END
+
+IF
+	See("1000_Goblin_Archer_04",0)
+	NearLocation(LastSeenBy(Myself),-2,-2,9)
+THEN
+	RESPONSE #100
+		EquipWeapon()
+		AttackOneRound(LastMarkedObject)
+END
+
+IF
+	See("1000_Goblin_11",0)
+	NearLocation(LastSeenBy(Myself),-2,-2,9)
+THEN
+	RESPONSE #100
+		EquipWeapon()
+		AttackOneRound(LastMarkedObject)
+END
+
+IF
+	See("1000_Goblin_12",0)
+	NearLocation(LastSeenBy(Myself),-2,-2,9)
+THEN
+	RESPONSE #100
+		EquipWeapon()
+		AttackOneRound(LastMarkedObject)
+END
+
+IF
+	See("1000_Goblin_Archer_05",0)
+	NearLocation(LastSeenBy(Myself),-2,-2,9)
+THEN
+	RESPONSE #100
+		EquipWeapon()
+		AttackOneRound(LastMarkedObject)
+END
+
+IF
+	See("1000_Goblin_Archer_06",0)
+	NearLocation(LastSeenBy(Myself),-2,-2,9)
+THEN
+	RESPONSE #100
+		EquipWeapon()
+		AttackOneRound(LastMarkedObject)
+END
+
+IF
+	See("1000_Goblin_Archer_07",0)
+	NearLocation(LastSeenBy(Myself),-2,-2,9)
+THEN
+	RESPONSE #100
+		EquipWeapon()
+		AttackOneRound(LastMarkedObject)
+END
+
+IF
+	See("1000_Goblin_Archer_08",0)
+	NearLocation(LastSeenBy(Myself),-2,-2,9)
+THEN
+	RESPONSE #100
+		EquipWeapon()
+		AttackOneRound(LastMarkedObject)
+END
+
+IF
+	See("1000_Goblin_13",0)
+	NearLocation(LastSeenBy(Myself),-2,-2,9)
+THEN
+	RESPONSE #100
+		EquipWeapon()
+		AttackOneRound(LastMarkedObject)
+END
+
+IF
+	See("1000_Goblin_14",0)
+	NearLocation(LastSeenBy(Myself),-2,-2,9)
+THEN
+	RESPONSE #100
+		EquipWeapon()
+		AttackOneRound(LastMarkedObject)
+END
+
+IF
+	See("1000_Goblin_15",0)
+	NearLocation(LastSeenBy(Myself),-2,-2,9)
+THEN
+	RESPONSE #100
+		EquipWeapon()
+		AttackOneRound(LastMarkedObject)
+END
+
+IF
+	See("1000_Goblin_Archer_09",0)
+	NearLocation(LastSeenBy(Myself),-2,-2,9)
+THEN
+	RESPONSE #100
+		EquipWeapon()
+		AttackOneRound(LastMarkedObject)
+END
+
+IF
+	See("1000_Goblin_16",0)
+	NearLocation(LastSeenBy(Myself),-2,-2,9)
+THEN
+	RESPONSE #100
+		EquipWeapon()
+		AttackOneRound(LastMarkedObject)
+END
+
+IF
+	See("1000_Goblin_17",0)
+	NearLocation(LastSeenBy(Myself),-2,-2,9)
+THEN
+	RESPONSE #100
+		EquipWeapon()
+		AttackOneRound(LastMarkedObject)
+END
+
+IF
+	See("1000_Goblin_18",0)
+	NearLocation(LastSeenBy(Myself),-2,-2,9)
+THEN
+	RESPONSE #100
+		EquipWeapon()
+		AttackOneRound(LastMarkedObject)
+END
+
+IF
+	See("1000_Goblin_Archer_10",0)
+	NearLocation(LastSeenBy(Myself),-2,-2,9)
+THEN
+	RESPONSE #100
+		EquipWeapon()
+		AttackOneRound(LastMarkedObject)
+END*/
+
+IF
+	AttackedBy([ENEMY.0.GOBLIN],DEFAULT)
+THEN
+	RESPONSE #100
+		RunAwayFrom(LastAttackerOf(Myself),45)
+END
+
+IF
+	See([ENEMY.0.GOBLIN])
+THEN
+	RESPONSE #100
+		FaceObject(LastSeenBy(Myself))
+END
+

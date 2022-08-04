@@ -1,0 +1,152 @@
+IF
+	//!CheckDoorFlags(Myself,DOORLOCKED)
+	!Global("52C7RACK_LOCKAED","MYAREA",1)
+	GlobalGT("52Morohem_Master","GLOBAL",7)
+THEN
+	RESPONSE #100
+		Lock(Myself)
+		SetGlobal("52C7RACK_LOCKAED","MYAREA",1)
+END
+
+IF
+	!GlobalGT("52Morohem_Master","GLOBAL",7)
+	Global("WATCHING_PLAYER","MYAREA",0)
+	NumItemsLT("BLUN04",Myself,2)  // Булава
+THEN
+	RESPONSE #100
+		DestroyItem("BLUN04")  // Булава
+		DestroyItem("BLUN04")  // Булава
+		CreateItem("BLUN04",2,0,0)  // Булава
+		Continue()
+END
+
+IF
+	!GlobalGT("52Morohem_Master","GLOBAL",7)
+	Global("WATCHING_PLAYER","MYAREA",0)
+	NumItemsLT("SW1H07",Myself,2)  // Короткий меч
+THEN
+	RESPONSE #100
+		DestroyItem("SW1H07")  // Короткий меч
+		DestroyItem("SW1H07")  // Короткий меч
+		CreateItem("SW1H07",2,0,0)  // Короткий меч
+		Continue()
+END
+
+IF
+	!GlobalGT("52Morohem_Master","GLOBAL",7)
+	Global("WATCHING_PLAYER","MYAREA",0)
+	NumItemsLT("DART01",Myself,20)  // Дротик
+THEN
+	RESPONSE #100
+		DestroyItem("DART01")  // Дротик
+		DestroyItem("DART01")  // Дротик
+		DestroyItem("DART01")  // Дротик
+		DestroyItem("DART01")  // Дротик
+		DestroyItem("DART01")  // Дротик
+		DestroyItem("DART01")  // Дротик
+		DestroyItem("DART01")  // Дротик
+		DestroyItem("DART01")  // Дротик
+		DestroyItem("DART01")  // Дротик
+		DestroyItem("DART01")  // Дротик
+		DestroyItem("DART01")  // Дротик
+		DestroyItem("DART01")  // Дротик
+		DestroyItem("DART01")  // Дротик
+		DestroyItem("DART01")  // Дротик
+		DestroyItem("DART01")  // Дротик
+		DestroyItem("DART01")  // Дротик
+		DestroyItem("DART01")  // Дротик
+		DestroyItem("DART01")  // Дротик
+		DestroyItem("DART01")  // Дротик
+		DestroyItem("DART01")  // Дротик
+		CreateItem("DART01",20,0,0)  // Дротик
+		Continue()
+END
+
+IF
+	!GlobalGT("52Morohem_Master","GLOBAL",7)
+	Global("WATCHING_PLAYER","MYAREA",0)
+	NumItemsLT("z0ax1h01",Myself,2)  // Боевой топор
+THEN
+	RESPONSE #100
+		DestroyItem("z0ax1h01")  // Боевой топор
+		DestroyItem("z0ax1h01")  // Боевой топор
+		CreateItem("z0ax1h01",2,0,0)  // Боевой топор
+		Continue()
+END
+
+IF
+	!GlobalGT("52Morohem_Master","GLOBAL",7)
+	Global("WATCHING_PLAYER","MYAREA",0)
+	NumItemsLT("AX1H04",Myself,10)  // Метательный топор
+THEN
+	RESPONSE #100
+		DestroyItem("AX1H04")  // Метательный топор
+		DestroyItem("AX1H04")  // Метательный топор
+		DestroyItem("AX1H04")  // Метательный топор
+		DestroyItem("AX1H04")  // Метательный топор
+		DestroyItem("AX1H04")  // Метательный топор
+		DestroyItem("AX1H04")  // Метательный топор
+		DestroyItem("AX1H04")  // Метательный топор
+		DestroyItem("AX1H04")  // Метательный топор
+		DestroyItem("AX1H04")  // Метательный топор
+		DestroyItem("AX1H04")  // Метательный топор
+		CreateItem("AX1H04",10,0,0)  // Метательный топор
+		Continue()
+END
+
+IF
+	!GlobalGT("52Morohem_Master","GLOBAL",7)
+	Global("WATCHING_PLAYER","MYAREA",0)
+	NumItemsLT("BLUN02",Myself,2)  // Цеп
+THEN
+	RESPONSE #100
+		DestroyItem("BLUN02")  // Цеп
+		DestroyItem("BLUN02")  // Цеп
+		CreateItem("BLUN02",2,0,0)  // Цеп
+		Continue()
+END
+
+IF
+	!GlobalGT("52Morohem_Master","GLOBAL",7)
+	Global("WATCHING_PLAYER","MYAREA",0)
+	NumItemsLT("HAMM01",Myself,2)  // Боевой молот
+THEN
+	RESPONSE #100
+		DestroyItem("HAMM01")  // Боевой молот
+		DestroyItem("HAMM01")  // Боевой молот
+		CreateItem("HAMM01",2,0,0)  // Боевой молот
+		Continue()
+END
+
+IF
+	!GlobalGT("52Morohem_Master","GLOBAL",7)
+	Global("WATCHING_PLAYER","MYAREA",0)
+	NumItemsLT("z0hamt01",Myself,10)  // Метательный молот
+THEN
+	RESPONSE #100
+		DestroyItem("z0hamt01")  // Метательный молот
+		DestroyItem("z0hamt01")  // Метательный молот
+		DestroyItem("z0hamt01")  // Метательный молот
+		DestroyItem("z0hamt01")  // Метательный молот
+		DestroyItem("z0hamt01")  // Метательный молот
+		DestroyItem("z0hamt01")  // Метательный молот
+		DestroyItem("z0hamt01")  // Метательный молот
+		DestroyItem("z0hamt01")  // Метательный молот
+		DestroyItem("z0hamt01")  // Метательный молот
+		DestroyItem("z0hamt01")  // Метательный молот
+		CreateItem("z0hamt01",10,0,0)  // Метательный молот
+		Continue()
+END
+
+IF
+	!GlobalGT("52Morohem_Master","GLOBAL",7)
+	Global("WATCHING_PLAYER","MYAREA",0)
+	NumItemsLT("SW1H04",Myself,2)  // Длинный меч
+THEN
+	RESPONSE #100
+		DestroyItem("SW1H04")  // Длинный меч
+		DestroyItem("SW1H04")  // Длинный меч
+		CreateItem("SW1H04",2,0,0)  // Длинный меч
+		Continue()
+END
+

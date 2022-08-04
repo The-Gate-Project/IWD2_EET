@@ -1,0 +1,14 @@
+IF
+	//!CheckDoorFlags(Myself,HIDDEN)
+	OpenState(Myself,FALSE)
+	OR(2)
+		!Global("Tabard_Quest","GLOBAL",0)
+		Dead("Tabard_Mooncalf")
+THEN
+	RESPONSE #100
+		//SetDoorFlag(Myself,HIDDEN,TRUE)
+		ContainerEnable("Shield_Rack",TRUE)
+		Unlock(Myself)
+		OpenDoor(Myself)
+END
+

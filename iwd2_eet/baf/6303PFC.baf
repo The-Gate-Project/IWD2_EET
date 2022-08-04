@@ -1,0 +1,140 @@
+//BLOCK SET_VARS
+IF
+	!Global("SET_6303PFC","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,4)
+		SetGlobal("SET_6303PFC","LOCALS",1)
+		SetInterrupt(TRUE)
+END
+//BLOCKEND
+
+IF
+	Global("Dispel","LOCALS",0)
+	Allegiance(Myself,ENEMY)
+THEN
+	RESPONSE #100
+		SetGlobal("Dispel","LOCALS",1)
+		ForceSpell(NearestEnemyOf(Myself),WIZARD_DISPEL_MAGIC)
+		Wait(1)
+END
+
+IF
+	See(NearestEnemyOf(Myself))
+	GlobalLT("Action","LOCALS",2)
+	!Range(LastSeenBy(Myself),4) //2
+THEN
+	RESPONSE #100
+		//SpellHitEffectSprite(Myself,Myself,DIMENSION_DOOR_ORIGIN,0)
+		CreateVisualEffectObject("spdimndr",Myself)
+		//HideCreature(Myself,TRUE)
+		ApplySpellRES("IDINVIS6",Myself)
+		DisplayStringHead(Myself,@38707)
+		JumpToObject(LastSeenBy(Myself))
+		ApplySpellRES("IWJUMPOF",Myself)
+		FaceObject(LastSeenBy(Myself))
+		//SpellHitEffectSprite(Myself,Myself,DIMENSION_DOOR_DESTINATION,0)
+		CreateVisualEffectObject("spdimndr",Myself)
+		//HideCreature(Myself,FALSE)
+		ApplySpellRES("IDINVIS7",Myself)
+		Continue()
+END
+
+IF
+	See(NearestEnemyOf(Myself))
+	GlobalLT("Action","LOCALS",2)
+THEN
+	RESPONSE #100
+		IncrementGlobal("Action","LOCALS",1)
+		EquipMostDamagingMelee()
+		AttackOneRound(LastSeenBy(Myself))
+END
+//BLOCK SPL_1
+/*IF
+	ForceMarkedSpell(MARKED_SPELL)
+	SetSpellTarget(Nothing)
+	See(NearestEnemyOf(Myself),0)
+	Global("Action","LOCALS",2)
+THEN
+	RESPONSE #100
+		MarkSpellAndObject("2504240423182501",LastMarkedObject,SPELLCAST_IGNORE_SEE | SPELLCAST_IGNORE_VALID_SPELL_TARGET | SPELLCAST_RANDOM)  // [WIZARD_CONE_OF_COLD, WIZARD_ICE_STORM, WIZARD_ICELANCE, WIZARD_ANIMATE_DEAD]
+		Continue()
+END
+
+IF
+	!IsMarkedSpell(MARKED_SPELL)
+THEN
+	RESPONSE #100
+		SetGlobal("Action","LOCALS",0)
+		Spell(SpellTarget,MARKED_SPELL)
+		WaitAnimation(Myself,WALK)
+		WaitAnimation(Myself,CONJURE)
+		WaitAnimation(Myself,CAST)
+		ForceMarkedSpell(MARKED_SPELL)
+END*/
+/*IF
+	GlobalLT("SSPELLS_1_RANDOM_CAST","LOCALS",5)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,4)
+		Continue()
+END*/
+//1 - LastMarkedObject - [WIZARD_CONE_OF_COLD, WIZARD_ICE_STORM, WIZARD_ICELANCE, WIZARD_ANIMATE_DEAD]
+IF
+	Global("SSPELLS_1_RANDOM_CAST","LOCALS",1)
+	See(NearestEnemyOf(Myself))
+	Global("Action","LOCALS",2)
+THEN
+	RESPONSE #100
+		SetGlobal("Action","LOCALS",0)
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,4)
+		ForceSpell(LastSeenBy(Myself),WIZARD_CONE_OF_COLD)
+		Wait(1)
+END
+
+IF
+	Global("SSPELLS_1_RANDOM_CAST","LOCALS",2)
+	See(NearestEnemyOf(Myself))
+	Global("Action","LOCALS",2)
+THEN
+	RESPONSE #100
+		SetGlobal("Action","LOCALS",0)
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,4)
+		ForceSpell(LastSeenBy(Myself),WIZARD_ICE_STORM)
+		Wait(1)
+END
+
+IF
+	Global("SSPELLS_1_RANDOM_CAST","LOCALS",3)
+	See(NearestEnemyOf(Myself))
+	Global("Action","LOCALS",2)
+THEN
+	RESPONSE #100
+		SetGlobal("Action","LOCALS",0)
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,4)
+		ForceSpellRES("IWWI318",LastSeenBy(Myself))
+		Wait(1)
+END
+
+IF
+	Global("SSPELLS_1_RANDOM_CAST","LOCALS",4)
+	See(NearestEnemyOf(Myself))
+	Global("Action","LOCALS",2)
+THEN
+	RESPONSE #100
+		SetGlobal("Action","LOCALS",0)
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,4)
+		ForceSpell(LastSeenBy(Myself),WIZARD_ANIMATE_DEAD)
+		Wait(1)
+END
+//BLOCKEND
+
+IF
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		EquipMostDamagingMelee()
+		AttackOneRound(LastSeenBy(Myself))
+END
+

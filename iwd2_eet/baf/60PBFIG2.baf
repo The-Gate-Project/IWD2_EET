@@ -1,0 +1,26 @@
+IF
+	OR(5)
+		See("6051Heartless_Dead8")
+		See("6051Heartless_Dead7")
+		See("6051Heartless_Dead6")
+		See("6051Heartless_Dead1")
+		See(NearestEnemyOf(Myself))
+		//See("6051Heartless_Dead2",0)
+		//See("6051Heartless_Dead3",0)
+		//See("6051Heartless_Dead4",0)
+		//See("6051Heartless_Dead5",0)
+THEN
+	RESPONSE #100
+		ReallyForceSpellRES("IWIN999",Myself)  // SPIN999.SPL INNATE_ANIMAL_AFFINITY
+		ReallyForceSpellRES("IWIN998",Myself)  // SPIN998.SPL INNATE_CHAMELEON_POWER
+		SetGlobal("Unload","LOCALS",1)
+		Continue()
+END
+
+IF
+	Global("Unload","LOCALS",1)
+THEN
+	RESPONSE #100
+		ChangeAIScript("",CLASS)
+END
+

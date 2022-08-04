@@ -1,0 +1,33 @@
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("Iyachtu_Xvim_Statue")
+		Activate("Iyachtu_Xvim")
+		ActionOverride("Iyachtu_Xvim",SetGlobal("IwIHidden","LOCALS",0))
+		Activate("IW6500IX_Glabrezu_1")
+		ActionOverride("IW6500IX_Glabrezu_1",SetGlobal("IwIHidden","LOCALS",0))
+		Activate("IW6500IX_Glabrezu_2")
+		ActionOverride("IW6500IX_Glabrezu_2",SetGlobal("IwIHidden","LOCALS",0))
+		Activate("IW6500IX_Cornugon_1")
+		ActionOverride("IW6500IX_Cornugon_1",SetGlobal("IwIHidden","LOCALS",0))
+		Activate("IW6500IX_Cornugon_2")
+		ActionOverride("IW6500IX_Cornugon_2",SetGlobal("IwIHidden","LOCALS",0))
+		Activate("IW6500_IXw_Lemure_1")
+		ActionOverride("IW6500_IXw_Lemure_1",SetGlobal("IwIHidden","LOCALS",0))
+		/*Activate("IW6500_IXw_Lemure_2")
+		ActionOverride("IW6500_IXw_Lemure_2",SetGlobal("IwIHidden","LOCALS",0))*/
+		Activate("IW6500_IXw_Lemure_3")
+		ActionOverride("IW6500_IXw_Lemure_3",SetGlobal("IwIHidden","LOCALS",0))
+		Activate("IW6500_IXw_Lemure_4")
+		ActionOverride("IW6500_IXw_Lemure_4",SetGlobal("IwIHidden","LOCALS",0))
+		Activate("6500_Wight_Lemure_1")
+		ActionOverride("6500_Wight_Lemure_1",SetGlobal("IwIHidden","LOCALS",0))
+		Activate("6500_Wight_Lemure_2")
+		ActionOverride("6500_Wight_Lemure_2",SetGlobal("IwIHidden","LOCALS",0))
+		Activate("6500_Wight_Lemure_3")
+		ActionOverride("6500_Wight_Lemure_3",SetGlobal("IwIHidden","LOCALS",0))
+		/*Activate("6500_Wight_Lemure_4")
+		ActionOverride("6500_Wight_Lemure_4",SetGlobal("IwIHidden","LOCALS",0))*/
+		StartCutScene("65cIyac0")
+END

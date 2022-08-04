@@ -1,0 +1,218 @@
+IF
+  Global("SaveSavedLoc","LOCALS",0)
+THEN
+  RESPONSE #100
+    SetGlobal("SaveSavedLoc","LOCALS",1)
+    SaveObjectLocation("LOCALS","SavedLoc",Myself)
+    Continue()
+END
+
+IF
+	Global("61NheeroMissionQuest","GLOBAL",9)
+	Global("61NheeroTransformStatus","GLOBAL",0)
+	//CurrentAreaIs(Myself,6102)
+	AreaCheck("IW6102")
+THEN
+	RESPONSE #100
+		//HideCreature(Myself,FALSE)
+		Activate(Myself)
+		SetGlobal("IwIHidden","LOCALS",0)
+		//SpellHitEffectSprite(Myself,Myself,ALTERATION,0)
+		CreateVisualEffectObject("ALTERH",Myself)
+		Polymorph(HISTACHII)
+		SetGlobal("AnimationId","LOCALS",57408)
+		SetNumTimesTalkedTo(1)
+		SetGlobalTimer("TransformTimer","LOCALS",1200)
+		SetGlobal("61NheeroTransformStatus","GLOBAL",2)
+END
+
+IF
+	Global("61NheeroResearchRequest","GLOBAL",1)
+	Global("61NheeroResearchStatus","GLOBAL",1)
+	//CurrentAreaIs(Myself,6102)
+	AreaCheck("IW6102")
+THEN
+	RESPONSE #100
+		//FadeToColor([0.0],0)
+		//HideCreature(Myself,FALSE)
+		Activate(Myself)
+		SetGlobal("IwIHidden","LOCALS",0)
+		FadeToColor([0.0],0)
+		SetNumTimesTalkedTo(1)
+		//SetSavedLocationPoint(1536,2624,W)
+		SaveLocation("LOCALS","SavedLoc",[1536.2624])
+		//JumpToSavedLocation()
+		JumpToPoint([1536.2624])
+		SetHomeLocation([1536.2624])
+		SetGlobalTimer("ResearchTimer","LOCALS",2400)
+		FadeFromColor([0.0],0)
+		SetGlobal("61NheeroResearchRequest","GLOBAL",3)
+END
+
+IF
+	Global("61NheeroResearchRequest","GLOBAL",1)
+	Global("61NheeroResearchStatus","GLOBAL",3)
+	//CurrentAreaIs(Myself,6103)
+	AreaCheck("IW6103")
+THEN
+	RESPONSE #100
+		//HideCreature(Myself,FALSE)
+		Activate(Myself)
+		SetGlobal("IwIHidden","LOCALS",0)
+		SetNumTimesTalkedTo(1)
+		SetGlobalTimer("ResearchTimer","LOCALS",ONE_DAY)
+		SetGlobal("61NheeroResearchRequest","GLOBAL",3)
+END
+
+IF
+	//CreatureHidden(Myself)
+	!IsActive(Myself)
+THEN
+	RESPONSE #100
+		NoAction()
+END
+
+IF
+	Global("61NheeroResearchStatus","GLOBAL",5)
+THEN
+	RESPONSE #100
+		ClearActions(Myself)
+		EscapeAreaDestroy(5)
+END
+
+IF
+	Global("61NheeroTransformStatus","GLOBAL",2)
+	GlobalTimerExpired("TransformTimer","LOCALS")
+THEN
+	RESPONSE #100
+		//SpellHitEffectSprite(Myself,Myself,ALTERATION,0)
+		CreateVisualEffectObject("ALTERH",Myself)
+		Polymorph(MAGE_MALE_HUMAN)
+		SetGlobal("AnimationId","LOCALS",25088)
+		SetGlobal("61NheeroTransformStatus","GLOBAL",4)
+END
+
+IF
+	Global("61NheeroTransformStatus","GLOBAL",4)
+	Global("61NheeroResearchRequest","GLOBAL",2)
+THEN
+	RESPONSE #100
+		SetGlobal("61NheeroResearchRequest","GLOBAL",1)
+END
+
+IF
+	Global("61NheeroResearchRequest","GLOBAL",3)
+	GlobalTimerExpired("ResearchTimer","LOCALS")
+THEN
+	RESPONSE #100
+		IncrementGlobal("61NheeroResearchStatus","GLOBAL",1)
+		SetGlobal("61NheeroResearchRequest","GLOBAL",0)
+END
+
+IF
+	Global("INITIALIZED_61NHEERO","LOCALS",0)
+THEN
+	RESPONSE #100
+		//SetCreatureAreaFlag(Myself,IGNORE_RETURN_TO_START_POS,TRUE)
+		SetGlobal("INITIALIZED_61NHEERO","LOCALS",1)
+		Continue()
+END
+
+IF
+	Global("RW_61NHEERO0","LOCALS",0)
+	!NearSavedLocation(Myself,"LOCALSSavedLoc",15)
+THEN
+	RESPONSE #100
+		SetGlobal("RW_61NHEERO0","LOCALS",1)
+		Continue()
+END
+
+IF
+	!Global("RW_61NHEERO0","LOCALS",0)
+	NearSavedLocation(Myself,"LOCALSSavedLoc",15)
+THEN
+	RESPONSE #100
+		SetGlobal("RW_61NHEERO0","LOCALS",0)
+		NoAction()
+END
+
+IF
+	!Global("RW_61NHEERO0","LOCALS",0)
+	Global("61NheeroResearchRequest","GLOBAL",3)
+THEN
+	RESPONSE #100
+		MoveToOffset([-2.-2])
+	RESPONSE #100
+		MoveToOffset([2.-2])
+	RESPONSE #100
+		MoveToOffset([-2.2])
+	RESPONSE #100
+		MoveToOffset([2.2])
+	RESPONSE #100
+		MoveToSavedLocation("SavedLoc","LOCALS")
+END
+
+IF
+	!GlobalTimerNotExpired("IwTimer22","LOCALS")
+	Global("RW_61NHEERO0","LOCALS",0)
+	Global("61NheeroResearchRequest","GLOBAL",3)
+THEN
+	RESPONSE #100
+		RandomWalk()
+		SetGlobalTimer("IwTimer22","LOCALS",5)
+END
+//BLOCK NEW
+IF
+	Global("NheeroSpeakToPlayer","MYAREA",2)
+THEN
+	RESPONSE #100
+		SetGlobal("NheeroSpeakToPlayer","MYAREA",0)
+		JumpToPoint([2608.2746])
+		ApplySpellRES("IDINVIS7",Myself)
+		SetGlobal("NheeroSpeakToPlayer","MYAREA",0)
+END
+//BLOCKEND
+//BLOCK OLD
+IF
+	Global("NheeroSpeakToPlayer","MYAREA",1)
+THEN
+	RESPONSE #100
+		//HideCreature(Myself,TRUE)
+		ApplySpellRES("IDINVIS6",Myself)
+		
+		SetGlobal("NheeroSpeakToPlayer","MYAREA",2)
+		
+		JumpToPoint([2816.1984])
+		//SetDialogueRange(300)
+		//Dialogue(NearestPC)
+		//ApplySpellRES("BDCUTSPY",Myself)
+		StartDialogNoSet([PC])
+		//JumpToSavedLocation()
+		//JumpToPoint([2608.2746])
+		//HideCreature(Myself,FALSE)
+		//ApplySpellRES("IDINVIS7",Myself)
+		//SetGlobal("NheeroSpeakToPlayer","MYAREA",0)
+END
+//BLOCKEND
+IF
+	Global("61NheeroMissionQuest","GLOBAL",9)
+	Global("61NheeroTransformStatus","GLOBAL",0)
+	//CurrentAreaIs(Myself,6101)
+	AreaCheck("IW6101")
+THEN
+	RESPONSE #100
+		ClearActions(Myself)
+		EscapeAreaDestroy(5)
+END
+
+IF
+	Global("61NheeroResearchRequest","GLOBAL",1)
+	Global("61NheeroResearchStatus","GLOBAL",3)
+	//CurrentAreaIs(Myself,6102)
+	AreaCheck("IW6102")
+THEN
+	RESPONSE #100
+		ClearActions(Myself)
+		EscapeAreaDestroy(5)
+END
+

@@ -1,0 +1,16 @@
+IF
+	//!CreatureHidden(Myself)
+	!Global("StartCutscene_63cFB01","MYAREA",0)
+THEN
+	RESPONSE #100
+		ChangeAIScript("",SPECIFICS)
+END
+
+IF
+	//CreatureHidden(Myself)
+	Global("StartCutscene_63cFB01","MYAREA",0)
+THEN
+	RESPONSE #100
+		NoAction()
+END
+

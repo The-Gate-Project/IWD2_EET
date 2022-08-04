@@ -1,0 +1,447 @@
+IF
+	GlobalGT("50Venla_Children","GLOBAL",1)
+	//OpenState("AR5016_West",FALSE)
+	OR(3)
+		OpenState("AR5016_West",FALSE)
+		OpenState("AR5016_NorthEast",FALSE)
+		OpenState("AR5016_SouthEast",FALSE)
+THEN
+	RESPONSE #100
+		OpenDoor("AR5016_West")
+		
+		OpenDoor("AR5016_NorthEast")
+		OpenDoor("AR5016_SouthEast")
+		
+		TriggerActivation("TO5020",TRUE)
+		TriggerActivation("TO5025",TRUE)
+		TriggerActivation("TO5026",TRUE)
+		
+		Continue()
+END
+
+/*IF
+	GlobalGT("50Venla_Children","Global",1)
+	OpenState("AR5016_NorthEast",FALSE)
+THEN
+	RESPONSE #100
+		OpenDoor("AR5016_NorthEast")
+		Continue()
+END
+
+IF
+	GlobalGT("50Venla_Children","Global",1)
+	OpenState("AR5016_SouthEast",FALSE)
+THEN
+	RESPONSE #100
+		OpenDoor("AR5016_SouthEast")
+		Continue()
+END*/
+
+/*IF
+	GlobalGT("50Venla_Children","Global",1)
+	//!IsActive("To5020")
+	
+	!Global("Triggers_Activated","MYAREA",1)
+THEN
+	RESPONSE #100
+		TriggerActivation("TO5020",TRUE)
+		TriggerActivation("TO5025",TRUE)
+		TriggerActivation("TO5026",TRUE)
+		
+		SetGlobal("Triggers_Activated","MYAREA",1)
+		Continue()
+END*/
+
+/*IF
+	GlobalGT("50Venla_Children","Global",1)
+	!IsActive("To5025")
+THEN
+	RESPONSE #100
+		TriggerActivation("TO5025",TRUE)
+		Continue()
+END
+
+IF
+	GlobalGT("50Venla_Children","Global",1)
+	!IsActive("To5026")
+THEN
+	RESPONSE #100
+		Continue()
+		TriggerActivation("TO5026",TRUE)
+END*/
+
+/*IF
+	!Global("FW_WILL_O_WISPS_DEAD","GLOBAL",0)
+	OR(5)
+		!Dead("01_50RDEAR_01")
+		!Dead("01_50RDEAR_02")
+		!Dead("01_50RDEBA_03")
+		!Dead("01_50RDEBA_04")
+		!Dead("01_50RDEHU_05")
+THEN
+	RESPONSE #100
+		HideCreature("01_50RDEAR_01",FALSE)
+		HideCreature("01_50RDEAR_02",FALSE)
+		HideCreature("01_50RDEBA_03",FALSE)
+		HideCreature("01_50RDEBA_04",FALSE)
+		HideCreature("01_50RDEHU_05",FALSE)
+		Continue()
+END*/
+
+IF
+	OR(2)
+		Global("AR5016_ARCHER_0_SPAWN","GLOBAL",0)
+		!Global("AR5016_STATE","GLOBAL",1)
+	//!Dead("ARCHER_0")
+	!StateCheck("ARCHER_0",STATE_REALLY_DEAD)
+THEN
+	RESPONSE #100
+		ActionOverride("ARCHER_0",DestroySelf())
+		Continue()
+END
+
+IF
+	OR(2)
+		Global("AR5016_BARBARIAN_0_SPAWN","GLOBAL",0)
+		!Global("AR5016_STATE","GLOBAL",1)
+	//!Dead("BARBARIAN_0")
+	!StateCheck("BARBARIAN_0",STATE_REALLY_DEAD)
+THEN
+	RESPONSE #100
+		ActionOverride("BARBARIAN_0",DestroySelf())
+		Continue()
+END
+
+IF
+	OR(2)
+		Global("AR5016_BARBARIAN_1_SPAWN","GLOBAL",0)
+		!Global("AR5016_STATE","GLOBAL",1)
+	//!Dead("BARBARIAN_1")
+	!StateCheck("BARBARIAN_1",STATE_REALLY_DEAD)
+THEN
+	RESPONSE #100
+		ActionOverride("BARBARIAN_1",DestroySelf())
+		Continue()
+END
+
+IF
+	OR(2)
+		Global("AR5016_HUNTER_0_SPAWN","GLOBAL",0)
+		!Global("AR5016_STATE","GLOBAL",1)
+	//!Dead("HUNTER_0")
+	!StateCheck("HUNTER_0",STATE_REALLY_DEAD)
+THEN
+	RESPONSE #100
+		ActionOverride("HUNTER_0",DestroySelf())
+		Continue()
+END
+
+IF
+	OR(2)
+		Global("AR5016_HUNTER_1_SPAWN","GLOBAL",0)
+		!Global("AR5016_STATE","GLOBAL",1)
+	//!Dead("HUNTER_1")
+	!StateCheck("HUNTER_1",STATE_REALLY_DEAD)
+THEN
+	RESPONSE #100
+		ActionOverride("HUNTER_1",DestroySelf())
+		Continue()
+END
+
+IF
+	OR(2)
+		Global("AR5016_HUNTER_2_SPAWN","GLOBAL",0)
+		!Global("AR5016_STATE","GLOBAL",1)
+	//!Dead("HUNTER_2")
+	!StateCheck("HUNTER_2",STATE_REALLY_DEAD)
+THEN
+	RESPONSE #100
+		ActionOverride("HUNTER_2",DestroySelf())
+		Continue()
+END
+
+IF
+	!Global("FW_WILL_O_WISPS_DEAD","GLOBAL",0)
+	//!Dead("TRAP_WISP")
+	!StateCheck("TRAP_WISP",STATE_REALLY_DEAD)
+THEN
+	RESPONSE #100
+		ActionOverride("TRAP_WISP",DestroySelf())
+		Continue()
+END
+
+IF
+	Global("AR5016_STATE","GLOBAL",2)
+	Global("AR5003_DARK_TREE_CLEAR","GLOBAL",0)
+THEN
+	RESPONSE #100
+		SetGlobal("ACTIVE_DARK_TREE","MYAREA",0)
+		SetGlobal("AR5016_STATE","GLOBAL",3)
+		//HideCreature("TRAP_WISP",FALSE)
+		Activate("TRAP_WISP")
+		ActionOverride("TRAP_WISP",SetGlobal("IwIHidden","LOCALS",0))
+		ActionOverride("TRAP_WISP",JumpToPoint([480.400]))
+		ActionOverride("TRAP_WISP",ApplySpellRES("idinvis5",Myself))
+		Continue()
+END
+
+IF
+	!Global("ACTIVE_DARK_TREE","MYAREA",-1)
+	!Global("AR5003_DARK_TREE_CLEAR","GLOBAL",0)
+THEN
+	RESPONSE #100
+		SetGlobal("ACTIVE_DARK_TREE","MYAREA",-1)
+		Continue()
+END
+
+/*IF
+	IsExtendedNight()
+	!Global("AR5003_DARK_TREE_CLEAR","GLOBAL",0)
+THEN
+	RESPONSE #100
+		SetExtendedNight(FALSE)
+		Continue()
+END*/
+
+IF
+	OnCreation()
+	!Global("AR5020_STATE","GLOBAL",0)
+THEN
+	RESPONSE #100
+		SetGlobal("AR5020_STATE","GLOBAL",0)
+		SetGlobal("AR5020_ARCHER_0_SPAWN","GLOBAL",0)
+		SetGlobal("AR5020_BARBARIAN_0_SPAWN","GLOBAL",0)
+		SetGlobal("AR5020_BARBARIAN_1_SPAWN","GLOBAL",0)
+		SetGlobal("AR5020_HUNTER_0_SPAWN","GLOBAL",0)
+		SetGlobal("AR5020_HUNTER_1_SPAWN","GLOBAL",0)
+		SetGlobal("AR5020_HUNTER_2_SPAWN","GLOBAL",0)
+		Continue()
+END
+
+IF
+	OnCreation()
+	Global("AR5020_STATE","GLOBAL",0)
+	Global("FW_WILL_O_WISPS_DEAD","GLOBAL",0)
+THEN
+	RESPONSE #33
+		SetGlobal("AR5020_STATE","GLOBAL",1)
+		SetGlobalRandomPlus("AR5020_ARCHER_0_SPAWN","GLOBAL",1,2,-1)
+		SetGlobalRandomPlus("AR5020_BARBARIAN_0_SPAWN","GLOBAL",1,2,-1)
+		SetGlobalRandomPlus("AR5020_BARBARIAN_1_SPAWN","GLOBAL",1,2,-1)
+		SetGlobalRandomPlus("AR5020_HUNTER_0_SPAWN","GLOBAL",1,2,-1)
+		SetGlobalRandomPlus("AR5020_HUNTER_1_SPAWN","GLOBAL",1,2,-1)
+		SetGlobalRandomPlus("AR5020_HUNTER_2_SPAWN","GLOBAL",1,2,-1)
+		Continue()
+	RESPONSE #66
+		Continue()
+END
+
+IF
+	Global("AR5020_STATE","GLOBAL",1)
+	!Global("FW_WILL_O_WISPS_DEAD","GLOBAL",0)
+THEN
+	RESPONSE #100
+		SetGlobal("AR5020_STATE","GLOBAL",0)
+		SetGlobal("AR5020_ARCHER_0_SPAWN","GLOBAL",0)
+		SetGlobal("AR5020_BARBARIAN_0_SPAWN","GLOBAL",0)
+		SetGlobal("AR5020_BARBARIAN_1_SPAWN","GLOBAL",0)
+		SetGlobal("AR5020_HUNTER_0_SPAWN","GLOBAL",0)
+		SetGlobal("AR5020_HUNTER_1_SPAWN","GLOBAL",0)
+		SetGlobal("AR5020_HUNTER_2_SPAWN","GLOBAL",0)
+		Continue()
+END
+
+IF
+	Global("AR5020_STATE","GLOBAL",1)
+	Global("AR5020_SPIDERS_DEAD","GLOBAL",0)
+THEN
+	RESPONSE #100
+		SetGlobal("AR5020_STATE","GLOBAL",0)
+		SetGlobal("AR5020_ARCHER_0_SPAWN","GLOBAL",0)
+		SetGlobal("AR5020_BARBARIAN_0_SPAWN","GLOBAL",0)
+		SetGlobal("AR5020_BARBARIAN_1_SPAWN","GLOBAL",0)
+		SetGlobal("AR5020_HUNTER_0_SPAWN","GLOBAL",0)
+		SetGlobal("AR5020_HUNTER_1_SPAWN","GLOBAL",0)
+		SetGlobal("AR5020_HUNTER_2_SPAWN","GLOBAL",0)
+		Continue()
+END
+
+IF
+	OnCreation()
+	Global("AR5020_STATE","GLOBAL",0)
+	Global("AR5003_DARK_TREE_CLEAR","GLOBAL",0)
+THEN
+	RESPONSE #33
+		SetGlobal("AR5020_STATE","GLOBAL",2)
+		Continue()
+	RESPONSE #66
+		Continue()
+END
+
+IF
+	Global("AR5020_STATE","GLOBAL",2)
+	!Global("AR5003_DARK_TREE_CLEAR","GLOBAL",0)
+THEN
+	RESPONSE #100
+		SetGlobal("AR5020_STATE","GLOBAL",0)
+		Continue()
+END
+
+IF
+	OnCreation()
+	!Global("AR5025_STATE","GLOBAL",0)
+THEN
+	RESPONSE #100
+		SetGlobal("AR5025_STATE","GLOBAL",0)
+		SetGlobal("AR5025_ARCHER_0_SPAWN","GLOBAL",0)
+		SetGlobal("AR5025_BARBARIAN_0_SPAWN","GLOBAL",0)
+		SetGlobal("AR5025_BARBARIAN_1_SPAWN","GLOBAL",0)
+		SetGlobal("AR5025_HUNTER_0_SPAWN","GLOBAL",0)
+		SetGlobal("AR5025_HUNTER_1_SPAWN","GLOBAL",0)
+		SetGlobal("AR5025_HUNTER_2_SPAWN","GLOBAL",0)
+		Continue()
+END
+
+IF
+	OnCreation()
+	Global("AR5025_STATE","GLOBAL",0)
+	Global("FW_WILL_O_WISPS_DEAD","GLOBAL",0)
+THEN
+	RESPONSE #33
+		SetGlobal("AR5025_STATE","GLOBAL",1)
+		SetGlobalRandomPlus("AR5025_ARCHER_0_SPAWN","GLOBAL",1,2,-1)
+		SetGlobalRandomPlus("AR5025_BARBARIAN_0_SPAWN","GLOBAL",1,2,-1)
+		SetGlobalRandomPlus("AR5025_BARBARIAN_1_SPAWN","GLOBAL",1,2,-1)
+		SetGlobalRandomPlus("AR5025_HUNTER_0_SPAWN","GLOBAL",1,2,-1)
+		SetGlobalRandomPlus("AR5025_HUNTER_1_SPAWN","GLOBAL",1,2,-1)
+		SetGlobalRandomPlus("AR5025_HUNTER_2_SPAWN","GLOBAL",1,2,-1)
+		Continue()
+	RESPONSE #66
+		Continue()
+END
+
+IF
+	Global("AR5025_STATE","GLOBAL",1)
+	!Global("FW_WILL_O_WISPS_DEAD","GLOBAL",0)
+THEN
+	RESPONSE #100
+		SetGlobal("AR5025_STATE","GLOBAL",0)
+		SetGlobal("AR5025_ARCHER_0_SPAWN","GLOBAL",0)
+		SetGlobal("AR5025_BARBARIAN_0_SPAWN","GLOBAL",0)
+		SetGlobal("AR5025_BARBARIAN_1_SPAWN","GLOBAL",0)
+		SetGlobal("AR5025_HUNTER_0_SPAWN","GLOBAL",0)
+		SetGlobal("AR5025_HUNTER_1_SPAWN","GLOBAL",0)
+		SetGlobal("AR5025_HUNTER_2_SPAWN","GLOBAL",0)
+		Continue()
+END
+
+IF
+	Global("AR5025_STATE","GLOBAL",1)
+	Global("AR5025_TROLLS_DEAD","GLOBAL",0)
+THEN
+	RESPONSE #100
+		SetGlobal("AR5025_STATE","GLOBAL",0)
+		SetGlobal("AR5025_ARCHER_0_SPAWN","GLOBAL",0)
+		SetGlobal("AR5025_BARBARIAN_0_SPAWN","GLOBAL",0)
+		SetGlobal("AR5025_BARBARIAN_1_SPAWN","GLOBAL",0)
+		SetGlobal("AR5025_HUNTER_0_SPAWN","GLOBAL",0)
+		SetGlobal("AR5025_HUNTER_1_SPAWN","GLOBAL",0)
+		SetGlobal("AR5025_HUNTER_2_SPAWN","GLOBAL",0)
+		Continue()
+END
+
+IF
+	OnCreation()
+	Global("AR5025_STATE","GLOBAL",0)
+	Global("AR5003_DARK_TREE_CLEAR","GLOBAL",0)
+THEN
+	RESPONSE #33
+		SetGlobal("AR5025_STATE","GLOBAL",2)
+		Continue()
+	RESPONSE #66
+		Continue()
+END
+
+IF
+	Global("AR5025_STATE","GLOBAL",2)
+	!Global("AR5003_DARK_TREE_CLEAR","GLOBAL",0)
+THEN
+	RESPONSE #100
+		SetGlobal("AR5025_STATE","GLOBAL",0)
+		Continue()
+END
+
+IF
+	OnCreation()
+	!Global("AR5026_STATE","GLOBAL",0)
+THEN
+	RESPONSE #100
+		SetGlobal("AR5026_STATE","GLOBAL",0)
+		SetGlobal("AR5026_ARCHER_0_SPAWN","GLOBAL",0)
+		SetGlobal("AR5026_BARBARIAN_0_SPAWN","GLOBAL",0)
+		SetGlobal("AR5026_BARBARIAN_1_SPAWN","GLOBAL",0)
+		SetGlobal("AR5026_HUNTER_0_SPAWN","GLOBAL",0)
+		SetGlobal("AR5026_HUNTER_1_SPAWN","GLOBAL",0)
+		SetGlobal("AR5026_HUNTER_2_SPAWN","GLOBAL",0)
+		Continue()
+END
+
+IF
+	OnCreation()
+	Global("AR5026_STATE","GLOBAL",0)
+	Global("AR5003_DARK_TREE_CLEAR","GLOBAL",0)
+THEN
+	RESPONSE #33
+		SetGlobal("AR5026_STATE","GLOBAL",2)
+		Continue()
+	RESPONSE #66
+		Continue()
+END
+
+IF
+	Global("AR5026_STATE","GLOBAL",2)
+	!Global("AR5003_DARK_TREE_CLEAR","GLOBAL",0)
+THEN
+	RESPONSE #100
+		SetGlobal("AR5026_STATE","GLOBAL",0)
+		Continue()
+END
+
+IF
+	Global("AWARDED_XP","MYAREA",0)
+THEN
+	RESPONSE #100
+		AddXP2DA("IW2EX9E")
+		DisplayStringNoName(Player1,@39279)
+		SetGlobal("AWARDED_XP","MYAREA",1)
+		Continue()
+END
+
+IF
+	Global("AR5003_CARYNE_RESET","GLOBAL",0)
+	!Allegiance("Caryna_Dryad",NEUTRAL)
+THEN
+	RESPONSE #100
+		SetGlobal("AR5003_CARYNE_RESET","GLOBAL",1)
+		Continue()
+END
+
+IF
+	Global("AR5003_CARYNE_RESET","GLOBAL",2)
+THEN
+	RESPONSE #100
+		//ClearSpriteEffects("Caryna_Dryad")
+		ActionOverride("Caryna_Dryad",ChangeAIScript("",OVERRIDE))
+		ChangeEnemyAlly("Caryna_Dryad",NEUTRAL)
+		SetGlobal("AR5003_CARYNE_RESET","GLOBAL",0)
+		Continue()
+END
+
+IF
+	OnCreation()
+THEN
+	RESPONSE #100
+		NoAction()
+		Continue()
+END
+

@@ -1,0 +1,49 @@
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("Mdarfein")
+		MultiPlayerSync()
+		Face(SE)
+		MoveViewObject(Myself,25)
+		Wait(2)
+		ForceSpellRES("IWWI422","Saralon_Dfrayn")  // SPWI422.SPL WIZARD_MORDENKAINENS_FORCE_MISSILES
+		Wait(3)
+		MultiPlayerSync()
+		ForceSpellRES("IWWI422","Saralon_Dfrayn")  // SPWI422.SPL WIZARD_MORDENKAINENS_FORCE_MISSILES
+		Wait(3)
+		MultiPlayerSync()
+		ForceSpellRES("IWWI422","Saralon_Dfrayn")  // SPWI422.SPL WIZARD_MORDENKAINENS_FORCE_MISSILES
+		Wait(4)
+		MultiPlayerSync()
+		EndCutSceneMode()
+		//SetDialogueRange(300)
+		FaceObject([PC])
+		MultiPlayerSync()
+		//Dialogue(NearestPC)
+		StartDialogNoSet([PC])
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("Saralon_Dfrayn")
+		MultiPlayerSync()
+		Wait(2)
+		ForceSpell(Myself,CLERIC_DRAW_UPON_HOLY_MIGHT)  // SPPR215.SPL (Призыв святой силы)
+		Wait(2)
+		MultiPlayerSync()
+		ForceSpellRES("IWPR318",Myself)  // SPPR318.SPL CLERIC_MOONBLADE
+		Wait(5)
+		DropInventory()
+		//HideCreature(Myself,TRUE)
+		ApplySpellRES("IDINVIS6",Myself)
+		MultiPlayerSync()
+		CreateCreature("62SaralD",[1813.2033],0)
+		MultiPlayerSync()
+		Wait(6)
+		MultiPlayerSync()
+		DestroySelf()
+END
+

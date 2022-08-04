@@ -1,0 +1,533 @@
+IF
+	Global("UnhideIntroYuanTi","GLOBAL",0)
+THEN
+	RESPONSE #100
+		SetGlobal("UnhideIntroYuanTi","GLOBAL",1)
+		//SetGlobal("sound_portal_inactive","MYAREA",2)
+		Continue()
+END
+
+IF
+	!IsActive("Gerbash")
+	Global("6001_Fight","GLOBAL",2)
+	Global("IW6100_Visited","GLOBAL",1)
+	Global("SPRITE_IS_DEADGerbash","GLOBAL",0)
+	Global("60Gerbash_Better","GLOBAL",1)
+	Global("60Key_Quest","GLOBAL",3)
+THEN
+	RESPONSE #100
+		//HideCreature("Gerbash",FALSE)
+		Activate("Gerbash")
+		ActionOverride("Gerbash",SetGlobal("IwIHidden","LOCALS",0))
+		Continue()
+END
+
+IF
+	!IsActive("Conlan")
+	Global("6001_Fight","GLOBAL",2)
+	Global("IW6100_Visited","GLOBAL",1)
+	Global("SPRITE_IS_DEADSheemish","GLOBAL",0)
+	Global("60Seek_Sheemish_Quest","GLOBAL",1)
+	Global("SPRITE_IS_DEADConlan","GLOBAL",0)
+THEN
+	RESPONSE #100
+		//HideCreature("Conlan",FALSE)
+		Activate("Conlan")
+		ActionOverride("Conlan",SetGlobal("IwIHidden","LOCALS",0))
+		Continue()
+END
+
+IF
+	!IsActive("Jermsy")
+	Global("6001_Fight","GLOBAL",2)
+	Global("IW6100_Visited","GLOBAL",1)
+	Global("SPRITE_IS_DEADJermsy","GLOBAL",0)
+	Global("60Hiepherus_Quest","GLOBAL",2)
+	Global("60Key_Quest","GLOBAL",3)
+THEN
+	RESPONSE #100
+		//HideCreature("Jermsy",FALSE)
+		Activate("Jermsy")
+		ActionOverride("Jermsy",SetGlobal("IwIHidden","LOCALS",0))
+		Continue()
+END
+
+IF
+	!IsActive("Sheemish")
+	Global("6001_Fight","GLOBAL",2)
+	Global("IW6100_Visited","GLOBAL",1)
+	Global("SPRITE_IS_DEADSheemish","GLOBAL",0)
+	Global("60Seek_Sheemish_Quest","GLOBAL",1)
+	Global("SPRITE_IS_DEADConlan","GLOBAL",0)
+THEN
+	RESPONSE #100
+		//HideCreature("Sheemish",FALSE)
+		Activate("Sheemish")
+		ActionOverride("Sheemish",SetGlobal("IwIHidden","LOCALS",0))
+		Continue()
+END
+
+IF
+	!IsActive("Nathaniel")  // Натаниэль
+	Global("6001_Fight","GLOBAL",2)
+	Global("IW6100_Visited","GLOBAL",1)
+	Global("SPRITE_IS_DEADNathaniel","GLOBAL",0)
+	Global("60Hiepherus_Quest","GLOBAL",2)
+	Global("60Key_Quest","GLOBAL",3)
+THEN
+	RESPONSE #100
+		//HideCreature("Nathaniel",FALSE)
+		Activate("Nathaniel")
+		ActionOverride("Nathaniel",SetGlobal("IwIHidden","LOCALS",0))
+		Continue()
+END
+
+IF
+	Global("60OkayToUnhideEgenia","GLOBAL",1)
+THEN
+	RESPONSE #100
+		SetGlobal("60OkayToUnhideEgenia","GLOBAL",0)
+		Continue()
+END
+
+IF
+	Global("6001_Fight","GLOBAL",1)
+	!Global("6001_RestingDisabled","MYAREA",1)
+THEN
+	RESPONSE #100
+		SetGlobal("6001_RestingDisabled","MYAREA",1)
+		//AllowAreaResting(FALSE)
+		AddAreaFlag(NOREST)
+		Continue()
+END
+
+IF
+	OnCreation()
+	GlobalGT("6001_Fight","GLOBAL",1)
+	!Global("6001_RestingDisabled","MYAREA",2)
+THEN
+	RESPONSE #100
+		SetGlobal("6001_RestingDisabled","MYAREA",2)
+		//AllowAreaResting(TRUE)
+		RemoveAreaFlag(NOREST)
+		Continue()
+END
+
+IF
+	!Global("IW6001_REVEALED","GLOBAL",1)
+THEN
+	RESPONSE #100
+		SetGlobal("IW6001_REVEALED","GLOBAL",1)
+		Continue()
+END
+
+IF
+	OR(3)
+		//IsActive("sound_portal")
+		!Global("sound_portal_inactive","MYAREA",1)
+		//!Sequence("Portal",AWAKE)
+		!Global("Portal_seq","MYAREA",1)
+		OpenState("AR6001_HideMe_Root",TRUE)
+	OR(2)
+		Global("Crossroads_Quest","GLOBAL",0)
+		Global("SPRITE_IS_DEADThe_Guardian","GLOBAL",1)
+THEN
+	RESPONSE #100
+		//Deactivate("sound_portal")
+		SoundActivate("sound_portal",FALSE)
+		SetGlobal("sound_portal_inactive","MYAREA",1)
+		StaticSequence("Portal",SEQ_AWAKE)
+		SetGlobal("Portal_seq","MYAREA",1)
+		CloseDoor("AR6001_HideMe_Root")
+		//SetDoorFlag("AR6001_HideMe_Root",HIDDEN,TRUE)
+		TriggerActivation("To6050",FALSE)
+		RemoveMapNote([1409.595],@55067)
+		Continue()
+END
+
+IF
+	OR(3)
+		//!IsActive("sound_portal")
+		!Global("sound_portal_inactive","MYAREA",2)
+		//Sequence("Portal",AWAKE)
+		Global("Portal_seq","MYAREA",1)
+		OpenState("AR6001_HideMe_Root",FALSE)
+	!Global("Crossroads_Quest","GLOBAL",0)
+	!Global("SPRITE_IS_DEADThe_Guardian","GLOBAL",1)
+THEN
+	RESPONSE #100
+		//Activate("sound_portal")
+		SoundActivate("sound_portal",TRUE)
+		SetGlobal("sound_portal_inactive","MYAREA",2)
+		StaticSequence("Portal",SEQ_ATTACK)
+		SetGlobal("Portal_seq","MYAREA",0)
+		OpenDoor("AR6001_HideMe_Root")
+		//SetDoorFlag("AR6001_HideMe_Root",HIDDEN,FALSE)
+		TriggerActivation("To6050",TRUE)
+		AddMapNoteColor([1409.595],@55067,RED)
+		Continue()
+END
+
+IF
+	Global("Kuldahar_Start_Cutscene","GLOBAL",1)
+THEN
+	RESPONSE #100
+		SetGlobal("Kuldahar_Start_Cutscene","GLOBAL",2)
+		
+		Activate("Cedra")
+		ActionOverride("Cedra",SetGlobal("IwIHidden","LOCALS",0))
+		Activate("Madae")
+		ActionOverride("Madae",SetGlobal("IwIHidden","LOCALS",0))
+		
+		StartCutSceneMode()
+		ClearAllActions()
+		MultiPlayerSync()
+		StartCutScene("60cCMI0")
+END
+
+IF
+	Global("ar6001_Hide_Doors","GLOBAL",0)
+THEN
+	RESPONSE #100
+		SetGlobal("ar6001_Hide_Doors","GLOBAL",1)
+		//SetDoorFlag("AR6001_HideMe_North_WMap",HIDDEN,TRUE)
+		//SetDoorFlag("AR6001_HideMe_East_WMap",HIDDEN,TRUE)
+		AddAreaFlag(NOTRAVEL)
+END
+
+IF
+	Global("ar6001_Unhide_Doors","MYAREA",0)
+	Global("Crossroads_Quest","GLOBAL",4)
+THEN
+	RESPONSE #100
+		SetGlobal("IW6100_Revealed","GLOBAL",1)
+		SetGlobal("ar6001_Unhide_Doors","MYAREA",1)
+		//SetDoorFlag("AR6001_HideMe_North_WMap",HIDDEN,FALSE)
+		//SetDoorFlag("AR6001_HideMe_East_WMap",HIDDEN,FALSE)
+		//Unlock("AR6001_HideMe_North_WMap")
+		//Unlock("AR6001_HideMe_East_WMap")
+		OpenDoor("AR6001_HideMe_North_WMap")
+		OpenDoor("AR6001_HideMe_East_WMap")
+		AddMapNoteColor([3715.1666],@55006,RED)
+		AddMapNoteColor([2442.74],@55006,RED)
+		RemoveAreaFlag(NOTRAVEL)
+END
+
+IF
+	OR(2)
+		//!Sequence("Portal",AWAKE)
+		!Global("Portal_seq","MYAREA",1)
+		OpenState("AR6001_HideMe_Root",TRUE)
+	OR(2)
+		Global("ar6001_Hide_Chult_Portal","MYAREA",1)
+		Global("ar6001_Hide_Chult_Portal","MYAREA",3)
+THEN
+	RESPONSE #100
+		CloseDoor("AR6001_HideMe_Root")
+		TriggerActivation("To6050",FALSE)
+		StaticSequence("Portal",SEQ_AWAKE)
+		SetGlobal("Portal_seq","MYAREA",1)
+		Continue()
+END
+
+IF
+	Global("ar6001_Hide_Chult_Portal","MYAREA",2)
+	OR(2)
+		//!Sequence("Portal",ATTACK)
+		!Global("Portal_seq","MYAREA",0)
+		OpenState("AR6001_HideMe_Root",FALSE)
+THEN
+	RESPONSE #100
+		OpenDoor("AR6001_HideMe_Root")
+		StaticSequence("Portal",SEQ_ATTACK)
+		SetGlobal("Portal_seq","MYAREA",0)
+		TriggerActivation("To6050",TRUE)
+		Continue()
+END
+
+IF
+	Global("6001_Fight","GLOBAL",1)
+	Global("6001_Dead_BattleGroup","MYAREA",0)
+	Dead("Cedra")
+	/*Dead("6001Black_Neo_Orog1")
+	Dead("6001Black_Neo_Orog2")
+	Dead("6001Black_Neo_Orog3")
+	Dead("6001Black_Neo_Orog4")
+	Dead("6001Black_Neo_Orog7")
+	Dead("6001Black_Neo_Orog8")
+	Dead("6001Black_Neo_Orog9")
+	Dead("6001Black_Neo_Orog10")*/
+	GlobalGT("Orogs6001T10_Dead","GLOBAL",7)
+THEN
+	RESPONSE #100
+		SetGlobal("6001_Dead_BattleGroup","MYAREA",1)
+		Continue()
+END
+
+IF
+	Global("6001_Fight","GLOBAL",1)
+	Global("6001_Dead_BattleGroup_HalfDead","MYAREA",0)
+	OR(2)
+		StateCheck("Cedra",STATE_REALLY_DEAD)
+		StateCheck("6001Black_Neo_Orog10",STATE_REALLY_DEAD)
+	OR(2)
+		StateCheck("6001Black_Neo_Orog1",STATE_REALLY_DEAD)
+		StateCheck("6001Black_Neo_Orog7",STATE_REALLY_DEAD)
+	OR(2)
+		StateCheck("6001Black_Neo_Orog2",STATE_REALLY_DEAD)
+		StateCheck("6001Black_Neo_Orog8",STATE_REALLY_DEAD)
+	OR(2)
+		StateCheck("6001Black_Neo_Orog3",STATE_REALLY_DEAD)
+		StateCheck("6001Black_Neo_Orog9",STATE_REALLY_DEAD)
+	StateCheck("6001Black_Neo_Orog4",STATE_REALLY_DEAD)
+THEN
+	RESPONSE #100
+		SetGlobal("6001_Dead_BattleGroup_HalfDead","MYAREA",1)
+		Continue()
+END
+
+IF
+	Global("6001_Fight","GLOBAL",1)
+	Global("6001_Dead_BattleGroup0","MYAREA",0)
+	/*Dead("6001Harpy1")
+	Dead("Harpy2")
+	Dead("Harpy3")
+	Dead("Harpy4")
+	Dead("Harpy5")*/
+	GlobalGT("SPRITE_IS_DEAD6001Harpy","GLOBAL",4)
+THEN
+	RESPONSE #100
+		SetGlobal("6001_Dead_BattleGroup0","MYAREA",1)
+		Continue()
+END
+
+IF
+	Global("6001_Fight","GLOBAL",1)
+	Global("6001_Dead_BattleGroup1","MYAREA",0)
+	/*Dead("Yuan-Ti_Sorceress1")
+	Dead("Yuan-Ti_Priestess3")
+	Dead("Neo_Orog_General2")
+	Dead("Black_Neo_Orog13")
+	Dead("Black_Neo_Orog14")
+	Dead("Black_Neo_Orog15")
+	Dead("Black_Neo_Orog16")
+	Dead("Black_Neo_Orog17")
+	Dead("Black_Neo_Orog18")*/
+	GlobalGT("SPRITE_IS_DEAD6001_BGrp1","GLOBAL",8)
+THEN
+	RESPONSE #100
+		SetGlobal("6001_Dead_BattleGroup1","MYAREA",1)
+		Continue()
+END
+
+IF
+	Global("6001_Fight","GLOBAL",1)
+	Global("6001_Dead_BattleGroup2","MYAREA",0)
+	/*Dead("Yuan-Ti_Sorceress2")
+	Dead("Yuan-Ti_Priestess2") 6001_Battle_Group2_
+	Dead("Yuan-Ti_Archer1")
+	Dead("Yuan-Ti_Archer2")
+	Dead("Yuan-Ti_Archer3")
+	Dead("Yuan-Ti_Archer4")
+	Dead("Yuan-Ti_Archer5")
+	Dead("Yuan-Ti_Archer6")
+	Dead("Yuan-Ti_Elite1")
+	Dead("Yuan-Ti_Elite4")*/
+	GlobalGT("6001_BGrp2_Dead","GLOBAL",9)
+THEN
+	RESPONSE #100
+		SetGlobal("6001_Dead_BattleGroup2","MYAREA",1)
+		Continue()
+END
+
+IF
+	Global("6001_Fight","GLOBAL",1)
+	Global("6001_Dead_BattleGroup2_HalfDead","MYAREA",0)
+	OR(2)
+		StateCheck("6001_Battle_Group2_03",STATE_REALLY_DEAD)
+		StateCheck("6001_Battle_Group2_04",STATE_REALLY_DEAD)
+	OR(2)
+		StateCheck("6001_Battle_Group2_02",STATE_REALLY_DEAD)
+		StateCheck("6001_Battle_Group2_10",STATE_REALLY_DEAD)
+	OR(2)
+		StateCheck("6001_Battle_Group2_01",STATE_REALLY_DEAD)
+		StateCheck("6001_Battle_Group2_05",STATE_REALLY_DEAD)
+	OR(2)
+		StateCheck("6001_Battle_Group2_06",STATE_REALLY_DEAD)
+		StateCheck("6001_Battle_Group2_08",STATE_REALLY_DEAD)
+	OR(2)
+		StateCheck("6001_Battle_Group2_07",STATE_REALLY_DEAD)
+		StateCheck("6001_Battle_Group2_09",STATE_REALLY_DEAD)
+THEN
+	RESPONSE #100
+		SetGlobal("6001_Dead_BattleGroup2_HalfDead","MYAREA",1)
+		Continue()
+END
+
+IF
+	Global("6001_Fight","GLOBAL",1)
+	Global("6001_Dead_BattleGroup3","MYAREA",0)
+	/*Dead("Yuan-Ti_Sorceress3")
+	Dead("Yuan-Ti_Priestess1")
+	Dead("Yuan-Ti_Archer7")
+	Dead("Yuan-Ti_Archer8")
+	Dead("Yuan-Ti_Archer11")
+	Dead("Yuan-Ti_Archer12")*/
+	GlobalGT("SPRITE_IS_DEAD6001_BGrp3","GLOBAL",5)
+THEN
+	RESPONSE #100
+		SetGlobal("6001_Dead_BattleGroup3","MYAREA",1)
+		Continue()
+END
+
+IF
+	Global("6001_Fight","GLOBAL",1)
+	Global("6001_Dead_BattleGroup4","MYAREA",0)
+	/*Dead("Yuan-Ti_Sorceress4")
+	Dead("Neo_Orog_Priest1")
+	Dead("Neo_Orog_Priest2")
+	Dead("Neo_Orog_General1")
+	Dead("Neo_Orog1")
+	Dead("Neo_Orog2")
+	Dead("Neo_Orog3")
+	Dead("Neo_Orog4")
+	Dead("Neo_Orog5")
+	Dead("Neo_Orog6")
+	Dead("Neo_Orog7")
+	Dead("Neo_Orog8")*/
+	GlobalGT("SPRITE_IS_DEAD6001_BGrp4","GLOBAL",11)
+	
+THEN
+	RESPONSE #100
+		SetGlobal("6001_Dead_BattleGroup4","MYAREA",1)
+		Continue()
+END
+
+IF
+	Global("6001_Dead_TreeChoppers","MYAREA",0)
+	/*Dead("01_Archer_01")
+	Dead("01_Archer_02")
+	Dead("01_Green_01")
+	Dead("01_Green_02")
+	Dead("01_Green_03")
+	Dead("01_Green_04")
+	Dead("02_Archer_01")
+	Dead("02_Green_01")
+	Dead("02_Green_02")
+	Dead("03_Archer_01")
+	Dead("03_Archer_02")
+	Dead("03_Archer_03")
+	Dead("03_Archer_04")
+	Dead("03_Green_01")
+	Dead("03_Green_02")
+	Dead("03_Green_03")
+	Dead("03_Green_04")
+	Dead("04_Archer_01")
+	Dead("04_Archer_02")
+	Dead("04_Archer_03")
+	Dead("04_Green_01")
+	Dead("04_Green_02")
+	Dead("04_Green_03")
+	Dead("04_Green_04")
+	Dead("04_Green_05")
+	Dead("05_Archer_01")
+	Dead("05_Green_01")
+	Dead("05_Green_02")
+	Dead("05_Green_03")
+	Dead("05_Green_04")
+	Dead("05_Green_05")
+	Dead("06_Archer_01")
+	Dead("06_Archer_02")
+	Dead("06_Green_01")
+	Dead("06_Green_02")*/
+	GlobalGT("SPRITE_IS_DEADTreeChoppers","GLOBAL",34)
+THEN
+	RESPONSE #100
+		SetGlobal("6001_Dead_TreeChoppers","MYAREA",1)
+		SetGlobal("6001_Dead_BattleGroup5","MYAREA",1)
+		Continue()
+END
+
+IF
+	Global("6001_Fight","GLOBAL",1)
+	Global("6001_Dead_BattleGroup","MYAREA",1)
+	Global("6001_Dead_BattleGroup1","MYAREA",1)
+	Global("6001_Dead_BattleGroup2","MYAREA",1)
+	Global("6001_Dead_BattleGroup3","MYAREA",1)
+	Global("6001_Dead_BattleGroup4","MYAREA",1)
+	Global("6001_Dead_BattleGroup5","MYAREA",1)
+THEN
+	RESPONSE #100
+		DisplayStringNoName(Player1,@34978) //[PC]
+		SetGlobal("6001_Fight","GLOBAL",2)
+		Continue()
+END
+
+IF
+	GlobalLT("SP_BATTLE_MUSIC","MYAREA",2)
+	GlobalGT("6001_Fight","GLOBAL",1)
+	//!AnyPCSeesEnemy()
+	//CombatCounter(0)
+	!AreaCheckAllegiance(ENEMY)
+THEN
+	RESPONSE #100
+		//Debug("AR6001_BattleMusic_b_Stop")
+		SetGlobal("SP_BATTLE_MUSIC","MYAREA",2)
+		SetMusic(COMBAT_NORMAL,0)
+		SetMusic(DAY,0)
+		SetMusic(NIGHT,0)
+		Continue()
+END
+
+IF
+	Global("SP_BATTLE_MUSIC","MYAREA",0)
+	Global("6001_Fight","GLOBAL",1)
+	//!InCutsceneMode()
+THEN
+	RESPONSE #100
+		//Debug("AR6001_BattleMusic_b_Start")
+		SetGlobal("SP_BATTLE_MUSIC","MYAREA",1)
+		SetMusic(COMBAT_NORMAL,%IWBTLE4%)
+		SetMusic(DAY,%IWBTLE4%)
+		SetMusic(NIGHT,%IWBTLE4%)
+		Continue()
+END
+
+IF
+	!Global("IW6100_Revealed","GLOBAL",0)
+	!Global("Reveal_IW6100","MYAREA",1)
+THEN
+	RESPONSE #100
+		SetGlobal("Reveal_IW6100","MYAREA",1)
+		HideAreaOnMap("ID4000")
+		//RevealAreaOnMap("IW6100")
+		AddWorldmapAreaFlag("IW6100",VISIBLE_EXPLORABLE)
+		Continue()
+END
+
+IF
+	Global("KULD_60006001_TRAVEL","GLOBAL",0)
+THEN
+	RESPONSE #100
+		SetGlobal("KULD_60006001_TRAVEL","GLOBAL",6001)
+		Continue()
+END
+
+IF
+	Global("KULD_60006001_TRAVEL","GLOBAL",6000)
+THEN
+	RESPONSE #100
+		SetGlobal("KULD_60006001_TRAVEL","GLOBAL",6001)
+		AdvanceTime(EIGHT_HOURS)
+		DisplayStringNoName(Player1,@80089)
+		Continue()
+END
+
+IF
+	OnCreation()
+THEN
+	RESPONSE #100
+		NoAction()
+		Continue()
+END
+

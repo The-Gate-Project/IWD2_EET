@@ -1,0 +1,23 @@
+IF
+	!GlobalTimerNotExpired("IwTimer21","LOCALS")
+THEN
+	RESPONSE #50
+		DisplayStringHead(Myself,@1013)
+		SetGlobalTimerRandom("IwTimer21","LOCALS",8,20)
+		Continue()
+	RESPONSE #50
+		SetGlobalTimerRandom("IwTimer21","LOCALS",8,20)
+		Continue()
+END
+
+IF
+	ActionListEmpty()
+THEN
+	RESPONSE #100
+		SetSequence(SEQ_ATTACK)
+		WaitRandom(1,2)
+	RESPONSE #100
+		SetSequence(SEQ_ATTACK_BACKSLASH)
+		WaitRandom(1,2)
+END
+

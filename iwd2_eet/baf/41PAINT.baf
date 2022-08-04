@@ -1,0 +1,121 @@
+IF
+	Global("SpeakToPainting","MYAREA",1)
+THEN
+	RESPONSE #100
+		SetGlobal("SpeakToPainting","MYAREA",0)
+		//SetDialogueRange(300)
+		ClearActions(Player1)
+		//Dialogue(Player1)
+		ApplySpellRES("BDCUTSPY",Myself)
+		StartDialogNoSet(Player1)
+END
+
+IF
+	Global("SpeakToPainting","MYAREA",2)
+THEN
+	RESPONSE #100
+		SetGlobal("SpeakToPainting","MYAREA",0)
+		//SetDialogueRange(300)
+		ClearActions(Player2)
+		//Dialogue(Player2)
+		ApplySpellRES("BDCUTSPY",Myself)
+		StartDialogNoSet(Player2)
+END
+
+IF
+	Global("SpeakToPainting","MYAREA",3)
+THEN
+	RESPONSE #100
+		SetGlobal("SpeakToPainting","MYAREA",0)
+		//SetDialogueRange(300)
+		ClearActions(Player3)
+		//Dialogue(Player3)
+		ApplySpellRES("BDCUTSPY",Myself)
+		StartDialogNoSet(Player3)
+END
+
+IF
+	Global("SpeakToPainting","MYAREA",4)
+THEN
+	RESPONSE #100
+		SetGlobal("SpeakToPainting","MYAREA",0)
+		//SetDialogueRange(300)
+		ClearActions(Player4)
+		//Dialogue(Player4)
+		ApplySpellRES("BDCUTSPY",Myself)
+		StartDialogNoSet(Player4)
+END
+
+IF
+	Global("SpeakToPainting","MYAREA",5)
+THEN
+	RESPONSE #100
+		SetGlobal("SpeakToPainting","MYAREA",0)
+		//SetDialogueRange(300)
+		ClearActions(Player5)
+		//Dialogue(Player5)
+		ApplySpellRES("BDCUTSPY",Myself)
+		StartDialogNoSet(Player5)
+END
+
+IF
+	Global("SpeakToPainting","MYAREA",6)
+THEN
+	RESPONSE #100
+		SetGlobal("SpeakToPainting","MYAREA",0)
+		//SetDialogueRange(300)
+		ClearActions(Player6)
+		//Dialogue(Player6)
+		ApplySpellRES("BDCUTSPY",Myself)
+		StartDialogNoSet(Player6)
+END
+
+IF
+	Global("RightAnswer","LOCALS",1) //DISINTH
+THEN
+	RESPONSE #100
+		//SpellHitEffectPoint(Myself,[3072.1408],DISINTEGRATE,0)
+		//SpellHitEffectPoint(Myself,[3167.1439],DISINTEGRATE,0)
+		//SpellHitEffectPoint(Myself,[3232.1472],DISINTEGRATE,0)
+		CreateVisualEffect("DISINTH",[3072.1408])
+		CreateVisualEffect("DISINTH",[3167.1439])
+		CreateVisualEffect("DISINTH",[3232.1472])
+		SetGlobal("RightAnswer","LOCALS",0)
+END
+
+IF
+	Global("RightAnswer","LOCALS",2) //CLOUDBH
+THEN
+	RESPONSE #100
+		//SpellHitEffectPoint(Myself,[3072.1408],CLOUDBURST,0)
+		//SpellHitEffectPoint(Myself,[3167.1439],CLOUDBURST,0)
+		//SpellHitEffectPoint(Myself,[3232.1472],CLOUDBURST,0)
+		CreateVisualEffect("CLOUDBH",[3072.1408])
+		CreateVisualEffect("CLOUDBH",[3167.1439])
+		CreateVisualEffect("CLOUDBH",[3232.1472])
+		SetGlobal("RightAnswer","LOCALS",0)
+END
+
+IF
+	NumberOfTimesTalkedTo(0)
+	See([PC])
+THEN
+	RESPONSE #100
+		SetGlobal("41PlayerSawPainting","GLOBAL",1)
+		ActionOverride(LastSeenBy(Myself),FaceObject("Painting")) //ActionOverride(LastSeenBy(Myself),FaceObject(Myself))
+		//SetDialogueRange(300)
+		//Dialogue(LastMarkedObject)
+		ApplySpellRES("BDCUTSPY",Myself)
+		StartDialogNoSet(LastSeenBy(Myself))
+END
+
+IF
+	//!IsCreatureAreaFlag(Myself,IGNORE_AI_INHIBIT)
+	!Global("IGNORE_AI_INHIBIT","LOCALS",1)
+THEN
+	RESPONSE #100
+		//SetCreatureAreaFlag(Myself,IGNORE_AI_INHIBIT,TRUE)
+		ApplySpellRES("IWPERAI",Myself)
+		SetGlobal("IGNORE_AI_INHIBIT","LOCALS",1)
+END
+

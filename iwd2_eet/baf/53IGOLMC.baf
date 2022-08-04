@@ -1,0 +1,24 @@
+IF
+	See([GOODCUTOFF.0.0.0.255])
+THEN
+	RESPONSE #100
+		Continue()
+END
+
+IF
+	!TargetUnreachable(LastSeenBy(Myself))
+	See([GOODCUTOFF.0.0.0.255])
+THEN
+	RESPONSE #100
+		EquipMostDamagingMelee()
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		EquipMostDamagingMelee()
+		AttackOneRound(LastSeenBy(Myself))
+END
+

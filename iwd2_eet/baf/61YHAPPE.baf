@@ -1,0 +1,11 @@
+IF
+	True()
+THEN
+	RESPONSE #100
+		//SpellHitEffectSprite(Myself,Myself,DIMENSION_DOOR_DESTINATION,0)
+		CreateVisualEffectObject("spdimndr",Myself)
+		//ChangeCurrentScript("")
+		ChangeAIScript("61YHTEAM",SPECIFICS)
+		ChangeAIScript("61RYHSOR",OVERRIDE)
+END
+

@@ -1,0 +1,23 @@
+IF
+	Clicked([ANYONE])
+THEN
+	RESPONSE #100
+		DisplayString(LastTrigger,14381)
+		ReallyForceSpell(LastTrigger,TRAP_ARROW_ACID)
+	RESPONSE #100
+		DisplayString(LastTrigger,14381)
+		ReallyForceSpell(LastTrigger,TRAP_ARROW_BITING)
+	RESPONSE #100
+		DisplayString(LastTrigger,14381)
+		ReallyForceSpellRES("IWWI014",LastTrigger)  // SPWI014.SPL TRAP_DISEASE_DARTS
+	RESPONSE #100
+		DisplayString(LastTrigger,14381)
+		ReallyForceSpellRES("IWWI017",LastTrigger)  // SPWI017.SPL TRAP_POISON_CONFUSION_DARTS
+	RESPONSE #100
+		DisplayString(LastTrigger,14381)
+		ReallyForceSpellRES("IWWI015",LastTrigger)  // SPWI015.SPL TRAP_POISON_DAMAGE_DARTS
+	RESPONSE #100
+		DisplayString(LastTrigger,14381)
+		ReallyForceSpellRES("IWWI016",LastTrigger)  // SPWI016.SPL TRAP_POISON_PARALYZATION_DARTS
+END
+

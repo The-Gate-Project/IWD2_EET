@@ -1,0 +1,18 @@
+IF
+	BitCheck("FountainTally","MYAREA",4)
+THEN
+	RESPONSE #100
+		//ChangeCurrentScript("")
+		TriggerActivation(Myself,FALSE)
+END
+
+IF
+	!GlobalTimerNotExpired("TunnelHintTimer","MYAREA")
+	IsOverMe([PC])
+THEN
+	RESPONSE #100
+		//FloatMessage("TunnelFloat",32698)
+		DisplayStringPointLog([2003.2468],@32698)
+		SetGlobalTimer("TunnelHintTimer","MYAREA",10)
+END
+

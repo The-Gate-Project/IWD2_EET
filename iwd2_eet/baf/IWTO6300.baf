@@ -1,0 +1,26 @@
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId(Player1)
+		Wait(1)
+		ScreenShake([15.15],60)
+		Wait(1)
+		FadeToColor([30.0],0)
+		Wait(3)
+		LeaveAreaLUAPanic("IW6300","",[820.607],6)
+		LeaveAreaLUA("IW6300","",[820.607],6)
+		ActionOverride(Player2,LeaveAreaLUA("IW6300","",[740.650],6))
+		ActionOverride(Player3,LeaveAreaLUA("IW6300","",[850.650],6))
+		ActionOverride(Player4,LeaveAreaLUA("IW6300","",[910.585],6))
+		ActionOverride(Player5,LeaveAreaLUA("IW6300","",[805.685],6))
+		ActionOverride(Player6,LeaveAreaLUA("IW6300","",[915.645],6))
+		Wait(1)
+		ScreenShake([15.15],60)
+		Wait(1)
+		FadeFromColor([30.0],0)
+		Wait(3)
+		DisplayStringHead(Myself,@50018)
+		Wait(2)
+		EndCutSceneMode()
+END

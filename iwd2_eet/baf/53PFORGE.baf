@@ -1,0 +1,54 @@
+IF
+	Clicked([ANYONE])
+	InPartySlot(LastTrigger,0)
+THEN
+	RESPONSE #100
+		//ActionOverride("53Forge",SetDialogueRange(300))
+		ActionOverride("53Forge",StartDialogNoSet(Player1))
+END
+
+IF
+	Clicked([ANYONE])
+	InPartySlot(LastTrigger,1)
+THEN
+	RESPONSE #100
+		//ActionOverride("53Forge",SetDialogueRange(300))
+		ActionOverride("53Forge",StartDialogNoSet(Player2))
+END
+
+IF
+	Clicked([ANYONE])
+	InPartySlot(LastTrigger,2)
+THEN
+	RESPONSE #100
+		//ActionOverride("53Forge",SetDialogueRange(300))
+		ActionOverride("53Forge",StartDialogNoSet(Player3))
+END
+
+IF
+	Clicked([ANYONE])
+	InPartySlot(LastTrigger,3)
+THEN
+	RESPONSE #100
+		//ActionOverride("53Forge",SetDialogueRange(300))
+		ActionOverride("53Forge",StartDialogNoSet(Player4))
+END
+
+IF
+	Clicked([ANYONE])
+	InPartySlot(LastTrigger,4)
+THEN
+	RESPONSE #100
+		//ActionOverride("53Forge",SetDialogueRange(300))
+		ActionOverride("53Forge",StartDialogNoSet(Player5))
+END
+
+IF
+	Clicked([ANYONE])
+	InPartySlot(LastTrigger,5)
+THEN
+	RESPONSE #100
+		//ActionOverride("53Forge",SetDialogueRange(300))
+		ActionOverride("53Forge",StartDialogNoSet(Player6))
+END
+

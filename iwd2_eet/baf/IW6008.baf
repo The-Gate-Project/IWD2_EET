@@ -1,0 +1,56 @@
+IF
+	Global("6001_Fight","GLOBAL",2)
+	Global("IW6100_Visited","GLOBAL",1)
+	Global("SPRITE_IS_DEADJermsy","GLOBAL",0)
+	Global("60Hiepherus_Quest","GLOBAL",2)
+	Global("60Key_Quest","GLOBAL",3)
+THEN
+	RESPONSE #100
+		ActionOverride("Jermsy",DestroySelf())
+		Continue()
+END
+
+IF
+	Global("6001_Fight","GLOBAL",2)
+	Global("IW6100_Visited","GLOBAL",1)
+	Global("SPRITE_IS_DEADJermsy","GLOBAL",0)
+	Global("60Hiepherus_Quest","GLOBAL",2)
+	Global("60Key_Quest","GLOBAL",3)
+THEN
+	RESPONSE #100
+		ActionOverride("Nathaniel",DestroySelf())
+		Continue()
+END
+
+IF
+	Global("6001_Fight","GLOBAL",1)
+	!Global("6008_RestingDisabled","MYAREA",1)
+THEN
+	RESPONSE #100
+		SetGlobal("6008_RestingDisabled","MYAREA",1)
+		//AllowAreaResting(FALSE)
+		AddAreaFlag(NOREST)
+		DisplayStringNoName(Player1,@35287) //[PC]
+		Continue()
+END
+
+IF
+	OnCreation()
+	GlobalGT("6001_Fight","GLOBAL",1)
+	!Global("6008_RestingDisabled","MYAREA",2)
+THEN
+	RESPONSE #100
+		SetGlobal("6008_RestingDisabled","MYAREA",2)
+		//AllowAreaResting(TRUE)
+		RemoveAreaFlag(NOREST)
+		Continue()
+END
+
+IF
+	OnCreation()
+THEN
+	RESPONSE #100
+		NoAction()
+		Continue()
+END
+

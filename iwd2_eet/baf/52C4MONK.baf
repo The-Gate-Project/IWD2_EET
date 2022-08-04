@@ -1,0 +1,124 @@
+IF
+	Global("COUNTDOWN_TO_DESTRUCTION","LOCALS",0)
+	HPPercentLT(Myself,50)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IwTimer5","LOCALS",1)
+		DisplayStringHead(Myself,@24079)  // 10
+		SetGlobal("COUNTDOWN_TO_DESTRUCTION","LOCALS",9)
+		MoveToObject(NearestEnemyOf(Myself)) //NearestPC
+END
+
+IF
+	Global("COUNTDOWN_TO_DESTRUCTION","LOCALS",9)
+	!GlobalTimerNotExpired("IwTimer5","LOCALS")
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IwTimer5","LOCALS",1)
+		DisplayStringHead(Myself,@24080)  // 9
+		SetGlobal("COUNTDOWN_TO_DESTRUCTION","LOCALS",8)
+		MoveToObject(NearestEnemyOf(Myself))
+END
+
+IF
+	Global("COUNTDOWN_TO_DESTRUCTION","LOCALS",8)
+	!GlobalTimerNotExpired("IwTimer5","LOCALS")
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IwTimer5","LOCALS",1)
+		DisplayStringHead(Myself,@24081)  // 8
+		SetGlobal("COUNTDOWN_TO_DESTRUCTION","LOCALS",7)
+		MoveToObject(NearestEnemyOf(Myself))
+END
+
+IF
+	Global("COUNTDOWN_TO_DESTRUCTION","LOCALS",7)
+	!GlobalTimerNotExpired("IwTimer5","LOCALS")
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IwTimer5","LOCALS",1)
+		DisplayStringHead(Myself,@24082)  // 7
+		SetGlobal("COUNTDOWN_TO_DESTRUCTION","LOCALS",6)
+		MoveToObject(NearestEnemyOf(Myself))
+END
+
+IF
+	Global("COUNTDOWN_TO_DESTRUCTION","LOCALS",6)
+	!GlobalTimerNotExpired("IwTimer5","LOCALS")
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IwTimer5","LOCALS",1)
+		DisplayStringHead(Myself,@24083)  // 6
+		SetGlobal("COUNTDOWN_TO_DESTRUCTION","LOCALS",5)
+		MoveToObject(NearestEnemyOf(Myself))
+END
+
+IF
+	Global("COUNTDOWN_TO_DESTRUCTION","LOCALS",5)
+	!GlobalTimerNotExpired("IwTimer5","LOCALS")
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IwTimer5","LOCALS",1)
+		DisplayStringHead(Myself,@24084)  // 5
+		SetGlobal("COUNTDOWN_TO_DESTRUCTION","LOCALS",4)
+		MoveToObject(NearestEnemyOf(Myself))
+END
+
+IF
+	Global("COUNTDOWN_TO_DESTRUCTION","LOCALS",4)
+	!GlobalTimerNotExpired("IwTimer5","LOCALS")
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IwTimer5","LOCALS",1)
+		DisplayStringHead(Myself,@24085)  // 4
+		SetGlobal("COUNTDOWN_TO_DESTRUCTION","LOCALS",3)
+		MoveToObject(NearestEnemyOf(Myself))
+END
+
+IF
+	Global("COUNTDOWN_TO_DESTRUCTION","LOCALS",3)
+	!GlobalTimerNotExpired("IwTimer5","LOCALS")
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IwTimer5","LOCALS",1)
+		DisplayStringHead(Myself,@24086)  // 3
+		SetGlobal("COUNTDOWN_TO_DESTRUCTION","LOCALS",2)
+		MoveToObject(NearestEnemyOf(Myself))
+END
+
+IF
+	Global("COUNTDOWN_TO_DESTRUCTION","LOCALS",2)
+	!GlobalTimerNotExpired("IwTimer5","LOCALS")
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IwTimer5","LOCALS",1)
+		DisplayStringHead(Myself,@24087)  // 2
+		SetGlobal("COUNTDOWN_TO_DESTRUCTION","LOCALS",1)
+		MoveToObject(NearestEnemyOf(Myself))
+END
+
+IF
+	Global("COUNTDOWN_TO_DESTRUCTION","LOCALS",1)
+	!GlobalTimerNotExpired("IwTimer5","LOCALS")
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IwTimer5","LOCALS",1)
+		DisplayStringHead(Myself,@24088)  // 1
+		SetGlobal("COUNTDOWN_TO_DESTRUCTION","LOCALS",-1)
+		MoveToObject(NearestEnemyOf(Myself))
+END
+
+IF
+	Global("COUNTDOWN_TO_DESTRUCTION","LOCALS",-1)
+	!GlobalTimerNotExpired("IwTimer5","LOCALS")
+	//!Dead(Myself)
+	!StateCheck(Myself,STATE_REALLY_DEAD)
+THEN
+	RESPONSE #100
+		SetGlobal("COUNTDOWN_TO_DESTRUCTION","LOCALS",-2)
+		ReallyForceSpell(Myself,WIZARD_FIREBALL)
+		DestroyItem("z0cimhp1")  // No such index
+		//ChunkCreature(Myself)
+		ApplySpellRES("IWCHUNK",Myself)
+END
+

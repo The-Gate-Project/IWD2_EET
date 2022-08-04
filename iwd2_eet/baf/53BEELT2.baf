@@ -1,0 +1,27 @@
+IF
+	HPPercentLT(Myself,51)
+THEN
+	RESPONSE #100
+		SetGlobal("Beelthot_Gone","MYAREA",1)
+		
+		//SetGlobal("ar5300_Kill_Beelthot","GLOBAL",1)
+		
+		SetInterrupt(FALSE)
+		//SpellCastEffect(Myself,"","","",GLOW_ALTERATION,1,ATTACK)
+		SetSequence(SEQ_CAST)
+		CreateVisualEffectObject("ALTERCG",Myself)
+		SmallWait(7)
+		//SpellHitEffectSprite(Myself,Myself,DIMENSION_DOOR_ORIGIN,0)
+		CreateVisualEffectObject("SPDIMNDR",Myself)
+		SmallWait(5)
+		//HideCreature(Myself,TRUE)
+		ApplySpellRES("idinvis4",Myself)
+		DisplayStringHead(Myself,@24096)
+		
+		SetGlobal("ar5300_Kill_Beelthot","GLOBAL",1)
+		
+		SmallWait(5)
+		SetInterrupt(TRUE)
+		DestroySelf()
+END
+

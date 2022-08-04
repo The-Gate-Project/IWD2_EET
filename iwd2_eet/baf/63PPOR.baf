@@ -1,0 +1,15 @@
+IF
+	Contains("z6gencl",Myself)
+THEN
+	RESPONSE #100
+		SetGlobal("SH_Purify_Pool","GLOBAL",3)
+		SetGlobal("Pool_Tainted","GLOBAL",1)
+		AmbientActivate("6303MS1",FALSE)
+		DestroyItem("z6gencl")
+		//SpellHitEffectPoint(Myself,[-1.-1],CALL_LIGHTNING,0)
+		//ReallyForceSpellPointRES("IDCALLIH",[2485.955])
+		CreateVisualEffect("IDCLLH",[2485.955])
+		DisplayStringPointLog([2485.955],@37855)
+		AddJournalEntry(@24975,QUEST)
+END
+

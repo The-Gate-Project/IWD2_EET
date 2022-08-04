@@ -1,0 +1,205 @@
+IF
+  Global("SaveSavedLoc","LOCALS",0)
+THEN
+  RESPONSE #100
+    SetGlobal("SaveSavedLoc","LOCALS",1)
+    SaveObjectLocation("LOCALS","SavedLoc",Myself)
+    Continue()
+END
+
+IF
+	GlobalGT("SPIN","LOCALS",1)
+THEN
+	RESPONSE #100
+		Face(3)
+		Face(4)
+		Face(5)
+		Face(6)
+		Face(7)
+		Face(8)
+		Face(9)
+		Face(10)
+		Face(11)
+		Face(12)
+		IncrementGlobal("SPIN","LOCALS",-1)
+END
+
+IF
+	GlobalLT("SPIN","LOCALS",-1)
+THEN
+	RESPONSE #100
+		Face(14)
+		Face(13)
+		Face(12)
+		Face(11)
+		Face(10)
+		Face(9)
+		Face(8)
+		Face(7)
+		Face(6)
+		Face(5)
+		IncrementGlobal("SPIN","LOCALS",1)
+END
+
+IF
+	!Global("SPIN","LOCALS",0)
+THEN
+	RESPONSE #200
+		SetGlobal("SPIN","LOCALS",0)
+		SetGlobal("DID_SPIN","LOCALS",1)
+	RESPONSE #100
+		SetGlobal("SPIN","LOCALS",0)
+		SetGlobal("DID_SPIN","LOCALS",1)
+		DisplayStringHead(Myself,@17894)
+		Face(0)
+		Face(14)
+		Face(12)
+		Wait(1)
+		SetSequence(SEQ_SLEEP)
+		Wait(5)
+		SetSequence(SEQ_AWAKE)
+	RESPONSE #100
+		SetGlobal("SPIN","LOCALS",0)
+		SetGlobal("DID_SPIN","LOCALS",1)
+		DisplayStringHead(Myself,@17894)
+		Face(4)
+		Face(6)
+		Face(8)
+		Wait(1)
+		SetSequence(SEQ_SLEEP)
+		Wait(5)
+		SetSequence(SEQ_AWAKE)
+END
+
+IF
+	!Global("DID_SPIN","LOCALS",0)
+	!See("04_50HNT_01")
+	!See("04_50HNT_02")
+	!See("04_50HNT2_03")
+	!See("04_50HNT2_04")
+	!See("04_50HNT3_05")
+THEN
+	RESPONSE #100
+		SetGlobal("DID_SPIN","LOCALS",0)
+		SetGlobal("SPINNING_INSULT","MYAREA",0)
+		Continue()
+END
+
+IF
+	Global("SPINNING_INSULT","MYAREA",2)
+THEN
+	RESPONSE #100
+		SetGlobal("SPINNING_INSULT","MYAREA",0)
+		DisplayStringHead(Myself,@17908)
+		Continue()
+END
+
+IF
+	Global("DID_SPIN","LOCALS",0)
+	OR(5)
+		See("04_50HNT_01")
+		See("04_50HNT_02")
+		See("04_50HNT2_03")
+		See("04_50HNT2_04")
+		See("04_50HNT3_05")
+THEN
+	RESPONSE #100
+		FaceObject(LastSeenBy(Myself))
+		Wait(1)
+		SetGlobal("SPIN","LOCALS",3)
+	RESPONSE #100
+		FaceObject(LastSeenBy(Myself))
+		Wait(1)
+		SetGlobal("SPIN","LOCALS",-3)
+	RESPONSE #25
+		FaceObject(LastSeenBy(Myself))
+		Wait(1)
+		SetGlobal("DID_SPIN","LOCALS",1)
+		DisplayStringHead(Myself,@17906)
+		Wait(1)
+		SetGlobal("SPINNING_INSULT","MYAREA",1)
+END
+
+IF
+	!Global("SPIN","LOCALS",0)
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,@17892)
+		Wait(2)
+	RESPONSE #100
+		DisplayStringHead(Myself,@17893)
+		Wait(2)
+END
+
+IF
+	Global("ML_0","LOCALS",0)
+	ActionListEmpty()
+	NearLocation(Myself,2060,865,4)
+THEN
+	RESPONSE #100
+		SetHomeLocation([2060.865])
+		SetGlobal("ML_0","LOCALS",1)
+		Continue()
+END
+
+IF
+	Global("ML_0","LOCALS",0)
+THEN
+	RESPONSE #100
+		MoveToPoint([2060.865])
+END
+
+IF
+	Global("ML_0","LOCALS",1)
+	ActionListEmpty()
+	NearLocation(Myself,2060,1040,4)
+THEN
+	RESPONSE #100
+		SetHomeLocation([2060.1040])
+		SetGlobal("ML_0","LOCALS",2)
+		Continue()
+END
+
+IF
+	Global("ML_0","LOCALS",1)
+THEN
+	RESPONSE #100
+		MoveToPoint([2060.1040])
+END
+
+IF
+	Global("ML_0","LOCALS",2)
+	ActionListEmpty()
+	NearLocation(Myself,2115,1040,4)
+THEN
+	RESPONSE #100
+		SetHomeLocation([2115.1040])
+		SetGlobal("ML_0","LOCALS",3)
+		Continue()
+END
+
+IF
+	Global("ML_0","LOCALS",2)
+THEN
+	RESPONSE #100
+		MoveToPoint([2115.1040])
+END
+
+IF
+	Global("ML_0","LOCALS",3)
+	NearSavedLocation(Myself,"LOCALSSavedLoc",4)
+THEN
+	RESPONSE #100
+		SetGlobal("ML_0","LOCALS",0)
+		SetHomeLocation([-1.-1])
+		Continue()
+END
+
+IF
+	Global("ML_0","LOCALS",3)
+	!NearSavedLocation(Myself,"LOCALSSavedLoc",4)
+THEN
+	RESPONSE #100
+		MoveToSavedLocation("SavedLoc","LOCALS")
+END
+

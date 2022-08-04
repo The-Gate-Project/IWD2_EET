@@ -1,0 +1,10 @@
+IF
+	!GlobalTimerNotExpired("IwTimer19","LOCALS")
+	Allegiance(Myself,ENEMY)
+THEN
+	RESPONSE #100
+		MoveToObject(Player1)
+		SetGlobalTimerRandom("IwTimer19","LOCALS",2,5)
+END
+
+

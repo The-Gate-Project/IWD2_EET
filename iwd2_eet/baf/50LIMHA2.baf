@@ -1,0 +1,124 @@
+IF
+	True()
+THEN
+	RESPONSE #100
+		Continue()
+END
+
+IF
+	Global("LIMHA_MODE","MYAREA",2)
+THEN
+	RESPONSE #100
+		SetGlobal("LIMHA_MODE","MYAREA",0)
+		Continue()
+END
+
+IF
+	!Global("LIMHA_LAST_CAST","MYAREA",0)
+	HaveSpell(WIZARD_CHAOS)
+	See(NearestEnemyOf(Myself))
+	//!General(LastSeenBy(Myself),UNDEAD)
+	//!Race(LastSeenBy(Myself),DEMONIC)
+	//!Race(LastSeenBy(Myself),TANARI)
+	//!StateCheck(LastSeenBy(Myself),STATE_DISABLED)
+THEN
+	RESPONSE #100
+		SetGlobal("LIMHA_LAST_CAST","MYAREA",0)
+		Spell(LastSeenBy(Myself),WIZARD_CHAOS)
+		Wait(1)
+END
+
+IF
+	!Global("LIMHA_LAST_CAST","MYAREA",1)
+	HaveSpellRES("IWWI424")
+	OR(2)
+		See(NearestEnemyOf(Myself))
+		See([PC])
+THEN
+	RESPONSE #100
+		SetGlobal("LIMHA_LAST_CAST","MYAREA",1)
+		SpellRES("IWWI424",LastSeenBy(Myself))
+		Wait(1)
+END
+
+IF
+	!Global("LIMHA_LAST_CAST","MYAREA",2)
+	HaveSpell(WIZARD_DEAFNESS)
+	See([PC])
+	//!StateCheck(LastSeenBy(Myself),STATE_DISABLED_CASTING)
+	//CheckStatLT(LastSeenBy(Myself),50,SPELLFAILUREMAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("LIMHA_LAST_CAST","MYAREA",2)
+		Spell(LastSeenBy(Myself),WIZARD_DEAFNESS)
+		Wait(1)
+END
+
+IF
+	!Global("LIMHA_LAST_CAST","MYAREA",3)
+	HaveSpell(WIZARD_MELF_ACID_ARROW)
+	OR(2)
+		See(NearestEnemyOf(Myself))
+		See([PC])
+THEN
+	RESPONSE #100
+		SetGlobal("LIMHA_LAST_CAST","MYAREA",3)
+		Spell(LastSeenBy(Myself),WIZARD_MELF_ACID_ARROW)
+		Wait(1)
+END
+
+IF
+	!Global("LIMHA_LAST_CAST","MYAREA",4)
+	HaveSpell(WIZARD_CHARM_PERSON)
+	See([PC])
+	//!Class(LastSeenBy(Myself),MONK)
+	//!Kit(LastSeenBy(Myself),INQUISITOR)
+	//!Kit(LastSeenBy(Myself),CAVALIER)
+	//!Race(LastSeenBy(Myself),ELF)
+	//!StateCheck(LastSeenBy(Myself),STATE_DISABLED)
+THEN
+	RESPONSE #100
+		SetGlobal("LIMHA_LAST_CAST","MYAREA",4)
+		Spell(LastSeenBy(Myself),WIZARD_CHARM_PERSON)
+		Wait(1)
+END
+
+IF
+	!Global("LIMHA_LAST_CAST","MYAREA",5)
+	HaveSpell(WIZARD_DIRE_CHARM)
+	OR(5)
+		See(NearestEnemyOf(Myself))
+		See([PC.0.0.FIGHTER_ALL])
+		See([PC.0.0.MONK])
+		See([PC.0.0.PALADIN_ALL])
+		See([PC.0.0.RANGER_ALL])
+	//!Class(LastSeenBy(Myself),MONK)
+	//!Race(LastSeenBy(Myself),ELF)
+	//!StateCheck(LastSeenBy(Myself),STATE_DISABLED)
+THEN
+	RESPONSE #100
+		SetGlobal("LIMHA_LAST_CAST","MYAREA",5)
+		Spell(LastSeenBy(Myself),WIZARD_DIRE_CHARM)
+		Wait(1)
+END
+
+IF
+	!Global("LIMHA_LAST_CAST","MYAREA",6)
+	HaveSpell(WIZARD_HOLD_PERSON)
+	See([PC])
+	//!StateCheck(LastSeenBy(Myself),STATE_DISABLED)
+THEN
+	RESPONSE #100
+		SetGlobal("LIMHA_LAST_CAST","MYAREA",6)
+		Spell(LastSeenBy(Myself),WIZARD_HOLD_PERSON)
+		Wait(1)
+END
+
+IF
+	!Global("LIMHA_LAST_CAST","MYAREA",-1)
+THEN
+	RESPONSE #100
+		SetGlobal("LIMHA_LAST_CAST","MYAREA",-1)
+		Continue()
+END
+

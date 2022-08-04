@@ -1,0 +1,17 @@
+IF
+	IsActive(Myself)
+	!GlobalTimerNotExpired("IwTimer5","LOCALS")
+	See(NearestEnemyOf(Myself))
+	Range(LastSeenBy(Myself),10)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IwTimer5","LOCALS",49)
+		ForceSpellRES("IWIN991",LastSeenBy(Myself))  // SPIN991.SPL INNATE_IRON_GOLEM_CLOUD
+		//WaitAnimation(Myself,WALK)
+		//WaitAnimation(Myself,CONJURE)
+		//WaitAnimation(Myself,CAST)
+		Wait(2)
+	RESPONSE #25
+		Continue()
+END
+

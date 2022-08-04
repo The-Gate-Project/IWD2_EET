@@ -1,0 +1,59 @@
+IF
+	Global("6001_Fight","GLOBAL",1)
+	!Global("6007_RestingDisabled","MYAREA",1)
+THEN
+	RESPONSE #100
+		SetGlobal("6007_RestingDisabled","MYAREA",1)
+		//AllowAreaResting(FALSE)
+		AddAreaFlag(NOREST)
+		DisplayStringNoName(Player1,@35287) //[PC]
+		Continue()
+END
+
+IF
+	OnCreation()
+	GlobalGT("6001_Fight","GLOBAL",1)
+	!Global("6007_RestingDisabled","MYAREA",2)
+THEN
+	RESPONSE #100
+		SetGlobal("6007_RestingDisabled","MYAREA",2)
+		//AllowAreaResting(TRUE)
+		RemoveAreaFlag(NOREST)
+		Continue()
+END
+
+/*IF
+	Global("AR6001_REVEALED","MYAREA",0)
+THEN
+	RESPONSE #100
+		HideAreaOnMap("ID2000")
+		HideAreaOnMap("ID2100")
+		//RevealAreaOnMap("IW6000")
+		//RevealAreaOnMap("IW6001")
+		AddWorldmapAreaFlag("IW6000",VISIBLE_EXPLORABLE)
+		AddWorldmapAreaFlag("IW6001",VISIBLE_EXPLORABLE)
+		//AddWorldmapAreaFlag("IW6001",ENABLED)
+		SetGlobal("AR6001_REVEALED","MYAREA",1)
+		Continue()
+END*/
+
+IF
+	Global("IW6001_REVEALED","GLOBAL",0)
+THEN
+	RESPONSE #100
+		HideAreaOnMap("ID2000")
+		HideAreaOnMap("ID2100")
+		AddWorldmapAreaFlag("IW6000",VISIBLE_EXPLORABLE)
+		AddWorldmapAreaFlag("IW6001",VISIBLE_EXPLORABLE)
+		SetGlobal("IW6001_REVEALED","GLOBAL",1)
+		Continue()
+END
+
+IF
+	OnCreation()
+THEN
+	RESPONSE #100
+		NoAction()
+		Continue()
+END
+

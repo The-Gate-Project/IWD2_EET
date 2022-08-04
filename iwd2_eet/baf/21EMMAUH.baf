@@ -1,0 +1,36 @@
+IF
+	!Global("21EMMAUH_INACTIVE","LOCALS",1)
+	!IsActive(Myself)
+	GlobalGT("SR_Emma_Revenge","GLOBAL",0)
+THEN
+	RESPONSE #100
+		SetGlobal("21EMMAUH_INACTIVE","LOCALS",1)
+		Activate(Myself)
+		SetGlobal("IwIHidden","LOCALS",0)
+		ApplySpellRES("IDINVIS5",Myself)
+		Continue()
+END
+
+IF
+	!Global("21EMMAUH_INACTIVE","LOCALS",1)
+	IsActive(Myself)
+THEN
+	RESPONSE #100
+		SetGlobal("21EMMAUH_INACTIVE","LOCALS",1)
+END
+
+IF
+	!Global("21EMMAUH_INACTIVE","LOCALS",1)
+	!IsActive(Myself)
+THEN
+	RESPONSE #100
+		NoAction()
+END
+
+IF
+	!Global("21EMMAUH_INACTIVE","LOCALS",1)
+	True()
+THEN
+	RESPONSE #100
+END
+

@@ -1,0 +1,58 @@
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("05_Warrior_03")
+		ChangeEnemyAlly(Myself,NEUTRAL)
+		GiveItemCreate("z4amulhs","SymbolContainer",0,0,0)
+		GiveItemCreate("RING19","SymbolContainer",0,0,0)
+		SetGlobal("TEAM_1","MYAREA",1)
+		//SetDialogueRange(300)
+		//SetApparentNameSTRREF(Myself,41017)  // Фузалон
+		//SetRegularNameSTRREF(Myself,41017)  // Фузалон
+		SetName(@41017)
+		ActionOverride("Wandering_Postulant_01",SetGlobal("IwIHidden","LOCALS",1))
+		Deactivate("Wandering_Postulant_01")
+		MoveViewPoint([160.1760],INSTANT)
+		Wait(1)
+		//Dialogue(NearestPC)
+		StartDialogNoSet([PC])
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("05_Warrior_06")
+		ChangeEnemyAlly(Myself,NEUTRAL)
+		//SetApparentNameSTRREF(Myself,41019)  // Оугамия из Утгардта
+		//SetRegularNameSTRREF(Myself,41019)  // Оугамия из Утгардта
+		SetName(@41019)
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("05_Postulant_08")
+		JumpToPoint([540.1380])
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("Sherincal")
+		ApplySpellRES("iwperai",Myself)
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId(Player1)
+		//SetSavedLocation()
+		//JumpToPoint([160.1760])
+		CreateCreature("CUTSPY",[160.1760],0)
+END
+

@@ -1,0 +1,7 @@
+IF
+	True()
+THEN
+	RESPONSE #100
+		ChangeAIScript("00MFlyr0",GENERAL)
+END
+

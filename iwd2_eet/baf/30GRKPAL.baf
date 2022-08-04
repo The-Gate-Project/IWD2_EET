@@ -1,0 +1,17 @@
+IF
+	!IsActive(Myself)
+	Global("30OGRGAR_NODES","GLOBAL",5)
+THEN
+	RESPONSE #100
+		Activate(Myself)
+		SetGlobal("IwIHidden","LOCALS",0)
+		Continue()
+END
+
+IF
+	!IsActive(Myself)
+THEN
+	RESPONSE #100
+		NoAction()
+END
+

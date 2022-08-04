@@ -1,0 +1,290 @@
+//BLOCK SET_VARS
+IF
+	!Global("SET_40BFDRU1","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,3)
+		SetGlobal("SET_40BFDRU1","LOCALS",1)
+		SetInterrupt(TRUE)
+END
+//BLOCKEND
+
+IF
+	StateCheck(Myself,STATE_PANIC)
+THEN
+	RESPONSE #100
+		RandomWalkContinuous()
+END
+
+IF
+	!GlobalTimerNotExpired("IWD_Rest","LOCALS")
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IWD_Rest","LOCALS",EIGHT_HOURS)
+		ApplySpell(Myself,RESTORE_FULL_HEALTH)
+		Rest()
+END
+
+//BLOCK NEW UseBuff
+IF
+	!GlobalTimerNotExpired("BuffTimer","LOCALS")
+	Global("UseBuff","LOCALS",0)
+	OR(6)
+		HasItem("POTN17",Myself)
+		HasItem("POTN55",Myself) //POTN_52
+		HasItem("POTN52",Myself) //POTN_08
+		HaveSpell(CLERIC_CURE_LIGHT_WOUNDS)
+		HaveSpell(CLERIC_CURE_MEDIUM_WOUNDS)
+		HaveSpell(CLERIC_CURE_SERIOUS_WOUNDS)
+THEN
+	RESPONSE #100
+		SetGlobal("UseBuff","LOCALS",1)
+		SetGlobalTimer("BuffTimer","LOCALS",7)
+		Continue()
+END
+
+IF
+	//!GlobalTimerNotExpired("BuffTimer","LOCALS")
+	Global("UseBuff","LOCALS",1) /*0*/
+	//HPLostGT(Myself,6)  //See(Myself) - работает
+	See(Myself)
+	HPPercentLT(LastSeenBy(Myself),90)
+THEN
+	RESPONSE #100
+		//SetMyTarget(Myself)
+		//SetGlobal("UseBuff","LOCALS",1)
+		//SetGlobalTimer("BuffTimer","LOCALS",7)
+		Continue()
+END
+//BLOCKEND
+
+IF
+	//!GlobalTimerNotExpired("BuffTimer","LOCALS")
+	Global("UseBuff","LOCALS",1) /*0*/
+	See([0.HUMANOID])
+	!TargetUnreachable(LastSeenBy(Myself))
+	Specifics(LastSeenBy(Myself),254)
+	HPPercentLT(LastSeenBy(Myself),90)
+THEN
+	RESPONSE #100
+		//SetMyTarget(LastMarkedObject)
+		//SetGlobal("UseBuff","LOCALS",1)
+		//SetGlobalTimer("BuffTimer","LOCALS",7)
+		Continue()
+END
+
+/*IF
+	//!GlobalTimerNotExpired("BuffTimer","LOCALS")
+	Global("UseBuff","LOCALS",1) /*0*/
+	//HPLostGT(Myself,6)  //See(Myself) - работает
+	See(Myself)
+	HPPercentLT(LastSeenBy(Myself),90)
+THEN
+	RESPONSE #100
+		//SetMyTarget(Myself)
+		//SetGlobal("UseBuff","LOCALS",1)
+		//SetGlobalTimer("BuffTimer","LOCALS",7)
+		Continue()
+END*/
+
+IF
+	Global("UseBuff","LOCALS",1)
+	OR(2)
+		HPPercentLT(LastSeenBy(Myself),80)
+		//StateCheck(LastSeenBy(Myself),STATE_DISEASED)
+		CheckSpellState(LastSeenBy(Myself),DISEASED)
+	HasItem("POTN17",Myself)
+	!StateCheck(LastSeenBy(Myself),STATE_REALLY_DEAD)
+	Specifics(LastSeenBy(Myself),254)
+THEN
+	RESPONSE #100
+		GiveItem("POTN17",LastSeenBy(Myself))
+		ActionOverride(LastSeenBy(Myself),UseItem("POTN17",Myself))
+		SetGlobal("UseBuff","LOCALS",0)
+END
+
+IF
+	Global("UseBuff","LOCALS",1)
+	HPPercentLT(LastSeenBy(Myself),65)
+	HasItem("POTN55",Myself) //POTN_52
+	!StateCheck(LastSeenBy(Myself),STATE_REALLY_DEAD)
+	Specifics(LastSeenBy(Myself),254)
+THEN
+	RESPONSE #100
+		GiveItem("POTN55",LastSeenBy(Myself)) //POTN_52
+		ActionOverride(LastSeenBy(Myself),UseItem("POTN55",Myself)) //POTN_52
+		SetGlobal("UseBuff","LOCALS",0)
+END
+
+IF
+	Global("UseBuff","LOCALS",1)
+	HPPercentLT(LastSeenBy(Myself),90)
+	HasItem("POTN52",Myself) //POTN_08
+	!StateCheck(LastSeenBy(Myself),STATE_REALLY_DEAD)
+	Specifics(LastSeenBy(Myself),254)
+THEN
+	RESPONSE #100
+		GiveItem("POTN52",LastSeenBy(Myself)) //POTN_08
+		ActionOverride(LastSeenBy(Myself),UseItem("POTN52",Myself)) //POTN_08
+		SetGlobal("UseBuff","LOCALS",0)
+END
+
+IF
+	Global("UseBuff","LOCALS",1)
+	HPPercentLT(LastSeenBy(Myself),90)
+	HaveSpell(CLERIC_CURE_LIGHT_WOUNDS)
+	!StateCheck(LastSeenBy(Myself),STATE_REALLY_DEAD)
+	Specifics(LastSeenBy(Myself),254)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_LIGHT_WOUNDS)
+		Wait(1)
+		SetGlobal("UseBuff","LOCALS",0)
+END
+
+IF
+	Global("UseBuff","LOCALS",1)
+	HPPercentLT(LastSeenBy(Myself),75)
+	HaveSpell(CLERIC_CURE_MEDIUM_WOUNDS)
+	!StateCheck(LastSeenBy(Myself),STATE_REALLY_DEAD)
+	Specifics(LastSeenBy(Myself),254)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_MEDIUM_WOUNDS)
+		Wait(1)
+		SetGlobal("UseBuff","LOCALS",0)
+END
+
+IF
+	Global("UseBuff","LOCALS",1)
+	HPPercentLT(LastSeenBy(Myself),60)
+	HaveSpell(CLERIC_CURE_SERIOUS_WOUNDS)
+	!StateCheck(LastSeenBy(Myself),STATE_REALLY_DEAD)
+	Specifics(LastSeenBy(Myself),254)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_SERIOUS_WOUNDS)
+		Wait(1)
+		SetGlobal("UseBuff","LOCALS",0)
+END
+
+//BLOCK NEW UseBuff
+IF
+	!Global("UseBuff","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobal("UseBuff","LOCALS",0)
+		SetGlobalTimer("BuffTimer","LOCALS",7)
+		Continue()
+END
+//BLOCKEND
+
+//BLOCK SPL_1
+/*IF
+	ForceMarkedSpell(MARKED_SPELL)
+	SetSpellTarget(Nothing)
+	Allegiance(Myself,ENEMY)
+	RandomNum(4,1)
+	See(FarthestEnemyOf(Myself),0)
+THEN
+	RESPONSE #100
+		MarkSpellAndObject("121612041250",LastMarkedObject,SPELLCAST_IGNORE_SEE | SPELLCAST_IGNORE_VALID_SPELL_TARGET | SPELLCAST_RANDOM)  // [CLERIC_ALICORN_LANCE, CLERIC_CHARM_PERSON_OR_MAMMAL, CLERIC_SUMMON_NATURES_ALLY_2]
+		Continue()
+END
+
+IF
+	!IsMarkedSpell(MARKED_SPELL)
+THEN
+	RESPONSE #100
+		Spell(SpellTarget,MARKED_SPELL)
+		WaitAnimation(Myself,WALK)
+		WaitAnimation(Myself,CONJURE)
+		WaitAnimation(Myself,CAST)
+		ForceMarkedSpell(MARKED_SPELL)
+END*/
+/*IF
+	GlobalLT("SSPELLS_1_RANDOM_CAST","LOCALS",4)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,3)
+		Continue()
+END*/
+//1 - LastMarkedObject - [CLERIC_ALICORN_LANCE, CLERIC_CHARM_PERSON_OR_MAMMAL, CLERIC_SUMMON_NATURES_ALLY_2]
+IF
+	Global("SSPELLS_1_RANDOM_CAST","LOCALS",1)
+	HaveSpellRES("IWPR216")
+	Allegiance(Myself,ENEMY)
+	RandomNum(4,1)
+	See(FarthestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,3)
+		SpellRES("IWPR216",LastSeenBy(Myself))
+		Wait(1)
+END
+
+IF
+	Global("SSPELLS_1_RANDOM_CAST","LOCALS",2)
+	HaveSpell(CLERIC_CHARM_PERSON)
+	Allegiance(Myself,ENEMY)
+	RandomNum(4,1)
+	See(FarthestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,3)
+		Spell(LastSeenBy(Myself),CLERIC_CHARM_PERSON)
+		Wait(1)
+END
+
+IF
+	Global("SSPELLS_1_RANDOM_CAST","LOCALS",3)
+	HaveSpell(CLERIC_ANIMAL_SUMMONING_2)
+	Allegiance(Myself,ENEMY)
+	RandomNum(4,1)
+	See(FarthestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,3)
+		Spell(LastSeenBy(Myself),CLERIC_ANIMAL_SUMMONING_2)
+		Wait(1)
+END
+//BLOCK NO_RND
+IF
+	HaveSpellRES("IWPR216")
+	Allegiance(Myself,ENEMY)
+	RandomNum(4,1)
+	See(FarthestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,3)
+		SpellRES("IWPR216",LastSeenBy(Myself))
+		Wait(1)
+END
+
+IF
+	HaveSpell(CLERIC_CHARM_PERSON)
+	Allegiance(Myself,ENEMY)
+	RandomNum(4,1)
+	See(FarthestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,3)
+		Spell(LastSeenBy(Myself),CLERIC_CHARM_PERSON)
+		Wait(1)
+END
+
+IF
+	HaveSpell(CLERIC_ANIMAL_SUMMONING_2)
+	Allegiance(Myself,ENEMY)
+	RandomNum(4,1)
+	See(FarthestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,3)
+		Spell(LastSeenBy(Myself),CLERIC_ANIMAL_SUMMONING_2)
+		Wait(1)
+END
+//BLOCKEND
+//BLOCKEND
+

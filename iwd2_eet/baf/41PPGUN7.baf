@@ -1,0 +1,9 @@
+IF
+	Global("41PrismFire","MYAREA",3)
+THEN
+	RESPONSE #100
+		ForceSpellPointRES("IWWI092",[1906.1249])
+		TriggerActivation("Mirror7",TRUE)
+		TriggerActivation(Myself,FALSE)
+END
+

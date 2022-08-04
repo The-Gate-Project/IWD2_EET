@@ -1,0 +1,13 @@
+IF
+	Global("52Morohem_Master","GLOBAL",4)
+	!Global("WATCHING_PLAYER","MYAREA",0)
+	//InTrap([PC])
+	OR(2)
+		Entered([PC])
+		IsOverMe([PC])
+THEN
+	RESPONSE #100
+		ReallyForceSpellRES("IWIN249",LastTrigger)  // SPIN249.SPL TRAP_FLOOR_BLADES
+		Wait(1)
+END
+

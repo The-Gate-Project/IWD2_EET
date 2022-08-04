@@ -1,0 +1,58 @@
+/*IF
+	!Global("40PTDOME_INACTIVE","MYAREA",1)
+	Disarmed([ANYONE])
+	See([0.HUMANOID])
+	Specifics(LastSeenBy(Myself),255)
+	LOS(LastSeenBy(Myself),100)
+	!StateCheck(LastTrigger,STATE_INVISIBLE)
+	!StateCheck(LastTrigger,STATE_IMPROVEDINVISIBILITY)
+THEN
+	RESPONSE #100
+		SetGlobal("TEAM_2","MYAREA",1)
+		SetGlobal("TEAM_6","MYAREA",1)
+		SetGlobal("40PTDOME_INACTIVE","MYAREA",1)
+		TriggerActivation(Myself,FALSE)
+		//ChangeCurrentScript("")
+END*/
+
+IF
+	!Global("40PTDOME_INACTIVE","MYAREA",1)
+	Disarmed([ANYONE])
+	StateCheck(LastTrigger,STATE_NOT_VISIBLE)
+THEN
+	RESPONSE #100
+		SetGlobal("40PTDOME_INACTIVE","MYAREA",1)
+		TriggerActivation(Myself,FALSE)
+END
+
+IF
+	!Global("40PTDOME_INACTIVE","MYAREA",1)
+	Disarmed([ANYONE])
+	OR(2)
+		See([0.HUMANOID])
+		See([0.0.0.0.254])
+	Specifics(LastSeenBy(Myself),254)
+	LOS(LastSeenBy(Myself),100)
+THEN
+	RESPONSE #100
+		SetGlobal("TEAM_2","MYAREA",1)
+		SetGlobal("TEAM_6","MYAREA",1)
+		SetGlobal("40PTDOME_INACTIVE","MYAREA",1)
+		TriggerActivation(Myself,FALSE)
+END
+
+IF
+	!Global("40PTDOME_INACTIVE","MYAREA",1)
+	OR(2)
+		Opened([PC])
+		Entered([PC])
+THEN
+	RESPONSE #100
+		ForceSpellPoint([2970.251],CLERIC_GLYPH_OF_WARDING)
+		DisplayString(LastTrigger,14381)
+		SetGlobal("TEAM_6","MYAREA",1)
+		SetGlobal("40PTDOME_INACTIVE","MYAREA",1)
+		TriggerActivation(Myself,FALSE)
+		//ChangeCurrentScript("")
+END
+

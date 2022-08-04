@@ -1,0 +1,17 @@
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId(Myself)
+		FaceObject("DRUM_2")
+		SetSequence(SEQ_ATTACK)
+		SetGlobal("DRUM_2_STATE","MYAREA",2)
+		SmallWait(7)
+		SetGlobal("DRUM_2_CHECK_SUMMON","MYAREA",1)
+		PlaySound("IW3000h")
+		Wait(1)
+		SetGlobal("PLAYING_DRUM","LOCALS",0)
+		/* AddEndCutSceneMode */
+		EndCutSceneMode()
+END
+

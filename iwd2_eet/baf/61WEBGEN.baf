@@ -1,0 +1,18 @@
+IF
+	Entered([PC])
+THEN
+	RESPONSE #100
+		ForceSpell(LastTrigger,WIZARD_WEB)
+		//HideCreature("IW6102_05_Ettercap_01",FALSE)
+		Activate("IW6102_05_Ettercap_01")
+		ActionOverride("IW6102_05_Ettercap_01",SetGlobal("IwIHidden","LOCALS",0))
+		//HideCreature("IW6102_05_Ettercap_02",FALSE)
+		Activate("IW6102_05_Ettercap_02")
+		ActionOverride("IW6102_05_Ettercap_02",SetGlobal("IwIHidden","LOCALS",0))
+		//HideCreature("IW6102_05_Ettercap_03",FALSE)
+		Activate("IW6102_05_Ettercap_03")
+		ActionOverride("IW6102_05_Ettercap_03",SetGlobal("IwIHidden","LOCALS",0))
+		TriggerActivation(Myself,FALSE)
+		//ChangeCurrentScript("")
+END
+

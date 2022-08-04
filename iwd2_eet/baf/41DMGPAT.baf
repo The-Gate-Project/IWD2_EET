@@ -1,0 +1,98 @@
+IF
+	!Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("DamageTimer","LOCALS")
+	//HPLostGT(Myself,1)
+	HPPercentLT(Myself,100)
+THEN
+	RESPONSE #100
+		Enemy()
+		Continue()
+END
+
+IF
+	!GlobalTimerNotExpired("DamageTimer","LOCALS")
+	HPPercentLT(Myself,100)
+	!See([GOODCUTOFF])
+THEN
+	RESPONSE #100
+		MoveToObject(Player1)
+		Continue()
+END
+
+IF
+	!GlobalTimerNotExpired("DamageTimer","LOCALS")
+THEN
+	RESPONSE #100
+		SetGlobalTimer("DamageTimer","LOCALS",5)
+END
+
+IF
+  Global("SaveSavedLoc","LOCALS",0)
+THEN
+  RESPONSE #100
+    SetGlobal("SaveSavedLoc","LOCALS",1)
+    SaveObjectLocation("LOCALS","SavedLoc",Myself)
+    Continue()
+END
+
+IF
+	Global("BattleSquareActive","MYAREA",1)
+	!AttackedBy([GOODCUTOFF],DEFAULT)
+	Global("Start","LOCALS",0)
+THEN
+	RESPONSE #100
+		ClearActions(Myself)
+		SetGlobal("Start","LOCALS",1)
+END
+
+IF
+	Global("ML_0","LOCALS",0)
+	NearSavedLocation(Myself,"LOCALSSavedLoc",4)
+	Global("Start","LOCALS",1)
+	Global("BattleSquareActive","MYAREA",1)
+	!AttackedBy([GOODCUTOFF],DEFAULT)
+THEN
+	RESPONSE #100
+		SetGlobal("ML_0","LOCALS",1)
+		SetHomeLocation([-1.-1])
+		Continue()
+END
+
+IF
+	Global("ML_0","LOCALS",0)
+	!NearSavedLocation(Myself,"LOCALSSavedLoc",4)
+	Global("Start","LOCALS",1)
+	Global("BattleSquareActive","MYAREA",1)
+	!AttackedBy([GOODCUTOFF],DEFAULT)
+THEN
+	RESPONSE #100
+		MoveToSavedLocation("SavedLoc","LOCALS")
+END
+
+IF
+	Global("ML_0","LOCALS",1)
+	Global("Start","LOCALS",1)
+	Global("BattleSquareActive","MYAREA",1)
+	!AttackedBy([GOODCUTOFF],DEFAULT)
+THEN
+	RESPONSE #100
+		SetGlobal("Start","LOCALS",0)
+		SetGlobal("ML_0","LOCALS",0)
+END
+
+IF
+	OR(2)
+		Died([ANYONE])
+		Heard([ANYONE],100)
+THEN
+	RESPONSE #100
+		MoveToObject(LastSeenBy(LastHeardBy(Myself)))
+END
+
+IF
+	ActionListEmpty()
+THEN
+	RESPONSE #100
+		RandomWalk()
+END
+

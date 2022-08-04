@@ -1,0 +1,22 @@
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId(Player1)
+		MultiPlayerSync()
+		//ScreenShake(30,25,25)
+		ScreenShake([25.25],30)
+		OpenDoor("AR2101_Door5_Dam")
+		//PlaySoundPoint("AM2101g",[1228.373])
+		PlaySound("IW2101G")
+		MultiPlayerSync()
+		EndCutSceneMode()
+		AddXP2DA("IW2EX3H")
+		DisplayStringNoName(Player1,@27774)
+		AddJournalEntry(@28186,QUEST)
+		AddMapNoteColor([1833.282],@55024,YELLOW)
+		SetGlobal("Destroy_Dam_Quest","GLOBAL",4)
+		//MultiPlayerSync()
+		EndCutSceneMode()
+END
+

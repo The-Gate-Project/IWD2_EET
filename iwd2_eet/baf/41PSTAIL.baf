@@ -1,0 +1,100 @@
+IF
+	OpenState("AR4100_LeftSlide",FALSE)
+THEN
+	RESPONSE #100
+		NoAction()
+END
+
+IF
+	OR(2)
+		Entered(Player1)
+		IsOverMe(Player1)
+THEN
+	RESPONSE #100
+		ClearActions(LastTrigger)
+		ActionOverride(LastTrigger,JumpToPoint([2240.1024]))
+		DisplayStringPointLog([2325.840],@31986)
+		Continue()
+END
+
+IF
+	OR(2)
+		Entered(Player2)
+		IsOverMe(Player2)
+THEN
+	RESPONSE #100
+		ClearActions(LastTrigger)
+		ActionOverride(LastTrigger,JumpToPoint([2240.1024]))
+		DisplayStringPointLog([2325.840],@31986)
+		Continue()
+END
+
+IF
+	OR(2)
+		Entered(Player3)
+		IsOverMe(Player3)
+THEN
+	RESPONSE #100
+		ClearActions(LastTrigger)
+		ActionOverride(LastTrigger,JumpToPoint([2240.1024]))
+		DisplayStringPointLog([2325.840],@31986)
+		Continue()
+END
+
+IF
+	OR(2)
+		Entered(Player4)
+		IsOverMe(Player4)
+THEN
+	RESPONSE #100
+		ClearActions(LastTrigger)
+		ActionOverride(LastTrigger,JumpToPoint([2240.1024]))
+		DisplayStringPointLog([2325.840],@31986)
+		Continue()
+END
+
+IF
+	OR(2)
+		Entered(Player5)
+		IsOverMe(Player5)
+THEN
+	RESPONSE #100
+		ClearActions(LastTrigger)
+		ActionOverride(LastTrigger,JumpToPoint([2240.1024]))
+		DisplayStringPointLog([2325.840],@31986)
+		Continue()
+END
+
+IF
+	OR(2)
+		Entered(Player6)
+		IsOverMe(Player6)
+THEN
+	RESPONSE #100
+		ClearActions(LastTrigger)
+		ActionOverride(LastTrigger,JumpToPoint([2240.1024]))
+		DisplayStringPointLog([2325.840],@31986)
+		Continue()
+END
+
+IF
+	OR(2)
+		Entered([PC])
+		IsOverMe([PC])
+THEN
+	RESPONSE #100
+		SetGlobal("LeftStairTriggered","MYAREA",1)
+END
+
+IF
+	See([GOODCUTOFF])
+	!InParty(LastSeenBy(Myself))
+	Range(LastSeenBy(Myself),10)
+THEN
+	RESPONSE #100
+		ClearActions(LastSeenBy(Myself))
+		ActionOverride(LastSeenBy(Myself),JumpToPoint([2240.1024]))
+		DisplayStringPointLog([2325.840],@31986)
+		SetGlobal("LeftStairTriggered","MYAREA",1)
+END
+

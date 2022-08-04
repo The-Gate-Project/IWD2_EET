@@ -1,0 +1,16 @@
+IF
+	!Allegiance(Myself,ENEMY)
+	!StateCheck(Myself,STATE_REALLY_DEAD)
+	OR(3)
+		!Global("SPRITE_IS_DEADIlquag","GLOBAL",0)
+		!Global("SPRITE_IS_DEADTequag","GLOBAL",0)
+		!Global("SPRITE_IS_DEADYquog","GLOBAL",0)
+	See([PC])
+THEN
+	RESPONSE #100
+		//SetDialogueRange(300)
+		//Dialogue(LastMarkedObject)
+		ApplySpellRES("BDCUTSPY",Myself)
+		StartDialogNoSet(LastSeenBy(Myself))
+END
+

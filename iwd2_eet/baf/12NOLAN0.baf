@@ -1,0 +1,57 @@
+IF
+	!GlobalTimerNotExpired("IwTimer18","LOCALS")
+	!Global("Goblin_Palisade_Quest","GLOBAL",0)
+	See([PC])
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,@34234)
+		SetGlobalTimerRandom("IwTimer18","LOCALS",13,16)
+		FaceObject(LastSeenBy(Myself))
+	RESPONSE #100
+		DisplayStringHead(Myself,@34840)
+		SetGlobalTimerRandom("IwTimer18","LOCALS",13,16)
+		FaceObject(LastSeenBy(Myself))
+	RESPONSE #100
+		DisplayStringHead(Myself,@40131)
+		SetGlobalTimerRandom("IwTimer18","LOCALS",13,16)
+		FaceObject(LastSeenBy(Myself))
+END
+
+IF
+	!GlobalTimerNotExpired("IwTimer18","LOCALS")
+	!Global("Goblins_Attack_Palisade","GLOBAL",0)
+	See([PC])
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,@40132)
+		SetGlobalTimerRandom("IwTimer18","LOCALS",13,16)
+		FaceObject(LastSeenBy(Myself))
+	RESPONSE #100
+		DisplayStringHead(Myself,@40133)
+		SetGlobalTimerRandom("IwTimer18","LOCALS",13,16)
+		FaceObject(LastSeenBy(Myself))
+	RESPONSE #100
+		DisplayStringHead(Myself,@40134)
+		SetGlobalTimerRandom("IwTimer18","LOCALS",13,16)
+		FaceObject(LastSeenBy(Myself))
+END
+
+IF
+	!GlobalTimerNotExpired("IwTimer18","LOCALS")
+	Global("Goblins_Attack_Palisade","GLOBAL",0)
+	Global("Goblin_Palisade_Quest","GLOBAL",0)
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,@40135)
+		SetGlobalTimerRandom("IwTimer18","LOCALS",13,16)
+	RESPONSE #100
+		DisplayStringHead(Myself,@40136)
+		SetGlobalTimerRandom("IwTimer18","LOCALS",13,16)
+	RESPONSE #100
+		DisplayStringHead(Myself,@40137)
+		SetGlobalTimerRandom("IwTimer18","LOCALS",13,16)
+	RESPONSE #100
+		DisplayStringHead(Myself,@40138)
+		SetGlobalTimerRandom("IwTimer18","LOCALS",13,16)
+END
+

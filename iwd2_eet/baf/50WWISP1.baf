@@ -1,0 +1,252 @@
+IF
+	!GlobalTimerNotExpired("IwTimer5","LOCALS")
+	//!CreatureHidden(Myself)
+	Global("CreatureHidden","LOCALS",0)
+	HitBy([GOODCUTOFF],CRUSHING)
+THEN
+	RESPONSE #100
+		//XEquipItem("z0ciwsp2",Myself,SLOT_AMULET,FALSE)  // No such index
+		//HideCreature(Myself,TRUE)
+		ClearActions(LastAttackerOf(Myself))
+		ApplySpellRES("IDINVULS",Myself)
+		ApplySpellRES("IDINVIS8",Myself)
+		ChangeEnemyAlly(Myself,NEUTRAL)
+		SetGlobalTimerRandom("IwTimer5","LOCALS",3,7)
+		JumpToPoint([485.369])
+	RESPONSE #100
+		//XEquipItem("z0ciwsp2",Myself,SLOT_AMULET,FALSE)  // No such index
+		ClearActions(LastAttackerOf(Myself))
+		ApplySpellRES("IDINVULS",Myself)
+		ApplySpellRES("IDINVIS8",Myself)
+		ChangeEnemyAlly(Myself,NEUTRAL)
+		SetGlobalTimerRandom("IwTimer5","LOCALS",3,7)
+		JumpToPoint([1110.463])
+	RESPONSE #100
+		//XEquipItem("z0ciwsp2",Myself,SLOT_AMULET,FALSE)  // No such index
+		ClearActions(LastAttackerOf(Myself))
+		ApplySpellRES("IDINVULS",Myself)
+		ApplySpellRES("IDINVIS8",Myself)
+		ChangeEnemyAlly(Myself,NEUTRAL)
+		SetGlobalTimerRandom("IwTimer5","LOCALS",3,7)
+		JumpToPoint([1682.561])
+	RESPONSE #100
+		//XEquipItem("z0ciwsp2",Myself,SLOT_AMULET,FALSE)  // No such index
+		ClearActions(LastAttackerOf(Myself))
+		ApplySpellRES("IDINVULS",Myself)
+		ApplySpellRES("IDINVIS8",Myself)
+		ChangeEnemyAlly(Myself,NEUTRAL)
+		SetGlobalTimerRandom("IwTimer5","LOCALS",3,7)
+	RESPONSE #100
+		//XEquipItem("z0ciwsp2",Myself,SLOT_AMULET,FALSE)  // No such index
+		ClearActions(LastAttackerOf(Myself))
+		ApplySpellRES("IDINVULS",Myself)
+		ApplySpellRES("IDINVIS8",Myself)
+		ChangeEnemyAlly(Myself,NEUTRAL)
+		SetGlobalTimerRandom("IwTimer5","LOCALS",3,7)
+		JumpToPoint([433.616])
+	RESPONSE #100
+		//XEquipItem("z0ciwsp2",Myself,SLOT_AMULET,FALSE)  // No such index
+		ClearActions(LastAttackerOf(Myself))
+		ApplySpellRES("IDINVULS",Myself)
+		ApplySpellRES("IDINVIS8",Myself)
+		ChangeEnemyAlly(Myself,NEUTRAL)
+		SetGlobalTimerRandom("IwTimer5","LOCALS",3,7)
+		JumpToPoint([1370.787])
+	RESPONSE #100
+		//XEquipItem("z0ciwsp2",Myself,SLOT_AMULET,FALSE)  // No such index
+		ClearActions(LastAttackerOf(Myself))
+		ApplySpellRES("IDINVULS",Myself)
+		ApplySpellRES("IDINVIS8",Myself)
+		ChangeEnemyAlly(Myself,NEUTRAL)
+		SetGlobalTimerRandom("IwTimer5","LOCALS",3,7)
+		JumpToPoint([2101.538])
+	RESPONSE #100
+		//XEquipItem("z0ciwsp2",Myself,SLOT_AMULET,FALSE)  // No such index
+		ClearActions(LastAttackerOf(Myself))
+		ApplySpellRES("IDINVULS",Myself)
+		ApplySpellRES("IDINVIS8",Myself)
+		ChangeEnemyAlly(Myself,NEUTRAL)
+		SetGlobalTimerRandom("IwTimer5","LOCALS",3,7)
+		JumpToPoint([68.1249])
+	RESPONSE #100
+		//XEquipItem("z0ciwsp2",Myself,SLOT_AMULET,FALSE)  // No such index
+		ClearActions(LastAttackerOf(Myself))
+		ApplySpellRES("IDINVULS",Myself)
+		ApplySpellRES("IDINVIS8",Myself)
+		ChangeEnemyAlly(Myself,NEUTRAL)
+		SetGlobalTimerRandom("IwTimer5","LOCALS",3,7)
+		JumpToPoint([1527.1005])
+	RESPONSE #100
+		//XEquipItem("z0ciwsp2",Myself,SLOT_AMULET,FALSE)  // No such index
+		ClearActions(LastAttackerOf(Myself))
+		ApplySpellRES("IDINVULS",Myself)
+		ApplySpellRES("IDINVIS8",Myself)
+		ChangeEnemyAlly(Myself,NEUTRAL)
+		SetGlobalTimerRandom("IwTimer5","LOCALS",3,7)
+		JumpToPoint([2745.971])
+END
+
+IF
+	//CreatureHidden(Myself)
+	!Global("CreatureHidden","LOCALS",0)
+	!GlobalTimerNotExpired("IwTimer5","LOCALS")
+	Range([PC],5)
+THEN
+	RESPONSE #100
+		//XEquipItem("z0ciwsp2",Myself,SLOT_AMULET,TRUE)  // No such index
+		//HideCreature(Myself,FALSE)
+		ChangeEnemyAlly(Myself,ENEMY)
+		ApplySpellRES("IDRINVUL",Myself)
+		ApplySpellRES("IDINVIS9",Myself)
+		Continue()
+END
+
+IF
+	//CreatureHidden(Myself)
+	!Global("CreatureHidden","LOCALS",0)
+	!GlobalTimerNotExpired("IwTimer5","LOCALS")
+	NumInParty(6)
+	!Range([PC],5)
+THEN
+	RESPONSE #100
+		JumpToObject(Player1)
+		ApplySpellRES("IWJUMPOF",Myself)
+	RESPONSE #100
+		JumpToObject(Player2)
+		ApplySpellRES("IWJUMPOF",Myself)
+	RESPONSE #100
+		JumpToObject(Player3)
+		ApplySpellRES("IWJUMPOF",Myself)
+	RESPONSE #100
+		JumpToObject(Player4)
+		ApplySpellRES("IWJUMPOF",Myself)
+	RESPONSE #100
+		JumpToObject(Player5)
+		ApplySpellRES("IWJUMPOF",Myself)
+	RESPONSE #100
+		JumpToObject(Player6)
+		ApplySpellRES("IWJUMPOF",Myself)
+END
+
+IF
+	//CreatureHidden(Myself)
+	!Global("CreatureHidden","LOCALS",0)
+	!GlobalTimerNotExpired("IwTimer5","LOCALS")
+	NumInParty(5)
+	!Range([PC],5)
+THEN
+	RESPONSE #100
+		JumpToObject(Player1)
+		ApplySpellRES("IWJUMPOF",Myself)
+	RESPONSE #100
+		JumpToObject(Player2)
+		ApplySpellRES("IWJUMPOF",Myself)
+	RESPONSE #100
+		JumpToObject(Player3)
+		ApplySpellRES("IWJUMPOF",Myself)
+	RESPONSE #100
+		JumpToObject(Player4)
+		ApplySpellRES("IWJUMPOF",Myself)
+	RESPONSE #100
+		JumpToObject(Player5)
+		ApplySpellRES("IWJUMPOF",Myself)
+END
+
+IF
+	//CreatureHidden(Myself)
+	!Global("CreatureHidden","LOCALS",0)
+	!GlobalTimerNotExpired("IwTimer5","LOCALS")
+	NumInParty(4)
+	!Range([PC],5)
+THEN
+	RESPONSE #100
+		JumpToObject(Player1)
+		ApplySpellRES("IWJUMPOF",Myself)
+	RESPONSE #100
+		JumpToObject(Player2)
+		ApplySpellRES("IWJUMPOF",Myself)
+	RESPONSE #100
+		JumpToObject(Player3)
+		ApplySpellRES("IWJUMPOF",Myself)
+	RESPONSE #100
+		JumpToObject(Player4)
+		ApplySpellRES("IWJUMPOF",Myself)
+END
+
+IF
+	//CreatureHidden(Myself)
+	!Global("CreatureHidden","LOCALS",0)
+	!GlobalTimerNotExpired("IwTimer5","LOCALS")
+	NumInParty(3)
+	!Range([PC],5)
+THEN
+	RESPONSE #100
+		JumpToObject(Player1)
+		ApplySpellRES("IWJUMPOF",Myself)
+	RESPONSE #100
+		JumpToObject(Player2)
+		ApplySpellRES("IWJUMPOF",Myself)
+	RESPONSE #100
+		JumpToObject(Player3)
+		ApplySpellRES("IWJUMPOF",Myself)
+END
+
+IF
+	//CreatureHidden(Myself)
+	!Global("CreatureHidden","LOCALS",0)
+	!GlobalTimerNotExpired("IwTimer5","LOCALS")
+	NumInParty(2)
+	!Range([PC],5)
+THEN
+	RESPONSE #100
+		JumpToObject(Player1)
+		ApplySpellRES("IWJUMPOF",Myself)
+	RESPONSE #100
+		JumpToObject(Player2)
+		ApplySpellRES("IWJUMPOF",Myself)
+END
+
+IF
+	//CreatureHidden(Myself)
+	!Global("CreatureHidden","LOCALS",0)
+	!GlobalTimerNotExpired("IwTimer5","LOCALS")
+	!Range([PC],5)
+THEN
+	RESPONSE #100
+		JumpToObject(Player1)
+		ApplySpellRES("IWJUMPOF",Myself)
+END
+
+IF
+	//!CreatureHidden(Myself)
+	Global("CreatureHidden","LOCALS",0)
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		EquipMostDamagingMelee()
+		AttackReevaluate(LastSeenBy(Myself),180)
+END
+
+IF
+	!GlobalTimerNotExpired("IwTimer19","LOCALS")
+	//!CreatureHidden(Myself)
+	Global("CreatureHidden","LOCALS",0)
+	See([PC])
+	!Range([PC],4)
+THEN
+	RESPONSE #100
+		MoveToObject(LastSeenBy(Myself))
+		SetGlobalTimer("IwTimer19","LOCALS",5)
+END
+
+
+
+IF
+	//CreatureHidden(Myself)
+	!Global("CreatureHidden","LOCALS",0)
+	ActionListEmpty()
+THEN
+	RESPONSE #100
+		RandomWalk()
+END
+

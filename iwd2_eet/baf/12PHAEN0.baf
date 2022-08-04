@@ -1,0 +1,188 @@
+IF
+	//!IsCreatureAreaFlag(Myself,IGNORE_AI_INHIBIT)
+	!Global("IGNORE_AI_INHIBIT","LOCALS",1)
+THEN
+	RESPONSE #100
+		//SetCreatureAreaFlag(Myself,IGNORE_AI_INHIBIT,TRUE)
+		SetGlobal("IGNORE_AI_INHIBIT","LOCALS",1)
+		ApplySpellRES("IWPERAI",Myself)
+		Continue()
+END
+
+IF
+	Global("SAID_ATTACK","LOCALS",0)
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		SetGlobal("SAID_ATTACK","LOCALS",1)
+		DisplayStringHead(Myself,@29428)
+		Continue()
+END
+
+IF
+	StateCheck(Myself,STATE_PANIC)
+THEN
+	RESPONSE #100
+		RandomWalkContinuous()
+END
+
+IF
+	!GlobalTimerNotExpired("IWD_Rest","LOCALS")
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IWD_Rest","LOCALS",EIGHT_HOURS)
+		ApplySpell(Myself,RESTORE_FULL_HEALTH)
+		Rest()
+END
+
+IF
+	HaveSpell(WIZARD_BLUR)
+	!HaveSpell(WIZARD_DIRE_CHARM)
+	!StateCheck(Myself,STATE_BLUR)
+THEN
+	RESPONSE #100
+		Spell(Myself,WIZARD_BLUR)
+		Wait(1)
+END
+
+IF
+	HaveSpell(WIZARD_SLEEP)
+	See([PC])
+	!Race(LastSeenBy(Myself),ELF)
+	!General(LastSeenBy(Myself),UNDEAD)
+	!StateCheck(LastSeenBy(Myself),STATE_SLEEPING)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),WIZARD_SLEEP)
+		Wait(1)
+END
+
+IF
+	HaveSpell(WIZARD_BLUR)
+	See(NearestEnemyOf(Myself))
+	!StateCheck(Myself,STATE_BLUR)
+	Global("CAST_BLUR","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobal("CAST_BLUR","LOCALS",1)
+		Spell(Myself,WIZARD_BLUR)
+		Wait(1)
+END
+
+IF
+	Global("BURNING_HANDS","LOCALS",0)
+	HaveSpell(WIZARD_BURNING_HANDS)
+	OR(11)
+		See("Niles")
+		See("Blanchard")
+		See("Black_Geoffrey")
+		See("Kadence")
+		See("Anson")
+		See("Olap_Soothammer")
+		See("Weapon_Instructor")
+		See("Trainee_3_S")
+		See("Soldier_2_Gate")
+		See("Soldier_1_Gate")
+		See(NearestEnemyOf(Myself))
+	Range(LastSeenBy(Myself),8)
+THEN
+	RESPONSE #100
+		SetGlobal("BURNING_HANDS","LOCALS",1)
+		Spell(LastSeenBy(Myself),WIZARD_BURNING_HANDS)
+		Wait(1)
+END
+
+IF
+	HaveSpell(WIZARD_COLOR_SPRAY)
+	OR(11)
+		See("Niles")
+		See("Blanchard")
+		See("Black_Geoffrey")
+		See("Kadence")
+		See("Anson")
+		See("Olap_Soothammer")
+		See("Weapon_Instructor")
+		See("Trainee_3_S")
+		See("Soldier_2_Gate")
+		See("Soldier_1_Gate")
+		See(NearestEnemyOf(Myself))
+	!StateCheck(LastSeenBy(Myself),STATE_SLEEPING)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),WIZARD_COLOR_SPRAY)
+		Wait(1)
+END
+
+IF
+	HaveSpell(WIZARD_RAY_OF_ENFEEBLEMENT)
+	OR(5)
+		See([PC])
+		See([PC.0.0.MONK])
+		See([PC.0.0.DRUID_ALL])
+		See([PC.0.0.FIGHTER_ALL])
+		See([PC.0.0.PALADIN_ALL])
+	!HasBounceEffects(LastSeenBy(Myself))
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),WIZARD_RAY_OF_ENFEEBLEMENT)
+		Wait(1)
+END
+
+IF
+	!Global("BURNING_HANDS","LOCALS",0)
+	HaveSpell(WIZARD_BURNING_HANDS)
+	OR(11)
+		See("Niles")
+		See("Blanchard")
+		See("Black_Geoffrey")
+		See("Kadence")
+		See("Anson")
+		See("Olap_Soothammer")
+		See("Weapon_Instructor")
+		See("Trainee_3_S")
+		See("Soldier_2_Gate")
+		See("Soldier_1_Gate")
+		See(NearestEnemyOf(Myself))
+	Range(LastSeenBy(Myself),8)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),WIZARD_BURNING_HANDS)
+		Wait(1)
+END
+
+IF
+	HaveSpell(WIZARD_DIRE_CHARM)
+	OR(5)
+		See([PC])
+		See([PC.0.0.MONK])
+		See([PC.0.0.DRUID_ALL])
+		See([PC.0.0.FIGHTER_ALL])
+		See([PC.0.0.PALADIN_ALL])
+	!Class(LastSeenBy(Myself),MONK)
+	!Race(LastSeenBy(Myself),ELF)
+	!StateCheck(LastSeenBy(Myself),STATE_DISABLED)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),WIZARD_DIRE_CHARM)
+		Wait(1)
+END
+
+IF
+	!GlobalTimerNotExpired("IwTimer21","LOCALS")
+	!Allegiance(Myself,ENEMY)
+	See([PC])
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,@8640)
+		SetGlobalTimerRandom("IwTimer21","LOCALS",25,30)
+		Continue()
+	RESPONSE #100
+		DisplayStringHead(Myself,@8641)
+		SetGlobalTimerRandom("IwTimer21","LOCALS",25,30)
+		Continue()
+	RESPONSE #100
+		DisplayStringHead(Myself,@8642)
+		SetGlobalTimerRandom("IwTimer21","LOCALS",25,30)
+		Continue()
+END
+

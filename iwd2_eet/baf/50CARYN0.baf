@@ -1,0 +1,41 @@
+IF
+	!Allegiance(Myself,ENEMY)
+	AttackedBy([GOODCUTOFF],DEFAULT)
+	HPPercentLT(Myself,100)
+THEN
+	RESPONSE #100
+		Enemy()
+END
+
+IF
+	!IsActive(Myself)
+	!Allegiance(Myself,ENEMY)
+	//Dead([ENEMY][0.0.10000.10000])
+	CombatCounter(0)
+THEN
+	RESPONSE #100
+		//SetHPPercent(Myself,100,MAX_HP)
+		//SetSavedLocationPoint(550,450,W)
+		//HideCreature(Myself,FALSE)
+		Activate(Myself)
+		SetGlobal("IwIHidden","LOCALS",0)
+		ApplySpell(Myself,RESTORE_FULL_HEALTH)
+		SaveLocation("LOCALS","SavedLoc",[550.450])
+		ApplySpellRES("idinvis5",Myself)
+		MoveToPoint([550.450])
+END
+
+IF
+	IsActive(Myself)
+	!Allegiance(Myself,ENEMY)
+	//!Dead([ENEMY][0.0.10000.10000])
+	!CombatCounter(0)
+THEN
+	RESPONSE #100
+		//HideCreature(Myself,TRUE)
+		ApplySpellRES("idinvis4",Myself)
+		JumpToPoint([622.380])
+		SetGlobal("IwIHidden","LOCALS",1)
+		Deactivate(Myself)
+END
+

@@ -1,0 +1,130 @@
+IF
+	AttackedBy([GOODCUTOFF],DEFAULT)
+	Global("TEAM_1","MYAREA",0)
+	OR(2)
+		Name("61Amphitheatre",Myself)
+		Name("61Palace",Myself)
+THEN
+	RESPONSE #100
+		Enemy()
+		SetGlobal("TEAM_1","MYAREA",1)
+		Continue()
+END
+
+IF
+	AttackedBy([GOODCUTOFF],DEFAULT)
+	Global("TEAM_2","MYAREA",0)
+	Global("TEAM_6","MYAREA",0)
+	OR(2)
+		Name("61Citadel",Myself)
+		Name("61Throne",Myself)
+THEN
+	RESPONSE #100
+		Enemy()
+		SetGlobal("TEAM_2","MYAREA",1)
+		SetGlobal("TEAM_6","MYAREA",1)
+		Continue()
+END
+
+IF
+	AttackedBy([GOODCUTOFF],DEFAULT)
+	Global("TEAM_3","MYAREA",0)
+	Name("61Embassy",Myself)
+THEN
+	RESPONSE #100
+		Enemy()
+		SetGlobal("TEAM_3","MYAREA",1)
+		Continue()
+END
+
+IF
+	HitBy([ANYONE],CRUSHING)
+	HP(Myself,1)
+	Name("61Throne",Myself)
+THEN
+	RESPONSE #100
+		//HideCreature(Myself,TRUE)
+		DropInventory()
+		//HideCreature("61Throne",TRUE)
+		ApplySpellRES("IDINVIS4",Myself)
+		DisplayString(Myself,@37293)
+		ScreenShake([16.12],25)
+		OpenDoor("AR6104_Throne")
+		TriggerActivation("InfoThroneDamaged",TRUE)
+		TriggerActivation("InfoThroneFixed",FALSE)
+		SetGlobal("IwIHidden","LOCALS",1)
+		Deactivate(Myself)
+END
+
+IF
+	HitBy([ANYONE],CRUSHING)
+	HP(Myself,1)
+	Name("61Amphitheatre",Myself)
+THEN
+	RESPONSE #100
+		//HideCreature(Myself,TRUE)
+		//HideCreature("61Amphitheatre",TRUE)
+		ApplySpellRES("IDINVIS4",Myself)
+		DisplayString(Myself,@37293)
+		ScreenShake([16.12],75)
+		OpenDoor("AR6104_Ruins1")
+		TriggerActivation("InfoAmphitheatreDamaged",TRUE)
+		TriggerActivation("InfoAmphitheatreFixed",FALSE)
+		SetGlobal("IwIHidden","LOCALS",1)
+		Deactivate(Myself)
+END
+
+IF
+	HitBy([ANYONE],CRUSHING)
+	HP(Myself,1)
+	Name("61Embassy",Myself)
+THEN
+	RESPONSE #100
+		//HideCreature(Myself,TRUE)
+		//HideCreature("61Embassy",TRUE)
+		ApplySpellRES("IDINVIS4",Myself)
+		DisplayString(Myself,@37293)
+		ScreenShake([16.12],75)
+		OpenDoor("AR6104_Ruins2")
+		TriggerActivation("InfoEmbassyDamaged",TRUE)
+		TriggerActivation("InfoEmbassyFixed",FALSE)
+		SetGlobal("IwIHidden","LOCALS",1)
+		Deactivate(Myself)
+END
+
+IF
+	HitBy([ANYONE],CRUSHING)
+	HP(Myself,1)
+	Name("61Palace",Myself)
+THEN
+	RESPONSE #100
+		//HideCreature(Myself,TRUE)
+		//HideCreature("61Palace",TRUE)
+		ApplySpellRES("IDINVIS4",Myself)
+		DisplayString(Myself,@37293)
+		ScreenShake([16.12],75)
+		OpenDoor("AR6104_Ruins3")
+		TriggerActivation("InfoPalaceDamaged",TRUE)
+		TriggerActivation("InfoPalaceFixed",FALSE)
+		SetGlobal("IwIHidden","LOCALS",1)
+		Deactivate(Myself)
+END
+
+IF
+	HitBy([ANYONE],CRUSHING)
+	HP(Myself,1)
+	Name("61Citadel",Myself)
+THEN
+	RESPONSE #100
+		//HideCreature(Myself,TRUE)
+		//HideCreature("61Citadel",TRUE)
+		ApplySpellRES("IDINVIS4",Myself)
+		DisplayString(Myself,@37293)
+		ScreenShake([16.12],75)
+		OpenDoor("AR6104_Ruins4")
+		TriggerActivation("InfoCitadelDamaged",TRUE)
+		TriggerActivation("InfoCitadelFixed",FALSE)
+		SetGlobal("IwIHidden","LOCALS",1)
+		Deactivate(Myself)
+END
+

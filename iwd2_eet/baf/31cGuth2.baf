@@ -1,0 +1,19 @@
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("Sherincal")
+		HideGUI()
+		MultiPlayerSync()
+		FaceObject("31bugGut")
+		SetSequence(SEQ_CAST)
+		Wait(1)
+		//SpellHitEffectSprite(Myself,Myself,DIMENSION_DOOR_ORIGIN,0)
+		CreateVisualEffectObject("SPDIMNDR",Myself)
+		Wait(1)
+		//HideCreature(Myself,TRUE)
+		ApplySpellRES("IDINVIS4",Myself)
+		StartCutScene("31cGuth3")
+		DestroySelf()
+END
+

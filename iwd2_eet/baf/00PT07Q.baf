@@ -1,0 +1,10 @@
+IF
+	Global("TEAM_7","MYAREA",0)
+	OR(2)
+		Opened([ANYONE])
+		Entered([ANYONE])
+THEN
+	RESPONSE #100
+		SetGlobal("TEAM_7","MYAREA",1)
+END
+

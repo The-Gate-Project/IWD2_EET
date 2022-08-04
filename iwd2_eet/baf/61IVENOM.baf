@@ -1,0 +1,942 @@
+IF
+	IsActive(Myself)
+	Global("IwIHidden","LOCALS",0)
+	Global("FirstIwIHidden","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobal("IwIHidden","LOCALS",1)
+		SetGlobal("FirstIwIHidden","LOCALS",1)
+		Deactivate(Myself)
+END
+
+IF
+	IsActive(Myself)
+	!Global("IwIHidden","LOCALS",0)
+THEN
+	RESPONSE #100
+		Deactivate(Myself)
+END
+
+IF
+	!IsActive(Myself)
+THEN
+	RESPONSE #100
+		NoAction()
+END
+
+IF
+  Global("SaveSavedLoc","LOCALS",0)
+THEN
+  RESPONSE #100
+    SetGlobal("SaveSavedLoc","LOCALS",1)
+    SaveObjectLocation("LOCALS","SavedLoc",Myself)
+    Continue()
+END
+
+/*IF
+	!IsActive(Myself)
+THEN
+	RESPONSE #100
+		NoAction()
+END*/
+
+IF
+	//Or(2)
+	//	!IsCreatureAreaFlag(Myself,IGNORE_RETURN_TO_START_POS)
+	//	!IsCreatureAreaFlag(Myself,IGNORE_AI_INHIBIT)
+	!Global("IGNORE_AI_INHIBIT","LOCALS",1)
+THEN
+	RESPONSE #100
+		ChangeSpecifics(Myself,253)
+		//SetCreatureAreaFlag(Myself,IGNORE_RETURN_TO_START_POS,TRUE)
+		//SetCreatureAreaFlag(Myself,IGNORE_AI_INHIBIT,TRUE)
+		ApplySpellRES("IWPERAI",Myself)
+		SetGlobal("IGNORE_AI_INHIBIT","LOCALS",1)
+		Continue()
+END
+
+IF
+	GlobalGT("61VolcanoStatus","GLOBAL",0)
+THEN
+	RESPONSE #100
+		CreateVisualEffectObject("ALTERH",Myself)
+		DestroySelf()
+END
+
+IF
+	Global("61CurrentDay","GLOBAL",3)
+	Global("SPRITE_IS_DEADPyros4","GLOBAL",1)
+	Global("JasperGiveFloat","MYAREA",0)
+	See([PC])
+THEN
+	RESPONSE #100
+		SetGlobal("JasperGiveFloat","MYAREA",1)
+END
+
+IF
+	Global("61CurrentDay","GLOBAL",3)
+	GlobalGT("JasperGiveFloat","MYAREA",0)
+	Global("VenominGoToStart","MYAREA",0)
+	!Global("LotharDestroyEmbassy","MYAREA",0)
+	OR(2)
+		HPPercentLT(Myself,100)
+		Range([PC],20)
+THEN
+	RESPONSE #100
+		SetGlobal("VenominGoToStart","MYAREA",1)
+END
+
+IF
+	Global("61CurrentDay","GLOBAL",2)
+	Global("VenominSeePyros","MYAREA",0)
+	See([PC])
+THEN
+	RESPONSE #100
+		//SpellHitEffectPoint("INVISIBLE",[1920.1570],ALTERATION,0)
+		CreateVisualEffect("ALTERH",[1920.1570])
+		CloseDoor("AR6104_Lava_Bridge3")
+		SetGlobal("VenominSeePyros","MYAREA",1)
+END
+
+IF
+	Global("PyrosCalmLothar","MYAREA",-2)
+	GlobalLT("VenominSeePyros","MYAREA",2)
+	See([PC])
+THEN
+	RESPONSE #100
+		SetGlobal("VenominSeePyros","MYAREA",-1)
+		SetGlobal("PyrosCalmLothar","MYAREA",-1)
+		//SetDialogueRange(300)
+		//Dialogue(LastMarkedObject)
+		ApplySpellRES("BDCUTSPY",Myself)
+		StartDialogNoSet(LastSeenBy(Myself))
+END
+
+IF
+	Global("VenominSeePyros","MYAREA",2)
+	Global("61CurrentDay","GLOBAL",2)
+	Global("SetNightSequence","MYAREA",0)
+	See("Izbelah3")
+THEN
+	RESPONSE #100
+		SetGlobal("VenominSeePyros","MYAREA",4)
+END
+
+IF
+	Global("VenominSeePyros","MYAREA",2)
+	Global("61CurrentDay","GLOBAL",2)
+	Global("SetNightSequence","MYAREA",0)
+	!See("Izbelah3")
+THEN
+	RESPONSE #100
+		MoveToObject("Izbelah3")
+END
+
+IF
+	Global("61CurrentDay","GLOBAL",2)
+	Global("SetNightSequence","MYAREA",-1)
+	Global("VenominSeeLothar","MYAREA",0)
+THEN
+	RESPONSE #100
+		JumpToPoint([2270.1630])
+		//SpellHitEffectSprite(Myself,Myself,DIMENSION_DOOR_DESTINATION,0)
+		CreateVisualEffectObject("spdimndr",Myself)
+		SetGlobal("VenominSeeLothar","MYAREA",2)
+END
+
+IF
+	Global("VenominSeeLothar","MYAREA",-2)
+	See([PC])
+THEN
+	RESPONSE #100
+		SetGlobal("VenominSeeLothar","MYAREA",3)
+		FaceObject("Lothar3")
+		//SetDialogueRange(300)
+		//Dialogue(LastMarkedObject)
+		ApplySpellRES("BDCUTSPY",Myself)
+		StartDialogNoSet(LastSeenBy(Myself))
+END
+
+IF
+	Global("BeginTrial","MYAREA",2) /* v skripty */
+	See([PC])
+THEN
+	RESPONSE #100
+		FaceObject("Pyros2")
+		SetGlobal("PlayerCanRequestExit","MYAREA",1)
+		TriggerActivation("To6200False",TRUE)
+		//SetCriticalPathObject("Lothar4",FALSE)
+		ActionOverride("Lothar4",ApplySpellRES("IWCPREM",Myself))
+		//SetCriticalPathObject("Lothar3",FALSE)
+		ActionOverride("Lothar3",ApplySpellRES("IWCPREM",Myself))
+		//SetCriticalPathObject("Lothar2",FALSE)
+		ActionOverride("Lothar2",ApplySpellRES("IWCPREM",Myself))
+		//SetCriticalPathObject("Jasper5",FALSE)
+		ActionOverride("Jasper5",ApplySpellRES("IWCPREM",Myself))
+		//SetCriticalPathObject("Jasper4",FALSE)
+		ActionOverride("Jasper4",ApplySpellRES("IWCPREM",Myself))
+		//SetCriticalPathObject("Jasper3",FALSE)
+		ActionOverride("Jasper3",ApplySpellRES("IWCPREM",Myself))
+		//SetCriticalPathObject("Venomin4",FALSE)
+		ActionOverride("Venomin4",ApplySpellRES("IWCPREM",Myself))
+		//SetCriticalPathObject("Venomin3",FALSE)
+		ActionOverride("Venomin3",ApplySpellRES("IWCPREM",Myself))
+		//SetCriticalPathObject("Venomin2",FALSE)
+		ActionOverride("Venomin2",ApplySpellRES("IWCPREM",Myself))
+		//SetCriticalPathObject("Pyros3",FALSE)
+		ActionOverride("Pyros3",ApplySpellRES("IWCPREM",Myself))
+		//SetCriticalPathObject("Pyros2",FALSE)
+		ActionOverride("Pyros2",ApplySpellRES("IWCPREM",Myself))
+		//SetCriticalPathObject("Izbelah2",FALSE)
+		ActionOverride("Izbelah2",ApplySpellRES("IWCPREM",Myself))
+		//SetDialogueRange(300)
+		//Dialogue(LastMarkedObject)
+		ApplySpellRES("BDCUTSPY",Myself)
+		StartDialogNoSet(LastSeenBy(Myself))
+END
+
+//IDCRITPS
+IF
+	GlobalGT("BeginTrial","MYAREA",1)
+	//GlobalGT("IDCRITPS","LOCALS",0)
+	CheckSpellState(Myself,CRITICAL_PATH)
+THEN
+	RESPONSE #100
+		ApplySpellRES("IWCPREM",Myself)
+		Continue()
+END
+
+IF
+	Global("INITIALIZED_61IVENOM","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobal("VenominSuicide","MYAREA",-1)
+		SetGlobal("INITIALIZED_61IVENOM","LOCALS",1)
+		Continue()
+END
+
+//BLOCK SET_VARS
+IF
+	!Global("SET_61IVENOM","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("ZSPELLS_1","LOCALS",1,7)
+		SetGlobalRandom("ZSPELLS_2","LOCALS",1,3)
+		SetGlobal("SET_61IVENOM","LOCALS",1)
+		SetInterrupt(TRUE)
+END
+//BLOCKEND
+
+IF
+	StateCheck(Myself,STATE_PANIC)
+THEN
+	RESPONSE #100
+		RandomWalkContinuous()
+END
+
+IF
+	!GlobalTimerNotExpired("IWD_Rest","LOCALS")
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IWD_Rest","LOCALS",EIGHT_HOURS)
+		ApplySpell(Myself,RESTORE_FULL_HEALTH)
+		Rest()
+END
+
+IF
+	//Or(2)
+	//	HasItem("CLDamag",Myself)
+		HasItem("SERIOUS",Myself)
+	Allegiance(Myself,ENEMY)
+	RandomNum(2,1)
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		AttackOneRound(LastSeenBy(Myself))
+END
+//BLOCK SPL_1
+/*IF
+	ForceMarkedSpell(MARKED_SPELL)
+	SetSpellTarget(Nothing)
+	Allegiance(Myself,ENEMY)
+	RandomNum(2,1)
+	See(NearestEnemyOf(Myself),0)
+THEN
+	RESPONSE #100
+		MarkSpellAndObject("1111122111021303111413111211",LastMarkedObject,SPELLCAST_IGNORE_SEE | SPELLCAST_IGNORE_VALID_SPELL_TARGET | SPELLCAST_RANDOM)  // [CLERIC_BANE, CLERIC_RAINSTORM, CLERIC_COMMAND, CLERIC_DISPEL_MAGIC, CLERIC_DOOM, CLERIC_RIGID_THINKING, CLERIC_SILENCE_15_RADIUS]
+		MarkSpellAndObject("1112121812151309",Myself,SPELLCAST_IGNORE_SEE | SPELLCAST_IGNORE_VALID_SPELL_TARGET | SPELLCAST_RANDOM)  // [CLERIC_CAUSE_LIGHT_WOUNDS, CLERIC_CAUSE_MODERATE_WOUNDS, CLERIC_DRAW_UPON_HOLY_MIGHT, CLERIC_INVISIBILITY_PURGE]
+		Continue()
+	RESPONSE #100
+		MarkSpellAndObject("1112121812151309",Myself,SPELLCAST_IGNORE_SEE | SPELLCAST_IGNORE_VALID_SPELL_TARGET | SPELLCAST_RANDOM)  // [CLERIC_CAUSE_LIGHT_WOUNDS, CLERIC_CAUSE_MODERATE_WOUNDS, CLERIC_DRAW_UPON_HOLY_MIGHT, CLERIC_INVISIBILITY_PURGE]
+		MarkSpellAndObject("1111122111021303111413111211",LastMarkedObject,SPELLCAST_IGNORE_SEE | SPELLCAST_IGNORE_VALID_SPELL_TARGET | SPELLCAST_RANDOM)  // [CLERIC_BANE, CLERIC_RAINSTORM, CLERIC_COMMAND, CLERIC_DISPEL_MAGIC, CLERIC_DOOM, CLERIC_RIGID_THINKING, CLERIC_SILENCE_15_RADIUS]
+		Continue()
+END
+
+IF
+	!IsMarkedSpell(MARKED_SPELL)
+THEN
+	RESPONSE #100
+		Spell(SpellTarget,MARKED_SPELL)
+		WaitAnimation(Myself,WALK)
+		WaitAnimation(Myself,CONJURE)
+		WaitAnimation(Myself,CAST)
+		ForceMarkedSpell(MARKED_SPELL)
+END*/
+/*IF
+	GlobalLT("SSPELLS_1_RANDOM_CAST","LOCALS",3)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("ZSPELLS_1","LOCALS",1,7)
+		SetGlobalRandom("ZSPELLS_2","LOCALS",1,3)
+		Continue()
+END*/
+//1 - LastMarkedObject - [CLERIC_BANE, CLERIC_RAINSTORM, CLERIC_COMMAND, CLERIC_DISPEL_MAGIC, CLERIC_DOOM, CLERIC_RIGID_THINKING, CLERIC_SILENCE_15_RADIUS]
+IF
+	HaveSpellRES("IWPR111")
+	Allegiance(Myself,ENEMY)
+	RandomNum(2,1)
+	See(NearestEnemyOf(Myself))
+	!CheckSpellState(LastSeenBy(Myself),CLERIC_BANE)
+	Global("SSPELLS_1_RANDOM_CAST","LOCALS",1)
+	Global("ZSPELLS_1","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("ZSPELLS_1","LOCALS",1,7)
+		SetGlobalRandom("ZSPELLS_2","LOCALS",1,3)
+		SpellRES("IWPR111",LastSeenBy(Myself))
+		Wait(1)
+END
+
+IF
+	HaveSpell(WIZARD_ICE_STORM)
+	Allegiance(Myself,ENEMY)
+	RandomNum(2,1)
+	See(NearestEnemyOf(Myself))
+	Global("SSPELLS_1_RANDOM_CAST","LOCALS",1)
+	Global("ZSPELLS_1","LOCALS",2)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("ZSPELLS_1","LOCALS",1,7)
+		SetGlobalRandom("ZSPELLS_2","LOCALS",1,3)
+		Spell(LastSeenBy(Myself),WIZARD_ICE_STORM)
+		Wait(1)
+END
+
+IF
+	HaveSpell(CLERIC_COMMAND)
+	Allegiance(Myself,ENEMY)
+	RandomNum(2,1)
+	See(NearestEnemyOf(Myself))
+	General(LastSeenBy(Myself),HUMANOID)
+	Global("SSPELLS_1_RANDOM_CAST","LOCALS",1)
+	Global("ZSPELLS_1","LOCALS",3)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("ZSPELLS_1","LOCALS",1,7)
+		SetGlobalRandom("ZSPELLS_2","LOCALS",1,3)
+		Spell(LastSeenBy(Myself),CLERIC_COMMAND)
+		Wait(1)
+END
+
+IF
+	HaveSpell(CLERIC_DISPEL_MAGIC)
+	Allegiance(Myself,ENEMY)
+	RandomNum(2,1)
+	See(NearestEnemyOf(Myself))
+	!StateCheck(LastSeenBy(Myself),STATE_SILENCED)
+	!StateCheck(LastSeenBy(Myself),STATE_DISABLED)
+	OR(5)
+		StateCheck(LastSeenBy(Myself),STATE_HASTED)
+		StateCheck(LastSeenBy(Myself),STATE_BLESS)
+		StateCheck(LastSeenBy(Myself),STATE_DRAWUPONHOLYMIGHT)
+		CheckStatGT(LastSeenBy(Myself),0,IMPROVEDHASTE)
+		CheckStatGT(LastSeenBy(Myself),0,STONESKINS)
+	Global("SSPELLS_1_RANDOM_CAST","LOCALS",1)
+	Global("ZSPELLS_1","LOCALS",4)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("ZSPELLS_1","LOCALS",1,7)
+		SetGlobalRandom("ZSPELLS_2","LOCALS",1,3)
+		Spell(LastSeenBy(Myself),CLERIC_DISPEL_MAGIC)
+		Wait(1)
+END
+
+IF
+	HaveSpell(CLERIC_DOOM)
+	Allegiance(Myself,ENEMY)
+	RandomNum(2,1)
+	See(NearestEnemyOf(Myself))
+	!CheckSpellState(LastSeenBy(Myself),DOOM)
+	!StateCheck(LastSeenBy(Myself),STATE_HARMLESS)
+	Global("SSPELLS_1_RANDOM_CAST","LOCALS",1)
+	Global("ZSPELLS_1","LOCALS",5)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("ZSPELLS_1","LOCALS",1,7)
+		SetGlobalRandom("ZSPELLS_2","LOCALS",1,3)
+		Spell(LastSeenBy(Myself),CLERIC_DOOM)
+		Wait(1)
+END
+
+IF
+	HaveSpell(CLERIC_RIGID_THINKING)
+	Allegiance(Myself,ENEMY)
+	RandomNum(2,1)
+	See(NearestEnemyOf(Myself))
+	!General(LastSeenBy(Myself),UNDEAD)
+	!Race(LastSeenBy(Myself),DEMONIC)
+	!Race(LastSeenBy(Myself),TANARI)
+	!Class(LastSeenBy(Myself),TANARI)
+	!Race(LastSeenBy(Myself),TROLL)
+	!Race(LastSeenBy(Myself),UMBERHULK)
+	!Race(LastSeenBy(Myself),MYCONID)
+	!Race(LastSeenBy(Myself),MINOTAUR)
+	!StateCheck(LastSeenBy(Myself),STATE_DISABLED)
+	Global("SSPELLS_1_RANDOM_CAST","LOCALS",1)
+	Global("ZSPELLS_1","LOCALS",6)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("ZSPELLS_1","LOCALS",1,7)
+		SetGlobalRandom("ZSPELLS_2","LOCALS",1,3)
+		Spell(LastSeenBy(Myself),CLERIC_RIGID_THINKING)
+		Wait(1)
+END
+
+IF
+	HaveSpell(CLERIC_SILENCE_15_FOOT)
+	Allegiance(Myself,ENEMY)
+	RandomNum(2,1)
+	See(FarthestEnemyOf(Myself))
+	OR(4)
+		Class(LastSeenBy(Myself),MAGE_ALL)
+		Class(LastSeenBy(Myself),SORCERER)
+		Class(LastSeenBy(Myself),CLERIC_ALL)
+		Class(LastSeenBy(Myself),DRUID_ALL)
+	!Range(LastSeenBy(Myself),15)
+	!StateCheck(LastSeenBy(Myself),STATE_SILENCED)
+	Global("SSPELLS_1_RANDOM_CAST","LOCALS",1)
+	Global("ZSPELLS_1","LOCALS",7)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("ZSPELLS_1","LOCALS",1,7)
+		SetGlobalRandom("ZSPELLS_2","LOCALS",1,3)
+		Spell(LastSeenBy(Myself),CLERIC_SILENCE_15_FOOT)
+		Wait(1)
+END
+//2 - Myself - [CLERIC_CAUSE_MODERATE_WOUNDS, CLERIC_DRAW_UPON_HOLY_MIGHT, CLERIC_INVISIBILITY_PURGE]
+IF
+	HaveSpell(CLERIC_CAUSE_SERIOUS_WOUNDS)
+	Allegiance(Myself,ENEMY)
+	RandomNum(2,1)
+	See(NearestEnemyOf(Myself))
+	!HasItem("SERIOUS",Myself)
+	Global("SSPELLS_1_RANDOM_CAST","LOCALS",2)
+	Global("ZSPELLS_2","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("ZSPELLS_1","LOCALS",1,7)
+		SetGlobalRandom("ZSPELLS_2","LOCALS",1,3)
+		Spell(Myself,CLERIC_CAUSE_SERIOUS_WOUNDS)
+		Wait(1)
+END
+
+IF
+	HaveSpell(CLERIC_DRAW_UPON_HOLY_MIGHT)
+	Allegiance(Myself,ENEMY)
+	RandomNum(2,1)
+	See(NearestEnemyOf(Myself))
+	!StateCheck(Myself,STATE_DRAWUPONHOLYMIGHT)
+	Global("SSPELLS_1_RANDOM_CAST","LOCALS",2)
+	Global("ZSPELLS_2","LOCALS",2)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("ZSPELLS_1","LOCALS",1,7)
+		SetGlobalRandom("ZSPELLS_2","LOCALS",1,3)
+		Spell(Myself,CLERIC_DRAW_UPON_HOLY_MIGHT)
+		Wait(1)
+END
+
+IF
+	HaveSpell(CLERIC_INVISIBILITY_PURGE)
+	Allegiance(Myself,ENEMY)
+	RandomNum(2,1)
+	//See(NearestEnemyOf(Myself))
+	CheckStat(Myself,0,TRUE_SIGHT)
+	OR(2)
+		Detect([GOODCUTOFF])
+		AttackedBy([GOODCUTOFF],DEFAULT)
+	!See([GOODCUTOFF])
+	Global("SSPELLS_1_RANDOM_CAST","LOCALS",2)
+	Global("ZSPELLS_2","LOCALS",3)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("ZSPELLS_1","LOCALS",1,7)
+		SetGlobalRandom("ZSPELLS_2","LOCALS",1,3)
+		Spell(Myself,CLERIC_INVISIBILITY_PURGE)
+		Wait(1)
+END
+//BLOCK NO_RND
+//1 - LastMarkedObject - [CLERIC_BANE, CLERIC_RAINSTORM, CLERIC_COMMAND, CLERIC_DISPEL_MAGIC, CLERIC_DOOM, CLERIC_RIGID_THINKING, CLERIC_SILENCE_15_RADIUS]
+IF
+	HaveSpellRES("IWPR111")
+	Allegiance(Myself,ENEMY)
+	RandomNum(2,1)
+	See(NearestEnemyOf(Myself))
+	!CheckSpellState(LastSeenBy(Myself),CLERIC_BANE)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("ZSPELLS_1","LOCALS",1,7)
+		SetGlobalRandom("ZSPELLS_2","LOCALS",1,3)
+		SpellRES("IWPR111",LastSeenBy(Myself))
+		Wait(1)
+END
+
+IF
+	HaveSpell(WIZARD_ICE_STORM)
+	Allegiance(Myself,ENEMY)
+	RandomNum(2,1)
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("ZSPELLS_1","LOCALS",1,7)
+		SetGlobalRandom("ZSPELLS_2","LOCALS",1,3)
+		Spell(LastSeenBy(Myself),WIZARD_ICE_STORM)
+		Wait(1)
+END
+
+IF
+	HaveSpell(CLERIC_COMMAND)
+	Allegiance(Myself,ENEMY)
+	RandomNum(2,1)
+	See(NearestEnemyOf(Myself))
+	General(LastSeenBy(Myself),HUMANOID)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("ZSPELLS_1","LOCALS",1,7)
+		SetGlobalRandom("ZSPELLS_2","LOCALS",1,3)
+		Spell(LastSeenBy(Myself),CLERIC_COMMAND)
+		Wait(1)
+END
+
+IF
+	HaveSpell(CLERIC_DISPEL_MAGIC)
+	Allegiance(Myself,ENEMY)
+	RandomNum(2,1)
+	See(NearestEnemyOf(Myself))
+	!StateCheck(LastSeenBy(Myself),STATE_SILENCED)
+	!StateCheck(LastSeenBy(Myself),STATE_DISABLED)
+	OR(5)
+		StateCheck(LastSeenBy(Myself),STATE_HASTED)
+		StateCheck(LastSeenBy(Myself),STATE_BLESS)
+		StateCheck(LastSeenBy(Myself),STATE_DRAWUPONHOLYMIGHT)
+		CheckStatGT(LastSeenBy(Myself),0,IMPROVEDHASTE)
+		CheckStatGT(LastSeenBy(Myself),0,STONESKINS)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("ZSPELLS_1","LOCALS",1,7)
+		SetGlobalRandom("ZSPELLS_2","LOCALS",1,3)
+		Spell(LastSeenBy(Myself),CLERIC_DISPEL_MAGIC)
+		Wait(1)
+END
+
+IF
+	HaveSpell(CLERIC_DOOM)
+	Allegiance(Myself,ENEMY)
+	RandomNum(2,1)
+	See(NearestEnemyOf(Myself))
+	!CheckSpellState(LastSeenBy(Myself),DOOM)
+	!StateCheck(LastSeenBy(Myself),STATE_HARMLESS)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("ZSPELLS_1","LOCALS",1,7)
+		SetGlobalRandom("ZSPELLS_2","LOCALS",1,3)
+		Spell(LastSeenBy(Myself),CLERIC_DOOM)
+		Wait(1)
+END
+
+IF
+	HaveSpell(CLERIC_RIGID_THINKING)
+	Allegiance(Myself,ENEMY)
+	RandomNum(2,1)
+	See(NearestEnemyOf(Myself))
+	!General(LastSeenBy(Myself),UNDEAD)
+	!Race(LastSeenBy(Myself),DEMONIC)
+	!Race(LastSeenBy(Myself),TANARI)
+	!Class(LastSeenBy(Myself),TANARI)
+	!Race(LastSeenBy(Myself),TROLL)
+	!Race(LastSeenBy(Myself),UMBERHULK)
+	!Race(LastSeenBy(Myself),MYCONID)
+	!Race(LastSeenBy(Myself),MINOTAUR)
+	!StateCheck(LastSeenBy(Myself),STATE_DISABLED)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("ZSPELLS_1","LOCALS",1,7)
+		SetGlobalRandom("ZSPELLS_2","LOCALS",1,3)
+		Spell(LastSeenBy(Myself),CLERIC_RIGID_THINKING)
+		Wait(1)
+END
+
+IF
+	HaveSpell(CLERIC_SILENCE_15_FOOT)
+	Allegiance(Myself,ENEMY)
+	RandomNum(2,1)
+	See(FarthestEnemyOf(Myself))
+	OR(4)
+		Class(LastSeenBy(Myself),MAGE_ALL)
+		Class(LastSeenBy(Myself),SORCERER)
+		Class(LastSeenBy(Myself),CLERIC_ALL)
+		Class(LastSeenBy(Myself),DRUID_ALL)
+	!Range(LastSeenBy(Myself),15)
+	!StateCheck(LastSeenBy(Myself),STATE_SILENCED)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("ZSPELLS_1","LOCALS",1,7)
+		SetGlobalRandom("ZSPELLS_2","LOCALS",1,3)
+		Spell(LastSeenBy(Myself),CLERIC_SILENCE_15_FOOT)
+		Wait(1)
+END
+//2 - Myself - [CLERIC_CAUSE_MODERATE_WOUNDS, CLERIC_DRAW_UPON_HOLY_MIGHT, CLERIC_INVISIBILITY_PURGE]
+IF
+	HaveSpell(CLERIC_CAUSE_SERIOUS_WOUNDS)
+	Allegiance(Myself,ENEMY)
+	RandomNum(2,1)
+	See(NearestEnemyOf(Myself))
+	!HasItem("SERIOUS",Myself)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("ZSPELLS_1","LOCALS",1,7)
+		SetGlobalRandom("ZSPELLS_2","LOCALS",1,3)
+		Spell(Myself,CLERIC_CAUSE_SERIOUS_WOUNDS)
+		Wait(1)
+END
+
+IF
+	HaveSpell(CLERIC_DRAW_UPON_HOLY_MIGHT)
+	Allegiance(Myself,ENEMY)
+	RandomNum(2,1)
+	See(NearestEnemyOf(Myself))
+	!StateCheck(Myself,STATE_DRAWUPONHOLYMIGHT)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("ZSPELLS_1","LOCALS",1,7)
+		SetGlobalRandom("ZSPELLS_2","LOCALS",1,3)
+		Spell(Myself,CLERIC_DRAW_UPON_HOLY_MIGHT)
+		Wait(1)
+END
+
+IF
+	HaveSpell(CLERIC_INVISIBILITY_PURGE)
+	Allegiance(Myself,ENEMY)
+	RandomNum(2,1)
+	//See(NearestEnemyOf(Myself))
+	CheckStat(Myself,0,TRUE_SIGHT)
+	OR(2)
+		Detect([GOODCUTOFF])
+		AttackedBy([GOODCUTOFF],DEFAULT)
+	!See([GOODCUTOFF])
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("ZSPELLS_1","LOCALS",1,7)
+		SetGlobalRandom("ZSPELLS_2","LOCALS",1,3)
+		Spell(Myself,CLERIC_INVISIBILITY_PURGE)
+		Wait(1)
+END
+//BLOCKEND
+//BLOCKEND
+
+IF
+	Global("ML_1","LOCALS",0)
+	Global("VenominGoToStart","MYAREA",1)
+THEN
+	RESPONSE #100
+		//SpellHitEffectSprite(Myself,Myself,DIMENSION_DOOR_ORIGIN,0)
+		CreateVisualEffectObject("spdimndr",Myself)
+		SetGlobal("ML_1","LOCALS",1)
+END
+
+IF
+	Global("ML_1","LOCALS",1)
+	Global("VenominGoToStart","MYAREA",1)
+THEN
+	RESPONSE #100
+		JumpToPoint([2400.2464])
+		SetGlobal("ML_1","LOCALS",2)
+END
+
+IF
+	Global("ML_1","LOCALS",2)
+	Global("VenominGoToStart","MYAREA",1)
+THEN
+	RESPONSE #100
+		//SpellHitEffectPoint(Myself,[2400.2464],DIMENSION_DOOR_DESTINATION,0)
+		CreateVisualEffectObject("spdimndr",Myself)
+		SetGlobal("ML_1","LOCALS",3)
+END
+
+IF
+	Global("ML_1","LOCALS",3)
+	ActionListEmpty()
+	NearLocation(Myself,630,2430,4)
+THEN
+	RESPONSE #100
+		SetHomeLocation([630.2430])
+		SetGlobal("ML_1","LOCALS",4)
+		Continue()
+END
+
+IF
+	Global("ML_1","LOCALS",3)
+	Global("VenominGoToStart","MYAREA",1)
+THEN
+	RESPONSE #100
+		MoveToPoint([630.2430])
+END
+
+IF
+	Global("ML_1","LOCALS",4)
+	Global("VenominGoToStart","MYAREA",1)
+THEN
+	RESPONSE #100
+		DialogInterrupt(TRUE)
+		SetGlobal("ML_1","LOCALS",5)
+END
+
+IF
+	Global("ML_1","LOCALS",5)
+	Global("VenominGoToStart","MYAREA",1)
+THEN
+	RESPONSE #100
+		SetGlobal("VenominSuicide","MYAREA",0)
+		SetGlobal("ML_1","LOCALS",6)
+END
+
+IF
+	Global("ML_1","LOCALS",6)
+	Global("VenominGoToStart","MYAREA",1)
+THEN
+	RESPONSE #100
+		SetGlobal("VenominGoToStart","MYAREA",2)
+		SetGlobal("ML_1","LOCALS",-1)
+END
+
+IF
+	Global("ML_2","LOCALS",0)
+	ActionListEmpty()
+	NearLocation(Myself,2750,960,4)
+THEN
+	RESPONSE #100
+		SetHomeLocation([2750.960])
+		SetGlobal("ML_2","LOCALS",1)
+		Continue()
+END
+
+IF
+	Global("ML_2","LOCALS",0)
+	Global("VenominSeeLothar","MYAREA",2)
+THEN
+	RESPONSE #100
+		MoveToPoint([2750.960])
+END
+
+IF
+	Global("ML_2","LOCALS",1)
+	Global("VenominSeeLothar","MYAREA",2)
+THEN
+	RESPONSE #100
+		//SpellHitEffectSprite(Myself,Myself,DIMENSION_DOOR_ORIGIN,0)
+		CreateVisualEffectObject("spdimndr",Myself)
+		SetGlobal("ML_2","LOCALS",2)
+END
+
+IF
+	Global("ML_2","LOCALS",2)
+	Global("VenominSeeLothar","MYAREA",2)
+THEN
+	RESPONSE #100
+		JumpToPoint([2750.735])
+		SetGlobal("ML_2","LOCALS",3)
+END
+
+IF
+	Global("ML_2","LOCALS",3)
+	Global("VenominSeeLothar","MYAREA",2)
+THEN
+	RESPONSE #100
+		//SpellHitEffectPoint(Myself,[2750.735],DIMENSION_DOOR_DESTINATION,0)
+		CreateVisualEffectObject("spdimndr",Myself)
+		SetGlobal("ML_2","LOCALS",4)
+END
+
+IF
+	Global("ML_2","LOCALS",4)
+	ActionListEmpty()
+	NearLocation(Myself,2270,740,4)
+THEN
+	RESPONSE #100
+		SetHomeLocation([2270.740])
+		SetGlobal("ML_2","LOCALS",5)
+		Continue()
+END
+
+IF
+	Global("ML_2","LOCALS",4)
+	Global("VenominSeeLothar","MYAREA",2)
+THEN
+	RESPONSE #100
+		MoveToPoint([2270.740])
+END
+
+IF
+	Global("ML_2","LOCALS",5)
+	Global("VenominSeeLothar","MYAREA",2)
+THEN
+	RESPONSE #100
+		//SpellHitEffectSprite(Myself,Myself,DIMENSION_DOOR_ORIGIN,0)
+		CreateVisualEffectObject("spdimndr",Myself)
+		SetGlobal("ML_2","LOCALS",6)
+END
+
+IF
+	Global("ML_2","LOCALS",6)
+	Global("VenominSeeLothar","MYAREA",2)
+THEN
+	RESPONSE #100
+		JumpToPoint([1600.960])
+		SetGlobal("ML_2","LOCALS",7)
+END
+
+IF
+	Global("ML_2","LOCALS",7)
+	Global("VenominSeeLothar","MYAREA",2)
+THEN
+	RESPONSE #100
+		//SpellHitEffectPoint(Myself,[1600.960],DIMENSION_DOOR_DESTINATION,0)
+		CreateVisualEffectObject("spdimndr",Myself)
+		SetGlobal("ML_2","LOCALS",8)
+END
+
+IF
+	Global("ML_2","LOCALS",8)
+	ActionListEmpty()
+	NearLocation(Myself,1090,1840,4)
+THEN
+	RESPONSE #100
+		SetHomeLocation([1090.1840])
+		SetGlobal("ML_2","LOCALS",9)
+		Continue()
+END
+
+IF
+	Global("ML_2","LOCALS",8)
+	Global("VenominSeeLothar","MYAREA",2)
+THEN
+	RESPONSE #100
+		MoveToPoint([1090.1840])
+END
+
+IF
+	Global("ML_2","LOCALS",9)
+	Global("VenominSeeLothar","MYAREA",2)
+THEN
+	RESPONSE #100
+		SetGlobal("VenominSeeLothar","MYAREA",-1)
+		SetGlobal("ML_2","LOCALS",-1)
+END
+
+IF
+	Global("ML_5","LOCALS",0)
+	ActionListEmpty()
+	NearLocation(Myself,1950,1960,4)
+THEN
+	RESPONSE #100
+		SetHomeLocation([1950.1960])
+		SetGlobal("ML_5","LOCALS",-1)
+		Continue()
+END
+
+IF
+	Global("ML_5","LOCALS",0)
+	Global("VenominSeePyros","MYAREA",1)
+THEN
+	RESPONSE #100
+		MoveToPoint([1950.1960])
+END
+
+IF
+	Global("RW_61IVENOM6","LOCALS",0)
+	!NearSavedLocation(Myself,"LOCALSSavedLoc",15)
+THEN
+	RESPONSE #100
+		SetGlobal("RW_61IVENOM6","LOCALS",1)
+		Continue()
+END
+
+IF
+	!Global("RW_61IVENOM6","LOCALS",0)
+	NearSavedLocation(Myself,"LOCALSSavedLoc",15)
+THEN
+	RESPONSE #100
+		SetGlobal("RW_61IVENOM6","LOCALS",0)
+		NoAction()
+END
+
+IF
+	!Global("RW_61IVENOM6","LOCALS",0)
+	Global("61CurrentDay","GLOBAL",1)
+	!Global("BeginTrial","MYAREA",2)
+THEN
+	RESPONSE #100
+		MoveToOffset([-2.-2])
+	RESPONSE #100
+		MoveToOffset([2.-2])
+	RESPONSE #100
+		MoveToOffset([-2.2])
+	RESPONSE #100
+		MoveToOffset([2.2])
+	RESPONSE #100
+		MoveToSavedLocation("SavedLoc","LOCALS")
+END
+
+IF
+	!GlobalTimerNotExpired("IwTimer28","LOCALS")
+	Global("RW_61IVENOM6","LOCALS",0)
+	Global("61CurrentDay","GLOBAL",1)
+	!Global("BeginTrial","MYAREA",2)
+THEN
+	RESPONSE #100
+		RandomWalk()
+		SetGlobalTimer("IwTimer28","LOCALS",5)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	HasItem("SCRL17",Myself)
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		UseItem("SCRL17",LastSeenBy(Myself))
+END
+

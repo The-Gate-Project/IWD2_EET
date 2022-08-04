@@ -1,0 +1,90 @@
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("04_50HNT_01")
+		//SpellHitEffectSprite("ISAIR",Myself,SLAY_LIVING,20)
+		CreateVisualEffectObject("SLIVINH",Myself)
+		SetSequence(SEQ_DIE)
+		Wait(1)
+		//SpellHitEffectSprite(Myself,Myself,RAISE_DEAD,20)
+		CreateVisualEffectObject("SPRAISED",Myself)
+		Wait(1)
+		Kill(Myself)
+		CreateCreature("50Zom1",[-1.-1],0)
+		ActionOverride("ZOMBIE_1",FaceObject(NearestEnemyOf(Myself)))
+		DestroySelf()
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("04_50HNT_02")
+		//SpellHitEffectSprite("ISAIR",Myself,SLAY_LIVING,20)
+		CreateVisualEffectObject("SLIVINH",Myself)
+		SetSequence(SEQ_DIE)
+		Wait(1)
+		//SpellHitEffectSprite(Myself,Myself,RAISE_DEAD,20)
+		CreateVisualEffectObject("SPRAISED",Myself)
+		Wait(1)
+		Kill(Myself)
+		CreateCreature("50Zom2",[-1.-1],0)
+		ActionOverride("ZOMBIE_2",FaceObject(NearestEnemyOf(Myself)))
+		DestroySelf()
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("04_50HNT2_03")
+		//SpellHitEffectSprite("ISAIR",Myself,SLAY_LIVING,20)
+		CreateVisualEffectObject("SLIVINH",Myself)
+		SetSequence(SEQ_DIE)
+		Wait(1)
+		//SpellHitEffectSprite(Myself,Myself,RAISE_DEAD,20)
+		CreateVisualEffectObject("SPRAISED",Myself)
+		Wait(1)
+		Kill(Myself)
+		CreateCreature("50Zom3",[-1.-1],0)
+		ActionOverride("ZOMBIE_3",FaceObject(NearestEnemyOf(Myself)))
+		DestroySelf()
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("04_50HNT2_04")
+		//SpellHitEffectSprite("ISAIR",Myself,SLAY_LIVING,20)
+		CreateVisualEffectObject("SLIVINH",Myself)
+		SetSequence(SEQ_DIE)
+		Wait(1)
+		//SpellHitEffectSprite(Myself,Myself,RAISE_DEAD,20)
+		CreateVisualEffectObject("SPRAISED",Myself)
+		Wait(1)
+		Kill(Myself)
+		CreateCreature("50Zom4",[-1.-1],0)
+		ActionOverride("ZOMBIE_4",FaceObject(NearestEnemyOf(Myself)))
+		DestroySelf()
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("04_50HNT3_05")
+		//SpellHitEffectSprite("ISAIR",Myself,SLAY_LIVING,20)
+		CreateVisualEffectObject("SLIVINH",Myself)
+		SetSequence(SEQ_DIE)
+		Wait(1)
+		//SpellHitEffectSprite(Myself,Myself,RAISE_DEAD,20)
+		CreateVisualEffectObject("SPRAISED",Myself)
+		Wait(1)
+		Kill(Myself)
+		CreateCreature("50Zom5",[-1.-1],0)
+		ActionOverride("ZOMBIE_5",FaceObject(NearestEnemyOf(Myself)))
+		DestroySelf()
+END
+

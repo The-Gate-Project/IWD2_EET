@@ -1,0 +1,42 @@
+IF
+	OpenState("AR3002_Drum5",TRUE)
+THEN
+	RESPONSE #100
+		DestroySelf()
+END
+
+IF
+	!Global("DRUM_5_CHECK_SUMMON","MYAREA",0)
+	!StateCheck(Myself,STATE_REALLY_DEAD)
+	!Global("SPAWN_LOCK","MYAREA",0)
+THEN
+	RESPONSE #100
+		SetGlobal("DRUM_5_CHECK_SUMMON","MYAREA",0)
+		SetGlobal("TEAM_7","MYAREA",1)
+		SetGlobal("TEAM_6","MYAREA",1)
+		SetGlobal("TEAM_2","MYAREA",1)
+END
+
+IF
+	!Global("DRUM_5_CHECK_SUMMON","MYAREA",0)
+	!StateCheck(Myself,STATE_REALLY_DEAD)
+	Global("SPAWN_LOCK","MYAREA",0)
+THEN
+	RESPONSE #100
+		SetGlobal("DRUM_5_CHECK_SUMMON","MYAREA",0)
+		SetGlobal("AR3002_DRUM_SUMMON","GLOBAL",1)
+		SetGlobal("TEAM_7","MYAREA",1)
+		SetGlobal("TEAM_6","MYAREA",1)
+		SetGlobal("TEAM_2","MYAREA",1)
+END
+
+IF
+	//!IsCreatureAreaFlag(Myself,IGNORE_AI_INHIBIT)
+	!Global("IGNORE_AI_INHIBIT","LOCALS",1)
+THEN
+	RESPONSE #100
+		//SetCreatureAreaFlag(Myself,IGNORE_AI_INHIBIT,TRUE)
+		SetGlobal("IGNORE_AI_INHIBIT","LOCALS",1)
+		ApplySpellRES("IWPERAI",Myself)
+END
+

@@ -1,0 +1,33 @@
+IF
+	OR(3)
+		!NumTimesTalkedTo(0)
+		AttackedBy([GOODCUTOFF],DEFAULT)
+		Global("Shaengarne_Bridge_Destroyed","GLOBAL",2)
+THEN
+	RESPONSE #100
+		Enemy()
+		Continue()
+END
+
+IF
+	OR(2)
+		!NumTimesTalkedTo(0)
+		Allegiance(Myself,ENEMY)
+THEN
+	RESPONSE #100
+		ChangeAIScript("",CLASS)
+END
+
+IF
+	!Allegiance(Myself,ENEMY)
+	//CheckDoorFlags("AR2102_Bridge",DOOROPEN)
+	OpenState("AR2102_Bridge",TRUE)
+	LOS([PC],28)
+THEN
+	RESPONSE #100
+		//SetDialogueRange(300)
+		//Dialogue(NearestPC)
+		ApplySpellRES("BDCUTSPY",Myself)
+		StartDialogNoSet([PC])
+END
+

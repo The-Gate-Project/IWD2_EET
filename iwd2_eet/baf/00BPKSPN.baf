@@ -1,0 +1,50 @@
+IF
+	Name("Warrior",Myself)
+	Global("Ch_Script","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobal("Ch_Script","LOCALS",1)
+		ChangeAIScript("00BSHTW0",SPECIFICS)
+END
+
+IF
+	OR(2)
+		Name("Jabir",Myself)
+		Name("Nur",Myself)
+	Global("Ch_Script","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobal("Ch_Script","LOCALS",1)
+		ChangeAIScript("00BSHTS0",SPECIFICS)
+END
+
+IF
+	Global("Ch_Script","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobal("Ch_Script","LOCALS",1)
+END
+
+IF
+	//CreatureHidden(Myself)
+	!Global("CreatureHidden","LOCALS",0)
+THEN
+	RESPONSE #100
+		//JumpToObject(Myself)
+		Enemy()
+		//SpellHitEffectSprite(Myself,Myself,CURE_CRITICAL_WOUNDS,25)
+		CreateVisualEffectObject("CCWOUNH",Myself)
+		SmallWait(10)
+		FaceObject(NearestEnemyOf(Myself))
+		//HideCreature(Myself,FALSE)
+		ApplySpellRES("IDINVIS9",Myself)
+END
+
+IF
+	//CreatureHidden(Myself)
+	!Global("CreatureHidden","LOCALS",0)
+THEN
+	RESPONSE #100
+		NoAction()
+END
+

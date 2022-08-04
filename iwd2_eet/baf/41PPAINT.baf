@@ -1,0 +1,54 @@
+IF
+	Clicked([ANYONE]) //Player1
+	InPartySlot(LastTrigger,0)
+	Global("SpeakToPainting","MYAREA",0)
+THEN
+	RESPONSE #100
+		SetGlobal("SpeakToPainting","MYAREA",1)
+END
+
+IF
+	Clicked([ANYONE]) //Player2
+	InPartySlot(LastTrigger,1)
+	Global("SpeakToPainting","MYAREA",0)
+THEN
+	RESPONSE #100
+		SetGlobal("SpeakToPainting","MYAREA",2)
+END
+
+IF
+	Clicked([ANYONE]) //Player3
+	InPartySlot(LastTrigger,2)
+	Global("SpeakToPainting","MYAREA",0)
+THEN
+	RESPONSE #100
+		SetGlobal("SpeakToPainting","MYAREA",3)
+END
+
+IF
+	Clicked([ANYONE]) //Player4
+	InPartySlot(LastTrigger,3)
+	Global("SpeakToPainting","MYAREA",0)
+THEN
+	RESPONSE #100
+		SetGlobal("SpeakToPainting","MYAREA",4)
+END
+
+IF
+	Clicked([ANYONE]) //Player5
+	InPartySlot(LastTrigger,4)
+	Global("SpeakToPainting","MYAREA",0)
+THEN
+	RESPONSE #100
+		SetGlobal("SpeakToPainting","MYAREA",5)
+END
+
+IF
+	Clicked([ANYONE]) //Player6
+	InPartySlot(LastTrigger,5)
+	Global("SpeakToPainting","MYAREA",0)
+THEN
+	RESPONSE #100
+		SetGlobal("SpeakToPainting","MYAREA",6)
+END
+

@@ -1,0 +1,1206 @@
+IF
+	Global("CurrentForm","LOCALS",1)
+	Global("ChangeForm","LOCALS",0)
+	OR(2)
+		!See([ENEMY])
+		HPPercentLT(Myself,75)
+THEN
+	RESPONSE #100
+		ForceSpell(Myself,CLERIC_SANCTUARY)
+		//SpellHitEffectSprite(Myself,Myself,ALTERATION,0)
+		CreateVisualEffectObject("ALTERH",Myself)
+		Polymorph(SNAKE)
+		SetGlobal("AnimationId","LOCALS",32531)
+		SetGlobal("CurrentForm","LOCALS",2)
+END
+
+IF
+	Global("CurrentForm","LOCALS",3)
+THEN
+	RESPONSE #100
+		//SpellHitEffectSprite(Myself,Myself,ALTERATION,0)
+		CreateVisualEffectObject("ALTERH",Myself)
+		Polymorph(YUAN-TI_PRIEST)
+		SetGlobal("AnimationId","LOCALS",60704)
+		OpenDoor("AR6103_RockDoor1")
+		OpenDoor("AR6103_RockDoor2")
+		SetGlobal("CurrentForm","LOCALS",4)
+END
+
+IF
+	Global("CurrentForm","LOCALS",4)
+	Global("TEAM_2","MYAREA",0)
+	OR(2)
+		OpenState("AR6103_Bridge",FALSE)
+		OpenState("AR6103_Treasure_Room",TRUE)
+THEN
+	RESPONSE #100
+		SetGlobal("TEAM_2","MYAREA",1)
+END
+
+//BLOCK SET_VARS
+IF
+	!Global("SET_61THORAS","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,4)
+		SetGlobalRandom("ZSPELLS_1","LOCALS",1,6)
+		SetGlobalRandom("ZSPELLS_2","LOCALS",1,8)
+		SetGlobalRandom("ZSPELLS_3","LOCALS",1,7)
+		SetGlobalRandom("ZSPELLS_4","LOCALS",1,2)
+		SetGlobal("SET_61THORAS","LOCALS",1)
+		SetInterrupt(TRUE)
+END
+//BLOCKEND
+
+IF
+	StateCheck(Myself,STATE_PANIC)
+THEN
+	RESPONSE #100
+		RandomWalkContinuous()
+END
+
+IF
+	!GlobalTimerNotExpired("IWD_Rest","LOCALS")
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IWD_Rest","LOCALS",EIGHT_HOURS)
+		ApplySpell(Myself,RESTORE_FULL_HEALTH)
+		Rest()
+END
+
+IF
+	HaveSpell(CLERIC_SANCTUARY)
+	Allegiance(Myself,ENEMY)
+	!Global("CurrentForm","LOCALS",2)
+	HPPercentLT(Myself,75)
+	!StateCheck(Myself,STATE_INVISIBLE)
+	!StateCheck(Myself,STATE_IMPROVEDINVISIBILITY)
+	!CheckStat(Myself,1,SANCTUARY)
+THEN
+	RESPONSE #100
+		Spell(Myself,CLERIC_SANCTUARY)
+		Wait(1)
+END
+
+IF
+	HaveSpell(CLERIC_HEAL)
+	Allegiance(Myself,ENEMY)
+	!Global("CurrentForm","LOCALS",2)
+	HPPercentLT(Myself,20)
+	!StateCheck(Myself,STATE_REALLY_DEAD)
+THEN
+	RESPONSE #100
+		Spell(Myself,CLERIC_HEAL)
+		Wait(1)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_CRITICAL_WOUNDS)
+	Allegiance(Myself,ENEMY)
+	!Global("CurrentForm","LOCALS",2)
+	HPPercentLT(Myself,40)
+	!StateCheck(Myself,STATE_REALLY_DEAD)
+THEN
+	RESPONSE #100
+		Spell(Myself,CLERIC_CURE_CRITICAL_WOUNDS)
+		Wait(1)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_MEDIUM_WOUNDS)
+	Allegiance(Myself,ENEMY)
+	!Global("CurrentForm","LOCALS",2)
+	HPPercentLT(Myself,75)
+	!StateCheck(Myself,STATE_REALLY_DEAD)
+THEN
+	RESPONSE #100
+		Spell(Myself,CLERIC_CURE_MEDIUM_WOUNDS)
+		Wait(1)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_LIGHT_WOUNDS)
+	Allegiance(Myself,ENEMY)
+	!Global("CurrentForm","LOCALS",2)
+	HPPercentLT(Myself,90)
+	!StateCheck(Myself,STATE_REALLY_DEAD)
+THEN
+	RESPONSE #100
+		Spell(Myself,CLERIC_CURE_LIGHT_WOUNDS)
+		Wait(1)
+END
+
+IF
+	HaveSpell(CLERIC_INVISIBILITY_PURGE)
+	Allegiance(Myself,ENEMY)
+	!Global("CurrentForm","LOCALS",2)
+	AttackedBy([ANYONE],DEFAULT)
+	!See(LastAttackerOf(Myself))
+	CheckStat(Myself,0,TRUE_SIGHT)
+THEN
+	RESPONSE #100
+		Spell(Myself,CLERIC_INVISIBILITY_PURGE)
+		Wait(1)
+END
+
+IF
+	HaveSpell(CLERIC_PROTECTION_FROM_FIRE)
+	Allegiance(Myself,ENEMY)
+	!Global("CurrentForm","LOCALS",2)
+	HitBy([ANYONE],FIRE)
+	OR(2)
+		CheckStatLT(Myself,100,RESISTFIRE)
+		CheckStatLT(Myself,80,RESISTMAGICFIRE)
+THEN
+	RESPONSE #100
+		Spell(Myself,CLERIC_PROTECTION_FROM_FIRE)
+		Wait(1)
+END
+
+IF
+	IsWeaponRanged(Myself)
+	Allegiance(Myself,ENEMY)
+	!Global("CurrentForm","LOCALS",2)
+	RandomNum(2,1)
+	
+	See([GOODCUTOFF])
+	
+	Range([GOODCUTOFF],9)
+THEN
+	RESPONSE #100
+		RunAwayFrom(LastSeenBy(Myself),45)
+END
+
+IF
+	OR(2)
+		HasItem("SLAYLIVE",Myself)
+		HasItem("Harm",Myself)
+	Allegiance(Myself,ENEMY)
+	!Global("CurrentForm","LOCALS",2)
+	RandomNum(2,1)
+	See([GOODCUTOFF])
+THEN
+	RESPONSE #100
+		AttackOneRound(LastSeenBy(Myself))
+END
+//BLOCK SPL_1
+/*IF
+	ForceMarkedSpell(MARKED_SPELL)
+	SetSpellTarget(Nothing)
+	Allegiance(Myself,ENEMY)
+	!Global("CurrentForm","LOCALS",2)
+	RandomNum(2,1)
+	See([GOODCUTOFF],0)
+THEN
+	RESPONSE #100
+		MarkSpellAndObject("25011410140215011602160813251204",LastMarkedObject,SPELLCAST_IGNORE_SEE | SPELLCAST_IGNORE_VALID_SPELL_TARGET | SPELLCAST_RANDOM)  // [WIZARD_ANIMATE_DEAD, CLERIC_GIANT_INSECT, CLERIC_SUMMON_NATURES_ALLY_4, CLERIC_SUMMON_NATURES_ALLY_5, CLERIC_SUMMON_NATURES_ALLY_6, CLERIC_SOLS_SEARING_ORB, CLERIC_UNHOLY_BLIGHT, CLERIC_CHARM_PERSON_OR_MAMMAL]
+		MarkSpellAndObject("23061310141817221523111311111114",LastMarkedObject,SPELLCAST_IGNORE_SEE | SPELLCAST_IGNORE_VALID_SPELL_TARGET | SPELLCAST_RANDOM)  // [WIZARD_HOLD_PERSON, CLERIC_MISCAST_MAGIC, CLERIC_POISON, CLERIC_UNHOLY_WORD, CLERIC_STATIC_CHARGE, CLERIC_SUNSCORCH, CLERIC_BANE, CLERIC_DOOM]
+		MarkSpellAndObject("1515161012191424131911011611",Myself,SPELLCAST_IGNORE_SEE | SPELLCAST_IGNORE_VALID_SPELL_TARGET | SPELLCAST_RANDOM)  // [CLERIC_SLAY_LIVING, CLERIC_CIRCLE_OF_BLADES, CLERIC_SPELL_SHIELD, CLERIC_DEATH_WARD, CLERIC_CIRCLE_OF_BONES, CLERIC_BLESS, CLERIC_HARM]
+		MarkSpellAndObject("11022425",LastMarkedObject,SPELLCAST_IGNORE_SEE | SPELLCAST_IGNORE_VALID_SPELL_TARGET | SPELLCAST_RANDOM)  // [CLERIC_COMMAND, CLERIC_CONTAGION]
+		Continue()
+	RESPONSE #100
+		MarkSpellAndObject("23061310141817221523111311111114",LastMarkedObject,SPELLCAST_IGNORE_SEE | SPELLCAST_IGNORE_VALID_SPELL_TARGET | SPELLCAST_RANDOM)  // [WIZARD_HOLD_PERSON, CLERIC_MISCAST_MAGIC, CLERIC_POISON, CLERIC_UNHOLY_WORD, CLERIC_STATIC_CHARGE, CLERIC_SUNSCORCH, CLERIC_BANE, CLERIC_DOOM]
+		MarkSpellAndObject("1515161012191424131911011611",Myself,SPELLCAST_IGNORE_SEE | SPELLCAST_IGNORE_VALID_SPELL_TARGET | SPELLCAST_RANDOM)  // [CLERIC_SLAY_LIVING, CLERIC_CIRCLE_OF_BLADES, CLERIC_SPELL_SHIELD, CLERIC_DEATH_WARD, CLERIC_CIRCLE_OF_BONES, CLERIC_BLESS, CLERIC_HARM]
+		MarkSpellAndObject("11022425",LastMarkedObject,SPELLCAST_IGNORE_SEE | SPELLCAST_IGNORE_VALID_SPELL_TARGET | SPELLCAST_RANDOM)  // [CLERIC_COMMAND, CLERIC_CONTAGION]
+		MarkSpellAndObject("25011410140215011602160813251204",LastMarkedObject,SPELLCAST_IGNORE_SEE | SPELLCAST_IGNORE_VALID_SPELL_TARGET | SPELLCAST_RANDOM)  // [WIZARD_ANIMATE_DEAD, CLERIC_GIANT_INSECT, CLERIC_SUMMON_NATURES_ALLY_4, CLERIC_SUMMON_NATURES_ALLY_5, CLERIC_SUMMON_NATURES_ALLY_6, CLERIC_SOLS_SEARING_ORB, CLERIC_UNHOLY_BLIGHT, CLERIC_CHARM_PERSON_OR_MAMMAL]
+		Continue()
+	RESPONSE #100
+		MarkSpellAndObject("1515161012191424131911011611",Myself,SPELLCAST_IGNORE_SEE | SPELLCAST_IGNORE_VALID_SPELL_TARGET | SPELLCAST_RANDOM)  // [CLERIC_SLAY_LIVING, CLERIC_CIRCLE_OF_BLADES, CLERIC_SPELL_SHIELD, CLERIC_DEATH_WARD, CLERIC_CIRCLE_OF_BONES, CLERIC_BLESS, CLERIC_HARM]
+		MarkSpellAndObject("11022425",LastMarkedObject,SPELLCAST_IGNORE_SEE | SPELLCAST_IGNORE_VALID_SPELL_TARGET | SPELLCAST_RANDOM)  // [CLERIC_COMMAND, CLERIC_CONTAGION]
+		MarkSpellAndObject("25011410140215011602160813251204",LastMarkedObject,SPELLCAST_IGNORE_SEE | SPELLCAST_IGNORE_VALID_SPELL_TARGET | SPELLCAST_RANDOM)  // [WIZARD_ANIMATE_DEAD, CLERIC_GIANT_INSECT, CLERIC_SUMMON_NATURES_ALLY_4, CLERIC_SUMMON_NATURES_ALLY_5, CLERIC_SUMMON_NATURES_ALLY_6, CLERIC_SOLS_SEARING_ORB, CLERIC_UNHOLY_BLIGHT, CLERIC_CHARM_PERSON_OR_MAMMAL]
+		MarkSpellAndObject("23061310141817221523111311111114",LastMarkedObject,SPELLCAST_IGNORE_SEE | SPELLCAST_IGNORE_VALID_SPELL_TARGET | SPELLCAST_RANDOM)  // [WIZARD_HOLD_PERSON, CLERIC_MISCAST_MAGIC, CLERIC_POISON, CLERIC_UNHOLY_WORD, CLERIC_STATIC_CHARGE, CLERIC_SUNSCORCH, CLERIC_BANE, CLERIC_DOOM]
+		Continue()
+	RESPONSE #100
+		MarkSpellAndObject("11022425",LastMarkedObject,SPELLCAST_IGNORE_SEE | SPELLCAST_IGNORE_VALID_SPELL_TARGET | SPELLCAST_RANDOM)  // [CLERIC_COMMAND, CLERIC_CONTAGION]
+		MarkSpellAndObject("25011410140215011602160813251204",LastMarkedObject,SPELLCAST_IGNORE_SEE | SPELLCAST_IGNORE_VALID_SPELL_TARGET | SPELLCAST_RANDOM)  // [WIZARD_ANIMATE_DEAD, CLERIC_GIANT_INSECT, CLERIC_SUMMON_NATURES_ALLY_4, CLERIC_SUMMON_NATURES_ALLY_5, CLERIC_SUMMON_NATURES_ALLY_6, CLERIC_SOLS_SEARING_ORB, CLERIC_UNHOLY_BLIGHT, CLERIC_CHARM_PERSON_OR_MAMMAL]
+		MarkSpellAndObject("23061310141817221523111311111114",LastMarkedObject,SPELLCAST_IGNORE_SEE | SPELLCAST_IGNORE_VALID_SPELL_TARGET | SPELLCAST_RANDOM)  // [WIZARD_HOLD_PERSON, CLERIC_MISCAST_MAGIC, CLERIC_POISON, CLERIC_UNHOLY_WORD, CLERIC_STATIC_CHARGE, CLERIC_SUNSCORCH, CLERIC_BANE, CLERIC_DOOM]
+		MarkSpellAndObject("1515161012191424131911011611",Myself,SPELLCAST_IGNORE_SEE | SPELLCAST_IGNORE_VALID_SPELL_TARGET | SPELLCAST_RANDOM)  // [CLERIC_SLAY_LIVING, CLERIC_CIRCLE_OF_BLADES, CLERIC_SPELL_SHIELD, CLERIC_DEATH_WARD, CLERIC_CIRCLE_OF_BONES, CLERIC_BLESS, CLERIC_HARM]
+		Continue()
+END
+
+IF
+	!IsMarkedSpell(MARKED_SPELL)
+THEN
+	RESPONSE #100
+		Spell(SpellTarget,MARKED_SPELL)
+		Wait(1)
+		ForceMarkedSpell(MARKED_SPELL)
+END*/
+/*IF
+	GlobalLT("SSPELLS_1_RANDOM_CAST","LOCALS",5)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,4)
+		SetGlobalRandom("ZSPELLS_1","LOCALS",1,6)
+		SetGlobalRandom("ZSPELLS_2","LOCALS",1,8)
+		SetGlobalRandom("ZSPELLS_3","LOCALS",1,7)
+		SetGlobalRandom("ZSPELLS_4","LOCALS",1,2)
+		Continue()
+END*/
+//1 - LastMarkedObject - [WIZARD_ANIMATE_DEAD, CLERIC_GIANT_INSECT, CLERIC_SUMMON_NATURES_ALLY_4, CLERIC_SUMMON_NATURES_ALLY_5, CLERIC_SUMMON_NATURES_ALLY_6, CLERIC_SOLS_SEARING_ORB, CLERIC_UNHOLY_BLIGHT, CLERIC_CHARM_PERSON_OR_MAMMAL]
+IF
+	HaveSpell(WIZARD_ANIMATE_DEAD)
+	Allegiance(Myself,ENEMY)
+	!Global("CurrentForm","LOCALS",2)
+	RandomNum(2,1)
+	See([GOODCUTOFF])
+	Global("SSPELLS_1_RANDOM_CAST","LOCALS",1)
+	Global("ZSPELLS_1","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,4)
+		SetGlobalRandom("ZSPELLS_1","LOCALS",1,6)
+		SetGlobalRandom("ZSPELLS_2","LOCALS",1,8)
+		SetGlobalRandom("ZSPELLS_3","LOCALS",1,7)
+		SetGlobalRandom("ZSPELLS_4","LOCALS",1,2)
+		Spell(LastSeenBy(Myself),WIZARD_ANIMATE_DEAD)
+		Wait(1)
+END
+
+IF
+	HaveSpell(CLERIC_CREEPING_DOOM)
+	Allegiance(Myself,ENEMY)
+	!Global("CurrentForm","LOCALS",2)
+	RandomNum(2,1)
+	See([GOODCUTOFF])
+	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_INSECT_PLAGUE)
+	Global("SSPELLS_1_RANDOM_CAST","LOCALS",1)
+	Global("ZSPELLS_1","LOCALS",2)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,4)
+		SetGlobalRandom("ZSPELLS_1","LOCALS",1,6)
+		SetGlobalRandom("ZSPELLS_2","LOCALS",1,8)
+		SetGlobalRandom("ZSPELLS_3","LOCALS",1,7)
+		SetGlobalRandom("ZSPELLS_4","LOCALS",1,2)
+		Spell(LastSeenBy(Myself),CLERIC_CREEPING_DOOM)
+		Wait(1)
+END
+
+IF
+	HaveSpell(CLERIC_ANIMAL_SUMMONING_3)
+	Allegiance(Myself,ENEMY)
+	!Global("CurrentForm","LOCALS",2)
+	RandomNum(2,1)
+	See([GOODCUTOFF])
+	Global("SSPELLS_1_RANDOM_CAST","LOCALS",1)
+	Global("ZSPELLS_1","LOCALS",3)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,4)
+		SetGlobalRandom("ZSPELLS_1","LOCALS",1,6)
+		SetGlobalRandom("ZSPELLS_2","LOCALS",1,8)
+		SetGlobalRandom("ZSPELLS_3","LOCALS",1,7)
+		SetGlobalRandom("ZSPELLS_4","LOCALS",1,2)
+		Spell(LastSeenBy(Myself),CLERIC_ANIMAL_SUMMONING_3)
+		Wait(1)
+END
+
+IF
+	HaveSpell(CLERIC_SOL_SEARING_ORB)
+	Allegiance(Myself,ENEMY)
+	!Global("CurrentForm","LOCALS",2)
+	RandomNum(2,1)
+	See([GOODCUTOFF])
+	!Class(LastSeenBy(Myself),ELEMENTAL_FIRE)
+	Global("SSPELLS_1_RANDOM_CAST","LOCALS",1)
+	Global("ZSPELLS_1","LOCALS",4)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,4)
+		SetGlobalRandom("ZSPELLS_1","LOCALS",1,6)
+		SetGlobalRandom("ZSPELLS_2","LOCALS",1,8)
+		SetGlobalRandom("ZSPELLS_3","LOCALS",1,7)
+		SetGlobalRandom("ZSPELLS_4","LOCALS",1,2)
+		Spell(Myself,CLERIC_SOL_SEARING_ORB)
+		Wait(1)
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	HaveSpell(CLERIC_UNHOLY_BLIGHT)
+	Allegiance(Myself,ENEMY)
+	!Global("CurrentForm","LOCALS",2)
+	RandomNum(2,1)
+	See([GOODCUTOFF.0.0.0.0.0.MASK_GOOD])
+	Global("SSPELLS_1_RANDOM_CAST","LOCALS",1)
+	Global("ZSPELLS_1","LOCALS",5)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,4)
+		SetGlobalRandom("ZSPELLS_1","LOCALS",1,6)
+		SetGlobalRandom("ZSPELLS_2","LOCALS",1,8)
+		SetGlobalRandom("ZSPELLS_3","LOCALS",1,7)
+		SetGlobalRandom("ZSPELLS_4","LOCALS",1,2)
+		Spell(LastSeenBy(Myself),CLERIC_UNHOLY_BLIGHT)
+		Wait(1)
+END
+
+IF
+	HaveSpell(CLERIC_CHARM_PERSON)
+	Allegiance(Myself,ENEMY)
+	!Global("CurrentForm","LOCALS",2)
+	RandomNum(2,1)
+	See([GOODCUTOFF])
+	!Class(LastSeenBy(Myself),MONK)
+	!Kit(LastSeenBy(Myself),INQUISITOR)
+	!Kit(LastSeenBy(Myself),CAVALIER)
+	!Race(LastSeenBy(Myself),ELF)
+	!StateCheck(LastSeenBy(Myself),STATE_DISABLED)
+	Global("SSPELLS_1_RANDOM_CAST","LOCALS",1)
+	Global("ZSPELLS_1","LOCALS",6)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,4)
+		SetGlobalRandom("ZSPELLS_1","LOCALS",1,6)
+		SetGlobalRandom("ZSPELLS_2","LOCALS",1,8)
+		SetGlobalRandom("ZSPELLS_3","LOCALS",1,7)
+		SetGlobalRandom("ZSPELLS_4","LOCALS",1,2)
+		Spell(LastSeenBy(Myself),CLERIC_CHARM_PERSON)
+		Wait(1)
+END
+//2 - LastMarkedObject - [WIZARD_HOLD_PERSON, CLERIC_MISCAST_MAGIC, CLERIC_POISON, CLERIC_UNHOLY_WORD, CLERIC_STATIC_CHARGE, CLERIC_SUNSCORCH, CLERIC_BANE, CLERIC_DOOM]
+IF
+	HaveSpell(WIZARD_HOLD_PERSON)
+	Allegiance(Myself,ENEMY)
+	!Global("CurrentForm","LOCALS",2)
+	RandomNum(2,1)
+	See([GOODCUTOFF])
+	!StateCheck(LastSeenBy(Myself),STATE_DISABLED)
+	Global("SSPELLS_1_RANDOM_CAST","LOCALS",2)
+	Global("ZSPELLS_2","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,4)
+		SetGlobalRandom("ZSPELLS_1","LOCALS",1,6)
+		SetGlobalRandom("ZSPELLS_2","LOCALS",1,8)
+		SetGlobalRandom("ZSPELLS_3","LOCALS",1,7)
+		SetGlobalRandom("ZSPELLS_4","LOCALS",1,2)
+		Spell(LastSeenBy(Myself),WIZARD_HOLD_PERSON)
+		Wait(1)
+END
+
+IF
+	HaveSpell(CLERIC_MISCAST_MAGIC)
+	Allegiance(Myself,ENEMY)
+	!Global("CurrentForm","LOCALS",2)
+	RandomNum(2,1)
+	See([GOODCUTOFF])
+	OR(4)
+		Class(LastSeenBy(Myself),MAGE_ALL)
+		Class(LastSeenBy(Myself),SORCERER)
+		Class(LastSeenBy(Myself),CLERIC_ALL)
+		Class(LastSeenBy(Myself),DRUID_ALL)
+	!StateCheck(LastSeenBy,STATE_DISABLED_CASTING)
+	CheckStatLT(LastSeenBy,50,SPELLFAILUREMAGE)
+	Global("SSPELLS_1_RANDOM_CAST","LOCALS",2)
+	Global("ZSPELLS_2","LOCALS",2)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,4)
+		SetGlobalRandom("ZSPELLS_1","LOCALS",1,6)
+		SetGlobalRandom("ZSPELLS_2","LOCALS",1,8)
+		SetGlobalRandom("ZSPELLS_3","LOCALS",1,7)
+		SetGlobalRandom("ZSPELLS_4","LOCALS",1,2)
+		Spell(LastSeenBy(Myself),CLERIC_MISCAST_MAGIC)
+		Wait(1)
+END
+
+IF
+	HaveSpell(CLERIC_POISON)
+	Allegiance(Myself,ENEMY)
+	!Global("CurrentForm","LOCALS",2)
+	RandomNum(2,1)
+	See([GOODCUTOFF])
+	!StateCheck(LastSeenBy(Myself),STATE_POISONED)
+	Global("SSPELLS_1_RANDOM_CAST","LOCALS",2)
+	Global("ZSPELLS_2","LOCALS",3)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,4)
+		SetGlobalRandom("ZSPELLS_1","LOCALS",1,6)
+		SetGlobalRandom("ZSPELLS_2","LOCALS",1,8)
+		SetGlobalRandom("ZSPELLS_3","LOCALS",1,7)
+		SetGlobalRandom("ZSPELLS_4","LOCALS",1,2)
+		Spell(LastSeenBy(Myself),CLERIC_POISON)
+		Wait(1)
+END
+
+IF
+	HaveSpell(CLERIC_UNHOLY_WORD)
+	Allegiance(Myself,ENEMY)
+	!Global("CurrentForm","LOCALS",2)
+	RandomNum(2,1)
+	See([GOODCUTOFF.0.0.0.0.0.MASK_GOOD])
+	Global("SSPELLS_1_RANDOM_CAST","LOCALS",2)
+	Global("ZSPELLS_2","LOCALS",4)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,4)
+		SetGlobalRandom("ZSPELLS_1","LOCALS",1,6)
+		SetGlobalRandom("ZSPELLS_2","LOCALS",1,8)
+		SetGlobalRandom("ZSPELLS_3","LOCALS",1,7)
+		SetGlobalRandom("ZSPELLS_4","LOCALS",1,2)
+		Spell(LastSeenBy(Myself),CLERIC_UNHOLY_WORD)
+		Wait(1)
+END
+
+IF
+	HaveSpellRES("IWPR523")
+	Allegiance(Myself,ENEMY)
+	!Global("CurrentForm","LOCALS",2)
+	RandomNum(2,1)
+	See([GOODCUTOFF])
+	Global("SSPELLS_1_RANDOM_CAST","LOCALS",2)
+	Global("ZSPELLS_2","LOCALS",5)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,4)
+		SetGlobalRandom("ZSPELLS_1","LOCALS",1,6)
+		SetGlobalRandom("ZSPELLS_2","LOCALS",1,8)
+		SetGlobalRandom("ZSPELLS_3","LOCALS",1,7)
+		SetGlobalRandom("ZSPELLS_4","LOCALS",1,2)
+		SpellRES("IWPR523",LastSeenBy(Myself))
+		Wait(1)
+END
+
+IF
+	HaveSpellRES("IWPR113")
+	Allegiance(Myself,ENEMY)
+	!Global("CurrentForm","LOCALS",2)
+	RandomNum(2,1)
+	See([GOODCUTOFF])
+	Global("SSPELLS_1_RANDOM_CAST","LOCALS",2)
+	Global("ZSPELLS_2","LOCALS",6)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,4)
+		SetGlobalRandom("ZSPELLS_1","LOCALS",1,6)
+		SetGlobalRandom("ZSPELLS_2","LOCALS",1,8)
+		SetGlobalRandom("ZSPELLS_3","LOCALS",1,7)
+		SetGlobalRandom("ZSPELLS_4","LOCALS",1,2)
+		SpellRES("IWPR113",LastSeenBy(Myself))
+		Wait(1)
+END
+
+IF
+	HaveSpellRES("IWPR111")
+	Allegiance(Myself,ENEMY)
+	!Global("CurrentForm","LOCALS",2)
+	RandomNum(2,1)
+	See([GOODCUTOFF])
+	!CheckSpellState(LastSeenBy(Myself),CLERIC_BANE)
+	Global("SSPELLS_1_RANDOM_CAST","LOCALS",2)
+	Global("ZSPELLS_2","LOCALS",7)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,4)
+		SetGlobalRandom("ZSPELLS_1","LOCALS",1,6)
+		SetGlobalRandom("ZSPELLS_2","LOCALS",1,8)
+		SetGlobalRandom("ZSPELLS_3","LOCALS",1,7)
+		SetGlobalRandom("ZSPELLS_4","LOCALS",1,2)
+		SpellRES("IWPR111",LastSeenBy(Myself))
+		Wait(1)
+END
+
+IF
+	HaveSpell(CLERIC_DOOM)
+	Allegiance(Myself,ENEMY)
+	!Global("CurrentForm","LOCALS",2)
+	RandomNum(2,1)
+	See([GOODCUTOFF])
+	!CheckSpellState(LastSeenBy(Myself),DOOM)
+	!StateCheck(LastSeenBy(Myself),STATE_HARMLESS)
+	Global("SSPELLS_1_RANDOM_CAST","LOCALS",2)
+	Global("ZSPELLS_2","LOCALS",8)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,4)
+		SetGlobalRandom("ZSPELLS_1","LOCALS",1,6)
+		SetGlobalRandom("ZSPELLS_2","LOCALS",1,8)
+		SetGlobalRandom("ZSPELLS_3","LOCALS",1,7)
+		SetGlobalRandom("ZSPELLS_4","LOCALS",1,2)
+		Spell(LastSeenBy(Myself),CLERIC_DOOM)
+		Wait(1)
+END
+//3 - Myself - [CLERIC_SLAY_LIVING, CLERIC_CIRCLE_OF_BLADES, CLERIC_SPELL_SHIELD, CLERIC_DEATH_WARD, CLERIC_CIRCLE_OF_BONES, CLERIC_BLESS, CLERIC_HARM]
+IF
+	HaveSpell(CLERIC_SLAY_LIVING)
+	Allegiance(Myself,ENEMY)
+	!Global("CurrentForm","LOCALS",2)
+	RandomNum(2,1)
+	See([GOODCUTOFF])
+	!HasItem("SLAYLIVE",Myself)
+	!HasItem("Harm",Myself)
+	Global("SSPELLS_1_RANDOM_CAST","LOCALS",3)
+	Global("ZSPELLS_3","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,4)
+		SetGlobalRandom("ZSPELLS_1","LOCALS",1,6)
+		SetGlobalRandom("ZSPELLS_2","LOCALS",1,8)
+		SetGlobalRandom("ZSPELLS_3","LOCALS",1,7)
+		SetGlobalRandom("ZSPELLS_4","LOCALS",1,2)
+		Spell(Myself,CLERIC_SLAY_LIVING)
+		Wait(1)
+END
+
+IF
+	HaveSpell(CLERIC_GLOBE_OF_BLADES)
+	Allegiance(Myself,ENEMY)
+	!Global("CurrentForm","LOCALS",2)
+	RandomNum(2,1)
+	See([GOODCUTOFF])
+	!CheckStatGT(Myself,0,CLERIC_BLADE_BARRIER)
+	Global("SSPELLS_1_RANDOM_CAST","LOCALS",3)
+	Global("ZSPELLS_3","LOCALS",2)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,4)
+		SetGlobalRandom("ZSPELLS_1","LOCALS",1,6)
+		SetGlobalRandom("ZSPELLS_2","LOCALS",1,8)
+		SetGlobalRandom("ZSPELLS_3","LOCALS",1,7)
+		SetGlobalRandom("ZSPELLS_4","LOCALS",1,2)
+		Spell(Myself,CLERIC_GLOBE_OF_BLADES)
+		Wait(1)
+END
+
+IF
+	HaveSpellRES("IWPR219")
+	Allegiance(Myself,ENEMY)
+	!Global("CurrentForm","LOCALS",2)
+	RandomNum(2,1)
+	See([GOODCUTOFF])
+	Global("SSPELLS_1_RANDOM_CAST","LOCALS",3)
+	Global("ZSPELLS_3","LOCALS",3)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,4)
+		SetGlobalRandom("ZSPELLS_1","LOCALS",1,6)
+		SetGlobalRandom("ZSPELLS_2","LOCALS",1,8)
+		SetGlobalRandom("ZSPELLS_3","LOCALS",1,7)
+		SetGlobalRandom("ZSPELLS_4","LOCALS",1,2)
+		SpellRES("IWPR219",Myself)
+		Wait(1)
+END
+
+IF
+	HaveSpell(CLERIC_DEATH_WARD)
+	Allegiance(Myself,ENEMY)
+	!Global("CurrentForm","LOCALS",2)
+	RandomNum(2,1)
+	See([GOODCUTOFF])
+	CheckStat(Myself,0,DEATH_WARD)
+	Global("SSPELLS_1_RANDOM_CAST","LOCALS",3)
+	Global("ZSPELLS_3","LOCALS",4)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,4)
+		SetGlobalRandom("ZSPELLS_1","LOCALS",1,6)
+		SetGlobalRandom("ZSPELLS_2","LOCALS",1,8)
+		SetGlobalRandom("ZSPELLS_3","LOCALS",1,7)
+		SetGlobalRandom("ZSPELLS_4","LOCALS",1,2)
+		Spell(Myself,CLERIC_DEATH_WARD)
+		Wait(1)
+END
+
+IF
+	HaveSpell(CLERIC_BLADE_BARRIER)
+	Allegiance(Myself,ENEMY)
+	!Global("CurrentForm","LOCALS",2)
+	RandomNum(2,1)
+	See([GOODCUTOFF])
+	!CheckStatGT(Myself,0,CLERIC_BLADE_BARRIER)
+	Global("SSPELLS_1_RANDOM_CAST","LOCALS",3)
+	Global("ZSPELLS_3","LOCALS",5)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,4)
+		SetGlobalRandom("ZSPELLS_1","LOCALS",1,6)
+		SetGlobalRandom("ZSPELLS_2","LOCALS",1,8)
+		SetGlobalRandom("ZSPELLS_3","LOCALS",1,7)
+		SetGlobalRandom("ZSPELLS_4","LOCALS",1,2)
+		Spell(Myself,CLERIC_BLADE_BARRIER)
+		Wait(1)
+END
+
+IF
+	HaveSpell(CLERIC_BLESS)
+	Allegiance(Myself,ENEMY)
+	!Global("CurrentForm","LOCALS",2)
+	RandomNum(2,1)
+	See([GOODCUTOFF])
+	!StateCheck(LastSeenBy(Myself),STATE_BLESS)
+	Global("SSPELLS_1_RANDOM_CAST","LOCALS",3)
+	Global("ZSPELLS_3","LOCALS",6)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,4)
+		SetGlobalRandom("ZSPELLS_1","LOCALS",1,6)
+		SetGlobalRandom("ZSPELLS_2","LOCALS",1,8)
+		SetGlobalRandom("ZSPELLS_3","LOCALS",1,7)
+		SetGlobalRandom("ZSPELLS_4","LOCALS",1,2)
+		Spell(Myself,CLERIC_BLESS)
+		Wait(1)
+END
+
+IF
+	HaveSpell(CLERIC_HARM)
+	Allegiance(Myself,ENEMY)
+	!Global("CurrentForm","LOCALS",2)
+	RandomNum(2,1)
+	See([GOODCUTOFF])
+	!HasItem("SLAYLIVE",Myself)
+	!HasItem("Harm",Myself)
+	Global("SSPELLS_1_RANDOM_CAST","LOCALS",3)
+	Global("ZSPELLS_3","LOCALS",7)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,4)
+		SetGlobalRandom("ZSPELLS_1","LOCALS",1,6)
+		SetGlobalRandom("ZSPELLS_2","LOCALS",1,8)
+		SetGlobalRandom("ZSPELLS_3","LOCALS",1,7)
+		SetGlobalRandom("ZSPELLS_4","LOCALS",1,2)
+		Spell(Myself,CLERIC_HARM)
+		Wait(1)
+END
+//4 - LastMarkedObject - [CLERIC_COMMAND, CLERIC_CONTAGION]
+IF
+	HaveSpell(CLERIC_COMMAND)
+	Allegiance(Myself,ENEMY)
+	!Global("CurrentForm","LOCALS",2)
+	RandomNum(2,1)
+	See([GOODCUTOFF])
+	General(LastSeenBy(Myself),HUMANOID)
+	Global("SSPELLS_1_RANDOM_CAST","LOCALS",4)
+	Global("ZSPELLS_4","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,4)
+		SetGlobalRandom("ZSPELLS_1","LOCALS",1,6)
+		SetGlobalRandom("ZSPELLS_2","LOCALS",1,8)
+		SetGlobalRandom("ZSPELLS_3","LOCALS",1,7)
+		SetGlobalRandom("ZSPELLS_4","LOCALS",1,2)
+		Spell(LastSeenBy(Myself),CLERIC_COMMAND)
+		Wait(1)
+END
+
+IF
+	HaveSpell(WIZARD_CONTAGION)
+	Allegiance(Myself,ENEMY)
+	!Global("CurrentForm","LOCALS",2)
+	RandomNum(2,1)
+	See([GOODCUTOFF])
+	!Class(LastSeenBy(Myself),MONK)
+	!StateCheck(LastSeenBy(Myself),STATE_POISONED)
+	!StateCheck(LastSeenBy(Myself),STATE_SLOWED)
+	//!StateCheck(LastSeenBy(Myself),STATE_DISEASED)
+	!CheckSpellState(LastSeenBy(Myself),DISEASED)
+	Global("SSPELLS_1_RANDOM_CAST","LOCALS",4)
+	Global("ZSPELLS_4","LOCALS",2)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,4)
+		SetGlobalRandom("ZSPELLS_1","LOCALS",1,6)
+		SetGlobalRandom("ZSPELLS_2","LOCALS",1,8)
+		SetGlobalRandom("ZSPELLS_3","LOCALS",1,7)
+		SetGlobalRandom("ZSPELLS_4","LOCALS",1,2)
+		Spell(LastSeenBy(Myself),WIZARD_CONTAGION)
+		Wait(1)
+END
+//BLOCK NO_RND
+//1 - LastMarkedObject - [WIZARD_ANIMATE_DEAD, CLERIC_GIANT_INSECT, CLERIC_SUMMON_NATURES_ALLY_4, CLERIC_SUMMON_NATURES_ALLY_5, CLERIC_SUMMON_NATURES_ALLY_6, CLERIC_SOLS_SEARING_ORB, CLERIC_UNHOLY_BLIGHT, CLERIC_CHARM_PERSON_OR_MAMMAL]
+IF
+	HaveSpell(WIZARD_ANIMATE_DEAD)
+	Allegiance(Myself,ENEMY)
+	!Global("CurrentForm","LOCALS",2)
+	RandomNum(2,1)
+	See([GOODCUTOFF])
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,4)
+		SetGlobalRandom("ZSPELLS_1","LOCALS",1,6)
+		SetGlobalRandom("ZSPELLS_2","LOCALS",1,8)
+		SetGlobalRandom("ZSPELLS_3","LOCALS",1,7)
+		SetGlobalRandom("ZSPELLS_4","LOCALS",1,2)
+		Spell(LastSeenBy(Myself),WIZARD_ANIMATE_DEAD)
+		Wait(1)
+END
+
+IF
+	HaveSpell(CLERIC_CREEPING_DOOM)
+	Allegiance(Myself,ENEMY)
+	!Global("CurrentForm","LOCALS",2)
+	RandomNum(2,1)
+	See([GOODCUTOFF])
+	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_INSECT_PLAGUE)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,4)
+		SetGlobalRandom("ZSPELLS_1","LOCALS",1,6)
+		SetGlobalRandom("ZSPELLS_2","LOCALS",1,8)
+		SetGlobalRandom("ZSPELLS_3","LOCALS",1,7)
+		SetGlobalRandom("ZSPELLS_4","LOCALS",1,2)
+		Spell(LastSeenBy(Myself),CLERIC_CREEPING_DOOM)
+		Wait(1)
+END
+
+IF
+	HaveSpell(CLERIC_ANIMAL_SUMMONING_3)
+	Allegiance(Myself,ENEMY)
+	!Global("CurrentForm","LOCALS",2)
+	RandomNum(2,1)
+	See([GOODCUTOFF])
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,4)
+		SetGlobalRandom("ZSPELLS_1","LOCALS",1,6)
+		SetGlobalRandom("ZSPELLS_2","LOCALS",1,8)
+		SetGlobalRandom("ZSPELLS_3","LOCALS",1,7)
+		SetGlobalRandom("ZSPELLS_4","LOCALS",1,2)
+		Spell(LastSeenBy(Myself),CLERIC_ANIMAL_SUMMONING_3)
+		Wait(1)
+END
+
+IF
+	HaveSpell(CLERIC_SOL_SEARING_ORB)
+	Allegiance(Myself,ENEMY)
+	!Global("CurrentForm","LOCALS",2)
+	RandomNum(2,1)
+	See([GOODCUTOFF])
+	!Class(LastSeenBy(Myself),ELEMENTAL_FIRE)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,4)
+		SetGlobalRandom("ZSPELLS_1","LOCALS",1,6)
+		SetGlobalRandom("ZSPELLS_2","LOCALS",1,8)
+		SetGlobalRandom("ZSPELLS_3","LOCALS",1,7)
+		SetGlobalRandom("ZSPELLS_4","LOCALS",1,2)
+		Spell(Myself,CLERIC_SOL_SEARING_ORB)
+		Wait(1)
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	HaveSpell(CLERIC_UNHOLY_BLIGHT)
+	Allegiance(Myself,ENEMY)
+	!Global("CurrentForm","LOCALS",2)
+	RandomNum(2,1)
+	See([GOODCUTOFF.0.0.0.0.0.MASK_GOOD])
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,4)
+		SetGlobalRandom("ZSPELLS_1","LOCALS",1,6)
+		SetGlobalRandom("ZSPELLS_2","LOCALS",1,8)
+		SetGlobalRandom("ZSPELLS_3","LOCALS",1,7)
+		SetGlobalRandom("ZSPELLS_4","LOCALS",1,2)
+		Spell(LastSeenBy(Myself),CLERIC_UNHOLY_BLIGHT)
+		Wait(1)
+END
+
+IF
+	HaveSpell(CLERIC_CHARM_PERSON)
+	Allegiance(Myself,ENEMY)
+	!Global("CurrentForm","LOCALS",2)
+	RandomNum(2,1)
+	See([GOODCUTOFF])
+	!Class(LastSeenBy(Myself),MONK)
+	!Kit(LastSeenBy(Myself),INQUISITOR)
+	!Kit(LastSeenBy(Myself),CAVALIER)
+	!Race(LastSeenBy(Myself),ELF)
+	!StateCheck(LastSeenBy(Myself),STATE_DISABLED)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,4)
+		SetGlobalRandom("ZSPELLS_1","LOCALS",1,6)
+		SetGlobalRandom("ZSPELLS_2","LOCALS",1,8)
+		SetGlobalRandom("ZSPELLS_3","LOCALS",1,7)
+		SetGlobalRandom("ZSPELLS_4","LOCALS",1,2)
+		Spell(LastSeenBy(Myself),CLERIC_CHARM_PERSON)
+		Wait(1)
+END
+//2 - LastMarkedObject - [WIZARD_HOLD_PERSON, CLERIC_MISCAST_MAGIC, CLERIC_POISON, CLERIC_UNHOLY_WORD, CLERIC_STATIC_CHARGE, CLERIC_SUNSCORCH, CLERIC_BANE, CLERIC_DOOM]
+IF
+	HaveSpell(WIZARD_HOLD_PERSON)
+	Allegiance(Myself,ENEMY)
+	!Global("CurrentForm","LOCALS",2)
+	RandomNum(2,1)
+	See([GOODCUTOFF])
+	!StateCheck(LastSeenBy(Myself),STATE_DISABLED)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,4)
+		SetGlobalRandom("ZSPELLS_1","LOCALS",1,6)
+		SetGlobalRandom("ZSPELLS_2","LOCALS",1,8)
+		SetGlobalRandom("ZSPELLS_3","LOCALS",1,7)
+		SetGlobalRandom("ZSPELLS_4","LOCALS",1,2)
+		Spell(LastSeenBy(Myself),WIZARD_HOLD_PERSON)
+		Wait(1)
+END
+
+IF
+	HaveSpell(CLERIC_MISCAST_MAGIC)
+	Allegiance(Myself,ENEMY)
+	!Global("CurrentForm","LOCALS",2)
+	RandomNum(2,1)
+	See([GOODCUTOFF])
+	OR(4)
+		Class(LastSeenBy(Myself),MAGE_ALL)
+		Class(LastSeenBy(Myself),SORCERER)
+		Class(LastSeenBy(Myself),CLERIC_ALL)
+		Class(LastSeenBy(Myself),DRUID_ALL)
+	!StateCheck(LastSeenBy,STATE_DISABLED_CASTING)
+	CheckStatLT(LastSeenBy,50,SPELLFAILUREMAGE)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,4)
+		SetGlobalRandom("ZSPELLS_1","LOCALS",1,6)
+		SetGlobalRandom("ZSPELLS_2","LOCALS",1,8)
+		SetGlobalRandom("ZSPELLS_3","LOCALS",1,7)
+		SetGlobalRandom("ZSPELLS_4","LOCALS",1,2)
+		Spell(LastSeenBy(Myself),CLERIC_MISCAST_MAGIC)
+		Wait(1)
+END
+
+IF
+	HaveSpell(CLERIC_POISON)
+	Allegiance(Myself,ENEMY)
+	!Global("CurrentForm","LOCALS",2)
+	RandomNum(2,1)
+	See([GOODCUTOFF])
+	!StateCheck(LastSeenBy(Myself),STATE_POISONED)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,4)
+		SetGlobalRandom("ZSPELLS_1","LOCALS",1,6)
+		SetGlobalRandom("ZSPELLS_2","LOCALS",1,8)
+		SetGlobalRandom("ZSPELLS_3","LOCALS",1,7)
+		SetGlobalRandom("ZSPELLS_4","LOCALS",1,2)
+		Spell(LastSeenBy(Myself),CLERIC_POISON)
+		Wait(1)
+END
+
+IF
+	HaveSpell(CLERIC_UNHOLY_WORD)
+	Allegiance(Myself,ENEMY)
+	!Global("CurrentForm","LOCALS",2)
+	RandomNum(2,1)
+	See([GOODCUTOFF.0.0.0.0.0.MASK_GOOD])
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,4)
+		SetGlobalRandom("ZSPELLS_1","LOCALS",1,6)
+		SetGlobalRandom("ZSPELLS_2","LOCALS",1,8)
+		SetGlobalRandom("ZSPELLS_3","LOCALS",1,7)
+		SetGlobalRandom("ZSPELLS_4","LOCALS",1,2)
+		Spell(LastSeenBy(Myself),CLERIC_UNHOLY_WORD)
+		Wait(1)
+END
+
+IF
+	HaveSpellRES("IWPR523")
+	Allegiance(Myself,ENEMY)
+	!Global("CurrentForm","LOCALS",2)
+	RandomNum(2,1)
+	See([GOODCUTOFF])
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,4)
+		SetGlobalRandom("ZSPELLS_1","LOCALS",1,6)
+		SetGlobalRandom("ZSPELLS_2","LOCALS",1,8)
+		SetGlobalRandom("ZSPELLS_3","LOCALS",1,7)
+		SetGlobalRandom("ZSPELLS_4","LOCALS",1,2)
+		SpellRES("IWPR523",LastSeenBy(Myself))
+		Wait(1)
+END
+
+IF
+	HaveSpellRES("IWPR113")
+	Allegiance(Myself,ENEMY)
+	!Global("CurrentForm","LOCALS",2)
+	RandomNum(2,1)
+	See([GOODCUTOFF])
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,4)
+		SetGlobalRandom("ZSPELLS_1","LOCALS",1,6)
+		SetGlobalRandom("ZSPELLS_2","LOCALS",1,8)
+		SetGlobalRandom("ZSPELLS_3","LOCALS",1,7)
+		SetGlobalRandom("ZSPELLS_4","LOCALS",1,2)
+		SpellRES("IWPR113",LastSeenBy(Myself))
+		Wait(1)
+END
+
+IF
+	HaveSpellRES("IWPR111")
+	Allegiance(Myself,ENEMY)
+	!Global("CurrentForm","LOCALS",2)
+	RandomNum(2,1)
+	See([GOODCUTOFF])
+	!CheckSpellState(LastSeenBy(Myself),CLERIC_BANE)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,4)
+		SetGlobalRandom("ZSPELLS_1","LOCALS",1,6)
+		SetGlobalRandom("ZSPELLS_2","LOCALS",1,8)
+		SetGlobalRandom("ZSPELLS_3","LOCALS",1,7)
+		SetGlobalRandom("ZSPELLS_4","LOCALS",1,2)
+		SpellRES("IWPR111",LastSeenBy(Myself))
+		Wait(1)
+END
+
+IF
+	HaveSpell(CLERIC_DOOM)
+	Allegiance(Myself,ENEMY)
+	!Global("CurrentForm","LOCALS",2)
+	RandomNum(2,1)
+	See([GOODCUTOFF])
+	!CheckSpellState(LastSeenBy(Myself),DOOM)
+	!StateCheck(LastSeenBy(Myself),STATE_HARMLESS)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,4)
+		SetGlobalRandom("ZSPELLS_1","LOCALS",1,6)
+		SetGlobalRandom("ZSPELLS_2","LOCALS",1,8)
+		SetGlobalRandom("ZSPELLS_3","LOCALS",1,7)
+		SetGlobalRandom("ZSPELLS_4","LOCALS",1,2)
+		Spell(LastSeenBy(Myself),CLERIC_DOOM)
+		Wait(1)
+END
+//3 - Myself - [CLERIC_SLAY_LIVING, CLERIC_CIRCLE_OF_BLADES, CLERIC_SPELL_SHIELD, CLERIC_DEATH_WARD, CLERIC_CIRCLE_OF_BONES, CLERIC_BLESS, CLERIC_HARM]
+IF
+	HaveSpell(CLERIC_SLAY_LIVING)
+	Allegiance(Myself,ENEMY)
+	!Global("CurrentForm","LOCALS",2)
+	RandomNum(2,1)
+	See([GOODCUTOFF])
+	!HasItem("SLAYLIVE",Myself)
+	!HasItem("Harm",Myself)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,4)
+		SetGlobalRandom("ZSPELLS_1","LOCALS",1,6)
+		SetGlobalRandom("ZSPELLS_2","LOCALS",1,8)
+		SetGlobalRandom("ZSPELLS_3","LOCALS",1,7)
+		SetGlobalRandom("ZSPELLS_4","LOCALS",1,2)
+		Spell(Myself,CLERIC_SLAY_LIVING)
+		Wait(1)
+END
+
+IF
+	HaveSpell(CLERIC_GLOBE_OF_BLADES)
+	Allegiance(Myself,ENEMY)
+	!Global("CurrentForm","LOCALS",2)
+	RandomNum(2,1)
+	See([GOODCUTOFF])
+	!CheckStatGT(Myself,0,CLERIC_BLADE_BARRIER)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,4)
+		SetGlobalRandom("ZSPELLS_1","LOCALS",1,6)
+		SetGlobalRandom("ZSPELLS_2","LOCALS",1,8)
+		SetGlobalRandom("ZSPELLS_3","LOCALS",1,7)
+		SetGlobalRandom("ZSPELLS_4","LOCALS",1,2)
+		Spell(Myself,CLERIC_GLOBE_OF_BLADES)
+		Wait(1)
+END
+
+IF
+	HaveSpellRES("IWPR219")
+	Allegiance(Myself,ENEMY)
+	!Global("CurrentForm","LOCALS",2)
+	RandomNum(2,1)
+	See([GOODCUTOFF])
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,4)
+		SetGlobalRandom("ZSPELLS_1","LOCALS",1,6)
+		SetGlobalRandom("ZSPELLS_2","LOCALS",1,8)
+		SetGlobalRandom("ZSPELLS_3","LOCALS",1,7)
+		SetGlobalRandom("ZSPELLS_4","LOCALS",1,2)
+		SpellRES("IWPR219",Myself)
+		Wait(1)
+END
+
+IF
+	HaveSpell(CLERIC_DEATH_WARD)
+	Allegiance(Myself,ENEMY)
+	!Global("CurrentForm","LOCALS",2)
+	RandomNum(2,1)
+	See([GOODCUTOFF])
+	CheckStat(Myself,0,DEATH_WARD)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,4)
+		SetGlobalRandom("ZSPELLS_1","LOCALS",1,6)
+		SetGlobalRandom("ZSPELLS_2","LOCALS",1,8)
+		SetGlobalRandom("ZSPELLS_3","LOCALS",1,7)
+		SetGlobalRandom("ZSPELLS_4","LOCALS",1,2)
+		Spell(Myself,CLERIC_DEATH_WARD)
+		Wait(1)
+END
+
+IF
+	HaveSpell(CLERIC_BLADE_BARRIER)
+	Allegiance(Myself,ENEMY)
+	!Global("CurrentForm","LOCALS",2)
+	RandomNum(2,1)
+	See([GOODCUTOFF])
+	!CheckStatGT(Myself,0,CLERIC_BLADE_BARRIER)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,4)
+		SetGlobalRandom("ZSPELLS_1","LOCALS",1,6)
+		SetGlobalRandom("ZSPELLS_2","LOCALS",1,8)
+		SetGlobalRandom("ZSPELLS_3","LOCALS",1,7)
+		SetGlobalRandom("ZSPELLS_4","LOCALS",1,2)
+		Spell(Myself,CLERIC_BLADE_BARRIER)
+		Wait(1)
+END
+
+IF
+	HaveSpell(CLERIC_BLESS)
+	Allegiance(Myself,ENEMY)
+	!Global("CurrentForm","LOCALS",2)
+	RandomNum(2,1)
+	See([GOODCUTOFF])
+	!StateCheck(LastSeenBy(Myself),STATE_BLESS)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,4)
+		SetGlobalRandom("ZSPELLS_1","LOCALS",1,6)
+		SetGlobalRandom("ZSPELLS_2","LOCALS",1,8)
+		SetGlobalRandom("ZSPELLS_3","LOCALS",1,7)
+		SetGlobalRandom("ZSPELLS_4","LOCALS",1,2)
+		Spell(Myself,CLERIC_BLESS)
+		Wait(1)
+END
+
+IF
+	HaveSpell(CLERIC_HARM)
+	Allegiance(Myself,ENEMY)
+	!Global("CurrentForm","LOCALS",2)
+	RandomNum(2,1)
+	See([GOODCUTOFF])
+	!HasItem("SLAYLIVE",Myself)
+	!HasItem("Harm",Myself)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,4)
+		SetGlobalRandom("ZSPELLS_1","LOCALS",1,6)
+		SetGlobalRandom("ZSPELLS_2","LOCALS",1,8)
+		SetGlobalRandom("ZSPELLS_3","LOCALS",1,7)
+		SetGlobalRandom("ZSPELLS_4","LOCALS",1,2)
+		Spell(Myself,CLERIC_HARM)
+		Wait(1)
+END
+//4 - LastMarkedObject - [CLERIC_COMMAND, CLERIC_CONTAGION]
+IF
+	HaveSpell(CLERIC_COMMAND)
+	Allegiance(Myself,ENEMY)
+	!Global("CurrentForm","LOCALS",2)
+	RandomNum(2,1)
+	See([GOODCUTOFF])
+	General(LastSeenBy(Myself),HUMANOID)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,4)
+		SetGlobalRandom("ZSPELLS_1","LOCALS",1,6)
+		SetGlobalRandom("ZSPELLS_2","LOCALS",1,8)
+		SetGlobalRandom("ZSPELLS_3","LOCALS",1,7)
+		SetGlobalRandom("ZSPELLS_4","LOCALS",1,2)
+		Spell(LastSeenBy(Myself),CLERIC_COMMAND)
+		Wait(1)
+END
+
+IF
+	HaveSpell(WIZARD_CONTAGION)
+	Allegiance(Myself,ENEMY)
+	!Global("CurrentForm","LOCALS",2)
+	RandomNum(2,1)
+	See([GOODCUTOFF])
+	!Class(LastSeenBy(Myself),MONK)
+	!StateCheck(LastSeenBy(Myself),STATE_POISONED)
+	!StateCheck(LastSeenBy(Myself),STATE_SLOWED)
+	//!StateCheck(LastSeenBy(Myself),STATE_DISEASED)
+	!CheckSpellState(LastSeenBy(Myself),DISEASED)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,4)
+		SetGlobalRandom("ZSPELLS_1","LOCALS",1,6)
+		SetGlobalRandom("ZSPELLS_2","LOCALS",1,8)
+		SetGlobalRandom("ZSPELLS_3","LOCALS",1,7)
+		SetGlobalRandom("ZSPELLS_4","LOCALS",1,2)
+		Spell(LastSeenBy(Myself),WIZARD_CONTAGION)
+		Wait(1)
+END
+//BLOCKEND
+//BLOCKEND
+IF
+	Global("ML_0","LOCALS",0)
+	ActionListEmpty()
+	NearLocation(Myself,1993,2439,4)
+THEN
+	RESPONSE #100
+		SetHomeLocation([1993.2439])
+		SetGlobal("ML_0","LOCALS",1)
+		Continue()
+END
+
+IF
+	Global("ML_0","LOCALS",0)
+	Global("CurrentForm","LOCALS",2)
+THEN
+	RESPONSE #100
+		MoveToPoint([1993.2439])
+END
+
+IF
+	Global("ML_0","LOCALS",1)
+	Global("CurrentForm","LOCALS",2)
+THEN
+	RESPONSE #100
+		//SpellHitEffectSprite(Myself,Myself,PORTAL,0)
+		CreateVisualEffectObject("PORTALH",Myself)
+		SetGlobal("ML_0","LOCALS",2)
+END
+
+IF
+	Global("ML_0","LOCALS",2)
+	Global("CurrentForm","LOCALS",2)
+THEN
+	RESPONSE #100
+		JumpToPoint([1695.1247])
+		SetGlobal("ML_0","LOCALS",3)
+END
+
+IF
+	Global("ML_0","LOCALS",3)
+	Global("CurrentForm","LOCALS",2)
+THEN
+	RESPONSE #100
+		Spell(Myself,CLERIC_HEAL)
+		SetGlobal("ML_0","LOCALS",4)
+END
+
+IF
+	Global("ML_0","LOCALS",4)
+	Global("CurrentForm","LOCALS",2)
+THEN
+	RESPONSE #100
+		SetGlobal("CurrentForm","LOCALS",3)
+		SetGlobal("ML_0","LOCALS",-1)
+END
+
+// 00AATGN
+
+IF
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		EquipMostDamagingMelee()
+		AttackOneRound(LastSeenBy(Myself))
+END
+

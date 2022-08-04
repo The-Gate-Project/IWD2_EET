@@ -1,0 +1,152 @@
+IF
+	Global("INITIALIZED_40ANDORA","LOCALS",0)
+THEN
+	RESPONSE #100
+		//SetSavedLocation()
+		SaveObjectLocation("LOCALS","SavedLoc",Myself)
+		SetGlobal("INITIALIZED_40ANDORA","LOCALS",1)
+		SetGlobal("SaveSavedLoc","LOCALS",1)
+		Continue()
+END
+
+IF
+	!Global("TEAM_2","MYAREA",1)
+	OR(2)
+		AttackedBy([GOODCUTOFF],DEFAULT)
+		PickPocketFailed([PC])
+THEN
+	RESPONSE #100
+		SetGlobal("TEAM_2","MYAREA",1)
+		Continue()
+END
+
+IF
+	!Allegiance(Myself,ENEMY)
+	!Global("TEAM_2","MYAREA",0)
+THEN
+	RESPONSE #100
+		Enemy()
+		Continue()
+END
+
+/*IF
+	!IsTeamBitOn(TEAM_2_BIT)
+THEN
+	RESPONSE #100
+		SetTeamBit(TEAM_2_BIT,TRUE)
+		Continue()
+END*/
+
+IF
+	!Global("TEAM_2","MYAREA",1)
+	Allegiance(Myself,ENEMY)
+	IsActive(Myself)
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		SetGlobal("TEAM_2","MYAREA",1)
+		Continue()
+END
+
+IF
+	Global("ML_0","LOCALS",0)
+	NearSavedLocation(Myself,"LOCALSSavedLoc",4)
+	!Allegiance(Myself,ENEMY)
+	Global("AttackedEnemy","LOCALS",1)
+	!GlobalTimerNotExpired("ReturnTimer","LOCALS")
+	!See([ENEMY])
+THEN
+	RESPONSE #100
+		SetGlobal("ML_0","LOCALS",1)
+		SetHomeLocation([-1.-1])
+		Continue()
+END
+
+IF
+	Global("ML_0","LOCALS",0)
+	!NearSavedLocation(Myself,"LOCALSSavedLoc",4)
+	!Allegiance(Myself,ENEMY)
+	Global("AttackedEnemy","LOCALS",1)
+	!GlobalTimerNotExpired("ReturnTimer","LOCALS")
+	!See([ENEMY])
+THEN
+	RESPONSE #100
+		MoveToSavedLocation("SavedLoc","LOCALS")
+END
+
+IF
+	Global("ML_0","LOCALS",1)
+	!Allegiance(Myself,ENEMY)
+	Global("AttackedEnemy","LOCALS",1)
+	!GlobalTimerNotExpired("ReturnTimer","LOCALS")
+	!See([ENEMY])
+THEN
+	RESPONSE #100
+		SetGlobal("AttackedEnemy","LOCALS",0)
+		SetGlobal("ML_0","LOCALS",0)
+END
+
+IF
+	!Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("ReturnTimer","LOCALS")
+	See([ENEMY])
+	OR(2)
+		HPGT(LastSeenBy(Myself),1)
+		//!IsAnimationID(LastMarkedObject,Werewolf)
+		!Name("40CULTWW",LastSeenBy(Myself))
+	!Specifics(LastSeenBy(Myself),254)
+	!InParty(LastSeenBy(Myself))
+	
+	!Range(LastSeenBy(Myself),4)
+	CanEquipRanged()
+THEN
+	RESPONSE #100
+		SetGlobal("AttackedEnemy","LOCALS",1)
+		EquipRanged()
+		AttackReevaluate(LastSeenBy(Myself),45)
+		//ActionOverride(LastMarkedObject,EquipWeapon())
+		ActionOverride(LastSeenBy(Myself),AttackOneRound(LastAttackerOf(Myself)))
+END
+
+IF
+	!Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("ReturnTimer","LOCALS")
+	See([ENEMY])
+	OR(2)
+		HPGT(LastSeenBy(Myself),1)
+		//!IsAnimationID(LastMarkedObject,Werewolf)
+		!Name("40CULTWW",LastSeenBy(Myself))
+	!Specifics(LastSeenBy(Myself),254)
+	!InParty(LastSeenBy(Myself))
+	
+	OR(2)
+		Range(LastSeenBy(Myself),4)
+		!CanEquipRanged()
+THEN
+	RESPONSE #100
+		SetGlobal("AttackedEnemy","LOCALS",1)
+		EquipMostDamagingMelee()
+		AttackReevaluate(LastSeenBy(Myself),45)
+		//ActionOverride(LastMarkedObject,EquipWeapon())
+		ActionOverride(LastSeenBy(Myself),AttackOneRound(LastAttackerOf(Myself)))
+END
+
+IF
+	!Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	See([GOODCUTOFF])
+THEN
+	RESPONSE #100
+		FaceObject(LastSeenBy(Myself))
+		Continue()
+END
+
+IF
+	!Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("ReturnTimer","LOCALS")
+THEN
+	RESPONSE #100
+		SetGlobalTimer("ReturnTimer","LOCALS",7)
+		Continue()
+END
+

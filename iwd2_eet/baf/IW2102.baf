@@ -1,0 +1,272 @@
+IF
+  !Global("IW2102_Visited","GLOBAL",1)
+THEN
+  RESPONSE #100
+    SetGlobal("IW2102_Visited","GLOBAL",1)
+    Continue()
+END
+
+IF
+	Global("Opened_Bridge","MYAREA",0)
+	Global("21Delay_Opened_Bridge","MYAREA",1)
+THEN
+	RESPONSE #100
+		SetGlobal("Opened_Bridge","MYAREA",1)
+		SetGlobal("21Delay_Opened_Bridge","MYAREA",2)
+		OpenDoor("AR2102_Bridge")
+		/* Door */
+		Unlock("AR2102_HideExit")
+		CloseDoor("AR2102_HideExit")
+		Lock("AR2102_HideExit")
+		TriggerActivation("To2101",FALSE)
+		
+		AddAreaFlag(NOTRAVEL)
+		
+		Continue()
+END
+
+IF
+	Global("Opened_Bridge","MYAREA",0)
+	Global("21Delay_Opened_Bridge","MYAREA",0)
+THEN
+	RESPONSE #100
+		SetGlobal("21Delay_Opened_Bridge","MYAREA",1)
+		Continue()
+END
+
+IF
+	Global("StartedCutscene","MYAREA",0)
+THEN
+	RESPONSE #100
+		SetGlobal("StartedCutscene","MYAREA",1)
+		//StartCutSceneMode()
+		SetCutSceneLite(TRUE)
+		ClearAllActions()
+		MultiPlayerSync()
+END
+
+IF
+	Global("StartedCutscene","MYAREA",1)
+THEN
+	RESPONSE #100
+		SetGlobal("StartedCutscene","MYAREA",2)
+		StartCutSceneMode()
+		ClearAllActions()
+		StartCutScene("21cOrcCm")
+END
+
+IF
+	Global("Shaengarne_Bridge_Cleared","GLOBAL",0)
+	Global("Shaengarne_Bridge_Destroyed","GLOBAL",0)
+	OR(2)
+		Dead("Support_Beam_North")
+		Dead("Support_Beam_South")
+THEN
+	RESPONSE #100
+		SetGlobal("Shaengarne_Bridge_Destroyed","GLOBAL",1)
+		Continue()
+END
+
+IF
+	Global("Shaengarne_Bridge_Cleared","GLOBAL",0)
+	Global("Opened_Bridge","MYAREA",1)
+	Dead("Support_Beam_North")
+	Dead("Support_Beam_South")
+THEN
+	RESPONSE #100
+		SetGlobal("Shaengarne_Bridge_Destroyed","GLOBAL",2)
+		SetGlobal("Opened_Bridge","MYAREA",2)
+		CloseDoor("AR2102_Bridge")
+		//PlaySoundPoint("AM2102d",[2400.606])
+		PlaySound("IW2102D")
+		RemoveMapNote([2235.599],@55025)
+		AddMapNoteColor([2235.599],@55025,YELLOW)
+		Continue()
+END
+
+IF
+	Global("Destroy_Shaengarne_Bridge","GLOBAL",1)
+THEN
+	RESPONSE #100
+		SetGlobal("Destroy_Shaengarne_Bridge","GLOBAL",2)
+		SetGlobal("Opened_Bridge","MYAREA",2)
+		SetGlobal("Shaengarne_Bridge_Destroyed","GLOBAL",2)
+		CloseDoor("AR2102_Bridge")
+		//PlaySoundPoint("AM2102d",[2400.606])
+		PlaySound("IW2102D")
+		ActionOverride("Support_Beam_North",DestroySelf())
+		ActionOverride("Support_Beam_South",DestroySelf())
+		RemoveMapNote([2235.599],@55025)
+		AddMapNoteColor([2235.599],@55025,YELLOW)
+		Continue()
+END
+
+IF
+	!Global("Destroy_Shaengarne_Bridge","GLOBAL",2)
+	Global("SR_Kill_Bridge","GLOBAL",1)
+	HPGT("Ogre_North",0)
+	HPGT("Ogre_South",0)
+THEN
+	RESPONSE #100
+		SetGlobal("Destroy_Shaengarne_Bridge","GLOBAL",2)
+		SetGlobal("Opened_Bridge","MYAREA",2)
+		SetGlobal("Shaengarne_Bridge_Destroyed","GLOBAL",2)
+		CloseDoor("AR2102_Bridge")
+		//PlaySoundPoint("AM2102d",[2400.606])
+		PlaySound("IW2102D")
+		ActionOverride("Support_Beam_North",DestroySelf())
+		ActionOverride("Support_Beam_South",DestroySelf())
+		RemoveMapNote([2235.599],@55025)
+		AddMapNoteColor([2235.599],@55026,YELLOW)
+		Continue()
+END
+
+IF
+	Global("Opened_Bridge","MYAREA",2)
+	//CheckDoorFlags("AR2102_Bridge",DOOROPEN)
+	OpenState("AR2102_Bridge",TRUE)
+THEN
+	RESPONSE #100
+		CloseDoor("AR2102_Bridge")
+		Continue()
+END
+
+IF
+	Global("Shaengarne_Bridge_Cleared","GLOBAL",0)
+	Dead("Bugbear_Captain_1")
+	Dead("Bugbear_Captain_2")
+	Dead("Bugbear_Captain_3")
+	Dead("Bugbear_Captain_4")
+	Dead("Bugbear_Captain_5")
+	Dead("Ogre_North")
+	Dead("Ogre_South")
+	/*Dead("GTH01_01")
+	Dead("GTH01_02")
+	Dead("GTH01_03")
+	Dead("GTH01_04")
+	Dead("GTH01_05")
+	Dead("GTH01_06")
+	Dead("GTH01_07")
+	Dead("GTH01_08")
+	Dead("GTH01_09")
+	Dead("GTH01_10")
+	Dead("GTH02_01")
+	Dead("GTH02_02")
+	Dead("GTH02_03")
+	Dead("GTH02_04")
+	Dead("GTH02_05")
+	Dead("GTH02_06")
+	Dead("GTH02_07")
+	Dead("GTH02_08")
+	Dead("GTH02_09")
+	Dead("GTH02_10")
+	Dead("GTH02_11")
+	Dead("GTH02_12")
+	Dead("GTH02_13")
+	Dead("GTH02_14")
+	Dead("GTH03_01")
+	Dead("GTH03_02")
+	Dead("GTH03_03")
+	Dead("GTH03_04")
+	Dead("GTH03_05")
+	Dead("GTH03_06")
+	Dead("GTH04_01")
+	Dead("GTH04_02")
+	Dead("GTH04_03")
+	Dead("GTH04_04")
+	Dead("GTH04_05")
+	Dead("GTH04_06")
+	Dead("GTH04_07")
+	Dead("GTH04_08")
+	Dead("GTH05_01")
+	Dead("GTH05_02")
+	Dead("GTH05_03")
+	Dead("GTH05_04")
+	Dead("GTH05_05")
+	Dead("GTH05_06")
+	Dead("GTH05_07")
+	Dead("GTH05_08")
+	Dead("GTH05_09")
+	Dead("GTH05_10")
+	Dead("GTH05_11")
+	Dead("GTH05_12")
+	Dead("GTH05_13")
+	Dead("GTH05_14")*/
+	GlobalGT("SPRITE_IS_DEAD2102_GTH","GLOBAL",24) //42 //50
+THEN
+	RESPONSE #100
+		SetGlobal("Shaengarne_Bridge_Cleared","GLOBAL",1)
+		Unlock("AR2102_HideExit")
+		OpenDoor("AR2102_HideExit")
+		/* Door */
+		TriggerActivation("To2101",TRUE)
+		
+		RemoveAreaFlag(NOTRAVEL)
+		
+		SetMusic(COMBAT_NORMAL,0)
+		SetMusic(DAY,0)
+		SetMusic(NIGHT,0)
+		Continue()
+END
+
+IF
+	Global("Shaengarne_Bridge_Cleared","GLOBAL",1)
+	Global("Shaengarne_Award_XPVar","GLOBAL",0)
+	Global("Shaengarne_Bridge_Destroyed","GLOBAL",0)
+THEN
+	RESPONSE #100
+		SetGlobal("Shaengarne_Award_XPVar","GLOBAL",1)
+		AddXP2DA("IW2EX4VH")
+		DisplayStringNoNameHead(Player1,@27956)
+		AddJournalEntry(@27883,QUEST)
+		Continue()
+END
+
+IF
+	Global("Shaengarne_Bridge_Cleared","GLOBAL",1)
+	Global("Shaengarne_Award_XPVar","GLOBAL",0)
+	Global("Shaengarne_Bridge_Destroyed","GLOBAL",1)
+THEN
+	RESPONSE #100
+		SetGlobal("Shaengarne_Award_XPVar","GLOBAL",1)
+		AddXP2DA("IW2EX4H")
+		DisplayStringNoNameHead(Player1,@27957)
+		AddJournalEntry(@27883,QUEST)
+		Continue()
+END
+
+IF
+	Global("Shaengarne_Bridge_Cleared","GLOBAL",1)
+	Global("Shaengarne_Award_XPVar","GLOBAL",0)
+	Global("Shaengarne_Bridge_Destroyed","GLOBAL",2)
+THEN
+	RESPONSE #100
+		SetGlobal("Shaengarne_Award_XPVar","GLOBAL",1)
+		AddXP2DA("IW2EX4E")
+		DisplayStringNoNameHead(Player1,@27958)
+		AddJournalEntry(@27883,QUEST)
+		Continue()
+END
+
+IF
+	Global("Opened_Bridge","MYAREA",0)
+	Global("21Delay_Opened_Bridge","MYAREA",1)
+THEN
+	RESPONSE #100
+		SetGlobal("Opened_Bridge","MYAREA",1)
+		SetGlobal("21Delay_Opened_Bridge","MYAREA",2)
+		OpenDoor("AR2102_Bridge")
+		/* Door */
+		TriggerActivation("To2101",FALSE)
+		AddAreaFlag(NOTRAVEL)
+		Continue()
+END
+
+IF
+	OnCreation()
+THEN
+	RESPONSE #100
+		NoAction()
+		Continue()
+END
+

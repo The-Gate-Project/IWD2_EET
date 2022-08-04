@@ -1,0 +1,144 @@
+IF
+	!Global("61PBRIDG_INACTIVE","MYAREA",1)
+	Clicked([ANYONE])
+	//IsAnimationID(LastTrigger,"""""Mummy, Histachii""""")
+	TriggerOverride(LastTrigger,Global("AnimationId","LOCALS",57408))
+	Range(LastTrigger,5)
+	OpenState("AR6103_Bridge",TRUE)
+	!IsActive("Thorasskus")
+THEN
+	RESPONSE #100
+		//StartCutSceneMode()
+		//EndCutSceneMode()
+		//FloatMessage("FakeShelfHint",35442)
+		DisplayStringPointLog([1920.130],@35442)
+		TriggerActivation("InfoBridge",FALSE)
+		TriggerActivation("GetOut",FALSE)
+		/*ActionOverride("SticksToSnakes1",DestroyItem("41GRPILE"))
+		ActionOverride("SticksToSnakes2",DestroyItem("41GRPILE"))
+		ActionOverride("SticksToSnakes3",DestroyItem("41GRPILE"))
+		ActionOverride("SticksToSnakes4",DestroyItem("41GRPILE"))
+		ActionOverride("SticksToSnakes5",DestroyItem("41GRPILE"))
+		ActionOverride("SticksToSnakes6",DestroyItem("41GRPILE"))
+		ActionOverride("SticksToSnakes7",DestroyItem("41GRPILE"))
+		ActionOverride("SticksToSnakes8",DestroyItem("41GRPILE"))
+		ActionOverride("SticksToSnakes9",DestroyItem("41GRPILE"))
+		ActionOverride("SticksToSnakes10",DestroyItem("41GRPILE"))
+		ActionOverride("SticksToSnakes11",DestroyItem("41GRPILE"))
+		ActionOverride("SticksToSnakes12",DestroyItem("41GRPILE"))
+		ActionOverride("Skulls",DestroyItem("41GRPILE"))*/
+		//GiveItemCreate("00Club01","SticksToSnakes1",0,0,0)  // Палица
+		ActionOverride("SticksToSnakes1",CreateItem("BLUN01",0,0,0))
+		//GiveItemCreate("z0MISC29","SticksToSnakes1",0,0,0)  // Тело женщины
+		ActionOverride("SticksToSnakes1",CreateItem("z0MISC29",0,0,0))
+		//GiveItemCreate("00Staf01","SticksToSnakes2",0,0,0)  // Посох
+		ActionOverride("SticksToSnakes2",CreateItem("STAF01",0,0,0))
+		//GiveItemCreate("00Arow01","SticksToSnakes3",0,0,0)  // Стрелы
+		ActionOverride("SticksToSnakes3",CreateItem("AROW01",20,0,0))
+		//GiveItemCreate("00Misc27","SticksToSnakes3",0,0,0)  // Тело ребенка
+		ActionOverride("SticksToSnakes3",CreateItem("MISC54",0,0,0))
+		//GiveItemCreate("00Club01","SticksToSnakes4",0,0,0)  // Палица
+		ActionOverride("SticksToSnakes4",CreateItem("BLUN01",0,0,0))
+		//GiveItemCreate("00Misc30","SticksToSnakes4",0,0,0)  // Тело мужчины
+		ActionOverride("SticksToSnakes4",CreateItem("MISC80",0,0,0))
+		//GiveItemCreate("00Sper01","SticksToSnakes5",0,0,0)  // Копье
+		ActionOverride("SticksToSnakes5",CreateItem("SPER01",0,0,0))
+		//GiveItemCreate("00Misc30","SticksToSnakes5",0,0,0)  // Тело мужчины
+		ActionOverride("SticksToSnakes5",CreateItem("MISC80",0,0,0))
+		//GiveItemCreate("00Sper01","SticksToSnakes6",0,0,0)  // Копье
+		ActionOverride("SticksToSnakes6",CreateItem("SPER01",0,0,0))
+		//GiveItemCreate("00Staf01","SticksToSnakes7",0,0,0)  // Посох
+		ActionOverride("SticksToSnakes7",CreateItem("STAF01",0,0,0))
+		//GiveItemCreate("z0MISC29","SticksToSnakes7",0,0,0)  // Тело женщины
+		ActionOverride("SticksToSnakes7",CreateItem("z0MISC29",0,0,0))
+		//GiveItemCreate("00Staf01","SticksToSnakes8",0,0,0)  // Посох
+		ActionOverride("SticksToSnakes8",CreateItem("STAF01",0,0,0))
+		//GiveItemCreate("00Arow01","SticksToSnakes9",0,0,0)  // Стрелы
+		ActionOverride("SticksToSnakes9",CreateItem("AROW01",20,0,0))
+		//GiveItemCreate("00Sper01","SticksToSnakes10",0,0,0)  // Копье
+		ActionOverride("SticksToSnakes10",CreateItem("SPER01",0,0,0))
+		//GiveItemCreate("00Club01","SticksToSnakes11",0,0,0)  // Палица
+		ActionOverride("SticksToSnakes11",CreateItem("BLUN01",0,0,0))
+		//GiveItemCreate("00Misc30","SticksToSnakes11",0,0,0)  // Тело мужчины
+		ActionOverride("SticksToSnakes11",CreateItem("MISC80",0,0,0))
+		//GiveItemCreate("00Arow01","SticksToSnakes12",0,0,0)  // Стрелы
+		ActionOverride("SticksToSnakes12",CreateItem("AROW01",20,0,0))
+		//GiveItemCreate("00Misc07","Skulls",0,0,0)  // Череп
+		ActionOverride("Skulls",CreateItem("MISC50",0,0,0))
+		//GiveItemCreate("00Misc07","Skulls",0,0,0)  // Череп
+		ActionOverride("Skulls",CreateItem("MISC50",0,0,0))
+		//GiveItemCreate("00Misc07","Skulls",0,0,0)  // Череп
+		ActionOverride("Skulls",CreateItem("MISC50",0,0,0))
+		//GiveItemCreate("00Misc07","Skulls",0,0,0)  // Череп
+		ActionOverride("Skulls",CreateItem("MISC50",0,0,0))
+		//GiveItemCreate("00Misc07","Skulls",0,0,0)  // Череп
+		ActionOverride("Skulls",CreateItem("MISC50",0,0,0))
+		//HideCreature("Thorasskus",FALSE)
+		Activate("Thorasskus")
+		ActionOverride("Thorasskus",SetGlobal("IwIHidden","LOCALS",0))
+		//HideCreature("IW6103_03_Efreeti_01",FALSE)
+		Activate("IW6103_03_Efreeti_01")
+		ActionOverride("IW6103_03_Efreeti_01",SetGlobal("IwIHidden","LOCALS",0))
+		//HideCreature("IW6103_03_Efreeti_02",FALSE)
+		Activate("IW6103_03_Efreeti_02")
+		ActionOverride("IW6103_03_Efreeti_02",SetGlobal("IwIHidden","LOCALS",0))
+		//HideCreature("IW6103_03_Efreeti_03",FALSE)
+		Activate("IW6103_03_Efreeti_03")
+		ActionOverride("IW6103_03_Efreeti_03",SetGlobal("IwIHidden","LOCALS",0))
+		//HideCreature("IW6103_03_Efreeti_04",FALSE)
+		Activate("IW6103_03_Efreeti_04")
+		ActionOverride("IW6103_03_Efreeti_04",SetGlobal("IwIHidden","LOCALS",0))
+		//HideCreature("IW6103_03_Efreeti_05",FALSE)
+		Activate("IW6103_03_Efreeti_05")
+		ActionOverride("IW6103_03_Efreeti_05",SetGlobal("IwIHidden","LOCALS",0))
+		//HideCreature("IW6103_03_Efreeti_06",FALSE)
+		Activate("IW6103_03_Efreeti_06")
+		ActionOverride("IW6103_03_Efreeti_06",SetGlobal("IwIHidden","LOCALS",0))
+		//HideCreature("IW6103_03_Efreeti_07",FALSE)
+		Activate("IW6103_03_Efreeti_07")
+		ActionOverride("IW6103_03_Efreeti_07",SetGlobal("IwIHidden","LOCALS",0))
+		//HideCreature("IW6103_03_Efreeti_08",FALSE)
+		Activate("IW6103_03_Efreeti_08")
+		ActionOverride("IW6103_03_Efreeti_08",SetGlobal("IwIHidden","LOCALS",0))
+		//HideCreature("IW6103_03_Efreeti_09",FALSE)
+		Activate("IW6103_03_Efreeti_09")
+		ActionOverride("IW6103_03_Efreeti_09",SetGlobal("IwIHidden","LOCALS",0))
+		//HideCreature("IW6103_03_Efreeti_10",FALSE)
+		Activate("IW6103_03_Efreeti_10")
+		ActionOverride("IW6103_03_Efreeti_10",SetGlobal("IwIHidden","LOCALS",0))
+		CloseDoor("AR6103_Bridge")
+		SetGlobal("61NumEfreetiKilled","GLOBAL",0)
+END
+
+IF
+	!Global("61PBRIDG_INACTIVE","MYAREA",1)
+	Clicked([ANYONE])
+	//!IsAnimationID(LastTrigger,"""""Mummy, Histachii""""")
+	!TriggerOverride(LastTrigger,Global("AnimationId","LOCALS",57408))
+	Range(LastTrigger,5)
+	OpenState("AR6103_Bridge",TRUE)
+	!IsActive("Thorasskus")
+THEN
+	RESPONSE #100
+		//StartCutSceneMode()
+		//EndCutSceneMode()
+		DisplayString(LastTrigger,@39368)
+END
+
+IF
+	!Global("61PBRIDG_INACTIVE","MYAREA",1)
+	Clicked([ANYONE])
+	Range(LastTrigger,5)
+	OpenState("AR6103_Bridge",TRUE)
+THEN
+	RESPONSE #100
+		StartCutSceneMode()
+		EndCutSceneMode()
+		//FloatMessage("FakeShelfHint",35442)
+		DisplayStringPointLog([1920.130],@35442)
+		TriggerActivation("InfoBridge",FALSE)
+		CloseDoor("AR6103_Bridge")
+		//ChangeCurrentScript("")
+		SetGlobal("61PBRIDG_INACTIVE","MYAREA",1)
+END
+

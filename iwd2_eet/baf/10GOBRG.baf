@@ -1,0 +1,67 @@
+IF
+	Global("I_LIKE_DWARVES","LOCALS",0)
+	See([PC])
+THEN
+	RESPONSE #75
+		SetGlobal("I_LIKE_DWARVES","LOCALS",2)
+		Continue()
+	RESPONSE #25
+		SetGlobal("I_LIKE_DWARVES","LOCALS",1)
+		Continue()
+END
+
+IF
+	StateCheck(Myself,STATE_PANIC)
+THEN
+	RESPONSE #100
+		RandomWalkContinuous()
+END
+
+IF
+	Global("I_LIKE_DWARVES","LOCALS",1)
+	OR(2)
+		See([0.0.DWARF])
+		See([PC.0.DWARF])
+	CanEquipRanged()
+	!Range(LastSeenBy(Myself),3)
+THEN
+	RESPONSE #100
+		EquipRanged()
+		AttackReevaluate(LastSeenBy(Myself),45)
+END
+
+IF
+	Global("I_LIKE_DWARVES","LOCALS",1)
+	OR(2)
+		See([0.0.DWARF])
+		See([PC.0.DWARF])
+	OR(2)
+		Range(LastSeenBy(Myself),3)
+		!CanEquipRanged()
+THEN
+	RESPONSE #100
+		EquipRanged()
+		AttackReevaluate(LastSeenBy(Myself),45)
+END
+
+IF
+	See(NearestEnemyOf(Myself))
+	CanEquipRanged()
+	!Range(LastSeenBy(Myself),3)
+THEN
+	RESPONSE #100
+		EquipRanged()
+		AttackReevaluate(LastSeenBy(Myself),45)
+END
+
+IF
+	See(NearestEnemyOf(Myself))
+	OR(2)
+		Range(LastSeenBy(Myself),3)
+		!CanEquipRanged()
+THEN
+	RESPONSE #100
+		EquipRanged()
+		AttackReevaluate(LastSeenBy(Myself),45)
+END
+

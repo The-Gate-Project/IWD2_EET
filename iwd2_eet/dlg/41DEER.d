@@ -1,0 +1,6 @@
+BEGIN ~41DEER~
+
+IF ~True()~ THEN BEGIN 0
+  SAY @34004
+  IF ~~ THEN EXIT
+END

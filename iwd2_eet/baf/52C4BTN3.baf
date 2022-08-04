@@ -1,0 +1,66 @@
+IF
+	//Or(2)
+		OpenState(Myself,TRUE)
+	//	!CheckDoorFlags(Myself,DOORLOCKED)
+	OR(3)
+		Global("WATCHING_PLAYER","MYAREA",0)
+		!Global("52Morohem_Master","GLOBAL",4)
+		!Global("SPRITE_IS_DEAD07_52MNKCL_03","GLOBAL",0)
+THEN
+	RESPONSE #100
+		Unlock(Myself)
+		CloseDoor(Myself)
+		Lock(Myself)
+		SetGlobal("Opened_52C4BTN3","MYAREA",0)
+END
+
+IF
+	OR(3)
+		Global("WATCHING_PLAYER","MYAREA",0)
+		!Global("52Morohem_Master","GLOBAL",4)
+		!Global("SPRITE_IS_DEAD07_52MNKCL_03","GLOBAL",0)
+THEN
+	RESPONSE #100
+		NoAction()
+END
+
+IF
+	OpenState(Myself,TRUE)
+	HPPercentGT("07_52MNKCL_03",50)
+THEN
+	RESPONSE #100
+		CloseDoor(Myself)
+		Lock(Myself)
+		SetGlobal("Opened_52C4BTN3","MYAREA",0)
+END
+
+IF
+	//Closed([ANYONE])
+	//InParty(LastTrigger)
+	OpenState(Myself,FALSE)
+	Global("SPRITE_IS_DEAD07_52MNKCL_03","GLOBAL",0)
+	GlobalGT("Opened_52C4BTN3","MYAREA",0)
+THEN
+	RESPONSE #100
+		ClearActions("07_52MNKCL_03")
+		//SpellHitEffectSprite("07_52MNKCL_03","07_52MNKCL_03",ELECTRICITY,10)
+		CreateVisualEffectObject("ELECTRH","07_52MNKCL_03")
+		ActionOverride("07_52MNKCL_03",DestroyItem("z0cimhp1"))  // No such index
+		//ChunkCreature("07_52MNKCL_03")
+		ActionOverride("07_52MNKCL_03",ApplySpellRES("IWCHUNK",Myself))
+		SetGlobal("Opened_52C4BTN3","MYAREA",2)
+END
+
+IF
+	OpenState(Myself,FALSE)
+	HPPercentLT("07_52MNKCL_03",50)
+	Global("Opened_52C4BTN3","MYAREA",0)
+THEN
+	RESPONSE #100
+		Unlock(Myself)
+		OpenDoor(Myself)
+		//SpellHitEffectSprite("C4_SWITCH_3_EFF","C4_SWITCH_3_EFF",ELECTRICITY,0)
+		CreateVisualEffectObject("ELECTRH","C4_SWITCH_3_EFF")
+		SetGlobal("Opened_52C4BTN3","MYAREA",1)
+END
+

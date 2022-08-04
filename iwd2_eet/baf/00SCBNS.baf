@@ -1,0 +1,24 @@
+IF
+	Global("Action","LOCALS",1)
+	!GlobalTimerNotExpired("IwTimer19","LOCALS")
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IwTimer19","LOCALS",7)
+		SetGlobal("Action","LOCALS",0)
+		ReallyForceSpellRES("IWIN994",LastSeenBy(Myself))  // INNATE_UMBER_HULK_GAZE
+		//WaitAnimation(Myself,WALK)
+		//WaitAnimation(Myself,CONJURE)
+		//WaitAnimation(Myself,CAST)
+		Wait(2)
+END
+
+IF
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		SetGlobal("Action","LOCALS",1)
+		EquipMostDamagingMelee()
+		AttackOneRound(LastSeenBy(Myself))
+END
+

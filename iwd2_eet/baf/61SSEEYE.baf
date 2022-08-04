@@ -1,0 +1,142 @@
+/*IF
+	Or(2)
+		IsRotation(Myself,NE)
+		IsRotation(Myself,E)
+THEN
+	RESPONSE #100
+		StaticSequence("SsethEyeAnim",SEQ_ATTACK)
+		Continue()
+END*/
+
+/*IF
+	IsRotation(Myself,SE)
+THEN
+	RESPONSE #100
+		StaticSequence("SsethEyeAnim",SEQ_AWAKE)
+		Continue()
+END*/
+
+/*IF
+	IsRotation(Myself,S)
+THEN
+	RESPONSE #100
+		StaticSequence("SsethEyeAnim",SEQ_CAST)
+		Continue()
+END*/
+
+/*IF
+	IsRotation(Myself,SW)
+THEN
+	RESPONSE #100
+		StaticSequence("SsethEyeAnim",SEQ_CONJURE)
+		Continue()
+END*/
+
+/*IF
+	IsRotation(Myself,W)
+THEN
+	RESPONSE #100
+		StaticSequence("SsethEyeAnim",SEQ_DAMAGE)
+		Continue()
+END*/
+
+/*IF
+	Or(2)
+		IsRotation(Myself,NW)
+		IsRotation(Myself,N)
+THEN
+	RESPONSE #100
+		StaticSequence("SsethEyeAnim",SEQ_DIE)
+		Continue()
+END*/
+
+//////////////////////
+IF
+	!Global("SEyeRotation","MYAREA",0)
+	Switch("SEyeRotation","MYAREA")
+THEN
+	RESPONSE #1
+		StaticSequence("SsethEyeAnim",SEQ_ATTACK)
+		SetGlobal("SEyeRotation","MYAREA",0)
+		Continue()
+	RESPONSE #2
+		StaticSequence("SsethEyeAnim",SEQ_AWAKE)
+		SetGlobal("SEyeRotation","MYAREA",0)
+		Continue()
+	RESPONSE #3
+		StaticSequence("SsethEyeAnim",SEQ_CAST)
+		SetGlobal("SEyeRotation","MYAREA",0)
+		Continue()
+	RESPONSE #4
+		StaticSequence("SsethEyeAnim",SEQ_CONJURE)
+		SetGlobal("SEyeRotation","MYAREA",0)
+		Continue()
+	RESPONSE #5
+		StaticSequence("SsethEyeAnim",SEQ_DAMAGE)
+		SetGlobal("SEyeRotation","MYAREA",0)
+		Continue()
+	RESPONSE #6
+		StaticSequence("SsethEyeAnim",SEQ_DIE)
+		SetGlobal("SEyeRotation","MYAREA",0)
+		Continue()
+END
+//////////////////////
+
+IF
+	See([GOODCUTOFF])
+	//!IsAnimationID(LastMarkedObject,"""""Mummy, Histachii""""")
+	!TriggerOverride(LastSeenBy(Myself),Global("AnimationId","LOCALS",57408))
+	CheckStatGT(LastSeenBy(Myself),0,ENCUMBERANCE) //1
+	
+	Range(LastSeenBy(Myself),17)
+THEN
+	RESPONSE #100
+		//DropInventoryEX(LastMarkedObject)
+		ActionOverride(LastSeenBy(Myself),DropInventory())
+END
+
+IF
+	See([GOODCUTOFF])
+	//!IsAnimationID(LastMarkedObject,"""""Mummy, Histachii""""")
+	!TriggerOverride(LastSeenBy(Myself),Global("AnimationId","LOCALS",57408))
+	
+	Range(LastSeenBy(Myself),17)
+THEN
+	RESPONSE #100
+		ClearActions(LastSeenBy(Myself))
+		DisplayStringHead(LastSeenBy(Myself),@35458)
+		ActionOverride(LastSeenBy(Myself),MakeUnselectable(10))
+		ActionOverride(LastSeenBy(Myself),MoveToPoint([3078.1108]))
+		Continue()
+	RESPONSE #100
+		ClearActions(LastSeenBy(Myself))
+		DisplayStringHead(LastSeenBy(Myself),@35458)
+		ActionOverride(LastSeenBy(Myself),MakeUnselectable(10))
+		ActionOverride(LastSeenBy(Myself),MoveToPoint([1120.735]))
+		Continue()
+	RESPONSE #100
+		ClearActions(LastSeenBy(Myself))
+		DisplayStringHead(LastSeenBy(Myself),@35458)
+		ActionOverride(LastSeenBy(Myself),MakeUnselectable(10))
+		ActionOverride(LastSeenBy(Myself),MoveToPoint([735.1565]))
+		Continue()
+	RESPONSE #100
+		ClearActions(LastSeenBy(Myself))
+		DisplayStringHead(LastSeenBy(Myself),@35458)
+		ActionOverride(LastSeenBy(Myself),MakeUnselectable(10))
+		ActionOverride(LastSeenBy(Myself),MoveToPoint([1500.1250]))
+		Continue()
+	RESPONSE #100
+		ClearActions(LastSeenBy(Myself))
+		DisplayStringHead(LastSeenBy(Myself),@35458)
+		ActionOverride(LastSeenBy(Myself),MakeUnselectable(10))
+		ActionOverride(LastSeenBy(Myself),MoveToPoint([2850.600]))
+		Continue()
+	RESPONSE #100
+		ClearActions(LastSeenBy(Myself))
+		DisplayStringHead(LastSeenBy(Myself),@35458)
+		ActionOverride(LastSeenBy(Myself),MakeUnselectable(10))
+		ActionOverride(LastSeenBy(Myself),MoveToPoint([2400.1570]))
+		Continue()
+END
+

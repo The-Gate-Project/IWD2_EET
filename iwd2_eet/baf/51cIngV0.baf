@@ -1,0 +1,119 @@
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("Ingrat")
+		Enemy()
+		JumpToPoint([60.716])
+		//HideCreature(Myself,FALSE)
+		ApplySpellRES("idinvis5",Myself)
+		DestroyItem("iwnocol")
+		MoveToPoint([115.700])
+		DisplayStringHead(Myself,@18636)
+		Wait(1)
+		//StartCutScene("51cIngV1")
+		ChangeAnimation("50Dop")  
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("01_50NWSold_02")
+		Enemy()
+		WaitRandom(0,2)
+		JumpToPoint([60.716])
+		//HideCreature(Myself,FALSE)
+		ApplySpellRES("idinvis5",Myself)
+		DestroyItem("iwnocol")
+		//ReturnToSavedLocation(2)
+		MoveToSavedLocation("SavedLoc","LOCALS")
+		Wait(1)
+		ChangeAnimation("50Dop")
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("01_50NWSold_03")
+		Enemy()
+		WaitRandom(0,2)
+		JumpToPoint([60.716])
+		//HideCreature(Myself,FALSE)
+		ApplySpellRES("idinvis5",Myself)
+		DestroyItem("iwnocol")
+		//ReturnToSavedLocation(2)
+		MoveToSavedLocation("SavedLoc","LOCALS")
+		Wait(1)
+		ChangeAnimation("50Dop")
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("01_50NWSold_04")
+		Enemy()
+		WaitRandom(0,2)
+		JumpToPoint([60.716])
+		//HideCreature(Myself,FALSE)
+		ApplySpellRES("idinvis5",Myself)
+		DestroyItem("iwnocol")
+		//ReturnToSavedLocation(2)
+		MoveToSavedLocation("SavedLoc","LOCALS")
+		Wait(1)
+		ChangeAnimation("50Dop")
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("01_50NWSold_05")
+		Enemy()
+		WaitRandom(0,2)
+		JumpToPoint([60.716])
+		//HideCreature(Myself,FALSE)
+		ApplySpellRES("idinvis5",Myself)
+		DestroyItem("iwnocol")
+		//ReturnToSavedLocation(2)
+		MoveToSavedLocation("SavedLoc","LOCALS")
+		Wait(1)
+		ChangeAnimation("50Dop")
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("01_50NWSold_06")
+		Enemy()
+		WaitRandom(0,2)
+		JumpToPoint([60.716])
+		//HideCreature(Myself,FALSE)
+		ApplySpellRES("idinvis5",Myself)
+		DestroyItem("iwnocol")
+		//ReturnToSavedLocation(2)
+		MoveToSavedLocation("SavedLoc","LOCALS")
+		Wait(1)
+		ChangeAnimation("50Dop")
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("01_50NWSold_07")
+		Enemy()
+		WaitRandom(0,2)
+		JumpToPoint([60.716])
+		//HideCreature(Myself,FALSE)
+		ApplySpellRES("idinvis5",Myself)
+		DestroyItem("iwnocol")
+		//ReturnToSavedLocation(2)
+		MoveToSavedLocation("SavedLoc","LOCALS")
+		Wait(1)
+		ChangeAnimation("50Dop")
+END
+

@@ -1,0 +1,7 @@
+IF
+	True()
+THEN
+	RESPONSE #100
+		ChangeAIScript("00T02ET",SPECIFICS)
+		ChangeAIScript("63GLABRC",RACE)
+END

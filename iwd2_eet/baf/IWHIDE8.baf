@@ -1,0 +1,10 @@
+IF
+	!Global("NOT_VISIBLE","LOCALS",1)
+THEN
+	RESPONSE #100
+		//ApplySpellRES("IDINVS10",Myself)
+		SetGlobal("NOT_VISIBLE","LOCALS",1)
+		//ApplySpellRES("IDINVS10",Myself)
+		ApplySpellRES("IDINVUL",Myself)
+		ApplySpellRES("IDINVIS8",Myself)
+END

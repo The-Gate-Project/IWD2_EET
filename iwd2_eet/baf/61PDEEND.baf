@@ -1,0 +1,52 @@
+/*IF
+	Entered([PC])
+THEN
+	RESPONSE #100
+		DisplayStringNoName(LastTrigger,14381)
+		CloseDoor("AR6103_RockDoor3")
+		PlaySound("IW6103e") //,[2636.724]
+		//HideCreature("StoneSlab",FALSE)
+		Activate("StoneSlab")
+		ActionOverride("StoneSlab",SetGlobal("IwIHidden","LOCALS",0))
+		ScreenShake([40.30],75)
+		//HideCreature("02_EliteGuard_09",FALSE)
+		Activate("IW6103_02_EliteGuard_09")
+		ActionOverride("IW6103_02_EliteGuard_09",SetGlobal("IwIHidden","LOCALS",0))
+		SetGlobal("61AbominationDied","GLOBAL",5)
+END*/
+IF
+	Entered([PC])
+THEN
+	RESPONSE #100
+		DisplayStringNoName(LastTrigger,14381)  // Ловушка сработала
+		CloseDoor("AR6103_RockDoor3")
+		PlaySound("IW6103e")
+		ScreenShake([40.30],75)
+		//FadeToColor([0.0])
+		FadeToColor([0.0],0)
+		Activate("StoneSlab")
+		ActionOverride("StoneSlab",SetGlobal("IwIHidden","LOCALS",0))
+		ActionOverride("StoneSlab",ApplySpellRES("IDINVIS6",Myself))
+		ActionOverride("StoneSlab",JumpToPoint([2648.699]))
+		ActionOverride("StoneSlab",ApplySpellRES("IDINVIS7",Myself))
+		//FadeFromColor([0.0])
+		FadeFromColor([0.0],0)
+		Activate("IW6103_02_EliteGuard_09")
+		ActionOverride("IW6103_02_EliteGuard_09",SetGlobal("IwIHidden","LOCALS",0))
+		SetGlobal("61AbominationDied","GLOBAL",5)
+END
+
+IF
+	IsActive("StoneSlab")
+	Global("SPRITE_IS_DEADStoneSlab","GLOBAL",1)
+THEN
+	RESPONSE #100
+		//Activate("BrokenSlabAnim")
+		AmbientActivate("BrokenSlabAnim",TRUE)
+		PlaySound("IW6103F") //,[2636.724]
+		OpenDoor("AR6103_RockDoor3")
+		SetGlobal("SPRITE_IS_DEADStoneSlab","GLOBAL",2)
+		//ChangeCurrentScript("")
+		TriggerActivation(Myself,FALSE)
+END
+

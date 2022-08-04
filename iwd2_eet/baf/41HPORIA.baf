@@ -1,0 +1,474 @@
+IF
+	Global("41RetributiveStrike","GLOBAL",4)
+	//TimerActive(100)
+	//GlobalTimerExpired("IwTimer100","LOCALS")
+THEN
+	RESPONSE #100
+		DestroySelf()
+		//ChangeCurrentScript("")
+END
+
+IF
+	OpenState("AR4102_Door2",FALSE)
+THEN
+	RESPONSE #100
+		NoAction()
+END
+
+IF
+	NumberOfTimesTalkedTo(0)
+	See([PC])
+THEN
+	RESPONSE #100
+		SetGlobal("TEAM_1","MYAREA",1)
+		//SetDialogueRange(300)
+		StartCutSceneMode()
+		ClearAllActions()
+		MultiPlayerSync()
+		//Dialogue(LastMarkedObject)
+		ApplySpellRES("BDCUTSPY",Myself)
+		StartDialogNoSet(LastSeenBy(Myself))
+END
+
+IF
+	Global("41RetributiveStrike","GLOBAL",0)
+	HPPercentLT(Myself,90)
+	!See([PC])
+THEN
+	RESPONSE #100
+		SetGlobal("41RetributiveStrike","GLOBAL",2)
+		ApplySpell(Myself,WIZARD_DISPEL_MAGIC)
+		//SetCreatureAreaFlag(Myself,INVULNERABLE,TRUE)
+		ApplySpellRES("IDINVUL",Myself)
+		//Continue()
+END
+
+IF
+	Global("41RetributiveStrike","GLOBAL",0)
+	HPPercentLT(Myself,90)
+	See([PC])
+THEN
+	RESPONSE #100
+		SetGlobal("41RetributiveStrike","GLOBAL",2)
+		ApplySpell(Myself,WIZARD_DISPEL_MAGIC)
+		//SetCreatureAreaFlag(Myself,INVULNERABLE,TRUE)
+		//ApplySpellRES("IDINVUL",Myself)
+		//Continue()
+END
+
+IF
+	OR(2)
+		NumberOfTimesTalkedTo(0)
+		Global("41RetributiveStrike","GLOBAL",2)
+	!See([PC])
+THEN
+	RESPONSE #100
+		MoveToObject(Player1)
+END
+
+
+
+IF
+	Global("41RetributiveStrike","GLOBAL",2)
+	See([PC])
+THEN
+	RESPONSE #100
+		//SetCreatureAreaFlag(Myself,INVULNERABLE,FALSE)
+		ApplySpellRES("IDRINVUL",Myself)
+		SmallWait(8)
+		//SetDialogueRange(300)
+		//Dialogue(LastMarkedObject)
+		ApplySpellRES("BDCUTSPY",Myself)
+		StartDialogNoSet(LastSeenBy(Myself))
+		//Continue()
+END
+
+IF
+	Global("41RetributiveStrike","GLOBAL",1)
+THEN
+	RESPONSE #100
+		Unlock("AR4102_Door1")
+		OpenDoor("AR4102_Door1")
+		SetGlobal("TEAM_7","MYAREA",1)
+		//SpellHitEffectSprite(Myself,Myself,PORTAL,0)
+		CreateVisualEffectObject("PORTALH",Myself)
+		ReallyForceSpellRES("IWWI091",Myself)
+		DestroyItem("z4oria")
+		DestroyItem("z0cwstab")
+		DestroyItem("z0cisee2")
+		//HideCreature(Myself,TRUE)
+		ApplySpellRES("IDINVIS6",Myself)
+		//HideCreature("OriaEssence",FALSE)
+		ActionOverride("OriaEssence",Activate(Myself))
+		ActionOverride("OriaEssence",SetGlobal("IwIHidden","LOCALS",0))
+		//ApplySpellRES("IWWI084","OriaEssence")
+		//SetCreatureAreaFlag("OriaEssence",INVULNERABLE,TRUE)
+		//ActionOverride("OriaEssence",ApplySpellRES("IDINVUL",Myself))
+		//TransferInventory(Myself,"OriaEssence")
+		//XEquipItem("BRAC01","OriaEssence",SLOT_GAUNTLETS,EQUIP)
+		//XEquipItem("RING07","OriaEssence",SLOT_RING_LEFT,EQUIP)
+		//XEquipItem("z0cisee2","OriaEssence",SLOT_AMULET,EQUIP)
+		//XEquipItem("BELT03","OriaEssence",SLOT_BELT,EQUIP)
+		//XEquipItem("CLCK14","OriaEssence",SLOT_CLOAK,EQUIP)
+		//XEquipItem("z0wand20","OriaEssence",SLOT_MISC3,EQUIP)
+		////XEquipItem("MISC07","OriaEssence",SLOT_MISC0,EQUIP)
+		//XEquipItem("POTN45","OriaEssence",SLOT_MISC0,EQUIP)
+		//XEquipItem("POTN10","OriaEssence",SLOT_MISC1,EQUIP)
+		//XEquipItem("POTN18","OriaEssence",SLOT_MISC2,EQUIP)
+		////XEquipItem("SCRL1X","OriaEssence",SLOT_MISC0,EQUIP)
+		//ActionOverride("OriaEssence",ApplySpellRES("IDINVUL",Myself))
+		SetGlobal("SPRITE_IS_DEADOria","GLOBAL",1)
+		SetGlobal("SPRITE_IS_DEADOriaEssence","GLOBAL",0)
+		SetGlobalTimer("IwTimer100","LOCALS",10)
+		SetGlobal("41RetributiveStrike","GLOBAL",3)
+		//Continue()
+END
+
+IF
+	Global("41RetributiveStrike","GLOBAL",3)
+	//CheckAreaDiffLevel(3)
+	NightmareModeOn()
+THEN
+	RESPONSE #100
+		SetGlobal("41RetributiveStrike","GLOBAL",4)
+		//AddExperiencePartyCR(7)
+		AddXP2DA("IW2EX8VH")
+END
+
+IF
+	Global("41RetributiveStrike","GLOBAL",3)
+	//CheckAreaDiffLevel(1)
+	DifficultyLT(NORMAL)
+THEN
+	RESPONSE #100
+		SetGlobal("41RetributiveStrike","GLOBAL",4)
+		//AddExperiencePartyCR(4)
+		AddXP2DA("IW2EX8E")
+END
+
+IF
+	Global("41RetributiveStrike","GLOBAL",3)
+	//CheckAreaDiffLevel(2)
+	Difficulty(NORMAL)
+THEN
+	RESPONSE #100
+		SetGlobal("41RetributiveStrike","GLOBAL",4)
+		//AddExperiencePartyCR(5)
+		AddXP2DA("IW2EX8A")
+END
+
+IF
+	Global("41RetributiveStrike","GLOBAL",3)
+	//CheckAreaDiffLevel(3)
+	DifficultyGT(NORMAL)
+THEN
+	RESPONSE #100
+		SetGlobal("41RetributiveStrike","GLOBAL",4)
+		//AddExperiencePartyCR(7)
+		AddXP2DA("IW2EX8H")
+END
+
+/*IF
+	Global("41RetributiveStrike","GLOBAL",4)
+	!TimerActive(100)
+	globalt
+THEN
+	RESPONSE #100
+		NoAction()
+END*/
+
+IF
+	Global("41RetributiveStrike","GLOBAL",4)
+	//TimerActive(100)
+	//GlobalTimerExpired("IwTimer100","LOCALS")
+THEN
+	RESPONSE #100
+		DestroySelf()
+		//ChangeCurrentScript("")
+END
+
+IF
+	Global("41RetributiveStrike","GLOBAL",4)
+THEN
+	RESPONSE #100
+		NoAction()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	Global("MoveToSafeSpot","LOCALS",0)
+	!Global("41RetributiveStrike","GLOBAL",2)
+	!See([0.0.WOLF])
+THEN
+	RESPONSE #100
+		//SetSavedLocationPoint(3456,863,SW)
+		SaveLocation("LOCALS","SavedLoc",[3456.863])
+		SetGlobal("SaveSavedLoc","LOCALS",1)
+		Unlock("AR4102_Door1")
+		OpenDoor("AR4102_Door1")
+		SetGlobal("TEAM_7","MYAREA",1)
+		SetGlobal("MoveToSafeSpot","LOCALS",1)
+END
+
+IF
+	Global("MoveToSafeSpot","LOCALS",1)
+	ActionListEmpty()
+	NearSavedLocation(Myself,"LOCALSSavedLoc",5)
+THEN
+	RESPONSE #100
+		SetGlobal("MoveToSafeSpot","LOCALS",2)
+END
+
+IF
+	Global("MoveToSafeSpot","LOCALS",1)
+	!TargetUnreachable("OriaSafeSpot")
+THEN
+	RESPONSE #100
+		MoveToObject("OriaSafeSpot")
+END
+
+IF
+	Global("ML_0","LOCALS",0)
+	Global("MLS_0","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobal("MLS_0","LOCALS",1)
+		Continue()
+	RESPONSE #100
+		SetGlobal("MLS_0","LOCALS",2)
+		Continue()
+	RESPONSE #100
+		SetGlobal("MLS_0","LOCALS",3)
+		Continue()
+	RESPONSE #100
+		SetGlobal("MLS_0","LOCALS",4)
+		Continue()
+	RESPONSE #100
+		SetGlobal("MLS_0","LOCALS",5)
+		Continue()
+END
+
+IF
+	Global("ML_0","LOCALS",0)
+	Global("MLS_0","LOCALS",1)
+	ActionListEmpty()
+	NearLocation(Myself,2944,607,4)
+THEN
+	RESPONSE #100
+		SetHomeLocation([2944.607])
+		SetGlobal("ML_0","LOCALS",0)
+		SetGlobal("MLS_0","LOCALS",0)
+		Continue()
+END
+
+IF
+	Global("ML_0","LOCALS",0)
+	Global("MLS_0","LOCALS",1)
+	AttackedBy([PC],DEFAULT)
+	Global("ML_1","LOCALS",0)
+	!Global("41RetributiveStrike","GLOBAL",2)
+	RandomNum(10,1)
+	Range(LastAttackerOf(Myself),6)
+THEN
+	RESPONSE #100
+		MoveToPoint([2944.607])
+END
+
+IF
+	Global("ML_0","LOCALS",0)
+	Global("MLS_0","LOCALS",2)
+	ActionListEmpty()
+	NearLocation(Myself,2655,927,4)
+THEN
+	RESPONSE #100
+		SetHomeLocation([2655.927])
+		SetGlobal("ML_0","LOCALS",0)
+		SetGlobal("MLS_0","LOCALS",0)
+		Continue()
+END
+
+IF
+	Global("ML_0","LOCALS",0)
+	Global("MLS_0","LOCALS",2)
+	AttackedBy([PC],DEFAULT)
+	Global("ML_1","LOCALS",0)
+	!Global("41RetributiveStrike","GLOBAL",2)
+	RandomNum(10,1)
+	Range(LastAttackerOf(Myself),6)
+THEN
+	RESPONSE #100
+		MoveToPoint([2655.927])
+END
+
+IF
+	Global("ML_0","LOCALS",0)
+	Global("MLS_0","LOCALS",3)
+	ActionListEmpty()
+	NearLocation(Myself,2944,1024,4)
+THEN
+	RESPONSE #100
+		SetHomeLocation([2944.1024])
+		SetGlobal("ML_0","LOCALS",0)
+		SetGlobal("MLS_0","LOCALS",0)
+		Continue()
+END
+
+IF
+	Global("ML_0","LOCALS",0)
+	Global("MLS_0","LOCALS",3)
+	AttackedBy([PC],DEFAULT)
+	Global("ML_1","LOCALS",0)
+	!Global("41RetributiveStrike","GLOBAL",2)
+	RandomNum(10,1)
+	Range(LastAttackerOf(Myself),6)
+THEN
+	RESPONSE #100
+		MoveToPoint([2944.1024])
+END
+
+IF
+	Global("ML_0","LOCALS",0)
+	Global("MLS_0","LOCALS",4)
+	ActionListEmpty()
+	NearLocation(Myself,3232,735,4)
+THEN
+	RESPONSE #100
+		SetHomeLocation([3232.735])
+		SetGlobal("ML_0","LOCALS",0)
+		SetGlobal("MLS_0","LOCALS",0)
+		Continue()
+END
+
+IF
+	Global("ML_0","LOCALS",0)
+	Global("MLS_0","LOCALS",4)
+	AttackedBy([PC],DEFAULT)
+	Global("ML_1","LOCALS",0)
+	!Global("41RetributiveStrike","GLOBAL",2)
+	RandomNum(10,1)
+	Range(LastAttackerOf(Myself),6)
+THEN
+	RESPONSE #100
+		MoveToPoint([3232.735])
+END
+
+IF
+	Global("ML_0","LOCALS",0)
+	Global("MLS_0","LOCALS",5)
+	ActionListEmpty()
+	NearLocation(Myself,2975,800,4)
+THEN
+	RESPONSE #100
+		SetHomeLocation([2975.800])
+		SetGlobal("ML_0","LOCALS",0)
+		SetGlobal("MLS_0","LOCALS",0)
+		Continue()
+END
+
+IF
+	Global("ML_0","LOCALS",0)
+	Global("MLS_0","LOCALS",5)
+	AttackedBy([PC],DEFAULT)
+	Global("ML_1","LOCALS",0)
+	!Global("41RetributiveStrike","GLOBAL",2)
+	RandomNum(10,1)
+	Range(LastAttackerOf(Myself),6)
+THEN
+	RESPONSE #100
+		MoveToPoint([2975.800])
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	HitBy([PC],MAGIC)
+	Global("UsedShield","LOCALS",0)
+THEN
+	RESPONSE #100
+		EquipMostDamagingMelee()
+		SetSequence(SEQ_ATTACK)
+		ForceSpell(Myself,WIZARD_SHIELD)
+		SetGlobal("UsedShield","LOCALS",1)
+		Wait(1)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	Global("UsedGlobe","LOCALS",0)
+	OR(2)
+		HitBy([PC],MAGIC)
+		HPPercentLT(Myself,97)
+THEN
+	RESPONSE #100
+		EquipMostDamagingMelee()
+		SetSequence(SEQ_ATTACK)
+		ForceSpell(Myself,WIZARD_GLOBE_OF_INVULNERABILITY)
+		SetGlobal("UsedGlobe","LOCALS",1)
+		Wait(1)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	RandomNum(2,1)
+	OR(3)
+		Global("UsedBolt","LOCALS",0)
+		Global("UsedRay","LOCALS",0)
+		Global("UsedCone","LOCALS",0)
+	See([PC])
+THEN
+	RESPONSE #100
+		SetGlobal("SpellRequest","LOCALS",1)
+		Continue()
+	RESPONSE #100
+		SetGlobal("SpellRequest","LOCALS",2)
+		Continue()
+	RESPONSE #100
+		SetGlobal("SpellRequest","LOCALS",3)
+		Continue()
+END
+
+IF
+	Global("SpellRequest","LOCALS",1)
+	Global("UsedBolt","LOCALS",0)
+	!HaveSpell(CLERIC_PROTECTION_FROM_LIGHTNING)
+	!See([ENEMY])
+	See([PC])
+	!Range(LastSeenBy(Myself),4)
+THEN
+	RESPONSE #100
+		FaceObject(LastSeenBy(Myself))
+		EquipMostDamagingMelee()
+		SetSequence(SEQ_ATTACK)
+		ForceSpell(LastSeenBy(Myself),WIZARD_LIGHTNING_BOLT)
+		SetGlobal("SpellRequest","LOCALS",0)
+		SetGlobal("UsedBolt","LOCALS",1)
+		Wait(1)
+END
+
+IF
+	Global("SpellRequest","LOCALS",2)
+	Global("UsedRay","LOCALS",0)
+THEN
+	RESPONSE #100
+		FaceObject(LastSeenBy(Myself))
+		EquipMostDamagingMelee()
+		SetSequence(SEQ_ATTACK)
+		ForceSpell(LastSeenBy(Myself),WIZARD_RAY_OF_ENFEEBLEMENT)
+		SetGlobal("SpellRequest","LOCALS",0)
+		SetGlobal("UsedRay","LOCALS",1)
+		Wait(1)
+END
+
+IF
+	Global("SpellRequest","LOCALS",3)
+	Global("UsedCone","LOCALS",0)
+THEN
+	RESPONSE #100
+		FaceObject(LastSeenBy(Myself))
+		EquipMostDamagingMelee()
+		SetSequence(SEQ_ATTACK)
+		ForceSpell(LastSeenBy(Myself),WIZARD_CONE_OF_COLD)
+		SetGlobal("SpellRequest","LOCALS",0)
+		SetGlobal("UsedCone","LOCALS",1)
+		Wait(1)
+END
+

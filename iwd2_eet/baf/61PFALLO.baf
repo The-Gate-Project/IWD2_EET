@@ -1,0 +1,53 @@
+IF
+	!Global("61CurrentDay","GLOBAL",4)
+THEN
+	RESPONSE #100
+		//ChangeCurrentScript("")
+		TriggerActivation(Myself,FALSE)
+END
+
+IF
+	See([GOODCUTOFF])
+THEN
+	RESPONSE #100
+		ForceSpellRES("IWPR613",Myself)  // SPPR613.SPL CLERIC_WHIRLWIND
+		//ChangeCurrentScript("")
+		TriggerActivation(Myself,FALSE)
+	RESPONSE #100
+		ForceSpell(Myself,WIZARD_DELAYED_BLAST_FIREBALL)
+		//ChangeCurrentScript("")
+		TriggerActivation(Myself,FALSE)
+	RESPONSE #100
+		ForceSpell(Myself,WIZARD_CLOUDKILL)
+		//ChangeCurrentScript("")
+		TriggerActivation(Myself,FALSE)
+	RESPONSE #100
+		ForceSpell(Myself,WIZARD_INCENDIARY_CLOUD)  // SPWI605.SPL WIZARD_ACID_FOG
+		//ChangeCurrentScript("")
+		TriggerActivation(Myself,FALSE)
+	RESPONSE #100
+		ForceSpell(Myself,WIZARD_DEATH_FOG)  // SPPR417.SPL CLERIC_CLOUD_OF_PESTILENCE
+		//ChangeCurrentScript("")
+		TriggerActivation(Myself,FALSE)
+	RESPONSE #100
+		ForceSpell(Myself,WIZARD_GREASE)  // SPWI101.SPL (Слизь)
+		//ChangeCurrentScript("")
+		TriggerActivation(Myself,FALSE)
+	RESPONSE #100
+		ForceSpell(Myself,CLERIC_INSECT_PLAGUE)  // SPPR510.SPL (Нашествие Насекомых)
+		//ChangeCurrentScript("")
+		TriggerActivation(Myself,FALSE)
+	RESPONSE #100
+		ForceSpell(Myself,CLERIC_FIRE_STORM)  // SPPR512.SPL CLERIC_SPIKE_STONES
+		//ChangeCurrentScript("")
+		TriggerActivation(Myself,FALSE)
+	RESPONSE #100
+		ForceSpell(Myself,WIZARD_STINKING_CLOUD)  // SPWI213.SPL (Зловонное облако)
+		//ChangeCurrentScript("")
+		TriggerActivation(Myself,FALSE)
+	RESPONSE #100
+		ForceSpell(Myself,WIZARD_WEB)  // SPWI215.SPL (Паутина)
+		//ChangeCurrentScript("")
+		TriggerActivation(Myself,FALSE)
+END
+

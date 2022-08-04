@@ -1,0 +1,12 @@
+IF
+	OR(2)
+		Clicked([ANYONE])
+		Opened([PC])
+	!Global("41PEQUIP_INACTIVE","MYAREA",1)
+THEN
+	RESPONSE #100
+		SetGlobal("41PartyMissingEquipment","GLOBAL",0)
+		//ChangeCurrentScript("")
+		SetGlobal("41PEQUIP_INACTIVE","MYAREA",1)
+END
+

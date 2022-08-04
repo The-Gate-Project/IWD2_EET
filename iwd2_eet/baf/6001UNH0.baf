@@ -1,0 +1,27 @@
+IF
+	!IsActive(Myself)
+	Global("6001_Dead_BattleGroup_HalfDead","MYAREA",1)
+THEN
+	RESPONSE #100
+		//Enemy()
+		//HideCreature(Myself,FALSE)
+		Activate(Myself)
+		SetGlobal("IwIHidden","LOCALS",0)
+		Enemy()
+		Continue()
+END
+
+IF
+	IsActive(Myself)
+THEN
+	RESPONSE #100
+		ChangeAIScript("",SPECIFICS)
+END
+
+IF
+	!IsActive(Myself)
+THEN
+	RESPONSE #100
+		NoAction()
+END
+

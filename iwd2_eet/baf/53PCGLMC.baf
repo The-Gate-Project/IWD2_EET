@@ -1,0 +1,816 @@
+IF
+	//Global("53GolIm","GLOBAL",10)
+	Global("StatsSet","LOCALS",0)
+THEN
+	RESPONSE #100
+		ChangeStat(Myself,RESISTELECTRICITY,0,SET)
+		ChangeStat(Myself,RESISTMAGIC,0,SET)
+		
+		ChangeStat(Myself,RESISTFIRE,100,SET)
+		ChangeStat(Myself,RESISTCOLD,100,SET)
+		ChangeStat(Myself,RESISTACID,100,SET)
+		ChangeStat(Myself,RESISTMAGICFIRE,100,SET)
+		ChangeStat(Myself,RESISTMAGICCOLD,100,SET)
+		SetGlobal("StatsSet","LOCALS",1)
+END
+
+IF
+	HitBy([ANYONE],ELECTRICITY)
+	Global("53PCGolem_Charges","GLOBAL",1)
+THEN
+	RESPONSE #100
+		IncrementGlobal("53PCGolem_Charges","GLOBAL",1)
+		DisplayStringHead(Myself,@38708)
+		SetGlobalTimer("IwTimer0","LOCALS",3)
+		ApplySpell(Myself,RESTORE_FULL_HEALTH)
+		Continue()
+END
+
+IF
+	HitBy([ANYONE],ELECTRICITY)
+	Global("53PCGolem_Charges","GLOBAL",4)
+THEN
+	RESPONSE #100
+		IncrementGlobal("53PCGolem_Charges","GLOBAL",1)
+		DisplayStringHead(Myself,@38709)
+		SetGlobalTimer("IwTimer0","LOCALS",3)
+		ApplySpell(Myself,RESTORE_FULL_HEALTH)
+		Continue()
+END
+
+IF
+	HitBy([ANYONE],ELECTRICITY)
+	Global("53PCGolem_Charges","GLOBAL",7)
+THEN
+	RESPONSE #100
+		IncrementGlobal("53PCGolem_Charges","GLOBAL",1)
+		DisplayStringHead(Myself,@38710)
+		SetGlobalTimer("IwTimer0","LOCALS",3)
+		ApplySpell(Myself,RESTORE_FULL_HEALTH)
+		Continue()
+END
+
+IF
+	HitBy([ANYONE],ELECTRICITY)
+	Global("53PCGolem_Charges","GLOBAL",10)
+THEN
+	RESPONSE #100
+		IncrementGlobal("53PCGolem_Charges","GLOBAL",1)
+		DisplayStringHead(Myself,@38711)
+		SetGlobalTimer("IwTimer0","LOCALS",3)
+		ApplySpell(Myself,RESTORE_FULL_HEALTH)
+		Continue()
+END
+
+IF
+	HitBy([ANYONE],ELECTRICITY)
+	!Global("53PCGolem_Charges","GLOBAL",11)
+THEN
+	RESPONSE #100
+		IncrementGlobal("53PCGolem_Charges","GLOBAL",1)
+		DisplayStringHead(Myself,@36651)
+		SetGlobalTimer("IwTimer0","LOCALS",3)
+		ApplySpell(Myself,RESTORE_FULL_HEALTH)
+		Continue()
+END
+
+IF
+	!GlobalTimerNotExpired("IwTimer0","LOCALS")
+	!GlobalTimerNotExpired("IwTimer98","LOCALS")
+	HPPercentLT(Myself,33)
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,@27328)
+		SetGlobalTimer("IwTimer0","LOCALS",3)
+		SetGlobalTimer("IwTimer98","LOCALS",21)
+		Continue()
+END
+
+IF
+	!GlobalTimerNotExpired("IwTimer0","LOCALS")
+	!GlobalTimerNotExpired("IwTimer98","LOCALS")
+	HPPercentLT(Myself,75)
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,@36850)
+		SetGlobalTimer("IwTimer0","LOCALS",3)
+		SetGlobalTimer("IwTimer98","LOCALS",21)
+		Continue()
+END
+
+IF
+	Global("53PCGolem_Protect","GLOBAL",1)
+	!GlobalTimerNotExpired("IwTimer0","LOCALS")
+	!GlobalTimerNotExpired("IwTimer94","LOCALS")
+	OR(3) //4
+		StateCheck(Player1,STATE_INVISIBLE)
+		StateCheck(Player1,STATE_IMPROVEDINVISIBILITY)
+		//IsCreatureHiddenInShadows(Player1)
+		StateCheck(Player1,STATE_REALLY_DEAD)
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,@27335)
+		SetGlobalTimer("IwTimer0","LOCALS",3)
+		SetGlobalTimer("IwTimer94","LOCALS",70)
+		Continue()
+END
+
+IF
+	Global("53PCGolem_Protect","GLOBAL",2)
+	!GlobalTimerNotExpired("IwTimer0","LOCALS")
+	!GlobalTimerNotExpired("IwTimer94","LOCALS")
+	OR(3) //4
+		StateCheck(Player2,STATE_INVISIBLE)
+		StateCheck(Player2,STATE_IMPROVEDINVISIBILITY)
+		//IsCreatureHiddenInShadows(Player2)
+		StateCheck(Player2,STATE_REALLY_DEAD)
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,@27335)
+		SetGlobalTimer("IwTimer0","LOCALS",3)
+		SetGlobalTimer("IwTimer94","LOCALS",70)
+		Continue()
+END
+
+IF
+	Global("53PCGolem_Protect","GLOBAL",3)
+	!GlobalTimerNotExpired("IwTimer0","LOCALS")
+	!GlobalTimerNotExpired("IwTimer94","LOCALS")
+	OR(3) //4
+		StateCheck(Player3,STATE_INVISIBLE)
+		StateCheck(Player3,STATE_IMPROVEDINVISIBILITY)
+		//IsCreatureHiddenInShadows(Player3)
+		StateCheck(Player3,STATE_REALLY_DEAD)
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,@27335)
+		SetGlobalTimer("IwTimer0","LOCALS",3)
+		SetGlobalTimer("IwTimer94","LOCALS",70)
+		Continue()
+END
+
+IF
+	Global("53PCGolem_Protect","GLOBAL",4)
+	!GlobalTimerNotExpired("IwTimer0","LOCALS")
+	!GlobalTimerNotExpired("IwTimer94","LOCALS")
+	OR(3) //4
+		StateCheck(Player4,STATE_INVISIBLE)
+		StateCheck(Player4,STATE_IMPROVEDINVISIBILITY)
+		//IsCreatureHiddenInShadows(Player4)
+		StateCheck(Player4,STATE_REALLY_DEAD)
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,@27335)
+		SetGlobalTimer("IwTimer0","LOCALS",3)
+		SetGlobalTimer("IwTimer94","LOCALS",70)
+		Continue()
+END
+
+IF
+	Global("53PCGolem_Protect","GLOBAL",5)
+	!GlobalTimerNotExpired("IwTimer0","LOCALS")
+	!GlobalTimerNotExpired("IwTimer94","LOCALS")
+	OR(3) //4
+		StateCheck(Player5,STATE_INVISIBLE)
+		StateCheck(Player5,STATE_IMPROVEDINVISIBILITY)
+		//IsCreatureHiddenInShadows(Player5)
+		StateCheck(Player5,STATE_REALLY_DEAD)
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,@27335)
+		SetGlobalTimer("IwTimer0","LOCALS",3)
+		SetGlobalTimer("IwTimer94","LOCALS",70)
+		Continue()
+END
+
+IF
+	Global("53PCGolem_Protect","GLOBAL",6)
+	!GlobalTimerNotExpired("IwTimer0","LOCALS")
+	!GlobalTimerNotExpired("IwTimer94","LOCALS")
+	OR(3) //4
+		StateCheck(Player6,STATE_INVISIBLE)
+		StateCheck(Player6,STATE_IMPROVEDINVISIBILITY)
+		//IsCreatureHiddenInShadows(Player6)
+		StateCheck(Player6,STATE_REALLY_DEAD)
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,@27335)
+		SetGlobalTimer("IwTimer0","LOCALS",3)
+		SetGlobalTimer("IwTimer94","LOCALS",70)
+		Continue()
+END
+
+IF
+	Global("53PCGolem_Protect","GLOBAL",1)
+	!StateCheck(Player1,STATE_REALLY_DEAD)
+	!GlobalTimerNotExpired("IwTimer0","LOCALS")
+	!GlobalTimerNotExpired("IwTimer97","LOCALS")
+	HPPercentLT(Player1,33)
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,@27331)
+		SetGlobalTimer("IwTimer0","LOCALS",3)
+		SetGlobalTimer("IwTimer97","LOCALS",21)
+		Continue()
+END
+
+IF
+	Global("53PCGolem_Protect","GLOBAL",2)
+	!StateCheck(Player2,STATE_REALLY_DEAD)
+	!GlobalTimerNotExpired("IwTimer0","LOCALS")
+	!GlobalTimerNotExpired("IwTimer97","LOCALS")
+	HPPercentLT(Player2,33)
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,@27331)
+		SetGlobalTimer("IwTimer0","LOCALS",3)
+		SetGlobalTimer("IwTimer97","LOCALS",21)
+		Continue()
+END
+
+IF
+	Global("53PCGolem_Protect","GLOBAL",3)
+	!StateCheck(Player3,STATE_REALLY_DEAD)
+	!GlobalTimerNotExpired("IwTimer0","LOCALS")
+	!GlobalTimerNotExpired("IwTimer97","LOCALS")
+	HPPercentLT(Player3,33)
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,@27331)
+		SetGlobalTimer("IwTimer0","LOCALS",3)
+		SetGlobalTimer("IwTimer97","LOCALS",21)
+		Continue()
+END
+
+IF
+	Global("53PCGolem_Protect","GLOBAL",4)
+	!StateCheck(Player4,STATE_REALLY_DEAD)
+	!GlobalTimerNotExpired("IwTimer0","LOCALS")
+	!GlobalTimerNotExpired("IwTimer97","LOCALS")
+	HPPercentLT(Player4,33)
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,@27331)
+		SetGlobalTimer("IwTimer0","LOCALS",3)
+		SetGlobalTimer("IwTimer97","LOCALS",21)
+		Continue()
+END
+
+IF
+	Global("53PCGolem_Protect","GLOBAL",5)
+	!StateCheck(Player5,STATE_REALLY_DEAD)
+	!GlobalTimerNotExpired("IwTimer0","LOCALS")
+	!GlobalTimerNotExpired("IwTimer97","LOCALS")
+	HPPercentLT(Player5,33)
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,@27331)
+		SetGlobalTimer("IwTimer0","LOCALS",3)
+		SetGlobalTimer("IwTimer97","LOCALS",21)
+		Continue()
+END
+
+IF
+	Global("53PCGolem_Protect","GLOBAL",6)
+	!StateCheck(Player6,STATE_REALLY_DEAD)
+	!GlobalTimerNotExpired("IwTimer0","LOCALS")
+	!GlobalTimerNotExpired("IwTimer97","LOCALS")
+	HPPercentLT(Player6,33)
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,@27331)
+		SetGlobalTimer("IwTimer0","LOCALS",3)
+		SetGlobalTimer("IwTimer97","LOCALS",21)
+		Continue()
+END
+
+IF
+	Global("53PCGolem_Protect","GLOBAL",1)
+	!StateCheck(Player1,STATE_REALLY_DEAD)
+	!GlobalTimerNotExpired("IwTimer0","LOCALS")
+	!GlobalTimerNotExpired("IwTimer97","LOCALS")
+	HPPercentLT(Player1,75)
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,@27330)
+		SetGlobalTimer("IwTimer0","LOCALS",3)
+		SetGlobalTimer("IwTimer97","LOCALS",21)
+		Continue()
+END
+
+IF
+	Global("53PCGolem_Protect","GLOBAL",2)
+	!StateCheck(Player2,STATE_REALLY_DEAD)
+	!GlobalTimerNotExpired("IwTimer0","LOCALS")
+	!GlobalTimerNotExpired("IwTimer97","LOCALS")
+	HPPercentLT(Player2,75)
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,@27330)
+		SetGlobalTimer("IwTimer0","LOCALS",3)
+		SetGlobalTimer("IwTimer97","LOCALS",21)
+		Continue()
+END
+
+IF
+	Global("53PCGolem_Protect","GLOBAL",3)
+	!StateCheck(Player3,STATE_REALLY_DEAD)
+	!GlobalTimerNotExpired("IwTimer0","LOCALS")
+	!GlobalTimerNotExpired("IwTimer97","LOCALS")
+	HPPercentLT(Player3,75)
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,@27330)
+		SetGlobalTimer("IwTimer0","LOCALS",3)
+		SetGlobalTimer("IwTimer97","LOCALS",21)
+		Continue()
+END
+
+IF
+	Global("53PCGolem_Protect","GLOBAL",4)
+	!StateCheck(Player4,STATE_REALLY_DEAD)
+	!GlobalTimerNotExpired("IwTimer0","LOCALS")
+	!GlobalTimerNotExpired("IwTimer97","LOCALS")
+	HPPercentLT(Player4,75)
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,@27330)
+		SetGlobalTimer("IwTimer0","LOCALS",3)
+		SetGlobalTimer("IwTimer97","LOCALS",21)
+		Continue()
+END
+
+IF
+	Global("53PCGolem_Protect","GLOBAL",5)
+	!StateCheck(Player5,STATE_REALLY_DEAD)
+	!GlobalTimerNotExpired("IwTimer0","LOCALS")
+	!GlobalTimerNotExpired("IwTimer97","LOCALS")
+	HPPercentLT(Player5,75)
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,@27330)
+		SetGlobalTimer("IwTimer0","LOCALS",3)
+		SetGlobalTimer("IwTimer97","LOCALS",21)
+		Continue()
+END
+
+IF
+	Global("53PCGolem_Protect","GLOBAL",6)
+	!StateCheck(Player6,STATE_REALLY_DEAD)
+	!GlobalTimerNotExpired("IwTimer0","LOCALS")
+	!GlobalTimerNotExpired("IwTimer97","LOCALS")
+	HPPercentLT(Player6,75)
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,@27330)
+		SetGlobalTimer("IwTimer0","LOCALS",3)
+		SetGlobalTimer("IwTimer97","LOCALS",21)
+		Continue()
+END
+
+/*IF
+	True()
+THEN
+	RESPONSE #100
+		SetGlobal("MyMasterValid","LOCALS",0)
+		SetGlobal("MyMasterInRange","LOCALS",0)
+		Continue()
+END */
+
+IF
+	Global("MyMasterValid","LOCALS",0)
+	Global("53PCGolem_Protect","GLOBAL",1)
+	StateCheck(Player1,STATE_REALLY_DEAD)
+THEN
+	RESPONSE #100
+		SetGlobal("MyMasterValid","LOCALS",-1)
+		//Continue()
+END
+
+IF
+	Global("MyMasterValid","LOCALS",0)
+	Global("53PCGolem_Protect","GLOBAL",1)
+	!StateCheck(Player1,STATE_REALLY_DEAD)
+THEN
+	RESPONSE #100
+		SetGlobal("MyMasterValid","LOCALS",1)
+		//Continue()
+END
+
+IF
+	Global("MyMasterValid","LOCALS",1)
+	Global("53PCGolem_Protect","GLOBAL",1)
+	Global("MyMasterInRange","LOCALS",0)
+	Range(Player1,30)
+THEN
+	RESPONSE #100
+		SetGlobal("MyMasterInRange","LOCALS",1)
+		//Continue()
+END
+
+IF
+	Global("MyMasterValid","LOCALS",0)
+	Global("53PCGolem_Protect","GLOBAL",2)
+	StateCheck(Player2,STATE_REALLY_DEAD)
+THEN
+	RESPONSE #100
+		SetGlobal("MyMasterValid","LOCALS",-1)
+		//Continue()
+END
+
+IF
+	Global("MyMasterValid","LOCALS",0)
+	Global("53PCGolem_Protect","GLOBAL",2)
+	!StateCheck(Player2,STATE_REALLY_DEAD)
+THEN
+	RESPONSE #100
+		SetGlobal("MyMasterValid","LOCALS",1)
+		//Continue()
+END
+
+IF
+	Global("MyMasterValid","LOCALS",1)
+	Global("53PCGolem_Protect","GLOBAL",2)
+	Global("MyMasterInRange","LOCALS",0)
+	Range(Player2,30)
+THEN
+	RESPONSE #100
+		SetGlobal("MyMasterInRange","LOCALS",1)
+		//Continue()
+END
+
+IF
+	Global("MyMasterValid","LOCALS",0)
+	Global("53PCGolem_Protect","GLOBAL",3)
+	StateCheck(Player3,STATE_REALLY_DEAD)
+THEN
+	RESPONSE #100
+		SetGlobal("MyMasterValid","LOCALS",-1)
+		//Continue()
+END
+
+IF
+	Global("MyMasterValid","LOCALS",0)
+	Global("53PCGolem_Protect","GLOBAL",3)
+	!StateCheck(Player3,STATE_REALLY_DEAD)
+THEN
+	RESPONSE #100
+		SetGlobal("MyMasterValid","LOCALS",1)
+		//Continue()
+END
+
+IF
+	Global("MyMasterValid","LOCALS",1)
+	Global("53PCGolem_Protect","GLOBAL",3)
+	Global("MyMasterInRange","LOCALS",0)
+	Range(Player3,30)
+THEN
+	RESPONSE #100
+		SetGlobal("MyMasterInRange","LOCALS",1)
+		//Continue()
+END
+
+IF
+	Global("MyMasterValid","LOCALS",0)
+	Global("53PCGolem_Protect","GLOBAL",4)
+	StateCheck(Player4,STATE_REALLY_DEAD)
+THEN
+	RESPONSE #100
+		SetGlobal("MyMasterValid","LOCALS",-1)
+		//Continue()
+END
+
+IF
+	Global("MyMasterValid","LOCALS",0)
+	Global("53PCGolem_Protect","GLOBAL",4)
+	!StateCheck(Player4,STATE_REALLY_DEAD)
+THEN
+	RESPONSE #100
+		SetGlobal("MyMasterValid","LOCALS",1)
+		//Continue()
+END
+
+IF
+	Global("MyMasterValid","LOCALS",1)
+	Global("53PCGolem_Protect","GLOBAL",4)
+	Global("MyMasterInRange","LOCALS",0)
+	Range(Player4,30)
+THEN
+	RESPONSE #100
+		SetGlobal("MyMasterInRange","LOCALS",1)
+		//Continue()
+END
+
+IF
+	Global("MyMasterValid","LOCALS",0)
+	Global("53PCGolem_Protect","GLOBAL",5)
+	StateCheck(Player5,STATE_REALLY_DEAD)
+THEN
+	RESPONSE #100
+		SetGlobal("MyMasterValid","LOCALS",-1)
+		//Continue()
+END
+
+IF
+	Global("MyMasterValid","LOCALS",0)
+	Global("53PCGolem_Protect","GLOBAL",5)
+	!StateCheck(Player5,STATE_REALLY_DEAD)
+THEN
+	RESPONSE #100
+		SetGlobal("MyMasterValid","LOCALS",1)
+		//Continue()
+END
+
+IF
+	Global("MyMasterValid","LOCALS",1)
+	Global("53PCGolem_Protect","GLOBAL",5)
+	Global("MyMasterInRange","LOCALS",0)
+	Range(Player5,30)
+THEN
+	RESPONSE #100
+		SetGlobal("MyMasterInRange","LOCALS",1)
+		//Continue()
+END
+
+IF
+	Global("MyMasterValid","LOCALS",0)
+	Global("53PCGolem_Protect","GLOBAL",6)
+	StateCheck(Player6,STATE_REALLY_DEAD)
+THEN
+	RESPONSE #100
+		SetGlobal("MyMasterValid","LOCALS",-1)
+		//Continue()
+END
+
+IF
+	Global("MyMasterValid","LOCALS",0)
+	Global("53PCGolem_Protect","GLOBAL",6)
+	!StateCheck(Player6,STATE_REALLY_DEAD)
+THEN
+	RESPONSE #100
+		SetGlobal("MyMasterValid","LOCALS",1)
+		//Continue()
+END
+
+IF
+	Global("MyMasterValid","LOCALS",1)
+	Global("53PCGolem_Protect","GLOBAL",6)
+	Global("MyMasterInRange","LOCALS",0)
+	Range(Player6,30)
+THEN
+	RESPONSE #100
+		SetGlobal("MyMasterInRange","LOCALS",1)
+		//Continue()
+END
+
+/* IF
+	!Global("MyTargetValid","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobal("MyTargetValid","LOCALS",0)
+		Continue()
+END */
+
+IF
+	Global("MyTargetValid","LOCALS",0)
+	Global("MyMasterInRange","LOCALS",1)
+	Global("53PCGolem_Protect","GLOBAL",1)
+	!StateCheck(Player1,STATE_REALLY_DEAD)
+	See([ENEMY])
+THEN
+	RESPONSE #100
+		SetGlobal("MyTargetValid","LOCALS",1)
+		//SetMyTarget(LastMarkedObject)
+		//Continue()
+END
+
+IF
+	Global("MyTargetValid","LOCALS",0)
+	Global("MyMasterInRange","LOCALS",1)
+	Global("53PCGolem_Protect","GLOBAL",2)
+	!StateCheck(Player2,STATE_REALLY_DEAD)
+	See([ENEMY])
+THEN
+	RESPONSE #100
+		SetGlobal("MyTargetValid","LOCALS",1)
+		//SetMyTarget(LastMarkedObject)
+		//Continue()
+END
+
+IF
+	Global("MyTargetValid","LOCALS",0)
+	Global("MyMasterInRange","LOCALS",1)
+	Global("53PCGolem_Protect","GLOBAL",3)
+	!StateCheck(Player3,STATE_REALLY_DEAD)
+	See([ENEMY])
+THEN
+	RESPONSE #100
+		SetGlobal("MyTargetValid","LOCALS",1)
+		//SetMyTarget(LastMarkedObject)
+		//Continue()
+END
+
+IF
+	Global("MyTargetValid","LOCALS",0)
+	Global("MyMasterInRange","LOCALS",1)
+	Global("53PCGolem_Protect","GLOBAL",4)
+	!StateCheck(Player4,STATE_REALLY_DEAD)
+	See([ENEMY])
+THEN
+	RESPONSE #100
+		SetGlobal("MyTargetValid","LOCALS",1)
+		//SetMyTarget(LastMarkedObject)
+		//Continue()
+END
+
+IF
+	Global("MyTargetValid","LOCALS",0)
+	Global("MyMasterInRange","LOCALS",1)
+	Global("53PCGolem_Protect","GLOBAL",5)
+	!StateCheck(Player5,STATE_REALLY_DEAD)
+	See([ENEMY])
+THEN
+	RESPONSE #100
+		SetGlobal("MyTargetValid","LOCALS",1)
+		//SetMyTarget(LastMarkedObject)
+		//Continue()
+END
+
+IF
+	Global("MyTargetValid","LOCALS",0)
+	Global("MyMasterInRange","LOCALS",1)
+	Global("53PCGolem_Protect","GLOBAL",6)
+	!StateCheck(Player6,STATE_REALLY_DEAD)
+	See([ENEMY])
+THEN
+	RESPONSE #100
+		SetGlobal("MyTargetValid","LOCALS",1)
+		//SetMyTarget(LastMarkedObject)
+		//Continue()
+END
+
+IF
+	Global("MyTargetValid","LOCALS",0)
+	Global("MyMasterValid","LOCALS",-1)
+	Range([PC],30)
+	See([ENEMY])
+THEN
+	RESPONSE #100
+		SetGlobal("MyTargetValid","LOCALS",1)
+		//SetMyTarget(LastMarkedObject)
+		//Continue()
+END
+
+IF
+	Global("MyTargetValid","LOCALS",1)
+	!GlobalTimerNotExpired("IwTimer0","LOCALS")
+	!GlobalTimerNotExpired("IwTimer96","LOCALS")
+	See([ENEMY])
+	LevelGT(LastSeenBy(Myself),10) //MyTarget
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,@27332)
+		SetGlobalTimer("IwTimer0","LOCALS",3)
+		SetGlobalTimer("IwTimer96","LOCALS",5)
+		Continue()
+END
+
+IF
+	Global("MyTargetValid","LOCALS",1)
+	!GlobalTimerNotExpired("IwTimer0","LOCALS")
+	!GlobalTimerNotExpired("IwTimer96","LOCALS")
+	See([ENEMY])
+	LevelLT(LastSeenBy(Myself),11) //MyTarget
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,@27333)
+		SetGlobalTimer("IwTimer0","LOCALS",3)
+		SetGlobalTimer("IwTimer96","LOCALS",5)
+		Continue()
+END
+
+IF
+	Global("MyTargetValid","LOCALS",1)
+	Global("MyMasterInRange","LOCALS",1)
+	GlobalGT("53PCGolem_Charges","GLOBAL",2)
+	//!GlobalGT("53PCGolem_Charges","GLOBAL",5)
+	//!GlobalGT("53PCGolem_Charges","GLOBAL",8)
+	//!GlobalGT("53PCGolem_Charges","GLOBAL",11)
+	GlobalLT("53PCGolem_Charges","GLOBAL",6)
+	
+	!HasItem("SGrasp01",Myself)
+	!HasItem("SGrasp02",Myself)
+	!HasItem("SGrasp03",Myself)
+	!HasItem("SGrasp04",Myself)
+	!HasItem("SGrasp05",Myself)
+	!HasItem("SGrasp06",Myself)
+	!HasItem("SGrasp07",Myself)
+	!HasItem("SGrasp08",Myself)
+	!HasItem("SGrasp09",Myself)
+	!HasItem("SGrasp10",Myself)
+	!HasItem("SGrasp11",Myself)
+	!HasItem("SGrasp12",Myself)
+	!HasItem("SGrasp13",Myself)
+	!HasItem("SGrasp14",Myself)
+	!HasItem("SGrasp15",Myself)
+	!HasItem("SGrasp16",Myself)
+	!HasItem("SGrasp17",Myself)
+	!HasItem("SGrasp18",Myself)
+	!HasItem("SGrasp19",Myself)
+	!HasItem("SGrasp20",Myself)
+	See([ENEMY])
+THEN
+	RESPONSE #100
+		SetGlobal("53PCGolem_Charges","GLOBAL",0)
+		ReallyForceSpell(Myself,WIZARD_SHOCKING_GRASP)
+		Wait(1)
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	Global("MyTargetValid","LOCALS",1)
+	Global("MyMasterInRange","LOCALS",1)
+	GlobalGT("53PCGolem_Charges","GLOBAL",5)
+	//!GlobalGT("53PCGolem_Charges","GLOBAL",8)
+	//!GlobalGT("53PCGolem_Charges","GLOBAL",11)
+	GlobalLT("53PCGolem_Charges","GLOBAL",9)
+	See([ENEMY])
+	Range(LastSeenBy(Myself),3)
+THEN
+	RESPONSE #100
+		SetGlobal("53PCGolem_Charges","GLOBAL",0)
+		ReallyForceSpellRES("IWWI227",LastSeenBy(Myself))  // SPWI227.SPL WIZARD_GEDLEES_ELECTRIC_LOOP
+		Wait(1)
+END
+
+IF
+	Global("MyTargetValid","LOCALS",1)
+	Global("MyMasterInRange","LOCALS",1)
+	GlobalGT("53PCGolem_Charges","GLOBAL",5)
+	//!GlobalGT("53PCGolem_Charges","GLOBAL",8)
+	//!GlobalGT("53PCGolem_Charges","GLOBAL",11)
+	GlobalLT("53PCGolem_Charges","GLOBAL",9)
+	See([ENEMY])
+	!Range(LastSeenBy(Myself),3)
+THEN
+	RESPONSE #100
+		SetGlobal("53PCGolem_Charges","GLOBAL",0)
+		MoveToObject(LastSeenBy(Myself))
+END
+
+IF
+	Global("MyTargetValid","LOCALS",1)
+	Global("MyMasterInRange","LOCALS",1)
+	GlobalGT("53PCGolem_Charges","GLOBAL",8)
+	//!GlobalGT("53PCGolem_Charges","GLOBAL",11)
+	GlobalLT("53PCGolem_Charges","GLOBAL",12)
+	See([ENEMY])
+THEN
+	RESPONSE #100
+		SetGlobal("53PCGolem_Charges","GLOBAL",0)
+		ReallyForceSpell(LastSeenBy(Myself),WIZARD_CHAIN_LIGHTNING)
+		Wait(1)
+END
+
+IF
+	Global("MyTargetValid","LOCALS",1)
+	Global("MyMasterInRange","LOCALS",1)
+	GlobalGT("53PCGolem_Charges","GLOBAL",11)
+	See([ENEMY])
+THEN
+	RESPONSE #100
+		SetGlobal("53PCGolem_Charges","GLOBAL",0)
+		ReallyForceSpellRES("IWPR523",LastSeenBy(Myself))  // SPPR523.SPL CLERIC_STATIC_CHARGE
+		Wait(1)
+END
+
+IF
+	Global("MyTargetValid","LOCALS",1)
+	Global("MyMasterInRange","LOCALS",1)
+	See([ENEMY])
+THEN
+	RESPONSE #100
+		SetGlobal("MyTargetValid","LOCALS",0)
+		SetGlobal("InCombat","LOCALS",1)
+		EquipMostDamagingMelee()
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+/* MOVED BLOCKS */
+IF
+	True()
+THEN
+	RESPONSE #100
+		SetGlobal("MyMasterValid","LOCALS",0)
+		SetGlobal("MyMasterInRange","LOCALS",0)
+		Continue()
+END
+
+IF
+	!Global("MyTargetValid","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobal("MyTargetValid","LOCALS",0)
+		Continue()
+END
+

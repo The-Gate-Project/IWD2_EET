@@ -1,0 +1,41 @@
+IF
+	!Allegiance(Myself,ENEMY)
+	!Global("TEAM_1","MYAREA",0)
+THEN
+	RESPONSE #100
+		Enemy()
+		Continue()
+END
+
+IF
+	Global("5203_GONG","MYAREA",0)
+	!Global("TEAM_1","MYAREA",0)
+	OR(2)
+		See(NearestEnemyOf(Myself))
+		AttackedBy([GOODCUTOFF],DEFAULT)
+THEN
+	RESPONSE #100
+		SetGlobal("5203_GONG","MYAREA",1)
+		PlaySound("IW5202k")
+		Continue()
+END
+
+IF
+	Global("5203_GONG","MYAREA",0)
+THEN
+	RESPONSE #100
+		NoAction()
+END
+
+IF
+	//IsCreatureAreaFlag(Myself,INVULNERABLE)
+	//!Global("IDINVULN","LOCALS",0)
+	CheckSpellState(Myself,INVULNERABLE_IWD)
+	!Global("5203_GONG","MYAREA",0)
+THEN
+	RESPONSE #100
+		//SetCreatureAreaFlag(Myself,INVULNERABLE,FALSE)
+		ApplySpellRES("IDRINVUL",Myself)
+		Continue()
+END
+

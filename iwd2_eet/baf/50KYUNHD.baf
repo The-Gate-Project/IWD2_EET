@@ -1,0 +1,27 @@
+IF
+	!IsActive(Myself)
+	!Global("50Kyosti","GLOBAL",0)
+THEN
+	RESPONSE #100
+		//HideCreature(Myself,FALSE)
+		Activate(Myself)
+		SetGlobal("IwIHidden","LOCALS",0)
+		ApplySpellRES("idinvis5",Myself)
+		Continue()
+END
+
+IF
+	IsActive(Myself)
+	!Global("50Kyosti","GLOBAL",0)
+THEN
+	RESPONSE #100
+		ChangeAIScript("",CLASS)
+END
+
+IF
+	!IsActive(Myself)
+THEN
+	RESPONSE #100
+		NoAction()
+END
+

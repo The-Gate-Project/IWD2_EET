@@ -1,0 +1,72 @@
+IF
+	Global("RemoveAllSlaves","MYAREA",0)
+	Global("SH_Free_All_Slaves","GLOBAL",1)
+THEN
+	RESPONSE #100
+		SetGlobal("RemoveAllSlaves","MYAREA",1)
+		ActionOverride("IW6302_SHand_Worker01",DestroySelf())
+		ActionOverride("IW6302_SHand_Worker02",DestroySelf())
+		ActionOverride("IW6302_SHand_Worker03",DestroySelf())
+		ActionOverride("IW6302_SHand_Worker04",DestroySelf())
+		ActionOverride("IW6302_SHand_Worker05",DestroySelf())
+		ActionOverride("IW6302_SHand_Worker06",DestroySelf())
+		ActionOverride("IW6302_SHand_Worker07",DestroySelf())
+		ActionOverride("IW6302_SHand_Worker08",DestroySelf())
+		ActionOverride("IW6302_SHand_Worker09",DestroySelf())
+		ActionOverride("IW6302_SHand_Worker10",DestroySelf())
+		ActionOverride("IW6302_SHand_Worker11",DestroySelf())
+		ActionOverride("IW6302_SHand_Worker12",DestroySelf())
+		ActionOverride("IW6302_SHand_Worker13",DestroySelf())
+		ActionOverride("IW6302_SHand_Worker14",DestroySelf())
+		ActionOverride("IW6302_SHand_Worker15",DestroySelf())
+		ActionOverride("IW6302_SHand_Worker16",DestroySelf())
+		ActionOverride("Roga_Thulc",DestroySelf())
+		ActionOverride("Vylu_Prehv",DestroySelf())
+		ActionOverride("Ysha",DestroySelf())
+		Continue()
+END
+
+IF
+	Global("SH_Dead_Slaves_Message","GLOBAL",0)
+	!Global("SPRITE_IS_DEADIyachtu_Xvim","GLOBAL",1)
+	GlobalGT("SH_Kill_Slaves","GLOBAL",0)
+	GlobalGT("SH_Dead_Slaves","GLOBAL",9)
+THEN
+	RESPONSE #100
+		SetGlobal("SH_Dead_Slaves_Message","GLOBAL",1)
+		DisplayString(Player1,@36887) //[PC]
+		Continue()
+END
+
+IF
+	Global("RemoveGlobeOfEssense","MYAREA",0)
+	Global("SH_SGEM_Destroyed","GLOBAL",1)
+THEN
+	RESPONSE #100
+		SetGlobal("RemoveGlobeOfEssense","MYAREA",1)
+		AmbientActivate("6302MS1",FALSE)
+		AddJournalEntry(@41361,QUEST)
+		AddXP2DA("IW2EX14H")
+		DisplayString(Player1,@40284) //[PC]
+		//ActionOverride("poofy",SpellHitEffectSprite("poofy","poofy",SOLS_SEARING_ORB,0))
+		CreateVisualEffect("SSORBH",[2151.610])
+		//HideCreature("poofy",TRUE)
+		Continue()
+END
+
+/*IF
+	!CreatureHidden("poofy")
+THEN
+	RESPONSE #100
+		HideCreature("poofy",TRUE)
+		Continue()
+END*/
+
+IF
+	OnCreation()
+THEN
+	RESPONSE #100
+		NoAction()
+		Continue()
+END
+

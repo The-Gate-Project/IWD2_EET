@@ -1,0 +1,44 @@
+IF
+  Global("SaveSavedLoc","LOCALS",0)
+THEN
+  RESPONSE #100
+    SetGlobal("SaveSavedLoc","LOCALS",1)
+    SaveObjectLocation("LOCALS","SavedLoc",Myself)
+    Continue()
+END
+
+IF
+	OR(3)
+		Allegiance(Myself,ENEMY)
+		AttackedBy([GOODCUTOFF],DEFAULT)
+		NumTimesTalkedToGT(0)
+THEN
+	RESPONSE #100
+		//JumpToSavedLocation()
+		//SpellHitEffectSprite(Myself,Myself,DIMENSION_DOOR_ORIGIN,0)
+		//ChangeCurrentScript("")
+		SetInterrupt(FALSE)
+		CreateCreatureAtLocation("SavedLoc","LOCALS","IDGOLS1")
+		SmallWait(2)
+		JumpToObject("IDGOLMSVLC1")
+		SmallWait(2)
+		ActionOverride("IDGOLMSVLC1",DestroySelf())
+		CreateVisualEffectObject("SPDIMNDR",Myself)
+		MoveToSavedLocation("SavedLoc","LOCALS")
+		SetInterrupt(TRUE)
+		ChangeAIScript("",SPECIFICS)
+END
+
+IF
+	NumberOfTimesTalkedTo(0)
+	OR(3)
+		OpenState("AR4101_Door13",TRUE)
+		OpenState("AR4101_Door14",TRUE)
+		OpenState("AR4101_Door15",TRUE)
+	See([ENEMY])
+	Specifics(LastSeenBy(Myself),254)
+THEN
+	RESPONSE #100
+		NoAction()
+END
+

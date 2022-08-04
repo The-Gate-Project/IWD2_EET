@@ -1,0 +1,22 @@
+IF
+	!GlobalTimerNotExpired("60TRAP03_TIMER","MYAREA")
+	OpenState("AR6051_Crusher",TRUE)
+THEN
+	RESPONSE #100
+		CloseDoor("AR6051_Crusher")
+		SetGlobalTimer("60TRAP03_TIMER","MYAREA",3)
+END
+
+IF
+	!GlobalTimerNotExpired("60TRAP03_TIMER","MYAREA")
+	Entered([PC])
+THEN
+	RESPONSE #100
+		OpenDoor("AR6051_Crusher")
+		ForceSpellRES("IWIN251",LastTrigger)  // SPIN251.SPL TRAP_SSETHS_EMBRACE
+		DisplayString(LastTrigger,14381)
+		//ScreenShake(5,15,15)
+		ScreenShake([15.15],5)
+		SetGlobalTimer("60TRAP03_TIMER","MYAREA",3)
+END
+

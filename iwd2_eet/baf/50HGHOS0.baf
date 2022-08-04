@@ -1,0 +1,23 @@
+IF
+	Global("50Kyosti","GLOBAL",1)
+THEN
+	RESPONSE #100
+		UseItem("z1veira2",Myself)
+		Wait(1)
+		DestroySelf()
+END
+
+IF
+	!GlobalTimerNotExpired("IwTimer21","LOCALS")
+	Global("50HGhost","GLOBAL",0)
+THEN
+	RESPONSE #25
+		DisplayStringHead(Myself,@17885)
+		SetGlobalTimerRandom("IwTimer21","LOCALS",10,15)
+	RESPONSE #25
+		DisplayStringHead(Myself,@17886)
+		SetGlobalTimerRandom("IwTimer21","LOCALS",10,15)
+	RESPONSE #150
+		SetGlobalTimerRandom("IwTimer21","LOCALS",10,15)
+END
+

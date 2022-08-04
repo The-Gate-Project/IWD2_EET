@@ -1,0 +1,34 @@
+IF
+	StateCheck(Myself,STATE_PANIC)
+THEN
+	RESPONSE #100
+		RandomWalkContinuous()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	OR(2)
+		See(NearestEnemyOf(Myself))
+		See([PC.0.0.PALADIN_ALL])
+	!Range(LastSeenBy(Myself),4)
+	CanEquipRanged()
+THEN
+	RESPONSE #100
+		EquipRanged()
+		AttackReevaluate(LastSeenBy(Myself),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	OR(2)
+		See(NearestEnemyOf(Myself))
+		See([PC.0.0.PALADIN_ALL])
+	OR(2)
+		Range(LastSeenBy(Myself),4)
+		!CanEquipRanged()
+THEN
+	RESPONSE #100
+		EquipMostDamagingMelee()
+		AttackReevaluate(LastSeenBy(Myself),45)
+END
+

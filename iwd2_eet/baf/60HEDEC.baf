@@ -1,0 +1,96 @@
+IF
+	Global("ar6051_Kill_HeartlessDead","GLOBAL",1)
+THEN
+	RESPONSE #100
+		Kill(Myself)
+END
+
+IF
+	!Global("Initial_Pos_Offset","MYAREA",2)
+	!Global("Attacked","LOCALS",1)
+THEN
+	RESPONSE #100
+		NoAction()
+END
+
+IF
+	Global("Attacked","LOCALS",0)
+	OR(2)
+		AttackedBy([GOODCUTOFF],DEFAULT)
+		PickPocketFailed([PC])
+THEN
+	RESPONSE #100
+		SetGlobal("Attacked","LOCALS",1)
+		Enemy()
+END
+
+IF
+	Name("6051Heartless_Dead1",Myself)
+THEN
+	RESPONSE #100
+		ChangeAIScript("00aDmE",SPECIFICS) //SPECIAL_1
+		ChangeAIScript("60HeDeC1",RACE)
+END
+
+/*IF
+	IsScriptName("6051Heartless_Dead2",Myself)
+THEN
+	RESPONSE #100
+		ChangeCurrentScript("60HeDeC2")
+		ChangeAIScript("00aDmE",SPECIFICS) //SPECIAL_1
+END
+
+IF
+	IsScriptName("6051Heartless_Dead3",Myself)
+THEN
+	RESPONSE #100
+		ChangeCurrentScript("60HeDeC3")
+		ChangeAIScript("00aDmE",SPECIFICS) //SPECIAL_1
+END
+
+IF
+	IsScriptName("6051Heartless_Dead4",Myself)
+THEN
+	RESPONSE #100
+		ChangeCurrentScript("60HeDeC4")
+		ChangeAIScript("00aDmE",SPECIFICS) //SPECIAL_1
+END
+
+IF
+	IsScriptName("6051Heartless_Dead5",Myself)
+THEN
+	RESPONSE #100
+		ChangeCurrentScript("60HeDeC5")
+		ChangeAIScript("00aDmE",SPECIFICS) //SPECIAL_1
+END*/
+
+IF
+	Name("6051Heartless_Dead6",Myself)
+THEN
+	RESPONSE #100
+		ChangeAIScript("00aDmE",SPECIFICS) //SPECIAL_1
+		ChangeAIScript("60HeDeC6",RACE)
+END
+
+IF
+	Name("6051Heartless_Dead7",Myself)
+THEN
+	RESPONSE #100
+		ChangeAIScript("00aDmE",SPECIFICS) //SPECIAL_1
+		ChangeAIScript("60HeDeC7",RACE)
+END
+
+IF
+	Name("6051Heartless_Dead8",Myself)
+THEN
+	RESPONSE #100
+		ChangeAIScript("00aDmE",SPECIFICS) //SPECIAL_1
+		ChangeAIScript("60HeDeC8",RACE)
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+END
+

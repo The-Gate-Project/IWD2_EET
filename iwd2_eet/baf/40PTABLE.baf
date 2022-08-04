@@ -1,0 +1,121 @@
+IF
+	Global("40SpellComponentsCheck","GLOBAL",0)
+	HasItem("THRYM",Myself)  // Экстракт фрима
+	HasItem("z4genbe",Myself)  // Белладонна
+	HasItem("z4genss",Myself)  // Свежая паутина
+	HasItem("z4genwp",Myself)  // Груда бревен
+	NumItemsGT("MISC42",Myself,1)  // Бриллиант
+	OR(40)
+		HasItem("HALB01",Myself)  // Алебарда
+		HasItem("z0halb02",Myself)  // Лучшая алебарда
+		HasItem("SPER01",Myself)  // Копье
+		HasItem("z0sper95",Myself)  // Лучшее копье
+		HasItem("BLUN02",Myself)  // Цеп
+		HasItem("z0flal99",Myself)  // Лучший цеп
+		HasItem("BLUN04",Myself)  // Булава
+		HasItem("HQMACE",Myself)  // Лучшая булава
+		HasItem("BLUN06",Myself)  // Моргенштерн
+		HasItem("HQMSTAR",Myself)  // Лучший моргенштерн
+		HasItem("z3istone",Myself)  // Железный рунный камень
+		HasItem("MISC56",Myself)  // Сломанное оружие
+		HasItem("MISC57",Myself)  // Сломанный щит
+		HasItem("MISC58",Myself)  // Разбитый доспех
+		HasItem("MISC59",Myself)  // Разные обломки
+		HasItem("MISC82",Myself)  // Древний доспех
+		HasItem("z0ax1h01",Myself)  // Боевой топор
+		HasItem("HQAXE",Myself)  // Лучший боевой топор
+		HasItem("AX1H04",Myself)  // Метательный топор
+		HasItem("AX1H01",Myself)  // Ручной топорик
+		HasItem("z0ax1h12",Myself)  // Лучший топорик
+		HasItem("DAGG01",Myself)  // Кинжал
+		HasItem("HQDAGG",Myself)  // Лучший кинжал
+		HasItem("DAGG05",Myself)  // Метательный кинжал
+		HasItem("HAMM01",Myself)  // Боевой молот
+		HasItem("HQHAMM",Myself)  // Лучший боевой молот
+		HasItem("MAUL",Myself)  // Боевой молот
+		HasItem("z0hamt01",Myself)  // Метательный молот
+		HasItem("z0hamt02",Myself)  // Метательный молот работы мастера
+		HasItem("SW1H01",Myself)  // Полуторный меч
+		HasItem("HQBSWRD",Myself)  // Лучший полуторный меч
+		HasItem("SW1H20",Myself)  // Скимитар
+		HasItem("z0swdc94",Myself)  // Лучший скимитар
+		HasItem("SW1H04",Myself)  // Длинный меч
+		HasItem("HQLSWRD",Myself)  // Лучший длинный меч
+		HasItem("SW1H07",Myself)  // Короткий меч
+		HasItem("HQSSWRD",Myself)  // Лучший короткий меч
+		HasItem("SW2H01",Myself)  // Двуручный меч
+		HasItem("HQ2HSWD",Myself)  // Лучший двуручный меч
+		HasItem("BRAC05",Myself)  // Наручи
+THEN
+	RESPONSE #100
+		DestroyItem("z4genss")  // Свежая паутина
+		DestroyItem("THRYM")  // Экстракт фрима
+		DestroyItem("z4genbe")  // Белладонна
+		DestroyItem("MISC42")  // Бриллиант
+		DestroyItem("MISC42")  // Бриллиант
+		DestroyItem("z4genwp")  // Груда бревен
+		DestroyItem("z4genwp")  // Груда бревен
+		DestroyItem("z4genwp")  // Груда бревен
+		DestroyItem("z4genwp")  // Груда бревен
+		DestroyItem("z4genwp")  // Груда бревен
+		DestroyItem("z4genwp")  // Груда бревен
+		DestroyItem("z4genwp")  // Груда бревен
+		DestroyItem("z4genwp")  // Груда бревен
+		DestroyItem("z4genwp")  // Груда бревен
+		DestroyItem("z4genwp")  // Груда бревен
+		DestroyItem("z4genwp")  // Груда бревен
+		DestroyItem("z4genwp")  // Груда бревен
+		DestroyItem("z4genwp")  // Груда бревен
+		DestroyItem("z4genwp")  // Груда бревен
+		DestroyItem("z4genwp")  // Груда бревен
+		DestroyItem("z4genwp")  // Груда бревен
+		DestroyItem("z4genwp")  // Груда бревен
+		DestroyItem("z4genwp")  // Груда бревен
+		DestroyItem("z4genwp")  // Груда бревен
+		DestroyItem("z4genwp")  // Груда бревен
+		DestroyItem("HALB01")  // Алебарда
+		DestroyItem("z0halb02")  // Лучшая алебарда
+		DestroyItem("SPER01")  // Копье
+		DestroyItem("z0sper95")  // Лучшее копье
+		DestroyItem("BLUN02")  // Цеп
+		DestroyItem("z0flal99")  // Лучший цеп
+		DestroyItem("BLUN04")  // Булава
+		DestroyItem("HQMACE")  // Лучшая булава
+		DestroyItem("BLUN06")  // Моргенштерн
+		DestroyItem("HQMSTAR")  // Лучший моргенштерн
+		DestroyItem("z3istone")  // Железный рунный камень
+		DestroyItem("MISC56")  // Сломанное оружие
+		DestroyItem("MISC57")  // Сломанный щит
+		DestroyItem("MISC58")  // Разбитый доспех
+		DestroyItem("MISC59")  // Разные обломки
+		DestroyItem("MISC82")  // Древний доспех
+		DestroyItem("z0ax1h01")  // Боевой топор
+		DestroyItem("HQAXE")  // Лучший боевой топор
+		DestroyItem("AX1H04")  // Метательный топор
+		DestroyItem("AX1H01")  // Ручной топорик
+		DestroyItem("z0ax1h12")  // Лучший топорик
+		DestroyItem("DAGG01")  // Кинжал
+		DestroyItem("HQDAGG")  // Лучший кинжал
+		DestroyItem("DAGG05")  // Метательный кинжал
+		DestroyItem("HAMM01")  // Боевой молот
+		DestroyItem("HQHAMM")  // Лучший боевой молот
+		DestroyItem("MAUL")  // Боевой молот
+		DestroyItem("z0hamt01")  // Метательный молот
+		DestroyItem("z0hamt02")  // Метательный молот работы мастера
+		DestroyItem("SW1H01")  // Полуторный меч
+		DestroyItem("HQBSWRD")  // Лучший полуторный меч
+		DestroyItem("SW1H20")  // Скимитар
+		DestroyItem("z0swdc94")  // Лучший скимитар
+		DestroyItem("SW1H04")  // Длинный меч
+		DestroyItem("HQLSWRD")  // Лучший длинный меч
+		DestroyItem("SW1H07")  // Короткий меч
+		DestroyItem("HQSSWRD")  // Лучший короткий меч
+		DestroyItem("SW2H01")  // Двуручный меч
+		DestroyItem("HQ2HSWD")  // Лучший двуручный меч
+		DestroyItem("BRAC05")  // Наручи
+		SetGlobal("40SpellComponentsCheck","GLOBAL",1)
+		//SpellHitEffectPoint("Oswald",[223.223],ALTERATION,0)
+		CreateVisualEffect("ALTERH",[223.223])
+		//ChangeCurrentScript("")
+END
+

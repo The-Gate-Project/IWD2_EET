@@ -1,0 +1,446 @@
+IF
+	HasItem("iwnocol",Myself)
+THEN
+	RESPONSE #100
+		DestroyItem("iwnocol")
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	Global("Sticks2Snakes","LOCALS",0)
+THEN
+	RESPONSE #100
+		DisplayString(Myself,@35443)
+		//SpellCastEffect(Myself,"","","",GLOW_ALTERATION,4,ATTACK)
+		SetSequence(SEQ_CAST)
+		CreateVisualEffectObject("ALTERCG",Myself)
+		SetGlobal("Sticks2Snakes","LOCALS",1)
+		SetGlobal("Sticks2SnakesCount","MYAREA",0)
+		Continue()
+END
+
+IF
+	Global("Sticks2Snakes","LOCALS",2)
+	!GlobalTimerNotExpired("IwTimer99","LOCALS")
+THEN
+	RESPONSE #100
+		SetGlobal("Sticks2Snakes","LOCALS",1)
+		Continue()
+END
+
+IF
+	Global("Sticks2Snakes","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("CheckPlayer1","LOCALS",0)
+		SetGlobal("CheckPlayer2","LOCALS",0)
+		SetGlobal("CheckPlayer3","LOCALS",0)
+		SetGlobal("CheckPlayer4","LOCALS",0)
+		SetGlobal("CheckPlayer5","LOCALS",0)
+		SetGlobal("CheckPlayer6","LOCALS",0)
+		Continue()
+END
+
+IF
+	Global("Sticks2Snakes","LOCALS",1)
+	//Exists(Player1)
+	InParty(Player1)
+	InMyArea(Player1)
+	Range(Player1,60)
+THEN
+	RESPONSE #100
+		SetGlobal("CheckPlayer1","LOCALS",1)
+		Continue()
+END
+
+IF
+	Global("Sticks2Snakes","LOCALS",1)
+	//Exists(Player2)
+	InParty(Player2)
+	InMyArea(Player2)
+	Range(Player2,60)
+THEN
+	RESPONSE #100
+		SetGlobal("CheckPlayer2","LOCALS",1)
+		Continue()
+END
+
+IF
+	Global("Sticks2Snakes","LOCALS",1)
+	//Exists(Player3)
+	InParty(Player3)
+	InMyArea(Player3)
+	Range(Player3,60)
+THEN
+	RESPONSE #100
+		SetGlobal("CheckPlayer3","LOCALS",1)
+		Continue()
+END
+
+IF
+	Global("Sticks2Snakes","LOCALS",1)
+	//Exists(Player4)
+	InParty(Player4)
+	InMyArea(Player4)
+	Range(Player4,60)
+THEN
+	RESPONSE #100
+		SetGlobal("CheckPlayer4","LOCALS",1)
+		Continue()
+END
+
+IF
+	Global("Sticks2Snakes","LOCALS",1)
+	//Exists(Player5)
+	InParty(Player5)
+	InMyArea(Player5)
+	Range(Player5,60)
+THEN
+	RESPONSE #100
+		SetGlobal("CheckPlayer5","LOCALS",1)
+		Continue()
+END
+
+IF
+	Global("Sticks2Snakes","LOCALS",1)
+	//Exists(Player6)
+	InParty(Player6)
+	InMyArea(Player6)
+	Range(Player6,60)
+THEN
+	RESPONSE #100
+		SetGlobal("CheckPlayer6","LOCALS",1)
+		Continue()
+END
+
+IF
+	Global("Sticks2Snakes","LOCALS",1)
+	Global("CheckPlayer1","LOCALS",1)
+	HasItem("AROW01",Player1)
+THEN
+	RESPONSE #100
+		TakePartyItemNum("AROW01",1)
+		DestroyItem("AROW01")
+		ActionOverride(Player1,CreateCreature("61snaGi1",[-1.-1],0))
+		IncrementGlobal("Sticks2SnakesCount","MYAREA",1)
+		Continue()
+END
+
+IF
+	Global("Sticks2Snakes","LOCALS",1)
+	Global("CheckPlayer1","LOCALS",1)
+	HasItem("BLUN01",Player1)
+THEN
+	RESPONSE #100
+		TakePartyItemNum("BLUN01",1)
+		DestroyItem("BLUN01")
+		ActionOverride(Player1,CreateCreature("61snaGi1",[-1.-1],0))
+		IncrementGlobal("Sticks2SnakesCount","MYAREA",1)
+		Continue()
+END
+
+IF
+	Global("Sticks2Snakes","LOCALS",1)
+	Global("CheckPlayer1","LOCALS",1)
+	HasItem("STAF01",Player1)
+THEN
+	RESPONSE #100
+		TakePartyItemNum("STAF01",1)
+		DestroyItem("STAF01")
+		ActionOverride(Player1,CreateCreature("61snaGi1",[-1.-1],0))
+		IncrementGlobal("Sticks2SnakesCount","MYAREA",1)
+		Continue()
+END
+
+IF
+	Global("Sticks2Snakes","LOCALS",1)
+	Global("CheckPlayer1","LOCALS",1)
+	HasItem("SPER01",Player1)
+THEN
+	RESPONSE #100
+		TakePartyItemNum("SPER01",1)
+		DestroyItem("SPER01")
+		ActionOverride(Player1,CreateCreature("61snaGi1",[-1.-1],0))
+		IncrementGlobal("Sticks2SnakesCount","MYAREA",1)
+		Continue()
+END
+
+IF
+	Global("Sticks2Snakes","LOCALS",1)
+	Global("CheckPlayer2","LOCALS",1)
+	HasItem("AROW01",Player2)
+THEN
+	RESPONSE #100
+		TakePartyItemNum("AROW01",1)
+		DestroyItem("AROW01")
+		ActionOverride(Player2,CreateCreature("61snaGi1",[-1.-1],0))
+		IncrementGlobal("Sticks2SnakesCount","MYAREA",1)
+		Continue()
+END
+
+IF
+	Global("Sticks2Snakes","LOCALS",1)
+	Global("CheckPlayer2","LOCALS",1)
+	HasItem("BLUN01",Player2)
+THEN
+	RESPONSE #100
+		TakePartyItemNum("BLUN01",1)
+		DestroyItem("BLUN01")
+		ActionOverride(Player2,CreateCreature("61snaGi1",[-1.-1],0))
+		IncrementGlobal("Sticks2SnakesCount","MYAREA",1)
+		Continue()
+END
+
+IF
+	Global("Sticks2Snakes","LOCALS",1)
+	Global("CheckPlayer2","LOCALS",1)
+	HasItem("STAF01",Player2)
+THEN
+	RESPONSE #100
+		TakePartyItemNum("STAF01",1)
+		DestroyItem("STAF01")
+		ActionOverride(Player2,CreateCreature("61snaGi1",[-1.-1],0))
+		IncrementGlobal("Sticks2SnakesCount","MYAREA",1)
+		Continue()
+END
+
+IF
+	Global("Sticks2Snakes","LOCALS",1)
+	Global("CheckPlayer2","LOCALS",1)
+	HasItem("SPER01",Player2)
+THEN
+	RESPONSE #100
+		TakePartyItemNum("SPER01",1)
+		DestroyItem("SPER01")
+		ActionOverride(Player2,CreateCreature("61snaGi1",[-1.-1],0))
+		IncrementGlobal("Sticks2SnakesCount","MYAREA",1)
+		Continue()
+END
+
+IF
+	Global("Sticks2Snakes","LOCALS",1)
+	Global("CheckPlayer3","LOCALS",1)
+	HasItem("AROW01",Player3)
+THEN
+	RESPONSE #100
+		TakePartyItemNum("AROW01",1)
+		DestroyItem("AROW01")
+		ActionOverride(Player3,CreateCreature("61snaGi1",[-1.-1],0))
+		IncrementGlobal("Sticks2SnakesCount","MYAREA",1)
+		Continue()
+END
+
+IF
+	Global("Sticks2Snakes","LOCALS",1)
+	Global("CheckPlayer3","LOCALS",1)
+	HasItem("BLUN01",Player3)
+THEN
+	RESPONSE #100
+		TakePartyItemNum("BLUN01",1)
+		DestroyItem("BLUN01")
+		ActionOverride(Player3,CreateCreature("61snaGi1",[-1.-1],0))
+		IncrementGlobal("Sticks2SnakesCount","MYAREA",1)
+		Continue()
+END
+
+IF
+	Global("Sticks2Snakes","LOCALS",1)
+	Global("CheckPlayer3","LOCALS",1)
+	HasItem("STAF01",Player3)
+THEN
+	RESPONSE #100
+		TakePartyItemNum("STAF01",1)
+		DestroyItem("STAF01")
+		ActionOverride(Player3,CreateCreature("61snaGi1",[-1.-1],0))
+		IncrementGlobal("Sticks2SnakesCount","MYAREA",1)
+		Continue()
+END
+
+IF
+	Global("Sticks2Snakes","LOCALS",1)
+	Global("CheckPlayer3","LOCALS",1)
+	HasItem("SPER01",Player3)
+THEN
+	RESPONSE #100
+		TakePartyItemNum("SPER01",1)
+		DestroyItem("SPER01")
+		ActionOverride(Player3,CreateCreature("61snaGi1",[-1.-1],0))
+		IncrementGlobal("Sticks2SnakesCount","MYAREA",1)
+		Continue()
+END
+
+IF
+	Global("Sticks2Snakes","LOCALS",1)
+	Global("CheckPlayer4","LOCALS",1)
+	HasItem("AROW01",Player4)
+THEN
+	RESPONSE #100
+		TakePartyItemNum("AROW01",1)
+		DestroyItem("AROW01")
+		ActionOverride(Player4,CreateCreature("61snaGi1",[-1.-1],0))
+		IncrementGlobal("Sticks2SnakesCount","MYAREA",1)
+		Continue()
+END
+
+IF
+	Global("Sticks2Snakes","LOCALS",1)
+	Global("CheckPlayer4","LOCALS",1)
+	HasItem("BLUN01",Player4)
+THEN
+	RESPONSE #100
+		TakePartyItemNum("BLUN01",1)
+		DestroyItem("BLUN01")
+		ActionOverride(Player4,CreateCreature("61snaGi1",[-1.-1],0))
+		IncrementGlobal("Sticks2SnakesCount","MYAREA",1)
+		Continue()
+END
+
+IF
+	Global("Sticks2Snakes","LOCALS",1)
+	Global("CheckPlayer4","LOCALS",1)
+	HasItem("STAF01",Player4)
+THEN
+	RESPONSE #100
+		TakePartyItemNum("STAF01",1)
+		DestroyItem("STAF01")
+		ActionOverride(Player4,CreateCreature("61snaGi1",[-1.-1],0))
+		IncrementGlobal("Sticks2SnakesCount","MYAREA",1)
+		Continue()
+END
+
+IF
+	Global("Sticks2Snakes","LOCALS",1)
+	Global("CheckPlayer4","LOCALS",1)
+	HasItem("SPER01",Player4)
+THEN
+	RESPONSE #100
+		TakePartyItemNum("SPER01",1)
+		DestroyItem("SPER01")
+		ActionOverride(Player4,CreateCreature("61snaGi1",[-1.-1],0))
+		IncrementGlobal("Sticks2SnakesCount","MYAREA",1)
+		Continue()
+END
+
+IF
+	Global("Sticks2Snakes","LOCALS",1)
+	Global("CheckPlayer5","LOCALS",1)
+	HasItem("AROW01",Player5)
+THEN
+	RESPONSE #100
+		TakePartyItemNum("AROW01",1)
+		DestroyItem("AROW01")
+		ActionOverride(Player5,CreateCreature("61snaGi1",[-1.-1],0))
+		IncrementGlobal("Sticks2SnakesCount","MYAREA",1)
+		Continue()
+END
+
+IF
+	Global("Sticks2Snakes","LOCALS",1)
+	Global("CheckPlayer5","LOCALS",1)
+	HasItem("BLUN01",Player5)
+THEN
+	RESPONSE #100
+		TakePartyItemNum("BLUN01",1)
+		DestroyItem("BLUN01")
+		ActionOverride(Player5,CreateCreature("61snaGi1",[-1.-1],0))
+		IncrementGlobal("Sticks2SnakesCount","MYAREA",1)
+		Continue()
+END
+
+IF
+	Global("Sticks2Snakes","LOCALS",1)
+	Global("CheckPlayer5","LOCALS",1)
+	HasItem("STAF01",Player5)
+THEN
+	RESPONSE #100
+		TakePartyItemNum("STAF01",1)
+		DestroyItem("STAF01")
+		ActionOverride(Player5,CreateCreature("61snaGi1",[-1.-1],0))
+		IncrementGlobal("Sticks2SnakesCount","MYAREA",1)
+		Continue()
+END
+
+IF
+	Global("Sticks2Snakes","LOCALS",1)
+	Global("CheckPlayer5","LOCALS",1)
+	HasItem("SPER01",Player5)
+THEN
+	RESPONSE #100
+		TakePartyItemNum("SPER01",1)
+		DestroyItem("SPER01")
+		ActionOverride(Player5,CreateCreature("61snaGi1",[-1.-1],0))
+		IncrementGlobal("Sticks2SnakesCount","MYAREA",1)
+		Continue()
+END
+
+IF
+	Global("Sticks2Snakes","LOCALS",1)
+	Global("CheckPlayer6","LOCALS",1)
+	HasItem("AROW01",Player6)
+THEN
+	RESPONSE #100
+		TakePartyItemNum("AROW01",1)
+		DestroyItem("AROW01")
+		ActionOverride(Player6,CreateCreature("61snaGi1",[-1.-1],0))
+		IncrementGlobal("Sticks2SnakesCount","MYAREA",1)
+		Continue()
+END
+
+IF
+	Global("Sticks2Snakes","LOCALS",1)
+	Global("CheckPlayer6","LOCALS",1)
+	HasItem("BLUN01",Player6)
+THEN
+	RESPONSE #100
+		TakePartyItemNum("BLUN01",1)
+		DestroyItem("BLUN01")
+		ActionOverride(Player6,CreateCreature("61snaGi1",[-1.-1],0))
+		IncrementGlobal("Sticks2SnakesCount","MYAREA",1)
+		Continue()
+END
+
+IF
+	Global("Sticks2Snakes","LOCALS",1)
+	Global("CheckPlayer6","LOCALS",1)
+	HasItem("STAF01",Player6)
+THEN
+	RESPONSE #100
+		TakePartyItemNum("STAF01",1)
+		DestroyItem("STAF01")
+		ActionOverride(Player6,CreateCreature("61snaGi1",[-1.-1],0))
+		IncrementGlobal("Sticks2SnakesCount","MYAREA",1)
+		Continue()
+END
+
+IF
+	Global("Sticks2Snakes","LOCALS",1)
+	Global("CheckPlayer6","LOCALS",1)
+	HasItem("SPER01",Player6)
+THEN
+	RESPONSE #100
+		TakePartyItemNum("SPER01",1)
+		DestroyItem("SPER01")
+		ActionOverride(Player6,CreateCreature("61snaGi1",[-1.-1],0))
+		IncrementGlobal("Sticks2SnakesCount","MYAREA",1)
+		Continue()
+END
+
+IF
+	Global("Sticks2Snakes","LOCALS",1)
+	GlobalGT("Sticks2SnakesCount","MYAREA",29)
+THEN
+	RESPONSE #100
+		SetGlobal("Sticks2Snakes","LOCALS",-1)
+		ChangeAIScript("",SPECIFICS)
+END
+
+IF
+	Global("Sticks2Snakes","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IwTimer99","LOCALS",7)
+		SetGlobal("Sticks2Snakes","LOCALS",2)
+		Continue()
+END
+

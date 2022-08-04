@@ -1,0 +1,8 @@
+IF
+	Entered([PC])
+THEN
+	RESPONSE #100
+		DisplayString(LastTrigger,14381)  // Сработала ловушка
+		ReallyForceSpellRES("IWIN281",LastTrigger)  // SPIN281.SPL INNATE_DRIDER_WEB
+END
+

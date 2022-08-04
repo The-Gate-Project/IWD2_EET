@@ -1,0 +1,112 @@
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("Swift_Thomas")
+		HideGUI()
+		MultiPlayerSync()
+		MoveViewObject(Myself,INSTANT)
+		Wait(1)
+		//HideCreature(Myself,FALSE)
+		ApplySpellRES("IDINVIS5",Myself)
+		SmallWait(12)
+		SetGlobal("Goblins_Attack_Palisade","GLOBAL",1)
+		MoveViewObject("Shawford_Crale",VERY_FAST)
+		MoveToPoint([448.295])
+		FaceObject("Shawford_Crale")
+		DisplayStringHead(Myself,@16357)
+		Wait(3)
+		StartCutScene("12cWar1")
+		Wait(2)
+		DisplayStringHead(Myself,@16820)
+		SmallWait(4)
+		MoveToPoint([219.417])
+		DestroySelf()
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("Shawford_Crale")
+		FaceObject("Swift_Thomas")
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId(Player1)
+		SmallWait(1)
+		FaceObject("Swift_Thomas")
+		Wait(1)
+		SmallWait(5)
+		MoveToPoint([582.302])
+		FaceObject("Swift_Thomas")
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId(Player2)
+		SmallWait(3)
+		FaceObject("Swift_Thomas")
+		Wait(1)
+		SmallWait(5)
+		MoveToPoint([566.351])
+		FaceObject("Swift_Thomas")
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId(Player3)
+		SmallWait(2)
+		FaceObject("Swift_Thomas")
+		Wait(1)
+		SmallWait(5)
+		MoveToPoint([519.360])
+		FaceObject("Swift_Thomas")
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId(Player4)
+		SmallWait(3)
+		FaceObject("Swift_Thomas")
+		Wait(1)
+		SmallWait(5)
+		MoveToPoint([480.407])
+		FaceObject("Swift_Thomas")
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId(Player5)
+		SmallWait(2)
+		FaceObject("Swift_Thomas")
+		Wait(1)
+		SmallWait(5)
+		MoveToPoint([542.419])
+		FaceObject("Swift_Thomas")
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId(Player6)
+		SmallWait(1)
+		FaceObject("Swift_Thomas")
+		Wait(1)
+		SmallWait(5)
+		MoveToPoint([602.388])
+		FaceObject("Swift_Thomas")
+END
+

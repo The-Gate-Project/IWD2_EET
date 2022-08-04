@@ -1,0 +1,33 @@
+IF
+	/*Or(19)
+		See("01_51HARSHO_01",0)
+		See("01_51HSTMU_02",0)
+		See("01_51HSTMU_03",0)
+		See("01_51HSTMU_12",0)
+		See("01_51HSTMU_16",0)
+		See("01_51HNTMN_04",0)
+		See("01_51HNTMN_05",0)
+		See("01_51HNTMN_06",0)
+		See("01_51HNTMN_07",0)
+		See("01_51HNTMN_13",0)
+		See("01_51HNTMN_17",0)
+		See("01_51BEAWA_08",0)
+		See("01_51BEAWA_09",0)
+		See("01_51BEAWA_10",0)
+		See("01_51BEAWA_11",0)
+		See("01_51BEAWA_19",0)
+		See("01_51CATBA_14",0)
+		See("01_51CATBA_15",0)
+		See("01_51CATBA_18",0)*/
+	OR(5)
+		See([0.0.CAT.0.178])
+		See([0.0.BEAR.0.178])
+		See([0.0.HUMAN.0.178])
+		See([0.0.GNOME.0.178])
+		See("Harshom")
+THEN
+	RESPONSE #100
+		//EquipWeapon()
+		AttackOneRound(LastSeenBy(Myself))
+END
+

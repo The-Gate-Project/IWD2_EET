@@ -1,0 +1,19 @@
+.Item .DiceRoll .Rolls {
+   font-weight: bold;
+}
+
+.Item .DiceRoll .Expr .Roll {
+   border: 1px solid #ddd;
+   border-radius: 3px;
+   padding: 3px 5px;
+   background: #eee;
+   
+   display: inline;
+   display: inline-block;
+   margin-right: 8px;
+}
+
+.Item .DiceRoll .Expr .Roll .Symbols {
+   clear: both;
+   display: inline-block;
+}

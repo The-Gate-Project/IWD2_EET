@@ -1,0 +1,8 @@
+IF
+	Opened([ANYONE])
+THEN
+	RESPONSE #100
+		GiveItemCreate("z6STELE4",LastTrigger,1,0,0)
+		Lock(Myself)
+END
+

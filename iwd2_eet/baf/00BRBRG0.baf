@@ -1,0 +1,63 @@
+IF
+	GlobalLT("BARB_RAGE","LOCALS",1)
+	!GlobalTimerNotExpired("IwTimer11","LOCALS")
+	CheckStatLT(Myself,8,LEVEL) //CLASSLEVELSUM
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IwTimer11","LOCALS",43200)
+		SetGlobal("BARB_RAGE","LOCALS",1)
+		Continue()
+END
+
+IF
+	GlobalLT("BARB_RAGE","LOCALS",2)
+	!GlobalTimerNotExpired("IwTimer11","LOCALS")
+	CheckStatGT(Myself,7,LEVEL)
+	CheckStatLT(Myself,12,LEVEL)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IwTimer11","LOCALS",43200)
+		SetGlobal("BARB_RAGE","LOCALS",2)
+		Continue()
+END
+
+IF
+	GlobalLT("BARB_RAGE","LOCALS",3)
+	!GlobalTimerNotExpired("IwTimer11","LOCALS")
+	CheckStatGT(Myself,11,LEVEL)
+	CheckStatLT(Myself,16,LEVEL)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IwTimer11","LOCALS",43200)
+		SetGlobal("BARB_RAGE","LOCALS",3)
+		Continue()
+END
+
+IF
+	GlobalLT("BARB_RAGE","LOCALS",4)
+	!GlobalTimerNotExpired("IwTimer11","LOCALS")
+	CheckStatGT(Myself,15,LEVEL)
+	//CheckStatLT(Myself,16,LEVEL)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IwTimer11","LOCALS",43200)
+		SetGlobal("BARB_RAGE","LOCALS",4)
+		Continue()
+END
+
+IF
+	GlobalGT("BARB_RAGE","LOCALS",0)
+	!CheckSpellState(Myself,BARBARIAN_RAGE)
+	//!CheckSpellState(Myself,GREATER_BARBARIAN_RAGE)
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		ForceSpell(Myself,BARBARIAN_RAGE)
+		IncrementGlobal("BARB_RAGE","LOCALS",-1)
+		//WaitAnimation(Myself,WALK)
+		//WaitAnimation(Myself,CONJURE)
+		//WaitAnimation(Myself,CAST)
+		Wait(2)
+		Continue()
+END
+

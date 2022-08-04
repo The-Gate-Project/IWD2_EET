@@ -1,0 +1,43 @@
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("Spell_FX") //650,1605
+		MultiPlayerSync()
+		
+		Activate("The_Guardian")
+		ActionOverride("The_Guardian",SetGlobal("IwIHidden","LOCALS",0))
+		CreateCreature("6051HC1",[650.1605],0)
+		ActionOverride("6051HC1",ChangeAIScript("",CLASS))
+		ActionOverride("6051HC1",ApplySpellRES("idinvis6",Myself))
+		
+		//SpellHitEffectPoint(Myself,[437.1300],STATIC_CHARGE,0)
+		CreateVisualEffect("SCHARGH",[437.1300])
+		ActionOverride("AR6050_IntPillar1",ForceSpellRES("IGWI615","The_Guardian"))  // SPWI603.SPL WIZARD_CHAIN_LIGHTNING
+		Wait(1)
+		//SpellHitEffectPoint(Myself,[210.1370],STATIC_CHARGE,0)
+		CreateVisualEffect("SCHARGH",[210.1370])
+		ActionOverride("AR6050_IntPillar2",ForceSpellRES("IGWI615","The_Guardian"))  // SPWI603.SPL WIZARD_CHAIN_LIGHTNING
+		Wait(1)
+		//SpellHitEffectPoint(Myself,[194.1570],STATIC_CHARGE,0)
+		CreateVisualEffect("SCHARGH",[194.1570])
+		ActionOverride("AR6050_IntPillar3",ForceSpellRES("IGWI615","The_Guardian"))  // SPWI603.SPL WIZARD_CHAIN_LIGHTNING
+		Wait(1)
+		//SpellHitEffectPoint(Myself,[417.1670],STATIC_CHARGE,0)
+		CreateVisualEffect("SCHARGH",[417.1670])
+		ActionOverride("AR6050_IntPillar4",ForceSpellRES("IGWI615","The_Guardian"))  // SPWI603.SPL WIZARD_CHAIN_LIGHTNING
+		Wait(1)
+		//SpellHitEffectPoint(Myself,[644.1560],STATIC_CHARGE,0)
+		CreateVisualEffect("SCHARGH",[644.1560])
+		ActionOverride("AR6050_IntPillar5",ForceSpellRES("IGWI615","The_Guardian"))  // SPWI603.SPL WIZARD_CHAIN_LIGHTNING
+		Wait(1)
+		//SpellHitEffectPoint(Myself,[662.1396],STATIC_CHARGE,0)
+		CreateVisualEffect("SCHARGH",[662.1396]) //AR6050_IntPillar6
+		ActionOverride("6051HC1",ForceSpellRES("IGWI615","The_Guardian"))  // SPWI603.SPL WIZARD_CHAIN_LIGHTNING
+		Wait(1)
+		
+		ActionOverride("6051HC1",DestroySelf())
+		
+		StartCutScene("60cSGrd2")
+END
+

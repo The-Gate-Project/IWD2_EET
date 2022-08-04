@@ -1,0 +1,30 @@
+IF
+	StateCheck(Myself,STATE_PANIC)
+THEN
+	RESPONSE #100
+		RandomWalkContinuous()
+END
+
+IF
+	GlobalLT("Use_Spore_Attack","LOCALS",3)
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Use_Spore_Attack","LOCALS",1)
+		EquipMostDamagingMelee()
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	See(NearestEnemyOf(Myself))
+	//IsSpellTargetValid(LastMarkedObject,INNATE_MYCONID_SPORES,SPELLCAST_IGNORE_HAS_CHECK)  // SPIN990.SPL (No such index)
+THEN
+	RESPONSE #100
+		SetGlobal("Use_Spore_Attack","LOCALS",0)
+		ForceSpellRES("IWIN990",LastSeenBy(Myself))  // SPIN990.SPL INNATE_MYCONID_SPORES
+		//WaitAnimation(Myself,WALK)
+		//WaitAnimation(Myself,CONJURE)
+		//WaitAnimation(Myself,CAST)
+		Wait(2)
+END
+

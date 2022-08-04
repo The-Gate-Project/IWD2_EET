@@ -1,0 +1,19 @@
+IF
+	Global("Freed_Elves","GLOBAL",2)
+	Name("Tsol_Silverblade",Myself)
+THEN
+	RESPONSE #100
+		StartCutSceneMode()
+		FadeFromColor([0.0],0)
+		Wait(1)
+		//HideCreature(Myself,TRUE)
+		ApplySpellRES("idinvis4",Myself)
+		ActionOverride("IW6200ElvenFighter1",DestroySelf())
+		ActionOverride("IW6200ElvenFighter2",DestroySelf())
+		ActionOverride("IW6200ElvenFighter3",DestroySelf())
+		FadeFromColor([0.0],0)
+		Wait(1)
+		EndCutSceneMode()
+		DestroySelf()
+END
+

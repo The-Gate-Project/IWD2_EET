@@ -1,0 +1,27 @@
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId(Player1)
+		SmallWait(5)
+		LeaveAreaLUAPanic("IW4001","",[287.287],8)
+		LeaveAreaLUA("IW4001","",[287.287],8)
+		ActionOverride(Player2,LeaveAreaLUA("IW4001","",[170.287],8))
+		ActionOverride(Player3,LeaveAreaLUA("IW4001","",[287.240],8))
+		ActionOverride(Player4,LeaveAreaLUA("IW4001","",[223.415],8))
+		ActionOverride(Player5,LeaveAreaLUA("IW4001","",[320.320],8))
+		ActionOverride(Player6,LeaveAreaLUA("IW4001","",[384.319],8))
+		SmallWait(5)
+		SetMasterArea("IW4000")
+		Rest()
+		ActionOverride(Player2,Rest())
+		ActionOverride(Player3,Rest())
+		ActionOverride(Player4,Rest())
+		ActionOverride(Player5,Rest())
+		ActionOverride(Player6,Rest())
+		SmallWait(5)
+		MultiPlayerSync()
+		EndCutSceneMode()
+END
+
+

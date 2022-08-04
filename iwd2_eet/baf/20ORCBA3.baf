@@ -1,0 +1,48 @@
+IF
+	!Global("20ORCBA3_INACTIVE","LOCALS",1)
+	!Global("TEAM_4","MYAREA",0)
+	Global("TEAM_2","MYAREA",0)
+	LOS([PC],28)
+THEN
+	RESPONSE #100
+		SetGlobal("20ORCBA3_INACTIVE","LOCALS",1)
+END
+
+IF
+	!Global("20ORCBA3_INACTIVE","LOCALS",1)
+	!See("Dynokeg")
+THEN
+	RESPONSE #100
+		SetGlobal("20ORCBA3_INACTIVE","LOCALS",1)
+END
+
+IF
+	!Global("20ORCBA3_INACTIVE","LOCALS",1)
+	StateCheck(Myself,STATE_PANIC)
+THEN
+	RESPONSE #100
+		RandomWalkContinuous()
+END
+
+IF
+	!Global("20ORCBA3_INACTIVE","LOCALS",1)
+	OR(2)
+		Global("SR_Villagers_Dead","GLOBAL",1)
+		See([PC])
+	//OR(2)
+	//	See("Dynokeg")
+		See([ENEMY.MONSTER.KEG.0.200])
+THEN
+	RESPONSE #100
+		EquipMostDamagingMelee()
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	!Global("20ORCBA3_INACTIVE","LOCALS",1)
+	True()
+THEN
+	RESPONSE #100
+		NoAction()
+END
+

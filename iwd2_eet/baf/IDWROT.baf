@@ -1,0 +1,9 @@
+IF
+	//OR(2)
+	//	Entered([PC])
+		IsOverMe([PC])
+	Global("SEyeRotation","MYAREA",0)
+THEN
+	RESPONSE #100
+		SetGlobal("SEyeRotation","MYAREA",5)
+END

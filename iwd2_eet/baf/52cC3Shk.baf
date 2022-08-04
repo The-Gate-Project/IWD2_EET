@@ -1,0 +1,58 @@
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("08_52MNKCRG_01")
+		//SpellHitEffectSprite(Myself,Myself,CALL_LIGHTNING,0)
+		//ForceSpellRES("IDCALLIH",Myself)
+		CreateVisualEffectObject("IDCLLH",Myself)
+		Wait(1)
+		//HideCreature(Myself,TRUE)
+		ApplySpellRES("IDINVIS6",Myself)
+		JumpToPoint([1665.1660])
+		Wait(1)
+		//SpellHitEffectSprite(Myself,Myself,CALL_LIGHTNING,0)
+		//ForceSpellRES("IDCALLIH",Myself)
+		CreateVisualEffectObject("IDCLLH",Myself)
+		Wait(1)
+		FaceObject(NearestEnemyOf(Myself))
+		//HideCreature(Myself,FALSE)
+		ApplySpellRES("IDINVIS7",Myself)
+		Wait(1)
+		ForceSpell(NearestEnemyOf(Myself),WIZARD_LIGHTNING_BOLT)  // SPWI308.SPL (Молния)
+		//WaitAnimation(Myself,WALK)
+		//WaitAnimation(Myself,CONJURE)
+		//WaitAnimation(Myself,CAST)
+		Wait(1)
+		SetGlobal("CHAMBER_3_SWITCH_ACTIVE","MYAREA",0)
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("08_52MNKCRG_02")
+		//SpellHitEffectSprite(Myself,Myself,CALL_LIGHTNING,0)
+		//ForceSpellRES("IDCALLIH",Myself)
+		CreateVisualEffectObject("IDCLLH",Myself)
+		Wait(1)
+		//HideCreature(Myself,TRUE)
+		ApplySpellRES("IDINVIS6",Myself)
+		JumpToPoint([1550.1755])
+		Wait(1)
+		//SpellHitEffectSprite(Myself,Myself,CALL_LIGHTNING,0)
+		//ForceSpellRES("IDCALLIH",Myself)
+		CreateVisualEffectObject("IDCLLH",Myself)
+		Wait(1)
+		FaceObject(NearestEnemyOf(Myself))
+		//HideCreature(Myself,FALSE)
+		ApplySpellRES("IDINVIS7",Myself)
+		Wait(1)
+		ForceSpell(NearestEnemyOf(Myself),WIZARD_LIGHTNING_BOLT)  // SPWI308.SPL (Молния)
+		//WaitAnimation(Myself,WALK)
+		//WaitAnimation(Myself,CONJURE)
+		//WaitAnimation(Myself,CAST)
+		Wait(1)
+		SetGlobal("CHAMBER_3_SWITCH_ACTIVE","MYAREA",0)
+END
+

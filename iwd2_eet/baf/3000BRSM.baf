@@ -1,0 +1,38 @@
+/*IF
+	!IsCreatureAreaFlag(Myself,IGNORE_RETURN_TO_START_POS)
+THEN
+	RESPONSE #100
+		SetCreatureAreaFlag(Myself,IGNORE_RETURN_TO_START_POS,TRUE)
+END*/
+
+IF
+	Global("30BRASTO_ESCAPE","GLOBAL",3)
+	Global("BRASTON_PAUSED_STATE","GLOBAL",0)
+	!Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+THEN
+	RESPONSE #100
+		MoveToObjectFollow(Player1)
+END
+
+IF
+	Global("30BRASTO_ESCAPE","GLOBAL",3)
+	Global("BRASTON_PAUSED_STATE","GLOBAL",1)
+	!Allegiance(Myself,ENEMY)
+THEN
+	RESPONSE #100
+		NoAction()
+END
+
+IF
+	!Global("BRASTON_ENNELIA_LEAVE","GLOBAL",0)
+	
+	!NearLocation(Myself,652,2850,0)
+	
+	ActionListEmpty()
+THEN
+	RESPONSE #100
+		//MoveToObject("Braston_Watcher")
+		MoveToPoint([652.2850])
+END
+

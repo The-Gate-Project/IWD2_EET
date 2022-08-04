@@ -1,0 +1,20 @@
+IF
+	!GlobalTimerNotExpired("IwTimer18","LOCALS")
+THEN
+	RESPONSE #33
+		DisplayStringHead(Myself,@21508)
+		SetGlobalTimerRandom("IwTimer18","LOCALS",5,10)
+	RESPONSE #33
+		DisplayStringHead(Myself,@21509)
+		SetGlobalTimerRandom("IwTimer18","LOCALS",5,10)
+	RESPONSE #134
+		SetGlobalTimerRandom("IwTimer18","LOCALS",5,10)
+END
+
+IF
+	See([PC])
+THEN
+	RESPONSE #100
+		FaceObject(LastSeenBy(Myself))
+END
+

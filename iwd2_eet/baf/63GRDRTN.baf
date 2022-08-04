@@ -1,0 +1,66 @@
+IF
+  OR(2)
+    Die()
+    StateCheck(Myself,STATE_REALLY_DEAD)
+  !Global("Set_Death_Variable","LOCALS",1)
+THEN
+  RESPONSE #100
+    SetGlobal("Set_Death_Variable","LOCALS",1)
+    IncrementGlobal("GB_IW6304_Dead","GLOBAL",1)
+    Continue()
+END
+
+IF
+  Global("SaveSavedLoc","LOCALS",0)
+THEN
+  RESPONSE #100
+    SetGlobal("SaveSavedLoc","LOCALS",1)
+    SaveObjectLocation("LOCALS","SavedLoc",Myself)
+    Continue()
+END
+
+IF
+	!Global("SH_BarracksGuardsReset","GLOBAL",0)
+	LOS([GOODCUTOFF],29)
+THEN
+	RESPONSE #100
+		SetGlobal("SH_BarracksGuardsReset","GLOBAL",0)
+		SetGlobal("Wait_BarracksGuardsReset","LOCALS",0)
+END
+
+IF
+	Global("Wait_BarracksGuardsReset","LOCALS",0)
+	!Global("SH_BarracksGuardsReset","GLOBAL",0)
+THEN
+	RESPONSE #100
+		SetGlobal("Wait_BarracksGuardsReset","LOCALS",1)
+		Wait(2)
+END
+
+IF
+	!NearSavedLocation(Myself,"LOCALSSavedLoc",1)
+	!Global("SH_BarracksGuardsReset","GLOBAL",0)
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		SetGlobal("Wait_BarracksGuardsReset","LOCALS",0)
+		ChangeEnemyAlly(Myself,NEUTRAL)
+		//JumpToSavedLocation()
+		//FaceSavedLocation(Myself)
+		CreateCreatureAtLocation("SavedLoc","LOCALS","idgols1")
+		JumpToObject("IDGOLMSVLC1")
+		ActionOverride("IDGOLMSVLC1",DestroySelf())
+		MoveToSavedLocation("SavedLoc","LOCALS")
+		SetHomeLocation([-1.-1])
+		SetInterrupt(TRUE)
+		Wait(3)
+END
+
+IF
+	!Global("SH_BarracksGuardsReset","GLOBAL",0)
+THEN
+	RESPONSE #100
+		SetGlobal("SH_BarracksGuardsReset","GLOBAL",0)
+		SetGlobal("Wait_BarracksGuardsReset","LOCALS",0)
+END
+

@@ -1,0 +1,151 @@
+IF
+	Global("PC_PREFERED_TARGET","LOCALS",0)
+	OR(2)
+		NightmareModeOn()
+		StoryModeOn()
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #25
+		SetGlobal("PC_PREFERED_TARGET","LOCALS",1)
+		Continue()
+	RESPONSE #75
+		Continue()
+END
+
+/*IF
+	Global("PC_PREFERED_TARGET","LOCALS",0)
+	!GlobalTimerNotExpired("IwTimer12","LOCALS")
+	CheckAreaDiffLevel(2)
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #25
+		SetGlobal("PC_PREFERED_TARGET","LOCALS",1)
+		Continue()
+	RESPONSE #75
+		SetGlobalTimerRandom("IwTimer12","LOCALS",6,18)
+		Continue()
+END*/
+
+IF
+	Global("PC_PREFERED_TARGET","LOCALS",0)
+	!GlobalTimerNotExpired("IwTimer12","LOCALS")
+	//CheckAreaDiffLevel(3)
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #50
+		SetGlobal("PC_PREFERED_TARGET","LOCALS",1)
+		Continue()
+	RESPONSE #50
+		SetGlobalTimerRandom("IwTimer12","LOCALS",6,18)
+		Continue()
+END
+
+IF
+	!Global("PC_PREFERED_TARGET","LOCALS",0)
+	!See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		SetGlobal("PC_PREFERED_TARGET","LOCALS",0)
+		Continue()
+END
+
+IF
+	Global("PC_PREFERED_TARGET","LOCALS",0)
+	AttackedBy([GOODCUTOFF],DEFAULT)
+THEN
+	RESPONSE #100
+		SetGlobal("PC_PREFERED_TARGET","LOCALS",1)
+		Enemy()
+		Continue()
+END
+
+IF
+	!Global("PC_PREFERED_TARGET","LOCALS",0)
+	!See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		SetGlobal("PC_PREFERED_TARGET","LOCALS",0)
+		Continue()
+END
+
+IF
+	Global("PC_PREFERED_TARGET","LOCALS",0)
+	AttackedBy([GOODCUTOFF],DEFAULT)
+THEN
+	RESPONSE #100
+		SetGlobal("PC_PREFERED_TARGET","LOCALS",1)
+		Continue()
+END
+
+IF
+	StateCheck(Myself,STATE_PANIC)
+THEN
+	RESPONSE #100
+		RandomWalkContinuous()
+END
+
+IF
+	Global("PC_PREFERED_TARGET","LOCALS",0)
+	!GlobalTimerNotExpired("IwTimer10","LOCALS")
+	OR(10)
+		See("Niles")
+		See("Blanchard")
+		See("Black_Geoffrey")
+		See("Kadence")
+		See("Anson")
+		See("Olap_Soothammer")
+		See("Weapon_Instructor")
+		See("Trainee_3_S")
+		See("Soldier_2_Gate")
+		See("Soldier_1_Gate")
+	!Range(LastSeenBy(Myself),4)
+	CanEquipRanged()
+THEN
+	RESPONSE #100
+		Help()
+		EquipRanged()
+		AttackReevaluate(LastSeenBy(Myself),45)
+END
+
+IF
+	Global("PC_PREFERED_TARGET","LOCALS",0)
+	!GlobalTimerNotExpired("IwTimer10","LOCALS")
+	OR(10)
+		See("Niles")
+		See("Blanchard")
+		See("Black_Geoffrey")
+		See("Kadence")
+		See("Anson")
+		See("Olap_Soothammer")
+		See("Weapon_Instructor")
+		See("Trainee_3_S")
+		See("Soldier_2_Gate")
+		See("Soldier_1_Gate")
+	OR(2)
+		Range(LastSeenBy(Myself),4)
+		!CanEquipRanged()
+THEN
+	RESPONSE #100
+		Help()
+		EquipMostDamagingMelee()
+		AttackReevaluate(LastSeenBy(Myself),45)
+END
+
+IF
+	Global("PC_PREFERED_TARGET","LOCALS",0)
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		SetGlobal("PC_PREFERED_TARGET","LOCALS",1)
+		Continue()
+END
+
+IF
+	ActionListEmpty()
+	!See(NearestEnemyOf(Myself))
+	Help([ENEMY])
+THEN
+	RESPONSE #100
+		MoveToObject(LastHelp(Myself))
+END
+

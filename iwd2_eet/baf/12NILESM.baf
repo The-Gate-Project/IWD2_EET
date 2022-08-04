@@ -1,0 +1,73 @@
+IF
+  Global("SaveSavedLoc","LOCALS",0)
+THEN
+  RESPONSE #100
+    SetGlobal("SaveSavedLoc","LOCALS",1)
+    SaveObjectLocation("LOCALS","SavedLoc",Myself)
+    Continue()
+END
+
+IF
+	Global("CHANGED_START","LOCALS",0)
+	Global("Niles_Leave","GLOBAL",1)
+THEN
+	RESPONSE #100
+		SaveLocation("LOCALS","SavedLoc",[3050.1647])
+		SetGlobal("CHANGED_START","LOCALS",1)
+		SetGlobal("SaveSavedLoc","LOCALS",1)
+END
+
+IF
+	!GlobalTimerNotExpired("IwTimer4","LOCALS")
+	!Global("CHANGED_START","LOCALS",0)
+	NearSavedLocation(Myself,"LOCALSSavedLoc",1)
+THEN
+	RESPONSE #100
+		SetGlobalTimerRandom("IwTimer4","LOCALS",5,15)
+		Face(W)
+	RESPONSE #100
+		SetGlobalTimerRandom("IwTimer4","LOCALS",5,15)
+		Face(SW)
+	RESPONSE #100
+		SetGlobalTimerRandom("IwTimer4","LOCALS",5,15)
+		Face(NE)
+	RESPONSE #100
+		SetGlobalTimerRandom("IwTimer4","LOCALS",5,15)
+		Face(N)
+	RESPONSE #100
+		SetGlobalTimerRandom("IwTimer4","LOCALS",5,15)
+		Face(NE)
+	RESPONSE #100
+		SetGlobalTimerRandom("IwTimer4","LOCALS",5,15)
+		Continue()
+END
+
+IF
+	!GlobalTimerNotExpired("IwTimer19","LOCALS")
+	!NearSavedLocation(Myself,"LOCALSSavedLoc",1)
+	!Global("CHANGED_START","LOCALS",0)
+THEN
+	RESPONSE #100
+		MoveToSavedLocation("SavedLoc","LOCALS")
+		SetGlobalTimerRandom("IwTimer19","LOCALS",3,5)
+END
+
+/*IF
+	!GlobalTimerNotExpired("IwTimer19","LOCALS")
+	NearSavedLocation(Myself,"LOCALSSavedLoc",1)
+	!Global("CHANGED_START","LOCALS",0)
+THEN
+	RESPONSE #100
+		RandomTurn()
+		SetGlobalTimerRandom("IwTimer19","LOCALS",3,5)
+END*/
+
+IF
+	!GlobalTimerNotExpired("IwTimer20","LOCALS")
+	GlobalGT("Niles_Quest","GLOBAL",1)
+THEN
+	RESPONSE #100
+		RandomWalk()
+		SetGlobalTimerRandom("IwTimer20","LOCALS",3,10)
+END
+

@@ -1,0 +1,22 @@
+IF
+	!Global("TEAM_7","MYAREA",1)
+	OR(2)
+		AttackedBy([GOODCUTOFF],DEFAULT)
+		PickPocketFailed([PC])
+THEN
+	RESPONSE #100
+		SetGlobal("TEAM_7","MYAREA",1)
+		Continue()
+END
+
+IF
+	!IsActive(Myself)
+	!Global("TEAM_7","MYAREA",0)
+THEN
+	RESPONSE #100
+		Activate(Myself)
+		SetGlobal("IwIHidden","LOCALS",0)
+		ApplySpellRES("idinvis5",Myself)
+		Continue()
+END
+

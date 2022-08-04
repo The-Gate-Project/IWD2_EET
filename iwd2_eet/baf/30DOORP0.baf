@@ -1,0 +1,54 @@
+IF
+	Allegiance(Myself,ENEMY)
+THEN
+	RESPONSE #100
+		ChangeEnemyAlly(Myself,NEUTRAL)
+		//Continue()
+END
+
+/*IF
+	Dead("09_HobDGu")
+THEN
+	RESPONSE #100
+		DestroySelf()
+END
+
+IF
+	!Global("TEAM_9","MYAREA",0)
+THEN
+	RESPONSE #100
+		ChangeAIScript("",CLASS)
+END*/
+
+IF
+	OR(3)
+		!Global("TEAM_9","MYAREA",0)
+		Dead("09_HobDGu")
+		OpenState("AR3001_Door3",TRUE)
+THEN
+	RESPONSE #100
+		DestroySelf()
+END
+
+IF
+	!Allegiance(Myself,ENEMY)
+	!StateCheck(Myself,STATE_REALLY_DEAD)
+	!Global("WATCHED_DOOR_CLICKED","MYAREA",0)
+	See([PC])
+THEN
+	RESPONSE #100
+		//SetDialogueRange(300)
+		SetGlobal("WATCHED_DOOR_CLICKED","MYAREA",0)
+		//Dialogue(LastMarkedObject)
+		ApplySpellRES("BDCUTSPY",Myself)
+		StartDialogNoSet(LastSeenBy(Myself))
+END
+
+IF
+	!Global("WATCHED_DOOR_CLICKED","MYAREA",0)
+	!See([PC])
+THEN
+	RESPONSE #100
+		SetGlobal("WATCHED_DOOR_CLICKED","MYAREA",0)
+END
+

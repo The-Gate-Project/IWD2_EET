@@ -1,0 +1,18 @@
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("AL_Instructor")
+		MultiPlayerSync()
+		MoveViewObject(Myself,15)
+		DisplayStringHead(Myself,@32190)
+		Wait(11)
+		DisplayStringHead(Myself,@32191)
+		Wait(13)
+		DisplayStringHead(Myself,@32192)
+		Wait(7)
+		SetGlobal("TEAM_9","MYAREA",1)
+		EndCutSceneMode()
+		MultiPlayerSync()
+END
+

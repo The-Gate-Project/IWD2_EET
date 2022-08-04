@@ -1,0 +1,15 @@
+IF
+	Global("30gobPon_Betrayer","GLOBAL",0)
+	IsActive(Myself)
+THEN
+	RESPONSE #100
+		Deactivate(Myself)
+END
+
+IF
+	!IsActive(Myself)
+THEN
+	RESPONSE #100
+		NoAction()
+END
+

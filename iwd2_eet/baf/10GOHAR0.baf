@@ -1,0 +1,96 @@
+IF
+  Global("SaveSavedLoc","LOCALS",0)
+THEN
+  RESPONSE #100
+    SetGlobal("SaveSavedLoc","LOCALS",1)
+    SaveObjectLocation("LOCALS","SavedLoc",Myself)
+    Continue()
+END
+
+IF
+	!Allegiance(Myself,ENEMY)
+	See([ENEMY])
+THEN
+	RESPONSE #100
+		FaceObject(LastSeenBy(Myself))
+		Continue()
+END
+
+IF
+	!GlobalTimerNotExpired("IwTimer18","LOCALS")
+	Global("SPRITE_IS_DEADBlack_Geoffrey","GLOBAL",0)
+	!Allegiance(Myself,ENEMY)
+	See([ENEMY])
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,@28791)
+		SetGlobalTimerRandom("IwTimer18","LOCALS",5,10)
+END
+
+IF
+	!GlobalTimerNotExpired("IwTimer18","LOCALS")
+	Global("SPRITE_IS_DEADBlack_Geoffrey","GLOBAL",0)
+	NearSavedLocation(Myself,"LOCALSSavedLoc",1)
+THEN
+	RESPONSE #85
+		DisplayStringHead(Myself,@3038)
+		SetGlobalTimerRandom("IwTimer18","LOCALS",5,10)
+		Continue()
+	RESPONSE #85
+		DisplayStringHead(Myself,@3045)
+		SetGlobalTimerRandom("IwTimer18","LOCALS",5,10)
+		Continue()
+	RESPONSE #85
+		DisplayStringHead(Myself,@3052)
+		SetGlobalTimerRandom("IwTimer18","LOCALS",5,10)
+		Continue()
+	RESPONSE #45
+		Continue()
+END
+
+IF
+	Global("ML_0","LOCALS",0)
+	!GlobalTimerNotExpired("IwTimer19","LOCALS")
+THEN
+	RESPONSE #100
+		SetGlobalTimerRandom("IwTimer19","LOCALS",35,45)
+		SetGlobal("ML_0","LOCALS",1)
+END
+
+IF
+	Global("ML_0","LOCALS",1)
+	!GlobalTimerNotExpired("IwTimer19","LOCALS")
+THEN
+	RESPONSE #100
+		Face(NW)
+		SetGlobal("ML_0","LOCALS",2)
+END
+
+IF
+	Global("ML_0","LOCALS",2)
+	!GlobalTimerNotExpired("IwTimer19","LOCALS")
+THEN
+	RESPONSE #100
+		SetGlobalTimerRandom("IwTimer19","LOCALS",35,45)
+		SetGlobal("ML_0","LOCALS",3)
+END
+
+IF
+	Global("ML_0","LOCALS",3)
+	NearSavedLocation(Myself,"LOCALSSavedLoc",4)
+THEN
+	RESPONSE #100
+		SetGlobal("ML_0","LOCALS",0)
+		//SetHomeLocation([-1.-1])
+		Continue()
+END
+
+IF
+	Global("ML_0","LOCALS",3)
+	!GlobalTimerNotExpired("IwTimer19","LOCALS")
+	!NearSavedLocation(Myself,"LOCALSSavedLoc",4)
+THEN
+	RESPONSE #100
+		MoveToSavedLocation("SavedLoc","LOCALS")
+END
+

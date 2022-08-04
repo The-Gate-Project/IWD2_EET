@@ -1,0 +1,83 @@
+IF
+	!GlobalGT("Veira_Quest","GLOBAL",1)
+	OR(2)
+		!Exists("11Veira")
+		Dead("11Veira")
+	OR(2)
+		TimeGT(19)
+		TimeLT(DAWN_END)
+THEN
+	RESPONSE #100
+		CreateCreature("11Veira",[459.199],8)
+		SetGlobal("SPRITE_IS_DEAD11Veira","GLOBAL",0)
+		Continue()
+END
+
+IF
+	//IsActive("Veira_Cry")
+	!Global("Veira_Cry_Inactive","MYAREA",1)
+	
+	OR(3)
+		!Global("Veira_Happy","GLOBAL",0)
+		Dead("11Veira")
+		!IsActive("11Veira")
+THEN
+	RESPONSE #100
+		SoundActivate("Veira_Cry",FALSE)
+		
+		SetGlobal("Veira_Cry_Inactive","MYAREA",1)
+		
+		Continue()
+END
+
+IF
+	//!IsActive("Veira_Cry")
+	!Global("Veira_Cry_Inactive","MYAREA",2)
+	
+	Global("Veira_Happy","GLOBAL",0)
+	!Dead("11Veira")
+	IsActive("11Veira")
+THEN
+	RESPONSE #100
+		SoundActivate("Veira_Cry",TRUE)
+		
+		SetGlobal("Veira_Cry_Inactive","MYAREA",2)
+		
+		Continue()
+END
+
+IF
+	Global("TARGOS_HOSTILE","GLOBAL",0)
+	!Global("TEAM_0","MYAREA",0)
+THEN
+	RESPONSE #100
+		SetGlobal("TARGOS_HOSTILE","GLOBAL",1)
+		Continue()
+END
+
+IF
+	Global("TEAM_0","MYAREA",0)
+	!Global("TARGOS_HOSTILE","GLOBAL",0)
+THEN
+	RESPONSE #100
+		SetGlobal("TEAM_0","MYAREA",1)
+		Continue()
+END
+
+IF
+	!Global("TOWNIE_DEAD","GLOBAL",0)
+THEN
+	RESPONSE #100
+		SetGlobal("TOWNIE_HOSTILE","MYAREA",0)
+		SetGlobal("TOWNIE_DEAD","GLOBAL",0)
+		Continue()
+END
+
+IF
+	OnCreation()
+THEN
+	RESPONSE #100
+		NoAction()
+		Continue()
+END
+

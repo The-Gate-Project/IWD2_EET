@@ -1,0 +1,9 @@
+IF
+  !Global("CREATE_ITEMS","LOCALS",1)
+THEN
+  RESPONSE #100
+		GiveItemCreate("z4genon",Myself,0,0,0)  //Myself
+		GiveItemCreate("z0potn96",Myself,1,0,0)
+		SetGlobal("CREATE_ITEMS","LOCALS",1)
+		Continue()
+END

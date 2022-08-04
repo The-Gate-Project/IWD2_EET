@@ -1,0 +1,14 @@
+IF
+	OpenState(Myself,FALSE)
+	OpenState("AR5004_1C",TRUE)
+	OpenState("AR5004_2C",TRUE)
+	OpenState("AR5004_3C",TRUE)
+	OpenState("AR5004_4C",TRUE)
+THEN
+	RESPONSE #100
+		OpenDoor(Myself)
+		StartCutScene("50cColC")
+		/* AddEndCutSceneMode */
+		EndCutSceneMode()
+END
+

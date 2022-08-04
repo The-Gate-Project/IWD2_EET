@@ -1,0 +1,24 @@
+IF
+	!IsActive(Myself)
+	GlobalGT("WLFDI_KILLED","GLOBAL",0)
+	//!Exists([ENEMY][580.600.5.-1])
+	!TriggerOverride("Wolf_Lair",Range([ENEMY],5))
+THEN
+	RESPONSE #100
+		Activate(Myself)
+		SetGlobal("IwIHidden","LOCALS",0)
+		IncrementGlobal("WLFDI_KILLED","GLOBAL",-1)
+		JumpToPoint([580.600])
+		FaceObject(NearestEnemyOf(Myself))
+		//HideCreature(Myself,FALSE)
+		ApplySpellRES("IDINVIS5",Myself)
+		Continue()
+END
+
+IF
+	!IsActive(Myself)
+THEN
+	RESPONSE #100
+		NoAction()
+END
+

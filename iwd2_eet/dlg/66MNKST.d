@@ -1,0 +1,11 @@
+BEGIN ~66MNKST~
+
+IF ~NumTimesTalkedTo(0)~ THEN BEGIN 0
+  SAY @34016
+  IF ~~ THEN EXIT
+END
+
+IF ~NumTimesTalkedToGT(0)~ THEN BEGIN 1
+  SAY @34047
+  IF ~~ THEN EXIT
+END

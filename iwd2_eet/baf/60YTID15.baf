@@ -1,0 +1,50 @@
+IF
+	See([ENEMY.0.YUANTI])
+	!Allegiance(Myself,ENEMY)
+THEN
+	RESPONSE #100
+		Enemy()
+		Continue()
+END
+
+IF
+	Global("ar6051_Kill_Archers","GLOBAL",1)
+THEN
+	RESPONSE #100
+		Kill(Myself)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+THEN
+	RESPONSE #100
+		ChangeAIScript("",CLASS)
+END
+
+IF
+	NumTimesTalkedTo(0)
+	!Allegiance(Myself,ENEMY)
+	!StateCheck(Myself,STATE_REALLY_DEAD)
+	Global("YTArcherGuard_t15_Talked","MYAREA",0)
+	See([PC])
+THEN
+	RESPONSE #100
+		SetGlobal("YTArcherGuard_t15_Talked","MYAREA",1)
+		SetGlobal("YTArcherGuard_OkayToTalk","LOCALS",1)
+		//SetDialogueRange(300)
+		//Dialogue(LastMarkedObject)
+		ApplySpellRES("BDCUTSPY",Myself)
+		StartDialogNoSet(LastSeenBy(Myself))
+END
+
+IF
+	NumTimesTalkedTo(0)
+	!Allegiance(Myself,ENEMY)
+	!StateCheck(Myself,STATE_REALLY_DEAD)
+	Global("YTArcherGuard_OkayToTalk","LOCALS",1)
+	See([PC])
+THEN
+	RESPONSE #100
+		Dialogue(LastSeenBy(Myself))
+END
+

@@ -1,0 +1,11 @@
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId(Myself)
+		DisplayStringHead(LastTalkedToBy(Myself),@16418)
+		ActionOverride(LastTalkedToBy(Myself),SetSequence(SEQ_DAMAGE))
+		Wait(1)
+		EndCutSceneMode()
+END
+

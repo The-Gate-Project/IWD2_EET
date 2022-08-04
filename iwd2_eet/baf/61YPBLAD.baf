@@ -1,0 +1,89 @@
+IF
+	StateCheck(Myself,STATE_PANIC)
+THEN
+	RESPONSE #100
+		RandomWalkContinuous()
+END
+
+IF
+	HasItem("POTN55",Myself) //POTN_52
+	//HPLostGT(Myself,18)
+	HPPercentLT(Myself,70)
+THEN
+	RESPONSE #100
+		UseItem("POTN55",Myself) //POTN_52
+END
+
+IF
+	StateCheck(Myself,STATE_NOT_VISIBLE)
+	RandomNum(5,1)
+	See(NearestEnemyOf(Myself))
+	!Range(LastSeenBy(Myself),4)
+	CanEquipRanged()
+THEN
+	RESPONSE #100
+		DisplayString(Myself,4188)
+		//ClearSpriteEffects(Myself)
+		SetGlobalTimer("HideTimer","LOCALS",7)
+		EquipRanged()
+		AttackReevaluate(LastSeenBy(Myself),45)
+END
+
+IF
+	StateCheck(Myself,STATE_NOT_VISIBLE)
+	RandomNum(5,1)
+	See(NearestEnemyOf(Myself))
+	OR(2)
+		Range(LastSeenBy(Myself),4)
+		!CanEquipRanged()
+THEN
+	RESPONSE #100
+		DisplayString(Myself,4188)
+		//ClearSpriteEffects(Myself)
+		SetGlobalTimer("HideTimer","LOCALS",7)
+		EquipMostDamagingMelee()
+		AttackReevaluate(LastSeenBy(Myself),45)
+END
+
+IF
+	!StateCheck(Myself,STATE_NOT_VISIBLE)
+	GlobalLT("Flee","LOCALS",7)
+	!GlobalTimerNotExpired("IwTimer99","LOCALS")
+	HPPercentLT(Myself,50)
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Flee","LOCALS",1)
+		RunAwayFrom(LastSeenBy(Myself),45)
+		SetGlobalTimer("IwTimer99","LOCALS",5)
+		Continue()
+END
+
+IF
+	!CheckSpellState(Myself,SANCTUARY)
+	HasItem("z0potn74",Myself)
+	GlobalGT("Flee","LOCALS",0)
+THEN
+	RESPONSE #100
+		UseItem("z0potn74",Myself)
+END
+
+IF
+	!StateCheck(Myself,STATE_NOT_VISIBLE)
+	GlobalTimerExpired("HideTimer","LOCALS")
+	!Range([PC],25)
+	!StateCheck(Myself,STATE_REALLY_DEAD)
+THEN
+	RESPONSE #100
+		DisplayString(Myself,19944)
+		ApplySpellRES("IWIN259",Myself)  // SPIN259.SPL INNATE_INVISIBILITY_NO_FEEDBACK
+		SetGlobal("Flee","LOCALS",0)
+END
+
+IF
+	StateCheck(Myself,STATE_NOT_VISIBLE)
+THEN
+	RESPONSE #100
+		NoAction()
+END
+

@@ -1,0 +1,20 @@
+IF
+	Unlocked([ANYONE])
+	!Global("41PNICKC_INACTIVE","MYAREA",1)
+	GlobalGT("41NickAwaken","MYAREA",1)
+THEN
+	RESPONSE #100
+		ChangeEnemyAlly("Nickademus",ENEMY)
+		SetGlobal("TEAM_5","MYAREA",1)
+		Continue()
+END
+
+IF
+	Unlocked([ANYONE])
+	!Global("41PNICKC_INACTIVE","MYAREA",1)
+THEN
+	RESPONSE #100
+		//ChangeCurrentScript("")
+		SetGlobal("41PNICKC_INACTIVE","MYAREA",1)
+END
+

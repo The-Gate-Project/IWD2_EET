@@ -1,0 +1,23 @@
+IF
+	GlobalGT("5200_YETI_DEAD","GLOBAL",0)
+	//!Exists([ENEMY][2600.1465.5.-1])
+	!TriggerOverride("To5200b",Range([ENEMY],8))
+THEN
+	RESPONSE #100
+		Activate(Myself)
+		SetGlobal("IwIHidden","LOCALS",0)
+		IncrementGlobal("5200_YETI_DEAD","GLOBAL",-1)
+		JumpToPoint([2660.1465])
+		FaceObject(NearestEnemyOf(Myself))
+		//HideCreature(Myself,FALSE)
+		ApplySpellRES("idinvis5",Myself)
+		ChangeAIScript("",CLASS)
+END
+
+IF
+	!IsActive(Myself)
+THEN
+	RESPONSE #100
+		NoAction()
+END
+

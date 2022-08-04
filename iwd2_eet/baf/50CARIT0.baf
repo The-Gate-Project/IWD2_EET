@@ -1,0 +1,62 @@
+IF
+  Global("SaveSavedLoc","LOCALS",0)
+THEN
+  RESPONSE #100
+    SetGlobal("SaveSavedLoc","LOCALS",1)
+    SaveObjectLocation("LOCALS","SavedLoc",Myself)
+    Continue()
+END
+
+IF
+	Dead("Leevi")
+THEN
+	RESPONSE #100
+		ChangeAIScript("",DEFAULT)
+END
+
+IF
+	Global("CARITA_LEEVI_FLOAT","MYAREA",0)
+	!GlobalTimerNotExpired("CARITA_LEEVI_TIMER","MYAREA")
+	See("Leevi")
+THEN
+	RESPONSE #100
+		FaceObject("Leevi")
+		SetGlobalTimerRandom("CARITA_LEEVI_TIMER","MYAREA",15,20)
+		SetGlobal("CARITA_LEEVI_FLOAT","MYAREA",1)
+		DisplayStringHead(Myself,@17040)
+	RESPONSE #100
+		FaceObject("Leevi")
+		SetGlobalTimerRandom("CARITA_LEEVI_TIMER","MYAREA",15,20)
+		SetGlobal("CARITA_LEEVI_FLOAT","MYAREA",1)
+		DisplayStringHead(Myself,@17040)
+	RESPONSE #100
+		FaceObject("Leevi")
+		SetGlobalTimerRandom("CARITA_LEEVI_TIMER","MYAREA",15,20)
+		SetGlobal("CARITA_LEEVI_FLOAT","MYAREA",1)
+		DisplayStringHead(Myself,@17040)
+	RESPONSE #100
+		FaceObject("Leevi")
+		SetGlobalTimerRandom("CARITA_LEEVI_TIMER","MYAREA",15,20)
+		SetGlobal("CARITA_LEEVI_FLOAT","MYAREA",1)
+		DisplayStringHead(Myself,@17040)
+	RESPONSE #100
+		FaceObject("Leevi")
+		SetGlobalTimerRandom("CARITA_LEEVI_TIMER","MYAREA",15,20)
+		SetGlobal("CARITA_LEEVI_FLOAT","MYAREA",1)
+		DisplayStringHead(Myself,@17040)
+	RESPONSE #100
+		FaceObject("Leevi")
+		SetGlobalTimerRandom("CARITA_LEEVI_TIMER","MYAREA",15,20)
+		SetGlobal("CARITA_LEEVI_FLOAT","MYAREA",1)
+		DisplayStringHead(Myself,@17040)
+END
+
+IF
+	!GlobalTimerNotExpired("IwTimer19","LOCALS")
+	!NearSavedLocation(Myself,"LOCALSSavedLoc",4)
+THEN
+	RESPONSE #100
+		MoveToSavedLocation("SavedLoc","LOCALS")
+		SetGlobalTimer("IwTimer19","LOCALS",5)
+END
+

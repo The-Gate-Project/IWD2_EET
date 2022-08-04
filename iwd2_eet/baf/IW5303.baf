@@ -1,0 +1,39 @@
+IF
+	Global("Played_Cutscene","MYAREA",0)
+THEN
+	RESPONSE #100
+		SetGlobal("Played_Cutscene","MYAREA",1)
+		StartCutSceneMode()
+		ClearAllActions()
+		MultiPlayerSync()
+		StartCutScene("53cMaj0")
+END
+
+IF
+	CombatCounter(0)
+	OR(6)
+		!Specifics(Player1,0)
+		!Specifics(Player2,0)
+		!Specifics(Player3,0)
+		!Specifics(Player4,0)
+		!Specifics(Player5,0)
+		!Specifics(Player6,0)
+THEN
+	RESPONSE #100
+		ChangeSpecifics(Player1,0)
+		ChangeSpecifics(Player2,0)
+		ChangeSpecifics(Player3,0)
+		ChangeSpecifics(Player4,0)
+		ChangeSpecifics(Player5,0)
+		ChangeSpecifics(Player6,0)
+		Continue()
+END
+
+IF
+	OnCreation()
+THEN
+	RESPONSE #100
+		NoAction()
+		Continue()
+END
+

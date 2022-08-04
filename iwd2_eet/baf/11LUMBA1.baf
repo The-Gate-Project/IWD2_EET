@@ -1,0 +1,20 @@
+IF
+	!GlobalTimerNotExpired("IwTimer18","LOCALS")
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,@8524)
+		SetGlobalTimerRandom("IwTimer18","LOCALS",25,30)
+	RESPONSE #100
+		DisplayStringHead(Myself,@8525)
+		SetGlobalTimerRandom("IwTimer18","LOCALS",25,30)
+	RESPONSE #100
+		DisplayStringHead(Myself,@8526)
+		SetGlobalTimerRandom("IwTimer18","LOCALS",25,30)
+	RESPONSE #100
+		DisplayStringHead(Myself,@8527)
+		SetGlobalTimerRandom("IwTimer18","LOCALS",25,30)
+	RESPONSE #100
+		DisplayStringHead(Myself,@8528)
+		SetGlobalTimerRandom("IwTimer18","LOCALS",25,30)
+END
+

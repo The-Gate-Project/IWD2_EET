@@ -1,0 +1,53 @@
+IF
+	StateCheck(Myself,STATE_PANIC)
+THEN
+	RESPONSE #100
+		RandomWalkContinuous()
+END
+
+IF
+	!GlobalTimerNotExpired("IWD_Rest","LOCALS")
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IWD_Rest","LOCALS",EIGHT_HOURS)
+		ApplySpell(Myself,RESTORE_FULL_HEALTH)
+		Rest()
+END
+
+IF
+	Global("PREFER_PC","LOCALS",0)
+	//Dead(MyTarget)
+	Heard([ANYONE],88)
+	!TargetUnreachable(LastHeardBy)
+THEN
+	RESPONSE #100
+		//SetMyTarget(LastHeardBy)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	HaveSpell(WIZARD_WEB)
+	See([PC])
+	!Race(LastSeenBy(Myself),LICH)
+	!Race(LastSeenBy(Myself),GOLEM)
+	!Race(LastSeenBy(Myself),DEMILICH)
+	!Race(LastSeenBy(Myself),RAKSHASA)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),WIZARD_WEB)
+		Wait(1)
+END
+
+IF
+	HaveSpell(WIZARD_MAGIC_MISSILE)
+	//OR(2)
+		See(NearestEnemyOf(Myself))
+	//	See(LastHeardBy) //LastHeardBy
+	!HasBounceEffects(LastSeenBy(Myself))
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),WIZARD_MAGIC_MISSILE)
+		Wait(1)
+END
+

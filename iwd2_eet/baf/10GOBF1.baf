@@ -1,0 +1,25 @@
+IF
+	!GlobalTimerNotExpired("IwTimer18","LOCALS")
+	!See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #10
+		DisplayStringHead(Myself,@3165)
+		SetGlobalTimerRandom("IwTimer18","LOCALS",35,45)
+		Continue()
+	RESPONSE #10
+		DisplayStringHead(Myself,@3166)
+		SetGlobalTimerRandom("IwTimer18","LOCALS",35,45)
+		Continue()
+	RESPONSE #10
+		DisplayStringHead(Myself,@3167)
+		SetGlobalTimerRandom("IwTimer18","LOCALS",35,45)
+		Continue()
+	RESPONSE #10
+		DisplayStringHead(Myself,@3169)
+		SetGlobalTimerRandom("IwTimer18","LOCALS",35,45)
+		Continue()
+	RESPONSE #360
+		SetGlobalTimerRandom("IwTimer18","LOCALS",35,45)
+		Continue()
+END
+

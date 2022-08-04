@@ -1,0 +1,196 @@
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("Iselore")
+		MultiPlayerSync()
+		
+		/*Activate("Cedra")
+		ActionOverride("Cedra",SetGlobal("IwIHidden","LOCALS",0))
+		Activate("Madae")
+		ActionOverride("Madae",SetGlobal("IwIHidden","LOCALS",0))*/
+		
+		Activate("6001Black_Neo_Orog1")
+		ActionOverride("6001Black_Neo_Orog1",SetGlobal("IwIHidden","LOCALS",0))
+		Activate("6001Black_Neo_Orog2")
+		ActionOverride("6001Black_Neo_Orog2",SetGlobal("IwIHidden","LOCALS",0))
+		MultiPlayerSync()
+		Activate("6001Black_Neo_Orog3")
+		ActionOverride("6001Black_Neo_Orog3",SetGlobal("IwIHidden","LOCALS",0))
+		Activate("6001Black_Neo_Orog4")
+		ActionOverride("6001Black_Neo_Orog4",SetGlobal("IwIHidden","LOCALS",0))
+		MultiPlayerSync()
+		Activate("6001Black_Neo_Orog7")
+		ActionOverride("6001Black_Neo_Orog7",SetGlobal("IwIHidden","LOCALS",0))
+		Activate("6001Black_Neo_Orog8")
+		ActionOverride("6001Black_Neo_Orog8",SetGlobal("IwIHidden","LOCALS",0))
+		MultiPlayerSync()
+		Activate("6001Black_Neo_Orog9")
+		ActionOverride("6001Black_Neo_Orog9",SetGlobal("IwIHidden","LOCALS",0))
+		Activate("6001Black_Neo_Orog10")
+		ActionOverride("6001Black_Neo_Orog10",SetGlobal("IwIHidden","LOCALS",0))
+		MultiPlayerSync()
+		ChangeEnemyAlly("6001Black_Neo_Orog1",ENEMY)
+		ChangeEnemyAlly("6001Black_Neo_Orog2",ENEMY)
+		MultiPlayerSync()
+		ChangeEnemyAlly("6001Black_Neo_Orog3",ENEMY)
+		ChangeEnemyAlly("6001Black_Neo_Orog4",ENEMY)
+		MultiPlayerSync()
+		//ChangeEnemyAlly("6001Black_Neo_Orog5",ENEMY)
+		//ChangeEnemyAlly("6001Black_Neo_Orog6",ENEMY)
+		//MultiPlayerSync()
+		ChangeEnemyAlly("6001Black_Neo_Orog7",ENEMY)
+		ChangeEnemyAlly("6001Black_Neo_Orog8",ENEMY)
+		MultiPlayerSync()
+		ChangeEnemyAlly("6001Black_Neo_Orog9",ENEMY)
+		ChangeEnemyAlly("6001Black_Neo_Orog10",ENEMY)
+		MultiPlayerSync()
+		//ChangeEnemyAlly("6001Black_Neo_Orog11",ENEMY)
+		//ChangeEnemyAlly("6001Black_Neo_Orog12",ENEMY)
+		//MultiPlayerSync()
+		/*ChangeEnemyAlly("6001Black_Neo_Orog13",ENEMY)
+		ChangeEnemyAlly("6001Black_Neo_Orog14",ENEMY)
+		MultiPlayerSync()
+		ChangeEnemyAlly("6001Black_Neo_Orog15",ENEMY)
+		ChangeEnemyAlly("6001Black_Neo_Orog16",ENEMY)
+		MultiPlayerSync()
+		ChangeEnemyAlly("6001Black_Neo_Orog17",ENEMY)
+		ChangeEnemyAlly("6001Black_Neo_Orog18",ENEMY)*/
+		MultiPlayerSync()
+		FadeToColor([0.0],0)
+		Wait(1)
+		SetGlobal("TEAM_10","MYAREA",1)
+		//SetVisualRange(50)
+		CreateCreature("cutspy",[-1.-1],0)
+		MultiPlayerSync()
+		//HideCreature(Player1,TRUE)
+		ApplySpellRES("IDINVIS6",Player1)
+		//HideCreature(Player2,TRUE)
+		ApplySpellRES("IDINVIS6",Player2)
+		MultiPlayerSync()
+		//HideCreature(Player3,TRUE)
+		ApplySpellRES("IDINVIS6",Player3)
+		//HideCreature(Player4,TRUE)
+		ApplySpellRES("IDINVIS6",Player4)
+		MultiPlayerSync()
+		//HideCreature(Player5,TRUE)
+		ApplySpellRES("IDINVIS6",Player5)
+		//HideCreature(Player6,TRUE)
+		ApplySpellRES("IDINVIS6",Player6)
+		MultiPlayerSync()
+		MoveViewPoint([2017.2413],50)
+		MultiPlayerSync()
+		//HideCreature(Player1,FALSE)
+		ApplySpellRES("IDINVIS7",Player1)
+		//HideCreature(Player2,FALSE)
+		ApplySpellRES("IDINVIS7",Player2)
+		MultiPlayerSync()
+		//HideCreature(Player3,FALSE)
+		ApplySpellRES("IDINVIS7",Player3)
+		//HideCreature(Player4,FALSE)
+		ApplySpellRES("IDINVIS7",Player4)
+		MultiPlayerSync()
+		//HideCreature(Player5,FALSE)
+		ApplySpellRES("IDINVIS7",Player5)
+		//HideCreature(Player6,FALSE)
+		ApplySpellRES("IDINVIS7",Player6)
+		MultiPlayerSync()
+		//SetDialogueRange(50)
+		MultiPlayerSync()
+		Face(E)
+		FadeFromColor([0.0],0)
+		Wait(1)
+		MultiPlayerSync()
+		SetGlobal("60cCMI0_Over","MYAREA",1)
+		StartDialogNoSet([PC])
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId(Player1)
+		Wait(3)
+		JumpToPoint([1940.1970])
+		Face(S)
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId(Player2)
+		Wait(3)
+		JumpToPoint([2030.1920])
+		Face(S)
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId(Player3)
+		Wait(3)
+		JumpToPoint([1850.1930])
+		Face(S)
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId(Player4)
+		Wait(3)
+		JumpToPoint([1930.1880])
+		Face(S)
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId(Player5)
+		Wait(3)
+		JumpToPoint([1850.1850])
+		Face(S)
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId(Player6)
+		Wait(3)
+		JumpToPoint([1810.1780])
+		Face(S)
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("Cedra")
+		Wait(1)
+		//SetDialogueRange(300)
+		CreateCreature("cutspy2",[-1.-1],0)
+		//HideCreature("Cedra",FALSE)
+		//Activate(Myself)
+		//SetGlobal("IwIHidden","LOCALS",0)
+		ApplySpellRES("idinvis5",Myself)
+		SetGlobal("IwIHidden","LOCALS",0)
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("Madae")
+		Wait(1)
+		//SetDialogueRange(300)
+		//HideCreature("Madae",FALSE)
+		//Activate(Myself)
+		//SetGlobal("IwIHidden","LOCALS",0)
+		ApplySpellRES("idinvis5",Myself)
+		SetGlobal("IwIHidden","LOCALS",0)
+END
+

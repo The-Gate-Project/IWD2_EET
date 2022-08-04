@@ -1,0 +1,406 @@
+BEGIN ~63NEWCED~
+
+IF WEIGHT #1
+~NumberOfTimesTalkedTo(0)~ THEN BEGIN 0
+  SAY @36993
+  IF ~~ THEN REPLY @36994 DO ~AddJournalEntry(@36979,QUEST)~ GOTO 1
+  IF ~~ THEN REPLY @36995 DO ~AddJournalEntry(@36979,QUEST)~ GOTO 2
+  IF ~PartyHasItem("z6bookza")~ THEN REPLY @36996 DO ~AddJournalEntry(@36979,QUEST)~ GOTO 3
+  IF ~~ THEN REPLY @36997 EXIT
+END
+
+IF ~~ THEN BEGIN 1
+  SAY @36998
+  IF ~~ THEN REPLY @36995 GOTO 2
+  IF ~PartyHasItem("z6bookza")~ THEN REPLY @36996 DO ~AddJournalEntry(@36979,QUEST)~ GOTO 3
+  IF ~~ THEN REPLY @36997 EXIT
+END
+
+IF ~~ THEN BEGIN 2
+  SAY @36999
+  IF ~~ THEN REPLY @37000 DO ~AddJournalEntry(@36979,QUEST)~ GOTO 1
+  IF ~PartyHasItem("z6bookza")~ THEN REPLY @36996 DO ~AddJournalEntry(@36979,QUEST)~ GOTO 3
+  IF ~~ THEN REPLY @37001 EXIT
+END
+
+IF ~~ THEN BEGIN 3
+  SAY @37002
+  IF ~~ THEN REPLY @37003 DO ~AddJournalEntry(@36980,QUEST)~ GOTO 5
+END
+
+IF ~~ THEN BEGIN 4
+  SAY @37004
+  IF ~~ THEN REPLY @37003 GOTO 5
+END
+
+IF ~~ THEN BEGIN 5
+  SAY @37005
+  IF ~~ THEN REPLY @37006 GOTO 6
+  IF ~~ THEN REPLY @37007 DO ~SetGlobal("SH_Cedrin_Tale","GLOBAL",1)~ EXIT
+  IF ~~ THEN REPLY @37008 DO ~SetGlobal("SH_Cedrin_Tale","GLOBAL",1)~ EXIT
+END
+
+IF ~~ THEN BEGIN 6
+  SAY @37009
+  IF ~~ THEN REPLY @37010 GOTO 8
+  IF ~~ THEN REPLY @37011 GOTO 7
+END
+
+IF ~~ THEN BEGIN 7
+  SAY @37012
+  IF ~~ THEN REPLY @37013 GOTO 8
+END
+
+IF ~~ THEN BEGIN 8
+  SAY @37014
+  IF ~~ THEN REPLY @37015 GOTO 13
+  IF ~~ THEN REPLY @37016 GOTO 10
+  IF ~~ THEN REPLY @37017 GOTO 9
+END
+
+IF ~~ THEN BEGIN 9
+  SAY @37018
+  IF ~~ THEN REPLY @37019 GOTO 11
+END
+
+IF ~~ THEN BEGIN 10
+  SAY @37020
+  IF ~~ THEN REPLY @37019 GOTO 11
+END
+
+IF ~~ THEN BEGIN 11
+  SAY @37021
+  IF ~~ THEN REPLY @37022 GOTO 13
+  IF ~~ THEN REPLY @37023 GOTO 12
+  IF ~~ THEN REPLY @37024 EXIT
+END
+
+IF ~~ THEN BEGIN 12
+  SAY @37025
+  IF ~~ THEN REPLY @37026 GOTO 13
+END
+
+IF ~~ THEN BEGIN 13
+  SAY @37027
+  IF ~~ THEN REPLY @37028 GOTO 14
+  IF ~~ THEN REPLY @37029 GOTO 15
+END
+
+IF ~~ THEN BEGIN 14
+  SAY @37030
+  IF ~~ THEN REPLY @37031 GOTO 17
+  IF ~~ THEN REPLY @37032 GOTO 16
+END
+
+IF ~~ THEN BEGIN 15
+  SAY @37033
+  IF ~~ THEN REPLY @37031 GOTO 17
+  IF ~~ THEN REPLY @37032 GOTO 16
+END
+
+IF ~~ THEN BEGIN 16
+  SAY @37034
+  IF ~~ THEN REPLY @37035 GOTO 17
+  IF ~CheckStatGT(LastTalkedToBy,11,INT)~ THEN REPLY @37036 GOTO 17
+END
+
+IF ~~ THEN BEGIN 17
+  SAY @37037
+  IF ~~ THEN REPLY @37038 GOTO 18
+END
+
+IF ~~ THEN BEGIN 18
+  SAY @37039
+  IF ~~ THEN REPLY @37040 GOTO 19
+END
+/* AddClassRestrict */
+IF ~~ THEN BEGIN 19
+  SAY @37041
+  IF ~!Class(LastTalkedToBy,CLERIC_ALL)
+      !Class(LastTalkedToBy,DRUID_ALL)
+      !Class(LastTalkedToBy,PALADIN_ALL)
+      !Class(LastTalkedToBy,RANGER_ALL)
+      !Class(LastTalkedToBy,MAGE_ALL)
+      !Class(LastTalkedToBy,BARD_ALL)~ THEN REPLY @37042 GOTO 20
+  IF ~Class(LastTalkedToBy,CLERIC_ALL)~ THEN REPLY @37043 GOTO 21
+  IF ~Class(LastTalkedToBy,DRUID_ALL)
+      !Class(LastTalkedToBy,SHAMAN)~ THEN REPLY @37044 GOTO 21
+  IF ~Class(LastTalkedToBy,PALADIN_ALL)~ THEN REPLY @37045 GOTO 21
+  IF ~Class(LastTalkedToBy,MAGE_ALL)~ THEN REPLY @37046 GOTO 21
+  IF ~Class(LastTalkedToBy,RANGER_ALL)~ THEN REPLY @33807 GOTO 21
+  IF ~Class(LastTalkedToBy,BARD_ALL)~ THEN REPLY @39443 GOTO 21
+  IF ~Class(LastTalkedToBy,SHAMAN)~ THEN REPLY @50019 GOTO 21
+END
+
+IF ~~ THEN BEGIN 20
+  SAY @37047
+  IF ~~ THEN REPLY @37048 GOTO 22
+END
+
+IF ~~ THEN BEGIN 21
+  SAY @37049
+  IF ~Class(LastTalkedToBy,CLERIC_ALL)~ THEN REPLY @37050 GOTO 23
+  IF ~Class(LastTalkedToBy,DRUID_ALL)
+      !Class(LastTalkedToBy,SHAMAN)~ THEN REPLY @37051 GOTO 23
+  IF ~Class(LastTalkedToBy,PALADIN_ALL)~ THEN REPLY @37052 GOTO 23
+  IF ~Class(LastTalkedToBy,MAGE_ALL)~ THEN REPLY @37053 GOTO 23
+  IF ~Class(LastTalkedToBy,RANGER_ALL)~ THEN REPLY @37051 GOTO 23
+  IF ~Class(LastTalkedToBy,BARD_ALL)~ THEN REPLY @37053 GOTO 23
+  IF ~Class(LastTalkedToBy,SHAMAN)~ THEN REPLY @50020 GOTO 23
+END
+
+IF ~~ THEN BEGIN 22
+  SAY @37054
+  IF ~~ THEN REPLY @37055 GOTO 24
+END
+
+IF ~~ THEN BEGIN 23
+  SAY @37056
+  IF ~~ THEN REPLY @37055 GOTO 24
+END
+
+IF ~~ THEN BEGIN 24
+  SAY @37057
+  IF ~!Global("SH_Creature_Cleared","GLOBAL",1)~ THEN REPLY @37058 DO ~SetGlobal("SH_Know_Of_Creature","GLOBAL",1)
+                                                                       AddJournalEntry(@36981,QUEST)~ GOTO 27
+  IF ~Global("SH_Creature_Cleared","GLOBAL",1)~ THEN REPLY @37058 DO ~SetGlobal("SH_Know_Of_Creature","GLOBAL",1)
+                                                                      AddJournalEntry(@36982,QUEST)~ GOTO 25
+END
+
+IF ~~ THEN BEGIN 25
+  SAY @37059
+  IF ~~ THEN REPLY @37060 GOTO 26
+END
+
+IF ~~ THEN BEGIN 26
+  SAY @37061
+  IF ~~ THEN REPLY @37062 GOTO 28
+END
+
+IF ~~ THEN BEGIN 27
+  SAY @37059
+  IF ~~ THEN REPLY @37062 GOTO 28
+END
+/* AddClassRestrict */
+IF ~~ THEN BEGIN 28
+  SAY @37063
+  IF ~!Class(LastTalkedToBy,CLERIC_ALL)
+      !Class(LastTalkedToBy,DRUID_ALL)
+      !Class(LastTalkedToBy,PALADIN_ALL)
+      !Class(LastTalkedToBy,RANGER_ALL)
+      !Class(LastTalkedToBy,MAGE_ALL)
+      !Class(LastTalkedToBy,BARD_ALL)~ THEN REPLY @37064 GOTO 29
+  IF ~Class(LastTalkedToBy,CLERIC_ALL)~ THEN REPLY @37065 GOTO 29
+  IF ~Class(LastTalkedToBy,DRUID_ALL)
+      !Class(LastTalkedToBy,SHAMAN)~ THEN REPLY @37066 GOTO 29
+  IF ~Class(LastTalkedToBy,PALADIN_ALL)~ THEN REPLY @37067 GOTO 29
+  IF ~Class(LastTalkedToBy,MAGE_ALL)~ THEN REPLY @37068 GOTO 29
+  IF ~Class(LastTalkedToBy,RANGER_ALL)~ THEN REPLY @39446 GOTO 29
+  IF ~Class(LastTalkedToBy,BARD_ALL)~ THEN REPLY @39447 GOTO 29
+  IF ~Class(LastTalkedToBy,SHAMAN)~ THEN REPLY @50021 GOTO 29
+END
+
+IF ~~ THEN BEGIN 29
+  SAY @37069
+  IF ~CheckStatGT(LastTalkedToBy,11,INT)~ THEN REPLY @37070 DO ~AddJournalEntry(@36983,QUEST)~ GOTO 30
+  IF ~CheckStatLT(LastTalkedToBy,12,INT)~ THEN REPLY @37071 DO ~AddJournalEntry(@36983,QUEST)~ GOTO 30
+END
+
+IF ~~ THEN BEGIN 30
+  SAY @37072
+  IF ~~ THEN REPLY @37073 DO ~AddJournalEntry(@36984,QUEST)~ GOTO 31
+END
+
+IF ~~ THEN BEGIN 31
+  SAY @37074
+  IF ~!Global("SPRITE_IS_DEADKav_Lathram","GLOBAL",1)
+      !Global("SPRITE_IS_DEADJaebrilla","GLOBAL",1)~ THEN REPLY @37075 DO ~SetGlobal("SH_Seek_Kav","GLOBAL",1)
+                                                                           SetGlobal("SH_Seek_Jae","GLOBAL",1)~ GOTO 32
+  IF ~Global("SPRITE_IS_DEADKav_Lathram","GLOBAL",1)
+      !Global("SPRITE_IS_DEADJaebrilla","GLOBAL",1)~ THEN REPLY @38466 GOTO 58
+  IF ~Global("SPRITE_IS_DEADJaebrilla","GLOBAL",1)
+      !Global("SPRITE_IS_DEADKav_Lathram","GLOBAL",1)~ THEN REPLY @38467 GOTO 58
+  IF ~Global("SPRITE_IS_DEADKav_Lathram","GLOBAL",1)
+      Global("SPRITE_IS_DEADJaebrilla","GLOBAL",1)~ THEN REPLY @38468 GOTO 59
+END
+
+IF ~~ THEN BEGIN 32
+  SAY @37076
+  IF ~~ THEN REPLY @37077 DO ~SetGlobal("SH_Zaem_Death","GLOBAL",3)
+                              AddJournalEntry(@36985,QUEST)~ GOTO 33
+  IF ~~ THEN REPLY @37078 DO ~SetGlobal("SH_Zaem_Death","GLOBAL",2)
+                              AddJournalEntry(@36986,QUEST)~ GOTO 33
+END
+
+IF ~~ THEN BEGIN 33
+  SAY @37079
+  IF ~~ THEN REPLY @37080 GOTO 34
+END
+
+IF ~~ THEN BEGIN 34
+  SAY @37081
+  IF ~~ THEN REPLY @37082 DO ~SetGlobal("SH_Cedrin_Tale","GLOBAL",3)~ EXIT
+END
+
+IF WEIGHT #2
+~NumTimesTalkedToGT(0)~ THEN BEGIN 35
+  SAY @37083
+  IF ~~ THEN REPLY @36994 GOTO 1
+  IF ~~ THEN REPLY @36995 GOTO 2
+  IF ~PartyHasItem("z6bookza")
+      Global("SH_Cedrin_Tale","GLOBAL",0)~ THEN REPLY @36996 GOTO 3
+  IF ~Global("SH_Cedrin_Tale","GLOBAL",1)~ THEN REPLY @37084 GOTO 4
+  IF ~Global("SH_Know_Cedrin_Murderer","GLOBAL",1)
+      Global("SH_Zaem_Death","GLOBAL",3)
+      !Global("SH_Backed_Down","GLOBAL",1)~ THEN REPLY @37085 GOTO 36
+  IF ~Global("SH_Know_Cedrin_Murderer","GLOBAL",1)
+      Global("SH_Zaem_Death","GLOBAL",2)
+      !Global("SH_Backed_Down","GLOBAL",1)~ THEN REPLY @37085 GOTO 37
+  IF ~Global("SH_Backed_Down","GLOBAL",1)~ THEN REPLY @37086 GOTO 55
+  IF ~~ THEN REPLY @36997 EXIT
+END
+
+IF ~~ THEN BEGIN 36
+  SAY @37087
+  IF ~~ THEN REPLY @37088 GOTO 38
+END
+
+IF ~~ THEN BEGIN 37
+  SAY @37089
+  IF ~~ THEN REPLY @37088 GOTO 38
+END
+
+IF ~~ THEN BEGIN 38
+  SAY @37090
+  IF ~~ THEN REPLY @37091 DO ~AddXP2DA("IW2EX14H")
+                              DisplayStringNoNameDlg(LastTalkedToBy,@36992)~ GOTO 39
+  IF ~~ THEN REPLY @37092 DO ~SetGlobal("SH_Backed_Down","GLOBAL",1)~ EXIT
+END
+
+IF ~~ THEN BEGIN 39
+  SAY @37093
+  IF ~~ THEN REPLY @37094 GOTO 40
+END
+
+IF ~~ THEN BEGIN 40
+  SAY @37095
+  IF ~~ THEN REPLY @37096 GOTO 41
+END
+
+IF ~~ THEN BEGIN 41
+  SAY @37097
+  IF ~~ THEN REPLY @37098 GOTO 42
+  IF ~OR(2)
+        !Class(LastTalkedToBy,PALADIN_ALL)
+        Kit(LastTalkedToBy,BLACKGUARD)~ THEN REPLY @37099 GOTO 43
+END
+
+IF ~~ THEN BEGIN 42
+  SAY @37100
+  IF ~~ THEN REPLY @37101 GOTO 44
+END
+
+IF ~~ THEN BEGIN 43
+  SAY @37102
+  IF ~~ THEN REPLY @37101 GOTO 44
+END
+
+IF ~~ THEN BEGIN 44
+  SAY @37103
+  IF ~~ THEN REPLY @37104 GOTO 45
+END
+
+IF ~~ THEN BEGIN 45
+  SAY @37105
+  IF ~~ THEN REPLY @37106 GOTO 46
+END
+
+IF ~~ THEN BEGIN 46
+  SAY @37112
+  IF ~~ THEN REPLY @37113 GOTO 47
+END
+
+IF ~~ THEN BEGIN 47
+  SAY @37114
+  IF ~CheckStatGT(LastTalkedToBy,11,INT)~ THEN REPLY @37115 GOTO 48
+  IF ~Class(LastTalkedToBy,MAGE_ALL)~ THEN REPLY @37116 GOTO 48
+  IF ~CheckStatLT(LastTalkedToBy,12,INT)~ THEN REPLY @37117 GOTO 49
+END
+
+IF ~~ THEN BEGIN 48
+  SAY @37118
+  IF ~~ THEN REPLY @37119 GOTO 50
+END
+
+IF ~~ THEN BEGIN 49
+  SAY @37120
+  IF ~~ THEN REPLY @37119 GOTO 50
+END
+
+IF ~~ THEN BEGIN 50
+  SAY @37121
+  IF ~~ THEN REPLY @37122 DO ~AddJournalEntry(@36988,QUEST)~ GOTO 51
+  IF ~OR(2)
+        !Class(LastTalkedToBy,PALADIN_ALL)
+        Kit(LastTalkedToBy,BLACKGUARD)~ THEN REPLY @37123 DO ~AddJournalEntry(@36989,QUEST)~ GOTO 52
+  IF ~Class(LastTalkedToBy,PALADIN_ALL)
+      !Kit(LastTalkedToBy,BLACKGUARD)~ THEN REPLY @37124 DO ~AddJournalEntry(@36988,QUEST)~ GOTO 52
+END
+
+IF ~~ THEN BEGIN 51
+  SAY @37125
+  IF ~~ THEN REPLY @37126 GOTO 53
+  IF ~Global("SH_Know_Vese","GLOBAL",1)~ THEN REPLY @37127 GOTO 57
+  IF ~~ THEN REPLY @36997 DO ~SetGlobal("SH_Cedrin_Done","GLOBAL",1)~ EXIT
+END
+
+IF ~~ THEN BEGIN 52
+  SAY @37128
+  IF ~~ THEN REPLY @37129 GOTO 53
+  IF ~Global("SH_Know_Vese","GLOBAL",1)~ THEN REPLY @37130 GOTO 57
+  IF ~~ THEN REPLY @36997 DO ~SetGlobal("SH_Cedrin_Done","GLOBAL",1)
+~ EXIT
+END
+
+IF ~~ THEN BEGIN 53
+  SAY @37131
+  IF ~~ THEN REPLY @37132 DO ~Enemy()
+                              AddJournalEntry(@36991,QUEST)~ EXIT
+  IF ~~ THEN REPLY @37133 DO ~SetGlobal("SH_Cedrin_Done","GLOBAL",1)
+                              AddJournalEntry(@36990,QUEST)~ EXIT
+END
+
+IF WEIGHT #0
+~Global("SH_Cedrin_Done","GLOBAL",1)~ THEN BEGIN 54
+  SAY @37134
+  IF ~~ THEN REPLY @37135 DO ~Enemy()
+                              AddJournalEntry(@36991,QUEST)~ EXIT
+  IF ~~ THEN REPLY @37082 EXIT
+END
+
+IF ~~ THEN BEGIN 55
+  SAY @37136
+  IF ~~ THEN REPLY @37137 DO ~SetGlobal("SH_Backed_Down","GLOBAL",0)~ GOTO 56
+  IF ~~ THEN REPLY @37082 EXIT
+END
+
+IF ~~ THEN BEGIN 56
+  SAY @37138
+  IF ~~ THEN REPLY @37091 DO ~AddXP2DA("IW2EX14H")
+                              DisplayStringNoNameDlg(LastTalkedToBy,@36992)~ GOTO 39
+END
+
+IF ~~ THEN BEGIN 57
+  SAY @37139
+  IF ~~ THEN REPLY @37140 DO ~SetGlobal("SH_Cedrin_Done","GLOBAL",1)~ EXIT
+END
+
+IF ~~ THEN BEGIN 58
+  SAY @38469
+  IF ~~ THEN REPLY @1487 DO ~SetGlobal("SH_Cedrin_Done","GLOBAL",1)~ EXIT
+END
+
+IF ~~ THEN BEGIN 59
+  SAY @38471
+  IF ~~ THEN REPLY @1487 DO ~SetGlobal("SH_Cedrin_Done","GLOBAL",1)~ EXIT
+END

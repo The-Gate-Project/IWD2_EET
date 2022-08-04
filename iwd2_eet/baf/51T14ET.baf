@@ -1,0 +1,42 @@
+IF
+	!Global("TEAM_14","MYAREA",1)
+	OR(2)
+		AttackedBy([GOODCUTOFF],DEFAULT)
+		PickPocketFailed([PC])
+THEN
+	RESPONSE #100
+		SetGlobal("TEAM_14","MYAREA",1)
+		Continue()
+END
+
+IF
+	!Allegiance(Myself,ENEMY)
+	OR(3)
+		!Global("TEAM_11","MYAREA",0)
+		!Global("TEAM_13","MYAREA",0)
+		!Global("TEAM_14","MYAREA",0)
+THEN
+	RESPONSE #100
+		Enemy()
+		Continue()
+END
+
+/*IF
+	!IsTeamBitOn(TEAM_14_BIT)
+THEN
+	RESPONSE #100
+		SetTeamBit(TEAM_14_BIT,TRUE)
+		Continue()
+END*/
+
+IF
+	!Global("TEAM_14","MYAREA",1)
+	Allegiance(Myself,ENEMY)
+	IsActive(Myself)
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		SetGlobal("TEAM_14","MYAREA",1)
+		Continue()
+END
+

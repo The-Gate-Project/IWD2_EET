@@ -1,0 +1,23 @@
+IF
+	GlobalLT("Action","LOCALS",2)
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Action","LOCALS",1)
+		EquipMostDamagingMelee()
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	See(NearestEnemyOf(Myself))
+	//IsSpellTargetValid(LastMarkedObject,INNATE_UMBER_HULK_GAZE,SPELLCAST_IGNORE_HAS_CHECK)  // SPIN994.SPL (No such index)
+THEN
+	RESPONSE #100
+		SetGlobal("Action","LOCALS",0)
+		ForceSpellRES("IWIN994",LastSeenBy(Myself))  // INNATE_UMBER_HULK_GAZE
+		//WaitAnimation(Myself,WALK)
+		//WaitAnimation(Myself,CONJURE)
+		//WaitAnimation(Myself,CAST)
+		Wait(2)
+END
+

@@ -1,0 +1,15 @@
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("TyrannarBrutaiMar")
+		/*Activate("Undead_Gaernat_Sharptooth")
+		ActionOverride("Undead_Gaernat_Sharptooth",SetGlobal("IwIHidden","LOCALS",0))
+		Activate("Undead_Guthma")
+		ActionOverride("Undead_Guthma",SetGlobal("IwIHidden","LOCALS",0))
+		Activate("Undead_Harshom")
+		ActionOverride("Undead_Harshom",SetGlobal("IwIHidden","LOCALS",0))
+		Activate("Undead_Sherincal")
+		ActionOverride("Undead_Sherincal",SetGlobal("IwIHidden","LOCALS",0))*/
+		StartCutScene("65cADed0")
+END

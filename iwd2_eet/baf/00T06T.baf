@@ -1,0 +1,22 @@
+IF
+	!Global("TEAM_6","MYAREA",1)
+	OR(2)
+		AttackedBy([GOODCUTOFF],DEFAULT)
+		PickPocketFailed([PC])
+THEN
+	RESPONSE #100
+		SetGlobal("TEAM_6","MYAREA",1)
+		Continue()
+END
+
+IF
+	!Global("TEAM_6","MYAREA",1)
+	Allegiance(Myself,ENEMY)
+	IsActive(Myself)
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		SetGlobal("TEAM_6","MYAREA",1)
+		Continue()
+END
+

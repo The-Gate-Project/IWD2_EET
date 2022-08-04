@@ -1,0 +1,35 @@
+IF
+	!Global("SPRITE_IS_DEAD12KegArc","GLOBAL",0)
+THEN
+	RESPONSE #100
+		SetGlobal("SPRITE_IS_DEAD12KegArc","GLOBAL",0)
+		SetGlobal("Dead_12KegArc","GLOBAL",1)
+		Continue()
+END
+
+IF
+	!Global("KEEP_TRAINING","GLOBAL",0)
+THEN
+	RESPONSE #100
+		SetGlobal("KEEP_TRAINING","GLOBAL",0)
+		Continue()
+END
+
+IF
+	Global("SPRITE_IS_DEAD12KegArc","GLOBAL",0)
+	Global("KEEP_TRAINING","GLOBAL",0)
+THEN
+	RESPONSE #100
+		SetGlobal("SPRITE_IS_DEAD12KegArc","GLOBAL",0)
+		SetGlobal("KEEP_TRAINING","GLOBAL",0)
+		ChangeAIScript("",OVERRIDE)
+END
+
+/*IF
+	!IsCreatureAreaFlag(Myself,NON_THREATING_ENEMY)
+THEN
+	RESPONSE #100
+		SetCreatureAreaFlag(Myself,NON_THREATING_ENEMY,FALSE)
+		Continue()
+END*/
+

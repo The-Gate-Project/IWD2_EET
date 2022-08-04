@@ -1,0 +1,403 @@
+
+
+
+
+IF
+	Clicked([ANYONE])
+	!Global("41PMOLTD_INACTIVE","MYAREA",1)
+THEN
+	RESPONSE #100
+		TriggerActivation("InfoLifeTrapMirror",FALSE)
+		ApplySpellRES("IWLUCKS",LastTrigger)
+		SetGlobal("KillMirrorTrap","MYAREA",1)
+		SetGlobal("MirrorCracked_Dead","GLOBAL",1)
+END
+
+IF
+	Global("KillMirrorTrap","MYAREA",0)
+	!Global("41PMOLTD_INACTIVE","MYAREA",1)
+THEN
+	RESPONSE #100
+		NoAction()
+END
+
+IF
+	!Global("41PMOLTD_INACTIVE","MYAREA",1)
+	Global("MirrorCracked_Dead","GLOBAL",1)
+	OpenState(Myself,FALSE)
+	AreaCheck("IW4103")
+THEN
+	RESPONSE #100
+		OpenDoor(Myself)
+		SetGlobal("41PMOLTD_INACTIVE","MYAREA",1)
+END
+
+IF
+	!Global("41PMOLTD_INACTIVE","MYAREA",0)
+THEN
+	RESPONSE #100
+		NoAction()
+END
+
+
+
+IF
+	!NearLocation("02_Assassin_01",420,1700,10)
+THEN
+	RESPONSE #100
+		ChangeEnemyAlly("02_Assassin_01",ENEMY)
+		ActionOverride("02_Assassin_01",JumpToPoint([420.1700]))
+		Continue()
+END
+
+IF
+	NearLocation("02_Assassin_01",420,1700,10)
+THEN
+	RESPONSE #100
+		ChangeEnemyAlly("02_Assassin_01",ENEMY)
+		//SetCreatureAreaFlag("02_Assassin_01",INVULNERABLE,FALSE)
+		//ApplySpell("02_Assassin_01",2082)  // SPWI082.SPL (No such index)
+		ActionOverride("02_Assassin_01",ApplySpellRES("IDRINVUL",Myself))
+		ActionOverride("02_Assassin_01",ApplySpellRES("IWWI082",Myself))
+		Continue()
+END
+
+IF
+	!NearLocation("02_Bishop_02",420,1700,10)
+THEN
+	RESPONSE #100
+		ChangeEnemyAlly("02_Bishop_02",ENEMY)
+		ActionOverride("02_Bishop_02",JumpToPoint([420.1700]))
+		Continue()
+END
+
+IF
+	NearLocation("02_Bishop_02",420,1700,10)
+THEN
+	RESPONSE #100
+		ChangeEnemyAlly("02_Bishop_02",ENEMY)
+		//SetCreatureAreaFlag("02_Bishop_02",INVULNERABLE,FALSE)
+		//ApplySpell("02_Bishop_02",2082)  // SPWI082.SPL (No such index)
+		ActionOverride("02_Bishop_02",ApplySpellRES("IDRINVUL",Myself))
+		ActionOverride("02_Bishop_02",ApplySpellRES("IWWI082",Myself))
+		Continue()
+END
+
+IF
+	!NearLocation("02_Mystic_03",420,1700,10)
+THEN
+	RESPONSE #100
+		ChangeEnemyAlly("02_Mystic_03",ENEMY)
+		ActionOverride("02_Mystic_03",JumpToPoint([420.1700]))
+		Continue()
+END
+
+IF
+	NearLocation("02_Mystic_03",420,1700,10)
+THEN
+	RESPONSE #100
+		ChangeEnemyAlly("02_Mystic_03",ENEMY)
+		//SetCreatureAreaFlag("02_Mystic_03",INVULNERABLE,FALSE)
+		//ApplySpell("02_Mystic_03",2082)  // SPWI082.SPL (No such index)
+		ActionOverride("02_Mystic_03",ApplySpellRES("IDRINVUL",Myself))
+		ActionOverride("02_Mystic_03",ApplySpellRES("IWWI082",Myself))
+		Continue()
+END
+
+IF
+	!NearLocation("02_Warrior_04",420,1700,10)
+THEN
+	RESPONSE #100
+		ChangeEnemyAlly("02_Warrior_04",ENEMY)
+		ActionOverride("02_Warrior_04",JumpToPoint([420.1700]))
+		Continue()
+END
+
+IF
+	NearLocation("02_Warrior_04",420,1700,10)
+THEN
+	RESPONSE #100
+		ChangeEnemyAlly("02_Warrior_04",ENEMY)
+		//SetCreatureAreaFlag("02_Warrior_04",INVULNERABLE,FALSE)
+		//ApplySpell("02_Warrior_04",2082)  // SPWI082.SPL (No such index)
+		ActionOverride("02_Warrior_04",ApplySpellRES("IDRINVUL",Myself))
+		ActionOverride("02_Warrior_04",ApplySpellRES("IWWI082",Myself))
+		Continue()
+END
+
+IF
+	!NearLocation("02_Henchman_05",420,1700,10)
+THEN
+	RESPONSE #100
+		ChangeEnemyAlly("02_Henchman_05",ENEMY)
+		ActionOverride("02_Henchman_05",JumpToPoint([420.1700]))
+		Continue()
+END
+
+IF
+	NearLocation("02_Henchman_05",420,1700,10)
+THEN
+	RESPONSE #100
+		ChangeEnemyAlly("02_Henchman_05",ENEMY)
+		//SetCreatureAreaFlag("02_Henchman_05",INVULNERABLE,FALSE)
+		//ApplySpell("02_Henchman_05",2082)  // SPWI082.SPL (No such index)
+		ActionOverride("02_Henchman_05",ApplySpellRES("IDRINVUL",Myself))
+		ActionOverride("02_Henchman_05",ApplySpellRES("IWWI082",Myself))
+		Continue()
+END
+
+IF
+	!NearLocation("02_Henchman_06",420,1700,10)
+THEN
+	RESPONSE #100
+		ChangeEnemyAlly("02_Henchman_06",ENEMY)
+		ActionOverride("02_Henchman_06",JumpToPoint([420.1700]))
+		Continue()
+END
+
+IF
+	NearLocation("02_Henchman_06",420,1700,10)
+THEN
+	RESPONSE #100
+		ChangeEnemyAlly("02_Henchman_06",ENEMY)
+		//SetCreatureAreaFlag("02_Henchman_06",INVULNERABLE,FALSE)
+		//ApplySpell("02_Henchman_06",2082)  // SPWI082.SPL (No such index)
+		ActionOverride("02_Henchman_06",ApplySpellRES("IDRINVUL",Myself))
+		ActionOverride("02_Henchman_06",ApplySpellRES("IWWI082",Myself))
+		Continue()
+END
+
+IF
+	!NearLocation("02_Henchman_07",420,1700,10)
+THEN
+	RESPONSE #100
+		ChangeEnemyAlly("02_Henchman_07",ENEMY)
+		ActionOverride("02_Henchman_07",JumpToPoint([420.1700]))
+		Continue()
+END
+
+IF
+	NearLocation("02_Henchman_07",420,1700,10)
+THEN
+	RESPONSE #100
+		ChangeEnemyAlly("02_Henchman_07",ENEMY)
+		//SetCreatureAreaFlag("02_Henchman_07",INVULNERABLE,FALSE)
+		//ApplySpell("02_Henchman_07",2082)  // SPWI082.SPL (No such index)
+		ActionOverride("02_Henchman_07",ApplySpellRES("IDRINVUL",Myself))
+		ActionOverride("02_Henchman_07",ApplySpellRES("IWWI082",Myself))
+		Continue()
+END
+
+IF
+	!NearLocation("02_Henchman_08",420,1700,10)
+THEN
+	RESPONSE #100
+		ChangeEnemyAlly("02_Henchman_08",ENEMY)
+		ActionOverride("02_Henchman_08",JumpToPoint([420.1700]))
+		Continue()
+END
+
+IF
+	NearLocation("02_Henchman_08",420,1700,10)
+THEN
+	RESPONSE #100
+		ChangeEnemyAlly("02_Henchman_08",ENEMY)
+		//SetCreatureAreaFlag("02_Henchman_08",INVULNERABLE,FALSE)
+		//ApplySpell("02_Henchman_08",2082)  // SPWI082.SPL (No such index)
+		ActionOverride("02_Henchman_08",ApplySpellRES("IDRINVUL",Myself))
+		ActionOverride("02_Henchman_08",ApplySpellRES("IWWI082",Myself))
+		Continue()
+END
+
+IF
+	!NearLocation("02_Henchman_09",420,1700,10)
+THEN
+	RESPONSE #100
+		ChangeEnemyAlly("02_Henchman_09",ENEMY)
+		ActionOverride("02_Henchman_09",JumpToPoint([420.1700]))
+		Continue()
+END
+
+IF
+	NearLocation("02_Henchman_09",420,1700,10)
+THEN
+	RESPONSE #100
+		ChangeEnemyAlly("02_Henchman_09",ENEMY)
+		//SetCreatureAreaFlag("02_Henchman_09",INVULNERABLE,FALSE)
+		//ApplySpell("02_Henchman_09",2082)  // SPWI082.SPL (No such index)
+		ActionOverride("02_Henchman_09",ApplySpellRES("IDRINVUL",Myself))
+		ActionOverride("02_Henchman_09",ApplySpellRES("IWWI082",Myself))
+		Continue()
+END
+
+IF
+	!NearLocation("02_Henchman_10",420,1700,10)
+THEN
+	RESPONSE #100
+		ChangeEnemyAlly("02_Henchman_10",ENEMY)
+		ActionOverride("02_Henchman_10",JumpToPoint([420.1700]))
+		Continue()
+END
+
+IF
+	NearLocation("02_Henchman_10",420,1700,10)
+THEN
+	RESPONSE #100
+		ChangeEnemyAlly("02_Henchman_10",ENEMY)
+		//SetCreatureAreaFlag("02_Henchman_10",INVULNERABLE,FALSE)
+		//ApplySpell("02_Henchman_10",2082)  // SPWI082.SPL (No such index)
+		ActionOverride("02_Henchman_10",ApplySpellRES("IDRINVUL",Myself))
+		ActionOverride("02_Henchman_10",ApplySpellRES("IWWI082",Myself))
+		Continue()
+END
+
+IF
+	!NearLocation("02_Henchman_11",420,1700,10)
+THEN
+	RESPONSE #100
+		ChangeEnemyAlly("02_Henchman_11",ENEMY)
+		ActionOverride("02_Henchman_11",JumpToPoint([420.1700]))
+		Continue()
+END
+
+IF
+	NearLocation("02_Henchman_11",420,1700,10)
+THEN
+	RESPONSE #100
+		ChangeEnemyAlly("02_Henchman_11",ENEMY)
+		//SetCreatureAreaFlag("02_Henchman_11",INVULNERABLE,FALSE)
+		//ApplySpell("02_Henchman_11",2082)  // SPWI082.SPL (No such index)
+		ActionOverride("02_Henchman_11",ApplySpellRES("IDRINVUL",Myself))
+		ActionOverride("02_Henchman_11",ApplySpellRES("IWWI082",Myself))
+		Continue()
+END
+
+IF
+	!NearLocation("02_Henchman_12",420,1700,10)
+THEN
+	RESPONSE #100
+		ChangeEnemyAlly("02_Henchman_12",ENEMY)
+		ActionOverride("02_Henchman_12",JumpToPoint([420.1700]))
+		Continue()
+END
+
+IF
+	NearLocation("02_Henchman_12",420,1700,10)
+THEN
+	RESPONSE #100
+		ChangeEnemyAlly("02_Henchman_12",ENEMY)
+		//SetCreatureAreaFlag("02_Henchman_12",INVULNERABLE,FALSE)
+		//ApplySpell("02_Henchman_12",2082)  // SPWI082.SPL (No such index)
+		ActionOverride("02_Henchman_12",ApplySpellRES("IDRINVUL",Myself))
+		ActionOverride("02_Henchman_12",ApplySpellRES("IWWI082",Myself))
+		Continue()
+END
+
+IF
+	!NearLocation("02_Henchman_13",420,1700,10)
+THEN
+	RESPONSE #100
+		ChangeEnemyAlly("02_Henchman_13",ENEMY)
+		ActionOverride("02_Henchman_13",JumpToPoint([420.1700]))
+		Continue()
+END
+
+IF
+	NearLocation("02_Henchman_13",420,1700,10)
+THEN
+	RESPONSE #100
+		ChangeEnemyAlly("02_Henchman_13",ENEMY)
+		//SetCreatureAreaFlag("02_Henchman_13",INVULNERABLE,FALSE)
+		//ApplySpell("02_Henchman_13",2082)  // SPWI082.SPL (No such index)
+		ActionOverride("02_Henchman_13",ApplySpellRES("IDRINVUL",Myself))
+		ActionOverride("02_Henchman_13",ApplySpellRES("IWWI082",Myself))
+		Continue()
+END
+
+IF
+	OR(3)
+		!Exists("02_Assassin_01")
+		Dead("02_Assassin_01")
+		//!IsCreatureAreaFlag("02_Assassin_01",INVULNERABLE)
+		//!TriggerOverride("02_Assassin_01",Global("IDINVULN","LOCALS",)1)
+		!CheckSpellState("02_Assassin_01",INVULNERABLE_IWD)
+	OR(3)
+		!Exists("02_Bishop_02")
+		Dead("02_Bishop_02")
+		//!IsCreatureAreaFlag("02_Bishop_02",INVULNERABLE)
+		//!TriggerOverride("02_Bishop_02",Global("IDINVULN","LOCALS",)1)
+		!CheckSpellState("02_Bishop_02",INVULNERABLE_IWD)
+	OR(3)
+		!Exists("02_Mystic_03")
+		Dead("02_Mystic_03")
+		//!IsCreatureAreaFlag("02_Mystic_03",INVULNERABLE)
+		//!TriggerOverride("02_Mystic_03",Global("IDINVULN","LOCALS",)1)
+		!CheckSpellState("02_Mystic_03",INVULNERABLE_IWD)
+	OR(3)
+		!Exists("02_Warrior_04")
+		Dead("02_Warrior_04")
+		//!IsCreatureAreaFlag("02_Warrior_04",INVULNERABLE)
+		//!TriggerOverride("02_Warrior_04",Global("IDINVULN","LOCALS",)1)
+		!CheckSpellState("02_Warrior_04",INVULNERABLE_IWD)
+	OR(3)
+		!Exists("02_Henchman_05")
+		Dead("02_Henchman_05")
+		//!IsCreatureAreaFlag("02_Henchman_05",INVULNERABLE)
+		//!TriggerOverride("02_Henchman_05",Global("IDINVULN","LOCALS",)1)
+		!CheckSpellState("02_Henchman_05",INVULNERABLE_IWD)
+	OR(3)
+		!Exists("02_Henchman_06")
+		Dead("02_Henchman_06")
+		//!IsCreatureAreaFlag("02_Henchman_06",INVULNERABLE)
+		//!TriggerOverride("02_Henchman_06",Global("IDINVULN","LOCALS",)1)
+		!CheckSpellState("02_Henchman_06",INVULNERABLE_IWD)
+	OR(3)
+		!Exists("02_Henchman_07")
+		Dead("02_Henchman_07")
+		//!IsCreatureAreaFlag("02_Henchman_07",INVULNERABLE)
+		//!TriggerOverride("02_Henchman_07",Global("IDINVULN","LOCALS",)1)
+		!CheckSpellState("02_Henchman_07",INVULNERABLE_IWD)
+	OR(3)
+		!Exists("02_Henchman_08")
+		Dead("02_Henchman_08")
+		//!IsCreatureAreaFlag("02_Henchman_08",INVULNERABLE)
+		//!TriggerOverride("02_Henchman_08",Global("IDINVULN","LOCALS",)1)
+		!CheckSpellState("02_Henchman_08",INVULNERABLE_IWD)
+	OR(3)
+		!Exists("02_Henchman_09")
+		Dead("02_Henchman_09")
+		//!IsCreatureAreaFlag("02_Henchman_09",INVULNERABLE)
+		//!TriggerOverride("02_Henchman_09",Global("IDINVULN","LOCALS",)1)
+		!CheckSpellState("02_Henchman_09",INVULNERABLE_IWD)
+	OR(3)
+		!Exists("02_Henchman_10")
+		Dead("02_Henchman_10")
+		//!IsCreatureAreaFlag("02_Henchman_10",INVULNERABLE)
+		//!TriggerOverride("02_Henchman_10",Global("IDINVULN","LOCALS",)1)
+		!CheckSpellState("02_Henchman_10",INVULNERABLE_IWD)
+	OR(3)
+		!Exists("02_Henchman_11")
+		Dead("02_Henchman_11")
+		//!IsCreatureAreaFlag("02_Henchman_11",INVULNERABLE)
+		//!TriggerOverride("02_Henchman_11",Global("IDINVULN","LOCALS",)1)
+		!CheckSpellState("02_Henchman_11",INVULNERABLE_IWD)
+	OR(3)
+		!Exists("02_Henchman_12")
+		Dead("02_Henchman_12")
+		//!IsCreatureAreaFlag("02_Henchman_12",INVULNERABLE)
+		//!TriggerOverride("02_Henchman_12",Global("IDINVULN","LOCALS",)1)
+		!CheckSpellState("02_Henchman_12",INVULNERABLE_IWD)
+	OR(3)
+		!Exists("02_Henchman_13")
+		Dead("02_Henchman_13")
+		//!IsCreatureAreaFlag("02_Henchman_13",INVULNERABLE)
+		//!TriggerOverride("02_Henchman_13",Global("IDINVULN","LOCALS",)1)
+		!CheckSpellState("02_Henchman_13",INVULNERABLE_IWD)
+THEN
+	RESPONSE #100
+		SetGlobal("TEAM_2","MYAREA",1)
+		//ChangeCurrentScript("")
+		SetGlobal("41PMOLTD_INACTIVE","MYAREA",1)
+		TriggerActivation(Myself,FALSE)
+END
+

@@ -1,0 +1,128 @@
+IF
+	!Global("SH_BarracksGuardsReset","GLOBAL",1)
+THEN
+	RESPONSE #100
+		SetGlobal("SH_BarracksGuardsReset","GLOBAL",1)
+		Continue()
+END
+
+IF
+	Global("SH_Dead_Slaves_Message","GLOBAL",0)
+	!Global("SPRITE_IS_DEADIyachtu_Xvim","GLOBAL",1)
+	GlobalGT("SH_Kill_Slaves","GLOBAL",0)
+	GlobalGT("SH_Dead_Slaves","GLOBAL",9)
+THEN
+	RESPONSE #100
+		SetGlobal("SH_Dead_Slaves_Message","GLOBAL",1)
+		DisplayString(Player1,@36887) //[PC]
+		Continue()
+END
+
+IF
+	!Global("SH_SpawnGlaberazu_63GlabSL","MYAREA",1)
+	!Global("SH_SpawnGlaberazu_63GlabSL","MYAREA",-1)
+	!Global("SPRITE_IS_DEAD63GlabSL","GLOBAL",0)
+THEN
+	RESPONSE #100
+		SetGlobal("SH_SpawnGlaberazu_63GlabSL","MYAREA",1)
+		SetGlobal("SPRITE_IS_DEAD63GlabSL","GLOBAL",0)
+		Continue()
+END
+
+IF
+	!Global("SH_SpawnGlaberazu_63GlabSR","MYAREA",1)
+	!Global("SH_SpawnGlaberazu_63GlabSR","MYAREA",-1)
+	!Global("SPRITE_IS_DEAD63GlabSR","GLOBAL",0)
+THEN
+	RESPONSE #100
+		SetGlobal("SH_SpawnGlaberazu_63GlabSR","MYAREA",1)
+		SetGlobal("SPRITE_IS_DEAD63GlabSR","GLOBAL",0)
+		Continue()
+END
+
+IF
+	!Global("SH_SpawnGlaberazu_63GlabSL","MYAREA",-1)
+	!Global("SH_SpawnGlaberazu_63GlabSL","MYAREA",2)
+	Global("SH_SpawnGlaberazu_63GlabSL","MYAREA",1)
+	!Global("SH_SGem_Destroyed","GLOBAL",1)
+THEN
+	RESPONSE #100
+		CreateVisualEffectObject("CSWOUNH","63GlabSL")
+		CreateCreature("63GlabSL",[806.547],0)
+		SetGlobal("SH_SpawnGlaberazu_63GlabSL","MYAREA",2)
+		Continue()
+END
+
+IF
+	!Global("SH_SpawnGlaberazu_63GlabSL","MYAREA",-1)
+	!Global("SH_SpawnGlaberazu_63GlabSL","MYAREA",2)
+	Global("SH_SGem_Destroyed","GLOBAL",1)
+THEN
+	RESPONSE #100
+		SetGlobal("SH_SpawnGlaberazu_63GlabSL","MYAREA",-1)
+		ActionOverride("63GlabSL",DestroySelf())
+		Continue()
+END
+
+IF
+	Global("SH_SpawnGlaberazuXP_Glaberazu_1","MYAREA",0)
+	OR(2)
+		Global("SH_SGem_Destroyed","GLOBAL",1)
+		Global("SH_No_Demons","GLOBAL",1)
+THEN
+	RESPONSE #100
+		SetGlobal("SH_SpawnGlaberazu_63GlabSL","MYAREA",-1)
+		SetGlobal("SH_SpawnGlaberazuXP_Glaberazu_1","MYAREA",1)
+		ActionOverride("63GlabSL",DestroySelf())
+		Activate("Glabrezu_1")
+		ActionOverride("Glabrezu_1",SetGlobal("IwIHidden","LOCALS",0))
+		Continue()
+END
+
+IF
+	!Global("SH_SpawnGlaberazu_63GlabSR","MYAREA",-1)
+	!Global("SH_SpawnGlaberazu_63GlabSR","MYAREA",2)
+	Global("SH_SpawnGlaberazu_63GlabSR","MYAREA",1)
+	!Global("SH_SGem_Destroyed","GLOBAL",1)
+THEN
+	RESPONSE #100
+		CreateVisualEffectObject("CSWOUNH","63GlabSR")
+		CreateCreature("63GlabSR",[1178.434],0)  // Страж Глабрезу
+		SetGlobal("SH_SpawnGlaberazu_63GlabSR","MYAREA",2)
+		Continue()
+END
+
+IF
+	!Global("SH_SpawnGlaberazu_63GlabSR","MYAREA",-1)
+	!Global("SH_SpawnGlaberazu_63GlabSR","MYAREA",2)
+	Global("SH_SGem_Destroyed","GLOBAL",1)
+THEN
+	RESPONSE #100
+		SetGlobal("SH_SpawnGlaberazu_63GlabSR","MYAREA",-1)
+		ActionOverride("63GlabSR",DestroySelf())
+		Continue()
+END
+
+IF
+	Global("SH_SpawnGlaberazuXP_Glaberazu_2","MYAREA",0)
+	OR(2)
+		Global("SH_SGem_Destroyed","GLOBAL",1)
+		Global("SH_No_Demons","GLOBAL",1)
+THEN
+	RESPONSE #100
+		SetGlobal("SH_SpawnGlaberazu_63GlabSR","MYAREA",-1)
+		SetGlobal("SH_SpawnGlaberazuXP_Glaberazu_2","MYAREA",1)
+		ActionOverride("63GlabSR",DestroySelf())
+		Activate("Glabrezu_2")
+		ActionOverride("Glabrezu_2",SetGlobal("IwIHidden","LOCALS",0))
+		Continue()
+END
+
+IF
+	OnCreation()
+THEN
+	RESPONSE #100
+		NoAction()
+		Continue()
+END
+

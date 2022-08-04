@@ -1,0 +1,114 @@
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("53DroPriestess")  // Äðîó-æðèöà
+		//HideCreature(Myself,FALSE)
+		Activate(Myself)
+		SetGlobal("IwIHidden","LOCALS",0)
+		//SetDialogueRange(300)
+		Wait(1)
+		//Dialogue([PC])
+		StartDialogNoSet([PC])
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("5300_DrosAssasins_01")
+		//HideCreature(Myself,FALSE)
+		Activate(Myself)
+		SetGlobal("IwIHidden","LOCALS",0)
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("5300_DrosAssasins_02")
+		//HideCreature(Myself,FALSE)
+		Activate(Myself)
+		SetGlobal("IwIHidden","LOCALS",0)
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("5300_DrosAssasins_03")
+		//HideCreature(Myself,FALSE)
+		Activate(Myself)
+		SetGlobal("IwIHidden","LOCALS",0)
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("5300_DrosAssasins_04")
+		//HideCreature(Myself,FALSE)
+		Activate(Myself)
+		SetGlobal("IwIHidden","LOCALS",0)
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("5300_DrosAssasins_05")
+		//HideCreature(Myself,FALSE)
+		Activate(Myself)
+		SetGlobal("IwIHidden","LOCALS",0)
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("5300_DrosAssasins_06")
+		//HideCreature(Myself,FALSE)
+		Activate(Myself)
+		SetGlobal("IwIHidden","LOCALS",0)
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("5300_DrosAssasins_07")
+		//HideCreature(Myself,FALSE)
+		Activate(Myself)
+		SetGlobal("IwIHidden","LOCALS",0)
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("5300_DrosAssasins_08")
+		//HideCreature(Myself,FALSE)
+		Activate(Myself)
+		SetGlobal("IwIHidden","LOCALS",0)
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("5300_DrosAssasins_09")
+		//HideCreature(Myself,FALSE)
+		Activate(Myself)
+		SetGlobal("IwIHidden","LOCALS",0)
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("5300_DrosAssasins_10")
+		//HideCreature(Myself,FALSE)
+		Activate(Myself)
+		SetGlobal("IwIHidden","LOCALS",0)
+END
+

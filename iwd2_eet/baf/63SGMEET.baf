@@ -1,0 +1,28 @@
+IF
+	Global("Started_Cutscene_GMeet","MYAREA",1)
+THEN
+	RESPONSE #100
+		ChangeAIScript("",SPECIFICS)
+END
+
+IF
+	Global("Started_Cutscene_GMeet","MYAREA",0)
+	Name("Zigma",Myself)
+	LOS([PC],28)
+THEN
+	RESPONSE #100
+		SetGlobal("Started_Cutscene_GMeet","MYAREA",1)
+		StartCutSceneMode()
+		ClearAllActions()
+		MultiPlayerSync()
+		StartCutScene("63cGMeet")
+		ChangeAIScript("",SPECIFICS)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+THEN
+	RESPONSE #100
+		ChangeEnemyAlly(Myself,NEUTRAL)
+END
+

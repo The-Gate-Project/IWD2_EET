@@ -1,0 +1,56 @@
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("05_Postulant_07")
+		MoveToObject(Player1)
+		//SetVisualRange(0)
+		ActionOverride("CUTSPY",DestroySelf())
+		UndoExplore()
+		ClearActions("MasterOfLocks")
+		SetGlobal("AllowIceLance","MYAREA",1)
+		//SetGlobal("NumOpenedIceDoors","MYAREA",0)
+		AddJournalEntry(@39794,QUEST)
+		//SetVisualRange(0)
+		ClearActions("05_Warrior_03")
+		ClearActions("05_Warrior_06")
+		//Dialogue(NearestPC)
+		ApplySpellRES("BDCUTSPY",Myself)
+		StartDialogNoSet([PC])
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("05_Warrior_03")
+		Enemy()
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("05_Warrior_06")
+		Enemy()
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("05_Postulant_08")
+		//HideCreature(Myself,FALSE)
+		MoveToObject(Player1)
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("Wandering_Postulant_01")
+		//HideCreature(Myself,FALSE)
+		Activate(Myself)
+		SetGlobal("IwIHidden","LOCALS",0)
+END
+

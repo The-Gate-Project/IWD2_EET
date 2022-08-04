@@ -1,0 +1,54 @@
+IF
+	!Global("00TOWNI_INACTIVE","LOCALS",1)
+	Global("TEAM_0","MYAREA",0)
+	!GlobalTimerNotExpired("IwTimer2","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IwTimer2","LOCALS",6)
+		Continue()
+END
+
+IF
+	!Global("00TOWNI_INACTIVE","LOCALS",1)
+	!Allegiance(Myself,ENEMY)
+	!Global("TEAM_0","MYAREA",0)
+THEN
+	RESPONSE #100
+		Enemy()
+		Continue()
+END
+
+IF
+	!Global("00TOWNI_INACTIVE","LOCALS",1)
+	StateCheck(Myself,STATE_REALLY_DEAD)
+THEN
+	RESPONSE #100
+		SetGlobal("00TOWNI_INACTIVE","LOCALS",1)
+END
+
+IF
+	!Global("00TOWNI_INACTIVE","LOCALS",1)
+	Global("TEAM_0","MYAREA",0)
+	!Global("TOWNIE_HOSTILE","MYAREA",0)
+	IsActive(Myself)
+	Help([ANYTHING])
+THEN
+	RESPONSE #100
+		SetGlobal("TEAM_0","MYAREA",1)
+		Enemy()
+END
+
+IF
+	!Global("00TOWNI_INACTIVE","LOCALS",1)
+	OR(2)
+		AttackedBy([GOODCUTOFF],DEFAULT)
+		PickPocketFailed([PC])
+THEN
+	RESPONSE #100
+		SetGlobal("TOWNIE_HOSTILE","MYAREA",1)
+		Help()
+		Enemy()
+END
+

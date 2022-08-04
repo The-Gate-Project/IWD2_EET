@@ -1,0 +1,25 @@
+IF
+	!Global("63Thayvian_Ruse","GLOBAL",2)
+	Dead("Demonic_Construct1")
+	Dead("Demonic_Construct2")
+	Dead("Demonic_Construct3")
+THEN
+	RESPONSE #100
+		SetGlobal("63Thayvian_Ruse","GLOBAL",2)
+END
+
+IF
+	NumberOfTimesTalkedTo(0)
+	!Allegiance(Myself,ENEMY)
+	!StateCheck(Myself,STATE_REALLY_DEAD)
+	Global("63Thayvian_Ruse","GLOBAL",0)
+	See([PC])
+THEN
+	RESPONSE #100
+		SetGlobal("63Thayvian_Ruse","GLOBAL",1)
+		//SetDialogueRange(300)
+		//Dialogue(LastMarkedObject)
+		ApplySpellRES("BDCUTSPY",Myself)
+		StartDialogNoSet(LastSeenBy(Myself))
+END
+

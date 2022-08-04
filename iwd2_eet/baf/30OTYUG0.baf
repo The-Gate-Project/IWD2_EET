@@ -1,0 +1,24 @@
+IF
+	!Global("OTYUGH_ESCAPE","MYAREA",0)
+THEN
+	RESPONSE #100
+		ChangeAIScript("",SPECIFICS)
+END
+
+IF
+	Global("OTYUGH_ESCAPE","MYAREA",0)
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		FaceObject(LastSeenBy(Myself))
+END
+
+IF
+	!GlobalTimerNotExpired("IwTimer22","LOCALS")
+	Global("OTYUGH_ESCAPE","MYAREA",0)
+THEN
+	RESPONSE #100
+		RandomWalk()
+		SetGlobalTimerRandom("IwTimer22","LOCALS",5,10)
+END
+

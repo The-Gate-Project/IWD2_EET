@@ -1,0 +1,210 @@
+IF
+	!Allegiance(Myself,ENEMY)
+	!NumberOfTimesTalkedTo(0)
+THEN
+	RESPONSE #100
+		Enemy()
+		SetGlobal("TEAM_1","MYAREA",1)
+END
+
+IF
+	!Allegiance(Myself,ENEMY)
+THEN
+	RESPONSE #100
+		NoAction()
+END
+
+IF
+	!Global("Marked","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobal("Marked","LOCALS",0)
+END
+
+IF
+	Global("Marked","LOCALS",0)
+	//GlobalGT("MarkedCounter","LOCALS",5)
+	See(Player1)
+	Class(LastSeenBy(Myself),FIGHTER)
+THEN
+	RESPONSE #100
+		SetGlobal("Marked","LOCALS",1)
+		//IncrementGlobal("MarkedCounter","LOCALS",1)
+		//MarkObject(LastSeenBy(Myself))
+		Continue()
+END
+
+IF
+	Global("Marked","LOCALS",0)
+	//GlobalGT("MarkedCounter","LOCALS",5)
+	See(Player2)
+	Class(LastSeenBy(Myself),FIGHTER)
+THEN
+	RESPONSE #100
+		SetGlobal("Marked","LOCALS",1)
+		//IncrementGlobal("MarkedCounter","LOCALS",1)
+		//MarkObject(LastSeenBy(Myself))
+		Continue()
+END
+
+IF
+	Global("Marked","LOCALS",0)
+	//GlobalGT("MarkedCounter","LOCALS",5)
+	See(Player3)
+	Class(LastSeenBy(Myself),FIGHTER)
+THEN
+	RESPONSE #100
+		SetGlobal("Marked","LOCALS",1)
+		//IncrementGlobal("MarkedCounter","LOCALS",1)
+		//MarkObject(LastSeenBy(Myself))
+		Continue()
+END
+
+IF
+	Global("Marked","LOCALS",0)
+	//GlobalGT("MarkedCounter","LOCALS",5)
+	See(Player4)
+	Class(LastSeenBy(Myself),FIGHTER)
+THEN
+	RESPONSE #100
+		SetGlobal("Marked","LOCALS",1)
+		//IncrementGlobal("MarkedCounter","LOCALS",1)
+		//MarkObject(LastSeenBy(Myself))
+		Continue()
+END
+
+IF
+	Global("Marked","LOCALS",0)
+	//GlobalGT("MarkedCounter","LOCALS",5)
+	See(Player5)
+	Class(LastSeenBy(Myself),FIGHTER)
+THEN
+	RESPONSE #100
+		SetGlobal("Marked","LOCALS",1)
+		//MarkObject(LastSeenBy(Myself))
+		Continue()
+END
+
+IF
+	Global("Marked","LOCALS",0)
+	//GlobalGT("MarkedCounter","LOCALS",5)
+	See(Player6)
+	Class(LastSeenBy(Myself),FIGHTER)
+THEN
+	RESPONSE #100
+		SetGlobal("Marked","LOCALS",1)
+		//IncrementGlobal("MarkedCounter","LOCALS",1)
+		//MarkObject(LastSeenBy(Myself))
+		Continue()
+END
+
+IF
+	Global("Marked","LOCALS",0)
+	//GlobalGT("MarkedCounter","LOCALS",5)
+	See(Player1)
+	Class(LastSeenBy(Myself),FIGHTER_ALL)
+THEN
+	RESPONSE #100
+		SetGlobal("Marked","LOCALS",1)
+		//IncrementGlobal("MarkedCounter","LOCALS",1)
+		//MarkObject(LastSeenBy(Myself))
+		Continue()
+END
+
+IF
+	Global("Marked","LOCALS",0)
+	//GlobalGT("MarkedCounter","LOCALS",5)
+	See(Player2)
+	Class(LastSeenBy(Myself),FIGHTER_ALL)
+THEN
+	RESPONSE #100
+		SetGlobal("Marked","LOCALS",1)
+		//IncrementGlobal("MarkedCounter","LOCALS",1)
+		//MarkObject(LastSeenBy(Myself))
+		Continue()
+END
+
+IF
+	Global("Marked","LOCALS",0)
+	//GlobalGT("MarkedCounter","LOCALS",5)
+	See(Player3)
+	Class(LastSeenBy(Myself),FIGHTER_ALL)
+THEN
+	RESPONSE #100
+		SetGlobal("Marked","LOCALS",1)
+		//IncrementGlobal("MarkedCounter","LOCALS",1)
+		//MarkObject(LastSeenBy(Myself))
+		Continue()
+END
+
+IF
+	Global("Marked","LOCALS",0)
+	//GlobalGT("MarkedCounter","LOCALS",5)
+	See(Player4)
+	Class(LastSeenBy(Myself),FIGHTER_ALL)
+THEN
+	RESPONSE #100
+		SetGlobal("Marked","LOCALS",1)
+		//IncrementGlobal("MarkedCounter","LOCALS",1)
+		//MarkObject(LastSeenBy(Myself))
+		Continue()
+END
+
+IF
+	Global("Marked","LOCALS",0)
+	//GlobalGT("MarkedCounter","LOCALS",5)
+	See(Player5)
+	Class(LastSeenBy(Myself),FIGHTER_ALL)
+THEN
+	RESPONSE #100
+		SetGlobal("Marked","LOCALS",1)
+		//MarkObject(LastSeenBy(Myself))
+		Continue()
+END
+
+IF
+	Global("Marked","LOCALS",0)
+	//GlobalGT("MarkedCounter","LOCALS",5)
+	See(Player6)
+	Class(LastSeenBy(Myself),FIGHTER_ALL)
+THEN
+	RESPONSE #100
+		SetGlobal("Marked","LOCALS",1)
+		//IncrementGlobal("MarkedCounter","LOCALS",1)
+		//MarkObject(LastSeenBy(Myself))
+		Continue()
+END
+
+IF
+	StateCheck(Myself,STATE_PANIC)
+THEN
+	RESPONSE #100
+		RandomWalkContinuous()
+END
+
+IF
+	HasItem("POTN55",Myself) //POTN_52
+	HPPercentLT(Myself,25)
+THEN
+	RESPONSE #100
+		UseItem("POTN55",Myself) //POTN_52
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(LastSeenBy(Myself))
+THEN
+	RESPONSE #100
+		//EquipWeapon()
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		//EquipWeapon()
+		AttackOneRound(LastSeenBy(Myself))
+END
+

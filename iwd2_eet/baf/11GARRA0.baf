@@ -1,0 +1,26 @@
+IF
+	//!TriggerOverride("Doppelganger",Global("FirstIwIHidden","LOCALS",0))
+	
+	//OR(2)
+	//	IsActive("Doppelganger")
+	//	!IsActive(Myself)
+	!Global("GARRADUN_CHANGED","MYAREA",0)
+THEN
+	RESPONSE #100
+		DestroySelf()
+END
+
+IF
+	OR(2)
+		Allegiance(Myself,ENEMY)
+		AttackedBy([GOODCUTOFF],DEFAULT)
+THEN
+	RESPONSE #100
+		ApplySpellRES("IDINVIS4",Myself)
+		Activate("Doppelganger")
+		ActionOverride("Doppelganger",SetGlobal("IwIHidden","LOCALS",0))
+		ActionOverride("Doppelganger",ApplySpellRES("IDINVIS5",Myself))
+		//HideCreature(Myself,TRUE)
+		DestroySelf()
+END
+

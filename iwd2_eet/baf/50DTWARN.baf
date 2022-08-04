@@ -1,0 +1,70 @@
+IF
+	GlobalGT("AR5010_DT_VIS","GLOBAL",1)
+THEN
+	RESPONSE #100
+		DestroySelf()
+END
+
+IF
+	Global("ATTACK_MODE","LOCALS",0)
+	IsActive(Myself)
+	OR(2)
+		AttackedBy([GOODCUTOFF],DEFAULT)
+		Range(NearestEnemyOf(Myself),4)
+THEN
+	RESPONSE #100
+		SetGlobal("ATTACK_MODE","LOCALS",1)
+		/*Continue()*/
+END
+
+IF
+	!Global("ATTACK_MODE","LOCALS",0)
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		EquipMostDamagingMelee()
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	!Global("ATTACK_MODE","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobal("ATTACK_MODE","LOCALS",0)
+		Continue()
+END
+
+IF
+	IsActive(Myself)
+	NearLocation(Myself,690,650,3)
+THEN
+	RESPONSE #100
+		DestroySelf()
+END
+
+IF
+	IsActive(Myself)
+THEN
+	RESPONSE #100
+		MoveToPoint([690.650])
+END
+
+IF
+	!IsActive(Myself)
+	Global("50SUOMA_HELP","GLOBAL",5)
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		Activate(Myself)
+		SetGlobal("IwIHidden","LOCALS",0)
+		SetGlobal("AR5010_DT_VIS","GLOBAL",1)
+		//SetCreatureAreaFlag(Myself,HAS_SEEN_PARTY,FALSE)
+		FaceObject(NearestEnemyOf(Myself))
+		//SpellHitEffectSprite(Myself,Myself,DARKTREE_ATTACK,0)
+		CreateVisualEffectObject("DATTACH",Myself)
+		Wait(1)
+		SetSequence(SEQ_AWAKE)
+		//HideCreature(Myself,FALSE)
+		ApplySpellRES("idinvis5",Myself)
+END
+

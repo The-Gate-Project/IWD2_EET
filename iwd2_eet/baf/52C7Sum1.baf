@@ -1,0 +1,48 @@
+IF
+	Global("WATCHING_PLAYER","MYAREA",0)
+	IsActive(Myself)
+THEN
+	RESPONSE #100
+		//SetCreatureAreaFlag(Myself,IGNORE_AI_INHIBIT,TRUE)
+		ApplySpellRES("IWPERAI",Myself)
+		//SpellHitEffectSprite(Myself,Myself,DISINTEGRATE,10)
+		CreateVisualEffectObject("DISINTH",Myself)
+		Wait(1)
+		DestroySelf()
+END
+
+IF
+	Global("WATCHING_PLAYER","MYAREA",0)
+	!IsActive(Myself)
+THEN
+	RESPONSE #100
+		DestroySelf()
+END
+
+IF
+	!IsActive(Myself)
+	Global("52Morohem_Master","GLOBAL",7)
+	!Global("WATCHING_PLAYER","MYAREA",0)
+	OpenState("AR5202_DOOR9",FALSE)
+THEN
+	RESPONSE #100
+		Activate(Myself)
+		SetGlobal("IwIHidden","LOCALS",0)
+		//SetCreatureAreaFlag(Myself,IGNORE_AI_INHIBIT,TRUE)
+		ApplySpellRES("IWPERAI",Myself)
+		//SpellHitEffectSprite(Myself,Myself,DISINTEGRATE,10)
+		CreateVisualEffectObject("DISINTH",Myself)
+		Wait(1)
+		Enemy()
+		FaceObject(NearestEnemyOf(Myself))
+		//HideCreature(Myself,FALSE)
+		ApplySpellRES("idinvis5",Myself)
+END
+
+IF
+	!IsActive(Myself)
+THEN
+	RESPONSE #100
+		NoAction()
+END
+

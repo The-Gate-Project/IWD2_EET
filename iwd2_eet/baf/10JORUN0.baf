@@ -1,0 +1,61 @@
+IF
+  Global("SaveSavedLoc","LOCALS",0)
+THEN
+  RESPONSE #100
+    SetGlobal("SaveSavedLoc","LOCALS",1)
+    SaveObjectLocation("LOCALS","SavedLoc",Myself)
+    Continue()
+END
+
+IF
+	!GlobalTimerNotExpired("IwTimer18","LOCALS")
+	Global("Dock_Goblin_Quest","GLOBAL",0)
+THEN
+	RESPONSE #15
+		DisplayStringHead(Myself,@1670)
+		SetGlobalTimer("IwTimer18","LOCALS",5)
+		Continue()
+	RESPONSE #15
+		DisplayStringHead(Myself,@1671)
+		SetGlobalTimer("IwTimer18","LOCALS",5)
+		Continue()
+	RESPONSE #15
+		DisplayStringHead(Myself,@1672)
+		SetGlobalTimer("IwTimer18","LOCALS",5)
+		Continue()
+	RESPONSE #15
+		DisplayStringHead(Myself,@1673)
+		SetGlobalTimer("IwTimer18","LOCALS",5)
+		Continue()
+	RESPONSE #15
+		DisplayStringHead(Myself,@1674)
+		SetGlobalTimer("IwTimer18","LOCALS",5)
+		Continue()
+	RESPONSE #425
+		SetGlobal("JORUN_FLOAT","LOCALS",1)
+		Continue()
+END
+
+IF
+	!Global("JORUN_FLOAT","LOCALS",0)
+	NearSavedLocation(Myself,"LOCALSSavedLoc",1)
+THEN
+	RESPONSE #100
+		SetGlobal("JORUN_FLOAT","LOCALS",0)
+		Face(W)
+	RESPONSE #100
+		SetGlobal("JORUN_FLOAT","LOCALS",0)
+		Face(NW)
+	RESPONSE #100
+		SetGlobal("JORUN_FLOAT","LOCALS",0)
+		Face(SE)
+END
+
+IF
+	!Global("JORUN_FLOAT","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobal("JORUN_FLOAT","LOCALS",0)
+		Continue()
+END
+

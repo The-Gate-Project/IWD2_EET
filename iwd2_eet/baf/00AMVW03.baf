@@ -1,0 +1,67 @@
+IF
+  Global("SaveSavedLoc","LOCALS",0)
+THEN
+  RESPONSE #100
+    SetGlobal("SaveSavedLoc","LOCALS",1)
+    SaveObjectLocation("LOCALS","SavedLoc",Myself)
+    Continue()
+END
+
+IF
+	Global("RW_00AMVW030","LOCALS",0)
+	!NearSavedLocation(Myself,"LOCALSSavedLoc",3)
+THEN
+	RESPONSE #100
+		SetGlobal("RW_00AMVW030","LOCALS",1)
+		Continue()
+END
+
+IF
+	!Global("RW_00AMVW030","LOCALS",0)
+	NearSavedLocation(Myself,"LOCALSSavedLoc",3)
+THEN
+	RESPONSE #100
+		SetGlobal("RW_00AMVW030","LOCALS",0)
+		NoAction()
+END
+
+IF
+	!Global("RW_00AMVW050","LOCALS",0)
+	Range([PC],39)
+	//See([PC])
+THEN
+	RESPONSE #50
+		//MoveToPoint([-2.-2])
+		MoveToOffset([-2.-2])
+	RESPONSE #100
+		//MoveToPoint([-2.-2])
+		MoveToOffset([2.-2])
+	RESPONSE #100
+		//MoveToPoint([-2.-2])
+		MoveToOffset([-2.2])
+	RESPONSE #100
+		//MoveToPoint([-2.-2])
+		MoveToOffset([2.2])
+	RESPONSE #100
+		MoveToSavedLocation("SavedLoc","LOCALS")
+END
+
+/*IF
+	!Global("RW_00AMVW050","LOCALS",0)
+	Range([PC],39)
+	See([PC])
+THEN
+	RESPONSE #100
+		MoveToObject(LastSeenBy(Myself))
+END*/
+
+IF
+	!GlobalTimerNotExpired("IwTimer19","LOCALS")
+	Global("RW_00AMVW030","LOCALS",0)
+	Range([PC],39)
+THEN
+	RESPONSE #100
+		RandomWalk()
+		SetGlobalTimerRandom("IwTimer19","LOCALS",5,10)
+END
+

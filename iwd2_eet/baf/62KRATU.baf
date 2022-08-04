@@ -1,0 +1,21 @@
+IF
+  OR(2)
+    Die()
+    StateCheck(Myself,STATE_REALLY_DEAD)
+  !Global("Set_Death_Variable","LOCALS",1)
+THEN
+  RESPONSE #100
+    SetGlobal("Set_Death_Variable","LOCALS",1)
+    IncrementGlobal("Kratuuk_Team_Dead","GLOBAL",1)
+    Continue()
+END
+
+IF
+	PartyHasItem("Z6KEYBC")
+	HasItem("Z6KEYBC",Myself)
+THEN
+	RESPONSE #100
+		DestroyItem("Z6KEYBC")
+		Continue()
+END
+

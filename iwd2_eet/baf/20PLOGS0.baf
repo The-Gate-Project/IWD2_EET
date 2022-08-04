@@ -1,0 +1,10 @@
+IF
+	Global("LogsClicked","MYAREA",0)
+	Opened([ANYONE])
+THEN
+	RESPONSE #100
+		SetGlobal("LogsClicked","MYAREA",1)
+		//FloatMessage(Myself,39544)  // ¬ы вытащили из-под камней конец бревна.
+		DisplayStringPointLog([1745.885],@39544)
+END
+

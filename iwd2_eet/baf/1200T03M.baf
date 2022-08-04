@@ -1,0 +1,151 @@
+IF
+	ActionListEmpty()
+	Dead("03_Vghotan")
+THEN
+	RESPONSE #100
+		ChangeAIScript("00aMvW",DEFAULT)
+END
+
+IF
+	!Name("03_Vghotan",Myself)
+THEN
+	RESPONSE #100
+		MoveToObjectFollow("03_Vghotan")
+END
+
+IF
+	Global("ML_0","LOCALS",0)
+	Name("03_Vghotan",Myself)
+	!GlobalTimerNotExpired("IwTimer19","LOCALS")
+THEN
+	RESPONSE #100
+		SetGlobalTimerRandom("IwTimer19","LOCALS",15,25)
+		SetGlobal("ML_0","LOCALS",1)
+END
+
+IF
+	Global("ML_0","LOCALS",1)
+	ActionListEmpty()
+	NearLocation(Myself,1882,2120,4)
+THEN
+	RESPONSE #100
+		SetHomeLocation([1882.2120])
+		SetGlobal("ML_0","LOCALS",2)
+		Continue()
+END
+
+IF
+	Global("ML_0","LOCALS",1)
+	Name("03_Vghotan",Myself)
+THEN
+	RESPONSE #100
+		MoveToPoint([1882.2120])
+END
+
+IF
+	Global("ML_0","LOCALS",2)
+	Name("03_Vghotan",Myself)
+	!GlobalTimerNotExpired("IwTimer19","LOCALS")
+THEN
+	RESPONSE #100
+		SetGlobalTimerRandom("IwTimer19","LOCALS",5,10)
+		SetGlobal("ML_0","LOCALS",3)
+END
+
+IF
+	Global("ML_0","LOCALS",3)
+	ActionListEmpty()
+	NearLocation(Myself,2392,2212,4)
+THEN
+	RESPONSE #100
+		SetHomeLocation([2392.2212])
+		SetGlobal("ML_0","LOCALS",4)
+		Continue()
+END
+
+IF
+	Global("ML_0","LOCALS",3)
+	Name("03_Vghotan",Myself)
+THEN
+	RESPONSE #100
+		MoveToPoint([2392.2212])
+END
+
+IF
+	Global("ML_0","LOCALS",4)
+	Name("03_Vghotan",Myself)
+	!GlobalTimerNotExpired("IwTimer19","LOCALS")
+THEN
+	RESPONSE #100
+		SetGlobalTimerRandom("IwTimer19","LOCALS",5,10)
+		SetGlobal("ML_0","LOCALS",5)
+END
+
+IF
+	Global("ML_0","LOCALS",5)
+	ActionListEmpty()
+	NearLocation(Myself,2837,2024,4)
+THEN
+	RESPONSE #100
+		SetHomeLocation([2837.2024])
+		SetGlobal("ML_0","LOCALS",6)
+		Continue()
+END
+
+IF
+	Global("ML_0","LOCALS",5)
+	Name("03_Vghotan",Myself)
+THEN
+	RESPONSE #100
+		MoveToPoint([2837.2024])
+END
+
+IF
+	Global("ML_0","LOCALS",6)
+	Name("03_Vghotan",Myself)
+	!GlobalTimerNotExpired("IwTimer19","LOCALS")
+THEN
+	RESPONSE #100
+		SetGlobalTimerRandom("IwTimer19","LOCALS",5,10)
+		SetGlobal("ML_0","LOCALS",7)
+END
+
+IF
+	Global("ML_0","LOCALS",7)
+	ActionListEmpty()
+	NearLocation(Myself,2392,2212,4)
+THEN
+	RESPONSE #100
+		SetHomeLocation([2392.2212])
+		SetGlobal("ML_0","LOCALS",8)
+		Continue()
+END
+
+IF
+	Global("ML_0","LOCALS",7)
+	Name("03_Vghotan",Myself)
+THEN
+	RESPONSE #100
+		MoveToPoint([2392.2212])
+END
+
+IF
+	Global("ML_0","LOCALS",8)
+	Name("03_Vghotan",Myself)
+	!GlobalTimerNotExpired("IwTimer19","LOCALS")
+THEN
+	RESPONSE #100
+		SetGlobalTimerRandom("IwTimer19","LOCALS",5,10)
+		SetGlobal("ML_0","LOCALS",9)
+END
+
+IF
+	Global("ML_0","LOCALS",9)
+	Name("03_Vghotan",Myself)
+	!GlobalTimerNotExpired("IwTimer19","LOCALS")
+THEN
+	RESPONSE #100
+		ChangeAIScript("00AMVW",DEFAULT)
+		SetGlobal("ML_0","LOCALS",0)
+END
+

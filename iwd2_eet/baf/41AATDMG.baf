@@ -1,0 +1,43 @@
+IF
+	StateCheck(Myself,STATE_PANIC)
+THEN
+	RESPONSE #100
+		RandomWalkContinuous()
+END
+
+IF
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		EquipMostDamagingMelee()
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	!Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("DamageTimer","LOCALS")
+	//HPLostGT(Myself,1)
+	HPPercentLT(Myself,100)
+THEN
+	RESPONSE #100
+		Enemy()
+		Continue()
+END
+
+IF
+	!GlobalTimerNotExpired("DamageTimer","LOCALS")
+	HPPercentLT(Myself,100)
+	!See([GOODCUTOFF])
+THEN
+	RESPONSE #100
+		MoveToObject(Player1)
+		Continue()
+END
+
+IF
+	!GlobalTimerNotExpired("DamageTimer","LOCALS")
+THEN
+	RESPONSE #100
+		SetGlobalTimer("DamageTimer","LOCALS",5)
+END
+

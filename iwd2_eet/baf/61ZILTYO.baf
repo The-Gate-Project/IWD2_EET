@@ -1,0 +1,334 @@
+IF
+  Global("SaveSavedLoc","LOCALS",0)
+THEN
+  RESPONSE #100
+    SetGlobal("SaveSavedLoc","LOCALS",1)
+    SaveObjectLocation("LOCALS","SavedLoc",Myself)
+    Continue()
+END
+
+IF
+	!Allegiance(Myself,ENEMY)
+	Global("SawPlayer","LOCALS",0)
+	See([PC])
+THEN
+	RESPONSE #100
+		ClearActions(Player1)
+		ClearActions(Player2)
+		ClearActions(Player3)
+		ClearActions(Player4)
+		ClearActions(Player5)
+		ClearActions(Player6)
+		//SetDialogueRange(300)
+		//Dialogue(LastMarkedObject)
+		ApplySpellRES("BDCUTSPY",Myself)
+		StartDialogNoSet(LastSeenBy(Myself))
+		SetGlobal("SawPlayer","LOCALS",1)
+END
+
+IF
+	!Allegiance(Myself,ENEMY)
+	Global("SawPlayer","LOCALS",1)
+	!See([PC])
+THEN
+	RESPONSE #100
+		SetGlobal("SawPlayer","LOCALS",0)
+END
+
+IF
+	!Allegiance(Myself,ENEMY)
+	AttackedBy([ANYONE],DEFAULT)
+THEN
+	RESPONSE #100
+		Enemy()
+		Continue()
+END
+
+IF
+	!Allegiance(Myself,ENEMY)
+THEN
+	RESPONSE #100
+		FaceObject([PC])
+END
+
+IF
+	!IsActive("04_Efreeti_01")
+	
+	Global("efreeti_active","LOCALS",0)
+THEN
+	RESPONSE #100
+		FaceObject([PC])
+		ForceSpellRES("IWIN163",NearestEnemyOf(Myself))  // SPIN163.SPL INNATE_BEHOLDER_GAZE - Myself
+		//WaitAnimation(Myself,WALK)
+		//WaitAnimation(Myself,CONJURE)
+		//WaitAnimation(Myself,CAST)
+		Wait(1)
+		//SpellHitEffectPoint("INVISIBLE",[1920.1310],ALTERATION,0)
+		CreateVisualEffect("ALTERH",[1920.1310])
+		CloseDoor("AR6104_Lava_Bridge2")
+		//HideCreature("04_Efreeti_01",FALSE)
+		Activate("04_Efreeti_01")
+		ActionOverride("04_Efreeti_01",SetGlobal("IwIHidden","LOCALS",0))
+		//HideCreature("610404_LavaMephit_02",FALSE)
+		Activate("610404_LavaMephit_02")
+		ActionOverride("610404_LavaMephit_02",SetGlobal("IwIHidden","LOCALS",0))
+		//HideCreature("610404_LavaMephit_03",FALSE)
+		Activate("610404_LavaMephit_03")
+		ActionOverride("610404_LavaMephit_03",SetGlobal("IwIHidden","LOCALS",0))
+		//HideCreature("610404_LavaMephit_04",FALSE)
+		Activate("610404_LavaMephit_04")
+		ActionOverride("610404_LavaMephit_04",SetGlobal("IwIHidden","LOCALS",0))
+		//HideCreature("610404_LavaMephit_05",FALSE)
+		Activate("610404_LavaMephit_05")
+		ActionOverride("610404_LavaMephit_05",SetGlobal("IwIHidden","LOCALS",0))
+		//HideCreature("610404_LavaMephit_06",FALSE)
+		Activate("610404_LavaMephit_06")
+		ActionOverride("610404_LavaMephit_06",SetGlobal("IwIHidden","LOCALS",0))
+		//HideCreature("610404_LavaMephit_07",FALSE)
+		Activate("610404_LavaMephit_07")
+		ActionOverride("610404_LavaMephit_07",SetGlobal("IwIHidden","LOCALS",0))
+		
+		SetGlobal("efreeti_active","LOCALS",1)
+END
+
+IF
+	!IsActive("04_FireElementall_08")
+	OR(3)
+		HPPercentLT(Myself,50)
+		Range([PC],9)
+		!See("04_Efreeti_01")
+		
+	Global("fireelemental_active","LOCALS",0)
+THEN
+	RESPONSE #100
+		FaceObject([PC])
+		ForceSpellRES("IWIN163",NearestEnemyOf(Myself))  // SPIN163.SPL INNATE_BEHOLDER_GAZE - Myself
+		//WaitAnimation(Myself,WALK)
+		//WaitAnimation(Myself,CONJURE)
+		//WaitAnimation(Myself,CAST)
+		Wait(1)
+		//HideCreature("04_FireElementall_08",FALSE)
+		Activate("04_FireElementall_08")
+		ActionOverride("04_FireElementall_08",SetGlobal("IwIHidden","LOCALS",0))
+		//HideCreature("04_FireElementall_09",FALSE)
+		Activate("04_FireElementall_09")
+		ActionOverride("04_FireElementall_09",SetGlobal("IwIHidden","LOCALS",0))
+		//HideCreature("04_FireElementall_10",FALSE)
+		Activate("04_FireElementall_10")
+		ActionOverride("04_FireElementall_10",SetGlobal("IwIHidden","LOCALS",0))
+		//HideCreature("04_FireElementall_11",FALSE)
+		Activate("04_FireElementall_11")
+		ActionOverride("04_FireElementall_11",SetGlobal("IwIHidden","LOCALS",0))
+		//HideCreature("04_FireElementall_12",FALSE)
+		Activate("04_FireElementall_12")
+		ActionOverride("04_FireElementall_12",SetGlobal("IwIHidden","LOCALS",0))
+		//HideCreature("04_FireElementall_13",FALSE)
+		Activate("04_FireElementall_13")
+		ActionOverride("04_FireElementall_13",SetGlobal("IwIHidden","LOCALS",0))
+		//HideCreature("04_FireElementall_14",FALSE)
+		Activate("04_FireElementall_14")
+		ActionOverride("04_FireElementall_14",SetGlobal("IwIHidden","LOCALS",0))
+		//HideCreature("04_FireElementall_15",FALSE)
+		Activate("04_FireElementall_15")
+		ActionOverride("04_FireElementall_15",SetGlobal("IwIHidden","LOCALS",0))
+		DisplayStringHead("04_FireElementall_08",@41374)
+		DisplayStringHead("04_FireElementall_09",@41374)
+		DisplayStringHead("04_FireElementall_10",@41374)
+		DisplayStringHead("04_FireElementall_11",@41374)
+		DisplayStringHead("04_FireElementall_12",@41374)
+		DisplayStringHead("04_FireElementall_13",@41374)
+		DisplayStringHead("04_FireElementall_14",@41374)
+		
+		SetGlobal("fireelemental_active","LOCALS",1)
+END
+
+IF
+	HitBy([GOODCUTOFF],MAGIC)
+THEN
+	RESPONSE #100
+		FaceObject(LastHitter(Myself))
+		ForceSpellRES("IWIN163",Myself)  // SPIN163.SPL INNATE_BEHOLDER_GAZE
+		//WaitAnimation(Myself,WALK)
+		//WaitAnimation(Myself,CONJURE)
+		//WaitAnimation(Myself,CAST)
+		Wait(1)
+END
+
+IF
+	AttackedBy([GOODCUTOFF],DEFAULT)
+	!See(LastAttackerOf(Myself))
+THEN
+	RESPONSE #100
+		FaceObject(LastAttackerOf(Myself))
+		ForceSpellRES("IWIN163",Myself)  // SPIN163.SPL INNATE_BEHOLDER_GAZE
+		//WaitAnimation(Myself,WALK)
+		//WaitAnimation(Myself,CONJURE)
+		//WaitAnimation(Myself,CAST)
+		Wait(1)
+END
+
+IF
+	!See([GOODCUTOFF])
+THEN
+	RESPONSE #100
+		MoveToSavedLocation("SavedLoc","LOCALS")
+END
+
+IF
+	See([GOODCUTOFF])
+THEN
+	RESPONSE #100
+		//SetMyTarget(LastMarkedObject)
+		Continue()
+END
+
+IF
+	RandomNum(10,1)
+	!InParty(LastSeenBy(Myself)) //MyTarget
+	//IsSpellTargetValid(MyTarget,INNATE_BEHOLDER_DISINTEGRATE,0)  // SPIN171.SPL (Расщепление)
+THEN
+	RESPONSE #100
+		ForceSpell(LastSeenBy(Myself),BEHOLDER_DISINTEGRATE)  // SPIN171.SPL (Расщепление)
+		//WaitAnimation(Myself,WALK)
+		//WaitAnimation(Myself,CONJURE)
+		//WaitAnimation(Myself,CAST)
+		Wait(1)
+END
+
+IF
+	RandomNum(10,2)
+	//IsSpellTargetValid(MyTarget,INNATE_BEHOLDER_FLESH_TO_STONE,0)  // SPIN170.SPL (Плоть в камень)
+THEN
+	RESPONSE #100
+		ForceSpell(LastSeenBy(Myself),BEHOLDER_FLESH_TO_STONE)  // SPIN170.SPL (Плоть в камень)
+		//WaitAnimation(Myself,WALK)
+		//WaitAnimation(Myself,CONJURE)
+		//WaitAnimation(Myself,CAST)
+		Wait(1)
+END
+
+IF
+	RandomNum(10,3)
+	!InParty(LastSeenBy(Myself))
+	//IsSpellTargetValid(MyTarget,INNATE_BEHOLDER_DEATH_RAY,0)  // SPIN175.SPL (Луч смерти)
+THEN
+	RESPONSE #100
+		ForceSpell(LastSeenBy(Myself),BEHOLDER_DEATH_RAY)  // SPIN175.SPL (Луч смерти)
+		//WaitAnimation(Myself,WALK)
+		//WaitAnimation(Myself,CONJURE)
+		//WaitAnimation(Myself,CAST)
+		Wait(1)
+END
+
+IF
+	RandomNum(10,4)
+	//IsSpellTargetValid(MyTarget,INNATE_BEHOLDER_CAUSE_SERIOUS_WOUNDS,0)  // SPIN174.SPL (Нанесение серьезных ран)
+THEN
+	RESPONSE #100
+		ForceSpell(LastSeenBy(Myself),BEHOLDER_CAUSE_SERIOUS_WOUNDS)  // SPIN174.SPL (Нанесение серьезных ран)
+		//WaitAnimation(Myself,WALK)
+		//WaitAnimation(Myself,CONJURE)
+		//WaitAnimation(Myself,CAST)
+		Wait(1)
+END
+
+IF
+	RandomNum(10,5)
+	//IsSpellTargetValid(MyTarget,INNATE_BEHOLDER_SLOW,0)  // SPIN173.SPL (Замедление)
+THEN
+	RESPONSE #100
+		ForceSpell(LastSeenBy(Myself),BEHOLDER_SLOW)  // SPIN173.SPL (Замедление)
+		//WaitAnimation(Myself,WALK)
+		//WaitAnimation(Myself,CONJURE)
+		//WaitAnimation(Myself,CAST)
+		Wait(1)
+END
+
+IF
+	RandomNum(10,6)
+	//IsSpellTargetValid(MyTarget,INNATE_BEHOLDER_FEAR,0)  // SPIN172.SPL (Страх)
+THEN
+	RESPONSE #100
+		ForceSpell(LastSeenBy(Myself),BEHOLDER_FEAR)  // SPIN172.SPL (Страх)
+		//WaitAnimation(Myself,WALK)
+		//WaitAnimation(Myself,CONJURE)
+		//WaitAnimation(Myself,CAST)
+		Wait(1)
+END
+
+IF
+	RandomNum(10,7)
+	//IsSpellTargetValid(MyTarget,INNATE_BEHOLDER_SLEEP,0)  // SPIN169.SPL (Сон)
+THEN
+	RESPONSE #100
+		ForceSpellRES("IWIN169",LastSeenBy(Myself))  // SPIN169.SPL INNATE_BEHOLDER_SLEEP
+		//WaitAnimation(Myself,WALK)
+		//WaitAnimation(Myself,CONJURE)
+		//WaitAnimation(Myself,CAST)
+		Wait(1)
+END
+
+IF
+	RandomNum(10,8)
+	//IsSpellTargetValid(MyTarget,INNATE_BEHOLDER_CHARM_PERSON,0)  // SPIN168.SPL (Очарование)
+THEN
+	RESPONSE #100
+		ForceSpell(LastSeenBy(Myself),BEHOLDER_CHARM_PERSON)  // SPIN168.SPL (Очарование)
+		//WaitAnimation(Myself,WALK)
+		//WaitAnimation(Myself,CONJURE)
+		//WaitAnimation(Myself,CAST)
+		Wait(1)
+END
+
+IF
+	RandomNum(10,9)
+	//See(FarthestEnemyOf(Myself))
+	Range(ThirdNearestMyGroupOfType,30)
+	//Allegiance(LastMarkedObject,ENEMY)
+THEN
+	RESPONSE #100
+		ClearActions(ThirdNearestMyGroupOfType)
+		CreateVisualEffectObject("ALTERCG",Myself)
+		Wait(1)
+		ActionOverride(ThirdNearestMyGroupOfType,JumpToObject(LastSeenBy(Myself)))
+		DisplayString(Myself,@36313)
+	RESPONSE #100
+		ClearActions(ThirdNearestMyGroupOfType)
+		CreateVisualEffectObject("ALTERCG",Myself)
+		Wait(1)
+		ActionOverride(ThirdNearestMyGroupOfType,JumpToObject(FarthestEnemyOf(Myself)))
+		DisplayString(Myself,@36313)
+END
+
+IF
+	RandomNum(10,10)
+	OR(2)
+		CheckStatLT(LastSeenBy(Myself),18,STR)
+		CheckStatLT(LastSeenBy(Myself),1,ENCUMBERANCE)
+THEN
+	RESPONSE #100
+		ClearActions(LastSeenBy(Myself))
+		CreateVisualEffectObject("ALTERCG",Myself)
+		Wait(1)
+		ActionOverride(LastSeenBy(Myself),JumpToPoint([1925.1395]))
+		DisplayString(Myself,36313)
+END
+
+IF
+	RandomNum(20,1)
+THEN
+	RESPONSE #100
+		ForceSpellRES("IWIN163",Myself)  // SPIN163.SPL INNATE_BEHOLDER_GAZE
+		//WaitAnimation(Myself,WALK)
+		//WaitAnimation(Myself,CONJURE)
+		//WaitAnimation(Myself,CAST)
+		Wait(1)
+END
+
+IF
+	Range(LastSeenBy(Myself),5)
+THEN
+	RESPONSE #100
+		AttackOneRound(LastSeenBy(Myself))
+END
+

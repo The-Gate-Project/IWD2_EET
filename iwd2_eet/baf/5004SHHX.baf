@@ -1,0 +1,1533 @@
+IF
+	!IsActive(Myself)
+THEN
+	RESPONSE #100
+		NoAction()
+END
+
+IF
+	StateCheck(Myself,STATE_PANIC)
+THEN
+	RESPONSE #100
+		RandomWalkContinuous()
+END
+
+IF
+	!GlobalTimerNotExpired("IWD_Rest","LOCALS")
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IWD_Rest","LOCALS",EIGHT_HOURS)
+		ApplySpell(Myself,RESTORE_FULL_HEALTH)
+		Rest()
+END
+
+IF
+	HaveSpell(CLERIC_CURE_SERIOUS_WOUNDS)  // SPPR401.SPL (Лечение серьезных ран)
+	HPPercentLT(Myself,65)
+	////IsSpellTargetValid(Myself,CLERIC_CURE_SERIOUS_WOUNDS,0)  // SPPR401.SPL (Лечение серьезных ран)
+THEN
+	RESPONSE #100
+		Spell(Myself,CLERIC_CURE_SERIOUS_WOUNDS)  // SPPR401.SPL (Лечение серьезных ран)
+		//WaitAnimation(Myself,WALK)
+		//WaitAnimation(Myself,CONJURE)
+		//WaitAnimation(Myself,CAST)
+		Wait(2)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_MEDIUM_WOUNDS)  // SPPR214.SPL (Лечение средних ран)
+	HPPercentLT(Myself,80)
+	////IsSpellTargetValid(Myself,CLERIC_CURE_MEDIUM_WOUNDS,0)  // SPPR214.SPL (Лечение средних ран)
+THEN
+	RESPONSE #100
+		Spell(Myself,CLERIC_CURE_MEDIUM_WOUNDS)  // SPPR214.SPL (Лечение средних ран)
+		//WaitAnimation(Myself,WALK)
+		//WaitAnimation(Myself,CONJURE)
+		//WaitAnimation(Myself,CAST)
+		Wait(2)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_LIGHT_WOUNDS)  // SPPR103.SPL (Лечение легких ран)
+	HPPercentLT(Myself,90)
+	////IsSpellTargetValid(Myself,CLERIC_CURE_LIGHT_WOUNDS,0)  // SPPR103.SPL (Лечение легких ран)
+THEN
+	RESPONSE #100
+		Spell(Myself,CLERIC_CURE_LIGHT_WOUNDS)  // SPPR103.SPL (Лечение легких ран)
+		//WaitAnimation(Myself,WALK)
+		//WaitAnimation(Myself,CONJURE)
+		//WaitAnimation(Myself,CAST)
+		Wait(2)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_SERIOUS_WOUNDS)  // SPPR401.SPL (Лечение серьезных ран)
+	See("07_50BarbarianWarrior_01")
+	HPPercentLT(LastSeenBy(Myself),65)
+	//IsSpellTargetValid(LastSeenBy(Myself),CLERIC_CURE_SERIOUS_WOUNDS,0)  // SPPR401.SPL (Лечение серьезных ран)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_SERIOUS_WOUNDS)  // SPPR401.SPL (Лечение серьезных ран)
+		//WaitAnimation(Myself,WALK)
+		//WaitAnimation(Myself,CONJURE)
+		//WaitAnimation(Myself,CAST)
+		Wait(2)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_MEDIUM_WOUNDS)  // SPPR214.SPL (Лечение средних ран)
+	See("07_50BarbarianWarrior_01")
+	HPPercentLT(LastSeenBy(Myself),80)
+	//IsSpellTargetValid(LastSeenBy(Myself),CLERIC_CURE_MEDIUM_WOUNDS,0)  // SPPR214.SPL (Лечение средних ран)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_MEDIUM_WOUNDS)  // SPPR214.SPL (Лечение средних ран)
+		//WaitAnimation(Myself,WALK)
+		//WaitAnimation(Myself,CONJURE)
+		//WaitAnimation(Myself,CAST)
+		Wait(2)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_LIGHT_WOUNDS)  // SPPR103.SPL (Лечение легких ран)
+	See("07_50BarbarianWarrior_01")
+	HPPercentLT(LastSeenBy(Myself),90)
+	//IsSpellTargetValid(LastSeenBy(Myself),CLERIC_CURE_LIGHT_WOUNDS,0)  // SPPR103.SPL (Лечение легких ран)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_LIGHT_WOUNDS)  // SPPR103.SPL (Лечение легких ран)
+		//WaitAnimation(Myself,WALK)
+		//WaitAnimation(Myself,CONJURE)
+		//WaitAnimation(Myself,CAST)
+		Wait(2)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_SERIOUS_WOUNDS)  // SPPR401.SPL (Лечение серьезных ран)
+	See("07_50BarbarianWarrior_02")
+	HPPercentLT(LastSeenBy(Myself),65)
+	//IsSpellTargetValid(LastSeenBy(Myself),CLERIC_CURE_SERIOUS_WOUNDS,0)  // SPPR401.SPL (Лечение серьезных ран)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_SERIOUS_WOUNDS)  // SPPR401.SPL (Лечение серьезных ран)
+		//WaitAnimation(Myself,WALK)
+		//WaitAnimation(Myself,CONJURE)
+		//WaitAnimation(Myself,CAST)
+		Wait(2)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_MEDIUM_WOUNDS)  // SPPR214.SPL (Лечение средних ран)
+	See("07_50BarbarianWarrior_02")
+	HPPercentLT(LastSeenBy(Myself),80)
+	//IsSpellTargetValid(LastSeenBy(Myself),CLERIC_CURE_MEDIUM_WOUNDS,0)  // SPPR214.SPL (Лечение средних ран)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_MEDIUM_WOUNDS)  // SPPR214.SPL (Лечение средних ран)
+		//WaitAnimation(Myself,WALK)
+		//WaitAnimation(Myself,CONJURE)
+		//WaitAnimation(Myself,CAST)
+		Wait(2)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_LIGHT_WOUNDS)  // SPPR103.SPL (Лечение легких ран)
+	See("07_50BarbarianWarrior_02")
+	HPPercentLT(LastSeenBy(Myself),90)
+	//IsSpellTargetValid(LastSeenBy(Myself),CLERIC_CURE_LIGHT_WOUNDS,0)  // SPPR103.SPL (Лечение легких ран)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_LIGHT_WOUNDS)  // SPPR103.SPL (Лечение легких ран)
+		//WaitAnimation(Myself,WALK)
+		//WaitAnimation(Myself,CONJURE)
+		//WaitAnimation(Myself,CAST)
+		Wait(2)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_SERIOUS_WOUNDS)  // SPPR401.SPL (Лечение серьезных ран)
+	See("07_50BarbarianWarrior_03")
+	HPPercentLT(LastSeenBy(Myself),65)
+	//IsSpellTargetValid(LastSeenBy(Myself),CLERIC_CURE_SERIOUS_WOUNDS,0)  // SPPR401.SPL (Лечение серьезных ран)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_SERIOUS_WOUNDS)  // SPPR401.SPL (Лечение серьезных ран)
+		//WaitAnimation(Myself,WALK)
+		//WaitAnimation(Myself,CONJURE)
+		//WaitAnimation(Myself,CAST)
+		Wait(2)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_MEDIUM_WOUNDS)  // SPPR214.SPL (Лечение средних ран)
+	See("07_50BarbarianWarrior_03")
+	HPPercentLT(LastSeenBy(Myself),80)
+	//IsSpellTargetValid(LastSeenBy(Myself),CLERIC_CURE_MEDIUM_WOUNDS,0)  // SPPR214.SPL (Лечение средних ран)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_MEDIUM_WOUNDS)  // SPPR214.SPL (Лечение средних ран)
+		//WaitAnimation(Myself,WALK)
+		//WaitAnimation(Myself,CONJURE)
+		//WaitAnimation(Myself,CAST)
+		Wait(2)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_LIGHT_WOUNDS)  // SPPR103.SPL (Лечение легких ран)
+	See("07_50BarbarianWarrior_03")
+	HPPercentLT(LastSeenBy(Myself),90)
+	//IsSpellTargetValid(LastSeenBy(Myself),CLERIC_CURE_LIGHT_WOUNDS,0)  // SPPR103.SPL (Лечение легких ран)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_LIGHT_WOUNDS)  // SPPR103.SPL (Лечение легких ран)
+		//WaitAnimation(Myself,WALK)
+		//WaitAnimation(Myself,CONJURE)
+		//WaitAnimation(Myself,CAST)
+		Wait(2)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_SERIOUS_WOUNDS)  // SPPR401.SPL (Лечение серьезных ран)
+	See("07_50BarbarianWarrior_04")
+	HPPercentLT(LastSeenBy(Myself),65)
+	//IsSpellTargetValid(LastSeenBy(Myself),CLERIC_CURE_SERIOUS_WOUNDS,0)  // SPPR401.SPL (Лечение серьезных ран)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_SERIOUS_WOUNDS)  // SPPR401.SPL (Лечение серьезных ран)
+		//WaitAnimation(Myself,WALK)
+		//WaitAnimation(Myself,CONJURE)
+		//WaitAnimation(Myself,CAST)
+		Wait(2)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_MEDIUM_WOUNDS)  // SPPR214.SPL (Лечение средних ран)
+	See("07_50BarbarianWarrior_04")
+	HPPercentLT(LastSeenBy(Myself),80)
+	//IsSpellTargetValid(LastSeenBy(Myself),CLERIC_CURE_MEDIUM_WOUNDS,0)  // SPPR214.SPL (Лечение средних ран)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_MEDIUM_WOUNDS)  // SPPR214.SPL (Лечение средних ран)
+		//WaitAnimation(Myself,WALK)
+		//WaitAnimation(Myself,CONJURE)
+		//WaitAnimation(Myself,CAST)
+		Wait(2)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_LIGHT_WOUNDS)  // SPPR103.SPL (Лечение легких ран)
+	See("07_50BarbarianWarrior_04")
+	HPPercentLT(LastSeenBy(Myself),90)
+	//IsSpellTargetValid(LastSeenBy(Myself),CLERIC_CURE_LIGHT_WOUNDS,0)  // SPPR103.SPL (Лечение легких ран)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_LIGHT_WOUNDS)  // SPPR103.SPL (Лечение легких ран)
+		//WaitAnimation(Myself,WALK)
+		//WaitAnimation(Myself,CONJURE)
+		//WaitAnimation(Myself,CAST)
+		Wait(2)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_SERIOUS_WOUNDS)  // SPPR401.SPL (Лечение серьезных ран)
+	See("07_50BarbarianWarrior_05")
+	HPPercentLT(LastSeenBy(Myself),65)
+	//IsSpellTargetValid(LastSeenBy(Myself),CLERIC_CURE_SERIOUS_WOUNDS,0)  // SPPR401.SPL (Лечение серьезных ран)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_SERIOUS_WOUNDS)  // SPPR401.SPL (Лечение серьезных ран)
+		//WaitAnimation(Myself,WALK)
+		//WaitAnimation(Myself,CONJURE)
+		//WaitAnimation(Myself,CAST)
+		Wait(2)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_MEDIUM_WOUNDS)  // SPPR214.SPL (Лечение средних ран)
+	See("07_50BarbarianWarrior_05")
+	HPPercentLT(LastSeenBy(Myself),80)
+	//IsSpellTargetValid(LastSeenBy(Myself),CLERIC_CURE_MEDIUM_WOUNDS,0)  // SPPR214.SPL (Лечение средних ран)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_MEDIUM_WOUNDS)  // SPPR214.SPL (Лечение средних ран)
+		//WaitAnimation(Myself,WALK)
+		//WaitAnimation(Myself,CONJURE)
+		//WaitAnimation(Myself,CAST)
+		Wait(2)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_LIGHT_WOUNDS)  // SPPR103.SPL (Лечение легких ран)
+	See("07_50BarbarianWarrior_05")
+	HPPercentLT(LastSeenBy(Myself),90)
+	//IsSpellTargetValid(LastSeenBy(Myself),CLERIC_CURE_LIGHT_WOUNDS,0)  // SPPR103.SPL (Лечение легких ран)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_LIGHT_WOUNDS)  // SPPR103.SPL (Лечение легких ран)
+		//WaitAnimation(Myself,WALK)
+		//WaitAnimation(Myself,CONJURE)
+		//WaitAnimation(Myself,CAST)
+		Wait(2)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_SERIOUS_WOUNDS)  // SPPR401.SPL (Лечение серьезных ран)
+	See("08_50BarbarianWarrior_01")
+	HPPercentLT(LastSeenBy(Myself),65)
+	//IsSpellTargetValid(LastSeenBy(Myself),CLERIC_CURE_SERIOUS_WOUNDS,0)  // SPPR401.SPL (Лечение серьезных ран)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_SERIOUS_WOUNDS)  // SPPR401.SPL (Лечение серьезных ран)
+		//WaitAnimation(Myself,WALK)
+		//WaitAnimation(Myself,CONJURE)
+		//WaitAnimation(Myself,CAST)
+		Wait(2)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_MEDIUM_WOUNDS)  // SPPR214.SPL (Лечение средних ран)
+	See("08_50BarbarianWarrior_01")
+	HPPercentLT(LastSeenBy(Myself),80)
+	//IsSpellTargetValid(LastSeenBy(Myself),CLERIC_CURE_MEDIUM_WOUNDS,0)  // SPPR214.SPL (Лечение средних ран)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_MEDIUM_WOUNDS)  // SPPR214.SPL (Лечение средних ран)
+		//WaitAnimation(Myself,WALK)
+		//WaitAnimation(Myself,CONJURE)
+		//WaitAnimation(Myself,CAST)
+		Wait(2)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_LIGHT_WOUNDS)  // SPPR103.SPL (Лечение легких ран)
+	See("08_50BarbarianWarrior_01")
+	HPPercentLT(LastSeenBy(Myself),90)
+	//IsSpellTargetValid(LastSeenBy(Myself),CLERIC_CURE_LIGHT_WOUNDS,0)  // SPPR103.SPL (Лечение легких ран)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_LIGHT_WOUNDS)  // SPPR103.SPL (Лечение легких ран)
+		//WaitAnimation(Myself,WALK)
+		//WaitAnimation(Myself,CONJURE)
+		//WaitAnimation(Myself,CAST)
+		Wait(2)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_SERIOUS_WOUNDS)  // SPPR401.SPL (Лечение серьезных ран)
+	See("08_50BarbarianWarrior_02")
+	HPPercentLT(LastSeenBy(Myself),65)
+	//IsSpellTargetValid(LastSeenBy(Myself),CLERIC_CURE_SERIOUS_WOUNDS,0)  // SPPR401.SPL (Лечение серьезных ран)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_SERIOUS_WOUNDS)  // SPPR401.SPL (Лечение серьезных ран)
+		//WaitAnimation(Myself,WALK)
+		//WaitAnimation(Myself,CONJURE)
+		//WaitAnimation(Myself,CAST)
+		Wait(2)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_MEDIUM_WOUNDS)  // SPPR214.SPL (Лечение средних ран)
+	See("08_50BarbarianWarrior_02")
+	HPPercentLT(LastSeenBy(Myself),80)
+	//IsSpellTargetValid(LastSeenBy(Myself),CLERIC_CURE_MEDIUM_WOUNDS,0)  // SPPR214.SPL (Лечение средних ран)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_MEDIUM_WOUNDS)  // SPPR214.SPL (Лечение средних ран)
+		//WaitAnimation(Myself,WALK)
+		//WaitAnimation(Myself,CONJURE)
+		//WaitAnimation(Myself,CAST)
+		Wait(2)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_LIGHT_WOUNDS)  // SPPR103.SPL (Лечение легких ран)
+	See("08_50BarbarianWarrior_02")
+	HPPercentLT(LastSeenBy(Myself),90)
+	//IsSpellTargetValid(LastSeenBy(Myself),CLERIC_CURE_LIGHT_WOUNDS,0)  // SPPR103.SPL (Лечение легких ран)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_LIGHT_WOUNDS)  // SPPR103.SPL (Лечение легких ран)
+		//WaitAnimation(Myself,WALK)
+		//WaitAnimation(Myself,CONJURE)
+		//WaitAnimation(Myself,CAST)
+		Wait(2)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_SERIOUS_WOUNDS)  // SPPR401.SPL (Лечение серьезных ран)
+	See("08_50BarbarianWarrior_03")
+	HPPercentLT(LastSeenBy(Myself),65)
+	//IsSpellTargetValid(LastSeenBy(Myself),CLERIC_CURE_SERIOUS_WOUNDS,0)  // SPPR401.SPL (Лечение серьезных ран)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_SERIOUS_WOUNDS)  // SPPR401.SPL (Лечение серьезных ран)
+		//WaitAnimation(Myself,WALK)
+		//WaitAnimation(Myself,CONJURE)
+		//WaitAnimation(Myself,CAST)
+		Wait(2)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_MEDIUM_WOUNDS)  // SPPR214.SPL (Лечение средних ран)
+	See("08_50BarbarianWarrior_03")
+	HPPercentLT(LastSeenBy(Myself),80)
+	//IsSpellTargetValid(LastSeenBy(Myself),CLERIC_CURE_MEDIUM_WOUNDS,0)  // SPPR214.SPL (Лечение средних ран)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_MEDIUM_WOUNDS)  // SPPR214.SPL (Лечение средних ран)
+		//WaitAnimation(Myself,WALK)
+		//WaitAnimation(Myself,CONJURE)
+		//WaitAnimation(Myself,CAST)
+		Wait(2)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_LIGHT_WOUNDS)  // SPPR103.SPL (Лечение легких ран)
+	See("08_50BarbarianWarrior_03")
+	HPPercentLT(LastSeenBy(Myself),90)
+	//IsSpellTargetValid(LastSeenBy(Myself),CLERIC_CURE_LIGHT_WOUNDS,0)  // SPPR103.SPL (Лечение легких ран)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_LIGHT_WOUNDS)  // SPPR103.SPL (Лечение легких ран)
+		//WaitAnimation(Myself,WALK)
+		//WaitAnimation(Myself,CONJURE)
+		//WaitAnimation(Myself,CAST)
+		Wait(2)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_SERIOUS_WOUNDS)  // SPPR401.SPL (Лечение серьезных ран)
+	See("08_50BarbarianWarrior_04")
+	HPPercentLT(LastSeenBy(Myself),65)
+	//IsSpellTargetValid(LastSeenBy(Myself),CLERIC_CURE_SERIOUS_WOUNDS,0)  // SPPR401.SPL (Лечение серьезных ран)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_SERIOUS_WOUNDS)  // SPPR401.SPL (Лечение серьезных ран)
+		//WaitAnimation(Myself,WALK)
+		//WaitAnimation(Myself,CONJURE)
+		//WaitAnimation(Myself,CAST)
+		Wait(2)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_MEDIUM_WOUNDS)  // SPPR214.SPL (Лечение средних ран)
+	See("08_50BarbarianWarrior_04")
+	HPPercentLT(LastSeenBy(Myself),80)
+	//IsSpellTargetValid(LastSeenBy(Myself),CLERIC_CURE_MEDIUM_WOUNDS,0)  // SPPR214.SPL (Лечение средних ран)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_MEDIUM_WOUNDS)  // SPPR214.SPL (Лечение средних ран)
+		//WaitAnimation(Myself,WALK)
+		//WaitAnimation(Myself,CONJURE)
+		//WaitAnimation(Myself,CAST)
+		Wait(2)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_LIGHT_WOUNDS)  // SPPR103.SPL (Лечение легких ран)
+	See("08_50BarbarianWarrior_04")
+	HPPercentLT(LastSeenBy(Myself),90)
+	//IsSpellTargetValid(LastSeenBy(Myself),CLERIC_CURE_LIGHT_WOUNDS,0)  // SPPR103.SPL (Лечение легких ран)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_LIGHT_WOUNDS)  // SPPR103.SPL (Лечение легких ран)
+		//WaitAnimation(Myself,WALK)
+		//WaitAnimation(Myself,CONJURE)
+		//WaitAnimation(Myself,CAST)
+		Wait(2)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_SERIOUS_WOUNDS)  // SPPR401.SPL (Лечение серьезных ран)
+	See("08_50BarbarianWarrior_05")
+	HPPercentLT(LastSeenBy(Myself),65)
+	//IsSpellTargetValid(LastSeenBy(Myself),CLERIC_CURE_SERIOUS_WOUNDS,0)  // SPPR401.SPL (Лечение серьезных ран)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_SERIOUS_WOUNDS)  // SPPR401.SPL (Лечение серьезных ран)
+		//WaitAnimation(Myself,WALK)
+		//WaitAnimation(Myself,CONJURE)
+		//WaitAnimation(Myself,CAST)
+		Wait(2)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_MEDIUM_WOUNDS)  // SPPR214.SPL (Лечение средних ран)
+	See("08_50BarbarianWarrior_05")
+	HPPercentLT(LastSeenBy(Myself),80)
+	//IsSpellTargetValid(LastSeenBy(Myself),CLERIC_CURE_MEDIUM_WOUNDS,0)  // SPPR214.SPL (Лечение средних ран)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_MEDIUM_WOUNDS)  // SPPR214.SPL (Лечение средних ран)
+		//WaitAnimation(Myself,WALK)
+		//WaitAnimation(Myself,CONJURE)
+		//WaitAnimation(Myself,CAST)
+		Wait(2)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_LIGHT_WOUNDS)  // SPPR103.SPL (Лечение легких ран)
+	See("08_50BarbarianWarrior_05")
+	HPPercentLT(LastSeenBy(Myself),90)
+	//IsSpellTargetValid(LastSeenBy(Myself),CLERIC_CURE_LIGHT_WOUNDS,0)  // SPPR103.SPL (Лечение легких ран)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_LIGHT_WOUNDS)  // SPPR103.SPL (Лечение легких ран)
+		//WaitAnimation(Myself,WALK)
+		//WaitAnimation(Myself,CONJURE)
+		//WaitAnimation(Myself,CAST)
+		Wait(2)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_SERIOUS_WOUNDS)  // SPPR401.SPL (Лечение серьезных ран)
+	See("09_50BarbarianWarrior_01")
+	HPPercentLT(LastSeenBy(Myself),65)
+	//IsSpellTargetValid(LastSeenBy(Myself),CLERIC_CURE_SERIOUS_WOUNDS,0)  // SPPR401.SPL (Лечение серьезных ран)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_SERIOUS_WOUNDS)  // SPPR401.SPL (Лечение серьезных ран)
+		//WaitAnimation(Myself,WALK)
+		//WaitAnimation(Myself,CONJURE)
+		//WaitAnimation(Myself,CAST)
+		Wait(2)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_MEDIUM_WOUNDS)  // SPPR214.SPL (Лечение средних ран)
+	See("09_50BarbarianWarrior_01")
+	HPPercentLT(LastSeenBy(Myself),80)
+	//IsSpellTargetValid(LastSeenBy(Myself),CLERIC_CURE_MEDIUM_WOUNDS,0)  // SPPR214.SPL (Лечение средних ран)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_MEDIUM_WOUNDS)  // SPPR214.SPL (Лечение средних ран)
+		//WaitAnimation(Myself,WALK)
+		//WaitAnimation(Myself,CONJURE)
+		//WaitAnimation(Myself,CAST)
+		Wait(2)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_LIGHT_WOUNDS)  // SPPR103.SPL (Лечение легких ран)
+	See("09_50BarbarianWarrior_01")
+	HPPercentLT(LastSeenBy(Myself),90)
+	//IsSpellTargetValid(LastSeenBy(Myself),CLERIC_CURE_LIGHT_WOUNDS,0)  // SPPR103.SPL (Лечение легких ран)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_LIGHT_WOUNDS)  // SPPR103.SPL (Лечение легких ран)
+		//WaitAnimation(Myself,WALK)
+		//WaitAnimation(Myself,CONJURE)
+		//WaitAnimation(Myself,CAST)
+		Wait(2)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_SERIOUS_WOUNDS)  // SPPR401.SPL (Лечение серьезных ран)
+	See("09_50BarbarianWarrior_02")
+	HPPercentLT(LastSeenBy(Myself),65)
+	//IsSpellTargetValid(LastSeenBy(Myself),CLERIC_CURE_SERIOUS_WOUNDS,0)  // SPPR401.SPL (Лечение серьезных ран)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_SERIOUS_WOUNDS)  // SPPR401.SPL (Лечение серьезных ран)
+		//WaitAnimation(Myself,WALK)
+		//WaitAnimation(Myself,CONJURE)
+		//WaitAnimation(Myself,CAST)
+		Wait(2)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_MEDIUM_WOUNDS)  // SPPR214.SPL (Лечение средних ран)
+	See("09_50BarbarianWarrior_02")
+	HPPercentLT(LastSeenBy(Myself),80)
+	//IsSpellTargetValid(LastSeenBy(Myself),CLERIC_CURE_MEDIUM_WOUNDS,0)  // SPPR214.SPL (Лечение средних ран)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_MEDIUM_WOUNDS)  // SPPR214.SPL (Лечение средних ран)
+		//WaitAnimation(Myself,WALK)
+		//WaitAnimation(Myself,CONJURE)
+		//WaitAnimation(Myself,CAST)
+		Wait(2)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_LIGHT_WOUNDS)  // SPPR103.SPL (Лечение легких ран)
+	See("09_50BarbarianWarrior_02")
+	HPPercentLT(LastSeenBy(Myself),90)
+	//IsSpellTargetValid(LastSeenBy(Myself),CLERIC_CURE_LIGHT_WOUNDS,0)  // SPPR103.SPL (Лечение легких ран)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_LIGHT_WOUNDS)  // SPPR103.SPL (Лечение легких ран)
+		//WaitAnimation(Myself,WALK)
+		//WaitAnimation(Myself,CONJURE)
+		//WaitAnimation(Myself,CAST)
+		Wait(2)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_SERIOUS_WOUNDS)  // SPPR401.SPL (Лечение серьезных ран)
+	See("09_50BarbarianWarrior_03")
+	HPPercentLT(LastSeenBy(Myself),65)
+	//IsSpellTargetValid(LastSeenBy(Myself),CLERIC_CURE_SERIOUS_WOUNDS,0)  // SPPR401.SPL (Лечение серьезных ран)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_SERIOUS_WOUNDS)  // SPPR401.SPL (Лечение серьезных ран)
+		//WaitAnimation(Myself,WALK)
+		//WaitAnimation(Myself,CONJURE)
+		//WaitAnimation(Myself,CAST)
+		Wait(2)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_MEDIUM_WOUNDS)  // SPPR214.SPL (Лечение средних ран)
+	See("09_50BarbarianWarrior_03")
+	HPPercentLT(LastSeenBy(Myself),80)
+	//IsSpellTargetValid(LastSeenBy(Myself),CLERIC_CURE_MEDIUM_WOUNDS,0)  // SPPR214.SPL (Лечение средних ран)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_MEDIUM_WOUNDS)  // SPPR214.SPL (Лечение средних ран)
+		//WaitAnimation(Myself,WALK)
+		//WaitAnimation(Myself,CONJURE)
+		//WaitAnimation(Myself,CAST)
+		Wait(2)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_LIGHT_WOUNDS)  // SPPR103.SPL (Лечение легких ран)
+	See("09_50BarbarianWarrior_03")
+	HPPercentLT(LastSeenBy(Myself),90)
+	//IsSpellTargetValid(LastSeenBy(Myself),CLERIC_CURE_LIGHT_WOUNDS,0)  // SPPR103.SPL (Лечение легких ран)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_LIGHT_WOUNDS)  // SPPR103.SPL (Лечение легких ран)
+		//WaitAnimation(Myself,WALK)
+		//WaitAnimation(Myself,CONJURE)
+		//WaitAnimation(Myself,CAST)
+		Wait(2)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_SERIOUS_WOUNDS)  // SPPR401.SPL (Лечение серьезных ран)
+	See("09_50BarbarianWarrior_04")
+	HPPercentLT(LastSeenBy(Myself),65)
+	//IsSpellTargetValid(LastSeenBy(Myself),CLERIC_CURE_SERIOUS_WOUNDS,0)  // SPPR401.SPL (Лечение серьезных ран)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_SERIOUS_WOUNDS)  // SPPR401.SPL (Лечение серьезных ран)
+		//WaitAnimation(Myself,WALK)
+		//WaitAnimation(Myself,CONJURE)
+		//WaitAnimation(Myself,CAST)
+		Wait(2)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_MEDIUM_WOUNDS)  // SPPR214.SPL (Лечение средних ран)
+	See("09_50BarbarianWarrior_04")
+	HPPercentLT(LastSeenBy(Myself),80)
+	//IsSpellTargetValid(LastSeenBy(Myself),CLERIC_CURE_MEDIUM_WOUNDS,0)  // SPPR214.SPL (Лечение средних ран)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_MEDIUM_WOUNDS)  // SPPR214.SPL (Лечение средних ран)
+		//WaitAnimation(Myself,WALK)
+		//WaitAnimation(Myself,CONJURE)
+		//WaitAnimation(Myself,CAST)
+		Wait(2)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_LIGHT_WOUNDS)  // SPPR103.SPL (Лечение легких ран)
+	See("09_50BarbarianWarrior_04")
+	HPPercentLT(LastSeenBy(Myself),90)
+	//IsSpellTargetValid(LastSeenBy(Myself),CLERIC_CURE_LIGHT_WOUNDS,0)  // SPPR103.SPL (Лечение легких ран)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_LIGHT_WOUNDS)  // SPPR103.SPL (Лечение легких ран)
+		//WaitAnimation(Myself,WALK)
+		//WaitAnimation(Myself,CONJURE)
+		//WaitAnimation(Myself,CAST)
+		Wait(2)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_SERIOUS_WOUNDS)  // SPPR401.SPL (Лечение серьезных ран)
+	See("09_50BarbarianWarrior_05")
+	HPPercentLT(LastSeenBy(Myself),65)
+	//IsSpellTargetValid(LastSeenBy(Myself),CLERIC_CURE_SERIOUS_WOUNDS,0)  // SPPR401.SPL (Лечение серьезных ран)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_SERIOUS_WOUNDS)  // SPPR401.SPL (Лечение серьезных ран)
+		//WaitAnimation(Myself,WALK)
+		//WaitAnimation(Myself,CONJURE)
+		//WaitAnimation(Myself,CAST)
+		Wait(2)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_MEDIUM_WOUNDS)  // SPPR214.SPL (Лечение средних ран)
+	See("09_50BarbarianWarrior_05")
+	HPPercentLT(LastSeenBy(Myself),80)
+	//IsSpellTargetValid(LastSeenBy(Myself),CLERIC_CURE_MEDIUM_WOUNDS,0)  // SPPR214.SPL (Лечение средних ран)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_MEDIUM_WOUNDS)  // SPPR214.SPL (Лечение средних ран)
+		//WaitAnimation(Myself,WALK)
+		//WaitAnimation(Myself,CONJURE)
+		//WaitAnimation(Myself,CAST)
+		Wait(2)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_LIGHT_WOUNDS)  // SPPR103.SPL (Лечение легких ран)
+	See("09_50BarbarianWarrior_05")
+	HPPercentLT(LastSeenBy(Myself),90)
+	//IsSpellTargetValid(LastSeenBy(Myself),CLERIC_CURE_LIGHT_WOUNDS,0)  // SPPR103.SPL (Лечение легких ран)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_LIGHT_WOUNDS)  // SPPR103.SPL (Лечение легких ран)
+		//WaitAnimation(Myself,WALK)
+		//WaitAnimation(Myself,CONJURE)
+		//WaitAnimation(Myself,CAST)
+		Wait(2)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_SERIOUS_WOUNDS)  // SPPR401.SPL (Лечение серьезных ран)
+	See("10_50BarbarianWarrior_01")
+	HPPercentLT(LastSeenBy(Myself),65)
+	//IsSpellTargetValid(LastSeenBy(Myself),CLERIC_CURE_SERIOUS_WOUNDS,0)  // SPPR401.SPL (Лечение серьезных ран)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_SERIOUS_WOUNDS)  // SPPR401.SPL (Лечение серьезных ран)
+		//WaitAnimation(Myself,WALK)
+		//WaitAnimation(Myself,CONJURE)
+		//WaitAnimation(Myself,CAST)
+		Wait(2)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_MEDIUM_WOUNDS)  // SPPR214.SPL (Лечение средних ран)
+	See("10_50BarbarianWarrior_01")
+	HPPercentLT(LastSeenBy(Myself),80)
+	//IsSpellTargetValid(LastSeenBy(Myself),CLERIC_CURE_MEDIUM_WOUNDS,0)  // SPPR214.SPL (Лечение средних ран)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_MEDIUM_WOUNDS)  // SPPR214.SPL (Лечение средних ран)
+		//WaitAnimation(Myself,WALK)
+		//WaitAnimation(Myself,CONJURE)
+		//WaitAnimation(Myself,CAST)
+		Wait(2)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_LIGHT_WOUNDS)  // SPPR103.SPL (Лечение легких ран)
+	See("10_50BarbarianWarrior_01")
+	HPPercentLT(LastSeenBy(Myself),90)
+	//IsSpellTargetValid(LastSeenBy(Myself),CLERIC_CURE_LIGHT_WOUNDS,0)  // SPPR103.SPL (Лечение легких ран)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_LIGHT_WOUNDS)  // SPPR103.SPL (Лечение легких ран)
+		//WaitAnimation(Myself,WALK)
+		//WaitAnimation(Myself,CONJURE)
+		//WaitAnimation(Myself,CAST)
+		Wait(2)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_SERIOUS_WOUNDS)  // SPPR401.SPL (Лечение серьезных ран)
+	See("10_50BarbarianWarrior_02")
+	HPPercentLT(LastSeenBy(Myself),65)
+	//IsSpellTargetValid(LastSeenBy(Myself),CLERIC_CURE_SERIOUS_WOUNDS,0)  // SPPR401.SPL (Лечение серьезных ран)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_SERIOUS_WOUNDS)  // SPPR401.SPL (Лечение серьезных ран)
+		//WaitAnimation(Myself,WALK)
+		//WaitAnimation(Myself,CONJURE)
+		//WaitAnimation(Myself,CAST)
+		Wait(2)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_MEDIUM_WOUNDS)  // SPPR214.SPL (Лечение средних ран)
+	See("10_50BarbarianWarrior_02")
+	HPPercentLT(LastSeenBy(Myself),80)
+	//IsSpellTargetValid(LastSeenBy(Myself),CLERIC_CURE_MEDIUM_WOUNDS,0)  // SPPR214.SPL (Лечение средних ран)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_MEDIUM_WOUNDS)  // SPPR214.SPL (Лечение средних ран)
+		//WaitAnimation(Myself,WALK)
+		//WaitAnimation(Myself,CONJURE)
+		//WaitAnimation(Myself,CAST)
+		Wait(2)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_LIGHT_WOUNDS)  // SPPR103.SPL (Лечение легких ран)
+	See("10_50BarbarianWarrior_02")
+	HPPercentLT(LastSeenBy(Myself),90)
+	//IsSpellTargetValid(LastSeenBy(Myself),CLERIC_CURE_LIGHT_WOUNDS,0)  // SPPR103.SPL (Лечение легких ран)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_LIGHT_WOUNDS)  // SPPR103.SPL (Лечение легких ран)
+		//WaitAnimation(Myself,WALK)
+		//WaitAnimation(Myself,CONJURE)
+		//WaitAnimation(Myself,CAST)
+		Wait(2)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_SERIOUS_WOUNDS)  // SPPR401.SPL (Лечение серьезных ран)
+	See("10_50BarbarianWarrior_03")
+	HPPercentLT(LastSeenBy(Myself),65)
+	//IsSpellTargetValid(LastSeenBy(Myself),CLERIC_CURE_SERIOUS_WOUNDS,0)  // SPPR401.SPL (Лечение серьезных ран)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_SERIOUS_WOUNDS)  // SPPR401.SPL (Лечение серьезных ран)
+		//WaitAnimation(Myself,WALK)
+		//WaitAnimation(Myself,CONJURE)
+		//WaitAnimation(Myself,CAST)
+		Wait(2)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_MEDIUM_WOUNDS)  // SPPR214.SPL (Лечение средних ран)
+	See("10_50BarbarianWarrior_03")
+	HPPercentLT(LastSeenBy(Myself),80)
+	//IsSpellTargetValid(LastSeenBy(Myself),CLERIC_CURE_MEDIUM_WOUNDS,0)  // SPPR214.SPL (Лечение средних ран)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_MEDIUM_WOUNDS)  // SPPR214.SPL (Лечение средних ран)
+		//WaitAnimation(Myself,WALK)
+		//WaitAnimation(Myself,CONJURE)
+		//WaitAnimation(Myself,CAST)
+		Wait(2)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_LIGHT_WOUNDS)  // SPPR103.SPL (Лечение легких ран)
+	See("10_50BarbarianWarrior_03")
+	HPPercentLT(LastSeenBy(Myself),90)
+	//IsSpellTargetValid(LastSeenBy(Myself),CLERIC_CURE_LIGHT_WOUNDS,0)  // SPPR103.SPL (Лечение легких ран)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_LIGHT_WOUNDS)  // SPPR103.SPL (Лечение легких ран)
+		//WaitAnimation(Myself,WALK)
+		//WaitAnimation(Myself,CONJURE)
+		//WaitAnimation(Myself,CAST)
+		Wait(2)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_SERIOUS_WOUNDS)  // SPPR401.SPL (Лечение серьезных ран)
+	See("10_50BarbarianWarrior_04")
+	HPPercentLT(LastSeenBy(Myself),65)
+	//IsSpellTargetValid(LastSeenBy(Myself),CLERIC_CURE_SERIOUS_WOUNDS,0)  // SPPR401.SPL (Лечение серьезных ран)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_SERIOUS_WOUNDS)  // SPPR401.SPL (Лечение серьезных ран)
+		//WaitAnimation(Myself,WALK)
+		//WaitAnimation(Myself,CONJURE)
+		//WaitAnimation(Myself,CAST)
+		Wait(2)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_MEDIUM_WOUNDS)  // SPPR214.SPL (Лечение средних ран)
+	See("10_50BarbarianWarrior_04")
+	HPPercentLT(LastSeenBy(Myself),80)
+	//IsSpellTargetValid(LastSeenBy(Myself),CLERIC_CURE_MEDIUM_WOUNDS,0)  // SPPR214.SPL (Лечение средних ран)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_MEDIUM_WOUNDS)  // SPPR214.SPL (Лечение средних ран)
+		//WaitAnimation(Myself,WALK)
+		//WaitAnimation(Myself,CONJURE)
+		//WaitAnimation(Myself,CAST)
+		Wait(2)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_LIGHT_WOUNDS)  // SPPR103.SPL (Лечение легких ран)
+	See("10_50BarbarianWarrior_04")
+	HPPercentLT(LastSeenBy(Myself),90)
+	//IsSpellTargetValid(LastSeenBy(Myself),CLERIC_CURE_LIGHT_WOUNDS,0)  // SPPR103.SPL (Лечение легких ран)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_LIGHT_WOUNDS)  // SPPR103.SPL (Лечение легких ран)
+		//WaitAnimation(Myself,WALK)
+		//WaitAnimation(Myself,CONJURE)
+		//WaitAnimation(Myself,CAST)
+		Wait(2)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_SERIOUS_WOUNDS)  // SPPR401.SPL (Лечение серьезных ран)
+	See("10_50BarbarianWarrior_05")
+	HPPercentLT(LastSeenBy(Myself),65)
+	//IsSpellTargetValid(LastSeenBy(Myself),CLERIC_CURE_SERIOUS_WOUNDS,0)  // SPPR401.SPL (Лечение серьезных ран)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_SERIOUS_WOUNDS)  // SPPR401.SPL (Лечение серьезных ран)
+		//WaitAnimation(Myself,WALK)
+		//WaitAnimation(Myself,CONJURE)
+		//WaitAnimation(Myself,CAST)
+		Wait(2)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_MEDIUM_WOUNDS)  // SPPR214.SPL (Лечение средних ран)
+	See("10_50BarbarianWarrior_05")
+	HPPercentLT(LastSeenBy(Myself),80)
+	//IsSpellTargetValid(LastSeenBy(Myself),CLERIC_CURE_MEDIUM_WOUNDS,0)  // SPPR214.SPL (Лечение средних ран)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_MEDIUM_WOUNDS)  // SPPR214.SPL (Лечение средних ран)
+		//WaitAnimation(Myself,WALK)
+		//WaitAnimation(Myself,CONJURE)
+		//WaitAnimation(Myself,CAST)
+		Wait(2)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_LIGHT_WOUNDS)  // SPPR103.SPL (Лечение легких ран)
+	See("10_50BarbarianWarrior_05")
+	HPPercentLT(LastSeenBy(Myself),90)
+	//IsSpellTargetValid(LastSeenBy(Myself),CLERIC_CURE_LIGHT_WOUNDS,0)  // SPPR103.SPL (Лечение легких ран)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_LIGHT_WOUNDS)  // SPPR103.SPL (Лечение легких ран)
+		//WaitAnimation(Myself,WALK)
+		//WaitAnimation(Myself,CONJURE)
+		//WaitAnimation(Myself,CAST)
+		Wait(2)
+END
+
+/*IF
+	HaveSpell(CLERIC_CURE_SERIOUS_WOUNDS)  // SPPR401.SPL (Лечение серьезных ран)
+	See("02_50BARLD_01",0)
+	HPPercentLT(LastSeenBy(Myself),65)
+	//IsSpellTargetValid(LastSeenBy(Myself),CLERIC_CURE_SERIOUS_WOUNDS,0)  // SPPR401.SPL (Лечение серьезных ран)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_SERIOUS_WOUNDS)  // SPPR401.SPL (Лечение серьезных ран)
+		//WaitAnimation(Myself,WALK)
+		//WaitAnimation(Myself,CONJURE)
+		//WaitAnimation(Myself,CAST)
+		Wait(2)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_MEDIUM_WOUNDS)  // SPPR214.SPL (Лечение средних ран)
+	See("02_50BARLD_01",0)
+	HPPercentLT(LastSeenBy(Myself),80)
+	//IsSpellTargetValid(LastSeenBy(Myself),CLERIC_CURE_MEDIUM_WOUNDS,0)  // SPPR214.SPL (Лечение средних ран)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_MEDIUM_WOUNDS)  // SPPR214.SPL (Лечение средних ран)
+		//WaitAnimation(Myself,WALK)
+		//WaitAnimation(Myself,CONJURE)
+		//WaitAnimation(Myself,CAST)
+		Wait(2)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_LIGHT_WOUNDS)  // SPPR103.SPL (Лечение легких ран)
+	See("02_50BARLD_01",0)
+	HPPercentLT(LastSeenBy(Myself),90)
+	//IsSpellTargetValid(LastSeenBy(Myself),CLERIC_CURE_LIGHT_WOUNDS,0)  // SPPR103.SPL (Лечение легких ран)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_LIGHT_WOUNDS)  // SPPR103.SPL (Лечение легких ран)
+		//WaitAnimation(Myself,WALK)
+		//WaitAnimation(Myself,CONJURE)
+		//WaitAnimation(Myself,CAST)
+		Wait(2)
+END*/
+
+/*IF
+	HaveSpell(CLERIC_CURE_SERIOUS_WOUNDS)  // SPPR401.SPL (Лечение серьезных ран)
+	See("02_50BARWA_02",0)
+	HPPercentLT(LastSeenBy(Myself),65)
+	//IsSpellTargetValid(LastSeenBy(Myself),CLERIC_CURE_SERIOUS_WOUNDS,0)  // SPPR401.SPL (Лечение серьезных ран)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_SERIOUS_WOUNDS)  // SPPR401.SPL (Лечение серьезных ран)
+		//WaitAnimation(Myself,WALK)
+		//WaitAnimation(Myself,CONJURE)
+		//WaitAnimation(Myself,CAST)
+		Wait(2)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_MEDIUM_WOUNDS)  // SPPR214.SPL (Лечение средних ран)
+	See("02_50BARWA_02",0)
+	HPPercentLT(LastSeenBy(Myself),80)
+	//IsSpellTargetValid(LastSeenBy(Myself),CLERIC_CURE_MEDIUM_WOUNDS,0)  // SPPR214.SPL (Лечение средних ран)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_MEDIUM_WOUNDS)  // SPPR214.SPL (Лечение средних ран)
+		//WaitAnimation(Myself,WALK)
+		//WaitAnimation(Myself,CONJURE)
+		//WaitAnimation(Myself,CAST)
+		Wait(2)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_LIGHT_WOUNDS)  // SPPR103.SPL (Лечение легких ран)
+	See("02_50BARWA_02",0)
+	HPPercentLT(LastSeenBy(Myself),90)
+	//IsSpellTargetValid(LastSeenBy(Myself),CLERIC_CURE_LIGHT_WOUNDS,0)  // SPPR103.SPL (Лечение легких ран)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_LIGHT_WOUNDS)  // SPPR103.SPL (Лечение легких ран)
+		//WaitAnimation(Myself,WALK)
+		//WaitAnimation(Myself,CONJURE)
+		//WaitAnimation(Myself,CAST)
+		Wait(2)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_SERIOUS_WOUNDS)  // SPPR401.SPL (Лечение серьезных ран)
+	See("02_50BARWA_05",0)
+	HPPercentLT(LastSeenBy(Myself),65)
+	//IsSpellTargetValid(LastSeenBy(Myself),CLERIC_CURE_SERIOUS_WOUNDS,0)  // SPPR401.SPL (Лечение серьезных ран)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_SERIOUS_WOUNDS)  // SPPR401.SPL (Лечение серьезных ран)
+		//WaitAnimation(Myself,WALK)
+		//WaitAnimation(Myself,CONJURE)
+		//WaitAnimation(Myself,CAST)
+		Wait(2)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_MEDIUM_WOUNDS)  // SPPR214.SPL (Лечение средних ран)
+	See("02_50BARWA_05",0)
+	HPPercentLT(LastSeenBy(Myself),80)
+	//IsSpellTargetValid(LastSeenBy(Myself),CLERIC_CURE_MEDIUM_WOUNDS,0)  // SPPR214.SPL (Лечение средних ран)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_MEDIUM_WOUNDS)  // SPPR214.SPL (Лечение средних ран)
+		//WaitAnimation(Myself,WALK)
+		//WaitAnimation(Myself,CONJURE)
+		//WaitAnimation(Myself,CAST)
+		Wait(2)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_LIGHT_WOUNDS)  // SPPR103.SPL (Лечение легких ран)
+	See("02_50BARWA_05",0)
+	HPPercentLT(LastSeenBy(Myself),90)
+	//IsSpellTargetValid(LastSeenBy(Myself),CLERIC_CURE_LIGHT_WOUNDS,0)  // SPPR103.SPL (Лечение легких ран)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_LIGHT_WOUNDS)  // SPPR103.SPL (Лечение легких ран)
+		//WaitAnimation(Myself,WALK)
+		//WaitAnimation(Myself,CONJURE)
+		//WaitAnimation(Myself,CAST)
+		Wait(2)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_SERIOUS_WOUNDS)  // SPPR401.SPL (Лечение серьезных ран)
+	See("02_50BARW2_03",0)
+	HPPercentLT(LastSeenBy(Myself),65)
+	//IsSpellTargetValid(LastSeenBy(Myself),CLERIC_CURE_SERIOUS_WOUNDS,0)  // SPPR401.SPL (Лечение серьезных ран)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_SERIOUS_WOUNDS)  // SPPR401.SPL (Лечение серьезных ран)
+		//WaitAnimation(Myself,WALK)
+		//WaitAnimation(Myself,CONJURE)
+		//WaitAnimation(Myself,CAST)
+		Wait(2)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_MEDIUM_WOUNDS)  // SPPR214.SPL (Лечение средних ран)
+	See("02_50BARW2_03",0)
+	HPPercentLT(LastSeenBy(Myself),80)
+	//IsSpellTargetValid(LastSeenBy(Myself),CLERIC_CURE_MEDIUM_WOUNDS,0)  // SPPR214.SPL (Лечение средних ран)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_MEDIUM_WOUNDS)  // SPPR214.SPL (Лечение средних ран)
+		//WaitAnimation(Myself,WALK)
+		//WaitAnimation(Myself,CONJURE)
+		//WaitAnimation(Myself,CAST)
+		Wait(2)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_LIGHT_WOUNDS)  // SPPR103.SPL (Лечение легких ран)
+	See("02_50BARW2_03",0)
+	HPPercentLT(LastSeenBy(Myself),90)
+	//IsSpellTargetValid(LastSeenBy(Myself),CLERIC_CURE_LIGHT_WOUNDS,0)  // SPPR103.SPL (Лечение легких ран)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_LIGHT_WOUNDS)  // SPPR103.SPL (Лечение легких ран)
+		//WaitAnimation(Myself,WALK)
+		//WaitAnimation(Myself,CONJURE)
+		//WaitAnimation(Myself,CAST)
+		Wait(2)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_SERIOUS_WOUNDS)  // SPPR401.SPL (Лечение серьезных ран)
+	See("02_50BARW2_04",0)
+	HPPercentLT(LastSeenBy(Myself),65)
+	//IsSpellTargetValid(LastSeenBy(Myself),CLERIC_CURE_SERIOUS_WOUNDS,0)  // SPPR401.SPL (Лечение серьезных ран)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_SERIOUS_WOUNDS)  // SPPR401.SPL (Лечение серьезных ран)
+		//WaitAnimation(Myself,WALK)
+		//WaitAnimation(Myself,CONJURE)
+		//WaitAnimation(Myself,CAST)
+		Wait(2)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_MEDIUM_WOUNDS)  // SPPR214.SPL (Лечение средних ран)
+	See("02_50BARW2_04",0)
+	HPPercentLT(LastSeenBy(Myself),80)
+	//IsSpellTargetValid(LastSeenBy(Myself),CLERIC_CURE_MEDIUM_WOUNDS,0)  // SPPR214.SPL (Лечение средних ран)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_MEDIUM_WOUNDS)  // SPPR214.SPL (Лечение средних ран)
+		//WaitAnimation(Myself,WALK)
+		//WaitAnimation(Myself,CONJURE)
+		//WaitAnimation(Myself,CAST)
+		Wait(2)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_LIGHT_WOUNDS)  // SPPR103.SPL (Лечение легких ран)
+	See("02 _50BARW2_04",0)
+	HPPercentLT(LastSeenBy(Myself),90)
+	//IsSpellTargetValid(LastSeenBy(Myself),CLERIC_CURE_LIGHT_WOUNDS,0)  // SPPR103.SPL (Лечение легких ран)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_LIGHT_WOUNDS)  // SPPR103.SPL (Лечение легких ран)
+		//WaitAnimation(Myself,WALK)
+		//WaitAnimation(Myself,CONJURE)
+		//WaitAnimation(Myself,CAST)
+		Wait(2)
+END
+
+
+IF
+	HaveSpell(CLERIC_CURE_SERIOUS_WOUNDS)  // SPPR401.SPL (Лечение серьезных ран)
+	See("02_50BARW2_07",0)
+	HPPercentLT(LastSeenBy(Myself),65)
+	//IsSpellTargetValid(LastSeenBy(Myself),CLERIC_CURE_SERIOUS_WOUNDS,0)  // SPPR401.SPL (Лечение серьезных ран)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_SERIOUS_WOUNDS)  // SPPR401.SPL (Лечение серьезных ран)
+		//WaitAnimation(Myself,WALK)
+		//WaitAnimation(Myself,CONJURE)
+		//WaitAnimation(Myself,CAST)
+		Wait(2)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_MEDIUM_WOUNDS)  // SPPR214.SPL (Лечение средних ран)
+	See("02_50BARW2_07",0)
+	HPPercentLT(LastSeenBy(Myself),80)
+	//IsSpellTargetValid(LastSeenBy(Myself),CLERIC_CURE_MEDIUM_WOUNDS,0)  // SPPR214.SPL (Лечение средних ран)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_MEDIUM_WOUNDS)  // SPPR214.SPL (Лечение средних ран)
+		//WaitAnimation(Myself,WALK)
+		//WaitAnimation(Myself,CONJURE)
+		//WaitAnimation(Myself,CAST)
+		Wait(2)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_LIGHT_WOUNDS)  // SPPR103.SPL (Лечение легких ран)
+	See("02_50BARW2_07",0)
+	HPPercentLT(LastSeenBy(Myself),90)
+	//IsSpellTargetValid(LastSeenBy(Myself),CLERIC_CURE_LIGHT_WOUNDS,0)  // SPPR103.SPL (Лечение легких ран)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_LIGHT_WOUNDS)  // SPPR103.SPL (Лечение легких ран)
+		//WaitAnimation(Myself,WALK)
+		//WaitAnimation(Myself,CONJURE)
+		//WaitAnimation(Myself,CAST)
+		Wait(2)
+END*/
+
+IF
+	HaveSpell(CLERIC_CURE_SERIOUS_WOUNDS)  // SPPR401.SPL (Лечение серьезных ран)
+	See("05_50Hadbru_01")
+	HPPercentLT(LastSeenBy(Myself),65)
+	//IsSpellTargetValid(LastSeenBy(Myself),CLERIC_CURE_SERIOUS_WOUNDS,0)  // SPPR401.SPL (Лечение серьезных ран)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_SERIOUS_WOUNDS)  // SPPR401.SPL (Лечение серьезных ран)
+		//WaitAnimation(Myself,WALK)
+		//WaitAnimation(Myself,CONJURE)
+		//WaitAnimation(Myself,CAST)
+		Wait(2)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_MEDIUM_WOUNDS)  // SPPR214.SPL (Лечение средних ран)
+	See("05_50Hadbru_01")
+	HPPercentLT(LastSeenBy(Myself),80)
+	//IsSpellTargetValid(LastSeenBy(Myself),CLERIC_CURE_MEDIUM_WOUNDS,0)  // SPPR214.SPL (Лечение средних ран)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_MEDIUM_WOUNDS)  // SPPR214.SPL (Лечение средних ран)
+		//WaitAnimation(Myself,WALK)
+		//WaitAnimation(Myself,CONJURE)
+		//WaitAnimation(Myself,CAST)
+		Wait(2)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_LIGHT_WOUNDS)  // SPPR103.SPL (Лечение легких ран)
+	See("05_50Hadbru_01")
+	HPPercentLT(LastSeenBy(Myself),90)
+	//IsSpellTargetValid(LastSeenBy(Myself),CLERIC_CURE_LIGHT_WOUNDS,0)  // SPPR103.SPL (Лечение легких ран)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_LIGHT_WOUNDS)  // SPPR103.SPL (Лечение легких ран)
+		//WaitAnimation(Myself,WALK)
+		//WaitAnimation(Myself,CONJURE)
+		//WaitAnimation(Myself,CAST)
+		Wait(2)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_SERIOUS_WOUNDS)  // SPPR401.SPL (Лечение серьезных ран)
+	See("05_50BARWA_02")
+	HPPercentLT(LastSeenBy(Myself),65)
+	//IsSpellTargetValid(LastSeenBy(Myself),CLERIC_CURE_SERIOUS_WOUNDS,0)  // SPPR401.SPL (Лечение серьезных ран)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_SERIOUS_WOUNDS)  // SPPR401.SPL (Лечение серьезных ран)
+		//WaitAnimation(Myself,WALK)
+		//WaitAnimation(Myself,CONJURE)
+		//WaitAnimation(Myself,CAST)
+		Wait(2)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_MEDIUM_WOUNDS)  // SPPR214.SPL (Лечение средних ран)
+	See("05_50BARWA_02")
+	HPPercentLT(LastSeenBy(Myself),80)
+	//IsSpellTargetValid(LastSeenBy(Myself),CLERIC_CURE_MEDIUM_WOUNDS,0)  // SPPR214.SPL (Лечение средних ран)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_MEDIUM_WOUNDS)  // SPPR214.SPL (Лечение средних ран)
+		//WaitAnimation(Myself,WALK)
+		//WaitAnimation(Myself,CONJURE)
+		//WaitAnimation(Myself,CAST)
+		Wait(2)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_LIGHT_WOUNDS)  // SPPR103.SPL (Лечение легких ран)
+	See("05_50BARWA_02")
+	HPPercentLT(LastSeenBy(Myself),90)
+	//IsSpellTargetValid(LastSeenBy(Myself),CLERIC_CURE_LIGHT_WOUNDS,0)  // SPPR103.SPL (Лечение легких ран)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_LIGHT_WOUNDS)  // SPPR103.SPL (Лечение легких ран)
+		//WaitAnimation(Myself,WALK)
+		//WaitAnimation(Myself,CONJURE)
+		//WaitAnimation(Myself,CAST)
+		Wait(2)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_SERIOUS_WOUNDS)  // SPPR401.SPL (Лечение серьезных ран)
+	See("05_50BARWA_03")
+	HPPercentLT(LastSeenBy(Myself),65)
+	//IsSpellTargetValid(LastSeenBy(Myself),CLERIC_CURE_SERIOUS_WOUNDS,0)  // SPPR401.SPL (Лечение серьезных ран)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_SERIOUS_WOUNDS)  // SPPR401.SPL (Лечение серьезных ран)
+		//WaitAnimation(Myself,WALK)
+		//WaitAnimation(Myself,CONJURE)
+		//WaitAnimation(Myself,CAST)
+		Wait(2)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_MEDIUM_WOUNDS)  // SPPR214.SPL (Лечение средних ран)
+	See("05_50BARWA_03")
+	HPPercentLT(LastSeenBy(Myself),80)
+	//IsSpellTargetValid(LastSeenBy(Myself),CLERIC_CURE_MEDIUM_WOUNDS,0)  // SPPR214.SPL (Лечение средних ран)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_MEDIUM_WOUNDS)  // SPPR214.SPL (Лечение средних ран)
+		//WaitAnimation(Myself,WALK)
+		//WaitAnimation(Myself,CONJURE)
+		//WaitAnimation(Myself,CAST)
+		Wait(2)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_LIGHT_WOUNDS)  // SPPR103.SPL (Лечение легких ран)
+	See("05_50BARWA_03")
+	HPPercentLT(LastSeenBy(Myself),90)
+	//IsSpellTargetValid(LastSeenBy(Myself),CLERIC_CURE_LIGHT_WOUNDS,0)  // SPPR103.SPL (Лечение легких ран)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_LIGHT_WOUNDS)  // SPPR103.SPL (Лечение легких ран)
+		//WaitAnimation(Myself,WALK)
+		//WaitAnimation(Myself,CONJURE)
+		//WaitAnimation(Myself,CAST)
+		Wait(2)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_SERIOUS_WOUNDS)  // SPPR401.SPL (Лечение серьезных ран)
+	See("05_50BARWA_07")
+	HPPercentLT(LastSeenBy(Myself),65)
+	//IsSpellTargetValid(LastSeenBy(Myself),CLERIC_CURE_SERIOUS_WOUNDS,0)  // SPPR401.SPL (Лечение серьезных ран)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_SERIOUS_WOUNDS)  // SPPR401.SPL (Лечение серьезных ран)
+		//WaitAnimation(Myself,WALK)
+		//WaitAnimation(Myself,CONJURE)
+		//WaitAnimation(Myself,CAST)
+		Wait(2)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_MEDIUM_WOUNDS)  // SPPR214.SPL (Лечение средних ран)
+	See("05_50BARWA_07")
+	HPPercentLT(LastSeenBy(Myself),80)
+	//IsSpellTargetValid(LastSeenBy(Myself),CLERIC_CURE_MEDIUM_WOUNDS,0)  // SPPR214.SPL (Лечение средних ран)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_MEDIUM_WOUNDS)  // SPPR214.SPL (Лечение средних ран)
+		//WaitAnimation(Myself,WALK)
+		//WaitAnimation(Myself,CONJURE)
+		//WaitAnimation(Myself,CAST)
+		Wait(2)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_LIGHT_WOUNDS)  // SPPR103.SPL (Лечение легких ран)
+	See("05_50BARWA_07")
+	HPPercentLT(LastSeenBy(Myself),90)
+	//IsSpellTargetValid(LastSeenBy(Myself),CLERIC_CURE_LIGHT_WOUNDS,0)  // SPPR103.SPL (Лечение легких ран)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_LIGHT_WOUNDS)  // SPPR103.SPL (Лечение легких ран)
+		//WaitAnimation(Myself,WALK)
+		//WaitAnimation(Myself,CONJURE)
+		//WaitAnimation(Myself,CAST)
+		Wait(2)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_SERIOUS_WOUNDS)  // SPPR401.SPL (Лечение серьезных ран)
+	See("05_50BARWA_08")
+	HPPercentLT(LastSeenBy(Myself),65)
+	//IsSpellTargetValid(LastSeenBy(Myself),CLERIC_CURE_SERIOUS_WOUNDS,0)  // SPPR401.SPL (Лечение серьезных ран)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_SERIOUS_WOUNDS)  // SPPR401.SPL (Лечение серьезных ран)
+		//WaitAnimation(Myself,WALK)
+		//WaitAnimation(Myself,CONJURE)
+		//WaitAnimation(Myself,CAST)
+		Wait(2)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_MEDIUM_WOUNDS)  // SPPR214.SPL (Лечение средних ран)
+	See("05_50BARWA_08")
+	HPPercentLT(LastSeenBy(Myself),80)
+	//IsSpellTargetValid(LastSeenBy(Myself),CLERIC_CURE_MEDIUM_WOUNDS,0)  // SPPR214.SPL (Лечение средних ран)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_MEDIUM_WOUNDS)  // SPPR214.SPL (Лечение средних ран)
+		//WaitAnimation(Myself,WALK)
+		//WaitAnimation(Myself,CONJURE)
+		//WaitAnimation(Myself,CAST)
+		Wait(2)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_LIGHT_WOUNDS)  // SPPR103.SPL (Лечение легких ран)
+	See("05_50BARWA_08")
+	HPPercentLT(LastSeenBy(Myself),90)
+	//IsSpellTargetValid(LastSeenBy(Myself),CLERIC_CURE_LIGHT_WOUNDS,0)  // SPPR103.SPL (Лечение легких ран)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_LIGHT_WOUNDS)  // SPPR103.SPL (Лечение легких ран)
+		//WaitAnimation(Myself,WALK)
+		//WaitAnimation(Myself,CONJURE)
+		//WaitAnimation(Myself,CAST)
+		Wait(2)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_SERIOUS_WOUNDS)  // SPPR401.SPL (Лечение серьезных ран)
+	See("05_50BARW2_04")
+	HPPercentLT(LastSeenBy(Myself),65)
+	//IsSpellTargetValid(LastSeenBy(Myself),CLERIC_CURE_SERIOUS_WOUNDS,0)  // SPPR401.SPL (Лечение серьезных ран)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_SERIOUS_WOUNDS)  // SPPR401.SPL (Лечение серьезных ран)
+		//WaitAnimation(Myself,WALK)
+		//WaitAnimation(Myself,CONJURE)
+		//WaitAnimation(Myself,CAST)
+		Wait(2)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_MEDIUM_WOUNDS)  // SPPR214.SPL (Лечение средних ран)
+	See("05_50BARW2_04")
+	HPPercentLT(LastSeenBy(Myself),80)
+	//IsSpellTargetValid(LastSeenBy(Myself),CLERIC_CURE_MEDIUM_WOUNDS,0)  // SPPR214.SPL (Лечение средних ран)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_MEDIUM_WOUNDS)  // SPPR214.SPL (Лечение средних ран)
+		//WaitAnimation(Myself,WALK)
+		//WaitAnimation(Myself,CONJURE)
+		//WaitAnimation(Myself,CAST)
+		Wait(2)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_LIGHT_WOUNDS)  // SPPR103.SPL (Лечение легких ран)
+	See("05_50BARW2_04")
+	HPPercentLT(LastSeenBy(Myself),90)
+	//IsSpellTargetValid(LastSeenBy(Myself),CLERIC_CURE_LIGHT_WOUNDS,0)  // SPPR103.SPL (Лечение легких ран)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_LIGHT_WOUNDS)  // SPPR103.SPL (Лечение легких ран)
+		//WaitAnimation(Myself,WALK)
+		//WaitAnimation(Myself,CONJURE)
+		//WaitAnimation(Myself,CAST)
+		Wait(2)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_SERIOUS_WOUNDS)  // SPPR401.SPL (Лечение серьезных ран)
+	See("05_50BARW2_05")
+	HPPercentLT(LastSeenBy(Myself),65)
+	//IsSpellTargetValid(LastSeenBy(Myself),CLERIC_CURE_SERIOUS_WOUNDS,0)  // SPPR401.SPL (Лечение серьезных ран)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_SERIOUS_WOUNDS)  // SPPR401.SPL (Лечение серьезных ран)
+		//WaitAnimation(Myself,WALK)
+		//WaitAnimation(Myself,CONJURE)
+		//WaitAnimation(Myself,CAST)
+		Wait(2)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_MEDIUM_WOUNDS)  // SPPR214.SPL (Лечение средних ран)
+	See("05_50BARW2_05")
+	HPPercentLT(LastSeenBy(Myself),80)
+	//IsSpellTargetValid(LastSeenBy(Myself),CLERIC_CURE_MEDIUM_WOUNDS,0)  // SPPR214.SPL (Лечение средних ран)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_MEDIUM_WOUNDS)  // SPPR214.SPL (Лечение средних ран)
+		//WaitAnimation(Myself,WALK)
+		//WaitAnimation(Myself,CONJURE)
+		//WaitAnimation(Myself,CAST)
+		Wait(2)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_LIGHT_WOUNDS)  // SPPR103.SPL (Лечение легких ран)
+	See("05_50BARW2_05")
+	HPPercentLT(LastSeenBy(Myself),90)
+	//IsSpellTargetValid(LastSeenBy(Myself),CLERIC_CURE_LIGHT_WOUNDS,0)  // SPPR103.SPL (Лечение легких ран)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_LIGHT_WOUNDS)  // SPPR103.SPL (Лечение легких ран)
+		//WaitAnimation(Myself,WALK)
+		//WaitAnimation(Myself,CONJURE)
+		//WaitAnimation(Myself,CAST)
+		Wait(2)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_SERIOUS_WOUNDS)  // SPPR401.SPL (Лечение серьезных ран)
+	See("05_50BARW2_06")
+	HPPercentLT(LastSeenBy(Myself),65)
+	//IsSpellTargetValid(LastSeenBy(Myself),CLERIC_CURE_SERIOUS_WOUNDS,0)  // SPPR401.SPL (Лечение серьезных ран)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_SERIOUS_WOUNDS)  // SPPR401.SPL (Лечение серьезных ран)
+		//WaitAnimation(Myself,WALK)
+		//WaitAnimation(Myself,CONJURE)
+		//WaitAnimation(Myself,CAST)
+		Wait(2)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_MEDIUM_WOUNDS)  // SPPR214.SPL (Лечение средних ран)
+	See("05_50BARW2_06")
+	HPPercentLT(LastSeenBy(Myself),80)
+	//IsSpellTargetValid(LastSeenBy(Myself),CLERIC_CURE_MEDIUM_WOUNDS,0)  // SPPR214.SPL (Лечение средних ран)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_MEDIUM_WOUNDS)  // SPPR214.SPL (Лечение средних ран)
+		//WaitAnimation(Myself,WALK)
+		//WaitAnimation(Myself,CONJURE)
+		//WaitAnimation(Myself,CAST)
+		Wait(2)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_LIGHT_WOUNDS)  // SPPR103.SPL (Лечение легких ран)
+	See("05_50BARW2_06")
+	HPPercentLT(LastSeenBy(Myself),90)
+	//IsSpellTargetValid(LastSeenBy(Myself),CLERIC_CURE_LIGHT_WOUNDS,0)  // SPPR103.SPL (Лечение легких ран)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_LIGHT_WOUNDS)  // SPPR103.SPL (Лечение легких ран)
+		//WaitAnimation(Myself,WALK)
+		//WaitAnimation(Myself,CONJURE)
+		//WaitAnimation(Myself,CAST)
+		Wait(2)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_SERIOUS_WOUNDS)  // SPPR401.SPL (Лечение серьезных ран)
+	See("05_50BARW2_10")
+	HPPercentLT(LastSeenBy(Myself),65)
+	//IsSpellTargetValid(LastSeenBy(Myself),CLERIC_CURE_SERIOUS_WOUNDS,0)  // SPPR401.SPL (Лечение серьезных ран)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_SERIOUS_WOUNDS)  // SPPR401.SPL (Лечение серьезных ран)
+		//WaitAnimation(Myself,WALK)
+		//WaitAnimation(Myself,CONJURE)
+		//WaitAnimation(Myself,CAST)
+		Wait(2)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_MEDIUM_WOUNDS)  // SPPR214.SPL (Лечение средних ран)
+	See("05_50BARW2_10")
+	HPPercentLT(LastSeenBy(Myself),80)
+	//IsSpellTargetValid(LastSeenBy(Myself),CLERIC_CURE_MEDIUM_WOUNDS,0)  // SPPR214.SPL (Лечение средних ран)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_MEDIUM_WOUNDS)  // SPPR214.SPL (Лечение средних ран)
+		//WaitAnimation(Myself,WALK)
+		//WaitAnimation(Myself,CONJURE)
+		//WaitAnimation(Myself,CAST)
+		Wait(2)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_LIGHT_WOUNDS)  // SPPR103.SPL (Лечение легких ран)
+	See("05_50BARW2_10")
+	HPPercentLT(LastSeenBy(Myself),90)
+	//IsSpellTargetValid(LastSeenBy(Myself),CLERIC_CURE_LIGHT_WOUNDS,0)  // SPPR103.SPL (Лечение легких ран)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_LIGHT_WOUNDS)  // SPPR103.SPL (Лечение легких ран)
+		//WaitAnimation(Myself,WALK)
+		//WaitAnimation(Myself,CONJURE)
+		//WaitAnimation(Myself,CAST)
+		Wait(2)
+END
+

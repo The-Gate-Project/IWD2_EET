@@ -1,0 +1,16 @@
+IF
+	OR(3)
+		!IsActive(Myself)
+		!See(NearestEnemyOf(Myself))
+		!Global("CreatureHidden","LOCALS",0)
+THEN
+	RESPONSE #100
+		ChangeAIScript("",SPECIFICS)
+	RESPONSE #100
+		ChangeAIScript("00Worg25",SPECIFICS)
+	RESPONSE #100
+		ChangeAIScript("00Worg50",SPECIFICS)
+	RESPONSE #100
+		ChangeAIScript("00Worg75",SPECIFICS)
+END
+

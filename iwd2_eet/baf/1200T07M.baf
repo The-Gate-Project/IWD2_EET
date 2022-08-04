@@ -1,0 +1,115 @@
+IF
+	ActionListEmpty()
+	//Dead("07_Goblin_Elite_01")
+	OR(2)
+		StateCheck("12_Goblin_Team_07_e01",STATE_REALLY_DEAD)
+		!Exists("12_Goblin_Team_07_e01")
+THEN
+	RESPONSE #100
+		ChangeAIScript("00aMvW",DEFAULT)
+END
+
+IF
+	!Name("12_Goblin_Team_07_e01",Myself)
+THEN
+	RESPONSE #100
+		MoveToObjectFollow("12_Goblin_Team_07_e01")
+END
+
+IF
+	Global("ML_0","LOCALS",0)
+	Name("12_Goblin_Team_07_e01",Myself)
+	!GlobalTimerNotExpired("IwTimer19","LOCALS")
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IwTimer19","LOCALS",5)
+		SetGlobal("ML_0","LOCALS",1)
+END
+
+IF
+	Global("ML_0","LOCALS",1)
+	ActionListEmpty()
+	NearLocation(Myself,2624,1197,4)
+THEN
+	RESPONSE #100
+		SetHomeLocation([2624.1197])
+		SetGlobal("ML_0","LOCALS",2)
+		Continue()
+END
+
+IF
+	Global("ML_0","LOCALS",1)
+	Name("12_Goblin_Team_07_e01",Myself)
+THEN
+	RESPONSE #100
+		MoveToPoint([2624.1197])
+END
+
+IF
+	Global("ML_0","LOCALS",2)
+	Name("12_Goblin_Team_07_e01",Myself)
+	!GlobalTimerNotExpired("IwTimer19","LOCALS")
+THEN
+	RESPONSE #100
+		SetGlobalTimerRandom("IwTimer19","LOCALS",5,10)
+		SetGlobal("ML_0","LOCALS",3)
+END
+
+IF
+	Global("ML_0","LOCALS",3)
+	ActionListEmpty()
+	NearLocation(Myself,3365,898,4)
+THEN
+	RESPONSE #100
+		SetHomeLocation([3365.898])
+		SetGlobal("ML_0","LOCALS",4)
+		Continue()
+END
+
+IF
+	Global("ML_0","LOCALS",3)
+	Name("12_Goblin_Team_07_e01",Myself)
+THEN
+	RESPONSE #100
+		MoveToPoint([3365.898])
+END
+
+IF
+	Global("ML_0","LOCALS",4)
+	Name("12_Goblin_Team_07_e01",Myself)
+	!GlobalTimerNotExpired("IwTimer19","LOCALS")
+THEN
+	RESPONSE #100
+		SetGlobalTimerRandom("IwTimer19","LOCALS",5,10)
+		SetGlobal("ML_0","LOCALS",5)
+END
+
+IF
+	Global("ML_0","LOCALS",5)
+	ActionListEmpty()
+	NearLocation(Myself,2955,1543,4)
+THEN
+	RESPONSE #100
+		SetHomeLocation([2955.1543])
+		SetGlobal("ML_0","LOCALS",6)
+		Continue()
+END
+
+IF
+	Global("ML_0","LOCALS",5)
+	Name("12_Goblin_Team_07_e01",Myself)
+THEN
+	RESPONSE #100
+		MoveToPoint([2955.1543])
+END
+
+IF
+	Global("ML_0","LOCALS",6)
+	Name("12_Goblin_Team_07_e01",Myself)
+	!GlobalTimerNotExpired("IwTimer19","LOCALS")
+THEN
+	RESPONSE #100
+		SetGlobalTimerRandom("IwTimer19","LOCALS",5,10)
+		SetGlobal("ML_0","LOCALS",0)
+END
+

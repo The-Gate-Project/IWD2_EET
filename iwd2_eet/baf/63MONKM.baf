@@ -1,0 +1,11 @@
+IF
+	!GlobalTimerNotExpired("IwTimer22","LOCALS")
+	!See(NearestEnemyOf(Myself))
+	!Range([PC],4)
+THEN
+	RESPONSE #100
+		MoveToObject(Player1)
+		SetGlobalTimer("IwTimer22","LOCALS",5)
+END
+
+

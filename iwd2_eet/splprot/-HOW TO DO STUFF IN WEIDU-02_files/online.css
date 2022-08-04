@@ -1,0 +1,56 @@
+.OnlineUserWrap {
+   display: inline-block;
+   position: relative;
+}
+
+.OnlineUserWrap .OnlineUserName {
+   display: inline;
+   visibility: hidden;
+   
+   position: absolute;
+   bottom: 100%;
+   margin-bottom: 2px; /* for the arrow */
+   left: 2px;
+   background: white;
+   border-radius: 2px;
+   -moz-border-radius: 2px;
+   -webkit-border-radius: 2px;
+   
+   border: 1px solid #909090;
+   padding: 5px;
+   line-height: 1.2;
+   z-index: 10;
+   white-space: nowrap;
+}
+
+.OnlineUserWrap .OnlineUserName:before {
+   content: "";
+   border: 5px solid #909090;
+   border-color: #909090 transparent transparent transparent;
+   
+   position: absolute;
+   bottom: -10px;
+   left: 7px;
+}
+
+.OnlineUserWrap .OnlineUserName:after {
+   content: "";
+   border: 5px solid white;
+   border-color: white transparent transparent transparent;
+   
+   position: absolute;
+   bottom: -9px;
+   left: 7px;
+}
+
+.OnlineUserWrap:hover .OnlineUserName {
+   visibility: visible;
+}
+
+.WhosOnline .Invisible {
+   opacity: 0.6;
+}
+
+.WhosOnline .Invisible:hover {
+   opacity: 1;
+}

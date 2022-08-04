@@ -1,0 +1,36 @@
+IF
+  Global("SaveSavedLoc","LOCALS",0)
+THEN
+  RESPONSE #100
+    SetGlobal("SaveSavedLoc","LOCALS",1)
+    SaveObjectLocation("LOCALS","SavedLoc",Myself)
+    Continue()
+END
+
+IF
+	Global("SPRITE_IS_DEAD2100_Peasant","GLOBAL",0)
+	!Global("Stay","LOCALS",1)
+THEN
+	RESPONSE #100
+		DestroySelf()
+END
+
+IF
+	//CreatureHidden(Myself)
+	GlobalGT("SPRITE_IS_DEAD2100_Peasant","GLOBAL",0)
+	!Global("Stay","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("Stay","LOCALS",1)
+		IncrementGlobal("SPRITE_IS_DEAD2100_Peasant","GLOBAL",-1)
+		//HideCreature(Myself,FALSE)
+		Continue()
+END
+
+IF
+	!NearSavedLocation(Myself,"LOCALSSavedLoc",30)
+THEN
+	RESPONSE #100
+		MoveToSavedLocation("SavedLoc","LOCALS")
+END
+

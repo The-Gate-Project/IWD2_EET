@@ -1,0 +1,51 @@
+IF
+	OR(2)
+		Dead("30OgrGar")
+		OpenState("AR3000_Door2_SideGate",TRUE)
+THEN
+	RESPONSE #100
+		DestroySelf()
+END
+
+IF
+	Global("GARK_TALK","MYAREA",1)
+	!Dead("30OgrGar")
+	!OpenState("AR3000_Door2_SideGate",TRUE)
+	!See([PC])
+THEN
+	RESPONSE #100
+		SetGlobal("GARK_TALK","MYAREA",2)
+		DisplayStringHead("30OgrGar",@30281)
+END
+
+IF
+	Global("GARK_TALK","MYAREA",1)
+	!Dead("30OgrGar")
+	!OpenState("AR3000_Door2_SideGate",TRUE)
+	See([PC])
+THEN
+	RESPONSE #100
+		SetGlobal("GARK_TALK","MYAREA",2)
+		//SetDialogueRange(300)
+		//Dialogue(LastSeenBy(Myself))
+		ApplySpellRES("BDCUTSPY",Myself)
+		StartDialogNoSet(LastSeenBy(Myself))
+END
+
+/*IF
+	!CreatureHidden(Myself)
+THEN
+	RESPONSE #100
+		HideCreature(Myself,TRUE)
+END*/
+
+IF
+	//!IsCreatureAreaFlag(Myself,IGNORE_AI_INHIBIT)
+	!Global("IGNORE_AI_INHIBIT","LOCALS",1)
+THEN
+	RESPONSE #100
+		//SetCreatureAreaFlag(Myself,IGNORE_AI_INHIBIT,TRUE)
+		SetGlobal("IGNORE_AI_INHIBIT","LOCALS",1)
+		ApplySpellRES("IWPERAI",Myself)
+END
+

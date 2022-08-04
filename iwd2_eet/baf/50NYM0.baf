@@ -1,0 +1,118 @@
+IF
+  Global("SaveSavedLoc","LOCALS",0)
+THEN
+  RESPONSE #100
+    SetGlobal("SaveSavedLoc","LOCALS",1)
+    SaveObjectLocation("LOCALS","SavedLoc",Myself)
+    Continue()
+END
+
+IF
+	!Global("50Nym_Leave","GLOBAL",0)
+	//IsCreatureHiddenInShadows(Myself)
+	StateCheck(Myself,STATE_NOT_VISIBLE)
+	!Allegiance(Myself,ENEMY)
+THEN
+	RESPONSE #100
+		DestroySelf()
+END
+
+IF
+	Global("FORCED_HIDE","LOCALS",0)
+	OR(2)
+		Allegiance(Myself,ENEMY)
+		!Global("50Nym_Leave","GLOBAL",0)
+THEN
+	RESPONSE #100
+		//ForceHide(Myself)
+		ApplySpellRES("IDINVIS4",Myself)
+		SetGlobal("FORCED_HIDE","LOCALS",1)
+END
+
+IF
+	!GlobalTimerNotExpired("IwTimer18","LOCALS")
+	//!IsCreatureHiddenInShadows(Myself)
+	!StateCheck(Myself,STATE_NOT_VISIBLE)
+	!Allegiance(Myself,ENEMY)
+THEN
+	RESPONSE #15
+		DisplayStringHead(Myself,@17217)
+		SetGlobalTimerRandom("IwTimer18","LOCALS",15,20)
+	RESPONSE #15
+		DisplayStringHead(Myself,@17220)
+		SetGlobalTimerRandom("IwTimer18","LOCALS",15,20)
+	RESPONSE #15
+		DisplayStringHead(Myself,@17222)
+		SetGlobalTimerRandom("IwTimer18","LOCALS",15,20)
+	RESPONSE #255
+		SetGlobalTimerRandom("IwTimer18","LOCALS",15,20)
+END
+
+IF
+	!Allegiance(Myself,ENEMY)
+	!StateCheck(Myself,STATE_REALLY_DEAD)
+	Global("50SUOMA_HELP","GLOBAL",3)
+	Global("50Nym_Leave","GLOBAL",0)
+	See([PC])
+THEN
+	RESPONSE #100
+		//SetDialogueRange(300)
+		//Dialogue(LastMarkedObject)
+		ApplySpellRES("BDCUTSPY",Myself)
+		StartDialogNoSet(LastSeenBy(Myself))
+END
+
+IF
+	NumTimesTalkedTo(0)
+	!Allegiance(Myself,ENEMY)
+	!StateCheck(Myself,STATE_REALLY_DEAD)
+	See([PC])
+THEN
+	RESPONSE #100
+		//SetDialogueRange(300)
+		//Dialogue(LastMarkedObject)
+		ApplySpellRES("BDCUTSPY",Myself)
+		StartDialogNoSet(LastSeenBy(Myself))
+END
+
+IF
+	!GlobalTimerNotExpired("IwTimer19","LOCALS")
+	!NearSavedLocation(Myself,"LOCALSSavedLoc",2)
+	Global("50Nym_Leave","GLOBAL",0)
+	!Allegiance(Myself,ENEMY)
+THEN
+	RESPONSE #100
+		MoveToSavedLocation("SavedLoc","LOCALS")
+		SetGlobalTimerRandom("IwTimer19","LOCALS",1,3)
+END
+
+/*IF
+	!GlobalTimerNotExpired("IwTimer19","LOCALS")
+	NearSavedLocation(Myself,"LOCALSSavedLoc",2)
+	Global("50Nym_Leave","GLOBAL",0)
+	!Allegiance(Myself,ENEMY)
+THEN
+	RESPONSE #100
+		RandomTurn()
+		SetGlobalTimerRandom("IwTimer19","LOCALS",1,3)
+END*/
+
+IF
+	OR(2)
+		!Global("50Nym_Leave","GLOBAL",0)
+		Allegiance(Myself,ENEMY)
+	NearLocation(Myself,2735,1500,5)
+THEN
+	RESPONSE #100
+		DestroySelf()
+END
+
+IF
+	OR(2)
+		!Global("50Nym_Leave","GLOBAL",0)
+		Allegiance(Myself,ENEMY)
+THEN
+	RESPONSE #100
+		MoveToPoint([2735.1500])
+END
+

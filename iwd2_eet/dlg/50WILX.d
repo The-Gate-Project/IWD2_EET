@@ -1,0 +1,11 @@
+BEGIN ~50WILX~
+
+IF ~CheckStatGT(LastTalkedToBy,14,INT)~ THEN BEGIN 0
+  SAY @33455
+  IF ~~ THEN DO ~AddJournalEntry(@33454,QUEST)~ EXIT
+END
+
+IF ~True()~ THEN BEGIN 1
+  SAY @33455
+  IF ~~ THEN EXIT
+END

@@ -1,0 +1,110 @@
+IF
+  Global("SaveSavedLoc","LOCALS",0)
+THEN
+  RESPONSE #100
+    SetGlobal("SaveSavedLoc","LOCALS",1)
+    SaveObjectLocation("LOCALS","SavedLoc",Myself)
+    Continue()
+END
+
+IF
+	!Allegiance(Myself,ENEMY)
+	AttackedBy([ENEMY.0.DRIDER],DEFAULT)
+THEN
+	RESPONSE #100
+		AttackOneRound(LastAttackerOf(Myself))
+END
+
+IF
+	!Allegiance(Myself,ENEMY)
+	See([ENEMY.0.DRIDER])
+THEN
+	RESPONSE #100
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	!GlobalTimerNotExpired("IwTimer18","LOCALS")
+	!Allegiance(Myself,ENEMY)
+THEN
+	RESPONSE #90
+		DisplayStringHead(Myself,@18321)
+		SetGlobalTimerRandom("IwTimer18","LOCALS",15,20)
+		Continue()
+	RESPONSE #90
+		DisplayStringHead(Myself,@18315)
+		SetGlobalTimerRandom("IwTimer18","LOCALS",15,20)
+		Continue()
+	RESPONSE #90
+		DisplayStringHead(Myself,@18320)
+		SetGlobalTimerRandom("IwTimer18","LOCALS",15,20)
+		Continue()
+	RESPONSE #90
+		DisplayStringHead(Myself,@18322)
+		SetGlobalTimerRandom("IwTimer18","LOCALS",15,20)
+		Continue()
+	RESPONSE #90
+		DisplayStringHead(Myself,@18332)
+		SetGlobalTimerRandom("IwTimer18","LOCALS",15,20)
+		Continue()
+	RESPONSE #90
+		DisplayStringHead(Myself,@18335)
+		SetGlobalTimerRandom("IwTimer18","LOCALS",15,20)
+		Continue()
+	RESPONSE #60
+		SetGlobalTimerRandom("IwTimer18","LOCALS",15,20)
+		Continue()
+END
+
+IF
+	StateCheck(Myself,STATE_PANIC)
+THEN
+	RESPONSE #100
+		RandomWalkContinuous()
+END
+
+IF
+	!GlobalTimerNotExpired("IwTimer18","LOCALS")
+	Allegiance(Myself,ENEMY)
+	HPPercentLT(Myself,51)
+	!Global("Wode_Float_Help_Message","IW5300",1)
+	Global("SPRITE_IS_DEADValas_Rrostarr","GLOBAL",0)
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,@18333)
+		SetGlobalTimer("IwTimer18","LOCALS",5)
+		SetGlobal("Wode_Float_Help_Message","IW5300",1)
+		Continue()
+END
+
+IF
+	See(NearestEnemyOf(Myself))
+	!Range(LastSeenBy(Myself),4)
+	CanEquipRanged()
+THEN
+	RESPONSE #100
+		EquipRanged()
+		AttackReevaluate(LastSeenBy(Myself),45)
+END
+
+IF
+	See(NearestEnemyOf(Myself))
+	OR(2)
+		Range(LastSeenBy(Myself),4)
+		!CanEquipRanged()
+THEN
+	RESPONSE #100
+		EquipMostDamagingMelee()
+		AttackReevaluate(LastSeenBy(Myself),45)
+END
+
+IF
+	ActionListEmpty()
+	!GlobalTimerNotExpired("TinerSavedLoc","LOCALS")
+	!NearSavedLocation(Myself,"LOCALSSavedLoc",8)
+THEN
+	RESPONSE #100
+		SetGlobal("TinerSavedLoc","LOCALS",30)
+		MoveToSavedLocation("SavedLoc","LOCALS")
+END
+

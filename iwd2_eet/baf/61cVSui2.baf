@@ -1,0 +1,24 @@
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId(Player1) //[PC]
+		HideGUI()
+		MoveViewPoint([960.2368],VERY_FAST)
+		ActionOverride("Venomin4",MoveToPoint([960.2368]))
+		Wait(4)
+		MoveViewObject("Venomin4",INSTANT)
+		//SpellHitEffectSprite("Venomin4","Venomin4",FLAME_STRIKE,0)
+		//ActionOverride("Venomin4",ForceSpellRES("IDFSTRIK",Myself))
+		CreateVisualEffectObject("IDFSTH","Venomin4")
+		DisplayString("Venomin4",@14026)  // Смерть
+		//SetCriticalPathObject("Venomin4",FALSE)
+		ActionOverride("Venomin4",ApplySpellRES("IWCPREM",Myself))
+		Wait(1)
+		ActionOverride("Venomin4",DestroySelf())
+		MoveViewObject([PC],VERY_FAST)
+		Wait(2)
+		UnhideGUI()
+		EndCutSceneMode()
+END
+

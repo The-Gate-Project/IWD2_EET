@@ -1,0 +1,313 @@
+IF
+	!IsActive(Myself)
+	!Global("SPRITE_IS_DEADAgog","GLOBAL",0)
+THEN
+	RESPONSE #100
+		DestroySelf()
+END
+
+IF
+	!Global("LIHMA_OUTSIDE","GLOBAL",0)
+	Global("5001_AGOG_HP","GLOBAL",100)
+	!IsActive(Myself)
+	//!HPPercent(Myself,100)
+THEN
+	RESPONSE #100
+		//SetHPPercent(Myself,100,MAX_HP)
+		Activate(Myself)
+		SetGlobal("IwIHidden","LOCALS",0)
+		ApplySpellRES("IDSHP100",Myself)
+		Continue()
+END
+
+IF
+	!Global("LIHMA_OUTSIDE","GLOBAL",0)
+	Global("5001_AGOG_HP","GLOBAL",95)
+	!IsActive(Myself)
+	//!HPPercent(Myself,95)
+THEN
+	RESPONSE #100
+		//SetHPPercent(Myself,95,MAX_HP)
+		Activate(Myself)
+		SetGlobal("IwIHidden","LOCALS",0)
+		ApplySpellRES("IDSHP95",Myself)
+		Continue()
+END
+
+IF
+	!Global("LIHMA_OUTSIDE","GLOBAL",0)
+	Global("5001_AGOG_HP","GLOBAL",90)
+	!IsActive(Myself)
+	//!HPPercent(Myself,90)
+THEN
+	RESPONSE #100
+		//SetHPPercent(Myself,90,MAX_HP)
+		Activate(Myself)
+		SetGlobal("IwIHidden","LOCALS",0)
+		ApplySpellRES("IDSHP90",Myself)
+		Continue()
+END
+
+IF
+	!Global("LIHMA_OUTSIDE","GLOBAL",0)
+	Global("5001_AGOG_HP","GLOBAL",85)
+	!IsActive(Myself)
+	//!HPPercent(Myself,85)
+THEN
+	RESPONSE #100
+		//SetHPPercent(Myself,85,MAX_HP)
+		Activate(Myself)
+		SetGlobal("IwIHidden","LOCALS",0)
+		ApplySpellRES("IDSHP85",Myself)
+		Continue()
+END
+
+IF
+	!Global("LIHMA_OUTSIDE","GLOBAL",0)
+	Global("5001_AGOG_HP","GLOBAL",80)
+	!IsActive(Myself)
+	//!HPPercent(Myself,80)
+THEN
+	RESPONSE #100
+		//SetHPPercent(Myself,80,MAX_HP)
+		Activate(Myself)
+		SetGlobal("IwIHidden","LOCALS",0)
+		ApplySpellRES("IDSHP80",Myself)
+		Continue()
+END
+
+IF
+	!Global("LIHMA_OUTSIDE","GLOBAL",0)
+	Global("5001_AGOG_HP","GLOBAL",75)
+	!IsActive(Myself)
+	//!HPPercent(Myself,75)
+THEN
+	RESPONSE #100
+		//SetHPPercent(Myself,75,MAX_HP)
+		Activate(Myself)
+		SetGlobal("IwIHidden","LOCALS",0)
+		ApplySpellRES("IDSHP75",Myself)
+		Continue()
+END
+
+IF
+	!Global("LIHMA_OUTSIDE","GLOBAL",0)
+	Global("5001_AGOG_HP","GLOBAL",70)
+	!IsActive(Myself)
+	//!HPPercent(Myself,70)
+THEN
+	RESPONSE #100
+		//SetHPPercent(Myself,70,MAX_HP)
+		Activate(Myself)
+		SetGlobal("IwIHidden","LOCALS",0)
+		ApplySpellRES("IDSHP70",Myself)
+		Continue()
+END
+
+IF
+	!Global("LIHMA_OUTSIDE","GLOBAL",0)
+	Global("5001_AGOG_HP","GLOBAL",65)
+	!IsActive(Myself)
+	//!HPPercent(Myself,65)
+THEN
+	RESPONSE #100
+		//SetHPPercent(Myself,65,MAX_HP)
+		Activate(Myself)
+		SetGlobal("IwIHidden","LOCALS",0)
+		ApplySpellRES("IDSHP65",Myself)
+		Continue()
+END
+
+IF
+	!Global("LIHMA_OUTSIDE","GLOBAL",0)
+	Global("5001_AGOG_HP","GLOBAL",60)
+	!IsActive(Myself)
+	//!HPPercent(Myself,60)
+THEN
+	RESPONSE #100
+		//SetHPPercent(Myself,60,MAX_HP)
+		Activate(Myself)
+		SetGlobal("IwIHidden","LOCALS",0)
+		ApplySpellRES("IDSHP60",Myself)
+		Continue()
+END
+
+IF
+	!Global("LIHMA_OUTSIDE","GLOBAL",0)
+	Global("5001_AGOG_HP","GLOBAL",55)
+	!IsActive(Myself)
+	//!HPPercent(Myself,55)
+THEN
+	RESPONSE #100
+		//SetHPPercent(Myself,55,MAX_HP)
+		Activate(Myself)
+		SetGlobal("IwIHidden","LOCALS",0)
+		ApplySpellRES("IDSHP55",Myself)
+		Continue()
+END
+
+IF
+	!Global("LIHMA_OUTSIDE","GLOBAL",0)
+	Global("5001_AGOG_HP","GLOBAL",50)
+	!IsActive(Myself)
+	//!HPPercent(Myself,50)
+THEN
+	RESPONSE #100
+		//SetHPPercent(Myself,50,MAX_HP)
+		Activate(Myself)
+		SetGlobal("IwIHidden","LOCALS",0)
+		ApplySpellRES("IDSHP50",Myself)
+		Continue()
+END
+
+IF
+	!Global("LIHMA_OUTSIDE","GLOBAL",0)
+	Global("5001_AGOG_HP","GLOBAL",45)
+	!IsActive(Myself)
+	//!HPPercent(Myself,45)
+THEN
+	RESPONSE #100
+		//SetHPPercent(Myself,45,MAX_HP)
+		Activate(Myself)
+		SetGlobal("IwIHidden","LOCALS",0)
+		ApplySpellRES("IDSHP45",Myself)
+		Continue()
+END
+
+IF
+	!Global("LIHMA_OUTSIDE","GLOBAL",0)
+	Global("5001_AGOG_HP","GLOBAL",40)
+	!IsActive(Myself)
+	//!HPPercent(Myself,40)
+THEN
+	RESPONSE #100
+		//SetHPPercent(Myself,40,MAX_HP)
+		Activate(Myself)
+		SetGlobal("IwIHidden","LOCALS",0)
+		ApplySpellRES("IDSHP40",Myself)
+		Continue()
+END
+
+IF
+	!Global("LIHMA_OUTSIDE","GLOBAL",0)
+	Global("5001_AGOG_HP","GLOBAL",35)
+	!IsActive(Myself)
+	//!HPPercent(Myself,35)
+THEN
+	RESPONSE #100
+		//SetHPPercent(Myself,35,MAX_HP)
+		Activate(Myself)
+		SetGlobal("IwIHidden","LOCALS",0)
+		ApplySpellRES("IDSHP35",Myself)
+		Continue()
+END
+
+IF
+	!Global("LIHMA_OUTSIDE","GLOBAL",0)
+	Global("5001_AGOG_HP","GLOBAL",30)
+	!IsActive(Myself)
+	//!HPPercent(Myself,30)
+THEN
+	RESPONSE #100
+		//SetHPPercent(Myself,30,MAX_HP)
+		Activate(Myself)
+		SetGlobal("IwIHidden","LOCALS",0)
+		ApplySpellRES("IDSHP30",Myself)
+		Continue()
+END
+
+IF
+	!Global("LIHMA_OUTSIDE","GLOBAL",0)
+	Global("5001_AGOG_HP","GLOBAL",25)
+	!IsActive(Myself)
+	//!HPPercent(Myself,25)
+THEN
+	RESPONSE #100
+		//SetHPPercent(Myself,25,MAX_HP)
+		Activate(Myself)
+		SetGlobal("IwIHidden","LOCALS",0)
+		ApplySpellRES("IDSHP25",Myself)
+		Continue()
+END
+
+IF
+	!Global("LIHMA_OUTSIDE","GLOBAL",0)
+	Global("5001_AGOG_HP","GLOBAL",20)
+	!IsActive(Myself)
+	//!HPPercent(Myself,20)
+THEN
+	RESPONSE #100
+		//SetHPPercent(Myself,20,MAX_HP)
+		Activate(Myself)
+		SetGlobal("IwIHidden","LOCALS",0)
+		ApplySpellRES("IDSHP20",Myself)
+		Continue()
+END
+
+IF
+	!Global("LIHMA_OUTSIDE","GLOBAL",0)
+	Global("5001_AGOG_HP","GLOBAL",15)
+	!IsActive(Myself)
+	//!HPPercent(Myself,15)
+THEN
+	RESPONSE #100
+		//SetHPPercent(Myself,15,MAX_HP)
+		Activate(Myself)
+		SetGlobal("IwIHidden","LOCALS",0)
+		ApplySpellRES("IDSHP15",Myself)
+		Continue()
+END
+
+IF
+	!Global("LIHMA_OUTSIDE","GLOBAL",0)
+	Global("5001_AGOG_HP","GLOBAL",10)
+	!IsActive(Myself)
+	//!HPPercent(Myself,10)
+THEN
+	RESPONSE #100
+		//SetHPPercent(Myself,10,MAX_HP)
+		Activate(Myself)
+		SetGlobal("IwIHidden","LOCALS",0)
+		ApplySpellRES("IDSHP10",Myself)
+		Continue()
+END
+
+IF
+	!Global("LIHMA_OUTSIDE","GLOBAL",0)
+	Global("5001_AGOG_HP","GLOBAL",5)
+	!IsActive(Myself)
+	//!HPPercent(Myself,5)
+THEN
+	RESPONSE #100
+		//SetHPPercent(Myself,5,MAX_HP)
+		Activate(Myself)
+		SetGlobal("IwIHidden","LOCALS",0)
+		ApplySpellRES("IDSHP5",Myself)
+		Continue()
+END
+
+IF
+	!Global("LIHMA_OUTSIDE","GLOBAL",0)
+	Global("SPRITE_IS_DEADAgog","GLOBAL",0)
+THEN
+	RESPONSE #100
+		Activate(Myself)
+		SetGlobal("IwIHidden","LOCALS",0)
+		Enemy()
+		Wait(2)
+		FaceObject(NearestEnemyOf(Myself))
+		SetGlobal("AGOG_OUTSIDE","GLOBAL",1)
+		//HideCreature(Myself,FALSE)
+		ApplySpellRES("idinvis5",Myself)
+		ChangeAIScript("",SPECIFICS)
+END
+
+IF
+	OR(2)
+		!IsActive(Myself)
+		StateCheck(Myself,STATE_NOT_VISIBLE)
+THEN
+	RESPONSE #100
+		NoAction()
+END
+

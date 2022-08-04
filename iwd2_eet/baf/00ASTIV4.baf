@@ -1,0 +1,14 @@
+IF
+  !StateCheck(Myself,STATE_NOT_VISIBLE)
+THEN
+  RESPONSE #100
+    ChangeAIScript("",OVERRIDE)
+END
+
+IF
+  StateCheck(Myself,STATE_NOT_VISIBLE)
+THEN
+  RESPONSE #100
+    NoAction()
+END
+

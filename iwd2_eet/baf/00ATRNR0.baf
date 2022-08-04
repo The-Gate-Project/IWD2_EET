@@ -1,0 +1,8 @@
+IF
+	!GlobalTimerNotExpired("IwTimer1","LOCALS")
+THEN
+	RESPONSE #100
+		RandomTurn()
+		SetGlobalTimerRandom("IwTimer1","LOCALS",2,15)
+END
+

@@ -1,0 +1,7 @@
+IF
+	Entered([PC])
+THEN
+	RESPONSE #100
+		DisplayStringNoNameHead(LastTrigger,@35398)
+END
+

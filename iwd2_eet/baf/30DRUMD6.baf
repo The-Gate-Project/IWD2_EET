@@ -1,0 +1,21 @@
+IF
+	!Global("30DRUMD6_INACTIVE","MYAREA",1)
+	OpenState(Myself,TRUE)
+THEN
+	RESPONSE #100
+		SetGlobal("DRUM_6_CHECK_SUMMON","MYAREA",0)
+		SetGlobal("AR3002_DRUM_SUMMON","GLOBAL",0)
+		SetGlobal("30DRUMD6_INACTIVE","MYAREA",1)
+END
+
+IF
+	!Global("30DRUMD6_INACTIVE","MYAREA",1)
+	OpenState(Myself,FALSE)
+	Dead("DRUM_6")
+THEN
+	RESPONSE #100
+		SetGlobal("DRUM_6_CHECK_SUMMON","MYAREA",0)
+		SetGlobal("AR3002_DRUM_SUMMON","GLOBAL",0)
+		OpenDoor(Myself)
+END
+

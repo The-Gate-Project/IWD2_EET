@@ -1,0 +1,30 @@
+IF
+	HasItem("z5keyrt",Myself)
+	!Global("52Aruma_Gone","GLOBAL",0)
+	!Dead("Salisam")
+	InMyArea("Salisam")
+THEN
+	RESPONSE #100
+		GiveItem("z5keyrt","Salisam")
+		Continue()
+END
+
+IF
+	StateCheck(Myself,STATE_PANIC)
+THEN
+	RESPONSE #100
+		RandomWalkContinuous()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	OR(2)
+		See(NearestEnemyOf(Myself))
+		See([GOODCUTOFF.0.0.0.150])
+THEN
+	RESPONSE #100
+		ChangeSpecifics(LastSeenBy(Myself),150)
+		EquipMostDamagingMelee()
+		AttackOneRound(LastSeenBy(Myself))
+END
+

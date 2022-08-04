@@ -1,0 +1,73 @@
+IF
+	!Global("PREFER_PC","LOCALS",0)
+	!See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		SetGlobal("PREFER_PC","LOCALS",0)
+		Continue()
+END
+
+IF
+	Global("PREFER_PC","LOCALS",0)
+	AttackedBy([GOODCUTOFF],DEFAULT)
+THEN
+	RESPONSE #100
+		SetGlobal("PREFER_PC","LOCALS",1)
+		Continue()
+END
+
+IF
+	Global("PREFER_PC","LOCALS",0)
+	OR(4) //8
+		See([0.0.ORC])
+		See([0.0.WOLF])
+		See([0.0.GOBLIN])
+		See([0.0.BUGBEAR])
+		//AttackedBy([0.0.BUGBEAR],DEFAULT)
+		//AttackedBy([0.0.GOBLIN],DEFAULT)
+		//AttackedBy([0.0.WOLF],DEFAULT)
+		//AttackedBy([0.0.ORC],DEFAULT)
+THEN
+	RESPONSE #100
+		Shout(77)
+		//EquipWeapon()
+		Attack(LastSeenBy(Myself))
+END
+
+IF
+	Global("PREFER_PC","LOCALS",0)
+	OR(4) //new
+		//See([0.0.BUGBEAR],0)
+		//See([0.0.GOBLIN],0)
+		//See([0.0.WOLF],0)
+		//See([0.0.ORC],0)
+		AttackedBy([0.0.ORC],DEFAULT)
+		AttackedBy([0.0.WOLF],DEFAULT)
+		AttackedBy([0.0.GOBLIN],DEFAULT)
+		AttackedBy([0.0.BUGBEAR],DEFAULT)
+THEN
+	RESPONSE #100
+		Shout(77)
+		//EquipWeapon()
+		Attack(LastAttackerOf(Myself))
+END
+
+IF
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		SetGlobal("PREFER_PC","LOCALS",1)
+		Shout(77)
+		//EquipWeapon()
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	Global("PREFER_PC","LOCALS",0)
+	Heard([ANYONE],66)
+	See(LastHeardBy(Myself))
+THEN
+	RESPONSE #100
+		AttackOneRound(LastSeenBy(Myself))
+END
+

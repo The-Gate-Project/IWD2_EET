@@ -1,0 +1,103 @@
+IF
+	!Global("TEAM_9","MYAREA",0)
+THEN
+	RESPONSE #100
+		ChangeAIScript("",RACE)
+END
+
+/*IF
+	!Global("TEAM_9","MYAREA",0)
+THEN
+	RESPONSE #100
+		ChangeCurrentScript("")
+END*/
+
+IF
+	Global("TEAM_9","MYAREA",0)
+	!Global("Rock_Row_3_Moved","MYAREA",0)
+	OpenState("AR5004_1A",TRUE)
+	OpenState("AR5004_2A",TRUE)
+	OpenState("AR5004_3A",TRUE)
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		PlaySound("IW1000J")
+		SetGlobal("TEAM_7","MYAREA",1)
+		SetGlobal("TEAM_5","MYAREA",1)
+		SetGlobal("TEAM_8","MYAREA",1)
+		SetGlobal("TEAM_9","MYAREA",1)
+		SetInterrupt(TRUE)
+END
+
+IF
+	!Global("TEAM_9","MYAREA",0)
+THEN
+	RESPONSE #100
+		ChangeAIScript("",RACE)
+END
+
+IF
+	Global("TEAM_9","MYAREA",0)
+	!Global("Rock_Row_3_Moved","MYAREA",0)
+	OpenState("AR5004_1B",TRUE)
+	OpenState("AR5004_2B",TRUE)
+	OpenState("AR5004_3B",TRUE)
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		PlaySound("IW1000J")
+		SetGlobal("TEAM_7","MYAREA",1)
+		SetGlobal("TEAM_5","MYAREA",1)
+		SetGlobal("TEAM_8","MYAREA",1)
+		SetGlobal("TEAM_9","MYAREA",1)
+		SetInterrupt(TRUE)
+END
+
+IF
+	!Global("TEAM_9","MYAREA",0)
+THEN
+	RESPONSE #100
+		ChangeAIScript("",RACE)
+END
+
+IF
+	Global("TEAM_9","MYAREA",0)
+	!Global("Rock_Row_3_Moved","MYAREA",0)
+	OpenState("AR5004_1C",TRUE)
+	OpenState("AR5004_2C",TRUE)
+	OpenState("AR5004_3C",TRUE)
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		PlaySound("IW1000J")
+		SetGlobal("TEAM_7","MYAREA",1)
+		SetGlobal("TEAM_5","MYAREA",1)
+		SetGlobal("TEAM_8","MYAREA",1)
+		SetGlobal("TEAM_9","MYAREA",1)
+		SetInterrupt(TRUE)
+END
+
+IF
+	!Global("TEAM_9","MYAREA",0)
+THEN
+	RESPONSE #100
+		ChangeAIScript("",RACE)
+END
+
+IF
+	Global("TEAM_9","MYAREA",0)
+	!Global("Rock_Row_3_Moved","MYAREA",0)
+	OpenState("AR5004_1D",TRUE)
+	OpenState("AR5004_2D",TRUE)
+	OpenState("AR5004_3D",TRUE)
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		PlaySound("IW1000J")
+		SetGlobal("TEAM_7","MYAREA",1)
+		SetGlobal("TEAM_5","MYAREA",1)
+		SetGlobal("TEAM_8","MYAREA",1)
+		SetGlobal("TEAM_9","MYAREA",1)
+		SetInterrupt(TRUE)
+END
+

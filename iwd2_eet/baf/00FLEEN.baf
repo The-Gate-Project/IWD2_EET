@@ -1,0 +1,9 @@
+IF
+	OR(2)
+		See(NearestEnemyOf(Myself))
+		AttackedBy(NearestEnemyOf(Myself),DEFAULT)
+THEN
+	RESPONSE #100
+		RunAwayFrom(LastSeenBy,45)
+END
+

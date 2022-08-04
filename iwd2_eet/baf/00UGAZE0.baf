@@ -1,0 +1,10 @@
+IF
+	IsActive(Myself)
+	Allegiance(Myself,ENEMY)
+	LOS([PC],25)
+THEN
+	RESPONSE #100
+		ReallyForceSpellRES("IWIN994",Myself)  // INNATE_UMBER_HULK_GAZE SPIN994.SPL (No such index)
+		ChangeAIScript("",CLASS)
+END
+

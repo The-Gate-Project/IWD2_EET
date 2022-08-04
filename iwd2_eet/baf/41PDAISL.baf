@@ -1,0 +1,194 @@
+IF
+	Global("CheckDaisCombination","MYAREA",1)
+	Global("LastDaisRight","MYAREA",5)
+	Global("LastDaisLeft","MYAREA",1)
+THEN
+	RESPONSE #100
+		SetGlobal("CheckDaisCombination","MYAREA",0)
+		SetGlobal("41PlayerLiftedShell","GLOBAL",1)
+		SetGlobal("41NateSaidShell","GLOBAL",1)
+		TriggerActivation("AntimagicAdd",FALSE)
+		PlaySound("WIF_E01")
+		//DisplayMessage(32103)
+		DisplayStringPointLog([1135.845],@32103)
+END
+
+IF
+	Global("CheckDaisCombination","MYAREA",1)
+	GlobalGT("41PartyPrisonEntry","GLOBAL",1)
+	Global("LastDaisRight","MYAREA",7)
+	Global("LastDaisLeft","MYAREA",0)
+THEN
+	RESPONSE #100
+		SetGlobal("CheckDaisCombination","MYAREA",0)
+		Unlock("AR4101_Door5")
+		Unlock("AR4101_Door7")
+		Unlock("AR4101_Door8")
+		Unlock("AR4101_Door10")
+		Unlock("AR4101_Door11")
+		Unlock("AR4101_Door12")
+		Unlock("AR4101_Door17")
+		Unlock("AR4101_Door20")
+		Unlock("AR4101_Door21")
+		Unlock("AR4101_Door22")
+		Unlock("AR4101_Door23")
+		Unlock("AR4101_Door24")
+		//DisplayMessage(33624)
+		DisplayStringPointLog([1135.845],@33624)
+END
+
+IF
+	Clicked([ANYONE])
+THEN
+	RESPONSE #100
+		SetGlobal("41PlayerSawDais","GLOBAL",1)
+		Continue()
+END
+
+IF
+	Clicked([ANYONE])
+	!Range(LastTrigger,4)
+THEN
+	RESPONSE #100
+		SetGlobal("DaisLeftClick","MYAREA",1)
+		ActionOverride(LastTrigger,MoveToPoint([1084.828]))
+END
+
+IF
+	OR(2)
+		Clicked([ANYONE])
+		Global("DaisLeftClick","MYAREA",1)
+	Range(LastTrigger,4)
+	Global("DaisSequence","MYAREA",0)
+THEN
+	RESPONSE #100
+		PlaySound("IW4101b")
+		StaticSequence("Dais",SEQ_AWAKE)
+		//DisplayMessage(32072)
+		DisplayStringPointLog([1135.845],@32072)
+		SetGlobal("DaisSequence","MYAREA",1)
+		SetGlobal("LastDaisLeft","MYAREA",1)
+		SetGlobal("DaisLeftClick","MYAREA",0)
+		SetGlobal("CheckDaisCombination","MYAREA",1)
+END
+
+IF
+	OR(2)
+		Clicked([ANYONE])
+		Global("DaisLeftClick","MYAREA",1)
+	Range(LastTrigger,4)
+	Global("DaisSequence","MYAREA",1)
+THEN
+	RESPONSE #100
+		PlaySound("IW4101b")
+		StaticSequence("Dais",SEQ_CAST)
+		//DisplayMessage(32071)
+		DisplayStringPointLog([1135.845],@32071)
+		SetGlobal("DaisSequence","MYAREA",2)
+		SetGlobal("LastDaisLeft","MYAREA",2)
+		SetGlobal("DaisLeftClick","MYAREA",0)
+END
+
+IF
+	OR(2)
+		Clicked([ANYONE])
+		Global("DaisLeftClick","MYAREA",1)
+	Range(LastTrigger,4)
+	Global("DaisSequence","MYAREA",2)
+THEN
+	RESPONSE #100
+		PlaySound("IW4101b")
+		StaticSequence("Dais",SEQ_CONJURE)
+		//DisplayMessage(32070)
+		DisplayStringPointLog([1135.845],@32070)
+		SetGlobal("DaisSequence","MYAREA",3)
+		SetGlobal("LastDaisLeft","MYAREA",3)
+		SetGlobal("DaisLeftClick","MYAREA",0)
+END
+
+IF
+	OR(2)
+		Clicked([ANYONE])
+		Global("DaisLeftClick","MYAREA",1)
+	Range(LastTrigger,4)
+	Global("DaisSequence","MYAREA",3)
+THEN
+	RESPONSE #100
+		PlaySound("IW4101b")
+		StaticSequence("Dais",SEQ_DAMAGE)
+		//DisplayMessage(32069)
+		DisplayStringPointLog([1135.845],@32069)
+		SetGlobal("DaisSequence","MYAREA",4)
+		SetGlobal("LastDaisLeft","MYAREA",4)
+		SetGlobal("DaisLeftClick","MYAREA",0)
+END
+
+IF
+	OR(2)
+		Clicked([ANYONE])
+		Global("DaisLeftClick","MYAREA",1)
+	Range(LastTrigger,4)
+	Global("DaisSequence","MYAREA",4)
+THEN
+	RESPONSE #100
+		PlaySound("IW4101b")
+		StaticSequence("Dais",SEQ_DIE)
+		//DisplayMessage(32068)
+		DisplayStringPointLog([1135.845],@32068)
+		SetGlobal("DaisSequence","MYAREA",5)
+		SetGlobal("LastDaisLeft","MYAREA",5)
+		SetGlobal("DaisLeftClick","MYAREA",0)
+END
+
+IF
+	OR(2)
+		Clicked([ANYONE])
+		Global("DaisLeftClick","MYAREA",1)
+	Range(LastTrigger,4)
+	Global("DaisSequence","MYAREA",5)
+THEN
+	RESPONSE #100
+		PlaySound("IW4101b")
+		StaticSequence("Dais",SEQ_HEAD_TURN)
+		//DisplayMessage(32067)
+		DisplayStringPointLog([1135.845],@32067)
+		SetGlobal("DaisSequence","MYAREA",6)
+		SetGlobal("LastDaisLeft","MYAREA",6)
+		SetGlobal("DaisLeftClick","MYAREA",0)
+END
+
+IF
+	OR(2)
+		Clicked([ANYONE])
+		Global("DaisLeftClick","MYAREA",1)
+	Range(LastTrigger,4)
+	Global("DaisSequence","MYAREA",6)
+THEN
+	RESPONSE #100
+		PlaySound("IW4101b")
+		StaticSequence("Dais",SEQ_READY)
+		//DisplayMessage(32066)
+		DisplayStringPointLog([1135.845],@32066)
+		SetGlobal("DaisSequence","MYAREA",7)
+		SetGlobal("LastDaisLeft","MYAREA",7)
+		SetGlobal("DaisLeftClick","MYAREA",0)
+END
+
+IF
+	OR(2)
+		Clicked([ANYONE])
+		Global("DaisLeftClick","MYAREA",1)
+	Range(LastTrigger,4)
+	Global("DaisSequence","MYAREA",7)
+THEN
+	RESPONSE #100
+		PlaySound("IW4101b")
+		StaticSequence("Dais",SEQ_ATTACK)
+		//DisplayMessage(32073)
+		DisplayStringPointLog([1135.845],@32073)
+		SetGlobal("DaisSequence","MYAREA",0)
+		SetGlobal("LastDaisLeft","MYAREA",0)
+		SetGlobal("DaisLeftClick","MYAREA",0)
+		SetGlobal("CheckDaisCombination","MYAREA",1)
+END
+

@@ -1,0 +1,6 @@
+BEGIN ~63WRKM~
+
+IF ~True()~ THEN BEGIN 0
+  SAY @30102
+  IF ~~ THEN EXIT
+END

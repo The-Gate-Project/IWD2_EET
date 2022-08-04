@@ -1,0 +1,11 @@
+IF
+	Global("TEAM_9","MYAREA",0)
+	OR(2)
+		Opened([PC])
+		Entered([PC])
+THEN
+	RESPONSE #100
+		SetGlobal("TEAM_9","MYAREA",1)
+		DisplayStringNoNameHead(LastTrigger,14381)
+END
+

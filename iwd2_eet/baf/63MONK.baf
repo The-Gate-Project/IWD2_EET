@@ -1,0 +1,342 @@
+/*IF
+//	!Global("Monk_MyTarget","LOCALS",0)
+	
+	!Allegiance(Myself,ENEMY)
+	See([ENEMY])
+	
+	OR(4)
+		!HPGT(LastSeenBy(Myself),0)
+		StateCheck(LastSeenBy(Myself),STATE_SLEEPING)
+		StateCheck(LastSeenBy(Myself),STATE_CHARMED)
+		TargetUnreachable(LastSeenBy(Myself))
+THEN
+	RESPONSE #100
+	//	SetGlobal("Monk_MyTarget","LOCALS",0)
+		Continue()
+END*/
+
+IF
+	!Allegiance(Myself,ENEMY)
+	
+	OR(2)
+		!See(LastSeenBy(Myself)) /**/
+		StateCheck(LastSeenBy(Myself),STATE_REALLY_DEAD)
+	
+	Name("Ormis_Dohor",Myself)
+	See("Madae")
+THEN
+	RESPONSE #100
+		SetGlobalTimer("Monk_AttackMadae","MYAREA",14)
+		//SetMyTarget("Madae")
+		Continue()
+END
+
+IF
+	!Allegiance(Myself,ENEMY)
+//	Global("Monk_MyTarget","LOCALS",0)
+	!GlobalTimerNotExpired("Monk_AttackDemonL","MYAREA")
+	
+	OR(2)
+		!See(LastSeenBy(Myself)) /**/
+		StateCheck(LastSeenBy(Myself),STATE_REALLY_DEAD)
+	
+	OR(2)
+		See("63GlabSL")
+		See("Glabrezu_1")
+THEN
+	RESPONSE #100
+		SetGlobalTimer("Monk_AttackDemonL","MYAREA",14)
+	//	SetGlobal("Monk_MyTarget","LOCALS",1)
+		//SetMyTarget(LastSeenBy(Myself))
+		Continue()
+END
+
+IF
+	!Allegiance(Myself,ENEMY)
+//	Global("Monk_MyTarget","LOCALS",0)
+	!GlobalTimerNotExpired("Monk_AttackDemonR","MYAREA")
+	
+	OR(2)
+		!See(LastSeenBy(Myself)) /**/
+		StateCheck(LastSeenBy(Myself),STATE_REALLY_DEAD)
+	
+	OR(2)
+		See("63GlabSR")  // Страж Глабрезу
+		See("Glabrezu_2")
+THEN
+	RESPONSE #100
+		SetGlobalTimer("Monk_AttackDemonR","MYAREA",14)
+	//	SetGlobal("Monk_MyTarget","LOCALS",1)
+		//SetMyTarget(LastSeenBy(Myself))
+		Continue()
+END
+
+IF
+	!Allegiance(Myself,ENEMY)
+//	Global("Monk_MyTarget","LOCALS",0)
+	!GlobalTimerNotExpired("Monk_AttackSerak","MYAREA")
+	
+	OR(2)
+		!See(LastSeenBy(Myself)) /**/
+		StateCheck(LastSeenBy(Myself),STATE_REALLY_DEAD)
+	
+	See("Serak")
+THEN
+	RESPONSE #100
+		SetGlobalTimer("Monk_AttackSerak","MYAREA",14)
+	//	SetGlobal("Monk_MyTarget","LOCALS",1)
+		//SetMyTarget(LastSeenBy(Myself))
+		Continue()
+END
+
+IF
+	!Allegiance(Myself,ENEMY)
+//	Global("Monk_MyTarget","LOCALS",0)
+	!GlobalTimerNotExpired("Monk_AttackMourn","MYAREA")
+	
+	OR(2)
+		!See(LastSeenBy(Myself)) /**/
+		StateCheck(LastSeenBy(Myself),STATE_REALLY_DEAD)
+	
+	See("Mourn")
+THEN
+	RESPONSE #100
+		SetGlobalTimer("Monk_AttackMourn","MYAREA",14)
+	//	SetGlobal("Monk_MyTarget","LOCALS",1)
+		//SetMyTarget(LastSeenBy(Myself))
+		Continue()
+END
+
+IF
+	!Allegiance(Myself,ENEMY)
+//	Global("Monk_MyTarget","LOCALS",0)
+	!GlobalTimerNotExpired("Monk_AttackZilvar","MYAREA")
+	
+	OR(2)
+		!See(LastSeenBy(Myself)) /**/
+		StateCheck(LastSeenBy(Myself),STATE_REALLY_DEAD)
+	
+	See("Zilvar")
+THEN
+	RESPONSE #100
+		SetGlobalTimer("Monk_AttackZilvar","MYAREA",14)
+	//	SetGlobal("Monk_MyTarget","LOCALS",1)
+		//SetMyTarget(LastSeenBy(Myself))
+		Continue()
+END
+
+IF
+	!Allegiance(Myself,ENEMY)
+//	Global("Monk_MyTarget","LOCALS",0)
+	!GlobalTimerNotExpired("Monk_AttackTilzen","MYAREA")
+	
+	OR(2)
+		!See(LastSeenBy(Myself)) /**/
+		StateCheck(LastSeenBy(Myself),STATE_REALLY_DEAD)
+	
+	See("Tilzen")
+THEN
+	RESPONSE #100
+		SetGlobalTimer("Monk_AttackTilzen","MYAREA",14)
+	//	SetGlobal("Monk_MyTarget","LOCALS",1)
+		//SetMyTarget(LastSeenBy(Myself))
+		Continue()
+END
+
+IF
+	!Allegiance(Myself,ENEMY)
+//	Global("Monk_MyTarget","LOCALS",0)
+	!GlobalTimerNotExpired("Monk_AttackPhaen","MYAREA")
+	
+	OR(2)
+		!See(LastSeenBy(Myself)) /**/
+		StateCheck(LastSeenBy(Myself),STATE_REALLY_DEAD)
+	
+	See("PhaenXiltin")
+THEN
+	RESPONSE #100
+		SetGlobalTimer("Monk_AttackPhaen","MYAREA",14)
+	//	SetGlobal("Monk_MyTarget","LOCALS",1)
+		//SetMyTarget(LastSeenBy(Myself))
+		Continue()
+END
+
+IF
+	!Allegiance(Myself,ENEMY)
+//	Global("Monk_MyTarget","LOCALS",0)
+	!GlobalTimerNotExpired("Monk_AttackChimera","MYAREA")
+	
+	OR(2)
+		!See(LastSeenBy(Myself)) /**/
+		StateCheck(LastSeenBy(Myself),STATE_REALLY_DEAD)
+	
+	See("Chimera")
+THEN
+	RESPONSE #100
+		SetGlobalTimer("Monk_AttackChimera","MYAREA",14)
+	//	SetGlobal("Monk_MyTarget","LOCALS",1)
+		//SetMyTarget(LastSeenBy(Myself))
+		Continue()
+END
+
+IF
+	!Allegiance(Myself,ENEMY)
+//	Global("Monk_MyTarget","LOCALS",0)
+	!GlobalTimerNotExpired("Monk_AttackBuvai","MYAREA")
+	
+	OR(2)
+		!See(LastSeenBy(Myself)) /**/
+		StateCheck(LastSeenBy(Myself),STATE_REALLY_DEAD)
+	
+	See("Buvai_deNaly")
+THEN
+	RESPONSE #100
+		SetGlobalTimer("Monk_AttackBuvai","MYAREA",14)
+	//	SetGlobal("Monk_MyTarget","LOCALS",1)
+		//SetMyTarget(LastSeenBy(Myself))
+		Continue()
+END
+
+IF
+	!Allegiance(Myself,ENEMY)
+//	Global("Monk_MyTarget","LOCALS",0)
+	!GlobalTimerNotExpired("Monk_AttackIsair","MYAREA")
+	
+	OR(2)
+		!See(LastSeenBy(Myself)) /**/
+		StateCheck(LastSeenBy(Myself),STATE_REALLY_DEAD)
+	
+	See("Isair")
+THEN
+	RESPONSE #100
+		SetGlobalTimer("Monk_AttackIsair","MYAREA",14)
+	//	SetGlobal("Monk_MyTarget","LOCALS",1)
+		//SetMyTarget(LastSeenBy(Myself))
+		Continue()
+END
+
+IF
+	!Allegiance(Myself,ENEMY)
+//	Global("Monk_MyTarget","LOCALS",0)
+	!GlobalTimerNotExpired("Monk_AttackMadae","MYAREA")
+	
+	OR(2)
+		!See(LastSeenBy(Myself)) /**/
+		StateCheck(LastSeenBy(Myself),STATE_REALLY_DEAD)
+	
+	See("Madae")
+THEN
+	RESPONSE #100
+		SetGlobalTimer("Monk_AttackMadae","MYAREA",14)
+	//	SetGlobal("Monk_MyTarget","LOCALS",1)
+		//SetMyTarget(LastSeenBy(Myself))
+		Continue()
+END
+
+IF
+//	Global("Monk_MyTarget","LOCALS",0)
+	
+	OR(2)
+		!See(LastSeenBy(Myself)) /**/
+		StateCheck(LastSeenBy(Myself),STATE_REALLY_DEAD)
+	
+	OR(2)
+		See(NearestEnemyOf(Myself))
+		See([ENEMY])
+THEN
+	RESPONSE #100
+	//	SetGlobal("Monk_MyTarget","LOCALS",1)
+		//SetMyTarget(LastSeenBy(Myself))
+		Continue()
+END
+
+IF
+	!Allegiance(Myself,NOTEVIL)
+THEN
+	RESPONSE #100
+		ChangeEnemyAlly(Myself,NOTEVIL)
+END
+
+IF
+	StateCheck(Myself,STATE_PANIC)
+THEN
+	RESPONSE #100
+		RandomWalkContinuous()
+END
+
+IF
+	!GlobalTimerNotExpired("IwTimer6","LOCALS")
+	//HPLostGT(Myself,40)
+	HPPercentLT(Myself,80)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IwTimer6","LOCALS",43200)
+		ForceSpellRES("IWIN274",Myself)  // SPIN274.SPL INNATE_MONK_WHOLENESS_OF_BODY
+		//SpellWait(INNATE_MONK_WHOLENESS_OF_BODY)
+		Wait(1)
+END
+
+IF
+	!GlobalTimerNotExpired("IwTimer8","LOCALS")
+	//IsSpellTargetValid(Myself,INNATE_QUIVERING_PALM,0)
+	//IsSpellTargetValid(Myself,INNATE_STUNNING_BLOW,0)
+	!CheckStatGT(Myself,0,OFFENSIVE_MODIFIER)
+THEN
+	RESPONSE #33
+		SetGlobalTimer("IwTimer8","LOCALS",302400)
+		ReallyForceSpell(Myself,MONK_QUIVERING_PALM)
+		Continue()
+END
+
+IF
+	GlobalLT("STUNNING_BLOWS","LOCALS",16)
+	//IsSpellTargetValid(Myself,INNATE_STUNNING_BLOW,0)
+	//IsSpellTargetValid(Myself,INNATE_QUIVERING_PALM,0)
+	!CheckStatGT(Myself,0,OFFENSIVE_MODIFIER)
+	!StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+THEN
+	RESPONSE #100
+		ReallyForceSpell(Myself,MONK_STUNNING_BLOW)
+		IncrementGlobal("STUNNING_BLOWS","LOCALS",1)
+		Continue()
+END
+
+IF
+	Global("AS","LOCALS",0)
+	!Range(LastSeenBy(Myself),10)
+//	!Global("Monk_MyTarget","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobal("AS","LOCALS",1)
+		//SpellHitEffectSprite(Myself,Myself,DIMENSION_DOOR_ORIGIN,0)
+		//HideCreature(Myself,TRUE)
+		CreateVisualEffectObject("spdimndr",Myself)
+		ApplySpellRES("IDINVIS6",Myself)
+		JumpToObject(LastSeenBy(Myself))
+		ApplySpellRES("IWJUMPOF",Myself)
+		FaceObject(LastSeenBy(Myself))
+		//SpellHitEffectSprite(Myself,Myself,DIMENSION_DOOR_DESTINATION,0)
+		//HideCreature(Myself,FALSE)
+		CreateVisualEffectObject("spdimndr",Myself)
+		ApplySpellRES("IDINVIS7",Myself)
+		Continue()
+END
+
+IF
+//	!Global("Monk_MyTarget","LOCALS",0)
+	See(LastSeenBy(Myself))
+THEN
+	RESPONSE #100
+		//EquipWeapon()
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+/* MY_ADD */
+/*IF
+	ActionListEmpty()
+	
+THEN
+	RESPONSE #100
+		
+END*/
+

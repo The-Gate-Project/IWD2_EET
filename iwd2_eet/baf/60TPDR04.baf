@@ -1,0 +1,60 @@
+IF
+	Clicked([ANYONE])
+	OpenState("AR6051_Brick4",FALSE)
+	!GlobalTimerNotExpired("BrickTimer","MYAREA")
+	!Global("AR6051_Brick4_Hidden","MYAREA",1)
+	Range(LastTrigger,9)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("BrickTimer","MYAREA",1)
+		SetGlobal("Brick04","MYAREA",1)
+		Unlock("AR6051_Brick4")
+		OpenDoor("AR6051_Brick4")
+		Lock("AR6051_Brick4")
+		PlaySound("IW6051D")
+		DisplayStringHead(LastTrigger,@35889)  // Вы толкаете камень.
+		SetGlobal("Brick01","MYAREA",1)
+		SetGlobal("Brick07","MYAREA",2)
+		SetGlobal("Brick08","MYAREA",2)
+		MultiPlayerSync()
+END
+
+IF
+	OpenState("AR6051_Brick4",FALSE)
+	Global("Brick04","MYAREA",1)
+	!Global("AR6051_Brick4_Hidden","MYAREA",1)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("BrickTimer","MYAREA",1)
+		SetGlobal("Brick04","MYAREA",1)
+		Unlock("AR6051_Brick4")
+		OpenDoor("AR6051_Brick4")
+		Lock("AR6051_Brick4")
+		PlaySound("IW6051D")
+		MultiPlayerSync()
+END
+
+IF
+	OpenState("AR6051_Brick4",TRUE)
+	Global("Brick04","MYAREA",2)
+	!Global("AR6051_Brick4_Hidden","MYAREA",1)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("BrickTimer","MYAREA",1)
+		SetGlobal("Brick04","MYAREA",2)
+		Unlock("AR6051_Brick4")
+		CloseDoor("AR6051_Brick4")
+		Lock("AR6051_Brick4")
+		PlaySound("IW6051D")
+		MultiPlayerSync()
+END
+
+IF
+	Clicked([ANYONE])
+	!Range(LastTrigger,9)
+THEN
+	RESPONSE #100
+		DisplayString(Myself,14702)  // Ты слишком далеко, чтобы это использовать.
+		ActionOverride(LastTrigger,MoveToPoint([3156.1533]))
+END
+

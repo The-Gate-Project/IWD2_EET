@@ -1,0 +1,85 @@
+IF
+	Clicked([ANYONE]) //Player1
+	InPartySlot(LastTrigger,0)
+	Global("BattleSquarePlayer","MYAREA",1)
+	Global("BattleSquareState","MYAREA",0)
+THEN
+	RESPONSE #100
+		SetGlobal("BattleSquareSelected","MYAREA",4)
+		SetGlobal("BattleSquareLevel","MYAREA",6)
+		SetGlobal("BattleSquareState","MYAREA",2)
+		TriggerActivation(Myself,FALSE)
+END
+
+IF
+	Clicked([ANYONE]) //Player2
+	InPartySlot(LastTrigger,1)
+	Global("BattleSquarePlayer","MYAREA",2)
+	Global("BattleSquareState","MYAREA",0)
+THEN
+	RESPONSE #100
+		SetGlobal("BattleSquareSelected","MYAREA",4)
+		SetGlobal("BattleSquareLevel","MYAREA",6)
+		SetGlobal("BattleSquareState","MYAREA",2)
+		TriggerActivation(Myself,FALSE)
+END
+
+IF
+	Clicked([ANYONE]) //Player3
+	InPartySlot(LastTrigger,2)
+	Global("BattleSquarePlayer","MYAREA",3)
+	Global("BattleSquareState","MYAREA",0)
+THEN
+	RESPONSE #100
+		SetGlobal("BattleSquareSelected","MYAREA",4)
+		SetGlobal("BattleSquareLevel","MYAREA",6)
+		SetGlobal("BattleSquareState","MYAREA",2)
+		TriggerActivation(Myself,FALSE)
+END
+
+IF
+	Clicked([ANYONE]) //Player4
+	InPartySlot(LastTrigger,3)
+	Global("BattleSquarePlayer","MYAREA",4)
+	Global("BattleSquareState","MYAREA",0)
+THEN
+	RESPONSE #100
+		SetGlobal("BattleSquareSelected","MYAREA",4)
+		SetGlobal("BattleSquareLevel","MYAREA",6)
+		SetGlobal("BattleSquareState","MYAREA",2)
+		TriggerActivation(Myself,FALSE)
+END
+
+IF
+	Clicked([ANYONE]) //Player5
+	InPartySlot(LastTrigger,4)
+	Global("BattleSquarePlayer","MYAREA",5)
+	Global("BattleSquareState","MYAREA",0)
+THEN
+	RESPONSE #100
+		SetGlobal("BattleSquareSelected","MYAREA",4)
+		SetGlobal("BattleSquareLevel","MYAREA",6)
+		SetGlobal("BattleSquareState","MYAREA",2)
+		TriggerActivation(Myself,FALSE)
+END
+
+IF
+	Clicked([ANYONE]) //Player6
+	InPartySlot(LastTrigger,5)
+	Global("BattleSquarePlayer","MYAREA",6)
+	Global("BattleSquareState","MYAREA",0)
+THEN
+	RESPONSE #100
+		SetGlobal("BattleSquareSelected","MYAREA",4)
+		SetGlobal("BattleSquareLevel","MYAREA",6)
+		SetGlobal("BattleSquareState","MYAREA",2)
+		TriggerActivation(Myself,FALSE)
+END
+
+IF
+	Clicked([ANYONE])
+THEN
+	RESPONSE #100
+		NoAction()
+END
+

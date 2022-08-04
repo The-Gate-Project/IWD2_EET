@@ -1,0 +1,332 @@
+IF
+	//CreatureHidden(Myself)
+	!Global("CreatureHidden","LOCALS",0)
+	Global("LEAVIN","LOCALS",0)
+	!Global("BONUS_GENIE_ACTIVE","GLOBAL",0)
+	Global("IM_GENIE","LOCALS",0)
+THEN
+	RESPONSE #100
+		DisplayStringNoName(Myself,@38780)
+		DestroySelf()
+END
+
+IF
+	//CreatureHidden(Myself)
+	!Global("CreatureHidden","LOCALS",0)
+	Global("LEAVIN","LOCALS",0)
+	See([ENEMY])
+	Global("IM_GENIE","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		SetGlobal("BONUS_GENIE_ACTIVE","GLOBAL",1)
+		//SetCreatureAreaFlag(Myself,INVULNERABLE,TRUE)
+		ApplySpellRES("IDINVUL",Myself)
+		//SetCreatureAreaFlag(Myself,HAS_SEEN_PARTY,TRUE)
+		//SetCreatureAreaFlag(Myself,NO_TALK,TRUE)
+		DialogInterrupt(FALSE)
+		FaceObject([PC])
+		//SpellHitEffectSprite(Myself,Myself,CLOUDBURST,40)
+		CreateVisualEffectObject("CLOUDBH",Myself)
+		SmallWait(10)
+		//SpellHitEffectSprite(Myself,Myself,STATIC_CHARGE,25)
+		CreateVisualEffectObject("SCHARGH",Myself)
+		//SpellHitEffectSprite(Myself,Myself,GEDLEES_ELECTRIC_LOOP,25)
+		CreateVisualEffectObject("GELOOPX",Myself)
+		SmallWait(5)
+		//SpellHitEffectSprite(Myself,Myself,CONE_OF_COLD,50)
+		CreateVisualEffectObject("COCOLDH",Myself)
+		SmallWait(17)
+		//SpellHitEffectSprite(Myself,Myself,CURE_CRITICAL_WOUNDS,25)
+		CreateVisualEffectObject("CCWOUNH",Myself)
+		SmallWait(10)
+		//SpellHitEffectSprite(Myself,Myself,WATER_SUMMONING_CIRCLE,25)
+		CreateVisualEffectObject("CWELEMX",Myself)
+		SmallWait(5)
+		//HideCreature(Myself,FALSE)
+		ApplySpellRES("IDINVIS9",Myself)
+		FaceObject(LastSeenBy(Myself))
+		DisplayStringHead(Myself,@38779)
+		Wait(1)
+		SetGlobal("LEAVIN","LOCALS",1)
+		SetInterrupt(TRUE)
+END
+
+IF
+	//CreatureHidden(Myself)
+	!Global("CreatureHidden","LOCALS",0)
+	Global("BONUS_GENIE_ACTIVE","GLOBAL",0)
+	Global("IM_GENIE","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		SetGlobal("IM_GENIE","LOCALS",1)
+		SetGlobal("BONUS_GENIE_ACTIVE","GLOBAL",1)
+		//SetCreatureAreaFlag(Myself,INVULNERABLE,TRUE)
+		ApplySpellRES("IDINVUL",Myself)
+		//SetCreatureAreaFlag(Myself,HAS_SEEN_PARTY,TRUE)
+		//SetCreatureAreaFlag(Myself,NO_TALK,TRUE)
+		DialogInterrupt(FALSE)
+		FaceObject([PC])
+		//SpellHitEffectSprite(Myself,Myself,CLOUDBURST,40)
+		CreateVisualEffectObject("CLOUDBH",Myself)
+		SmallWait(10)
+		//SpellHitEffectSprite(Myself,Myself,STATIC_CHARGE,25)
+		CreateVisualEffectObject("SCHARGH",Myself)
+		//SpellHitEffectSprite(Myself,Myself,GEDLEES_ELECTRIC_LOOP,25)
+		CreateVisualEffectObject("GELOOPX",Myself)
+		SmallWait(5)
+		//SpellHitEffectSprite(Myself,Myself,CONE_OF_COLD,50)
+		CreateVisualEffectObject("COCOLDH",Myself)
+		SmallWait(17)
+		//SpellHitEffectSprite(Myself,Myself,CURE_CRITICAL_WOUNDS,25)
+		CreateVisualEffectObject("CCWOUNH",Myself)
+		SmallWait(10)
+		//SpellHitEffectSprite(Myself,Myself,WATER_SUMMONING_CIRCLE,25)
+		CreateVisualEffectObject("CWELEMX",Myself)
+		SmallWait(5)
+		//HideCreature(Myself,FALSE)
+		ApplySpellRES("IDINVIS9",Myself)
+		SetInterrupt(TRUE)
+END
+
+IF
+	!Allegiance(Myself,ENEMY)
+	!StateCheck(Myself,STATE_REALLY_DEAD)
+	ActionListEmpty()
+	//!CreatureHidden(Myself)
+	Global("CreatureHidden","LOCALS",0)
+	Global("LEAVIN","LOCALS",0)
+	!Global("IM_GENIE","LOCALS",0)
+	OR(2)
+		NumTimesTalkedTo(0)
+		Global("Bashshar_Service","GLOBAL",3)
+	//	GlobalLT("Bashshar_Service","GLOBAL",4)
+	See([PC])
+THEN
+	RESPONSE #100
+		StartCutSceneMode()
+		ClearAllActions()
+		//SetDialogueRange(300)
+		MultiPlayerSync()
+		ApplySpellRES("BDCUTSPY",Myself)
+		StartDialogNoSet(LastSeenBy(Myself))
+END
+
+/*IF
+	Global("Bashshar_Service","GLOBAL",4)
+	!Global("IM_GENIE","LOCALS",0)
+	!CreatureHidden(Myself)
+	CheckPartyAverageLevel(9,LESS_THAN)
+THEN
+	RESPONSE #100
+		CreateCreature("00Arif","WARRIOR",[-1.-1],0)  // Ариф абд-Башшар
+		ActionOverride(LastMarkedObject,JumpToObject(NearestEnemyOf(Myself)))
+		CreateCreature("00Hadya","ASSASSIN",[-1.-1],0)  // Хадия абд-Башшар
+		ActionOverride(LastMarkedObject,JumpToObject("JABIR"))
+		CreateCreature("00Jabir","JABIR",[-1.-1],0)  // Джабир абд-Башшар
+		CreateCreature("00Nur","NUR",[-1.-1],0)  // Нур абд-Башшар
+		CreateCreature("00RogBas","ROGUE_0",[-1.-1],0)  // Плут
+		ActionOverride(LastMarkedObject,JumpToObject("ASSASSIN"))
+		CreateCreature("00SolBas","SOLDIER_0",[-1.-1],0)  // Наемник
+		ActionOverride(LastMarkedObject,JumpToObject("WARRIOR"))
+		SetGlobal("Bashshar_Service","GLOBAL",5)
+END
+
+IF
+	Global("Bashshar_Service","GLOBAL",4)
+	!Global("IM_GENIE","LOCALS",0)
+	!CreatureHidden(Myself)
+	CheckPartyAverageLevel(14,LESS_THAN)
+THEN
+	RESPONSE #100
+		CreateCreature("00Arif","WARRIOR",[-1.-1],0)  // Ариф абд-Башшар
+		ActionOverride(LastMarkedObject,JumpToObject(NearestEnemyOf(Myself)))
+		CreateCreature("00Hadya","ASSASSIN",[-1.-1],0)  // Хадия абд-Башшар
+		ActionOverride(LastMarkedObject,JumpToObject("JABIR"))
+		CreateCreature("00Jabir","JABIR",[-1.-1],0)  // Джабир абд-Башшар
+		CreateCreature("00Nur","NUR",[-1.-1],0)  // Нур абд-Башшар
+		CreateCreature("00RogBas","ROGUE_0",[-1.-1],0)  // Плут
+		ActionOverride(LastMarkedObject,JumpToObject("ASSASSIN"))
+		CreateCreature("00RogBas","ROGUE_1",[-1.-1],0)  // Плут
+		ActionOverride(LastMarkedObject,JumpToObject("ASSASSIN"))
+		CreateCreature("00SolBas","SOLDIER_0",[-1.-1],0)  // Наемник
+		ActionOverride(LastMarkedObject,JumpToObject("WARRIOR"))
+		CreateCreature("00SolBas","SOLDIER_1",[-1.-1],0)  // Наемник
+		ActionOverride(LastMarkedObject,JumpToObject("WARRIOR"))
+		SetGlobal("Bashshar_Service","GLOBAL",5)
+END*/
+
+IF
+	Global("Bashshar_Service","GLOBAL",4)
+	!Global("IM_GENIE","LOCALS",0)
+	//!CreatureHidden(Myself)
+	Global("CreatureHidden","LOCALS",0)
+	//CheckPartyAverageLevel(13,GREATER_THAN)
+THEN
+	RESPONSE #100
+		CreateCreature("00Arif",[-1.-1],0)
+		ActionOverride("WARRIOR",JumpToObject(NearestEnemyOf(Myself)))
+		ActionOverride("WARRIOR",ApplySpellRES("IWJUMPOF",Myself)) /**/
+		CreateCreature("00Hadya",[-1.-1],0)
+		//ActionOverride(LastMarkedObject,JumpToObject("JABIR"))
+		CreateCreature("00Jabir",[-1.-1],0)
+		ActionOverride("ASSASSIN",JumpToObject("JABIR"))
+		ActionOverride("ASSASSIN",ApplySpellRES("IWJUMPOF",Myself)) /**/
+		CreateCreature("00Nur",[-1.-1],0)
+		CreateCreature("00RogBas",[-1.-1],0)
+		ActionOverride("ROGUE_0",JumpToObject("ASSASSIN"))
+		ActionOverride("ROGUE_0",ApplySpellRES("IWJUMPOF",Myself)) /**/
+		CreateCreature("00RogBa1",[-1.-1],0)
+		ActionOverride("ROGUE_1",JumpToObject("ASSASSIN"))
+		ActionOverride("ROGUE_1",ApplySpellRES("IWJUMPOF",Myself)) /**/
+		CreateCreature("00RogBa2",[-1.-1],0)
+		ActionOverride("ROGUE_2",JumpToObject("ASSASSIN"))
+		ActionOverride("ROGUE_2",ApplySpellRES("IWJUMPOF",Myself)) /**/
+		CreateCreature("00SolBas",[-1.-1],0)
+		ActionOverride("SOLDIER_0",JumpToObject("WARRIOR"))
+		ActionOverride("SOLDIER_0",ApplySpellRES("IWJUMPOF",Myself)) /**/
+		CreateCreature("00SolBa1",[-1.-1],0)
+		ActionOverride("SOLDIER_1",JumpToObject("WARRIOR"))
+		ActionOverride("SOLDIER_1",ApplySpellRES("IWJUMPOF",Myself)) /**/
+		CreateCreature("00SolBa2",[-1.-1],0)
+		ActionOverride("SOLDIER_2",JumpToObject("WARRIOR"))
+		ActionOverride("SOLDIER_2",ApplySpellRES("IWJUMPOF",Myself)) /**/
+		SetGlobal("Bashshar_Service","GLOBAL",5)
+END
+
+IF
+	Global("LEAVIN","LOCALS",0)
+	GlobalLT("Bashshar_Service","GLOBAL",3)
+	!Global("IM_GENIE","LOCALS",0)
+	OR(2) // ---
+	See([ENEMY])
+	//Or(2)
+		//!PCInStore()
+		AttackedBy([GOODCUTOFF],DEFAULT)
+THEN
+	RESPONSE #100
+		FaceObject(LastSeenBy(Myself))
+		DisplayStringHead(Myself,@38779)
+		SetGlobal("LEAVIN","LOCALS",1)
+		Continue()
+END
+
+IF
+	Global("LEAVIN","LOCALS",0)
+	GlobalLT("Bashshar_Service","GLOBAL",3)
+	!Global("IM_GENIE","LOCALS",0)
+	OR(3) //Or(2)
+		!NumberOfTimesTalkedTo(0)
+		!See([PC])
+	//Or(2)
+		//!PCInStore()
+		AttackedBy([GOODCUTOFF],DEFAULT)
+THEN
+	RESPONSE #100
+		SetGlobal("LEAVIN","LOCALS",1)
+		Continue()
+END
+
+IF
+	Global("LEAVIN","LOCALS",0)
+	Global("Bashshar_Service","GLOBAL",5)
+	!Global("IM_GENIE","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobal("LEAVIN","LOCALS",2)
+		Continue()
+END
+
+IF
+	!Global("LEAVIN","LOCALS",0)
+	//CreatureHidden(Myself)
+	!Global("CreatureHidden","LOCALS",0)
+THEN
+	RESPONSE #100
+		DestroySelf()
+END
+
+IF
+	Global("LEAVIN","LOCALS",1)
+	//!CreatureHidden(Myself)
+	Global("CreatureHidden","LOCALS",0)
+	!See([PC])
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		SetGlobal("BONUS_GENIE_ACTIVE","GLOBAL",0)
+		CreateItem("z5genid",1,1,1)
+		DropInventory()
+		//SpellHitEffectSprite(Myself,Myself,CONJURATION,25)
+		CreateVisualEffectObject("CONJUH",Myself)
+		//SpellHitEffectSprite(Myself,Myself,ENCHANTMENT,25)
+		CreateVisualEffectObject("ENCHAH",Myself)
+		SmallWait(15)
+		//SpellHitEffectSprite(Myself,Myself,ALTERATION,25)
+		CreateVisualEffectObject("ALTERH",Myself)
+		//SpellHitEffectSprite(Myself,Myself,CONE_OF_COLD,50)
+		CreateVisualEffectObject("COCOLDH",Myself)
+		SmallWait(5)
+		//HideCreature(Myself,TRUE)
+		ApplySpellRES("IDINVIS8",Myself)
+		SmallWait(20)
+		//SpellHitEffectSprite(Myself,Myself,DIVINATION,500)
+		CreateVisualEffectObject("DIVINH",Myself)
+		DestroySelf()
+END
+
+IF
+	Global("LEAVIN","LOCALS",1)
+	//!CreatureHidden(Myself)
+	Global("CreatureHidden","LOCALS",0)
+	See([PC])
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		SetGlobal("BONUS_GENIE_ACTIVE","GLOBAL",0)
+		GiveItemCreate("z5genid",[PC],1,1,1)  // Кувшин жадности
+		//SpellHitEffectSprite(Myself,Myself,CONJURATION,25)
+		CreateVisualEffectObject("CONJUH",Myself)
+		//SpellHitEffectSprite(Myself,Myself,ENCHANTMENT,25)
+		CreateVisualEffectObject("ENCHAH",Myself)
+		SmallWait(15)
+		//SpellHitEffectSprite(Myself,Myself,ALTERATION,25)
+		CreateVisualEffectObject("ALTERH",Myself)
+		//SpellHitEffectSprite(Myself,Myself,CONE_OF_COLD,50)
+		CreateVisualEffectObject("COCOLDH",Myself)
+		SmallWait(5)
+		//HideCreature(Myself,TRUE)
+		ApplySpellRES("IDINVIS8",Myself)
+		SmallWait(20)
+		//SpellHitEffectSprite(Myself,Myself,DIVINATION,500)
+		CreateVisualEffectObject("DIVINH",Myself)
+		DestroySelf()
+END
+
+IF
+	Global("LEAVIN","LOCALS",2)
+	//!CreatureHidden(Myself)
+	Global("CreatureHidden","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		SetGlobal("BONUS_GENIE_ACTIVE","GLOBAL",0)
+		//SpellHitEffectSprite(Myself,Myself,CONJURATION,25)
+		CreateVisualEffectObject("CONJUH",Myself)
+		//SpellHitEffectSprite(Myself,Myself,ENCHANTMENT,25)
+		CreateVisualEffectObject("ENCHAH",Myself)
+		SmallWait(15)
+		//SpellHitEffectSprite(Myself,Myself,ALTERATION,25)
+		CreateVisualEffectObject("ALTERH",Myself)
+		//SpellHitEffectSprite(Myself,Myself,CONE_OF_COLD,50)
+		CreateVisualEffectObject("COCOLDH",Myself)
+		SmallWait(5)
+		//HideCreature(Myself,TRUE)
+		ApplySpellRES("IDINVIS8",Myself)
+		SmallWait(20)
+		//SpellHitEffectSprite(Myself,Myself,DIVINATION,500)
+		CreateVisualEffectObject("DIVINH",Myself)
+		DestroySelf()
+END
+

@@ -1,0 +1,49 @@
+IF
+	Global("IW6300_REVEALED","GLOBAL",1)
+	!Global("S_Hand_Revealed","MYAREA",1)
+THEN
+	RESPONSE #100
+		SetGlobal("S_Hand_Revealed","MYAREA",1)
+		HideAreaOnMap("ID5000")
+		//RevealAreaOnMap("IW6300")
+		AddWorldmapAreaFlag("IW6300",VISIBLE_EXPLORABLE)
+		RemoveAreaFlag(NOTRAVEL)
+		Continue()
+END
+
+IF
+	Global("SPRITE_IS_DEADSaablic_Tan","GLOBAL",0)
+	Global("AREA_NOTRAVEL","MYAREA",0)
+THEN
+	RESPONSE #100
+		SetGlobal("AREA_NOTRAVEL","MYAREA",1)
+		AddAreaFlag(NOTRAVEL)
+		Continue()
+END
+
+IF
+	OnCreation()
+THEN
+	RESPONSE #100
+		NoAction()
+		Continue()
+END
+
+IF
+	Global("SPRITE_IS_DEADSaablic_Tan","GLOBAL",1)
+	OpenState("AR6201_ExitCover",FALSE)
+	OR(6)
+		NearLocation(Player1,1730,880,15)
+		NearLocation(Player2,1730,880,15)
+		NearLocation(Player3,1730,880,15)
+		NearLocation(Player4,1730,880,15)
+		NearLocation(Player5,1730,880,15)
+		NearLocation(Player6,1730,880,15)
+THEN
+	RESPONSE #100
+		OpenDoor("AR6201_ExitCover")
+		TriggerActivation("ExitCoverTrigger",FALSE)
+		AmbientActivate("Barrier",FALSE)
+		SetGlobal("IW6300_REVEALED","GLOBAL",1)
+END
+

@@ -1,0 +1,216 @@
+IF
+	Global("Unhide_Everyone_Once","MYAREA",0)
+THEN
+	RESPONSE #100
+		SetGlobal("Unhide_Everyone_Once","MYAREA",1)
+		/*HideCreature("Katchmat",FALSE)
+		HideCreature("Sashkta",FALSE)
+		HideCreature("Mezro_Warrior1",FALSE)
+		HideCreature("Mezro_Warrior2",FALSE)
+		HideCreature("Mezro_Warrior3",FALSE)
+		HideCreature("Mezro_Warrior4",FALSE)
+		HideCreature("Mezro_Warrior5",FALSE)
+		HideCreature("Mezro_Warrior6",FALSE)
+		HideCreature("Mezro_Warrior7",FALSE)
+		HideCreature("Yuan-Ti_Elite1",FALSE)
+		HideCreature("Yuan-Ti_Elite2",FALSE)
+		HideCreature("Yuan-Ti_Elite3",FALSE)
+		HideCreature("Yuan-Ti_Elite4",FALSE)
+		HideCreature("Yuan-Ti_Elite5",FALSE)
+		HideCreature("Yuan-Ti_Elite6",FALSE)
+		HideCreature("Yuan-Ti_Elite7",FALSE)
+		HideCreature("Yuan-Ti_Elite8",FALSE)
+		HideCreature("Yuan-Ti_Elite9",FALSE)
+		HideCreature("Yuan-Ti_Priest1",FALSE)
+		HideCreature("Yuan-Ti_Priest2",FALSE)
+		HideCreature("Pureblood_Sorcerer1",FALSE)
+		HideCreature("Pureblood_Sorcerer2",FALSE)
+		HideCreature("Initiate1",FALSE)
+		HideCreature("Initiate2",FALSE)
+		HideCreature("Initiate3",FALSE)
+		HideCreature("Initiate4",FALSE)
+		HideCreature("Initiate5",FALSE)
+		HideCreature("Initiate6",FALSE)
+		HideCreature("Initiate7",FALSE)
+		HideCreature("Initiate8",FALSE)*/
+		Continue()
+END
+
+IF
+	Global("Open_Once","MYAREA",0)
+THEN
+	RESPONSE #100
+		SetGlobal("Open_Once","MYAREA",1)
+		OpenDoor("AR6050_IntPillar1")
+		OpenDoor("AR6050_IntPillar2")
+		OpenDoor("AR6050_IntPillar3")
+		OpenDoor("AR6050_IntPillar4")
+		OpenDoor("AR6050_IntPillar5")
+		Continue()
+END
+
+IF
+	Global("Cutscene_SummonGuardian","GLOBAL",0)
+	Global("Chult_Pedestals","GLOBAL",5)
+THEN
+	RESPONSE #100
+		SetGlobal("Cutscene_SummonGuardian","GLOBAL",1)
+		TriggerActivation("To6001",FALSE)
+		StartCutSceneMode()
+		ClearAllActions()
+		MultiPlayerSync()
+		StartCutScene("60cSGrd0")
+END
+
+IF
+	Global("Kuldahar_Start_Cutscene","GLOBAL",0)
+	Global("Cutscene_SummonGuardian","GLOBAL",1)
+	Dead("The_Guardian")
+THEN
+	RESPONSE #100
+		SetGlobal("Kuldahar_Start_Cutscene","GLOBAL",1)
+		AddXP2DA("IW2EX12A")
+		DisplayStringNoName(Player1,@33398) //[PC]
+		ActionOverride("Katchmat",ChangeAIScript("",CLASS)) //SPECIAL_2
+		ActionOverride("Katchmat",SetNumTimesTalkedTo(1))
+		Continue()
+END
+
+IF
+	!GlobalGT("Crossroads_Quest","GLOBAL",2)
+	Global("Kuldahar_Start_Cutscene","GLOBAL",1)
+	Global("Cutscene_SummonGuardian","GLOBAL",1)
+	Dead("The_Guardian")
+THEN
+	RESPONSE #100
+		SetGlobal("Crossroads_Quest","GLOBAL",3)
+		Continue()
+END
+
+IF
+	Global("Chult_PortalClosing","GLOBAL",1)
+	Global("Cutscene_SummonGuardian","GLOBAL",1)
+	Dead("The_Guardian")
+THEN
+	RESPONSE #100
+		TriggerActivation("To6001",TRUE)
+		SaveGame(0)  //39588 Хранитель убит, портал обрушился
+		Wait(2)
+		//AllowAreaResting(FALSE)
+		AddAreaFlag(NOREST)
+		IncrementGlobal("Chult_PortalClosing","GLOBAL",1)
+		//ScreenShake(15,5,5)
+		ScreenShake([5.5],15)
+		SetGlobalTimer("TimerPortalClose","GLOBAL",30)
+		Continue()
+END
+
+IF
+	Global("Chult_PortalClosing","GLOBAL",2)
+	GlobalTimerExpired("TimerPortalClose","GLOBAL")
+THEN
+	RESPONSE #100
+		IncrementGlobal("Chult_PortalClosing","GLOBAL",1)
+		//ScreenShake(30,10,10)
+		ScreenShake([10.10],30)
+		SetGlobalTimer("TimerPortalClose","GLOBAL",20)
+		Continue()
+END
+
+IF
+	Global("Chult_PortalClosing","GLOBAL",3)
+	GlobalTimerExpired("TimerPortalClose","GLOBAL")
+THEN
+	RESPONSE #100
+		IncrementGlobal("Chult_PortalClosing","GLOBAL",1)
+		//ScreenShake(45,20,20)
+		ScreenShake([20.20],45)
+		SetGlobalTimer("TimerPortalClose","GLOBAL",10)
+		Continue()
+END
+
+IF
+	Global("Chult_PortalClosing","GLOBAL",4)
+	GlobalTimerExpired("TimerPortalClose","GLOBAL")
+THEN
+	RESPONSE #100
+		IncrementGlobal("Chult_PortalClosing","GLOBAL",1)
+		//ScreenShake(150,40,40)
+		ScreenShake([40.40],150)
+		SetGlobalTimer("TimerPortalClose","GLOBAL",10)
+		Continue()
+END
+
+IF
+	Global("Chult_PortalClosing","GLOBAL",5)
+	GlobalTimerExpired("TimerPortalClose","GLOBAL")
+THEN
+	RESPONSE #100
+		IncrementGlobal("Chult_PortalClosing","GLOBAL",1)
+		TriggerActivation("To6001",FALSE)
+		StaticSequence("6050MS1",SEQ_AWAKE)
+		SetGlobalTimer("TimerPortalClose","GLOBAL",5)
+		Continue()
+END
+
+IF
+	Global("Chult_PortalClosing","GLOBAL",6)
+	GlobalTimerExpired("TimerPortalClose","GLOBAL")
+THEN
+	RESPONSE #100
+		IncrementGlobal("Chult_PortalClosing","GLOBAL",1)
+		//EndGame(37558)
+		GameOver(@37558)
+		Continue()
+END
+
+IF
+	OnCreation()
+THEN
+	RESPONSE #100
+		NoAction()
+		Continue()
+END
+
+IF
+	Global("6050_YuanTi_Dead","GLOBAL",0)
+	!Exists([0.0.YUANTI])
+	//!AreaCheckAllegiance(ENEMY)
+THEN
+	RESPONSE #100
+		SetGlobal("6050_YuanTi_Dead","GLOBAL",1)
+		Continue()
+END
+
+IF
+	Global("Chult_AwardYuanTiKillXP","GLOBAL",0)
+	Global("6050_YuanTi_Dead","GLOBAL",1)
+	Global("6051_YuanTi_Dead","GLOBAL",1)
+THEN
+	RESPONSE #100
+		SetGlobal("Chult_AwardYuanTiKillXP","GLOBAL",1)
+		AddXP2DA("IW2EX12A")
+		DisplayStringNoName(Player1,@33397) //[PC]
+		AddJournalEntry(@24016,QUEST)
+		Continue()
+END
+
+IF
+	Global("Kuldahar_Start_Cutscene","GLOBAL",0)
+	Global("6050_YuanTi_Dead","GLOBAL",1)
+	Global("6051_YuanTi_Dead","GLOBAL",1)
+THEN
+	RESPONSE #100
+		SetGlobal("Kuldahar_Start_Cutscene","GLOBAL",1)
+		Continue()
+END
+
+IF
+	Global("Chult_AwardYuanTiKillXP","GLOBAL",1)
+	!GlobalGT("Crossroads_Quest","GLOBAL",1)
+THEN
+	RESPONSE #100
+		SetGlobal("Crossroads_Quest","GLOBAL",2)
+		Continue()
+END
+

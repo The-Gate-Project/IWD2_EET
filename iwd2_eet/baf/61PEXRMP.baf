@@ -1,0 +1,46 @@
+IF
+	!Global("61PEXRMP_INACTIVE","MYAREA",1)
+	Global("FountainCount","MYAREA",4)
+	!Global("SPRITE_IS_DEADThorasskus","GLOBAL",0)
+THEN
+	RESPONSE #100
+		OpenDoor(Myself)
+END
+
+IF
+	!Global("61PEXRMP_INACTIVE","MYAREA",1)
+	OpenState(Myself,TRUE)
+THEN
+	RESPONSE #100
+		SetGlobal("61ExitTo6104Open","GLOBAL",1)
+		//ChangeCurrentScript("")
+		SetGlobal("61PEXRMP_INACTIVE","MYAREA",1)
+END
+
+IF
+	!Global("61PEXRMP_INACTIVE","MYAREA",1)
+	Clicked([ANYONE])
+	Global("FountainCount","MYAREA",1)
+THEN
+	RESPONSE #100
+		DisplayString(LastTrigger,@35436)
+END
+
+IF
+	!Global("61PEXRMP_INACTIVE","MYAREA",1)
+	Clicked([ANYONE])
+	Global("FountainCount","MYAREA",2)
+THEN
+	RESPONSE #100
+		DisplayString(LastTrigger,@35437)
+END
+
+IF
+	!Global("61PEXRMP_INACTIVE","MYAREA",1)
+	Clicked([ANYONE])
+	Global("FountainCount","MYAREA",3)
+THEN
+	RESPONSE #100
+		DisplayString(LastTrigger,@35438)
+END
+

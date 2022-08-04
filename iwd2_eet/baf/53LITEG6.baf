@@ -1,0 +1,30 @@
+IF
+	Global("INIT_INVIS","LOCALS",0)
+THEN
+	RESPONSE #100
+		ApplySpellRES("IDINVS12",Myself)
+		SetGlobal("INIT_INVIS","LOCALS",1)
+		Continue()
+END
+
+IF
+	!GlobalTimerNotExpired("IwTimer50","LOCALS")
+	LOS([PC],28)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IwTimer50","LOCALS",1)
+		//SpellHitEffectSprite(Myself,Myself,CLOUDBURST,0)
+		CreateVisualEffectObject("CLOUDBH",Myself)
+		Continue()
+END
+
+IF
+	!GlobalTimerNotExpired("IwTimer51","LOCALS")
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		ReallyForceSpell(LastSeenBy(Myself),WIZARD_LIGHTNING_BOLT)
+		Wait(1)
+		SetGlobalTimer("IwTimer51","LOCALS",6)
+END
+

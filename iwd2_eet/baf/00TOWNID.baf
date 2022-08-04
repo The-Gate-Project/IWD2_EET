@@ -1,0 +1,69 @@
+IF
+	!Global("00TOWNID_INACTIVE","LOCALS",1)
+	Global("TEAM_0","MYAREA",0)
+	!GlobalTimerNotExpired("IwTimer2","LOCALS")
+	Allegiance(Myself,ENEMY)
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IwTimer2","LOCALS",6)
+		Continue()
+END
+
+IF
+	!Global("00TOWNID_INACTIVE","LOCALS",1)
+	!Allegiance(Myself,ENEMY)
+	OR(2)
+		AttackedBy([GOODCUTOFF],DEFAULT)
+		PickPocketFailed([PC])
+	OR(13)
+		HitBy([GOODCUTOFF],SLASHING)
+		HitBy([GOODCUTOFF],CRUSHING)
+		HitBy([GOODCUTOFF],PIERCING)
+		HitBy([GOODCUTOFF],MISSILE)
+		HitBy([GOODCUTOFF],FIRE)
+		HitBy([GOODCUTOFF],ELECTRICITY)
+		HitBy([GOODCUTOFF],POISON)
+		HitBy([GOODCUTOFF],MAGIC)
+		HitBy([GOODCUTOFF],COLD)
+		HitBy([GOODCUTOFF],ACID)
+		HitBy([GOODCUTOFF],MAGICFIRE)
+		HitBy([GOODCUTOFF],MAGICCOLD)
+		PickPocketFailed([PC])
+THEN
+	RESPONSE #100
+		Enemy()
+		SetGlobal("TOWNIE_HOSTILE","MYAREA",1)
+		Help()
+END
+
+IF
+	!Global("00TOWNID_INACTIVE","LOCALS",1)
+	!Allegiance(Myself,ENEMY)
+	!Global("TEAM_0","MYAREA",0)
+THEN
+	RESPONSE #100
+		Enemy()
+		Continue()
+END
+
+IF
+	!Global("00TOWNID_INACTIVE","LOCALS",1)
+	StateCheck(Myself,STATE_REALLY_DEAD)
+THEN
+	RESPONSE #100
+		SetGlobal("00TOWNID_INACTIVE","LOCALS",1)
+END
+
+IF
+	!Global("00TOWNID_INACTIVE","LOCALS",1)
+	Global("TEAM_0","MYAREA",0)
+	!Global("TOWNIE_HOSTILE","MYAREA",0)
+	IsActive(Myself)
+	Help([ANYTHING])
+THEN
+	RESPONSE #100
+		SetGlobal("TEAM_0","MYAREA",1)
+		Enemy()
+END
+

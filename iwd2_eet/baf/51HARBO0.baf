@@ -1,0 +1,36 @@
+IF
+	StateCheck(Myself,STATE_PANIC)
+THEN
+	RESPONSE #100
+		RandomWalkContinuous()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	//Or(2)
+		//See([GOODCUTOFF.0.0.0.150],0)
+		See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		EquipMostDamagingMelee()
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	!Dead("Barud")
+THEN
+	RESPONSE #100
+		MoveToObjectFollow("Barud")
+END
+
+IF
+	ActionListEmpty()
+	Allegiance(Myself,ENEMY)
+	//!Dead([GOODCUTOFF.0.0.0.150][0.0.10000.10000])
+	Exists([GOODCUTOFF.0.0.0.150])
+	!See([GOODCUTOFF.0.0.0.150])
+THEN
+	RESPONSE #100
+		MoveToObject([GOODCUTOFF.0.0.0.150])
+END
+

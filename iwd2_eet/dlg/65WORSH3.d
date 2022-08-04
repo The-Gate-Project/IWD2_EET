@@ -1,0 +1,11 @@
+BEGIN ~65WORSH3~
+
+IF ~NumTimesTalkedTo(0)~ THEN BEGIN 0
+  SAY @28612
+  IF ~~ THEN EXIT
+END
+
+IF ~NumTimesTalkedToGT(0)~ THEN BEGIN 1
+  SAY @28612
+  IF ~~ THEN EXIT
+END

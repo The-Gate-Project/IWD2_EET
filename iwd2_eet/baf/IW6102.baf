@@ -1,0 +1,621 @@
+IF
+	!Global("VolcanoCreate","MYAREA",1)
+THEN
+	RESPONSE #100
+		SetGlobal("VolcanoCreate","MYAREA",1)
+		CreateCreature("IDVOLCN",[1675.1335],0)
+		ActionOverride("Volcano",ChangeAIScript("IW6102VS",OVERRIDE))
+		SetGlobal("AR6102_Lever2_Locked","MYAREA",1)
+		Continue()
+END
+
+IF
+	Global("61FeyrWasKilled","GLOBAL",0)
+	!TimeOfDay(DAY)
+	!Exists("61feyr")
+THEN
+	RESPONSE #100
+		CreateCreature("61feyr",[2295.280],14)
+		CreateCreature("61feyr",[2906.2076],14)
+		CreateCreature("61feyr",[3552.224],0)
+		CreateCreature("61feyr",[1312.2718],0)
+END
+
+IF
+	!GlobalTimerExpired("IwTimer101","MYAREA")
+THEN
+	RESPONSE #100
+		SetGlobal("TEAM_7","MYAREA",0)
+		Continue()
+END
+
+IF
+	GlobalGT("61NheeroFindQuest","GLOBAL",1)
+	!IsActive("DeadMandal")
+THEN
+	RESPONSE #100
+		//HideCreature("DeadMandal",FALSE)
+		Activate("DeadMandal")
+		ActionOverride("DeadMandal",SetGlobal("IwIHidden","LOCALS",0))
+		Kill("DeadMandal")
+		Continue()
+END
+
+IF
+	GlobalGT("61NheeroMissionQuest","GLOBAL",1)
+	!IsActive("Mandal")
+THEN
+	RESPONSE #100
+		Activate("Mandal")
+		ActionOverride("Mandal",SetGlobal("IwIHidden","LOCALS",0))
+		ActionOverride("DeadMandal",DestroySelf())
+		ActionOverride("Mandal",Polymorph(SKELETON_WARRIOR))
+		ActionOverride("Mandal",EquipItem("z0cipfnd"))
+		ActionOverride("Mandal",EquipItem("z0ciwwlf"))
+		ActionOverride("Mandal",EquipItem("z0cided1"))
+		//HideCreature("Mandal",FALSE)  // Мандал Грей
+		ActionOverride("Mandal",ApplySpellRES("idinvis5",Myself))
+		//SetCriticalPathObject("Mandal",TRUE)  // Мандал Грей
+		ActionOverride("Mandal",ApplySpellRES("IWCPSET",Myself))
+		//SetGlobal("Mandal_Critical","GLOBAL",1)
+		Continue()
+END
+
+IF
+	GlobalGT("61NheeroMissionQuest","GLOBAL",3)
+	!IsActive("Alchemist")
+THEN
+	RESPONSE #100
+		//HideCreature("Alchemist",FALSE)
+		Activate("Alchemist")
+		ActionOverride("Alchemist",SetGlobal("IwIHidden","LOCALS",0))
+		Unlock("AR6102_Lever2")
+		SetGlobal("AR6102_Lever2_Locked","MYAREA",0)
+		Continue()
+END
+
+IF
+	GlobalGT("61VolcanoStatus","GLOBAL",0)
+THEN
+	RESPONSE #100
+		//ScreenShake(15,4,3)
+		ScreenShake([4.3],15)
+		Continue()
+END
+
+IF
+	GlobalGT("61VolcanoStatus","GLOBAL",0)
+	!GlobalTimerNotExpired("LocalEruptionTimer","MYAREA")
+	//See([ANYONE][0.0.10000.10000],0)
+	TriggerOverride("Volcano",See([ANYONE]))
+	//!InParty(LastMarkedObject)
+	!TriggerOverride("Volcano",InParty(LastSeenBy(Myself)))
+	//CheckStatLT(LastMarkedObject,100,RESISTFIRE)
+	TriggerOverride("Volcano",CheckStatLT(LastSeenBy(Myself),100,RESISTFIRE))
+THEN
+	RESPONSE #100
+		//ApplySpell(LastMarkedObject,2099)  // SPWI099.SPL (No such index)
+		ActionOverride("Volcano",ApplySpellRES("IWWI099",LastSeenBy(Myself)))
+		Continue()
+END
+
+IF
+	GlobalGT("61VolcanoStatus","GLOBAL",0)
+	!GlobalTimerNotExpired("LocalEruptionTimer","MYAREA")
+THEN
+	RESPONSE #100
+		//ScreenShake(75,40,30)
+		ScreenShake([40.30],75)
+		ApplySpellRES("IWWI099",Player1)  // SPWI099.SPL (No such index)
+		ApplySpellRES("IWWI099",Player2)  // SPWI099.SPL (No such index)
+		ApplySpellRES("IWWI099",Player3)  // SPWI099.SPL (No such index)
+		ApplySpellRES("IWWI099",Player4)  // SPWI099.SPL (No such index)
+		ApplySpellRES("IWWI099",Player5)  // SPWI099.SPL (No such index)
+		ApplySpellRES("IWWI099",Player6)  // SPWI099.SPL (No such index)
+		Continue()
+END
+
+IF
+	GlobalGT("61VolcanoStatus","GLOBAL",0)
+	GlobalTimerExpired("EruptionTimer","GLOBAL")
+THEN
+	RESPONSE #100
+		SetGlobal("61VolcanoStatus","GLOBAL",-1)
+		Continue()
+END
+
+IF
+	GlobalGT("61VolcanoStatus","GLOBAL",0)
+	//!AreaRestDisabled()
+	Global("AreaRestDisabled","MYAREA",0)
+THEN
+	RESPONSE #100
+		//Debug("DisableResting")
+		SetGlobal("AreaRestDisabled","MYAREA",1)
+		//AllowAreaResting(FALSE)
+		AddAreaFlag(NOREST)
+		Continue()
+END
+
+IF
+	Global("61VolcanoStatus","GLOBAL",-1)
+	//AreaRestDisabled()
+	!Global("AreaRestDisabled","MYAREA",0)
+THEN
+	RESPONSE #100
+		//Debug("EnableResting")
+		SetGlobal("AreaRestDisabled","MYAREA",0)
+		//AllowAreaResting(TRUE)
+		RemoveAreaFlag(NOREST)
+		Continue()
+END
+
+IF
+	GlobalGT("61VolcanoStatus","GLOBAL",0)
+	!GlobalTimerNotExpired("LocalEruptionTimer","MYAREA")
+THEN
+	RESPONSE #100
+		SetGlobalTimer("LocalEruptionTimer","MYAREA",7)
+		Continue()
+END
+
+IF
+	GlobalGT("61HalfbreedDied","GLOBAL",0)
+THEN
+	RESPONSE #100
+		IncrementGlobal("EncounterChance","MYAREA",-1)
+		Continue()
+END
+
+IF
+	GlobalGT("61HalfbreedDied","GLOBAL",0)
+	Global("6102Visited","MYAREA",1)
+	GlobalLT("EncounterChance","MYAREA",80)
+THEN
+	RESPONSE #100
+		//SetRestEncounterChance(60,80)
+		SetRestEncounterProbabilityDay(6)
+		SetRestEncounterProbabilityNight(8)
+		SetGlobal("6102Visited","MYAREA",2)
+		Continue()
+END
+
+IF
+	GlobalGT("61HalfbreedDied","GLOBAL",0)
+	Global("6102Visited","MYAREA",2)
+	GlobalLT("EncounterChance","MYAREA",60)
+THEN
+	RESPONSE #100
+		//SetRestEncounterChance(40,60)
+		SetRestEncounterProbabilityDay(4)
+		SetRestEncounterProbabilityNight(6)
+		SetGlobal("6102Visited","MYAREA",3)
+		Continue()
+END
+
+IF
+	GlobalGT("61HalfbreedDied","GLOBAL",0)
+	Global("6102Visited","MYAREA",3)
+	GlobalLT("EncounterChance","MYAREA",40)
+THEN
+	RESPONSE #100
+		//SetRestEncounterChance(20,40)
+		SetRestEncounterProbabilityDay(2)
+		SetRestEncounterProbabilityNight(4)
+		SetGlobal("6102Visited","MYAREA",4)
+		Continue()
+END
+
+IF
+	GlobalGT("61HalfbreedDied","GLOBAL",0)
+	Global("6102Visited","MYAREA",4)
+	GlobalLT("EncounterChance","MYAREA",20)
+THEN
+	RESPONSE #100
+		//SetRestEncounterChance(0,20)
+		SetRestEncounterProbabilityDay(0)
+		SetRestEncounterProbabilityNight(2)
+		SetGlobal("6102Visited","MYAREA",5)
+		Continue()
+END
+
+IF
+	GlobalGT("61HalfbreedDied","GLOBAL",0)
+	Global("6102Visited","MYAREA",5)
+	GlobalLT("EncounterChance","MYAREA",1)
+THEN
+	RESPONSE #100
+		//SetRestEncounterChance(0,0)
+		SetRestEncounterProbabilityDay(0)
+		SetRestEncounterProbabilityNight(0)
+		SetGlobal("6102Visited","MYAREA",6)
+		Continue()
+END
+
+IF
+	GlobalGT("61HalfbreedDied","GLOBAL",0)
+	GlobalGT("YuantiCallForHelp","MYAREA",0)
+	GlobalGT("EncounterChance","MYAREA",0)
+	NumInParty(1)
+	RandomNum(2,1)
+THEN
+	RESPONSE #100
+		CreateCreature("61rYHPr1",[2200.1820],8)
+		ActionOverride("Halfbreed1",JumpToObject(Player1))
+		IncrementGlobal("YuantiCallForHelp","MYAREA",-1)
+		Continue()
+	RESPONSE #100
+		CreateCreature("61rYHSo1",[2200.1820],8)
+		ActionOverride("Halfbreed1",JumpToObject(Player1))
+		IncrementGlobal("YuantiCallForHelp","MYAREA",-1)
+		Continue()
+END
+
+IF
+	GlobalGT("61HalfbreedDied","GLOBAL",0)
+	GlobalGT("YuantiCallForHelp","MYAREA",0)
+	GlobalGT("EncounterChance","MYAREA",0)
+	NumInParty(2)
+	RandomNum(2,1)
+THEN
+	RESPONSE #100
+		CreateCreature("61rYHPr1",[2200.1820],8)
+		ActionOverride("Halfbreed1",JumpToObject(Player1))
+		IncrementGlobal("YuantiCallForHelp","MYAREA",-1)
+		Continue()
+	RESPONSE #100
+		CreateCreature("61rYHSo1",[2200.1820],8)
+		ActionOverride("Halfbreed1",JumpToObject(Player1))
+		IncrementGlobal("YuantiCallForHelp","MYAREA",-1)
+		Continue()
+	RESPONSE #100
+		CreateCreature("61rYHPr2",[2200.1820],8)
+		ActionOverride("Halfbreed2",JumpToObject(Player2))
+		IncrementGlobal("YuantiCallForHelp","MYAREA",-1)
+		Continue()
+	RESPONSE #100
+		CreateCreature("61rYHSo2",[2200.1820],8)
+		ActionOverride("Halfbreed2",JumpToObject(Player2))
+		IncrementGlobal("YuantiCallForHelp","MYAREA",-1)
+		Continue()
+END
+
+IF
+	GlobalGT("61HalfbreedDied","GLOBAL",0)
+	GlobalGT("YuantiCallForHelp","MYAREA",0)
+	GlobalGT("EncounterChance","MYAREA",0)
+	NumInParty(3)
+	RandomNum(2,1)
+THEN
+	RESPONSE #100
+		CreateCreature("61rYHPr1",[2200.1820],8)
+		ActionOverride("Halfbreed1",JumpToObject(Player1))
+		IncrementGlobal("YuantiCallForHelp","MYAREA",-1)
+		Continue()
+	RESPONSE #100
+		CreateCreature("61rYHSo1",[2200.1820],8)
+		ActionOverride("Halfbreed1",JumpToObject(Player1))
+		IncrementGlobal("YuantiCallForHelp","MYAREA",-1)
+		Continue()
+	RESPONSE #100
+		CreateCreature("61rYHPr2",[2200.1820],8)
+		ActionOverride("Halfbreed2",JumpToObject(Player2))
+		IncrementGlobal("YuantiCallForHelp","MYAREA",-1)
+		Continue()
+	RESPONSE #100
+		CreateCreature("61rYHSo2",[2200.1820],8)
+		ActionOverride("Halfbreed2",JumpToObject(Player2))
+		IncrementGlobal("YuantiCallForHelp","MYAREA",-1)
+		Continue()
+	RESPONSE #100
+		CreateCreature("61rYHPr3",[2200.1820],8)
+		ActionOverride("Halfbreed3",JumpToObject(Player3))
+		IncrementGlobal("YuantiCallForHelp","MYAREA",-1)
+		Continue()
+	RESPONSE #100
+		CreateCreature("61rYHSo3",[2200.1820],8)
+		ActionOverride("Halfbreed3",JumpToObject(Player3))
+		IncrementGlobal("YuantiCallForHelp","MYAREA",-1)
+		Continue()
+END
+
+IF
+	GlobalGT("61HalfbreedDied","GLOBAL",0)
+	GlobalGT("YuantiCallForHelp","MYAREA",0)
+	GlobalGT("EncounterChance","MYAREA",0)
+	NumInParty(4)
+	RandomNum(2,1)
+THEN
+	RESPONSE #100
+		CreateCreature("61rYHPr1",[2200.1820],8)
+		ActionOverride("Halfbreed1",JumpToObject(Player1))
+		IncrementGlobal("YuantiCallForHelp","MYAREA",-1)
+		Continue()
+	RESPONSE #100
+		CreateCreature("61rYHSo1",[2200.1820],8)
+		ActionOverride("Halfbreed1",JumpToObject(Player1))
+		IncrementGlobal("YuantiCallForHelp","MYAREA",-1)
+		Continue()
+	RESPONSE #100
+		CreateCreature("61rYHPr2",[2200.1820],8)
+		ActionOverride("Halfbreed2",JumpToObject(Player2))
+		IncrementGlobal("YuantiCallForHelp","MYAREA",-1)
+		Continue()
+	RESPONSE #100
+		CreateCreature("61rYHSo2",[2200.1820],8)
+		ActionOverride("Halfbreed2",JumpToObject(Player2))
+		IncrementGlobal("YuantiCallForHelp","MYAREA",-1)
+		Continue()
+	RESPONSE #100
+		CreateCreature("61rYHPr3",[2200.1820],8)
+		ActionOverride("Halfbreed3",JumpToObject(Player3))
+		IncrementGlobal("YuantiCallForHelp","MYAREA",-1)
+		Continue()
+	RESPONSE #100
+		CreateCreature("61rYHSo3",[2200.1820],8)
+		ActionOverride("Halfbreed3",JumpToObject(Player3))
+		IncrementGlobal("YuantiCallForHelp","MYAREA",-1)
+		Continue()
+	RESPONSE #100
+		CreateCreature("61rYHPr4",[2200.1820],8)
+		ActionOverride("Halfbreed4",JumpToObject(Player4))
+		IncrementGlobal("YuantiCallForHelp","MYAREA",-1)
+		Continue()
+	RESPONSE #100
+		CreateCreature("61rYHSo4",[2200.1820],8)
+		ActionOverride("Halfbreed4",JumpToObject(Player4))
+		IncrementGlobal("YuantiCallForHelp","MYAREA",-1)
+		Continue()
+END
+
+IF
+	GlobalGT("61HalfbreedDied","GLOBAL",0)
+	GlobalGT("YuantiCallForHelp","MYAREA",0)
+	GlobalGT("EncounterChance","MYAREA",0)
+	NumInParty(5)
+	RandomNum(2,1)
+THEN
+	RESPONSE #100
+		CreateCreature("61rYHPr1",[2200.1820],8)
+		ActionOverride("Halfbreed1",JumpToObject(Player1))
+		IncrementGlobal("YuantiCallForHelp","MYAREA",-1)
+		Continue()
+	RESPONSE #100
+		CreateCreature("61rYHSo1",[2200.1820],8)
+		ActionOverride("Halfbreed1",JumpToObject(Player1))
+		IncrementGlobal("YuantiCallForHelp","MYAREA",-1)
+		Continue()
+	RESPONSE #100
+		CreateCreature("61rYHPr2",[2200.1820],8)
+		ActionOverride("Halfbreed2",JumpToObject(Player2))
+		IncrementGlobal("YuantiCallForHelp","MYAREA",-1)
+		Continue()
+	RESPONSE #100
+		CreateCreature("61rYHSo2",[2200.1820],8)
+		ActionOverride("Halfbreed2",JumpToObject(Player2))
+		IncrementGlobal("YuantiCallForHelp","MYAREA",-1)
+		Continue()
+	RESPONSE #100
+		CreateCreature("61rYHPr3",[2200.1820],8)
+		ActionOverride("Halfbreed3",JumpToObject(Player3))
+		IncrementGlobal("YuantiCallForHelp","MYAREA",-1)
+		Continue()
+	RESPONSE #100
+		CreateCreature("61rYHSo3",[2200.1820],8)
+		ActionOverride("Halfbreed3",JumpToObject(Player3))
+		IncrementGlobal("YuantiCallForHelp","MYAREA",-1)
+		Continue()
+	RESPONSE #100
+		CreateCreature("61rYHPr4",[2200.1820],8)
+		ActionOverride("Halfbreed4",JumpToObject(Player4))
+		IncrementGlobal("YuantiCallForHelp","MYAREA",-1)
+		Continue()
+	RESPONSE #100
+		CreateCreature("61rYHSo4",[2200.1820],8)
+		ActionOverride("Halfbreed4",JumpToObject(Player4))
+		IncrementGlobal("YuantiCallForHelp","MYAREA",-1)
+		Continue()
+	RESPONSE #100
+		CreateCreature("61rYHPr5",[2200.1820],8)
+		ActionOverride("Halfbreed5",JumpToObject(Player5))
+		IncrementGlobal("YuantiCallForHelp","MYAREA",-1)
+		Continue()
+	RESPONSE #100
+		CreateCreature("61rYHSo5",[2200.1820],8)
+		ActionOverride("Halfbreed5",JumpToObject(Player5))
+		IncrementGlobal("YuantiCallForHelp","MYAREA",-1)
+		Continue()
+END
+
+IF
+	GlobalGT("61HalfbreedDied","GLOBAL",0)
+	GlobalGT("YuantiCallForHelp","MYAREA",0)
+	GlobalGT("EncounterChance","MYAREA",0)
+	NumInParty(6)
+	RandomNum(2,1)
+THEN
+	RESPONSE #100
+		CreateCreature("61rYHPr1",[2200.1820],8)
+		ActionOverride("Halfbreed1",JumpToObject(Player1))
+		IncrementGlobal("YuantiCallForHelp","MYAREA",-1)
+		Continue()
+	RESPONSE #100
+		CreateCreature("61rYHSo1",[2200.1820],8)
+		ActionOverride("Halfbreed1",JumpToObject(Player1))
+		IncrementGlobal("YuantiCallForHelp","MYAREA",-1)
+		Continue()
+	RESPONSE #100
+		CreateCreature("61rYHPr2",[2200.1820],8)
+		ActionOverride("Halfbreed2",JumpToObject(Player2))
+		IncrementGlobal("YuantiCallForHelp","MYAREA",-1)
+		Continue()
+	RESPONSE #100
+		CreateCreature("61rYHSo2",[2200.1820],8)
+		ActionOverride("Halfbreed2",JumpToObject(Player2))
+		IncrementGlobal("YuantiCallForHelp","MYAREA",-1)
+		Continue()
+	RESPONSE #100
+		CreateCreature("61rYHPr3",[2200.1820],8)
+		ActionOverride("Halfbreed3",JumpToObject(Player3))
+		IncrementGlobal("YuantiCallForHelp","MYAREA",-1)
+		Continue()
+	RESPONSE #100
+		CreateCreature("61rYHSo3",[2200.1820],8)
+		ActionOverride("Halfbreed3",JumpToObject(Player3))
+		IncrementGlobal("YuantiCallForHelp","MYAREA",-1)
+		Continue()
+	RESPONSE #100
+		CreateCreature("61rYHPr4",[2200.1820],8)
+		ActionOverride("Halfbreed4",JumpToObject(Player4))
+		IncrementGlobal("YuantiCallForHelp","MYAREA",-1)
+		Continue()
+	RESPONSE #100
+		CreateCreature("61rYHSo4",[2200.1820],8)
+		ActionOverride("Halfbreed4",JumpToObject(Player4))
+		IncrementGlobal("YuantiCallForHelp","MYAREA",-1)
+		Continue()
+	RESPONSE #100
+		CreateCreature("61rYHPr5",[2200.1820],8)
+		ActionOverride("Halfbreed5",JumpToObject(Player5))
+		IncrementGlobal("YuantiCallForHelp","MYAREA",-1)
+		Continue()
+	RESPONSE #100
+		CreateCreature("61rYHSo5",[2200.1820],8)
+		ActionOverride("Halfbreed5",JumpToObject(Player5))
+		IncrementGlobal("YuantiCallForHelp","MYAREA",-1)
+		Continue()
+	RESPONSE #100
+		CreateCreature("61rYHPr6",[2200.1820],8)
+		ActionOverride("Halfbreed6",JumpToObject(Player6))
+		IncrementGlobal("YuantiCallForHelp","MYAREA",-1)
+		Continue()
+	RESPONSE #100
+		CreateCreature("61rYHSo6",[2200.1820],8)
+		ActionOverride("Halfbreed6",JumpToObject(Player6))
+		IncrementGlobal("YuantiCallForHelp","MYAREA",-1)
+		Continue()
+END
+
+IF
+	GlobalGT("61HalfbreedDied","GLOBAL",0)
+THEN
+	RESPONSE #100
+		IncrementGlobal("61HalfbreedDied","GLOBAL",-1)
+		Continue()
+END
+
+IF
+	Global("SPRITE_IS_DEADSummoner","GLOBAL",1)
+	GlobalGT("EncounterChance","MYAREA",0)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("SummonerTimer","MYAREA",ONE_DAY)
+		SetGlobal("SPRITE_IS_DEADSummoner","GLOBAL",2)
+		Continue()
+END
+
+IF
+	Global("SPRITE_IS_DEADSummoner","GLOBAL",2)
+	GlobalTimerExpired("SummonerTimer","MYAREA")
+THEN
+	RESPONSE #100
+		CreateCreature("61YASumm",[1500.2620],12)
+		SetGlobal("SPRITE_IS_DEADSummoner","GLOBAL",0)
+		Continue()
+	RESPONSE #100
+		CreateCreature("61YASumm",[640.2000],12)
+		SetGlobal("SPRITE_IS_DEADSummoner","GLOBAL",0)
+		Continue()
+	RESPONSE #100
+		CreateCreature("61YASumm",[350.350],0)
+		SetGlobal("SPRITE_IS_DEADSummoner","GLOBAL",0)
+		Continue()
+END
+
+IF
+	!Global("SPRITE_IS_DEADSummoner","GLOBAL",0)
+	OR(2)
+		Global("EncounterChance","MYAREA",0)
+		!Global("61PlayerMetThorasskus","GLOBAL",0)
+THEN
+	RESPONSE #100
+		SetGlobal("SPRITE_IS_DEADSummoner","GLOBAL",0)
+		Continue()
+END
+
+IF
+	OnCreation()
+THEN
+	RESPONSE #100
+		NoAction()
+		Continue()
+END
+
+IF
+	Global("6102Visited","MYAREA",0)
+	//CheckAreaDiffLevel(1)
+	DifficultyLT(NORMAL)
+THEN
+	RESPONSE #100
+		SetGlobal("EncounterChance","MYAREA",40)
+		//SetRestEncounterChance(20,40)
+		SetRestEncounterProbabilityDay(2)
+		SetRestEncounterProbabilityNight(4)
+		Continue()
+END
+
+IF
+	Global("6102Visited","MYAREA",0)
+	//CheckAreaDiffLevel(2)
+	Difficulty(NORMAL)
+THEN
+	RESPONSE #100
+		SetGlobal("EncounterChance","MYAREA",60)
+		//SetRestEncounterChance(40,60)
+		SetRestEncounterProbabilityDay(4)
+		SetRestEncounterProbabilityNight(6)
+		Continue()
+END
+
+IF
+	Global("6102Visited","MYAREA",0)
+	//CheckAreaDiffLevel(3)
+	DifficultyGT(NORMAL)
+THEN
+	RESPONSE #100
+		SetGlobal("EncounterChance","MYAREA",80)
+		//SetRestEncounterChance(60,80)
+		SetRestEncounterProbabilityDay(6)
+		SetRestEncounterProbabilityNight(8)
+		Continue()
+END
+
+IF
+	Global("6102Visited","MYAREA",0)
+	//IsHeartOfFuryModeOn()
+	OR(2)
+		StoryModeOn()
+		NightmareModeOn()
+THEN
+	RESPONSE #100
+		//IncrementGlobal("EncounterChance","MYAREA",20)
+		SetGlobal("EncounterChance","MYAREA",100)
+		//SetRestEncounterChance(80,100)
+		SetRestEncounterProbabilityDay(8)
+		SetRestEncounterProbabilityNight(10)
+		Continue()
+END
+
+IF
+	Global("6102Visited","MYAREA",0)
+THEN
+	RESPONSE #100
+		//HideCreature("05_Ettercap_01",FALSE)
+		//HideCreature("05_Ettercap_02",FALSE)
+		//HideCreature("05_Ettercap_03",FALSE)
+		//GiveItemCreate("61RTHF01","FakeRoot",1,0,0)  // No such index
+		ActionOverride("FakeRoot",CreateItem("z6genmm",1,0,0))
+		SetGlobal("6102Visited","MYAREA",1)
+		Continue()
+END
+

@@ -1,0 +1,6 @@
+BEGIN ~67GFEYR~
+
+IF ~NumTimesTalkedTo(0)~ THEN BEGIN 0
+  SAY @32448
+  IF ~~ THEN DO ~Enemy()~ EXIT
+END

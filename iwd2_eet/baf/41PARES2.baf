@@ -1,0 +1,71 @@
+IF
+	Clicked([ANYONE])
+	!Range(LastTrigger,10)
+THEN
+	RESPONSE #100
+		ActionOverride(LastTrigger,MoveToPoint([1740.2690]))
+END
+
+IF
+	Clicked([ANYONE])
+	OR(2)
+		!Global("AR4102_Switch2_hidden","MYAREA",0)
+		!Global("AR4102_Switch3_hidden","MYAREA",0)
+THEN
+	RESPONSE #100
+		NoAction()
+END
+
+IF
+	Clicked([ANYONE])
+	!Global("AR4102_Switch2_locked","MYAREA",0)
+THEN
+	RESPONSE #100
+		PlaySound("amb_d20")
+		NoAction()
+END
+
+IF
+	Clicked([ANYONE])
+	OpenState("AR4102_Switch2",FALSE)
+	OpenState("AR4102_Switch3",FALSE)
+THEN
+	RESPONSE #100
+		OpenDoor("AR4102_Switch2")
+		DisplayStringHead("GameMaster",@30915)
+		SetGlobal("GameRoomMode","MYAREA",0)
+END
+
+IF
+	Clicked([ANYONE])
+	OpenState("AR4102_Switch2",FALSE)
+	OpenState("AR4102_Switch3",TRUE)
+THEN
+	RESPONSE #100
+		OpenDoor("AR4102_Switch2")
+		DisplayStringHead("GameMaster",@30916)
+		SetGlobal("GameRoomMode","MYAREA",1)
+END
+
+IF
+	Clicked([ANYONE])
+	OpenState("AR4102_Switch2",TRUE)
+	OpenState("AR4102_Switch3",FALSE)
+THEN
+	RESPONSE #100
+		CloseDoor("AR4102_Switch2")
+		DisplayStringHead("GameMaster",@30917)
+		SetGlobal("GameRoomMode","MYAREA",2)
+END
+
+IF
+	Clicked([ANYONE])
+	OpenState("AR4102_Switch2",TRUE)
+	OpenState("AR4102_Switch3",TRUE)
+THEN
+	RESPONSE #100
+		CloseDoor("AR4102_Switch2")
+		DisplayStringHead("GameMaster",@30918)
+		SetGlobal("GameRoomMode","MYAREA",3)
+END
+

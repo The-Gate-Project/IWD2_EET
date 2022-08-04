@@ -1,0 +1,51 @@
+IF
+	StateCheck(Myself,STATE_PANIC)
+THEN
+	RESPONSE #100
+		RandomWalkContinuous()
+END
+
+IF
+	//OR(35)
+		See([0.0.BEETLE])
+		/*See("05_51BEEFI_01",0)
+		See("05_51BEEFI_02",0)
+		See("05_51BEEFI_03",0)
+		See("05_51BEEFI_04",0)
+		See("05_51BEEFI_05",0)
+		See("05_51BEEFI_06",0)
+		See("05_51BEEFI_07",0)
+		See("05_51BEEFI_08",0)
+		See("05_51BEEFI_09",0)
+		See("05_51BEEFI_10",0)
+		See("05_51BEEFI_11",0)
+		See("05_51BEEFI_12",0)
+		See("05_51BEEFI_13",0)
+		See("05_51BEEFI_14",0)
+		See("05_51BEEFI_15",0)
+		See("05_51BEEFI_16",0)
+		See("05_51BEEFI_17",0)
+		See("05_51BEEFI_18",0)
+		See("05_51BEEFI_19",0)
+		See("05_51BEEFI_20",0)
+		See("05_51BEEFI_21",0)
+		See("05_51BEEFI_22",0)
+		See("05_51BEEFI_23",0)
+		See("05_51BEEFI_24",0)
+		See("05_51BEEFI_25",0)
+		See("05_51BEEFI_26",0)
+		See("05_51BEEFI_27",0)
+		See("05_51BEEFI_28",0)
+		See("05_51BEEFI_29",0)
+		See("05_51BEEFI_30",0)
+		See("05_51BEEFI_31",0)
+		See("05_51BEEFI_32",0)
+		See("05_51BEEFI_33",0)
+		See("05_51BEEFI_34",0)*/
+	!StateCheck(LastSeenBy(Myself),STATE_REALLY_DEAD)
+THEN
+	RESPONSE #100
+		EquipMostDamagingMelee()
+		AttackOneRound(LastSeenBy(Myself))
+END
+

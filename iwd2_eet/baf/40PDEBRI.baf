@@ -1,0 +1,17 @@
+IF
+	OR(2)
+		Opened([PC])
+		Entered([PC])
+THEN
+	RESPONSE #100
+		/*ForceSpell(LastTrigger,2097)  // SPWI097.SPL (Падающие обломки)
+		ForceSpell(LastTrigger,2097)  // SPWI097.SPL (Падающие обломки)
+		ForceSpell(LastTrigger,2097)  // SPWI097.SPL (Падающие обломки)
+		ForceSpell(LastTrigger,2097)  // SPWI097.SPL (Падающие обломки)*/
+		ForceSpellRES("IWWI097",LastTrigger)
+		ForceSpellRES("IWWI097",LastTrigger)
+		ForceSpellRES("IWWI097",LastTrigger)
+		ForceSpellRES("IWWI097",LastTrigger)
+		DisplayString(LastTrigger,14381)
+END
+

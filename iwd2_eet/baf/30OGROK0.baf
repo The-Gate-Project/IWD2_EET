@@ -1,0 +1,28 @@
+IF
+	!GlobalTimerNotExpired("IwTimer21","LOCALS")
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #50
+		DisplayStringHead(Myself,@576)
+		SetGlobalTimerRandom("IwTimer21","LOCALS",5,10)
+		Continue()
+	RESPONSE #50
+		Continue()
+END
+
+IF
+	HasItem("POTN52",Myself) //POTN_08
+	HPPercentLT(Myself,50)
+THEN
+	RESPONSE #100
+		UseItem("POTN52",Myself) //POTN_08
+END
+
+IF
+	HasItem("POTN55",Myself) //POTN_52
+	HPPercentLT(Myself,50)
+THEN
+	RESPONSE #100
+		UseItem("POTN55",Myself) //POTN_52
+END
+

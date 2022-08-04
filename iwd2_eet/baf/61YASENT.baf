@@ -1,0 +1,7 @@
+IF
+	True()
+THEN
+	RESPONSE #100
+		ChangeAIScript("61YHTEAM",SPECIFICS)
+		ChangeAIScript("61YASEN2",OVERRIDE)
+END

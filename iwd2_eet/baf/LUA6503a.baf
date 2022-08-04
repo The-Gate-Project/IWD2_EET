@@ -1,0 +1,17 @@
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId(Player1)
+		MultiPlayerSync()
+		SmallWait(5)
+		LeaveAreaLUAPanic("IW6503","",[625.580],10) //625.580
+		LeaveAreaLUA("IW6503","",[625.580],10) //625.580
+		ActionOverride(Player2,LeaveAreaLUA("IW6503","",[625.605],10)) //625.580
+		ActionOverride(Player3,LeaveAreaLUA("IW6503","",[650.580],10)) //625.580
+		ActionOverride(Player4,LeaveAreaLUA("IW6503","",[625.555],10)) //625.580
+		ActionOverride(Player5,LeaveAreaLUA("IW6503","",[600.580],10)) //625.580
+		ActionOverride(Player6,LeaveAreaLUA("IW6503","",[650.605],10)) //625.580
+		SmallWait(5)
+END
+

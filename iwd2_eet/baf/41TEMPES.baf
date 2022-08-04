@@ -1,0 +1,173 @@
+IF
+	Global("41TempestDieRequest","MYAREA",1)
+	See(Player1)
+THEN
+	RESPONSE #100
+		ActionOverride(Player1,JumpToPoint([1050.800]))
+		Continue()
+END
+
+IF
+	Global("41TempestDieRequest","MYAREA",1)
+	See(Player2)
+THEN
+	RESPONSE #100
+		ActionOverride(Player2,JumpToPoint([1050.800]))
+		Continue()
+END
+
+IF
+	Global("41TempestDieRequest","MYAREA",1)
+	See(Player3)
+THEN
+	RESPONSE #100
+		ActionOverride(Player3,JumpToPoint([1050.800]))
+		Continue()
+END
+
+IF
+	Global("41TempestDieRequest","MYAREA",1)
+	See(Player4)
+THEN
+	RESPONSE #100
+		ActionOverride(Player4,JumpToPoint([1050.800]))
+		Continue()
+END
+
+IF
+	Global("41TempestDieRequest","MYAREA",1)
+	See(Player5)
+THEN
+	RESPONSE #100
+		ActionOverride(Player5,JumpToPoint([1050.800]))
+		Continue()
+END
+
+IF
+	Global("41TempestDieRequest","MYAREA",1)
+	See(Player6)
+THEN
+	RESPONSE #100
+		ActionOverride(Player6,JumpToPoint([1050.800]))
+		Continue()
+END
+
+IF
+	Global("41TempestDieRequest","MYAREA",1)
+THEN
+	RESPONSE #100
+		Wait(1)
+		SetDialog("")
+		CloseDoor("AR4102_Door9")
+		CloseDoor("AR4102_Door10")
+		Lock("AR4102_Door10")
+		ReallyForceSpell([PC],WIZARD_CHAIN_LIGHTNING)
+		ReallyForceSpellRES("IWPR613",Myself)  // CLERIC_WHIRLWIND
+		TriggerActivation("Altar",FALSE)
+		//HideCreature(Myself,TRUE)
+		ApplySpellRES("IDINVIS6",Myself)
+		SetGlobal("SPRITE_IS_DEADCagedFury","GLOBAL",1)
+		SetGlobalTimer("IwTimer100","LOCALS",30)
+		SetGlobal("41TempestDieRequest","MYAREA",2)
+END
+
+IF
+	Global("41TempestDieRequest","MYAREA",2)
+	OpenState("AR4102_Door9",FALSE)
+THEN
+	RESPONSE #100
+		TriggerActivation("ShadowTrap",TRUE)
+		Lock("AR4102_Door9")
+		Continue()
+END
+
+IF
+	Global("41TempestDieRequest","MYAREA",2)
+	OpenState("AR4102_Door9",TRUE)
+THEN
+	RESPONSE #100
+		CloseDoor("AR4102_Door9")
+		Continue()
+END
+
+IF
+	Global("41TempestDieRequest","MYAREA",2)
+	GlobalTimerExpired("IwTimer100","LOCALS")
+THEN
+	RESPONSE #100
+		SetGlobal("41TempestDieRequest","MYAREA",0)
+		SetGlobal("TEAM_6","MYAREA",1)
+		//HideCreature("06_Postulant_01",FALSE)
+		//HideCreature("06_Frosttouch_02",FALSE)
+		//HideCreature("06_Stormsister_03",FALSE)
+		//HideCreature("06_Wolf_04",FALSE)
+		//HideCreature("06_Bear_05",FALSE)
+		//HideCreature("06_Barbarian_Warrior_06",FALSE)
+		Activate("06_Postulant_01")
+		ActionOverride("06_Postulant_01",SetGlobal("IwIHidden","LOCALS",0))
+		Activate("06_Frosttouch_02")
+		ActionOverride("06_Frosttouch_02",SetGlobal("IwIHidden","LOCALS",0))
+		Activate("06_Stormsister_03")
+		ActionOverride("06_Stormsister_03",SetGlobal("IwIHidden","LOCALS",0))
+		Activate("06_Wolf_04")
+		ActionOverride("06_Wolf_04",SetGlobal("IwIHidden","LOCALS",0))
+		Activate("06_Bear_05")
+		ActionOverride("06_Bear_05",SetGlobal("IwIHidden","LOCALS",0))
+		Activate("06_Barbarian_Warrior_06")
+		ActionOverride("06_Barbarian_Warrior_06",SetGlobal("IwIHidden","LOCALS",0))
+		Unlock("AR4102_Door9")
+		Unlock("AR4102_Door10")
+		OpenDoor("AR4102_Door9")
+		OpenDoor("AR4102_Door10")
+		TriggerActivation("ShadowTrap",FALSE)
+		DestroySelf()
+		//ChangeCurrentScript("")
+END
+
+IF
+	Global("41ZackTask","GLOBAL",7)
+	//!TimerActive(100)
+	!GlobalTimerNotExpired("IwTimer100","LOCALS")
+	OR(6)
+		See(Player6)
+		See(Player5)
+		See(Player4)
+		See(Player3)
+		See(Player2)
+		See(Player1)
+THEN
+	RESPONSE #100
+		//SetDialogueRange(75)
+		StartCutSceneMode()
+		ClearAllActions()
+		MultiPlayerSync()
+		//Dialogue(LastMarkedObject)
+		ApplySpellRES("BDCUTSPY",Myself)
+		StartDialogNoSet(LastSeenBy(Myself))
+END
+
+IF
+	!Allegiance(Myself,ENEMY)
+	!StateCheck(Myself,STATE_REALLY_DEAD)
+	Global("AlreadyTalked","LOCALS",0)
+	See([PC])
+THEN
+	RESPONSE #100
+		//SetDialogueRange(75)
+		SetGlobal("AlreadyTalked","LOCALS",1)
+		SetGlobal("41PlayerSawBottomAltar","GLOBAL",1)
+		//Dialogue(LastMarkedObject)
+		ApplySpellRES("BDCUTSPY",Myself)
+		StartDialogNoSet(LastSeenBy(Myself))
+END
+
+IF
+	Global("AlreadyTalked","LOCALS",1)
+	!Global("41ZackTask","GLOBAL",7)
+	!See([PC])
+THEN
+	RESPONSE #100
+		SetGlobal("AlreadyTalked","LOCALS",0)
+		Continue()
+END
+

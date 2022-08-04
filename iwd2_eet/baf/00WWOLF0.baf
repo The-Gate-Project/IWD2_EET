@@ -1,0 +1,24 @@
+IF
+	StateCheck(Myself,STATE_PANIC)
+THEN
+	RESPONSE #100
+		RandomWalkContinuous()
+END
+
+IF
+	!GlobalTimerNotExpired("WOLF_BREATH","LOCALS")
+	IsActive(Myself)
+	Range(NearestEnemyOf(Myself),9)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("WOLF_BREATH","LOCALS",70)
+		//ForceSpell(LastSeenBy(Myself),INNATE_WINTER_WOLF_BREATH)  // SPIN971.SPL (No such index)
+		ForceSpellRES("IWIN971",LastSeenBy(Myself))
+		Wait(2)
+	RESPONSE #100
+		SetGlobalTimer("WOLF_BREATH","LOCALS",5)
+		Continue()
+	RESPONSE #200
+		Continue()
+END
+

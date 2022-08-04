@@ -1,0 +1,84 @@
+IF
+	Global("I_LIKE_DWARVES","LOCALS",0)
+	See([PC])
+THEN
+	RESPONSE #75
+		SetGlobal("I_LIKE_DWARVES","LOCALS",2)
+		Continue()
+	RESPONSE #25
+		SetGlobal("I_LIKE_DWARVES","LOCALS",1)
+		Continue()
+END
+
+IF
+	StateCheck(Myself,STATE_PANIC)
+THEN
+	RESPONSE #100
+		RandomWalkContinuous()
+END
+
+IF
+	Global("I_LIKE_DWARVES","LOCALS",1)
+	OR(2)
+		See([0.0.DWARF])
+		See([PC.0.DWARF])
+THEN
+	RESPONSE #100
+		EquipMostDamagingMelee()
+		AttackOneRound(LastSeenBy(Myself))
+END
+/* OLD_OR
+IF
+	OR(3) //11
+		See(NearestEnemyOf(Myself))
+	/*	See("CAT_1",0)
+		See("CAT_2",0)
+		See("CAT_3",0)
+		See("CAT_4",0)
+		See("CAT_5",0)
+		See("CAT_6",0)
+		See("CAT_7",0)
+		See("CAT_8",0)
+		See("CAT_9",0) */
+		See([0.0.CAT])
+		See("Firtha_Kerdos")
+THEN
+	RESPONSE #100
+		EquipMostDamagingMelee()
+		AttackOneRound(LastSeenBy(Myself))
+END*/
+
+/*IF
+	See([0.0.CAT])
+	!StateCheck(LastSeenBy(Myself),STATE_REALLY_DEAD)
+THEN
+	RESPONSE #40
+		EquipMostDamagingMelee()
+		AttackOneRound(LastSeenBy(Myself))
+	RESPONSE #60
+		Continue()
+END
+
+IF
+	See("Firtha_Kerdos")
+	!StateCheck(LastSeenBy(Myself),STATE_REALLY_DEAD)
+THEN
+	RESPONSE #40
+		EquipMostDamagingMelee()
+		AttackOneRound(LastSeenBy(Myself))
+	RESPONSE #60
+		Continue()
+END*/
+
+IF
+	OR(3)
+		See("Firtha_Kerdos")
+		See([0.0.CAT])
+		See(NearestEnemyOf(Myself))
+	!StateCheck(LastSeenBy(Myself),STATE_REALLY_DEAD)
+THEN
+	RESPONSE #100
+		EquipMostDamagingMelee()
+		AttackOneRound(LastSeenBy(Myself))
+END
+

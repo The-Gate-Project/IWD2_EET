@@ -1,0 +1,35 @@
+IF
+	!Global("Goblin_Palisade_Quest","GLOBAL",0)
+	//CheckDoorFlags(Myself,DOORLOCKED)
+	!Global("GATE_UNLOKED","MYAREA",1)
+THEN
+	RESPONSE #100
+		Unlock(Myself)
+		SetGlobal("GATE_UNLOKED","MYAREA",1)
+END
+
+IF
+	Global("Goblins_Attack_Palisade","GLOBAL",0)
+	!Global("Ulbrec_Gate","GLOBAL",0)
+	//CheckDoorFlags(Myself,DOORLOCKED)
+	!Global("GATE_UNLOKED","MYAREA",1)
+THEN
+	RESPONSE #100
+		Unlock(Myself)
+		SetGlobal("GATE_UNLOKED","MYAREA",1)
+END
+
+IF
+	!Global("Goblins_Attack_Palisade","GLOBAL",0)
+	Global("Goblin_Palisade_Quest","GLOBAL",0)
+	//Or(2)
+	//	CheckDoorFlags(Myself,DOOROPEN)
+	//	!CheckDoorFlags(Myself,DOORLOCKED)
+	OpenState(Myself,TRUE)
+	!Global("GATE_UNLOKED","MYAREA",1)
+THEN
+	RESPONSE #100
+		CloseDoor(Myself)
+		Lock(Myself)
+END
+

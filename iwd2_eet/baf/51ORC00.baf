@@ -1,0 +1,73 @@
+IF
+  Global("SaveSavedLoc","LOCALS",0)
+THEN
+  RESPONSE #100
+    SetGlobal("SaveSavedLoc","LOCALS",1)
+    SaveObjectLocation("LOCALS","SavedLoc",Myself)
+    Continue()
+END
+
+IF
+	!GlobalTimerNotExpired("IwTimer18","LOCALS")
+THEN
+	RESPONSE #50
+		DisplayStringHead(Myself,@18808)
+		SetGlobalTimerRandom("IwTimer18","LOCALS",5,15)
+	RESPONSE #50
+		DisplayStringHead(Myself,@18809)
+		SetGlobalTimerRandom("IwTimer18","LOCALS",5,15)
+	RESPONSE #50
+		DisplayStringHead(Myself,@18810)
+		SetGlobalTimerRandom("IwTimer18","LOCALS",5,15)
+	RESPONSE #50
+		DisplayStringHead(Myself,@18811)
+		SetGlobalTimerRandom("IwTimer18","LOCALS",5,15)
+	RESPONSE #50
+		DisplayStringHead(Myself,@18812)
+		SetGlobalTimerRandom("IwTimer18","LOCALS",5,15)
+	RESPONSE #250
+		SetGlobalTimerRandom("IwTimer18","LOCALS",5,15)
+END
+
+IF
+	Global("RW_51ORC000","LOCALS",0)
+	!NearSavedLocation(Myself,"LOCALSSavedLoc",5)
+THEN
+	RESPONSE #100
+		SetGlobal("RW_51ORC000","LOCALS",1)
+		Continue()
+END
+
+IF
+	!Global("RW_51ORC000","LOCALS",0)
+	NearSavedLocation(Myself,"LOCALSSavedLoc",5)
+THEN
+	RESPONSE #100
+		SetGlobal("RW_51ORC000","LOCALS",0)
+		NoAction()
+END
+
+IF
+	!Global("RW_51ORC000","LOCALS",0)
+THEN
+	RESPONSE #100
+		MoveToOffset([-2.-2])
+	RESPONSE #100
+		MoveToOffset([2.-2])
+	RESPONSE #100
+		MoveToOffset([-2.2])
+	RESPONSE #100
+		MoveToOffset([2.2])
+	RESPONSE #100
+		MoveToSavedLocation("SavedLoc","LOCALS")
+END
+
+IF
+	!GlobalTimerNotExpired("IwTimer19","LOCALS")
+	Global("RW_51ORC000","LOCALS",0)
+THEN
+	RESPONSE #100
+		RandomWalk()
+		SetGlobalTimerRandom("IwTimer19","LOCALS",2,8)
+END
+

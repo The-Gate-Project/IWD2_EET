@@ -1,0 +1,1329 @@
+//BLOCK SET_VARS
+IF
+	!Global("SET_41BORIA","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_2_RANDOM_CAST","LOCALS",1,4)
+		SetGlobalRandom("SSPELLS_3_RANDOM_CAST","LOCALS",1,3)
+		SetGlobalRandom("SSPELLS_4_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_5_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("RandomNum","LOCALS",1,3)
+		SetGlobal("SET_41BORIA","LOCALS",1)
+		SetInterrupt(TRUE)
+END
+//BLOCKEND
+
+IF
+	StateCheck(Myself,STATE_PANIC)
+THEN
+	RESPONSE #100
+		RandomWalkContinuous()
+END
+
+IF
+	HaveSpell(CLERIC_PROTECTION_FROM_LIGHTNING)
+	OR(2)
+		HitBy([ANYONE],ELECTRICITY)
+		RandomNum(20,1)
+	CheckStatLT(Myself,100,RESISTELECTRICITY)
+THEN
+	RESPONSE #100
+		Spell(Myself,CLERIC_PROTECTION_FROM_LIGHTNING)
+		Wait(1)
+END
+
+IF
+	HasItem("POTN18",Myself)
+	OR(2)
+		HitBy([ANYONE],ELECTRICITY)
+		RandomNum(20,1)
+	CheckStatLT(Myself,100,RESISTELECTRICITY)
+THEN
+	RESPONSE #100
+		UseItem("POTN18",Myself)
+END
+
+IF
+	HasItem("POTN45",Myself)
+	//!CheckSpellState(Myself,FREE_ACTION)
+	!CheckStatGT(Myself,0,CLERIC_FREE_ACTION)
+	OR(6)
+		CheckStatGT(Myself,0,HELD)
+		CheckStatGT(Myself,0,GREASE)
+		CheckStatGT(Myself,0,WEB)
+		CheckStatGT(Myself,0,ENTANGLE)
+		StateCheck(Myself,STATE_STUNNED)
+		StateCheck(Myself,STATE_SLOWED)
+THEN
+	RESPONSE #100
+		UseItem("POTN45",Myself)
+END
+
+IF
+	HaveSpell(CLERIC_FREE_ACTION)
+	//!CheckSpellState(Myself,FREE_ACTION)
+	!CheckStatGT(Myself,0,CLERIC_FREE_ACTION)
+	OR(6)
+		CheckStatGT(Myself,0,HELD)
+		CheckStatGT(Myself,0,GREASE)
+		CheckStatGT(Myself,0,WEB)
+		CheckStatGT(Myself,0,ENTANGLE)
+		StateCheck(Myself,STATE_STUNNED)
+		StateCheck(Myself,STATE_SLOWED)
+THEN
+	RESPONSE #100
+		Spell(Myself,CLERIC_FREE_ACTION)
+		Wait(1)
+END
+
+//BLOCK SPL_1
+/*IF
+	ForceMarkedSpell(MARKED_SPELL)
+	SetSpellTarget(Nothing)
+	HPPercentLT(Myself,95)
+THEN
+	RESPONSE #100
+		MarkSpellAndObject("11091201",Myself,SPELLCAST_IGNORE_SEE)  // [CLERIC_SANCTUARY, CLERIC_AID]
+		Continue()
+END
+
+IF
+	!IsMarkedSpell(MARKED_SPELL)
+THEN
+	RESPONSE #100
+		Spell(SpellTarget,MARKED_SPELL)
+		WaitAnimation(Myself,WALK)
+		WaitAnimation(Myself,CONJURE)
+		WaitAnimation(Myself,CAST)
+		ForceMarkedSpell(MARKED_SPELL)
+END*/
+/*IF
+	GlobalLT("SSPELLS_1_RANDOM_CAST","LOCALS",3)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		Continue()
+END*/
+//1 - Myself - [CLERIC_SANCTUARY, CLERIC_AID]
+IF
+	Global("SSPELLS_1_RANDOM_CAST","LOCALS",1)
+	HaveSpell(CLERIC_SANCTUARY)
+	HPPercentLT(Myself,95)
+	!StateCheck(Myself,STATE_INVISIBLE)
+	!StateCheck(Myself,STATE_IMPROVEDINVISIBILITY)
+	!CheckStat(Myself,1,SANCTUARY)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_2_RANDOM_CAST","LOCALS",1,4)
+		SetGlobalRandom("SSPELLS_3_RANDOM_CAST","LOCALS",1,3)
+		SetGlobalRandom("SSPELLS_4_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_5_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("RandomNum","LOCALS",1,3)
+		Spell(Myself,CLERIC_SANCTUARY)
+		Wait(1)
+END
+
+IF
+	Global("SSPELLS_1_RANDOM_CAST","LOCALS",2)
+	HaveSpell(CLERIC_AID)
+	HPPercentLT(Myself,95)
+	!StateCheck(Myself,STATE_AID)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_2_RANDOM_CAST","LOCALS",1,4)
+		SetGlobalRandom("SSPELLS_3_RANDOM_CAST","LOCALS",1,3)
+		SetGlobalRandom("SSPELLS_4_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_5_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("RandomNum","LOCALS",1,3)
+		Spell(Myself,CLERIC_AID)
+		Wait(1)
+END
+//BLOCK NO_RND
+IF
+	HaveSpell(CLERIC_SANCTUARY)
+	HPPercentLT(Myself,95)
+	!StateCheck(Myself,STATE_INVISIBLE)
+	!StateCheck(Myself,STATE_IMPROVEDINVISIBILITY)
+	!CheckStat(Myself,1,SANCTUARY)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_2_RANDOM_CAST","LOCALS",1,4)
+		SetGlobalRandom("SSPELLS_3_RANDOM_CAST","LOCALS",1,3)
+		SetGlobalRandom("SSPELLS_4_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_5_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("RandomNum","LOCALS",1,3)
+		Spell(Myself,CLERIC_SANCTUARY)
+		Wait(1)
+END
+
+IF
+	HaveSpell(CLERIC_AID)
+	HPPercentLT(Myself,95)
+	!StateCheck(Myself,STATE_AID)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_2_RANDOM_CAST","LOCALS",1,4)
+		SetGlobalRandom("SSPELLS_3_RANDOM_CAST","LOCALS",1,3)
+		SetGlobalRandom("SSPELLS_4_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_5_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("RandomNum","LOCALS",1,3)
+		Spell(Myself,CLERIC_AID)
+		Wait(1)
+END
+//BLOCKEND
+//BLOCKEND
+//BLOCK SPL_2
+/*IF
+	ForceMarkedSpell(MARKED_SPELL)
+	SetSpellTarget(Nothing)
+	!Global("OBJ_SP_41BORIA_0","LOCALS",-1)
+	!Global("OBJ_SP_41BORIA_0","LOCALS",-1)
+	RandomNum(2,1)
+	See(NearestEnemyOf(Myself),0)
+THEN
+	RESPONSE #100
+		MarkSpellAndObject("2305111512152317",Myself,SPELLCAST_IGNORE_SEE | SPELLCAST_IGNORE_VALID_SPELL_TARGET | SPELLCAST_RANDOM)  // [WIZARD_HASTE, CLERIC_ARMOR_OF_FAITH, CLERIC_DRAW_UPON_HOLY_MIGHT, WIZARD_GHOST_ARMOR]
+		Continue()
+END
+
+IF
+	!IsMarkedSpell(MARKED_SPELL)
+THEN
+	RESPONSE #100
+		Spell(SpellTarget,MARKED_SPELL)
+		WaitAnimation(Myself,WALK)
+		WaitAnimation(Myself,CONJURE)
+		WaitAnimation(Myself,CAST)
+		ForceMarkedSpell(MARKED_SPELL)
+END*/
+/*IF
+	GlobalLT("SSPELLS_2_RANDOM_CAST","LOCALS",5)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_2_RANDOM_CAST","LOCALS",1,4)
+		Continue()
+END*/
+//1 - Myself - [WIZARD_HASTE, CLERIC_ARMOR_OF_FAITH, CLERIC_DRAW_UPON_HOLY_MIGHT, WIZARD_GHOST_ARMOR]
+IF
+	Global("SSPELLS_2_RANDOM_CAST","LOCALS",1)
+	HaveSpell(WIZARD_HASTE)
+	!Global("OBJ_SP_41BORIA_0","LOCALS",-1)
+	RandomNum(2,1)
+	See(NearestEnemyOf(Myself))
+	OR(2)
+		!StateCheck(Myself,STATE_HASTED)
+		StateCheck(Myself,STATE_SLOWED)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_2_RANDOM_CAST","LOCALS",1,4)
+		SetGlobalRandom("SSPELLS_3_RANDOM_CAST","LOCALS",1,3)
+		SetGlobalRandom("SSPELLS_4_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_5_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("RandomNum","LOCALS",1,3)
+		Spell(Myself,WIZARD_HASTE)
+		Wait(1)
+END
+
+IF
+	Global("SSPELLS_2_RANDOM_CAST","LOCALS",2)
+	HaveSpell(CLERIC_ARMOR_OF_FAITH)
+	!Global("OBJ_SP_41BORIA_0","LOCALS",-1)
+	RandomNum(2,1)
+	See(NearestEnemyOf(Myself))
+	!CheckSpellState(Myself,ARMOR_OF_FAITH)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_2_RANDOM_CAST","LOCALS",1,4)
+		SetGlobalRandom("SSPELLS_3_RANDOM_CAST","LOCALS",1,3)
+		SetGlobalRandom("SSPELLS_4_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_5_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("RandomNum","LOCALS",1,3)
+		Spell(Myself,CLERIC_ARMOR_OF_FAITH)
+		Wait(1)
+END
+
+IF
+	Global("SSPELLS_2_RANDOM_CAST","LOCALS",3)
+	HaveSpell(CLERIC_DRAW_UPON_HOLY_MIGHT)
+	!Global("OBJ_SP_41BORIA_0","LOCALS",-1)
+	RandomNum(2,1)
+	See(NearestEnemyOf(Myself))
+	!StateCheck(Myself,STATE_DRAWUPONHOLYMIGHT)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_2_RANDOM_CAST","LOCALS",1,4)
+		SetGlobalRandom("SSPELLS_3_RANDOM_CAST","LOCALS",1,3)
+		SetGlobalRandom("SSPELLS_4_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_5_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("RandomNum","LOCALS",1,3)
+		Spell(Myself,CLERIC_DRAW_UPON_HOLY_MIGHT)
+		Wait(1)
+END
+
+IF
+	Global("SSPELLS_2_RANDOM_CAST","LOCALS",4)
+	HaveSpell(WIZARD_GHOST_ARMOR)
+	!Global("OBJ_SP_41BORIA_0","LOCALS",-1)
+	RandomNum(2,1)
+	See(NearestEnemyOf(Myself))
+	CheckStatGT(Myself,2,ARMORCLASS)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_2_RANDOM_CAST","LOCALS",1,4)
+		SetGlobalRandom("SSPELLS_3_RANDOM_CAST","LOCALS",1,3)
+		SetGlobalRandom("SSPELLS_4_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_5_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("RandomNum","LOCALS",1,3)
+		Spell(Myself,WIZARD_GHOST_ARMOR)
+		Wait(1)
+END
+//BLOCK NO_RND
+//1 - Myself - [WIZARD_HASTE, CLERIC_ARMOR_OF_FAITH, CLERIC_DRAW_UPON_HOLY_MIGHT, WIZARD_GHOST_ARMOR]
+IF
+	HaveSpell(WIZARD_HASTE)
+	!Global("OBJ_SP_41BORIA_0","LOCALS",-1)
+	RandomNum(2,1)
+	See(NearestEnemyOf(Myself))
+	OR(2)
+		!StateCheck(Myself,STATE_HASTED)
+		StateCheck(Myself,STATE_SLOWED)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_2_RANDOM_CAST","LOCALS",1,4)
+		SetGlobalRandom("SSPELLS_3_RANDOM_CAST","LOCALS",1,3)
+		SetGlobalRandom("SSPELLS_4_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_5_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("RandomNum","LOCALS",1,3)
+		Spell(Myself,WIZARD_HASTE)
+		Wait(1)
+END
+
+IF
+	HaveSpell(CLERIC_ARMOR_OF_FAITH)
+	!Global("OBJ_SP_41BORIA_0","LOCALS",-1)
+	RandomNum(2,1)
+	See(NearestEnemyOf(Myself))
+	!CheckSpellState(Myself,ARMOR_OF_FAITH)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_2_RANDOM_CAST","LOCALS",1,4)
+		SetGlobalRandom("SSPELLS_3_RANDOM_CAST","LOCALS",1,3)
+		SetGlobalRandom("SSPELLS_4_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_5_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("RandomNum","LOCALS",1,3)
+		Spell(Myself,CLERIC_ARMOR_OF_FAITH)
+		Wait(1)
+END
+
+IF
+	HaveSpell(CLERIC_DRAW_UPON_HOLY_MIGHT)
+	!Global("OBJ_SP_41BORIA_0","LOCALS",-1)
+	RandomNum(2,1)
+	See(NearestEnemyOf(Myself))
+	!StateCheck(Myself,STATE_DRAWUPONHOLYMIGHT)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_2_RANDOM_CAST","LOCALS",1,4)
+		SetGlobalRandom("SSPELLS_3_RANDOM_CAST","LOCALS",1,3)
+		SetGlobalRandom("SSPELLS_4_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_5_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("RandomNum","LOCALS",1,3)
+		Spell(Myself,CLERIC_DRAW_UPON_HOLY_MIGHT)
+		Wait(1)
+END
+
+IF
+	HaveSpell(WIZARD_GHOST_ARMOR)
+	!Global("OBJ_SP_41BORIA_0","LOCALS",-1)
+	RandomNum(2,1)
+	See(NearestEnemyOf(Myself))
+	CheckStatGT(Myself,2,ARMORCLASS)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_2_RANDOM_CAST","LOCALS",1,4)
+		SetGlobalRandom("SSPELLS_3_RANDOM_CAST","LOCALS",1,3)
+		SetGlobalRandom("SSPELLS_4_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_5_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("RandomNum","LOCALS",1,3)
+		Spell(Myself,WIZARD_GHOST_ARMOR)
+		Wait(1)
+END
+//BLOCKEND
+//BLOCKEND
+IF
+	!Global("OBJ_SP_41BORIA_0","LOCALS",-1)
+	!HaveSpell(WIZARD_HASTE)
+	!HaveSpell(CLERIC_ARMOR_OF_FAITH)
+	!HaveSpell(CLERIC_DRAW_UPON_HOLY_MIGHT)
+	!HaveSpell(WIZARD_GHOST_ARMOR)
+THEN
+	RESPONSE #100
+		SetGlobal("OBJ_SP_41BORIA_0","LOCALS",-1)
+		Continue()
+END
+//BLOCK SPL_3
+/*IF
+	ForceMarkedSpell(MARKED_SPELL)
+	SetSpellTarget(Nothing)
+	!Global("OBJ_SP_41BORIA_1","LOCALS",-1)
+	!Global("OBJ_SP_41BORIA_1","LOCALS",-1)
+	RandomNum(2,1)
+	See(NearestEnemyOf(Myself),0)
+THEN
+	RESPONSE #100
+		MarkSpellAndObject("11021111111423061325210422202122",LastMarkedObject,SPELLCAST_IGNORE_SEE | SPELLCAST_IGNORE_VALID_SPELL_TARGET | SPELLCAST_RANDOM)  // [CLERIC_COMMAND, CLERIC_BANE, CLERIC_DOOM, WIZARD_HOLD_PERSON, CLERIC_UNHOLY_BLIGHT, WIZARD_CHARM_PERSON, WIZARD_SNILLOCS_SNOWBALL_SWARM, WIZARD_ICE_DAGGER]
+		MarkSpellAndObject("23182401240425042112",LastMarkedObject,SPELLCAST_IGNORE_SEE | SPELLCAST_IGNORE_VALID_SPELL_TARGET | SPELLCAST_RANDOM)  // [WIZARD_ICELANCE, WIZARD_CONFUSION, WIZARD_ICE_STORM, WIZARD_CONE_OF_COLD, WIZARD_MAGIC_MISSILE]
+		MarkSpellAndObject("1409",Myself,SPELLCAST_IGNORE_SEE | SPELLCAST_IGNORE_VALID_SPELL_TARGET | SPELLCAST_RANDOM)  // [CLERIC_CLOAK_OF_FEAR]
+		Continue()
+	RESPONSE #100
+		MarkSpellAndObject("23182401240425042112",LastMarkedObject,SPELLCAST_IGNORE_SEE | SPELLCAST_IGNORE_VALID_SPELL_TARGET | SPELLCAST_RANDOM)  // [WIZARD_ICELANCE, WIZARD_CONFUSION, WIZARD_ICE_STORM, WIZARD_CONE_OF_COLD, WIZARD_MAGIC_MISSILE]
+		MarkSpellAndObject("1409",Myself,SPELLCAST_IGNORE_SEE | SPELLCAST_IGNORE_VALID_SPELL_TARGET | SPELLCAST_RANDOM)  // [CLERIC_CLOAK_OF_FEAR]
+		MarkSpellAndObject("11021111111423061325210422202122",LastMarkedObject,SPELLCAST_IGNORE_SEE | SPELLCAST_IGNORE_VALID_SPELL_TARGET | SPELLCAST_RANDOM)  // [CLERIC_COMMAND, CLERIC_BANE, CLERIC_DOOM, WIZARD_HOLD_PERSON, CLERIC_UNHOLY_BLIGHT, WIZARD_CHARM_PERSON, WIZARD_SNILLOCS_SNOWBALL_SWARM, WIZARD_ICE_DAGGER]
+		Continue()
+	RESPONSE #100
+		MarkSpellAndObject("1409",Myself,SPELLCAST_IGNORE_SEE | SPELLCAST_IGNORE_VALID_SPELL_TARGET | SPELLCAST_RANDOM)  // [CLERIC_CLOAK_OF_FEAR]
+		MarkSpellAndObject("11021111111423061325210422202122",LastMarkedObject,SPELLCAST_IGNORE_SEE | SPELLCAST_IGNORE_VALID_SPELL_TARGET | SPELLCAST_RANDOM)  // [CLERIC_COMMAND, CLERIC_BANE, CLERIC_DOOM, WIZARD_HOLD_PERSON, CLERIC_UNHOLY_BLIGHT, WIZARD_CHARM_PERSON, WIZARD_SNILLOCS_SNOWBALL_SWARM, WIZARD_ICE_DAGGER]
+		MarkSpellAndObject("23182401240425042112",LastMarkedObject,SPELLCAST_IGNORE_SEE | SPELLCAST_IGNORE_VALID_SPELL_TARGET | SPELLCAST_RANDOM)  // [WIZARD_ICELANCE, WIZARD_CONFUSION, WIZARD_ICE_STORM, WIZARD_CONE_OF_COLD, WIZARD_MAGIC_MISSILE]
+		Continue()
+END
+
+IF
+	!IsMarkedSpell(MARKED_SPELL)
+THEN
+	RESPONSE #100
+		Spell(SpellTarget,MARKED_SPELL)
+		WaitAnimation(Myself,WALK)
+		WaitAnimation(Myself,CONJURE)
+		WaitAnimation(Myself,CAST)
+		ForceMarkedSpell(MARKED_SPELL)
+END*/
+/*IF
+	GlobalLT("SSPELLS_3_RANDOM_CAST","LOCALS",4)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_3_RANDOM_CAST","LOCALS",1,3)
+		SetGlobalRandom("RandomNum","LOCALS",1,3)
+		Continue()
+END*/
+//1 - LastMarkedObject - [CLERIC_COMMAND, CLERIC_BANE, CLERIC_DOOM, WIZARD_HOLD_PERSON, CLERIC_UNHOLY_BLIGHT, WIZARD_CHARM_PERSON, WIZARD_SNILLOCS_SNOWBALL_SWARM, WIZARD_ICE_DAGGER]
+IF
+	RandomNum(8,1)
+	Global("SSPELLS_3_RANDOM_CAST","LOCALS",1)
+	HaveSpell(CLERIC_COMMAND)
+	!Global("OBJ_SP_41BORIA_1","LOCALS",-1)
+	GlobalGT("RandomNum","LOCALS",1)
+	See(NearestEnemyOf(Myself))
+	General(LastSeenBy(Myself),HUMANOID)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_2_RANDOM_CAST","LOCALS",1,4)
+		SetGlobalRandom("SSPELLS_3_RANDOM_CAST","LOCALS",1,3)
+		SetGlobalRandom("SSPELLS_4_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_5_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("RandomNum","LOCALS",1,3)
+		Spell(LastSeenBy(Myself),CLERIC_COMMAND)
+		Wait(1)
+END
+
+IF
+	RandomNum(8,2)
+	Global("SSPELLS_3_RANDOM_CAST","LOCALS",1)
+	HaveSpellRES("IWPR111")
+	!Global("OBJ_SP_41BORIA_1","LOCALS",-1)
+	GlobalGT("RandomNum","LOCALS",1)
+	See(NearestEnemyOf(Myself))
+	!CheckSpellState(LastSeenBy(Myself),CLERIC_BANE)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_2_RANDOM_CAST","LOCALS",1,4)
+		SetGlobalRandom("SSPELLS_3_RANDOM_CAST","LOCALS",1,3)
+		SetGlobalRandom("SSPELLS_4_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_5_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("RandomNum","LOCALS",1,3)
+		SpellRES("IWPR111",LastSeenBy(Myself))
+		Wait(1)
+END
+
+IF
+	RandomNum(8,3)
+	Global("SSPELLS_3_RANDOM_CAST","LOCALS",1)
+	HaveSpell(CLERIC_DOOM)
+	!Global("OBJ_SP_41BORIA_1","LOCALS",-1)
+	GlobalGT("RandomNum","LOCALS",1)
+	See(NearestEnemyOf(Myself))
+	!CheckSpellState(LastSeenBy(Myself),DOOM)
+	!StateCheck(LastSeenBy(Myself),STATE_HARMLESS)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_2_RANDOM_CAST","LOCALS",1,4)
+		SetGlobalRandom("SSPELLS_3_RANDOM_CAST","LOCALS",1,3)
+		SetGlobalRandom("SSPELLS_4_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_5_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("RandomNum","LOCALS",1,3)
+		Spell(LastSeenBy(Myself),CLERIC_DOOM)
+		Wait(1)
+END
+
+IF
+	RandomNum(8,4)
+	Global("SSPELLS_3_RANDOM_CAST","LOCALS",1)
+	HaveSpell(WIZARD_HOLD_PERSON)
+	!Global("OBJ_SP_41BORIA_1","LOCALS",-1)
+	GlobalGT("RandomNum","LOCALS",1)
+	See(NearestEnemyOf(Myself))
+	!StateCheck(LastSeenBy(Myself),STATE_DISABLED)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_2_RANDOM_CAST","LOCALS",1,4)
+		SetGlobalRandom("SSPELLS_3_RANDOM_CAST","LOCALS",1,3)
+		SetGlobalRandom("SSPELLS_4_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_5_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("RandomNum","LOCALS",1,3)
+		Spell(LastSeenBy(Myself),WIZARD_HOLD_PERSON)
+		Wait(1)
+END
+
+IF
+	RandomNum(8,5)
+	Global("SSPELLS_3_RANDOM_CAST","LOCALS",1)
+	HaveSpell(CLERIC_UNHOLY_BLIGHT)
+	!Global("OBJ_SP_41BORIA_1","LOCALS",-1)
+	GlobalGT("RandomNum","LOCALS",1)
+	See(NearestEnemyOf(Myself))
+	Alignment(LastSeenBy(Myself),MASK_GOOD)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_2_RANDOM_CAST","LOCALS",1,4)
+		SetGlobalRandom("SSPELLS_3_RANDOM_CAST","LOCALS",1,3)
+		SetGlobalRandom("SSPELLS_4_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_5_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("RandomNum","LOCALS",1,3)
+		Spell(LastSeenBy(Myself),CLERIC_UNHOLY_BLIGHT)
+		Wait(1)
+END
+
+IF
+	RandomNum(8,6)
+	Global("SSPELLS_3_RANDOM_CAST","LOCALS",1)
+	HaveSpell(WIZARD_CHARM_PERSON)
+	!Global("OBJ_SP_41BORIA_1","LOCALS",-1)
+	GlobalGT("RandomNum","LOCALS",1)
+	See(NearestEnemyOf(Myself))
+	!Class(LastSeenBy(Myself),MONK)
+	!Kit(LastSeenBy(Myself),INQUISITOR)
+	!Kit(LastSeenBy(Myself),CAVALIER)
+	!Race(LastSeenBy(Myself),ELF)
+	!StateCheck(LastSeenBy(Myself),STATE_DISABLED)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_2_RANDOM_CAST","LOCALS",1,4)
+		SetGlobalRandom("SSPELLS_3_RANDOM_CAST","LOCALS",1,3)
+		SetGlobalRandom("SSPELLS_4_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_5_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("RandomNum","LOCALS",1,3)
+		Spell(LastSeenBy(Myself),WIZARD_CHARM_PERSON)
+		Wait(1)
+END
+
+IF
+	RandomNum(8,7)
+	Global("SSPELLS_3_RANDOM_CAST","LOCALS",1)
+	HaveSpellRES("IWWI220")
+	!Global("OBJ_SP_41BORIA_1","LOCALS",-1)
+	GlobalGT("RandomNum","LOCALS",1)
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_2_RANDOM_CAST","LOCALS",1,4)
+		SetGlobalRandom("SSPELLS_3_RANDOM_CAST","LOCALS",1,3)
+		SetGlobalRandom("SSPELLS_4_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_5_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("RandomNum","LOCALS",1,3)
+		SpellRES("IWWI220",LastSeenBy(Myself))
+		Wait(1)
+END
+
+IF
+	RandomNum(8,8)
+	Global("SSPELLS_3_RANDOM_CAST","LOCALS",1)
+	HaveSpellRES("IWWI122")
+	!Global("OBJ_SP_41BORIA_1","LOCALS",-1)
+	GlobalGT("RandomNum","LOCALS",1)
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_2_RANDOM_CAST","LOCALS",1,4)
+		SetGlobalRandom("SSPELLS_3_RANDOM_CAST","LOCALS",1,3)
+		SetGlobalRandom("SSPELLS_4_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_5_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("RandomNum","LOCALS",1,3)
+		SpellRES("IWWI122",LastSeenBy(Myself))
+		Wait(1)
+END
+//2 - LastMarkedObject - [WIZARD_ICELANCE, WIZARD_CONFUSION, WIZARD_ICE_STORM, WIZARD_CONE_OF_COLD, WIZARD_MAGIC_MISSILE]
+IF
+	RandomNum(5,1)
+	Global("SSPELLS_3_RANDOM_CAST","LOCALS",2)
+	HaveSpellRES("IWWI318")
+	!Global("OBJ_SP_41BORIA_1","LOCALS",-1)
+	GlobalGT("RandomNum","LOCALS",1)
+	See(NearestEnemyOf(Myself))
+	!HasBounceEffects(LastSeenBy(Myself))
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_2_RANDOM_CAST","LOCALS",1,4)
+		SetGlobalRandom("SSPELLS_3_RANDOM_CAST","LOCALS",1,3)
+		SetGlobalRandom("SSPELLS_4_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_5_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("RandomNum","LOCALS",1,3)
+		SpellRES("IWWI318",LastSeenBy(Myself))
+		Wait(1)
+END
+
+IF
+	RandomNum(5,2)
+	Global("SSPELLS_3_RANDOM_CAST","LOCALS",2)
+	HaveSpell(WIZARD_CONFUSION)
+	!Global("OBJ_SP_41BORIA_1","LOCALS",-1)
+	GlobalGT("RandomNum","LOCALS",1)
+	See(NearestEnemyOf(Myself))
+	!General(LastSeenBy(Myself),UNDEAD)
+	!Race(LastSeenBy(Myself),DEMONIC)
+	!Race(LastSeenBy(Myself),TANARI)
+	!Class(LastSeenBy(Myself),TANARI)
+	!Race(LastSeenBy(Myself),TROLL)
+	!Race(LastSeenBy(Myself),UMBERHULK)
+	!Race(LastSeenBy(Myself),MYCONID)
+	!Race(LastSeenBy(Myself),MINOTAUR)
+	!StateCheck(LastSeenBy(Myself),STATE_DISABLED)
+	!HasBounceEffects(LastSeenBy(Myself))
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_2_RANDOM_CAST","LOCALS",1,4)
+		SetGlobalRandom("SSPELLS_3_RANDOM_CAST","LOCALS",1,3)
+		SetGlobalRandom("SSPELLS_4_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_5_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("RandomNum","LOCALS",1,3)
+		Spell(LastSeenBy(Myself),WIZARD_CONFUSION)
+		Wait(1)
+END
+
+IF
+	RandomNum(5,3)
+	Global("SSPELLS_3_RANDOM_CAST","LOCALS",2)
+	HaveSpell(WIZARD_ICE_STORM)
+	!Global("OBJ_SP_41BORIA_1","LOCALS",-1)
+	GlobalGT("RandomNum","LOCALS",1)
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_2_RANDOM_CAST","LOCALS",1,4)
+		SetGlobalRandom("SSPELLS_3_RANDOM_CAST","LOCALS",1,3)
+		SetGlobalRandom("SSPELLS_4_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_5_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("RandomNum","LOCALS",1,3)
+		Spell(LastSeenBy(Myself),WIZARD_ICE_STORM)
+		Wait(1)
+END
+
+IF
+	RandomNum(5,4)
+	Global("SSPELLS_3_RANDOM_CAST","LOCALS",2)
+	HaveSpell(WIZARD_CONE_OF_COLD)
+	!Global("OBJ_SP_41BORIA_1","LOCALS",-1)
+	GlobalGT("RandomNum","LOCALS",1)
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_2_RANDOM_CAST","LOCALS",1,4)
+		SetGlobalRandom("SSPELLS_3_RANDOM_CAST","LOCALS",1,3)
+		SetGlobalRandom("SSPELLS_4_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_5_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("RandomNum","LOCALS",1,3)
+		Spell(LastSeenBy(Myself),WIZARD_CONE_OF_COLD)
+		Wait(1)
+END
+
+IF
+	RandomNum(5,5)
+	Global("SSPELLS_3_RANDOM_CAST","LOCALS",2)
+	HaveSpell(WIZARD_MAGIC_MISSILE)
+	!Global("OBJ_SP_41BORIA_1","LOCALS",-1)
+	GlobalGT("RandomNum","LOCALS",1)
+	See(NearestEnemyOf(Myself))
+	!HasBounceEffects(LastSeenBy(Myself))
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_2_RANDOM_CAST","LOCALS",1,4)
+		SetGlobalRandom("SSPELLS_3_RANDOM_CAST","LOCALS",1,3)
+		SetGlobalRandom("SSPELLS_4_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_5_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("RandomNum","LOCALS",1,3)
+		Spell(LastSeenBy(Myself),WIZARD_MAGIC_MISSILE)
+		Wait(1)
+END
+//3 - Myself - [CLERIC_CLOAK_OF_FEAR]
+IF
+	Global("SSPELLS_3_RANDOM_CAST","LOCALS",3)
+	HaveSpell(CLERIC_CLOAK_OF_FEAR)
+	!Global("OBJ_SP_41BORIA_1","LOCALS",-1)
+	GlobalGT("RandomNum","LOCALS",1)
+	See(NearestEnemyOf(Myself))
+	!StateCheck(LastSeenBy(Myself),STATE_PANIC)
+	!StateCheck(LastSeenBy(Myself),STATE_HELPLESS)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_2_RANDOM_CAST","LOCALS",1,4)
+		SetGlobalRandom("SSPELLS_3_RANDOM_CAST","LOCALS",1,3)
+		SetGlobalRandom("SSPELLS_4_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_5_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("RandomNum","LOCALS",1,3)
+		Spell(Myself,CLERIC_CLOAK_OF_FEAR)
+		Wait(1)
+END
+//BLOCK NO_RND
+/*IF
+	True()
+THEN
+	RESPONSE #100
+		SetGlobalRandom("RandomNum","LOCALS",1,4)
+		Continue()
+END*/
+
+//1 - LastMarkedObject - [CLERIC_COMMAND, CLERIC_BANE, CLERIC_DOOM, WIZARD_HOLD_PERSON, CLERIC_UNHOLY_BLIGHT, WIZARD_CHARM_PERSON, WIZARD_SNILLOCS_SNOWBALL_SWARM, WIZARD_ICE_DAGGER]
+IF
+	HaveSpell(CLERIC_COMMAND)
+	!Global("OBJ_SP_41BORIA_1","LOCALS",-1)
+	GlobalGT("RandomNum","LOCALS",1)
+	See(NearestEnemyOf(Myself))
+	General(LastSeenBy(Myself),HUMANOID)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_2_RANDOM_CAST","LOCALS",1,4)
+		SetGlobalRandom("SSPELLS_3_RANDOM_CAST","LOCALS",1,3)
+		SetGlobalRandom("SSPELLS_4_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_5_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("RandomNum","LOCALS",1,3)
+		Spell(LastSeenBy(Myself),CLERIC_COMMAND)
+		Wait(1)
+END
+
+IF
+	HaveSpellRES("IWPR111")
+	!Global("OBJ_SP_41BORIA_1","LOCALS",-1)
+	GlobalGT("RandomNum","LOCALS",1)
+	See(NearestEnemyOf(Myself))
+	!CheckSpellState(LastSeenBy(Myself),CLERIC_BANE)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_2_RANDOM_CAST","LOCALS",1,4)
+		SetGlobalRandom("SSPELLS_3_RANDOM_CAST","LOCALS",1,3)
+		SetGlobalRandom("SSPELLS_4_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_5_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("RandomNum","LOCALS",1,3)
+		SpellRES("IWPR111",LastSeenBy(Myself))
+		Wait(1)
+END
+
+IF
+	HaveSpell(CLERIC_DOOM)
+	!Global("OBJ_SP_41BORIA_1","LOCALS",-1)
+	GlobalGT("RandomNum","LOCALS",1)
+	See(NearestEnemyOf(Myself))
+	!CheckSpellState(LastSeenBy(Myself),DOOM)
+	!StateCheck(LastSeenBy(Myself),STATE_HARMLESS)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_2_RANDOM_CAST","LOCALS",1,4)
+		SetGlobalRandom("SSPELLS_3_RANDOM_CAST","LOCALS",1,3)
+		SetGlobalRandom("SSPELLS_4_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_5_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("RandomNum","LOCALS",1,3)
+		Spell(LastSeenBy(Myself),CLERIC_DOOM)
+		Wait(1)
+END
+
+IF
+	HaveSpell(WIZARD_HOLD_PERSON)
+	!Global("OBJ_SP_41BORIA_1","LOCALS",-1)
+	GlobalGT("RandomNum","LOCALS",1)
+	See(NearestEnemyOf(Myself))
+	!StateCheck(LastSeenBy(Myself),STATE_DISABLED)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_2_RANDOM_CAST","LOCALS",1,4)
+		SetGlobalRandom("SSPELLS_3_RANDOM_CAST","LOCALS",1,3)
+		SetGlobalRandom("SSPELLS_4_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_5_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("RandomNum","LOCALS",1,3)
+		Spell(LastSeenBy(Myself),WIZARD_HOLD_PERSON)
+		Wait(1)
+END
+
+IF
+	HaveSpell(CLERIC_UNHOLY_BLIGHT)
+	!Global("OBJ_SP_41BORIA_1","LOCALS",-1)
+	GlobalGT("RandomNum","LOCALS",1)
+	See(NearestEnemyOf(Myself))
+	Alignment(LastSeenBy(Myself),MASK_GOOD)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_2_RANDOM_CAST","LOCALS",1,4)
+		SetGlobalRandom("SSPELLS_3_RANDOM_CAST","LOCALS",1,3)
+		SetGlobalRandom("SSPELLS_4_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_5_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("RandomNum","LOCALS",1,3)
+		Spell(LastSeenBy(Myself),CLERIC_UNHOLY_BLIGHT)
+		Wait(1)
+END
+
+IF
+	HaveSpell(WIZARD_CHARM_PERSON)
+	!Global("OBJ_SP_41BORIA_1","LOCALS",-1)
+	GlobalGT("RandomNum","LOCALS",1)
+	See(NearestEnemyOf(Myself))
+	!Class(LastSeenBy(Myself),MONK)
+	!Kit(LastSeenBy(Myself),INQUISITOR)
+	!Kit(LastSeenBy(Myself),CAVALIER)
+	!Race(LastSeenBy(Myself),ELF)
+	!StateCheck(LastSeenBy(Myself),STATE_DISABLED)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_2_RANDOM_CAST","LOCALS",1,4)
+		SetGlobalRandom("SSPELLS_3_RANDOM_CAST","LOCALS",1,3)
+		SetGlobalRandom("SSPELLS_4_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_5_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("RandomNum","LOCALS",1,3)
+		Spell(LastSeenBy(Myself),WIZARD_CHARM_PERSON)
+		Wait(1)
+END
+
+IF
+	HaveSpellRES("IWWI220")
+	!Global("OBJ_SP_41BORIA_1","LOCALS",-1)
+	GlobalGT("RandomNum","LOCALS",1)
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_2_RANDOM_CAST","LOCALS",1,4)
+		SetGlobalRandom("SSPELLS_3_RANDOM_CAST","LOCALS",1,3)
+		SetGlobalRandom("SSPELLS_4_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_5_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("RandomNum","LOCALS",1,3)
+		SpellRES("IWWI220",LastSeenBy(Myself))
+		Wait(1)
+END
+
+IF
+	HaveSpellRES("IWWI122")
+	!Global("OBJ_SP_41BORIA_1","LOCALS",-1)
+	GlobalGT("RandomNum","LOCALS",1)
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_2_RANDOM_CAST","LOCALS",1,4)
+		SetGlobalRandom("SSPELLS_3_RANDOM_CAST","LOCALS",1,3)
+		SetGlobalRandom("SSPELLS_4_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_5_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("RandomNum","LOCALS",1,3)
+		SpellRES("IWWI122",LastSeenBy(Myself))
+		Wait(1)
+END
+//2 - LastMarkedObject - [WIZARD_ICELANCE, WIZARD_CONFUSION, WIZARD_ICE_STORM, WIZARD_CONE_OF_COLD, WIZARD_MAGIC_MISSILE]
+IF
+	HaveSpellRES("IWWI318")
+	!Global("OBJ_SP_41BORIA_1","LOCALS",-1)
+	GlobalGT("RandomNum","LOCALS",1)
+	See(NearestEnemyOf(Myself))
+	!HasBounceEffects(LastSeenBy(Myself))
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_2_RANDOM_CAST","LOCALS",1,4)
+		SetGlobalRandom("SSPELLS_3_RANDOM_CAST","LOCALS",1,3)
+		SetGlobalRandom("SSPELLS_4_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_5_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("RandomNum","LOCALS",1,3)
+		SpellRES("IWWI318",LastSeenBy(Myself))
+		Wait(1)
+END
+
+IF
+	HaveSpell(WIZARD_CONFUSION)
+	!Global("OBJ_SP_41BORIA_1","LOCALS",-1)
+	GlobalGT("RandomNum","LOCALS",1)
+	See(NearestEnemyOf(Myself))
+	!General(LastSeenBy(Myself),UNDEAD)
+	!Race(LastSeenBy(Myself),DEMONIC)
+	!Race(LastSeenBy(Myself),TANARI)
+	!Class(LastSeenBy(Myself),TANARI)
+	!Race(LastSeenBy(Myself),TROLL)
+	!Race(LastSeenBy(Myself),UMBERHULK)
+	!Race(LastSeenBy(Myself),MYCONID)
+	!Race(LastSeenBy(Myself),MINOTAUR)
+	!StateCheck(LastSeenBy(Myself),STATE_DISABLED)
+	!HasBounceEffects(LastSeenBy(Myself))
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_2_RANDOM_CAST","LOCALS",1,4)
+		SetGlobalRandom("SSPELLS_3_RANDOM_CAST","LOCALS",1,3)
+		SetGlobalRandom("SSPELLS_4_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_5_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("RandomNum","LOCALS",1,3)
+		Spell(LastSeenBy(Myself),WIZARD_CONFUSION)
+		Wait(1)
+END
+
+IF
+	HaveSpell(WIZARD_ICE_STORM)
+	!Global("OBJ_SP_41BORIA_1","LOCALS",-1)
+	GlobalGT("RandomNum","LOCALS",1)
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_2_RANDOM_CAST","LOCALS",1,4)
+		SetGlobalRandom("SSPELLS_3_RANDOM_CAST","LOCALS",1,3)
+		SetGlobalRandom("SSPELLS_4_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_5_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("RandomNum","LOCALS",1,3)
+		Spell(LastSeenBy(Myself),WIZARD_ICE_STORM)
+		Wait(1)
+END
+
+IF
+	HaveSpell(WIZARD_CONE_OF_COLD)
+	!Global("OBJ_SP_41BORIA_1","LOCALS",-1)
+	GlobalGT("RandomNum","LOCALS",1)
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_2_RANDOM_CAST","LOCALS",1,4)
+		SetGlobalRandom("SSPELLS_3_RANDOM_CAST","LOCALS",1,3)
+		SetGlobalRandom("SSPELLS_4_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_5_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("RandomNum","LOCALS",1,3)
+		Spell(LastSeenBy(Myself),WIZARD_CONE_OF_COLD)
+		Wait(1)
+END
+
+IF
+	HaveSpell(WIZARD_MAGIC_MISSILE)
+	!Global("OBJ_SP_41BORIA_1","LOCALS",-1)
+	GlobalGT("RandomNum","LOCALS",1)
+	See(NearestEnemyOf(Myself))
+	!HasBounceEffects(LastSeenBy(Myself))
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_2_RANDOM_CAST","LOCALS",1,4)
+		SetGlobalRandom("SSPELLS_3_RANDOM_CAST","LOCALS",1,3)
+		SetGlobalRandom("SSPELLS_4_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_5_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("RandomNum","LOCALS",1,3)
+		Spell(LastSeenBy(Myself),WIZARD_MAGIC_MISSILE)
+		Wait(1)
+END
+//3 - Myself - [CLERIC_CLOAK_OF_FEAR]
+IF
+	HaveSpell(CLERIC_CLOAK_OF_FEAR)
+	!Global("OBJ_SP_41BORIA_1","LOCALS",-1)
+	GlobalGT("RandomNum","LOCALS",1)
+	See(NearestEnemyOf(Myself))
+	!StateCheck(LastSeenBy(Myself),STATE_PANIC)
+	!StateCheck(LastSeenBy(Myself),STATE_HELPLESS)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_2_RANDOM_CAST","LOCALS",1,4)
+		SetGlobalRandom("SSPELLS_3_RANDOM_CAST","LOCALS",1,3)
+		SetGlobalRandom("SSPELLS_4_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_5_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("RandomNum","LOCALS",1,3)
+		Spell(Myself,CLERIC_CLOAK_OF_FEAR)
+		Wait(1)
+END
+//BLOCKEND
+//BLOCKEND
+IF
+	!Global("OBJ_SP_41BORIA_1","LOCALS",-1)
+	!HaveSpell(CLERIC_COMMAND)
+	!HaveSpellRES("IWPR111")
+	!HaveSpell(CLERIC_DOOM)
+	!HaveSpell(WIZARD_HOLD_PERSON)
+	!HaveSpell(CLERIC_UNHOLY_BLIGHT)
+	!HaveSpell(WIZARD_CHARM_PERSON)
+	!HaveSpellRES("IWWI220")
+	!HaveSpellRES("IWWI122")
+	!HaveSpellRES("IWWI318")
+	!HaveSpell(WIZARD_CONFUSION)
+	!HaveSpell(WIZARD_ICE_STORM)
+	!HaveSpell(WIZARD_CONE_OF_COLD)
+	!HaveSpell(CLERIC_CLOAK_OF_FEAR)
+	!HaveSpell(WIZARD_MAGIC_MISSILE)
+THEN
+	RESPONSE #100
+		SetGlobal("OBJ_SP_41BORIA_1","LOCALS",-1)
+		Continue()
+END
+//BLOCK SPL_4
+/*IF
+	ForceMarkedSpell(MARKED_SPELL)
+	SetSpellTarget(Nothing)
+	!Global("OBJ_SP_41BORIA_2","LOCALS",-1)
+	See([PC],0)
+	!Global("OBJ_SP_41BORIA_2","LOCALS",-1)
+	Range(LastMarkedObject,9,GREATER_THAN)
+THEN
+	RESPONSE #100
+		MarkSpellAndObject("12111510",LastMarkedObject,SPELLCAST_IGNORE_SEE | SPELLCAST_IGNORE_VALID_SPELL_TARGET)  // [CLERIC_SILENCE_15_RADIUS, CLERIC_INSECT_PLAGUE]
+		Continue()
+END
+
+IF
+	!IsMarkedSpell(MARKED_SPELL)
+THEN
+	RESPONSE #100
+		Spell(SpellTarget,MARKED_SPELL)
+		WaitAnimation(Myself,WALK)
+		WaitAnimation(Myself,CONJURE)
+		WaitAnimation(Myself,CAST)
+		ForceMarkedSpell(MARKED_SPELL)
+END*/
+/*IF
+	GlobalLT("SSPELLS_4_RANDOM_CAST","LOCALS",3)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_4_RANDOM_CAST","LOCALS",1,2)
+		Continue()
+END*/
+//1 - LastMarkedObject - [CLERIC_SILENCE_15_RADIUS, CLERIC_INSECT_PLAGUE]
+IF
+	Global("SSPELLS_4_RANDOM_CAST","LOCALS",1)
+	HaveSpell(CLERIC_SILENCE_15_FOOT)
+	!Global("OBJ_SP_41BORIA_2","LOCALS",-1)
+	See(FarthestEnemyOf(Myself))
+	!Range(LastSeenBy(Myself),9)
+	OR(4)
+		Class(LastSeenBy(Myself),MAGE_ALL)
+		Class(LastSeenBy(Myself),SORCERER)
+		Class(LastSeenBy(Myself),CLERIC_ALL)
+		Class(LastSeenBy(Myself),DRUID_ALL)
+	!StateCheck(LastSeenBy(Myself),STATE_SILENCED)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_2_RANDOM_CAST","LOCALS",1,4)
+		SetGlobalRandom("SSPELLS_3_RANDOM_CAST","LOCALS",1,3)
+		SetGlobalRandom("SSPELLS_4_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_5_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("RandomNum","LOCALS",1,3)
+		Spell(LastSeenBy(Myself),CLERIC_SILENCE_15_FOOT)
+		Wait(1)
+END
+
+IF
+	Global("SSPELLS_4_RANDOM_CAST","LOCALS",2)
+	HaveSpell(CLERIC_INSECT_PLAGUE)
+	!Global("OBJ_SP_41BORIA_2","LOCALS",-1)
+	See(FarthestEnemyOf(Myself))
+	!Range(LastSeenBy(Myself),9)
+	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_INSECT_PLAGUE)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_2_RANDOM_CAST","LOCALS",1,4)
+		SetGlobalRandom("SSPELLS_3_RANDOM_CAST","LOCALS",1,3)
+		SetGlobalRandom("SSPELLS_4_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_5_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("RandomNum","LOCALS",1,3)
+		Spell(LastSeenBy(Myself),CLERIC_INSECT_PLAGUE)
+		Wait(1)
+END
+//BLOCK NO_RND
+IF
+	HaveSpell(CLERIC_SILENCE_15_FOOT)
+	!Global("OBJ_SP_41BORIA_2","LOCALS",-1)
+	See(FarthestEnemyOf(Myself))
+	!Range(LastSeenBy(Myself),9)
+	!StateCheck(LastSeenBy(Myself),STATE_SILENCED)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_2_RANDOM_CAST","LOCALS",1,4)
+		SetGlobalRandom("SSPELLS_3_RANDOM_CAST","LOCALS",1,3)
+		SetGlobalRandom("SSPELLS_4_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_5_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("RandomNum","LOCALS",1,3)
+		Spell(LastSeenBy(Myself),CLERIC_SILENCE_15_FOOT)
+		Wait(1)
+END
+
+IF
+	HaveSpell(CLERIC_INSECT_PLAGUE)
+	!Global("OBJ_SP_41BORIA_2","LOCALS",-1)
+	See(FarthestEnemyOf(Myself))
+	!Range(LastSeenBy(Myself),9)
+	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_INSECT_PLAGUE)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_2_RANDOM_CAST","LOCALS",1,4)
+		SetGlobalRandom("SSPELLS_3_RANDOM_CAST","LOCALS",1,3)
+		SetGlobalRandom("SSPELLS_4_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_5_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("RandomNum","LOCALS",1,3)
+		Spell(LastSeenBy(Myself),CLERIC_INSECT_PLAGUE)
+		Wait(1)
+END
+//BLOCKEND
+//BLOCKEND
+IF
+	!Global("OBJ_SP_41BORIA_2","LOCALS",-1)
+	!HaveSpell(CLERIC_SILENCE_15_FOOT)
+	!HaveSpell(CLERIC_INSECT_PLAGUE)
+THEN
+	RESPONSE #100
+		SetGlobal("OBJ_SP_41BORIA_2","LOCALS",-1)
+		Continue()
+END
+
+IF
+	OR(20)	
+		HasItem("SGRASP01",Myself)
+		HasItem("SGRASP02",Myself)
+		HasItem("SGRASP03",Myself)
+		HasItem("SGRASP04",Myself)
+		HasItem("SGRASP05",Myself)
+		HasItem("SGRASP06",Myself)
+		HasItem("SGRASP07",Myself)
+		HasItem("SGRASP08",Myself)
+		HasItem("SGRASP09",Myself)
+		HasItem("SGRASP10",Myself)
+		HasItem("SGRASP11",Myself)
+		HasItem("SGRASP12",Myself)
+		HasItem("SGRASP13",Myself)
+		HasItem("SGRASP14",Myself)
+		HasItem("SGRASP15",Myself)
+		HasItem("SGRASP16",Myself)
+		HasItem("SGRASP17",Myself)
+		HasItem("SGRASP18",Myself)
+		HasItem("SGRASP19",Myself)
+		HasItem("SGRASP20",Myself)
+	//!Global("OBJ_SP_41BORIA_3","LOCALS",-1)
+	RandomNum(2,1)
+	Range(NearestEnemyOf(Myself),5)
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		AttackOneRound(LastSeenBy(Myself))
+END
+//BLOCK SPL_5
+/*IF
+	ForceMarkedSpell(MARKED_SPELL)
+	SetSpellTarget(Nothing)
+	!Global("OBJ_SP_41BORIA_3","LOCALS",-1)
+	!Global("OBJ_SP_41BORIA_3","LOCALS",-1)
+	RandomNum(2,1)
+	Range(LastMarkedObject,5,LESS_THAN)
+	See(NearestEnemyOf(Myself),0)
+THEN
+	RESPONSE #100
+		MarkSpellAndObject("13192115",Myself,SPELLCAST_IGNORE_SEE | SPELLCAST_IGNORE_VALID_SPELL_TARGET | SPELLCAST_RANDOM)  // [CLERIC_CIRCLE_OF_BONES, WIZARD_SHOCKING_GRASP]
+		MarkSpellAndObject("1117",LastMarkedObject,SPELLCAST_IGNORE_SEE | SPELLCAST_IGNORE_VALID_SPELL_TARGET | SPELLCAST_RANDOM)  // [CLERIC_FROST_FINGERS]
+		Continue()
+	RESPONSE #100
+		MarkSpellAndObject("1117",LastMarkedObject,SPELLCAST_IGNORE_SEE | SPELLCAST_IGNORE_VALID_SPELL_TARGET | SPELLCAST_RANDOM)  // [CLERIC_FROST_FINGERS]
+		MarkSpellAndObject("13192115",Myself,SPELLCAST_IGNORE_SEE | SPELLCAST_IGNORE_VALID_SPELL_TARGET | SPELLCAST_RANDOM)  // [CLERIC_CIRCLE_OF_BONES, WIZARD_SHOCKING_GRASP]
+		Continue()
+END
+
+IF
+	!IsMarkedSpell(MARKED_SPELL)
+THEN
+	RESPONSE #100
+		Spell(SpellTarget,MARKED_SPELL)
+		WaitAnimation(Myself,WALK)
+		WaitAnimation(Myself,CONJURE)
+		WaitAnimation(Myself,CAST)
+		ForceMarkedSpell(MARKED_SPELL)
+END*/
+/*IF
+	GlobalLT("SSPELLS_5_RANDOM_CAST","LOCALS",3)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_5_RANDOM_CAST","LOCALS",1,2)
+		Continue()
+END*/
+//1 - Myself - [CLERIC_CIRCLE_OF_BONES, WIZARD_SHOCKING_GRASP]
+IF
+	RandomNum(2,1)
+	Global("SSPELLS_5_RANDOM_CAST","LOCALS",1)
+	HaveSpell(CLERIC_BLADE_BARRIER)
+	!Global("OBJ_SP_41BORIA_3","LOCALS",-1)
+	Range(NearestEnemyOf(Myself),5)
+	See(NearestEnemyOf(Myself))
+	!CheckStatGT(Myself,0,CLERIC_BLADE_BARRIER)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_2_RANDOM_CAST","LOCALS",1,4)
+		SetGlobalRandom("SSPELLS_3_RANDOM_CAST","LOCALS",1,3)
+		SetGlobalRandom("SSPELLS_4_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_5_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("RandomNum","LOCALS",1,3)
+		Spell(Myself,CLERIC_BLADE_BARRIER)
+		Wait(1)
+END
+
+IF
+	RandomNum(2,2)
+	Global("SSPELLS_5_RANDOM_CAST","LOCALS",1)
+	HaveSpell(WIZARD_SHOCKING_GRASP)
+	!Global("OBJ_SP_41BORIA_3","LOCALS",-1)
+	Range(NearestEnemyOf(Myself),5)
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_2_RANDOM_CAST","LOCALS",1,4)
+		SetGlobalRandom("SSPELLS_3_RANDOM_CAST","LOCALS",1,3)
+		SetGlobalRandom("SSPELLS_4_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_5_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("RandomNum","LOCALS",1,3)
+		Spell(Myself,WIZARD_SHOCKING_GRASP)
+		Wait(1)
+END
+//2 - LastMarkedObject - [CLERIC_FROST_FINGERS]
+IF
+	Global("SSPELLS_5_RANDOM_CAST","LOCALS",1)
+	HaveSpellRES("IWPR117")
+	!Global("OBJ_SP_41BORIA_3","LOCALS",-1)
+	Range(NearestEnemyOf(Myself),5)
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_2_RANDOM_CAST","LOCALS",1,4)
+		SetGlobalRandom("SSPELLS_3_RANDOM_CAST","LOCALS",1,3)
+		SetGlobalRandom("SSPELLS_4_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_5_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("RandomNum","LOCALS",1,3)
+		SpellRES("IWPR117",LastSeenBy(Myself))
+		Wait(1)
+END
+//BLOCK NO_RND
+//1 - Myself - [CLERIC_CIRCLE_OF_BONES, WIZARD_SHOCKING_GRASP]
+IF
+	HaveSpell(CLERIC_BLADE_BARRIER)
+	!Global("OBJ_SP_41BORIA_3","LOCALS",-1)
+	Range(NearestEnemyOf(Myself),5)
+	See(NearestEnemyOf(Myself))
+	!CheckStatGT(Myself,0,CLERIC_BLADE_BARRIER)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_2_RANDOM_CAST","LOCALS",1,4)
+		SetGlobalRandom("SSPELLS_3_RANDOM_CAST","LOCALS",1,3)
+		SetGlobalRandom("SSPELLS_4_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_5_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("RandomNum","LOCALS",1,3)
+		Spell(Myself,CLERIC_BLADE_BARRIER)
+		Wait(1)
+END
+
+IF
+	HaveSpell(WIZARD_SHOCKING_GRASP)
+	!Global("OBJ_SP_41BORIA_3","LOCALS",-1)
+	Range(NearestEnemyOf(Myself),5)
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_2_RANDOM_CAST","LOCALS",1,4)
+		SetGlobalRandom("SSPELLS_3_RANDOM_CAST","LOCALS",1,3)
+		SetGlobalRandom("SSPELLS_4_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_5_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("RandomNum","LOCALS",1,3)
+		Spell(Myself,WIZARD_SHOCKING_GRASP)
+		Wait(1)
+END
+//2 - LastMarkedObject - [CLERIC_FROST_FINGERS]
+IF
+	HaveSpellRES("IWPR117")
+	!Global("OBJ_SP_41BORIA_3","LOCALS",-1)
+	Range(NearestEnemyOf(Myself),5)
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_2_RANDOM_CAST","LOCALS",1,4)
+		SetGlobalRandom("SSPELLS_3_RANDOM_CAST","LOCALS",1,3)
+		SetGlobalRandom("SSPELLS_4_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_5_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("RandomNum","LOCALS",1,3)
+		SpellRES("IWPR117",LastSeenBy(Myself))
+		Wait(1)
+END
+//BLOCKEND
+//BLOCKEND
+
+IF
+	!Global("OBJ_SP_41BORIA_3","LOCALS",-1)
+	!HaveSpell(CLERIC_BLADE_BARRIER)
+	!HaveSpellRES("IWPR117")
+	!HaveSpell(WIZARD_SHOCKING_GRASP)
+THEN
+	RESPONSE #100
+		SetGlobal("OBJ_SP_41BORIA_3","LOCALS",-1)
+		Continue()
+END
+
+////////////////////////////////
+IF
+	See(NearestEnemyOf(Myself))
+	!Name("OriaEssence",Myself)
+THEN
+	RESPONSE #100
+		EquipMostDamagingMelee()
+		AttackOneRound(LastSeenBy(Myself))
+END
+

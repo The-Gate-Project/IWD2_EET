@@ -1,0 +1,10 @@
+IF
+	OR(2)
+		Opened([PC])
+		Entered([PC])
+THEN
+	RESPONSE #100
+		DisplayString(LastTrigger,14381)
+		ReallyForceSpellRES("IWWI016",LastTrigger)  // SPWI016.SPL TRAP_POISON_PARALYZATION_DARTS
+END
+

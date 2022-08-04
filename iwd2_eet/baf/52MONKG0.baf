@@ -1,0 +1,219 @@
+IF
+	Level(Myself,30)
+THEN
+	RESPONSE #100
+		ChangeAIScript("00Monk30",CLASS)
+END
+
+IF
+	Level(Myself,29)
+THEN
+	RESPONSE #100
+		ChangeAIScript("00Monk29",CLASS)
+END
+
+IF
+	Level(Myself,28)
+THEN
+	RESPONSE #100
+		ChangeAIScript("00Monk28",CLASS)
+END
+
+IF
+	Level(Myself,27)
+THEN
+	RESPONSE #100
+		ChangeAIScript("00Monk27",CLASS)
+END
+
+IF
+	Level(Myself,26)
+THEN
+	RESPONSE #100
+		ChangeAIScript("00Monk26",CLASS)
+END
+
+IF
+	Level(Myself,25)
+THEN
+	RESPONSE #100
+		ChangeAIScript("00Monk25",CLASS)
+END
+
+IF
+	Level(Myself,24)
+THEN
+	RESPONSE #100
+		ChangeAIScript("00Monk24",CLASS)
+END
+
+IF
+	Level(Myself,23)
+THEN
+	RESPONSE #100
+		ChangeAIScript("00Monk23",CLASS)
+END
+
+IF
+	Level(Myself,22)
+THEN
+	RESPONSE #100
+		ChangeAIScript("00Monk22",CLASS)
+END
+
+IF
+	Level(Myself,21)
+THEN
+	RESPONSE #100
+		ChangeAIScript("00Monk21",CLASS)
+END
+
+IF
+	Level(Myself,20)
+THEN
+	RESPONSE #100
+		ChangeAIScript("00Monk20",CLASS)
+END
+
+IF
+	Level(Myself,19)
+THEN
+	RESPONSE #100
+		ChangeAIScript("00Monk19",CLASS)
+END
+
+IF
+	Level(Myself,18)
+THEN
+	RESPONSE #100
+		ChangeAIScript("00Monk18",CLASS)
+END
+
+IF
+	Level(Myself,17)
+THEN
+	RESPONSE #100
+		ChangeAIScript("00Monk17",CLASS)
+END
+
+IF
+	Level(Myself,16)
+THEN
+	RESPONSE #100
+		ChangeAIScript("00Monk16",CLASS)
+END
+
+IF
+	Level(Myself,15)
+THEN
+	RESPONSE #100
+		ChangeAIScript("00Monk15",CLASS)
+END
+
+IF
+	Level(Myself,14)
+THEN
+	RESPONSE #100
+		ChangeAIScript("00Monk14",CLASS)
+END
+
+IF
+	Level(Myself,13)
+THEN
+	RESPONSE #100
+		ChangeAIScript("00Monk13",CLASS)
+END
+
+IF
+	Level(Myself,12)
+THEN
+	RESPONSE #100
+		ChangeAIScript("00Monk12",CLASS)
+END
+
+IF
+	Level(Myself,11)
+THEN
+	RESPONSE #100
+		ChangeAIScript("00Monk11",CLASS)
+END
+
+IF
+	Level(Myself,10)
+THEN
+	RESPONSE #100
+		ChangeAIScript("00Monk10",CLASS)
+END
+
+IF
+	Level(Myself,9)
+THEN
+	RESPONSE #100
+		ChangeAIScript("00Monk9",CLASS)
+END
+
+IF
+	Level(Myself,8)
+THEN
+	RESPONSE #100
+		ChangeAIScript("00Monk8",CLASS)
+END
+
+IF
+	Level(Myself,7)
+THEN
+	RESPONSE #100
+		ChangeAIScript("00Monk7",CLASS)
+END
+
+IF
+	Level(Myself,6)
+THEN
+	RESPONSE #100
+		ChangeAIScript("00Monk6",CLASS)
+END
+
+IF
+	Level(Myself,5)
+THEN
+	RESPONSE #100
+		ChangeAIScript("00Monk5",CLASS)
+END
+
+IF
+	Level(Myself,4)
+THEN
+	RESPONSE #100
+		ChangeAIScript("00Monk4",CLASS)
+END
+
+IF
+	Level(Myself,3)
+THEN
+	RESPONSE #100
+		ChangeAIScript("00Monk3",CLASS)
+END
+
+IF
+	Level(Myself,2)
+THEN
+	RESPONSE #100
+		ChangeAIScript("00Monk2",CLASS)
+END
+
+IF
+	Level(Myself,1)
+THEN
+	RESPONSE #100
+		ChangeAIScript("00Monk1",CLASS)
+END
+
+IF
+	LevelGT(Myself,30)
+THEN
+	RESPONSE #100
+		//ChangeAIScript("",CLASS)
+		ChangeAIScript("00Monk30",CLASS)
+		//Continue()
+END
+

@@ -1,0 +1,30 @@
+IF
+	Global("TEAM_7","MYAREA",1)
+	!See([PC])
+THEN
+	RESPONSE #100
+		MoveToObject(Player1)
+END
+
+IF
+	!GlobalTimerNotExpired("IwTimer1","LOCALS")
+	//!IsFacingSavedRotation(Myself)
+	GlobalLT("FaceSavedLocation","LOCALS",4)
+THEN
+	RESPONSE #100
+		//FaceSavedLocation(Myself)
+		RandomTurn()
+		SetGlobalRandom("FaceSavedLocation","LOCALS",1,6)
+		SetGlobalTimerRandom("IwTimer1","LOCALS",2,15)
+END
+
+IF
+	!GlobalTimerNotExpired("IwTimer1","LOCALS")
+	//!IsFacingSavedRotation(Myself)
+	GlobalGT("FaceSavedLocation","LOCALS",3)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("FaceSavedLocation","LOCALS",1,6)
+		SetGlobalTimerRandom("IwTimer1","LOCALS",2,15)
+END
+

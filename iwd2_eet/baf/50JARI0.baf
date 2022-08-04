@@ -1,0 +1,149 @@
+IF
+  Global("SaveSavedLoc","LOCALS",0)
+THEN
+  RESPONSE #100
+    SetGlobal("SaveSavedLoc","LOCALS",1)
+    SaveObjectLocation("LOCALS","SavedLoc",Myself)
+    Continue()
+END
+
+IF
+	!GlobalTimerNotExpired("IwTimer18","LOCALS")
+	!Global("50Jari_Gift","GLOBAL",2)
+THEN
+	RESPONSE #15
+		DisplayStringHead(Myself,@17888)
+		SetGlobalTimerRandom("IwTimer18","LOCALS",15,20)
+		Continue()
+	RESPONSE #85
+		SetGlobalTimerRandom("IwTimer18","LOCALS",15,20)
+		Continue()
+END
+
+IF
+	Global("ML_0","LOCALS",0)
+	ActionListEmpty()
+	NearLocation(Myself,2135,425,4)
+THEN
+	RESPONSE #100
+		SetHomeLocation([2135.425])
+		SetGlobal("ML_0","LOCALS",1)
+		Continue()
+END
+
+IF
+	Global("ML_0","LOCALS",0)
+	Global("50Jari","GLOBAL",0)
+THEN
+	RESPONSE #100
+		MoveToPoint([2135.425])
+END
+
+IF
+	Global("ML_0","LOCALS",1)
+	Global("50Jari","GLOBAL",0)
+	!GlobalTimerNotExpired("IwTimer19","LOCALS")
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IwTimer19","LOCALS",1)
+		SetGlobal("ML_0","LOCALS",2)
+END
+
+IF
+	Global("ML_0","LOCALS",2)
+	Global("50Jari","GLOBAL",0)
+	!GlobalTimerNotExpired("IwTimer19","LOCALS")
+THEN
+	RESPONSE #100
+		Face(W)
+		SetGlobal("ML_0","LOCALS",3)
+END
+
+IF
+	Global("ML_0","LOCALS",3)
+	Global("50Jari","GLOBAL",0)
+	!GlobalTimerNotExpired("IwTimer19","LOCALS")
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IwTimer19","LOCALS",2)
+		SetGlobal("ML_0","LOCALS",4)
+END
+
+IF
+	Global("ML_0","LOCALS",4)
+	NearSavedLocation(Myself,"LOCALSSavedLoc",4)
+	Global("50Jari","GLOBAL",0)
+THEN
+	RESPONSE #100
+		SetGlobal("ML_0","LOCALS",5)
+		SetHomeLocation([-1.-1])
+		Continue()
+END
+
+IF
+	Global("ML_0","LOCALS",4)
+	!GlobalTimerNotExpired("IwTimer19","LOCALS")
+	!NearSavedLocation(Myself,"LOCALSSavedLoc",4)
+	Global("50Jari","GLOBAL",0)
+THEN
+	RESPONSE #100
+		MoveToSavedLocation("SavedLoc","LOCALS")
+END
+
+IF
+	Global("ML_0","LOCALS",5)
+	Global("50Jari","GLOBAL",0)
+	!GlobalTimerNotExpired("IwTimer19","LOCALS")
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IwTimer19","LOCALS",1)
+		SetGlobal("ML_0","LOCALS",6)
+END
+
+IF
+	Global("ML_0","LOCALS",6)
+	Global("50Jari","GLOBAL",0)
+	!GlobalTimerNotExpired("IwTimer19","LOCALS")
+THEN
+	RESPONSE #100
+		Face(E)
+		SetGlobal("ML_0","LOCALS",7)
+END
+
+IF
+	Global("ML_0","LOCALS",7)
+	Global("50Jari","GLOBAL",0)
+	!GlobalTimerNotExpired("IwTimer19","LOCALS")
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IwTimer19","LOCALS",2)
+		SetGlobal("ML_0","LOCALS",0)
+END
+
+IF
+	Global("ML_1","LOCALS",0)
+	ActionListEmpty()
+	NearLocation(Myself,1775,565,3)
+THEN
+	RESPONSE #100
+		SetHomeLocation([1775.565])
+		SetGlobal("ML_1","LOCALS",1)
+		Continue()
+END
+
+IF
+	Global("ML_1","LOCALS",0)
+	!Global("50Jari","GLOBAL",0)
+THEN
+	RESPONSE #100
+		MoveToPoint([1775.565])
+END
+
+IF
+	Global("ML_1","LOCALS",1)
+	!Global("50Jari","GLOBAL",0)
+THEN
+	RESPONSE #100
+		DestroySelf()
+END
+

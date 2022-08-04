@@ -1,0 +1,2638 @@
+/* OLD
+IF
+	True()
+THEN
+	RESPONSE #100
+		SetGlobal("FloatMessage","LOCALS",0)
+		SetGlobal("Player1OnPad","LOCALS",0)
+		SetGlobal("Player2OnPad","LOCALS",0)
+		SetGlobal("Player3OnPad","LOCALS",0)
+		SetGlobal("Player4OnPad","LOCALS",0)
+		SetGlobal("Player5OnPad","LOCALS",0)
+		SetGlobal("Player6OnPad","LOCALS",0)
+		SetGlobal("Player1HasAmulet","LOCALS",0)
+		SetGlobal("Player2HasAmulet","LOCALS",0)
+		SetGlobal("Player3HasAmulet","LOCALS",0)
+		SetGlobal("Player4HasAmulet","LOCALS",0)
+		SetGlobal("Player5HasAmulet","LOCALS",0)
+		SetGlobal("Player6HasAmulet","LOCALS",0)
+		SetGlobal("Player1Exists","LOCALS",0)
+		SetGlobal("Player2Exists","LOCALS",0)
+		SetGlobal("Player3Exists","LOCALS",0)
+		SetGlobal("Player4Exists","LOCALS",0)
+		SetGlobal("Player5Exists","LOCALS",0)
+		SetGlobal("Player6Exists","LOCALS",0)
+		SetGlobal("Player1ReadyForTransport","LOCALS",0)
+		SetGlobal("Player2ReadyForTransport","LOCALS",0)
+		SetGlobal("Player3ReadyForTransport","LOCALS",0)
+		SetGlobal("Player4ReadyForTransport","LOCALS",0)
+		SetGlobal("Player5ReadyForTransport","LOCALS",0)
+		SetGlobal("Player6ReadyForTransport","LOCALS",0)
+		Continue()
+END
+
+IF
+	InMyArea(Player1)
+	HPPercentGT(Player1,0)
+THEN
+	RESPONSE #100
+		SetGlobal("Player1Exists","LOCALS",1)
+		Continue()
+END
+
+IF
+	!Global("Player1Exists","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("Player1ReadyForTransport","LOCALS",1)
+		Continue()
+END
+
+IF
+	InMyArea(Player2)
+	HPPercentGT(Player2,0)
+THEN
+	RESPONSE #100
+		SetGlobal("Player2Exists","LOCALS",1)
+		Continue()
+END
+
+IF
+	!Global("Player2Exists","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("Player2ReadyForTransport","LOCALS",1)
+		Continue()
+END
+
+IF
+	InMyArea(Player3)
+	HPPercentGT(Player3,0)
+THEN
+	RESPONSE #100
+		SetGlobal("Player3Exists","LOCALS",1)
+		Continue()
+END
+
+IF
+	!Global("Player3Exists","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("Player3ReadyForTransport","LOCALS",1)
+		Continue()
+END
+
+IF
+	InMyArea(Player4)
+	HPPercentGT(Player4,0)
+THEN
+	RESPONSE #100
+		SetGlobal("Player4Exists","LOCALS",1)
+		Continue()
+END
+
+IF
+	!Global("Player4Exists","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("Player4ReadyForTransport","LOCALS",1)
+		Continue()
+END
+
+IF
+	InMyArea(Player5)
+	HPPercentGT(Player5,0)
+THEN
+	RESPONSE #100
+		SetGlobal("Player5Exists","LOCALS",1)
+		Continue()
+END
+
+IF
+	!Global("Player5Exists","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("Player5ReadyForTransport","LOCALS",1)
+		Continue()
+END
+
+IF
+	InMyArea(Player6)
+	HPPercentGT(Player6,0)
+THEN
+	RESPONSE #100
+		SetGlobal("Player6Exists","LOCALS",1)
+		Continue()
+END
+
+IF
+	!Global("Player6Exists","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("Player6ReadyForTransport","LOCALS",1)
+		Continue()
+END
+
+IF
+	Global("Player1Exists","LOCALS",1)
+	Range(Player1,5)
+THEN
+	RESPONSE #100
+		SetGlobal("Player1OnPad","LOCALS",1)
+		Continue()
+END
+
+IF
+	Global("Player1Exists","LOCALS",1)
+	!Global("Player1OnPad","LOCALS",1)
+THEN
+	RESPONSE #100
+		Continue()
+END
+
+IF
+	Global("Player2Exists","LOCALS",1)
+	Range(Player2,5)
+THEN
+	RESPONSE #100
+		SetGlobal("Player2OnPad","LOCALS",1)
+		Continue()
+END
+
+IF
+	Global("Player2Exists","LOCALS",1)
+	!Global("Player2OnPad","LOCALS",1)
+THEN
+	RESPONSE #100
+		Continue()
+END
+
+IF
+	Global("Player3Exists","LOCALS",1)
+	Range(Player3,5)
+THEN
+	RESPONSE #100
+		SetGlobal("Player3OnPad","LOCALS",1)
+		Continue()
+END
+
+IF
+	Global("Player3Exists","LOCALS",1)
+	!Global("Player3OnPad","LOCALS",1)
+THEN
+	RESPONSE #100
+		Continue()
+END
+
+IF
+	Global("Player4Exists","LOCALS",1)
+	Range(Player4,5)
+THEN
+	RESPONSE #100
+		SetGlobal("Player4OnPad","LOCALS",1)
+		Continue()
+END
+
+IF
+	Global("Player4Exists","LOCALS",1)
+	!Global("Player4OnPad","LOCALS",1)
+THEN
+	RESPONSE #100
+		Continue()
+END
+
+IF
+	Global("Player5Exists","LOCALS",1)
+	Range(Player5,5)
+THEN
+	RESPONSE #100
+		SetGlobal("Player5OnPad","LOCALS",1)
+		Continue()
+END
+
+IF
+	Global("Player5Exists","LOCALS",1)
+	!Global("Player5OnPad","LOCALS",1)
+THEN
+	RESPONSE #100
+		Continue()
+END
+
+IF
+	Global("Player6Exists","LOCALS",1)
+	Range(Player6,5)
+THEN
+	RESPONSE #100
+		SetGlobal("Player6OnPad","LOCALS",1)
+		Continue()
+END
+
+IF
+	Global("Player6Exists","LOCALS",1)
+	!Global("Player6OnPad","LOCALS",1)
+THEN
+	RESPONSE #100
+		Continue()
+END
+
+IF
+	HasItem("z6amulix",Player1)  // Святой символ Ияхту Ксвима
+THEN
+	RESPONSE #100
+		SetGlobal("Player1HasAmulet","LOCALS",1)
+		Continue()
+END
+
+IF
+	!Global("Player1HasAmulet","LOCALS",1)
+THEN
+	RESPONSE #100
+		Continue()
+END
+
+IF
+	HasItem("z6amulix",Player2)  // Святой символ Ияхту Ксвима
+THEN
+	RESPONSE #100
+		SetGlobal("Player2HasAmulet","LOCALS",1)
+		Continue()
+END
+
+IF
+	!Global("Player2HasAmulet","LOCALS",1)
+THEN
+	RESPONSE #100
+		Continue()
+END
+
+IF
+	HasItem("z6amulix",Player3)  // Святой символ Ияхту Ксвима
+THEN
+	RESPONSE #100
+		SetGlobal("Player3HasAmulet","LOCALS",1)
+		Continue()
+END
+
+IF
+	!Global("Player3HasAmulet","LOCALS",1)
+THEN
+	RESPONSE #100
+		Continue()
+END
+
+IF
+	HasItem("z6amulix",Player4)  // Святой символ Ияхту Ксвима
+THEN
+	RESPONSE #100
+		SetGlobal("Player4HasAmulet","LOCALS",1)
+		Continue()
+END
+
+IF
+	!Global("Player4HasAmulet","LOCALS",1)
+THEN
+	RESPONSE #100
+		Continue()
+END
+
+IF
+	HasItem("z6amulix",Player5)  // Святой символ Ияхту Ксвима
+THEN
+	RESPONSE #100
+		SetGlobal("Player5HasAmulet","LOCALS",1)
+		Continue()
+END
+
+IF
+	!Global("Player5HasAmulet","LOCALS",1)
+THEN
+	RESPONSE #100
+		Continue()
+END
+
+IF
+	HasItem("z6amulix",Player6)  // Святой символ Ияхту Ксвима
+THEN
+	RESPONSE #100
+		SetGlobal("Player6HasAmulet","LOCALS",1)
+		Continue()
+END
+
+IF
+	!Global("Player6HasAmulet","LOCALS",1)
+THEN
+	RESPONSE #100
+		Continue()
+END
+
+IF
+	Global("Player1Exists","LOCALS",1)
+	Global("Player1HasAmulet","LOCALS",1)
+	Global("Player1OnPad","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("Player1ReadyForTransport","LOCALS",1)
+		Continue()
+END
+
+IF
+	!Global("Player1ReadyForTransport","LOCALS",1)
+THEN
+	RESPONSE #100
+		Continue()
+END
+
+IF
+	Global("Player2Exists","LOCALS",1)
+	Global("Player2HasAmulet","LOCALS",1)
+	Global("Player2OnPad","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("Player2ReadyForTransport","LOCALS",1)
+		Continue()
+END
+
+IF
+	!Global("Player2ReadyForTransport","LOCALS",1)
+THEN
+	RESPONSE #100
+		Continue()
+END
+
+IF
+	Global("Player3Exists","LOCALS",1)
+	Global("Player3HasAmulet","LOCALS",1)
+	Global("Player3OnPad","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("Player3ReadyForTransport","LOCALS",1)
+		Continue()
+END
+
+IF
+	!Global("Player3ReadyForTransport","LOCALS",1)
+THEN
+	RESPONSE #100
+		Continue()
+END
+
+IF
+	Global("Player4Exists","LOCALS",1)
+	Global("Player4HasAmulet","LOCALS",1)
+	Global("Player4OnPad","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("Player4ReadyForTransport","LOCALS",1)
+		Continue()
+END
+
+IF
+	!Global("Player4ReadyForTransport","LOCALS",1)
+THEN
+	RESPONSE #100
+		Continue()
+END
+
+IF
+	Global("Player5Exists","LOCALS",1)
+	Global("Player5HasAmulet","LOCALS",1)
+	Global("Player5OnPad","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("Player5ReadyForTransport","LOCALS",1)
+		Continue()
+END
+
+IF
+	!Global("Player5ReadyForTransport","LOCALS",1)
+THEN
+	RESPONSE #100
+		Continue()
+END
+
+IF
+	Global("Player6Exists","LOCALS",1)
+	Global("Player6HasAmulet","LOCALS",1)
+	Global("Player6OnPad","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("Player6ReadyForTransport","LOCALS",1)
+		Continue()
+END
+
+IF
+	!Global("Player6ReadyForTransport","LOCALS",1)
+THEN
+	RESPONSE #100
+		Continue()
+END
+
+IF
+	Global("SaveGame","MYAREA",0)
+	!GlobalTimerNotExpired("IwTimer93","LOCALS")
+	Global("Player1ReadyForTransport","LOCALS",1)
+	Global("Player2ReadyForTransport","LOCALS",1)
+	Global("Player3ReadyForTransport","LOCALS",1)
+	Global("Player4ReadyForTransport","LOCALS",1)
+	Global("Player5ReadyForTransport","LOCALS",1)
+	Global("Player6ReadyForTransport","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("SaveGame","MYAREA",1)
+		SaveGame(0)  // Покои Тираннара Брутая Мара
+		Continue()
+END
+
+IF
+	Global("SaveGame","MYAREA",1)
+THEN
+	RESPONSE #100
+		SetGlobal("SaveGame","MYAREA",0)
+		SetGlobal("65Party_Teleported","GLOBAL",1)
+		SetGlobalTimer("IwTimer93","LOCALS",7)
+		StartCutSceneMode()
+		ClearAllActions()
+		MultiPlayerSync()
+		StartCutScene("65cTele")
+		Continue()
+END
+
+IF
+	Global("Player1Exists","LOCALS",1)
+	Global("Player1OnPad","LOCALS",1)
+	!Global("Player1HasAmulet","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IwTimer99","LOCALS",7)
+		SetGlobal("FloatMessage","LOCALS",1)
+		ReallyForceSpell(Player1,TRAP_CALL_LIGHTNING)  // SPPR987.SPL (Призыв молнии)
+		Continue()
+END
+
+IF
+	Global("Player2Exists","LOCALS",1)
+	Global("Player2OnPad","LOCALS",1)
+	!Global("Player2HasAmulet","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IwTimer98","LOCALS",7)
+		SetGlobal("FloatMessage","LOCALS",1)
+		ReallyForceSpell(Player2,TRAP_CALL_LIGHTNING)  // SPPR987.SPL (Призыв молнии)
+		Continue()
+END
+
+IF
+	Global("Player3Exists","LOCALS",1)
+	Global("Player3OnPad","LOCALS",1)
+	!Global("Player3HasAmulet","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IwTimer97","LOCALS",7)
+		SetGlobal("FloatMessage","LOCALS",1)
+		ReallyForceSpell(Player3,TRAP_CALL_LIGHTNING)  // SPPR987.SPL (Призыв молнии)
+		Continue()
+END
+
+IF
+	Global("Player4Exists","LOCALS",1)
+	Global("Player4OnPad","LOCALS",1)
+	!Global("Player4HasAmulet","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IwTimer96","LOCALS",7)
+		SetGlobal("FloatMessage","LOCALS",1)
+		ReallyForceSpell(Player4,TRAP_CALL_LIGHTNING)  // SPPR987.SPL (Призыв молнии)
+		Continue()
+END
+
+IF
+	Global("Player5Exists","LOCALS",1)
+	Global("Player5OnPad","LOCALS",1)
+	!Global("Player5HasAmulet","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IwTimer95","LOCALS",7)
+		SetGlobal("FloatMessage","LOCALS",1)
+		ReallyForceSpell(Player5,TRAP_CALL_LIGHTNING)  // SPPR987.SPL (Призыв молнии)
+		Continue()
+END
+
+IF
+	Global("Player6Exists","LOCALS",1)
+	Global("Player6OnPad","LOCALS",1)
+	!Global("Player6HasAmulet","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IwTimer94","LOCALS",7)
+		SetGlobal("FloatMessage","LOCALS",1)
+		ReallyForceSpell(Player6,TRAP_CALL_LIGHTNING)  // SPPR987.SPL (Призыв молнии)
+		Continue()
+END
+
+IF
+	Global("FloatMessage","LOCALS",1)
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,@34573)
+		Continue()
+END
+*/
+/*NEW 1
+//BLOCK Teleport
+IF
+	Global("SaveGame","MYAREA",0)
+	!GlobalTimerNotExpired("IwTimer93","LOCALS")
+	Global("Player1ReadyForTransport","LOCALS",1)
+	Global("Player2ReadyForTransport","LOCALS",1)
+	Global("Player3ReadyForTransport","LOCALS",1)
+	Global("Player4ReadyForTransport","LOCALS",1)
+	Global("Player5ReadyForTransport","LOCALS",1)
+	Global("Player6ReadyForTransport","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("SaveGame","MYAREA",1)
+		SaveGame(0)  // Покои Тираннара Брутая Мара 55
+		//Continue()
+END
+
+IF
+	Global("SaveGame","MYAREA",1)
+THEN
+	RESPONSE #100
+		SetGlobal("SaveGame","MYAREA",0)
+		SetGlobal("65Party_Teleported","GLOBAL",1)
+		SetGlobalTimer("IwTimer93","LOCALS",7)
+		StartCutSceneMode()
+		ClearAllActions()
+		MultiPlayerSync()
+		StartCutScene("65cTele")
+		//Continue()
+END
+//BLOCKEND
+
+//BLOCK Ready
+IF
+	Global("Player1Exists","LOCALS",1)
+	Global("Player1HasAmulet","LOCALS",1)
+	Global("Player1OnPad","LOCALS",1)
+	!Global("Player1ReadyForTransport","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("Player1ReadyForTransport","LOCALS",1)
+		//Continue()
+END
+
+IF
+	!Global("Player1ReadyForTransport","LOCALS",1)
+THEN
+	RESPONSE #100
+		Continue()
+END
+
+IF
+	Global("Player2Exists","LOCALS",1)
+	Global("Player2HasAmulet","LOCALS",1)
+	Global("Player2OnPad","LOCALS",1)
+	!Global("Player2ReadyForTransport","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("Player2ReadyForTransport","LOCALS",1)
+		//Continue()
+END
+
+IF
+	!Global("Player2ReadyForTransport","LOCALS",1)
+THEN
+	RESPONSE #100
+		Continue()
+END
+
+IF
+	Global("Player3Exists","LOCALS",1)
+	Global("Player3HasAmulet","LOCALS",1)
+	Global("Player3OnPad","LOCALS",1)
+	!Global("Player3ReadyForTransport","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("Player3ReadyForTransport","LOCALS",1)
+		//Continue()
+END
+
+IF
+	!Global("Player3ReadyForTransport","LOCALS",1)
+THEN
+	RESPONSE #100
+		Continue()
+END
+
+IF
+	Global("Player4Exists","LOCALS",1)
+	Global("Player4HasAmulet","LOCALS",1)
+	Global("Player4OnPad","LOCALS",1)
+	!Global("Player4ReadyForTransport","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("Player4ReadyForTransport","LOCALS",1)
+		//Continue()
+END
+
+IF
+	!Global("Player4ReadyForTransport","LOCALS",1)
+THEN
+	RESPONSE #100
+		Continue()
+END
+
+IF
+	Global("Player5Exists","LOCALS",1)
+	Global("Player5HasAmulet","LOCALS",1)
+	Global("Player5OnPad","LOCALS",1)
+	!Global("Player5ReadyForTransport","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("Player5ReadyForTransport","LOCALS",1)
+		//Continue()
+END
+
+IF
+	!Global("Player5ReadyForTransport","LOCALS",1)
+THEN
+	RESPONSE #100
+		Continue()
+END
+
+IF
+	Global("Player6Exists","LOCALS",1)
+	Global("Player6HasAmulet","LOCALS",1)
+	Global("Player6OnPad","LOCALS",1)
+	!Global("Player6ReadyForTransport","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("Player6ReadyForTransport","LOCALS",1)
+		//Continue()
+END
+
+IF
+	!Global("Player6ReadyForTransport","LOCALS",1)
+THEN
+	RESPONSE #100
+		Continue()
+END
+//BLOCKEND
+
+//BLOCK Has Amulet
+IF
+	HasItem("z6amulix",Player1)  // Святой символ Ияхту Ксвима
+	!Global("Player1HasAmulet","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("Player1HasAmulet","LOCALS",1)
+		//Continue()
+END
+
+IF
+	!Global("Player1HasAmulet","LOCALS",1)
+THEN
+	RESPONSE #100
+		Continue()
+END
+
+IF
+	HasItem("z6amulix",Player2)  // Святой символ Ияхту Ксвима
+	!Global("Player2HasAmulet","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("Player2HasAmulet","LOCALS",1)
+		//Continue()
+END
+
+IF
+	!Global("Player2HasAmulet","LOCALS",1)
+THEN
+	RESPONSE #100
+		Continue()
+END
+
+IF
+	HasItem("z6amulix",Player3)  // Святой символ Ияхту Ксвима
+	!Global("Player3HasAmulet","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("Player3HasAmulet","LOCALS",1)
+		//Continue()
+END
+
+IF
+	!Global("Player3HasAmulet","LOCALS",1)
+THEN
+	RESPONSE #100
+		Continue()
+END
+
+IF
+	HasItem("z6amulix",Player4)  // Святой символ Ияхту Ксвима
+	!Global("Player4HasAmulet","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("Player4HasAmulet","LOCALS",1)
+		//Continue()
+END
+
+IF
+	!Global("Player4HasAmulet","LOCALS",1)
+THEN
+	RESPONSE #100
+		Continue()
+END
+
+IF
+	HasItem("z6amulix",Player5)  // Святой символ Ияхту Ксвима
+	!Global("Player5HasAmulet","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("Player5HasAmulet","LOCALS",1)
+		//Continue()
+END
+
+IF
+	!Global("Player5HasAmulet","LOCALS",1)
+THEN
+	RESPONSE #100
+		Continue()
+END
+
+IF
+	HasItem("z6amulix",Player6)  // Святой символ Ияхту Ксвима
+	!Global("Player6HasAmulet","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("Player6HasAmulet","LOCALS",1)
+		//Continue()
+END
+
+IF
+	!Global("Player6HasAmulet","LOCALS",1)
+THEN
+	RESPONSE #100
+		Continue()
+END
+//BLOCKEND
+
+//BLOCK On Pad
+IF
+	Global("Player1Exists","LOCALS",1)
+	!Global("Player1OnPad","LOCALS",1)
+	Range(Player1,5)
+THEN
+	RESPONSE #100
+		SetGlobal("Player1OnPad","LOCALS",1)
+		//Continue()
+END
+
+IF
+	Global("Player1Exists","LOCALS",1)
+	!Global("Player1OnPad","LOCALS",1)
+THEN
+	RESPONSE #100
+		Continue()
+END
+
+IF
+	Global("Player2Exists","LOCALS",1)
+	!Global("Player2OnPad","LOCALS",1)
+	Range(Player2,5)
+THEN
+	RESPONSE #100
+		SetGlobal("Player2OnPad","LOCALS",1)
+		//Continue()
+END
+
+IF
+	Global("Player2Exists","LOCALS",1)
+	!Global("Player2OnPad","LOCALS",1)
+THEN
+	RESPONSE #100
+		Continue()
+END
+
+IF
+	Global("Player3Exists","LOCALS",1)
+	!Global("Player3OnPad","LOCALS",1)
+	Range(Player3,5)
+THEN
+	RESPONSE #100
+		SetGlobal("Player3OnPad","LOCALS",1)
+		//Continue()
+END
+
+IF
+	Global("Player3Exists","LOCALS",1)
+	!Global("Player3OnPad","LOCALS",1)
+THEN
+	RESPONSE #100
+		Continue()
+END
+
+IF
+	Global("Player4Exists","LOCALS",1)
+	!Global("Player4OnPad","LOCALS",1)
+	Range(Player4,5)
+THEN
+	RESPONSE #100
+		SetGlobal("Player4OnPad","LOCALS",1)
+		//Continue()
+END
+
+IF
+	Global("Player4Exists","LOCALS",1)
+	!Global("Player4OnPad","LOCALS",1)
+THEN
+	RESPONSE #100
+		Continue()
+END
+
+IF
+	Global("Player5Exists","LOCALS",1)
+	!Global("Player5OnPad","LOCALS",1)
+	Range(Player5,5)
+THEN
+	RESPONSE #100
+		SetGlobal("Player5OnPad","LOCALS",1)
+		//Continue()
+END
+
+IF
+	Global("Player5Exists","LOCALS",1)
+	!Global("Player5OnPad","LOCALS",1)
+THEN
+	RESPONSE #100
+		Continue()
+END
+
+IF
+	Global("Player6Exists","LOCALS",1)
+	!Global("Player6OnPad","LOCALS",1)
+	Range(Player6,5)
+THEN
+	RESPONSE #100
+		SetGlobal("Player6OnPad","LOCALS",1)
+		//Continue()
+END
+
+IF
+	Global("Player6Exists","LOCALS",1)
+	!Global("Player6OnPad","LOCALS",1)
+THEN
+	RESPONSE #100
+		Continue()
+END
+//BLOCKEND
+
+//BLOCK Exists
+IF
+	InMyArea(Player1)
+	HPPercentGT(Player1,0)
+	!Global("Player1Exists","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("Player1Exists","LOCALS",1)
+		//Continue()
+END
+
+IF
+	!Global("Player1Exists","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("Player1ReadyForTransport","LOCALS",1)
+		Continue()
+END
+
+IF
+	InMyArea(Player2)
+	HPPercentGT(Player2,0)
+	!Global("Player2Exists","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("Player2Exists","LOCALS",1)
+		//Continue()
+END
+
+IF
+	!Global("Player2Exists","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("Player2ReadyForTransport","LOCALS",1)
+		Continue()
+END
+
+IF
+	InMyArea(Player3)
+	HPPercentGT(Player3,0)
+	!Global("Player3Exists","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("Player3Exists","LOCALS",1)
+		//Continue()
+END
+
+IF
+	!Global("Player3Exists","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("Player3ReadyForTransport","LOCALS",1)
+		Continue()
+END
+
+IF
+	InMyArea(Player4)
+	HPPercentGT(Player4,0)
+	!Global("Player4Exists","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("Player4Exists","LOCALS",1)
+		//Continue()
+END
+
+IF
+	!Global("Player4Exists","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("Player4ReadyForTransport","LOCALS",1)
+		Continue()
+END
+
+IF
+	InMyArea(Player5)
+	HPPercentGT(Player5,0)
+	!Global("Player5Exists","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("Player5Exists","LOCALS",1)
+		//Continue()
+END
+
+IF
+	!Global("Player5Exists","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("Player5ReadyForTransport","LOCALS",1)
+		Continue()
+END
+
+IF
+	InMyArea(Player6)
+	HPPercentGT(Player6,0)
+	!Global("Player6Exists","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("Player6Exists","LOCALS",1)
+		//Continue()
+END
+
+IF
+	!Global("Player6Exists","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("Player6ReadyForTransport","LOCALS",1)
+		Continue()
+END
+//BLOCKEND
+
+//BLOCK Trap
+IF
+	Global("Player1Exists","LOCALS",1)
+	Global("Player1OnPad","LOCALS",1)
+	!Global("Player1HasAmulet","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IwTimer99","LOCALS",7)
+		SetGlobal("FloatMessage","LOCALS",1)
+		ReallyForceSpell(Player1,TRAP_CALL_LIGHTNING)  // SPPR987.SPL (Призыв молнии)
+		Continue()
+END
+
+IF
+	Global("Player2Exists","LOCALS",1)
+	Global("Player2OnPad","LOCALS",1)
+	!Global("Player2HasAmulet","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IwTimer98","LOCALS",7)
+		SetGlobal("FloatMessage","LOCALS",1)
+		ReallyForceSpell(Player2,TRAP_CALL_LIGHTNING)  // SPPR987.SPL (Призыв молнии)
+		Continue()
+END
+
+IF
+	Global("Player3Exists","LOCALS",1)
+	Global("Player3OnPad","LOCALS",1)
+	!Global("Player3HasAmulet","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IwTimer97","LOCALS",7)
+		SetGlobal("FloatMessage","LOCALS",1)
+		ReallyForceSpell(Player3,TRAP_CALL_LIGHTNING)  // SPPR987.SPL (Призыв молнии)
+		Continue()
+END
+
+IF
+	Global("Player4Exists","LOCALS",1)
+	Global("Player4OnPad","LOCALS",1)
+	!Global("Player4HasAmulet","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IwTimer96","LOCALS",7)
+		SetGlobal("FloatMessage","LOCALS",1)
+		ReallyForceSpell(Player4,TRAP_CALL_LIGHTNING)  // SPPR987.SPL (Призыв молнии)
+		Continue()
+END
+
+IF
+	Global("Player5Exists","LOCALS",1)
+	Global("Player5OnPad","LOCALS",1)
+	!Global("Player5HasAmulet","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IwTimer95","LOCALS",7)
+		SetGlobal("FloatMessage","LOCALS",1)
+		ReallyForceSpell(Player5,TRAP_CALL_LIGHTNING)  // SPPR987.SPL (Призыв молнии)
+		Continue()
+END
+
+IF
+	Global("Player6Exists","LOCALS",1)
+	Global("Player6OnPad","LOCALS",1)
+	!Global("Player6HasAmulet","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IwTimer94","LOCALS",7)
+		SetGlobal("FloatMessage","LOCALS",1)
+		ReallyForceSpell(Player6,TRAP_CALL_LIGHTNING)  // SPPR987.SPL (Призыв молнии)
+		Continue()
+END
+//BLOCKEND
+
+//BLOCK Float
+IF
+	Global("FloatMessage","LOCALS",1)
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,@34573) //283693
+		Continue()
+END
+//BLOCKEND
+
+//BLOCK Reset
+IF
+	True()
+THEN
+	RESPONSE #100
+		SetGlobal("FloatMessage","LOCALS",0)
+		SetGlobal("Player1OnPad","LOCALS",0) /* Range 5 */
+		SetGlobal("Player2OnPad","LOCALS",0)
+		SetGlobal("Player3OnPad","LOCALS",0)
+		SetGlobal("Player4OnPad","LOCALS",0)
+		SetGlobal("Player5OnPad","LOCALS",0)
+		SetGlobal("Player6OnPad","LOCALS",0)
+		SetGlobal("Player1HasAmulet","LOCALS",0) /* HasItem z6amulix */
+		SetGlobal("Player2HasAmulet","LOCALS",0)
+		SetGlobal("Player3HasAmulet","LOCALS",0)
+		SetGlobal("Player4HasAmulet","LOCALS",0)
+		SetGlobal("Player5HasAmulet","LOCALS",0)
+		SetGlobal("Player6HasAmulet","LOCALS",0)
+		SetGlobal("Player1Exists","LOCALS",0) /* In Area and Not Dead */
+		SetGlobal("Player2Exists","LOCALS",0)
+		SetGlobal("Player3Exists","LOCALS",0)
+		SetGlobal("Player4Exists","LOCALS",0)
+		SetGlobal("Player5Exists","LOCALS",0)
+		SetGlobal("Player6Exists","LOCALS",0)
+		SetGlobal("Player1ReadyForTransport","LOCALS",0) /* First tree or Not */
+		SetGlobal("Player2ReadyForTransport","LOCALS",0)
+		SetGlobal("Player3ReadyForTransport","LOCALS",0)
+		SetGlobal("Player4ReadyForTransport","LOCALS",0)
+		SetGlobal("Player5ReadyForTransport","LOCALS",0)
+		SetGlobal("Player6ReadyForTransport","LOCALS",0)
+		Continue()
+END
+//BLOCKEND
+*/
+/*
+//BLOCK Teleport
+IF
+	Global("SaveGame","MYAREA",0)
+	!GlobalTimerNotExpired("IwTimer93","LOCALS")
+	Global("Player1ReadyForTransport","LOCALS",1)
+	Global("Player2ReadyForTransport","LOCALS",1)
+	Global("Player3ReadyForTransport","LOCALS",1)
+	Global("Player4ReadyForTransport","LOCALS",1)
+	Global("Player5ReadyForTransport","LOCALS",1)
+	Global("Player6ReadyForTransport","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("SaveGame","MYAREA",1)
+		SetGlobal("Player1ReadyForTransport","LOCALS",0)
+		SetGlobal("Player2ReadyForTransport","LOCALS",0)
+		SetGlobal("Player3ReadyForTransport","LOCALS",0)
+		SetGlobal("Player4ReadyForTransport","LOCALS",0)
+		SetGlobal("Player5ReadyForTransport","LOCALS",0)
+		SetGlobal("Player6ReadyForTransport","LOCALS",0)
+		SaveGame(0)  // Покои Тираннара Брутая Мара 55
+		//Continue()
+END
+
+IF
+	Global("SaveGame","MYAREA",1)
+THEN
+	RESPONSE #100
+		SetGlobal("SaveGame","MYAREA",0)
+		SetGlobal("65Party_Teleported","GLOBAL",1)
+		SetGlobalTimer("IwTimer93","LOCALS",7)
+		StartCutSceneMode()
+		ClearAllActions()
+		MultiPlayerSync()
+		StartCutScene("65cTele")
+		//Continue()
+END
+//BLOCKEND
+
+//BLOCK Ready
+IF
+	Global("Player1Exists","LOCALS",1)
+	Global("Player1HasAmulet","LOCALS",1)
+	Global("Player1OnPad","LOCALS",1)
+	!Global("Player1ReadyForTransport","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("Player1ReadyForTransport","LOCALS",1)
+		//Continue()
+END
+
+/*IF
+	OR(3)
+		!Global("Player1Exists","LOCALS",1) /* ? */
+		!Global("Player1HasAmulet","LOCALS",1)
+		!Global("Player1OnPad","LOCALS",1)
+	!Global("Player1ReadyForTransport","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobal("Player1ReadyForTransport","LOCALS",0)
+		//Continue()
+END*/
+
+IF
+	!Global("Player1ReadyForTransport","LOCALS",1)
+THEN
+	RESPONSE #100
+		Continue()
+END
+
+IF
+	Global("Player2Exists","LOCALS",1)
+	Global("Player2HasAmulet","LOCALS",1)
+	Global("Player2OnPad","LOCALS",1)
+	!Global("Player2ReadyForTransport","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("Player2ReadyForTransport","LOCALS",1)
+		//Continue()
+END
+
+IF
+	!Global("Player2ReadyForTransport","LOCALS",1)
+THEN
+	RESPONSE #100
+		Continue()
+END
+
+IF
+	Global("Player3Exists","LOCALS",1)
+	Global("Player3HasAmulet","LOCALS",1)
+	Global("Player3OnPad","LOCALS",1)
+	!Global("Player3ReadyForTransport","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("Player3ReadyForTransport","LOCALS",1)
+		//Continue()
+END
+
+IF
+	!Global("Player3ReadyForTransport","LOCALS",1)
+THEN
+	RESPONSE #100
+		Continue()
+END
+
+IF
+	Global("Player4Exists","LOCALS",1)
+	Global("Player4HasAmulet","LOCALS",1)
+	Global("Player4OnPad","LOCALS",1)
+	!Global("Player4ReadyForTransport","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("Player4ReadyForTransport","LOCALS",1)
+		//Continue()
+END
+
+IF
+	!Global("Player4ReadyForTransport","LOCALS",1)
+THEN
+	RESPONSE #100
+		Continue()
+END
+
+IF
+	Global("Player5Exists","LOCALS",1)
+	Global("Player5HasAmulet","LOCALS",1)
+	Global("Player5OnPad","LOCALS",1)
+	!Global("Player5ReadyForTransport","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("Player5ReadyForTransport","LOCALS",1)
+		//Continue()
+END
+
+IF
+	!Global("Player5ReadyForTransport","LOCALS",1)
+THEN
+	RESPONSE #100
+		Continue()
+END
+
+IF
+	Global("Player6Exists","LOCALS",1)
+	Global("Player6HasAmulet","LOCALS",1)
+	Global("Player6OnPad","LOCALS",1)
+	!Global("Player6ReadyForTransport","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("Player6ReadyForTransport","LOCALS",1)
+		//Continue()
+END
+
+IF
+	!Global("Player6ReadyForTransport","LOCALS",1)
+THEN
+	RESPONSE #100
+		Continue()
+END
+//BLOCKEND
+
+//BLOCK Has Amulet
+IF
+	HasItem("z6amulix",Player1)  // Святой символ Ияхту Ксвима
+	!Global("Player1HasAmulet","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("Player1HasAmulet","LOCALS",1)
+		//Continue()
+END
+
+IF
+	!HasItem("z6amulix",Player1)  // Святой символ Ияхту Ксвима
+	OR(2)
+		!Global("Player1HasAmulet","LOCALS",0)
+		!Global("Player1OnPad","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobal("Player1HasAmulet","LOCALS",0)
+		SetGlobal("Player1OnPad","LOCALS",0)
+		//Continue()
+END
+
+IF
+	!Global("Player1HasAmulet","LOCALS",1)
+THEN
+	RESPONSE #100
+		Continue()
+END
+
+IF
+	HasItem("z6amulix",Player2)  // Святой символ Ияхту Ксвима
+	!Global("Player2HasAmulet","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("Player2HasAmulet","LOCALS",1)
+		//Continue()
+END
+
+IF
+	!HasItem("z6amulix",Player2)  // Святой символ Ияхту Ксвима
+	OR(2)
+		!Global("Player2HasAmulet","LOCALS",0)
+		!Global("Player2OnPad","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobal("Player2HasAmulet","LOCALS",0)
+		SetGlobal("Player2OnPad","LOCALS",0)
+		//Continue()
+END
+
+IF
+	!Global("Player2HasAmulet","LOCALS",1)
+THEN
+	RESPONSE #100
+		Continue()
+END
+
+IF
+	HasItem("z6amulix",Player3)  // Святой символ Ияхту Ксвима
+	!Global("Player3HasAmulet","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("Player3HasAmulet","LOCALS",1)
+		//Continue()
+END
+
+IF
+	!HasItem("z6amulix",Player3)  // Святой символ Ияхту Ксвима
+	OR(2)
+		!Global("Player3HasAmulet","LOCALS",0)
+		!Global("Player3OnPad","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobal("Player3HasAmulet","LOCALS",0)
+		SetGlobal("Player3OnPad","LOCALS",0)
+		//Continue()
+END
+
+IF
+	!Global("Player3HasAmulet","LOCALS",1)
+THEN
+	RESPONSE #100
+		Continue()
+END
+
+IF
+	HasItem("z6amulix",Player4)  // Святой символ Ияхту Ксвима
+	!Global("Player4HasAmulet","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("Player4HasAmulet","LOCALS",1)
+		//Continue()
+END
+
+IF
+	!HasItem("z6amulix",Player4)  // Святой символ Ияхту Ксвима
+	OR(2)
+		!Global("Player4HasAmulet","LOCALS",0)
+		!Global("Player4OnPad","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobal("Player4HasAmulet","LOCALS",0)
+		SetGlobal("Player4OnPad","LOCALS",0)
+		//Continue()
+END
+
+IF
+	!Global("Player4HasAmulet","LOCALS",1)
+THEN
+	RESPONSE #100
+		Continue()
+END
+
+IF
+	HasItem("z6amulix",Player5)  // Святой символ Ияхту Ксвима
+	!Global("Player5HasAmulet","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("Player5HasAmulet","LOCALS",1)
+		//Continue()
+END
+
+IF
+	!HasItem("z6amulix",Player5)  // Святой символ Ияхту Ксвима
+	OR(2)
+		!Global("Player5HasAmulet","LOCALS",0)
+		!Global("Player5OnPad","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobal("Player5HasAmulet","LOCALS",0)
+		SetGlobal("Player5OnPad","LOCALS",0)
+		//Continue()
+END
+
+IF
+	!Global("Player5HasAmulet","LOCALS",1)
+THEN
+	RESPONSE #100
+		Continue()
+END
+
+IF
+	HasItem("z6amulix",Player6)  // Святой символ Ияхту Ксвима
+	!Global("Player6HasAmulet","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("Player6HasAmulet","LOCALS",1)
+		//Continue()
+END
+
+IF
+	!HasItem("z6amulix",Player6)  // Святой символ Ияхту Ксвима
+	OR(2)
+		!Global("Player6HasAmulet","LOCALS",0)
+		!Global("Player6OnPad","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobal("Player6HasAmulet","LOCALS",0)
+		SetGlobal("Player6OnPad","LOCALS",0)
+		//Continue()
+END
+
+IF
+	!Global("Player6HasAmulet","LOCALS",1)
+THEN
+	RESPONSE #100
+		Continue()
+END
+//BLOCKEND
+
+//BLOCK On Pad
+IF
+	Global("Player1Exists","LOCALS",1)
+	!Global("Player1OnPad","LOCALS",1)
+	Range(Player1,5)
+THEN
+	RESPONSE #100
+		SetGlobal("Player1OnPad","LOCALS",1)
+		//Continue()
+END
+
+IF
+	OR(2)
+		!Global("Player1Exists","LOCALS",0)
+		!Global("Player1OnPad","LOCALS",0)
+	!Range(Player1,5)
+THEN
+	RESPONSE #100
+		SetGlobal("Player1OnPad","LOCALS",0)
+		SetGlobal("Player1Exists","LOCALS",0)
+		//Continue()
+END
+
+IF
+	Global("Player1Exists","LOCALS",1)
+	!Global("Player1OnPad","LOCALS",1)
+THEN
+	RESPONSE #100
+		Continue()
+END
+
+IF
+	Global("Player2Exists","LOCALS",1)
+	!Global("Player2OnPad","LOCALS",1)
+	Range(Player2,5)
+THEN
+	RESPONSE #100
+		SetGlobal("Player2OnPad","LOCALS",1)
+		//Continue()
+END
+
+IF
+	OR(2)
+		!Global("Player2Exists","LOCALS",0)
+		!Global("Player2OnPad","LOCALS",0)
+	!Range(Player2,5)
+THEN
+	RESPONSE #100
+		SetGlobal("Player2OnPad","LOCALS",0)
+		SetGlobal("Player2Exists","LOCALS",0)
+		//Continue()
+END
+
+IF
+	Global("Player2Exists","LOCALS",1)
+	!Global("Player2OnPad","LOCALS",1)
+THEN
+	RESPONSE #100
+		Continue()
+END
+
+IF
+	Global("Player3Exists","LOCALS",1)
+	!Global("Player3OnPad","LOCALS",1)
+	Range(Player3,5)
+THEN
+	RESPONSE #100
+		SetGlobal("Player3OnPad","LOCALS",1)
+		//Continue()
+END
+
+IF
+	OR(2)
+		!Global("Player3Exists","LOCALS",0)
+		!Global("Player3OnPad","LOCALS",0)
+	!Range(Player3,5)
+THEN
+	RESPONSE #100
+		SetGlobal("Player3OnPad","LOCALS",0)
+		SetGlobal("Player3Exists","LOCALS",0)
+		//Continue()
+END
+
+IF
+	Global("Player3Exists","LOCALS",1)
+	!Global("Player3OnPad","LOCALS",1)
+THEN
+	RESPONSE #100
+		Continue()
+END
+
+IF
+	Global("Player4Exists","LOCALS",1)
+	!Global("Player4OnPad","LOCALS",1)
+	Range(Player4,5)
+THEN
+	RESPONSE #100
+		SetGlobal("Player4OnPad","LOCALS",1)
+		//Continue()
+END
+
+IF
+	OR(2)
+		!Global("Player4Exists","LOCALS",0)
+		!Global("Player4OnPad","LOCALS",0)
+	!Range(Player4,5)
+THEN
+	RESPONSE #100
+		SetGlobal("Player4OnPad","LOCALS",0)
+		SetGlobal("Player4Exists","LOCALS",0)
+		//Continue()
+END
+
+IF
+	Global("Player4Exists","LOCALS",1)
+	!Global("Player4OnPad","LOCALS",1)
+THEN
+	RESPONSE #100
+		Continue()
+END
+
+IF
+	Global("Player5Exists","LOCALS",1)
+	!Global("Player5OnPad","LOCALS",1)
+	Range(Player5,5)
+THEN
+	RESPONSE #100
+		SetGlobal("Player5OnPad","LOCALS",1)
+		//Continue()
+END
+
+IF
+	OR(2)
+		!Global("Player5Exists","LOCALS",0)
+		!Global("Player5OnPad","LOCALS",0)
+	!Range(Player5,5)
+THEN
+	RESPONSE #100
+		SetGlobal("Player5OnPad","LOCALS",0)
+		SetGlobal("Player5Exists","LOCALS",0)
+		//Continue()
+END
+
+IF
+	Global("Player5Exists","LOCALS",1)
+	!Global("Player5OnPad","LOCALS",1)
+THEN
+	RESPONSE #100
+		Continue()
+END
+
+IF
+	Global("Player6Exists","LOCALS",1)
+	!Global("Player6OnPad","LOCALS",1)
+	Range(Player6,5)
+THEN
+	RESPONSE #100
+		SetGlobal("Player6OnPad","LOCALS",1)
+		//Continue()
+END
+
+IF
+	OR(2)
+		!Global("Player6Exists","LOCALS",0)
+		!Global("Player6OnPad","LOCALS",0)
+	!Range(Player6,5)
+THEN
+	RESPONSE #100
+		SetGlobal("Player6OnPad","LOCALS",0)
+		SetGlobal("Player6Exists","LOCALS",0)
+		//Continue()
+END
+
+IF
+	Global("Player6Exists","LOCALS",1)
+	!Global("Player6OnPad","LOCALS",1)
+THEN
+	RESPONSE #100
+		Continue()
+END
+//BLOCKEND
+
+//BLOCK Exists
+IF
+	InMyArea(Player1)
+	HPPercentGT(Player1,0)
+	!Global("Player1Exists","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("Player1Exists","LOCALS",1)
+		//Continue()
+END
+
+/*IF
+	OR(2)
+		!InMyArea(Player1)
+		!HPPercentGT(Player1,0)
+	OR(2)
+		!Global("Player1Exists","LOCALS",0)
+		!Global("Player1ReadyForTransport","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobal("Player1ReadyForTransport","LOCALS",0)
+		SetGlobal("Player1Exists","LOCALS",0)
+		//Continue()
+END*/
+
+IF
+	!Global("Player1Exists","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("Player1ReadyForTransport","LOCALS",1)
+		Continue()
+END
+
+IF
+	InMyArea(Player2)
+	HPPercentGT(Player2,0)
+	!Global("Player2Exists","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("Player2Exists","LOCALS",1)
+		//Continue()
+END
+
+/*IF
+	OR(2)
+		!InMyArea(Player2)
+		!HPPercentGT(Player2,0)
+	OR(2)
+		!Global("Player2Exists","LOCALS",0)
+		!Global("Player2ReadyForTransport","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobal("Player2ReadyForTransport","LOCALS",0)
+		SetGlobal("Player2Exists","LOCALS",0)
+		//Continue()
+END*/
+
+IF
+	!Global("Player2Exists","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("Player2ReadyForTransport","LOCALS",1)
+		Continue()
+END
+
+IF
+	InMyArea(Player3)
+	HPPercentGT(Player3,0)
+	!Global("Player3Exists","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("Player3Exists","LOCALS",1)
+		//Continue()
+END
+
+/*IF
+	OR(2)
+		!InMyArea(Player3)
+		!HPPercentGT(Player3,0)
+	OR(2)
+		!Global("Player3Exists","LOCALS",0)
+		!Global("Player3ReadyForTransport","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobal("Player3ReadyForTransport","LOCALS",0)
+		SetGlobal("Player3Exists","LOCALS",0)
+		//Continue()
+END*/
+
+IF
+	!Global("Player3Exists","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("Player3ReadyForTransport","LOCALS",1)
+		Continue()
+END
+
+IF
+	InMyArea(Player4)
+	HPPercentGT(Player4,0)
+	!Global("Player4Exists","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("Player4Exists","LOCALS",1)
+		//Continue()
+END
+
+/*IF
+	OR(2)
+		!InMyArea(Player4)
+		!HPPercentGT(Player4,0)
+	OR(2)
+		!Global("Player4Exists","LOCALS",0)
+		!Global("Player4ReadyForTransport","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobal("Player4ReadyForTransport","LOCALS",0)
+		SetGlobal("Player4Exists","LOCALS",0)
+		//Continue()
+END*/
+
+IF
+	!Global("Player4Exists","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("Player4ReadyForTransport","LOCALS",1)
+		Continue()
+END
+
+IF
+	InMyArea(Player5)
+	HPPercentGT(Player5,0)
+	!Global("Player5Exists","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("Player5Exists","LOCALS",1)
+		//Continue()
+END
+
+/*IF
+	OR(2)
+		!InMyArea(Player5)
+		!HPPercentGT(Player5,0)
+	OR(2)
+		!Global("Player5Exists","LOCALS",0)
+		!Global("Player5ReadyForTransport","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobal("Player5ReadyForTransport","LOCALS",0)
+		SetGlobal("Player5Exists","LOCALS",0)
+		//Continue()
+END*/
+
+IF
+	!Global("Player5Exists","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("Player5ReadyForTransport","LOCALS",1)
+		Continue()
+END
+
+IF
+	InMyArea(Player6)
+	HPPercentGT(Player6,0)
+	!Global("Player6Exists","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("Player6Exists","LOCALS",1)
+		//Continue()
+END
+
+/*IF
+	OR(2)
+		!InMyArea(Player6)
+		!HPPercentGT(Player6,0)
+	OR(2)
+		!Global("Player6Exists","LOCALS",0)
+		!Global("Player6ReadyForTransport","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobal("Player6ReadyForTransport","LOCALS",0)
+		SetGlobal("Player6Exists","LOCALS",0)
+		//Continue()
+END*/
+
+IF
+	!Global("Player6Exists","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("Player6ReadyForTransport","LOCALS",1)
+		Continue()
+END
+//BLOCKEND
+
+//BLOCK Trap
+IF
+	Global("Player1Exists","LOCALS",1)
+	Global("Player1OnPad","LOCALS",1)
+	!Global("Player1HasAmulet","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IwTimer99","LOCALS",7)
+		SetGlobal("FloatMessage","LOCALS",1)
+		ReallyForceSpell(Player1,TRAP_CALL_LIGHTNING)  // SPPR987.SPL (Призыв молнии)
+		Continue()
+END
+
+IF
+	Global("Player2Exists","LOCALS",1)
+	Global("Player2OnPad","LOCALS",1)
+	!Global("Player2HasAmulet","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IwTimer98","LOCALS",7)
+		SetGlobal("FloatMessage","LOCALS",1)
+		ReallyForceSpell(Player2,TRAP_CALL_LIGHTNING)  // SPPR987.SPL (Призыв молнии)
+		Continue()
+END
+
+IF
+	Global("Player3Exists","LOCALS",1)
+	Global("Player3OnPad","LOCALS",1)
+	!Global("Player3HasAmulet","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IwTimer97","LOCALS",7)
+		SetGlobal("FloatMessage","LOCALS",1)
+		ReallyForceSpell(Player3,TRAP_CALL_LIGHTNING)  // SPPR987.SPL (Призыв молнии)
+		Continue()
+END
+
+IF
+	Global("Player4Exists","LOCALS",1)
+	Global("Player4OnPad","LOCALS",1)
+	!Global("Player4HasAmulet","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IwTimer96","LOCALS",7)
+		SetGlobal("FloatMessage","LOCALS",1)
+		ReallyForceSpell(Player4,TRAP_CALL_LIGHTNING)  // SPPR987.SPL (Призыв молнии)
+		Continue()
+END
+
+IF
+	Global("Player5Exists","LOCALS",1)
+	Global("Player5OnPad","LOCALS",1)
+	!Global("Player5HasAmulet","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IwTimer95","LOCALS",7)
+		SetGlobal("FloatMessage","LOCALS",1)
+		ReallyForceSpell(Player5,TRAP_CALL_LIGHTNING)  // SPPR987.SPL (Призыв молнии)
+		Continue()
+END
+
+IF
+	Global("Player6Exists","LOCALS",1)
+	Global("Player6OnPad","LOCALS",1)
+	!Global("Player6HasAmulet","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IwTimer94","LOCALS",7)
+		SetGlobal("FloatMessage","LOCALS",1)
+		ReallyForceSpell(Player6,TRAP_CALL_LIGHTNING)  // SPPR987.SPL (Призыв молнии)
+		Continue()
+END
+//BLOCKEND
+
+//BLOCK Float
+IF
+	Global("FloatMessage","LOCALS",1)
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,@34573) //283693
+		Continue()
+END
+//BLOCKEND
+
+//BLOCK Reset
+IF
+	True()
+THEN
+	RESPONSE #100
+		SetGlobal("FloatMessage","LOCALS",0)
+		SetGlobal("Player1OnPad","LOCALS",0) /* Range 5 */
+		SetGlobal("Player2OnPad","LOCALS",0)
+		SetGlobal("Player3OnPad","LOCALS",0)
+		SetGlobal("Player4OnPad","LOCALS",0)
+		SetGlobal("Player5OnPad","LOCALS",0)
+		SetGlobal("Player6OnPad","LOCALS",0)
+		SetGlobal("Player1HasAmulet","LOCALS",0) /* HasItem z6amulix */
+		SetGlobal("Player2HasAmulet","LOCALS",0)
+		SetGlobal("Player3HasAmulet","LOCALS",0)
+		SetGlobal("Player4HasAmulet","LOCALS",0)
+		SetGlobal("Player5HasAmulet","LOCALS",0)
+		SetGlobal("Player6HasAmulet","LOCALS",0)
+		SetGlobal("Player1Exists","LOCALS",0) /* In Area and Not Dead */
+		SetGlobal("Player2Exists","LOCALS",0)
+		SetGlobal("Player3Exists","LOCALS",0)
+		SetGlobal("Player4Exists","LOCALS",0)
+		SetGlobal("Player5Exists","LOCALS",0)
+		SetGlobal("Player6Exists","LOCALS",0)
+		SetGlobal("Player1ReadyForTransport","LOCALS",0) /* First tree or Not */
+		SetGlobal("Player2ReadyForTransport","LOCALS",0)
+		SetGlobal("Player3ReadyForTransport","LOCALS",0)
+		SetGlobal("Player4ReadyForTransport","LOCALS",0)
+		SetGlobal("Player5ReadyForTransport","LOCALS",0)
+		SetGlobal("Player6ReadyForTransport","LOCALS",0)
+		Continue()
+END
+//BLOCKEND
+
+*/
+
+IF
+	Global("SaveGame","MYAREA",0)
+	!GlobalTimerNotExpired("IwTimer93","LOCALS")
+	Global("Player1ReadyForTransport","LOCALS",1)
+	Global("Player2ReadyForTransport","LOCALS",1)
+	Global("Player3ReadyForTransport","LOCALS",1)
+	Global("Player4ReadyForTransport","LOCALS",1)
+	Global("Player5ReadyForTransport","LOCALS",1)
+	Global("Player6ReadyForTransport","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("SaveGame","MYAREA",1)
+		SaveGame(0)  // Покои Тираннара Брутая Мара 55
+		Continue()
+END
+
+IF
+	Global("SaveGame","MYAREA",1)
+THEN
+	RESPONSE #100
+		SetGlobal("Player1ReadyForTransport","LOCALS",0)
+		SetGlobal("Player2ReadyForTransport","LOCALS",0)
+		SetGlobal("Player3ReadyForTransport","LOCALS",0)
+		SetGlobal("Player4ReadyForTransport","LOCALS",0)
+		SetGlobal("Player5ReadyForTransport","LOCALS",0)
+		SetGlobal("Player6ReadyForTransport","LOCALS",0)
+		SetGlobal("SaveGame","MYAREA",0)
+		SetGlobal("65Party_Teleported","GLOBAL",1)
+		SetGlobalTimer("IwTimer93","LOCALS",7)
+		StartCutSceneMode()
+		ClearAllActions()
+		MultiPlayerSync()
+		StartCutScene("65cTele")
+		//Continue()
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		SetGlobal("FloatMessage","LOCALS",0)
+		SetGlobal("Player1OnPad","LOCALS",0)
+		SetGlobal("Player2OnPad","LOCALS",0)
+		SetGlobal("Player3OnPad","LOCALS",0)
+		SetGlobal("Player4OnPad","LOCALS",0)
+		SetGlobal("Player5OnPad","LOCALS",0)
+		SetGlobal("Player6OnPad","LOCALS",0)
+		SetGlobal("Player1HasAmulet","LOCALS",0)
+		SetGlobal("Player2HasAmulet","LOCALS",0)
+		SetGlobal("Player3HasAmulet","LOCALS",0)
+		SetGlobal("Player4HasAmulet","LOCALS",0)
+		SetGlobal("Player5HasAmulet","LOCALS",0)
+		SetGlobal("Player6HasAmulet","LOCALS",0)
+		SetGlobal("Player1Exists","LOCALS",0)
+		SetGlobal("Player2Exists","LOCALS",0)
+		SetGlobal("Player3Exists","LOCALS",0)
+		SetGlobal("Player4Exists","LOCALS",0)
+		SetGlobal("Player5Exists","LOCALS",0)
+		SetGlobal("Player6Exists","LOCALS",0)
+		SetGlobal("Player1ReadyForTransport","LOCALS",0)
+		SetGlobal("Player2ReadyForTransport","LOCALS",0)
+		SetGlobal("Player3ReadyForTransport","LOCALS",0)
+		SetGlobal("Player4ReadyForTransport","LOCALS",0)
+		SetGlobal("Player5ReadyForTransport","LOCALS",0)
+		SetGlobal("Player6ReadyForTransport","LOCALS",0)
+		Continue()
+END
+
+IF
+	InMyArea(Player1)
+	HPPercentGT(Player1,0)
+THEN
+	RESPONSE #100
+		SetGlobal("Player1Exists","LOCALS",1)
+		Continue()
+END
+
+IF
+	!Global("Player1Exists","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("Player1ReadyForTransport","LOCALS",1)
+		Continue()
+END
+
+IF
+	InMyArea(Player2)
+	HPPercentGT(Player2,0)
+THEN
+	RESPONSE #100
+		SetGlobal("Player2Exists","LOCALS",1)
+		Continue()
+END
+
+IF
+	!Global("Player2Exists","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("Player2ReadyForTransport","LOCALS",1)
+		Continue()
+END
+
+IF
+	InMyArea(Player3)
+	HPPercentGT(Player3,0)
+THEN
+	RESPONSE #100
+		SetGlobal("Player3Exists","LOCALS",1)
+		Continue()
+END
+
+IF
+	!Global("Player3Exists","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("Player3ReadyForTransport","LOCALS",1)
+		Continue()
+END
+
+IF
+	InMyArea(Player4)
+	HPPercentGT(Player4,0)
+THEN
+	RESPONSE #100
+		SetGlobal("Player4Exists","LOCALS",1)
+		Continue()
+END
+
+IF
+	!Global("Player4Exists","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("Player4ReadyForTransport","LOCALS",1)
+		Continue()
+END
+
+IF
+	InMyArea(Player5)
+	HPPercentGT(Player5,0)
+THEN
+	RESPONSE #100
+		SetGlobal("Player5Exists","LOCALS",1)
+		Continue()
+END
+
+IF
+	!Global("Player5Exists","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("Player5ReadyForTransport","LOCALS",1)
+		Continue()
+END
+
+IF
+	InMyArea(Player6)
+	HPPercentGT(Player6,0)
+THEN
+	RESPONSE #100
+		SetGlobal("Player6Exists","LOCALS",1)
+		Continue()
+END
+
+IF
+	!Global("Player6Exists","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("Player6ReadyForTransport","LOCALS",1)
+		Continue()
+END
+
+IF
+	Global("Player1Exists","LOCALS",1)
+	Range(Player1,5)
+THEN
+	RESPONSE #100
+		SetGlobal("Player1OnPad","LOCALS",1)
+		Continue()
+END
+
+IF
+	Global("Player1Exists","LOCALS",1)
+	!Global("Player1OnPad","LOCALS",1)
+THEN
+	RESPONSE #100
+		Continue()
+END
+
+IF
+	Global("Player2Exists","LOCALS",1)
+	Range(Player2,5)
+THEN
+	RESPONSE #100
+		SetGlobal("Player2OnPad","LOCALS",1)
+		Continue()
+END
+
+IF
+	Global("Player2Exists","LOCALS",1)
+	!Global("Player2OnPad","LOCALS",1)
+THEN
+	RESPONSE #100
+		Continue()
+END
+
+IF
+	Global("Player3Exists","LOCALS",1)
+	Range(Player3,5)
+THEN
+	RESPONSE #100
+		SetGlobal("Player3OnPad","LOCALS",1)
+		Continue()
+END
+
+IF
+	Global("Player3Exists","LOCALS",1)
+	!Global("Player3OnPad","LOCALS",1)
+THEN
+	RESPONSE #100
+		Continue()
+END
+
+IF
+	Global("Player4Exists","LOCALS",1)
+	Range(Player4,5)
+THEN
+	RESPONSE #100
+		SetGlobal("Player4OnPad","LOCALS",1)
+		Continue()
+END
+
+IF
+	Global("Player4Exists","LOCALS",1)
+	!Global("Player4OnPad","LOCALS",1)
+THEN
+	RESPONSE #100
+		Continue()
+END
+
+IF
+	Global("Player5Exists","LOCALS",1)
+	Range(Player5,5)
+THEN
+	RESPONSE #100
+		SetGlobal("Player5OnPad","LOCALS",1)
+		Continue()
+END
+
+IF
+	Global("Player5Exists","LOCALS",1)
+	!Global("Player5OnPad","LOCALS",1)
+THEN
+	RESPONSE #100
+		Continue()
+END
+
+IF
+	Global("Player6Exists","LOCALS",1)
+	Range(Player6,5)
+THEN
+	RESPONSE #100
+		SetGlobal("Player6OnPad","LOCALS",1)
+		Continue()
+END
+
+IF
+	Global("Player6Exists","LOCALS",1)
+	!Global("Player6OnPad","LOCALS",1)
+THEN
+	RESPONSE #100
+		Continue()
+END
+
+IF
+	HasItem("z6amulix",Player1)  // Святой символ Ияхту Ксвима
+THEN
+	RESPONSE #100
+		SetGlobal("Player1HasAmulet","LOCALS",1)
+		Continue()
+END
+
+IF
+	!Global("Player1HasAmulet","LOCALS",1)
+THEN
+	RESPONSE #100
+		Continue()
+END
+
+IF
+	HasItem("z6amulix",Player2)  // Святой символ Ияхту Ксвима
+THEN
+	RESPONSE #100
+		SetGlobal("Player2HasAmulet","LOCALS",1)
+		Continue()
+END
+
+IF
+	!Global("Player2HasAmulet","LOCALS",1)
+THEN
+	RESPONSE #100
+		Continue()
+END
+
+IF
+	HasItem("z6amulix",Player3)  // Святой символ Ияхту Ксвима
+THEN
+	RESPONSE #100
+		SetGlobal("Player3HasAmulet","LOCALS",1)
+		Continue()
+END
+
+IF
+	!Global("Player3HasAmulet","LOCALS",1)
+THEN
+	RESPONSE #100
+		Continue()
+END
+
+IF
+	HasItem("z6amulix",Player4)  // Святой символ Ияхту Ксвима
+THEN
+	RESPONSE #100
+		SetGlobal("Player4HasAmulet","LOCALS",1)
+		Continue()
+END
+
+IF
+	!Global("Player4HasAmulet","LOCALS",1)
+THEN
+	RESPONSE #100
+		Continue()
+END
+
+IF
+	HasItem("z6amulix",Player5)  // Святой символ Ияхту Ксвима
+THEN
+	RESPONSE #100
+		SetGlobal("Player5HasAmulet","LOCALS",1)
+		Continue()
+END
+
+IF
+	!Global("Player5HasAmulet","LOCALS",1)
+THEN
+	RESPONSE #100
+		Continue()
+END
+
+IF
+	HasItem("z6amulix",Player6)  // Святой символ Ияхту Ксвима
+THEN
+	RESPONSE #100
+		SetGlobal("Player6HasAmulet","LOCALS",1)
+		Continue()
+END
+
+IF
+	!Global("Player6HasAmulet","LOCALS",1)
+THEN
+	RESPONSE #100
+		Continue()
+END
+
+IF
+	Global("Player1Exists","LOCALS",1)
+	Global("Player1HasAmulet","LOCALS",1)
+	Global("Player1OnPad","LOCALS",1)
+	TriggerOverride("Shock_trap",IsOverMe(Player1))
+THEN
+	RESPONSE #100
+		SetGlobal("Player1ReadyForTransport","LOCALS",1)
+		Continue()
+END
+
+IF
+	!Global("Player1ReadyForTransport","LOCALS",1)
+THEN
+	RESPONSE #100
+		Continue()
+END
+
+IF
+	Global("Player2Exists","LOCALS",1)
+	Global("Player2HasAmulet","LOCALS",1)
+	Global("Player2OnPad","LOCALS",1)
+	TriggerOverride("Shock_trap",IsOverMe(Player2))
+THEN
+	RESPONSE #100
+		SetGlobal("Player2ReadyForTransport","LOCALS",1)
+		Continue()
+END
+
+IF
+	!Global("Player2ReadyForTransport","LOCALS",1)
+THEN
+	RESPONSE #100
+		Continue()
+END
+
+IF
+	Global("Player3Exists","LOCALS",1)
+	Global("Player3HasAmulet","LOCALS",1)
+	Global("Player3OnPad","LOCALS",1)
+	TriggerOverride("Shock_trap",IsOverMe(Player3))
+THEN
+	RESPONSE #100
+		SetGlobal("Player3ReadyForTransport","LOCALS",1)
+		Continue()
+END
+
+IF
+	!Global("Player3ReadyForTransport","LOCALS",1)
+THEN
+	RESPONSE #100
+		Continue()
+END
+
+IF
+	Global("Player4Exists","LOCALS",1)
+	Global("Player4HasAmulet","LOCALS",1)
+	Global("Player4OnPad","LOCALS",1)
+	TriggerOverride("Shock_trap",IsOverMe(Player4))
+THEN
+	RESPONSE #100
+		SetGlobal("Player4ReadyForTransport","LOCALS",1)
+		Continue()
+END
+
+IF
+	!Global("Player4ReadyForTransport","LOCALS",1)
+THEN
+	RESPONSE #100
+		Continue()
+END
+
+IF
+	Global("Player5Exists","LOCALS",1)
+	Global("Player5HasAmulet","LOCALS",1)
+	Global("Player5OnPad","LOCALS",1)
+	TriggerOverride("Shock_trap",IsOverMe(Player5))
+THEN
+	RESPONSE #100
+		SetGlobal("Player5ReadyForTransport","LOCALS",1)
+		Continue()
+END
+
+IF
+	!Global("Player5ReadyForTransport","LOCALS",1)
+THEN
+	RESPONSE #100
+		Continue()
+END
+
+IF
+	Global("Player6Exists","LOCALS",1)
+	Global("Player6HasAmulet","LOCALS",1)
+	Global("Player6OnPad","LOCALS",1)
+	TriggerOverride("Shock_trap",IsOverMe(Player6))
+THEN
+	RESPONSE #100
+		SetGlobal("Player6ReadyForTransport","LOCALS",1)
+		Continue()
+END
+
+IF
+	!Global("Player6ReadyForTransport","LOCALS",1)
+THEN
+	RESPONSE #100
+		Continue()
+END
+
+//BLOCK
+IF
+	//!Global("Player1ReadyForTransport","LOCALS",0)
+	InMyArea(Player1)
+	HPPercentGT(Player1,0)
+	!TriggerOverride("Shock_trap",IsOverMe(Player1))
+THEN
+	RESPONSE #100
+		SetGlobal("Player1ReadyForTransport","LOCALS",0)
+		Continue()
+END
+
+IF
+	//!Global("Player2ReadyForTransport","LOCALS",0)
+	InMyArea(Player2)
+	HPPercentGT(Player2,0)
+	!TriggerOverride("Shock_trap",IsOverMe(Player2))
+THEN
+	RESPONSE #100
+		SetGlobal("Player2ReadyForTransport","LOCALS",0)
+		Continue()
+END
+
+IF
+	//!Global("Player3ReadyForTransport","LOCALS",0)
+	InMyArea(Player3)
+	HPPercentGT(Player3,0)
+	!TriggerOverride("Shock_trap",IsOverMe(Player3))
+THEN
+	RESPONSE #100
+		SetGlobal("Player3ReadyForTransport","LOCALS",0)
+		Continue()
+END
+
+IF
+	//!Global("Player4ReadyForTransport","LOCALS",0)
+	InMyArea(Player4)
+	HPPercentGT(Player4,0)
+	!TriggerOverride("Shock_trap",IsOverMe(Player4))
+THEN
+	RESPONSE #100
+		SetGlobal("Player4ReadyForTransport","LOCALS",0)
+		Continue()
+END
+
+IF
+	//!Global("Player5ReadyForTransport","LOCALS",0)
+	InMyArea(Player5)
+	HPPercentGT(Player5,0)
+	!TriggerOverride("Shock_trap",IsOverMe(Player5))
+THEN
+	RESPONSE #100
+		SetGlobal("Player5ReadyForTransport","LOCALS",0)
+		Continue()
+END
+
+IF
+	//!Global("Player6ReadyForTransport","LOCALS",0)
+	InMyArea(Player6)
+	HPPercentGT(Player6,0)
+	!TriggerOverride("Shock_trap",IsOverMe(Player6))
+THEN
+	RESPONSE #100
+		SetGlobal("Player6ReadyForTransport","LOCALS",0)
+		Continue()
+END
+//BLOCKEND
+
+/*IF
+	Global("SaveGame","MYAREA",0)
+	!GlobalTimerNotExpired("IwTimer93","LOCALS")
+	Global("Player1ReadyForTransport","LOCALS",1)
+	Global("Player2ReadyForTransport","LOCALS",1)
+	Global("Player3ReadyForTransport","LOCALS",1)
+	Global("Player4ReadyForTransport","LOCALS",1)
+	Global("Player5ReadyForTransport","LOCALS",1)
+	Global("Player6ReadyForTransport","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("SaveGame","MYAREA",1)
+		SaveGame(0)  // Покои Тираннара Брутая Мара 55
+		Continue()
+END
+
+IF
+	Global("SaveGame","MYAREA",1)
+THEN
+	RESPONSE #100
+		SetGlobal("SaveGame","MYAREA",0)
+		SetGlobal("65Party_Teleported","GLOBAL",1)
+		SetGlobalTimer("IwTimer93","LOCALS",7)
+		StartCutSceneMode()
+		ClearAllActions()
+		MultiPlayerSync()
+		StartCutScene("65cTele")
+		Continue()
+END*/
+
+IF
+	Global("Player1Exists","LOCALS",1)
+	Global("Player1OnPad","LOCALS",1)
+	!Global("Player1HasAmulet","LOCALS",1)
+	TriggerOverride("Shock_trap",IsOverMe(Player1))
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IwTimer99","LOCALS",7)
+		SetGlobal("FloatMessage","LOCALS",1)
+		ReallyForceSpell(Player1,TRAP_CALL_LIGHTNING)  // SPPR987.SPL (Призыв молнии)
+		Continue()
+END
+
+IF
+	Global("Player2Exists","LOCALS",1)
+	Global("Player2OnPad","LOCALS",1)
+	!Global("Player2HasAmulet","LOCALS",1)
+	TriggerOverride("Shock_trap",IsOverMe(Player2))
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IwTimer98","LOCALS",7)
+		SetGlobal("FloatMessage","LOCALS",1)
+		ReallyForceSpell(Player2,TRAP_CALL_LIGHTNING)  // SPPR987.SPL (Призыв молнии)
+		Continue()
+END
+
+IF
+	Global("Player3Exists","LOCALS",1)
+	Global("Player3OnPad","LOCALS",1)
+	!Global("Player3HasAmulet","LOCALS",1)
+	TriggerOverride("Shock_trap",IsOverMe(Player3))
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IwTimer97","LOCALS",7)
+		SetGlobal("FloatMessage","LOCALS",1)
+		ReallyForceSpell(Player3,TRAP_CALL_LIGHTNING)  // SPPR987.SPL (Призыв молнии)
+		Continue()
+END
+
+IF
+	Global("Player4Exists","LOCALS",1)
+	Global("Player4OnPad","LOCALS",1)
+	!Global("Player4HasAmulet","LOCALS",1)
+	TriggerOverride("Shock_trap",IsOverMe(Player4))
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IwTimer96","LOCALS",7)
+		SetGlobal("FloatMessage","LOCALS",1)
+		ReallyForceSpell(Player4,TRAP_CALL_LIGHTNING)  // SPPR987.SPL (Призыв молнии)
+		Continue()
+END
+
+IF
+	Global("Player5Exists","LOCALS",1)
+	Global("Player5OnPad","LOCALS",1)
+	!Global("Player5HasAmulet","LOCALS",1)
+	TriggerOverride("Shock_trap",IsOverMe(Player5))
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IwTimer95","LOCALS",7)
+		SetGlobal("FloatMessage","LOCALS",1)
+		ReallyForceSpell(Player5,TRAP_CALL_LIGHTNING)  // SPPR987.SPL (Призыв молнии)
+		Continue()
+END
+
+IF
+	Global("Player6Exists","LOCALS",1)
+	Global("Player6OnPad","LOCALS",1)
+	!Global("Player6HasAmulet","LOCALS",1)
+	TriggerOverride("Shock_trap",IsOverMe(Player6))
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IwTimer94","LOCALS",7)
+		SetGlobal("FloatMessage","LOCALS",1)
+		ReallyForceSpell(Player6,TRAP_CALL_LIGHTNING)  // SPPR987.SPL (Призыв молнии)
+		Continue()
+END
+
+IF
+	Global("FloatMessage","LOCALS",1)
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,@34573) //283693
+		Continue()
+END
+
+/*IF
+	True()
+THEN
+	RESPONSE #100
+		SetGlobal("FloatMessage","LOCALS",0)
+		SetGlobal("Player1OnPad","LOCALS",0)
+		SetGlobal("Player2OnPad","LOCALS",0)
+		SetGlobal("Player3OnPad","LOCALS",0)
+		SetGlobal("Player4OnPad","LOCALS",0)
+		SetGlobal("Player5OnPad","LOCALS",0)
+		SetGlobal("Player6OnPad","LOCALS",0)
+		SetGlobal("Player1HasAmulet","LOCALS",0)
+		SetGlobal("Player2HasAmulet","LOCALS",0)
+		SetGlobal("Player3HasAmulet","LOCALS",0)
+		SetGlobal("Player4HasAmulet","LOCALS",0)
+		SetGlobal("Player5HasAmulet","LOCALS",0)
+		SetGlobal("Player6HasAmulet","LOCALS",0)
+		SetGlobal("Player1Exists","LOCALS",0)
+		SetGlobal("Player2Exists","LOCALS",0)
+		SetGlobal("Player3Exists","LOCALS",0)
+		SetGlobal("Player4Exists","LOCALS",0)
+		SetGlobal("Player5Exists","LOCALS",0)
+		SetGlobal("Player6Exists","LOCALS",0)
+		SetGlobal("Player1ReadyForTransport","LOCALS",0)
+		SetGlobal("Player2ReadyForTransport","LOCALS",0)
+		SetGlobal("Player3ReadyForTransport","LOCALS",0)
+		SetGlobal("Player4ReadyForTransport","LOCALS",0)
+		SetGlobal("Player5ReadyForTransport","LOCALS",0)
+		SetGlobal("Player6ReadyForTransport","LOCALS",0)
+		Continue()
+END*/
+
+
+
+
+
+
+
+

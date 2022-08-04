@@ -1,0 +1,195 @@
+IF
+	Global("ar6051_Kill_HeartlessDead","GLOBAL",1)
+THEN
+	RESPONSE #100
+		Kill(Myself)
+END
+
+IF
+	Global("DropInventory","LOCALS",1)
+THEN
+	RESPONSE #100
+		DropInventory()
+		
+		ReallyForceSpell(Myself,WIZARD_FIREBALL)
+		
+		Kill(Myself)
+END
+
+IF
+	Global("60Heart8_InContainer","MYAREA",0)
+	Global("60Heart8_InParty","MYAREA",0)
+	
+	//Range("6051HC8",5)
+	NearSavedLocation(Myself,"MYAREAHC8SavedLoc",5)
+THEN
+	RESPONSE #100
+		SetGlobal("DropInventory","LOCALS",1)
+		//TransferInventory("HC1",Myself)
+		PickUpItem("z6HEART8")
+		DestroyItem("z6HEART8")  // Высушенное сердце
+		ActionOverride("6051HC8",DestroySelf())
+		Wait(4)
+END
+
+IF
+	//True()
+	!Global("Marked_Player","LOCALS",0)
+	!PartyHasItem("z6HEART8")
+THEN
+	RESPONSE #100
+		SetGlobal("Marked_Player","LOCALS",0)
+		//SetMyTarget(Nothing)
+		//Continue()
+END
+
+IF
+	!Global("Marked_Player","LOCALS",1)
+	HasItem("z6HEART8",Player1)
+THEN
+	RESPONSE #100
+		SetGlobal("Marked_Player","LOCALS",1)
+		//SetMyTarget(Player1)
+		//Continue()
+END
+
+IF
+	!Global("Marked_Player","LOCALS",2)
+	HasItem("z6HEART8",Player2)
+THEN
+	RESPONSE #100
+		SetGlobal("Marked_Player","LOCALS",2)
+		//SetMyTarget(Player2)
+		//Continue()
+END
+
+IF
+	!Global("Marked_Player","LOCALS",3)
+	HasItem("z6HEART8",Player3)
+THEN
+	RESPONSE #100
+		SetGlobal("Marked_Player","LOCALS",3)
+		//SetMyTarget(Player3)
+		//Continue()
+END
+
+IF
+	!Global("Marked_Player","LOCALS",4)
+	HasItem("z6HEART8",Player4)
+THEN
+	RESPONSE #100
+		SetGlobal("Marked_Player","LOCALS",4)
+		//SetMyTarget(Player4)
+		//Continue()
+END
+
+IF
+	!Global("Marked_Player","LOCALS",5)
+	HasItem("z6HEART8",Player5)
+THEN
+	RESPONSE #100
+		SetGlobal("Marked_Player","LOCALS",5)
+		//SetMyTarget(Player5)
+		//Continue()
+END
+
+IF
+	!Global("Marked_Player","LOCALS",6)
+	HasItem("z6HEART8",Player6)
+THEN
+	RESPONSE #100
+		SetGlobal("Marked_Player","LOCALS",6)
+		//SetMyTarget(Player6)
+		//Continue()
+END
+
+IF
+	Global("Marked_Player","LOCALS",0)
+	AttackedBy([ANYONE],DEFAULT)
+THEN
+	RESPONSE #100
+		Enemy()
+		//EquipWeapon()
+		AttackOneRound(LastAttackerOf(Myself))
+END
+
+IF
+	Global("Marked_Player","LOCALS",0)
+	See(LastAttackerOf(Myself))
+THEN
+	RESPONSE #100
+		//EquipWeapon()
+		AttackOneRound(LastAttackerOf(Myself))
+END
+
+IF
+	Global("Marked_Player","LOCALS",0)
+	Allegiance(Myself,ENEMY)
+	OR(2)
+		!AttackedBy([ANYONE],DEFAULT)
+		!See(LastAttackerOf(Myself))
+THEN
+	RESPONSE #100
+		ChangeEnemyAlly(Myself,NEUTRAL)
+END
+
+IF
+	Global("Marked_Player","LOCALS",1)
+	See(Player1)
+THEN
+	RESPONSE #100
+		Enemy()
+		//EquipWeapon()
+		AttackOneRound(Player1)
+END
+
+IF
+	Global("Marked_Player","LOCALS",2)
+	See(Player2)
+THEN
+	RESPONSE #100
+		Enemy()
+		//EquipWeapon()
+		AttackOneRound(Player2)
+END
+
+IF
+	Global("Marked_Player","LOCALS",3)
+	See(Player3)
+THEN
+	RESPONSE #100
+		Enemy()
+		//EquipWeapon()
+		AttackOneRound(Player3)
+END
+
+IF
+	Global("Marked_Player","LOCALS",4)
+	See(Player4)
+THEN
+	RESPONSE #100
+		Enemy()
+		//EquipWeapon()
+		AttackOneRound(Player4)
+END
+
+IF
+	Global("Marked_Player","LOCALS",5)
+	See(Player5)
+THEN
+	RESPONSE #100
+		Enemy()
+		//EquipWeapon()
+		AttackOneRound(Player5)
+END
+
+IF
+	Global("Marked_Player","LOCALS",6)
+	See(Player6)
+THEN
+	RESPONSE #100
+		Enemy()
+		//EquipWeapon()
+		AttackOneRound(Player6)
+END
+

@@ -1,0 +1,84 @@
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("Hannu")
+		FaceObject([PC])
+		MoveViewObject(Myself,INSTANT)
+		//SetDialogueRange(300)
+		Wait(1)
+		
+		Unlock("AR5002_Door1")
+		
+		PlaySound("IW5002C")
+		OpenDoor("AR5002_Door1")
+		//HideCreature(Myself,FALSE)
+		
+		ApplySpellRES("IDRINVUL",Myself)
+		ApplySpellRES("IDINVIS9",Myself)
+		
+		Wait(1)
+		//Dialogue(Protagonist)
+		StartDialogNoSet([PC])
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId(Player1)
+		Wait(1)
+		SmallWait(5)
+		FaceObject("Hannu")
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId(Player2)
+		Wait(1)
+		SmallWait(8)
+		FaceObject("Hannu")
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId(Player3)
+		Wait(1)
+		SmallWait(7)
+		FaceObject("Hannu")
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId(Player4)
+		Wait(1)
+		SmallWait(10)
+		FaceObject("Hannu")
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId(Player5)
+		Wait(1)
+		SmallWait(6)
+		FaceObject("Hannu")
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId(Player6)
+		Wait(1)
+		SmallWait(9)
+		FaceObject("Hannu")
+END
+

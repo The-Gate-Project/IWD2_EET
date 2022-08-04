@@ -1,0 +1,27 @@
+IF
+	!Global("TEAM_7","MYAREA",0)
+THEN
+	RESPONSE #100
+		ChangeAIScript("",DEFAULT)
+END
+
+/*IF
+	!Global("TEAM_7","MYAREA",0)
+THEN
+	RESPONSE #100
+		ChangeCurrentScript("")
+END*/
+
+IF
+	Global("TEAM_7","MYAREA",0)
+	!Global("Rock_Row_1_Moved","MYAREA",0)
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		PlaySound("IW1000J")
+		SetGlobal("TEAM_7","MYAREA",1)
+		SetGlobal("TEAM_5","MYAREA",1)
+		RemoveMapNote([3262.984],@55048)
+		SetInterrupt(TRUE)
+END
+

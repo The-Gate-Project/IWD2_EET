@@ -1,0 +1,27 @@
+IF
+	!Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("DamageTimer","LOCALS")
+	//HPLostGT(Myself,1)
+	HPPercentLT(Myself,100)
+THEN
+	RESPONSE #100
+		Enemy()
+		Continue()
+END
+
+IF
+	!GlobalTimerNotExpired("DamageTimer","LOCALS")
+	HPPercentLT(Myself,100)
+	!See([GOODCUTOFF])
+THEN
+	RESPONSE #100
+		MoveToObject(Player1)
+		Continue()
+END
+
+IF
+	!GlobalTimerNotExpired("DamageTimer","LOCALS")
+THEN
+	RESPONSE #100
+		SetGlobalTimer("DamageTimer","LOCALS",5)
+END

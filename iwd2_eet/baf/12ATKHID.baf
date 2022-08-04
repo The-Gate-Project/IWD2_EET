@@ -1,0 +1,40 @@
+IF
+	!Global("12ATKHID_INACTIVE","LOCALS",1)
+	Global("1200_BATTLE_CLEANUP","GLOBAL",0)
+	!Global("Goblins_Attack_Palisade","GLOBAL",0)
+	IsActive(Myself)
+THEN
+	RESPONSE #100
+		SetGlobal("IwIHidden","LOCALS",1)
+		Deactivate(Myself)
+END
+
+IF
+	!Global("12ATKHID_INACTIVE","LOCALS",1)
+	Global("1200_BATTLE_CLEANUP","GLOBAL",0)
+	!Global("Goblins_Attack_Palisade","GLOBAL",0)
+	!IsActive(Myself)
+THEN
+	RESPONSE #100
+		NoAction()
+END
+
+IF
+	!Global("12ATKHID_INACTIVE","LOCALS",1)
+	!Global("1200_BATTLE_CLEANUP","GLOBAL",0)
+	!IsActive(Myself)
+THEN
+	RESPONSE #100
+		Activate(Myself)
+		SetGlobal("IwIHidden","LOCALS",0)
+END
+
+IF
+	!Global("12ATKHID_INACTIVE","LOCALS",1)
+	!Global("1200_BATTLE_CLEANUP","GLOBAL",0)
+	IsActive(Myself)
+THEN
+	RESPONSE #100
+		SetGlobal("12ATKHID_INACTIVE","LOCALS",1)
+END
+

@@ -1,0 +1,45 @@
+IF
+	Entered([GOODCUTOFF])
+	Global("WestWallTriggered","MYAREA",0)
+THEN
+	RESPONSE #100
+		DisplayString(LastTrigger,14381)
+		ScreenShake([16.12],50)
+		SetGlobal("WestWallTriggered","MYAREA",1)
+END
+
+IF
+	Global("WestWallTriggered","MYAREA",1)
+	IsOverMe([ANYONE])
+THEN
+	RESPONSE #100
+		ClearActions(LastTrigger)
+		ActionOverride(LastTrigger,JumpToPoint([373.1425]))
+		ApplySpellRES("IWWI097",LastTrigger)
+		ApplySpellRES("IWWI097",LastTrigger)
+		ApplySpellRES("IWWI097",LastTrigger)
+		ApplySpellRES("IWWI097",LastTrigger)
+		ApplySpellRES("IWWI097",LastTrigger)
+		ActionOverride(LastTrigger,PlayDead(30))
+	RESPONSE #100
+		ClearActions(LastTrigger)
+		ActionOverride(LastTrigger,JumpToPoint([369.1197]))
+		ApplySpellRES("IWWI097",LastTrigger)
+		ApplySpellRES("IWWI097",LastTrigger)
+		ApplySpellRES("IWWI097",LastTrigger)
+		ApplySpellRES("IWWI097",LastTrigger)
+		ApplySpellRES("IWWI097",LastTrigger)
+		ActionOverride(LastTrigger,PlayDead(30))
+END
+
+IF
+	Global("WestWallTriggered","MYAREA",1)
+	!IsOverMe([ANYONE])
+THEN
+	RESPONSE #100
+		ScreenShake([16.12],50)
+		CloseDoor("AR6104_West_Rocks")
+		SetGlobal("WestWallTriggered","MYAREA",0)
+		TriggerActivation(Myself,FALSE)
+END
+

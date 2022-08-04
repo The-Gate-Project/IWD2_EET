@@ -1,0 +1,469 @@
+IF
+	//CreatureHidden(Myself)
+	Global("StartCutscene_63cFB01","MYAREA",0)
+THEN
+	RESPONSE #100
+		NoAction()
+END
+
+IF
+	!Global("Marked","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobal("Marked","LOCALS",0)
+END
+
+IF
+	Global("Marked","LOCALS",0)
+	//GlobalGT("MarkedCounter","LOCALS",5)
+	See(Player1)
+	Class(LastSeenBy(Myself),MAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("Marked","LOCALS",1)
+		//IncrementGlobal("MarkedCounter","LOCALS",1)
+		//MarkObject(LastSeenBy(Myself))
+		Continue()
+END
+
+IF
+	Global("Marked","LOCALS",0)
+	//GlobalGT("MarkedCounter","LOCALS",5)
+	See(Player2)
+	Class(LastSeenBy(Myself),MAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("Marked","LOCALS",1)
+		//IncrementGlobal("MarkedCounter","LOCALS",1)
+		//MarkObject(LastSeenBy(Myself))
+		Continue()
+END
+
+IF
+	Global("Marked","LOCALS",0)
+	//GlobalGT("MarkedCounter","LOCALS",5)
+	See(Player3)
+	Class(LastSeenBy(Myself),MAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("Marked","LOCALS",1)
+		//IncrementGlobal("MarkedCounter","LOCALS",1)
+		//MarkObject(LastSeenBy(Myself))
+		Continue()
+END
+
+IF
+	Global("Marked","LOCALS",0)
+	//GlobalGT("MarkedCounter","LOCALS",5)
+	See(Player4)
+	Class(LastSeenBy(Myself),MAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("Marked","LOCALS",1)
+		//IncrementGlobal("MarkedCounter","LOCALS",1)
+		//MarkObject(LastSeenBy(Myself))
+		Continue()
+END
+
+IF
+	Global("Marked","LOCALS",0)
+	//GlobalGT("MarkedCounter","LOCALS",5)
+	See(Player5)
+	Class(LastSeenBy(Myself),MAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("Marked","LOCALS",1)
+		//MarkObject(LastSeenBy(Myself))
+		Continue()
+END
+
+IF
+	Global("Marked","LOCALS",0)
+	//GlobalGT("MarkedCounter","LOCALS",5)
+	See(Player6)
+	Class(LastSeenBy(Myself),MAGE)
+THEN
+	RESPONSE #100
+		SetGlobal("Marked","LOCALS",1)
+		//IncrementGlobal("MarkedCounter","LOCALS",1)
+		//MarkObject(LastSeenBy(Myself))
+		Continue()
+END
+
+IF
+	Global("Marked","LOCALS",0)
+	//GlobalGT("MarkedCounter","LOCALS",5)
+	See(Player1)
+	Class(LastSeenBy(Myself),SORCERER)
+THEN
+	RESPONSE #100
+		SetGlobal("Marked","LOCALS",1)
+		//IncrementGlobal("MarkedCounter","LOCALS",1)
+		//MarkObject(LastSeenBy(Myself))
+		Continue()
+END
+
+IF
+	Global("Marked","LOCALS",0)
+	//GlobalGT("MarkedCounter","LOCALS",5)
+	See(Player2)
+	Class(LastSeenBy(Myself),SORCERER)
+THEN
+	RESPONSE #100
+		SetGlobal("Marked","LOCALS",1)
+		//IncrementGlobal("MarkedCounter","LOCALS",1)
+		//MarkObject(LastSeenBy(Myself))
+		Continue()
+END
+
+IF
+	Global("Marked","LOCALS",0)
+	//GlobalGT("MarkedCounter","LOCALS",5)
+	See(Player3)
+	Class(LastSeenBy(Myself),SORCERER)
+THEN
+	RESPONSE #100
+		SetGlobal("Marked","LOCALS",1)
+		//IncrementGlobal("MarkedCounter","LOCALS",1)
+		//MarkObject(LastSeenBy(Myself))
+		Continue()
+END
+
+IF
+	Global("Marked","LOCALS",0)
+	//GlobalGT("MarkedCounter","LOCALS",5)
+	See(Player4)
+	Class(LastSeenBy(Myself),SORCERER)
+THEN
+	RESPONSE #100
+		SetGlobal("Marked","LOCALS",1)
+		//IncrementGlobal("MarkedCounter","LOCALS",1)
+		//MarkObject(LastSeenBy(Myself))
+		Continue()
+END
+
+IF
+	Global("Marked","LOCALS",0)
+	//GlobalGT("MarkedCounter","LOCALS",5)
+	See(Player5)
+	Class(LastSeenBy(Myself),SORCERER)
+THEN
+	RESPONSE #100
+		SetGlobal("Marked","LOCALS",1)
+		//MarkObject(LastSeenBy(Myself))
+		Continue()
+END
+
+IF
+	Global("Marked","LOCALS",0)
+	//GlobalGT("MarkedCounter","LOCALS",5)
+	See(Player6)
+	Class(LastSeenBy(Myself),SORCERER)
+THEN
+	RESPONSE #100
+		SetGlobal("Marked","LOCALS",1)
+		//IncrementGlobal("MarkedCounter","LOCALS",1)
+		//MarkObject(LastSeenBy(Myself))
+		Continue()
+END
+
+IF
+	Global("Marked","LOCALS",0)
+	//GlobalGT("MarkedCounter","LOCALS",5)
+	See(Player1)
+	Class(LastSeenBy(Myself),DRUID)
+THEN
+	RESPONSE #100
+		SetGlobal("Marked","LOCALS",1)
+		//IncrementGlobal("MarkedCounter","LOCALS",1)
+		//MarkObject(LastSeenBy(Myself))
+		Continue()
+END
+
+IF
+	Global("Marked","LOCALS",0)
+	//GlobalGT("MarkedCounter","LOCALS",5)
+	See(Player2)
+	Class(LastSeenBy(Myself),DRUID)
+THEN
+	RESPONSE #100
+		SetGlobal("Marked","LOCALS",1)
+		//IncrementGlobal("MarkedCounter","LOCALS",1)
+		//MarkObject(LastSeenBy(Myself))
+		Continue()
+END
+
+IF
+	Global("Marked","LOCALS",0)
+	//GlobalGT("MarkedCounter","LOCALS",5)
+	See(Player3)
+	Class(LastSeenBy(Myself),DRUID)
+THEN
+	RESPONSE #100
+		SetGlobal("Marked","LOCALS",1)
+		//IncrementGlobal("MarkedCounter","LOCALS",1)
+		//MarkObject(LastSeenBy(Myself))
+		Continue()
+END
+
+IF
+	Global("Marked","LOCALS",0)
+	//GlobalGT("MarkedCounter","LOCALS",5)
+	See(Player4)
+	Class(LastSeenBy(Myself),DRUID)
+THEN
+	RESPONSE #100
+		SetGlobal("Marked","LOCALS",1)
+		//IncrementGlobal("MarkedCounter","LOCALS",1)
+		//MarkObject(LastSeenBy(Myself))
+		Continue()
+END
+
+IF
+	Global("Marked","LOCALS",0)
+	//GlobalGT("MarkedCounter","LOCALS",5)
+	See(Player5)
+	Class(LastSeenBy(Myself),DRUID)
+THEN
+	RESPONSE #100
+		SetGlobal("Marked","LOCALS",1)
+		//MarkObject(LastSeenBy(Myself))
+		Continue()
+END
+
+IF
+	Global("Marked","LOCALS",0)
+	//GlobalGT("MarkedCounter","LOCALS",5)
+	See(Player6)
+	Class(LastSeenBy(Myself),DRUID)
+THEN
+	RESPONSE #100
+		SetGlobal("Marked","LOCALS",1)
+		//IncrementGlobal("MarkedCounter","LOCALS",1)
+		//MarkObject(LastSeenBy(Myself))
+		Continue()
+END
+
+IF
+	//Or(2)
+	//	//GlobalGT("MarkedGroupCounter","LOCALS",5)
+		GlobalTimerExpired("MarkedGroupTimer","LOCALS")
+THEN
+	RESPONSE #100
+		SetGlobal("Group_Mark","MYAREA",-1)
+		Continue()
+END
+
+IF
+	Global("Group_Mark","MYAREA",1)
+	StateCheck(Player1,STATE_REALLY_DEAD)
+THEN
+	RESPONSE #100
+		SetGlobal("Group_Mark","MYAREA",0)
+		Continue()
+END
+
+IF
+	Global("Group_Mark","MYAREA",2)
+	StateCheck(Player2,STATE_REALLY_DEAD)
+THEN
+	RESPONSE #100
+		SetGlobal("Group_Mark","MYAREA",0)
+		Continue()
+END
+
+IF
+	Global("Group_Mark","MYAREA",3)
+	StateCheck(Player3,STATE_REALLY_DEAD)
+THEN
+	RESPONSE #100
+		SetGlobal("Group_Mark","MYAREA",0)
+		Continue()
+END
+
+IF
+	Global("Group_Mark","MYAREA",4)
+	StateCheck(Player4,STATE_REALLY_DEAD)
+THEN
+	RESPONSE #100
+		SetGlobal("Group_Mark","MYAREA",0)
+		Continue()
+END
+
+IF
+	Global("Group_Mark","MYAREA",5)
+	StateCheck(Player5,STATE_REALLY_DEAD)
+THEN
+	RESPONSE #100
+		SetGlobal("Group_Mark","MYAREA",0)
+		Continue()
+END
+
+IF
+	Global("Group_Mark","MYAREA",6)
+	StateCheck(Player6,STATE_REALLY_DEAD)
+THEN
+	RESPONSE #100
+		SetGlobal("Group_Mark","MYAREA",0)
+		Continue()
+END
+
+IF
+	Global("Marked","LOCALS",0)
+	Global("Group_Mark","MYAREA",0)
+	//GlobalGT("MarkedGroupCounter","MYAREA",5)
+	See(Player6)
+	HPPercentLT(LastSeenBy(Myself),50)
+THEN
+	RESPONSE #100
+		SetGlobal("Marked","LOCALS",1)
+		SetGlobal("Group_Mark","MYAREA",6)
+		//IncrementGlobal("MarkedGroupCounter","MYAREA",1)
+		SetGlobalTimer("MarkedGroupTimer","MYAREA",35)
+		//MarkObject(LastSeenBy(Myself))
+		Continue()
+END
+
+IF
+	Global("Marked","LOCALS",0)
+	Global("Group_Mark","MYAREA",0)
+	//GlobalGT("MarkedGroupCounter","MYAREA",5)
+	See(Player5)
+	HPPercentLT(LastSeenBy(Myself),50)
+THEN
+	RESPONSE #100
+		SetGlobal("Marked","LOCALS",1)
+		SetGlobal("Group_Mark","MYAREA",5)
+		//IncrementGlobal("MarkedGroupCounter","MYAREA",1)
+		SetGlobalTimer("MarkedGroupTimer","MYAREA",35)
+		//MarkObject(LastSeenBy(Myself))
+		Continue()
+END
+
+IF
+	Global("Marked","LOCALS",0)
+	Global("Group_Mark","MYAREA",0)
+	//GlobalGT("MarkedGroupCounter","MYAREA",5)
+	See(Player4)
+	HPPercentLT(LastSeenBy(Myself),50)
+THEN
+	RESPONSE #100
+		SetGlobal("Marked","LOCALS",1)
+		SetGlobal("Group_Mark","MYAREA",4)
+		//IncrementGlobal("MarkedGroupCounter","MYAREA",1)
+		SetGlobalTimer("MarkedGroupTimer","MYAREA",35)
+		//MarkObject(LastSeenBy(Myself))
+		Continue()
+END
+
+IF
+	Global("Marked","LOCALS",0)
+	Global("Group_Mark","MYAREA",0)
+	//GlobalGT("MarkedGroupCounter","MYAREA",5)
+	See(Player3)
+	HPPercentLT(LastSeenBy(Myself),50)
+THEN
+	RESPONSE #100
+		SetGlobal("Marked","LOCALS",1)
+		SetGlobal("Group_Mark","MYAREA",3)
+		//IncrementGlobal("MarkedGroupCounter","MYAREA",1)
+		SetGlobalTimer("MarkedGroupTimer","MYAREA",35)
+		//MarkObject(LastSeenBy(Myself))
+		Continue()
+END
+
+IF
+	Global("Marked","LOCALS",0)
+	Global("Group_Mark","MYAREA",0)
+	//GlobalGT("MarkedGroupCounter","MYAREA",5)
+	See(Player2)
+	HPPercentLT(LastSeenBy(Myself),50)
+THEN
+	RESPONSE #100
+		SetGlobal("Marked","LOCALS",1)
+		SetGlobal("Group_Mark","MYAREA",2)
+		//IncrementGlobal("MarkedGroupCounter","MYAREA",1)
+		SetGlobalTimer("MarkedGroupTimer","MYAREA",35)
+		//MarkObject(LastSeenBy(Myself))
+		Continue()
+END
+
+IF
+	Global("Marked","LOCALS",0)
+	Global("Group_Mark","MYAREA",0)
+	//GlobalGT("MarkedGroupCounter","MYAREA",5)
+	See(Player1)
+	HPPercentLT(LastSeenBy(Myself),50)
+THEN
+	RESPONSE #100
+		SetGlobal("Marked","LOCALS",1)
+		SetGlobal("Group_Mark","MYAREA",1)
+		//IncrementGlobal("MarkedGroupCounter","MYAREA",1)
+		SetGlobalTimer("MarkedGroupTimer","MYAREA",35)
+		//MarkObject(LastSeenBy(Myself))
+		Continue()
+END
+
+IF
+	StateCheck(Myself,STATE_PANIC)
+THEN
+	RESPONSE #100
+		RandomWalkContinuous()
+END
+
+IF
+	!GlobalTimerNotExpired("Hide_Ability","LOCALS")
+THEN
+	RESPONSE #100
+		SetGlobalTimer("Hide_Ability","LOCALS",7)
+		Hide()
+END
+
+IF
+	HasItem("POTN55",Myself) //POTN_52
+	HPPercentLT(Myself,25)
+THEN
+	RESPONSE #100
+		UseItem("POTN55",Myself) //POTN_52
+END
+
+IF
+	//!StateCheck(Myself,STATE_INVISIBLE)
+	//IsCreatureHiddenInShadows(Myself)
+	StateCheck(Myself,STATE_NOT_VISIBLE)
+	See(LastSeenBy(Myself))
+THEN
+	RESPONSE #100
+		EquipMostDamagingMelee()
+		//BackStab(LastMarkedObject)
+		AttackReevaluate(LastSeenBy(Myself),30)
+END
+
+IF
+	See(LastSeenBy(Myself))
+THEN
+	RESPONSE #100
+		//EquipWeapon()
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	//!StateCheck(Myself,STATE_INVISIBLE)
+	//IsCreatureHiddenInShadows(Myself)
+	StateCheck(Myself,STATE_NOT_VISIBLE)
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		EquipMostDamagingMelee()
+		//BackStab(LastMarkedObject)
+		AttackReevaluate(LastSeenBy(Myself),30)
+END
+
+IF
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		EquipMostDamagingMelee()
+		AttackOneRound(LastSeenBy(Myself))
+END
+

@@ -1,0 +1,25 @@
+IF
+  See([PC])
+  Range(LastSeenBy(Myself),25)
+THEN
+  RESPONSE #100
+    SetSequence(SEQ_AWAKE)
+    SetGlobal("Sequence","LOCALS",1)
+    ChangeAIScript("",OVERRIDE)
+END
+
+IF
+  !GlobalTimerNotExpired("RemhSequence","LOCALS")
+THEN
+  RESPONSE #100
+    SetSequence(SEQ_AWAKE)
+    SetGlobal("Sequence","LOCALS",1)
+    SetGlobalTimerRandom("RemhSequence","LOCALS",10,30)
+  RESPONSE #100
+    SetSequence(SEQ_SLEEP)
+    SetGlobal("Sequence","LOCALS",16)
+    SetGlobalTimerRandom("RemhSequence","LOCALS",20,40)
+END
+
+
+

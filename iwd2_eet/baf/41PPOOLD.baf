@@ -1,0 +1,20 @@
+IF
+	!Global("41PPOOLD_INACTIVE","MYAREA",1)
+	Global("IceTrollDied","GLOBAL",1)
+	Global("NumIceTrollKilled","GLOBAL",12)
+THEN
+	RESPONSE #100
+		SetGlobal("IceTrollDied","GLOBAL",0)
+		Unlock(Myself)
+		//ChangeCurrentScript("")
+		SetGlobal("41PPOOLD_INACTIVE","MYAREA",1)
+END
+
+IF
+	!Global("41PPOOLD_INACTIVE","MYAREA",1)
+	Global("IceTrollDied","GLOBAL",1)
+THEN
+	RESPONSE #100
+		SetGlobal("IceTrollDied","GLOBAL",0)
+END
+

@@ -1,0 +1,314 @@
+/* IF
+	Global("K#TotalPlayTimeActive","GLOBAL",0)
+THEN
+	RESPONSE #100
+		SetGlobal("K#TotalPlayTimeActive","GLOBAL",1)
+		RealSetGlobalTimer("K#RealTimerOneHour","GLOBAL",TWELVE_HOURS)
+		Continue()
+END
+
+IF
+	RealGlobalTimerExpired("K#RealTimerOneHour","GLOBAL")
+THEN
+	RESPONSE #100
+		IncrementGlobal("K#TotalPlayTime","GLOBAL",1)
+		RealSetGlobalTimer("K#RealTimerOneHour","GLOBAL",TWELVE_HOURS)
+		Continue()
+END
+
+IF
+  Global("IcewindAllDays","GLOBAL",-1)
+THEN
+  RESPONSE #100
+    IncrementGlobal("IcewindAllDays","GLOBAL",1)
+    SetGlobalTimer("IwdTimerOneDay","GLOBAL",ONE_DAY)
+    Continue()
+END
+
+IF
+	GlobalTimerExpired("IwdTimerOneDay","GLOBAL")
+THEN
+	RESPONSE #100
+		IncrementGlobal("IcewindAllDays","GLOBAL",1)
+		SetGlobalTimer("IwdTimerOneDay","GLOBAL",ONE_DAY)
+		Continue()
+END */
+
+//Critical Path
+IF
+	GlobalGT("IwdCriticalDead","GLOBAL",0)
+THEN
+	RESPONSE #100
+		DisplayStringNoNameHead(Player1,@50000)
+		Wait(3)
+		GameOver(@50000)
+END
+
+IF
+  //GlobalGT("Goblin_Palisade_Quest","GLOBAL",0)
+	CombatCounter(0)
+	OR(6)
+		!Specifics(Player1,0)
+		!Specifics(Player2,0)
+		!Specifics(Player3,0)
+		!Specifics(Player4,0)
+		!Specifics(Player5,0)
+		!Specifics(Player6,0)
+THEN
+	RESPONSE #100
+		ChangeSpecifics(Player1,0)
+		ChangeSpecifics(Player2,0)
+		ChangeSpecifics(Player3,0)
+		ChangeSpecifics(Player4,0)
+		ChangeSpecifics(Player5,0)
+		ChangeSpecifics(Player6,0)
+		Continue()
+END
+
+IF
+	InParty(Player1)
+	!StateCheck(Player1,STATE_REALLY_DEAD)
+	Class(Player1,PALADIN_ALL)
+	!Kit(Player1,BLACKGUARD)
+	TriggerOverride(Player1,Global("ChultRobe","LOCALS",0))
+THEN
+	RESPONSE #100
+		ActionOverride(Player1,ApplySpellRES("60CLCKIR",Myself))
+		ActionOverride(Player1,SetGlobal("ChultRobe","LOCALS",1))
+END
+
+IF
+	InParty(Player2)
+	!StateCheck(Player2,STATE_REALLY_DEAD)
+	Class(Player2,PALADIN_ALL)
+	!Kit(Player2,BLACKGUARD)
+	TriggerOverride(Player2,Global("ChultRobe","LOCALS",0))
+THEN
+	RESPONSE #100
+		ActionOverride(Player2,ApplySpellRES("60CLCKIR",Myself))
+		ActionOverride(Player2,SetGlobal("ChultRobe","LOCALS",1))
+END
+
+IF
+	InParty(Player3)
+	!StateCheck(Player3,STATE_REALLY_DEAD)
+	Class(Player3,PALADIN_ALL)
+	!Kit(Player3,BLACKGUARD)
+	TriggerOverride(Player3,Global("ChultRobe","LOCALS",0))
+THEN
+	RESPONSE #100
+		ActionOverride(Player3,ApplySpellRES("60CLCKIR",Myself))
+		ActionOverride(Player3,SetGlobal("ChultRobe","LOCALS",1))
+END
+
+IF
+	InParty(Player4)
+	!StateCheck(Player4,STATE_REALLY_DEAD)
+	Class(Player4,PALADIN_ALL)
+	!Kit(Player4,BLACKGUARD)
+	TriggerOverride(Player4,Global("ChultRobe","LOCALS",0))
+THEN
+	RESPONSE #100
+		ActionOverride(Player4,ApplySpellRES("60CLCKIR",Myself))
+		ActionOverride(Player4,SetGlobal("ChultRobe","LOCALS",1))
+END
+
+IF
+	InParty(Player5)
+	!StateCheck(Player5,STATE_REALLY_DEAD)
+	Class(Player5,PALADIN_ALL)
+	!Kit(Player5,BLACKGUARD)
+	TriggerOverride(Player5,Global("ChultRobe","LOCALS",0))
+THEN
+	RESPONSE #100
+		ActionOverride(Player5,ApplySpellRES("60CLCKIR",Myself))
+		ActionOverride(Player5,SetGlobal("ChultRobe","LOCALS",1))
+END
+
+IF
+	InParty(Player6)
+	!StateCheck(Player6,STATE_REALLY_DEAD)
+	Class(Player6,PALADIN_ALL)
+	!Kit(Player6,BLACKGUARD)
+	TriggerOverride(Player6,Global("ChultRobe","LOCALS",0))
+THEN
+	RESPONSE #100
+		ActionOverride(Player6,ApplySpellRES("60CLCKIR",Myself))
+		ActionOverride(Player6,SetGlobal("ChultRobe","LOCALS",1))
+END
+
+IF
+	LevelGT(Player1,17)
+	GlobalLT("Bashshar_Service","GLOBAL",4)
+	Global("Add_BashsharStore1Itm","GLOBAL",0)
+THEN
+	RESPONSE #100
+		AddStoreItem("00Bashs1","00HelmDS",0,IDENTIFIED)
+		AddStoreItem("00Bashs1","RING03",0,IDENTIFIED)
+		AddStoreItem("00Bashs1","RING20",1,IDENTIFIED)
+		AddStoreItem("00Bashs1","CLCK09",0,IDENTIFIED)
+		AddStoreItem("00Bashs1","00BELT05",3,IDENTIFIED)
+		AddStoreItem("00Bashs1","WANDTRP",3,IDENTIFIED)
+		AddStoreItem("00Bashs1","00WAND31",50,IDENTIFIED)
+		AddStoreItem("00Bashs1","00WAND45",50,IDENTIFIED)
+		AddStoreItem("00Bashs1","00WAND38",50,IDENTIFIED)
+		AddStoreItem("00Bashs1","BRAC03",0,IDENTIFIED)
+		AddStoreItem("00Bashs1","BOOT05",0,IDENTIFIED)
+		SetGlobal("Add_BashsharStore1Itm","GLOBAL",1)
+END
+
+IF
+	LevelGT(Player1,22)
+	GlobalLT("Bashshar_Service","GLOBAL",4)
+	Global("Add_BashsharStore2Itm","GLOBAL",0)
+THEN
+	RESPONSE #100
+		AddStoreItem("00Bashs1","00BARDRS",2,IDENTIFIED)
+		AddStoreItem("00Bashs1","RING09",0,IDENTIFIED)
+		AddStoreItem("00Bashs1","RING05",1,IDENTIFIED)
+		AddStoreItem("00Bashs1","CLCK10",0,IDENTIFIED)
+		AddStoreItem("00Bashs1","BELT03",0,IDENTIFIED)
+		AddStoreItem("00Bashs1","00WAND24",50,IDENTIFIED)
+		AddStoreItem("00Bashs1","WAND05",50,IDENTIFIED)
+		AddStoreItem("00Bashs1","00WAND44",50,IDENTIFIED)
+		AddStoreItem("00Bashs1","WAND07",50,IDENTIFIED)
+		AddStoreItem("00Bashs1","BRAC10",0,IDENTIFIED)
+		AddStoreItem("00Bashs1","BOOT01",0,IDENTIFIED)
+		SetGlobal("Add_BashsharStore2Itm","GLOBAL",1)
+END
+
+IF
+  Global("IW2000_Revealed","GLOBAL",1)
+THEN
+  RESPONSE #100
+    SetGlobal("IW2000_Revealed","GLOBAL",2)
+    RevealAreaOnMap("IW2000")
+    Continue()
+END
+
+IF
+  Global("IW3000_Revealed","GLOBAL",1)
+THEN
+  RESPONSE #100
+    SetGlobal("IW3000_Revealed","GLOBAL",2)
+    RevealAreaOnMap("IW3000")
+    Continue()
+END
+
+IF
+  Global("IW4000_Revealed","GLOBAL",1)
+THEN
+  RESPONSE #100
+    SetGlobal("IW4000_Revealed","GLOBAL",2)
+    RevealAreaOnMap("IW4000")
+    Continue()
+END
+
+IF
+	Global("IW5200_Revealed","GLOBAL",0)
+	AreaCheckObject("IW5102",Player1)
+THEN
+	RESPONSE #100
+		SetGlobal("IW5200_Revealed","GLOBAL",1)
+		RevealAreaOnMap("IW5200")
+		Continue()
+END
+
+IF
+	Global("TP_SetArrowQuest","GLOBAL",1)
+	Switch("Lumber_Quest_Aborted","GLOBAL")
+THEN
+	RESPONSE #0
+		AddJournalEntry(@802,QUEST_DONE)
+		SetGlobal("TP_SetArrowQuest","GLOBAL",2)
+	RESPONSE #1
+		AddJournalEntry(@10779,QUEST_DONE)
+		SetGlobal("TP_SetArrowQuest","GLOBAL",2)
+END
+
+IF
+	Global("TP_IronCollar","GLOBAL",1)
+	Switch("SPRITE_IS_DEADKoluhm","GLOBAL")
+THEN
+	RESPONSE #0
+		AddJournalEntry(@10782,QUEST_DONE)
+		SetGlobal("TP_IronCollar","GLOBAL",2)
+	RESPONSE #1
+		AddJournalEntry(@10781,QUEST_DONE)
+		SetGlobal("TP_IronCollar","GLOBAL",2)
+END
+
+IF
+	Global("TP_Palisade_attack","GLOBAL",1)
+	Switch("IC_Good","GLOBAL")
+THEN
+	RESPONSE #0
+		SetQuestDone(@10783)
+		SetGlobal("TP_Palisade_attack","GLOBAL",2)
+	RESPONSE #1
+		SetQuestDone(@10784)
+		SetGlobal("TP_Palisade_attack","GLOBAL",2)
+END
+
+IF
+	GlobalGT("Elytharra_Tear","GLOBAL",0)
+	Global("TP_ElitharraTear","GLOBAL",0)
+THEN
+	RESPONSE #100
+		EraseJournalEntry(@276)
+		EraseJournalEntry(@277)
+		EraseJournalEntry(@7238)
+		EraseJournalEntry(@7890)
+		EraseJournalEntry(@9728)
+		EraseJournalEntry(@28050)
+		EraseJournalEntry(@28053)
+		AddJournalEntry(@28053,QUEST_DONE)
+		SetGlobal("TP_ElitharraTear","GLOBAL",1)
+END
+
+IF
+	Global("TP_FortressQuest","GLOBAL",1)
+	GlobalLT("Shaengarne_Bridge_Destroyed","GLOBAL",2)
+THEN
+	RESPONSE #100
+		AddJournalEntry(@6186,QUEST_DONE)
+		SetGlobal("TP_FortressQuest","GLOBAL",2)
+END
+
+IF
+	Global("TP_FortressQuest","GLOBAL",1)
+	Global("Shaengarne_Bridge_Destroyed","GLOBAL",2)
+THEN
+	RESPONSE #100
+		AddJournalEntry(@6181,QUEST_DONE)
+		SetGlobal("TP_FortressQuest","GLOBAL",2)
+END
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

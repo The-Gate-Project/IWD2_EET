@@ -1,0 +1,31 @@
+IF
+	IsActive("Rahm")
+THEN
+	RESPONSE #100
+		EscapeAreaDestroy(30)
+END
+
+IF
+	Global("41NateDestroySourceQuest","GLOBAL",4)
+	Global("SPRITE_IS_DEADSherincal","GLOBAL",1)
+	Global("WallCutscene","MYAREA",0)
+	//EntirePartyOnMap()
+	InMyArea(Player1)
+THEN
+	RESPONSE #100
+		SetGlobal("WallCutscene","MYAREA",1)
+		Activate(Myself)
+		SetGlobal("IwIHidden","LOCALS",0)
+		StartCutSceneMode()
+		ClearAllActions()
+		MultiPlayerSync()
+		StartCutScene("41cNateW")
+END
+
+IF
+	!IsActive(Myself)
+THEN
+	RESPONSE #100
+		NoAction()
+END
+

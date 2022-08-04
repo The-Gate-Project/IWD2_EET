@@ -1,0 +1,85 @@
+IF
+	Global("52Ven_Loot","GLOBAL",4)
+	!StateCheck("Ven",STATE_REALLY_DEAD)
+THEN
+	RESPONSE #100
+		ActionOverride("Ven",DestroySelf())
+		Continue()
+END
+
+IF
+	//AreaRestDisabled()
+	!Global("AllowAreaResting","MYAREA",1)
+	!Global("BLACKRAVEN_MONKS_DEAD","GLOBAL",0)
+THEN
+	RESPONSE #100
+		//AllowAreaResting(TRUE)
+		RemoveAreaFlag(NOREST)
+		SetGlobal("AllowAreaResting","MYAREA",1)
+		Continue()
+END
+
+/*IF
+	AreaRestDisabled()
+	!Global("BLACKRAVEN_MONKS_DEAD","GLOBAL",0)
+THEN
+	RESPONSE #100
+		AllowAreaResting(TRUE)
+		Continue()
+END*/
+
+IF
+	GlobalGT("52Salisam_Offer","GLOBAL",2)
+	/*Or(2)
+		CheckDoorFlags("AR5203_DOOR1",DOORLOCKED)
+		CheckDoorFlags("AR5203_DOOR2",DOORLOCKED)*/
+	!Global("UnlockDoors","MYAREA",1)
+THEN
+	RESPONSE #100
+		Unlock("AR5203_DOOR1")
+		Unlock("AR5203_DOOR2")
+		SetGlobal("UnlockDoors","MYAREA",1)
+		Continue()
+END
+
+IF
+	OnCreation()
+THEN
+	RESPONSE #100
+		NoAction()
+		Continue()
+END
+
+IF
+	CombatCounter(0)
+	OR(6)
+		!Specifics(Player1,0)
+		!Specifics(Player2,0)
+		!Specifics(Player3,0)
+		!Specifics(Player4,0)
+		!Specifics(Player5,0)
+		!Specifics(Player6,0)
+THEN
+	RESPONSE #100
+		ChangeSpecifics(Player1,0)
+		ChangeSpecifics(Player2,0)
+		ChangeSpecifics(Player3,0)
+		ChangeSpecifics(Player4,0)
+		ChangeSpecifics(Player5,0)
+		ChangeSpecifics(Player6,0)
+		Continue()
+END
+
+IF
+	GlobalLT("51Barud_Monks","GLOBAL",2)
+	GlobalGT("SPRITE_IS_DEADBarud","GLOBAL",0)
+	Global("Remove_Journal","MYAREA",0)
+THEN
+	RESPONSE #100
+		EraseJournalEntry(@9214)
+		EraseJournalEntry(@34400)
+		EraseJournalEntry(@9215)
+		EraseJournalEntry(@28813)
+		SetGlobal("Remove_Journal","MYAREA",1)
+END
+

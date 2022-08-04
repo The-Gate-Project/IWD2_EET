@@ -1,0 +1,42 @@
+IF
+	!CheckSpellState(Myself,BLUE_FIRESHIELD)
+THEN
+	RESPONSE #100
+		ReallyForceSpell(Myself,WIZARD_FIRE_SHIELD_BLUE)
+		//SpellWait(WIZARD_FIRESHIELD_BLUE)  // SPWI426.SPL (Огненный щит (Синий))
+		Wait(2)
+		Continue()
+END
+
+IF
+	!Allegiance(Myself,ENEMY)
+	AttackedBy([GOODCUTOFF],DEFAULT)
+THEN
+	RESPONSE #100
+		Enemy()
+		EquipMostDamagingMelee()
+		AttackOneRound(LastAttackerOf(Myself))
+END
+
+IF
+	!GlobalTimerNotExpired("Whirlwind","LOCALS")
+	See(NearestEnemyOf(Myself))
+	//IsSpellTargetValid(LastMarkedObject,CLERIC_WHIRLWIND,SPELLCAST_IGNORE_HAS_CHECK)  // SPPR613.SPL (Вихрь)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("Whirlwind","LOCALS",70)
+		ForceSpellRES("IWPR613",LastSeenBy(Myself))  // CLERIC_WHIRLWIND
+		//WaitAnimation(Myself,WALK)
+		//WaitAnimation(Myself,CONJURE)
+		//WaitAnimation(Myself,CAST)
+		Wait(2)
+END
+
+IF
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		EquipMostDamagingMelee()
+		AttackOneRound(LastSeenBy(Myself))
+END
+

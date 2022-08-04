@@ -1,0 +1,11 @@
+BEGIN ~66STUDNT~
+
+IF ~NumTimesTalkedTo(0)~ THEN BEGIN 0
+  SAY @34012
+  IF ~~ THEN EXIT
+END
+
+IF ~NumTimesTalkedToGT(0)~ THEN BEGIN 1
+  SAY @34015
+  IF ~~ THEN EXIT
+END

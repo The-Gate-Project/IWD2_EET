@@ -1,0 +1,12 @@
+IF
+	IsActive(Myself)
+	Allegiance(Myself,ENEMY)
+	LOS([PC],25)
+THEN
+	RESPONSE #100
+		ReallyForceSpellRES("IWIN165",Myself)  // SPIN165.SPL INNATE_HARPY_WAIL
+		ChangeAIScript("",CLASS)
+	RESPONSE #50
+		Continue()
+END
+

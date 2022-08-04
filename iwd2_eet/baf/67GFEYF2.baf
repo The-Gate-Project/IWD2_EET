@@ -1,0 +1,41 @@
+IF
+	!Allegiance(Myself,ENEMY)
+	OpenState("AR6700_Cell1",TRUE)
+THEN
+	RESPONSE #100
+		Enemy()
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+THEN
+	RESPONSE #100
+		ChangeAIScript("",CLASS)
+END
+
+IF
+	!GlobalTimerNotExpired("IwTimer18","LOCALS")
+	!Allegiance(Myself,ENEMY)
+THEN
+	RESPONSE #50
+		DisplayStringHead(Myself,@27618)
+		SetGlobalTimerRandom("IwTimer18","LOCALS",15,25)
+		Continue()
+	RESPONSE #50
+		DisplayStringHead(Myself,@27619)
+		SetGlobalTimerRandom("IwTimer18","LOCALS",15,25)
+		Continue()
+	RESPONSE #50
+		DisplayStringHead(Myself,@27623)
+		SetGlobalTimerRandom("IwTimer18","LOCALS",15,25)
+		Continue()
+	RESPONSE #50
+		DisplayStringHead(Myself,@27624)
+		SetGlobalTimerRandom("IwTimer18","LOCALS",15,25)
+		Continue()
+	RESPONSE #200
+		SetGlobalTimerRandom("IwTimer18","LOCALS",15,25)
+		Continue()
+END
+

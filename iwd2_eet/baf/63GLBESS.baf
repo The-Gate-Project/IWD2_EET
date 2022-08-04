@@ -1,0 +1,26 @@
+IF
+	Global("SH_GlobeVulnerable","MYAREA",0)
+	GlobalGT("SH_Perform_Illmater_Ritual","GLOBAL",3)
+THEN
+	RESPONSE #100
+		SetGlobal("SH_GlobeVulnerable","MYAREA",1)
+		//SetCreatureAreaFlag(Myself,INVULNERABLE,FALSE)
+		ApplySpellRES("IDRINVUL",Myself)
+END
+
+IF
+	Global("SH_GlobeVulnerable","LOCALS",1) //MakeVulnerable
+	!Global("TEAM_1","MYAREA",0)
+THEN
+	RESPONSE #100
+		ChangeAIScript("",RACE)
+END
+
+IF
+	Global("TEAM_1","MYAREA",0)
+	AttackedBy([GOODCUTOFF],DEFAULT)
+THEN
+	RESPONSE #100
+		SetGlobal("TEAM_1","MYAREA",1)
+END
+

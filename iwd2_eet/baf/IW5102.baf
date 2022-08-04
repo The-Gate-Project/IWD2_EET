@@ -1,0 +1,32 @@
+IF
+	GlobalLT("SP_BATTLE_MUSIC","MYAREA",2)
+	Dead("Harshom")
+	//!AnyPCSeesEnemy()
+	CombatCounter(0)
+	InMyArea(Player1)
+THEN
+	RESPONSE #100
+		SetMusic(COMBAT_NORMAL,0)
+		SetGlobal("SP_BATTLE_MUSIC","MYAREA",2)
+		Continue()
+END
+
+IF
+	Global("SP_BATTLE_MUSIC","MYAREA",0)
+	IsActive("Harshom")
+	Allegiance("Harshom",ENEMY)
+THEN
+	RESPONSE #100
+		SetMusic(COMBAT_NORMAL,%WA5102%)
+		SetGlobal("SP_BATTLE_MUSIC","MYAREA",1)
+		Continue()
+END
+
+IF
+	OnCreation()
+THEN
+	RESPONSE #100
+		NoAction()
+		Continue()
+END
+

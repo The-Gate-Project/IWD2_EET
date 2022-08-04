@@ -1,0 +1,113 @@
+IF
+  Global("SaveSavedLoc","LOCALS",0)
+THEN
+  RESPONSE #100
+    SetGlobal("SaveSavedLoc","LOCALS",1)
+    SaveObjectLocation("LOCALS","SavedLoc",Myself)
+    Continue()
+END
+
+IF
+	Global("CHANGED_POINT","LOCALS",0)
+	!Global("Tabard_Quest","GLOBAL",0)
+THEN
+	RESPONSE #100
+		SaveLocation("LOCALS","SavedLoc",[1588.1172])
+		SetGlobal("CHANGED_POINT","LOCALS",1)
+		SetGlobal("SaveSavedLoc","LOCALS",1)
+END
+
+IF
+	Global("CHANGED_POINT","LOCALS",1)
+THEN
+	RESPONSE #100
+		MoveToSavedLocation("SavedLoc","LOCALS")
+		SetGlobal("CHANGED_POINT","LOCALS",2)
+END
+
+IF
+	!GlobalTimerNotExpired("IwTimer18","LOCALS")
+	Global("Tabard_Quest","GLOBAL",1)
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,@16169)
+		SetGlobalTimer("IwTimer18","LOCALS",25)
+		Continue()
+	RESPONSE #100
+		DisplayStringHead(Myself,@16171)
+		SetGlobalTimer("IwTimer18","LOCALS",25)
+		Continue()
+	RESPONSE #100
+		DisplayStringHead(Myself,@16172)
+		SetGlobalTimer("IwTimer18","LOCALS",25)
+		Continue()
+END
+
+IF
+	!GlobalTimerNotExpired("IwTimer19","LOCALS")
+	!NearSavedLocation(Myself,"LOCALSSavedLoc",0)
+	Global("Tabard_Quest","GLOBAL",0)
+THEN
+	RESPONSE #100
+		MoveToSavedLocation("SavedLoc","LOCALS")
+		SetGlobalTimer("IwTimer19","LOCALS",5)
+END
+
+/*IF
+	!GlobalTimerNotExpired("IwTimer19","LOCALS")
+	NearSavedLocation(Myself,"LOCALSSavedLoc",0)
+	Global("Tabard_Quest","GLOBAL",0)
+THEN
+	RESPONSE #100
+		RandomTurn()
+		SetGlobalTimer("IwTimer19","LOCALS",5)
+END*/
+
+IF
+	Global("RW_12TABAR01","LOCALS",0)
+	!NearSavedLocation(Myself,"LOCALSSavedLoc",7)
+THEN
+	RESPONSE #100
+		SetGlobal("RW_12TABAR01","LOCALS",1)
+		Continue()
+END
+
+IF
+	!Global("RW_12TABAR01","LOCALS",0)
+	NearSavedLocation(Myself,"LOCALSSavedLoc",7)
+THEN
+	RESPONSE #100
+		SetGlobal("RW_12TABAR01","LOCALS",0)
+		NoAction()
+END
+
+IF
+	!Global("RW_12TABAR01","LOCALS",0)
+	!Global("CHANGED_POINT","LOCALS",0)
+THEN
+	RESPONSE #100
+		//MoveToPoint([-2.-2])
+		MoveToOffset([-2.-2])
+	RESPONSE #100
+		//MoveToPoint([-2.-2])
+		MoveToOffset([2.-2])
+	RESPONSE #100
+		//MoveToPoint([-2.-2])
+		MoveToOffset([-2.2])
+	RESPONSE #100
+		//MoveToPoint([-2.-2])
+		MoveToOffset([2.2])
+	RESPONSE #100
+		MoveToSavedLocation("SavedLoc","LOCALS")
+END
+
+IF
+	!GlobalTimerNotExpired("IwTimer20","LOCALS")
+	Global("RW_12TABAR01","LOCALS",0)
+	!Global("CHANGED_POINT","LOCALS",0)
+THEN
+	RESPONSE #100
+		RandomWalk()
+		SetGlobalTimerRandom("IwTimer20","LOCALS",3,7)
+END
+

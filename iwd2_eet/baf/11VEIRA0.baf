@@ -1,0 +1,121 @@
+/*IF
+	IsActive(Myself)
+	//TimerActive(4)
+	!GlobalTimerExpired("IwTimer4","LOCALS")
+THEN
+	RESPONSE #100
+		SetGlobal("IwIHidden","LOCALS",1)
+		Deactivate(Myself)
+END*/
+
+IF
+	!See([PC])
+	TimeGT(DAWN_START)
+	TimeLT(20)
+THEN
+	RESPONSE #100
+		DestroySelf()
+END
+
+IF
+	See([PC])
+	TimeGT(DAWN_START)
+	TimeLT(20)
+THEN
+	RESPONSE #100
+		UseItem("z1veira4",Myself)
+		Wait(1)
+		DestroySelf()
+END
+
+IF
+	IsActive(Myself)
+	!GlobalTimerNotExpired("IwTimer4","LOCALS")
+	OR(3)
+		HPPercentLT(Myself,100)
+		HitBy([GOODCUTOFF],CRUSHING)
+		AttackedBy([GOODCUTOFF],DEFAULT)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IwTimer4","LOCALS",43200)
+		UseItem("z1veira4",Myself)
+		Wait(1)
+		SetGlobal("IwIHidden","LOCALS",1)
+		Deactivate(Myself)
+END
+
+IF
+	IsActive(Myself)
+	OR(2)
+		GlobalGT("Veira_Quest","GLOBAL",1)
+		!Global("Let_Me_Go","GLOBAL",0)
+THEN
+	RESPONSE #100
+		UseItem("z1veira4",Myself)
+		Wait(1)
+		DestroySelf()
+END
+
+IF
+	Global("SAVED_LOCATION","LOCALS",0)
+THEN
+	RESPONSE #100
+		SaveLocation("LOCALS","SavedLoc",[459.199])
+		SetGlobal("SAVED_LOCATION","LOCALS",1)
+		Continue()
+END
+
+IF
+	Global("FL_0","LOCALS",0)
+	!GlobalTimerNotExpired("IwTimer18","LOCALS")
+	IsActive(Myself)
+	Global("Let_Me_Go","GLOBAL",0)
+	GlobalLT("Veira_Turned","GLOBAL",2)
+	Global("Veira_Happy","GLOBAL",0)
+	GlobalLT("Veira_Quest","GLOBAL",2)
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,@8650)
+		SetGlobalTimer("IwTimer18","LOCALS",5)
+		IncrementGlobal("FL_0","LOCALS",1)
+END
+
+IF
+	Global("FL_0","LOCALS",1)
+	!GlobalTimerNotExpired("IwTimer18","LOCALS")
+	IsActive(Myself)
+	Global("Let_Me_Go","GLOBAL",0)
+	GlobalLT("Veira_Turned","GLOBAL",2)
+	Global("Veira_Happy","GLOBAL",0)
+	GlobalLT("Veira_Quest","GLOBAL",2)
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,@8651)
+		SetGlobalTimer("IwTimer18","LOCALS",5)
+		IncrementGlobal("FL_0","LOCALS",1)
+END
+
+IF
+	Global("FL_0","LOCALS",2)
+	!GlobalTimerNotExpired("IwTimer18","LOCALS")
+	IsActive(Myself)
+	Global("Let_Me_Go","GLOBAL",0)
+	GlobalLT("Veira_Turned","GLOBAL",2)
+	Global("Veira_Happy","GLOBAL",0)
+	GlobalLT("Veira_Quest","GLOBAL",2)
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,@8653)
+		SetGlobalTimer("IwTimer18","LOCALS",5)
+		SetGlobal("FL_0","LOCALS",0)
+END
+
+/*IF
+	!GlobalTimerNotExpired("IwTimer19","LOCALS")
+	//!IsFacingSavedRotation(Myself)
+THEN
+	RESPONSE #100
+		RandomTurn()
+		SetGlobalTimer("IwTimer19","LOCALS",5)
+END*/
+

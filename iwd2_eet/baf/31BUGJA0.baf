@@ -1,0 +1,9 @@
+IF
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		FaceObject(NearestEnemyOf(Myself))
+		DisplayStringHead(Myself,@153)
+		ChangeAIScript("",SPECIFICS)
+END
+

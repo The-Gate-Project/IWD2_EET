@@ -1,0 +1,86 @@
+IF
+	!Global("61CurrentDay","GLOBAL",3)
+THEN
+	RESPONSE #100
+		//SpellHitEffectSprite("INVISIBLE",Myself,ALTERATION,0)
+		CreateVisualEffectObject("ALTERH",Myself)
+		DestroySelf()
+END
+
+IF
+	Global("INITIALIZED_61YTARMY","LOCALS",0)
+THEN
+	RESPONSE #100
+		ChangeSpecifics(Myself,254)
+		Enemy()
+		SetGlobal("INITIALIZED_61YTARMY","LOCALS",1)
+		Continue()
+END
+
+IF
+	StateCheck(Myself,STATE_PANIC)
+THEN
+	RESPONSE #100
+		RandomWalkContinuous()
+END
+
+IF
+	AttackedBy([ANYONE],DEFAULT)
+	!Range(LastAttackerOf(Myself),4)
+	CanEquipRanged()
+THEN
+	RESPONSE #100
+		EquipRanged()
+		AttackReevaluate(LastAttackerOf(Myself),45)
+END
+
+IF
+	AttackedBy([ANYONE],DEFAULT)
+	OR(2)
+		Range(LastAttackerOf(Myself),4)
+		!CanEquipRanged()
+THEN
+	RESPONSE #100
+		EquipMostDamagingMelee()
+		AttackReevaluate(LastAttackerOf(Myself),45)
+END
+
+IF
+	//See([ANYONE])
+
+	OR(2) //3
+		IsWeaponRanged(Myself)
+		Class(Myself,FIGHTER_ALL)
+		//Range(LastSeenBy(Myself),5)
+	OR(3)
+		See([0.0.ELEMENTAL])
+		See([NEUTRAL])
+		See([GOODCUTOFF])
+	!Range(LastSeenBy(Myself),4)
+	CanEquipRanged()
+THEN
+	RESPONSE #100
+		EquipRanged()
+		AttackReevaluate(LastSeenBy(Myself),45)
+END
+
+IF
+	//See([ANYONE])
+
+	OR(2) //3
+		IsWeaponRanged(Myself)
+		Class(Myself,FIGHTER_ALL)
+		//Range(LastSeenBy(Myself),5)
+	OR(3)
+		See([0.0.ELEMENTAL])
+		See([NEUTRAL])
+		See([GOODCUTOFF])
+	OR(2)
+		Range(LastAttackerOf(Myself),4)
+		!CanEquipRanged()
+THEN
+	RESPONSE #100
+		EquipRanged()
+		AttackReevaluate(LastSeenBy(Myself),45)
+END
+

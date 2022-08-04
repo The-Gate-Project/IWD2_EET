@@ -1,0 +1,95 @@
+IF
+	Global("IWD2_CHAPTER","GLOBAL",3)
+	//EntirePartyOnMap()
+	InMyArea(Player1)
+THEN
+	RESPONSE #100
+		//EndCutSceneMode()
+		//IncrementChapter("")
+		IncrementGlobal("IWD2_CHAPTER","GLOBAL",1)
+		TextScreen("IWD2TXT4")
+END
+
+/*IF
+	Global("IWD2_CHAPTER","GLOBAL",3)
+	!InCutsceneMode()
+THEN
+	RESPONSE #100
+		StartCutSceneMode()
+END
+
+IF
+	Global("IWD2_CHAPTER","GLOBAL",3)
+THEN
+	RESPONSE #100
+		MultiPlayerSync()
+END*/
+
+IF
+	Global("AR5200_CHAPTER_SAVED","MYAREA",1)
+	//!InCutsceneMode()
+THEN
+	RESPONSE #100
+		SetGlobal("AR5200_CHAPTER_SAVED","MYAREA",2)
+		SaveGame(0)
+END
+
+IF
+	Global("AR5200_CHAPTER_SAVED","MYAREA",0)
+THEN
+	RESPONSE #100
+		SetGlobal("AR5200_CHAPTER_SAVED","MYAREA",1)
+		StartCutScene("52cView0")
+END
+
+IF
+	Global("52EXILE","GLOBAL",1)
+THEN
+	RESPONSE #100
+		/*HideCreature("03_52SALISX_01",FALSE)
+		HideCreature("03_52MNKMLX_02",FALSE)
+		HideCreature("03_52MNKMLX_03",FALSE)
+		HideCreature("03_52MNKMLX_04",FALSE)
+		HideCreature("03_52MNKMLX_05",FALSE)
+		HideCreature("03_52MNKMLX_06",FALSE)
+		HideCreature("03_52MNKFLX_07",FALSE)
+		HideCreature("03_52MNKFLX_08",FALSE)*/
+		Activate("Salisam")
+		ActionOverride("Salisam",SetGlobal("IwIHidden","LOCALS",0))
+		Activate("03_52MNKMLX_02")
+		ActionOverride("03_52MNKMLX_02",SetGlobal("IwIHidden","LOCALS",0))
+		Activate("03_52MNKMLX_03")
+		ActionOverride("03_52MNKMLX_03",SetGlobal("IwIHidden","LOCALS",0))
+		Activate("03_52MNKMLX_04")
+		ActionOverride("03_52MNKMLX_04",SetGlobal("IwIHidden","LOCALS",0))
+		Activate("03_52MNKMLX_05")
+		ActionOverride("03_52MNKMLX_05",SetGlobal("IwIHidden","LOCALS",0))
+		Activate("03_52MNKMLX_06")
+		ActionOverride("03_52MNKMLX_06",SetGlobal("IwIHidden","LOCALS",0))
+		Activate("03_52MNKFLX_07")
+		ActionOverride("03_52MNKFLX_07",SetGlobal("IwIHidden","LOCALS",0))
+		Activate("03_52MNKFLX_08")
+		ActionOverride("03_52MNKFLX_08",SetGlobal("IwIHidden","LOCALS",0))
+		SetGlobal("52EXILE","GLOBAL",2)
+		Continue()
+END
+
+IF
+	OnCreation()
+THEN
+	RESPONSE #100
+		NoAction()
+		Continue()
+END
+
+IF
+	!Global("RJ_AR5200","GLOBAL",0)
+	//!InCutsceneMode()
+THEN
+	RESPONSE #100
+		MultiPlayerSync()
+		//ResetJoinRequests()
+		SetGlobal("RJ_AR5200","GLOBAL",0)
+		Continue()
+END
+

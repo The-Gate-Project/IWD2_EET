@@ -1,0 +1,73 @@
+IF
+	//!InCutsceneMode()
+	//Clicked(Player1)
+	Clicked([ANYONE])
+	InPartySlot(LastTrigger,0)
+THEN
+	RESPONSE #100
+		//ActionOverride("Illmater_Statue",SetDialogueRange(300))
+		ActionOverride("Illmater_Statue",StartDialogueNoSet(Player1))
+END
+
+IF
+	//!InCutsceneMode()
+	//Clicked(Player2)
+	Clicked([ANYONE])
+	InPartySlot(LastTrigger,1)
+THEN
+	RESPONSE #100
+		//ActionOverride("Illmater_Statue",SetDialogueRange(300))
+		ActionOverride("Illmater_Statue",StartDialogueNoSet(Player2))
+END
+
+IF
+	//!InCutsceneMode()
+	//Clicked(Player3)
+	Clicked([ANYONE])
+	InPartySlot(LastTrigger,2)
+THEN
+	RESPONSE #100
+		//ActionOverride("Illmater_Statue",SetDialogueRange(300))
+		ActionOverride("Illmater_Statue",StartDialogueNoSet(Player3))
+END
+
+IF
+	//!InCutsceneMode()
+	//Clicked(Player4)
+	Clicked([ANYONE])
+	InPartySlot(LastTrigger,3)
+THEN
+	RESPONSE #100
+		//ActionOverride("Illmater_Statue",SetDialogueRange(300))
+		ActionOverride("Illmater_Statue",StartDialogueNoSet(Player4))
+END
+
+IF
+	//!InCutsceneMode()
+	//Clicked(Player5)
+	Clicked([ANYONE])
+	InPartySlot(LastTrigger,4)
+THEN
+	RESPONSE #100
+		//ActionOverride("Illmater_Statue",SetDialogueRange(300))
+		ActionOverride("Illmater_Statue",StartDialogueNoSet(Player5))
+END
+
+IF
+	//!InCutsceneMode()
+	//Clicked(Player6)
+	Clicked([ANYONE])
+	InPartySlot(LastTrigger,5)
+THEN
+	RESPONSE #100
+		//ActionOverride("Illmater_Statue",SetDialogueRange(300))
+		ActionOverride("Illmater_Statue",StartDialogueNoSet(Player6))
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		NoAction()
+END
+

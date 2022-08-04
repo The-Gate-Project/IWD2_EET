@@ -1,0 +1,82 @@
+IF
+	Global("SH_Dead_Slaves_Message","GLOBAL",0)
+	!Global("SPRITE_IS_DEADIyachtu_Xvim","GLOBAL",1)
+	GlobalGT("SH_Kill_Slaves","GLOBAL",0)
+	GlobalGT("SH_Dead_Slaves","GLOBAL",9)
+THEN
+	RESPONSE #100
+		SetGlobal("SH_Dead_Slaves_Message","GLOBAL",1)
+		DisplayString(Player1,@36887) //[PC]
+		Continue()
+END
+
+IF
+	!Global("SH_SpawnGlaberazu_63GlabS1","MYAREA",1)
+	!Global("SH_SpawnGlaberazu_63GlabS1","MYAREA",-1)
+	!Global("SPRITE_IS_DEAD63GlabS1","GLOBAL",0)
+THEN
+	RESPONSE #100
+		SetGlobal("SH_SpawnGlaberazu_63GlabS1","MYAREA",1)
+		SetGlobal("SPRITE_IS_DEAD63GlabS1","GLOBAL",0)
+		Continue()
+END
+
+IF
+	!Global("SH_SpawnGlaberazu_63GlabS1","MYAREA",-1)
+	!Global("SH_SpawnGlaberazu_63GlabS1","MYAREA",2)
+	Global("SH_SpawnGlaberazu_63GlabS1","MYAREA",1)
+	!Global("SH_SGem_Destroyed","GLOBAL",1)
+THEN
+	RESPONSE #100
+		CreateVisualEffectObject("CSWOUNH","63GlabS1")
+		CreateCreature("63GlabS1",[1320.1508],0)
+		SetGlobal("SH_SpawnGlaberazu_63GlabS1","MYAREA",2)
+		Continue()
+END
+
+IF
+	!Global("SH_SpawnGlaberazu_63GlabS1","MYAREA",-1)
+	!Global("SH_SpawnGlaberazu_63GlabS1","MYAREA",2)
+	Global("SH_SGem_Destroyed","GLOBAL",1)
+THEN
+	RESPONSE #100
+		SetGlobal("SH_SpawnGlaberazu_63GlabS1","MYAREA",-1)
+		ActionOverride("63GlabS1",DestroySelf())
+		Continue()
+END
+
+IF
+	Global("SH_SpawnGlaberazuXP_63GlbXp","MYAREA",0)
+	OR(2)
+		Global("SH_SGem_Destroyed","GLOBAL",1)
+		Global("SH_No_Demons","GLOBAL",1)
+THEN
+	RESPONSE #100
+		SetGlobal("SH_SpawnGlaberazu_63GlabS1","MYAREA",-1)
+		SetGlobal("SH_SpawnGlaberazuXP_63GlbXp","MYAREA",1)
+		ActionOverride("63GlabS1",DestroySelf())
+		Activate("63GlbXp")
+		ActionOverride("63GlbXp",SetGlobal("IwIHidden","LOCALS",0))
+		Continue()
+END
+
+IF
+	Global("SH_PlaySlaveCutscene","MYAREA",0)
+	Global("SH_Free_All_Slaves","GLOBAL",1)
+THEN
+	RESPONSE #100
+		SetGlobal("SH_PlaySlaveCutscene","MYAREA",1)
+		StartCutSceneMode()
+		ClearAllActions()
+		MultiPlayerSync()
+		StartCutScene("63cFSlvs")
+END
+
+IF
+	OnCreation()
+THEN
+	RESPONSE #100
+		NoAction()
+		Continue()
+END
+

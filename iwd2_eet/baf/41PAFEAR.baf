@@ -1,0 +1,17 @@
+IF
+	OpenState(Myself,TRUE)
+	!Global("41PAFEAR_INACTIVE","MYAREA",1)
+THEN
+	RESPONSE #100
+		Activate("Acolyte_01")
+		ActionOverride("Acolyte_01",SetGlobal("IwIHidden","LOCALS",0))
+		Activate("Acolyte_02")
+		ActionOverride("Acolyte_02",SetGlobal("IwIHidden","LOCALS",0))
+		Activate("Acolyte_03")
+		ActionOverride("Acolyte_03",SetGlobal("IwIHidden","LOCALS",0))
+		Activate("Acolyte_04")
+		ActionOverride("Acolyte_04",SetGlobal("IwIHidden","LOCALS",0))
+		//ChangeCurrentScript("")
+		SetGlobal("41PAFEAR_INACTIVE","MYAREA",1)
+END
+

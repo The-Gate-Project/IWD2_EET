@@ -1,0 +1,60 @@
+IF
+  Global("SaveSavedLoc","LOCALS",0)
+THEN
+  RESPONSE #100
+    SetGlobal("SaveSavedLoc","LOCALS",1)
+    SaveObjectLocation("LOCALS","SavedLoc",Myself)
+    Continue()
+END
+
+IF
+	OR(2)
+		!Global("SPRITE_IS_DEADKadence","GLOBAL",0)
+		!Exists("Kadence")
+THEN
+	RESPONSE #100
+		ChangeAIScript("",DEFAULT)
+END
+
+IF
+	!GlobalTimerNotExpired("IwTimer18","LOCALS")
+	Global("Goblins_Attack_Palisade","GLOBAL",0)
+	Global("Gable_Quest","GLOBAL",0)
+	//Global("SPRITE_IS_DEAD12KegArc","GLOBAL",0)
+	Global("Dead_12KegArc","GLOBAL",0)
+THEN
+	RESPONSE #25
+		DisplayStringHead(Myself,@16345)
+		SetGlobalTimerRandom("IwTimer18","LOCALS",20,25)
+		FaceObject("12KegArc")
+	RESPONSE #25
+		DisplayStringHead(Myself,@16346)
+		SetGlobalTimerRandom("IwTimer18","LOCALS",20,25)
+		FaceObject("12KegArc")
+	RESPONSE #25
+		DisplayStringHead(Myself,@16347)
+		SetGlobalTimerRandom("IwTimer18","LOCALS",20,25)
+		FaceObject("12KegArc")
+	RESPONSE #225
+		SetGlobalTimerRandom("IwTimer18","LOCALS",20,25)
+		FaceObject("12KegArc")
+END
+
+IF
+	!GlobalTimerNotExpired("IwTimer19","LOCALS")
+	!NearSavedLocation(Myself,"LOCALSSavedLoc",0)
+THEN
+	RESPONSE #100
+		MoveToSavedLocation("SavedLoc","LOCALS")
+		SetGlobalTimer("IwTimer19","LOCALS",5)
+END
+
+/*IF
+	!GlobalTimerNotExpired("IwTimer19","LOCALS")
+	NearSavedLocation(Myself,"LOCALSSavedLoc",0)
+THEN
+	RESPONSE #100
+		RandomTurn()
+		SetGlobalTimer("IwTimer19","LOCALS",5)
+END*/
+

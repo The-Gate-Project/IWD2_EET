@@ -1,0 +1,29 @@
+IF
+	True()
+THEN
+	RESPONSE #100
+		ChangeAIScript("00aAtGBN",RACE)
+	RESPONSE #100
+		ChangeAIScript("00aAtGCN",RACE)
+	RESPONSE #100
+		ChangeAIScript("00aAtGDN",RACE)
+	RESPONSE #100
+		ChangeAIScript("00aAtGFN",RACE)
+	RESPONSE #100
+		ChangeAIScript("00aAtGHN",RACE)
+	RESPONSE #100
+		ChangeAIScript("00aAtGMN",RACE)
+	RESPONSE #100
+		ChangeAIScript("00aAtGN",RACE)
+	RESPONSE #100
+		ChangeAIScript("00aAtGPN",RACE)
+	RESPONSE #100
+		ChangeAIScript("00aAtGRN",RACE)
+	RESPONSE #100
+		ChangeAIScript("00aAtGSN",RACE)
+	RESPONSE #100
+		ChangeAIScript("00aAtGTN",RACE)
+	RESPONSE #100
+		ChangeAIScript("00aAtGWN",RACE)
+END
+

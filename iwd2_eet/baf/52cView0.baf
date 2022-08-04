@@ -1,0 +1,27 @@
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId(Player1) //[PC]
+		StartCutSceneMode()
+		HideGUI()
+		MultiPlayerSync()
+		ClearAllActions()
+		MultiPlayerSync()
+		DisplayStringNoNameHead(Player1,@39397)
+		Explore()
+		MultiPlayerSync()
+		MoveViewPoint([1839.701],30)
+		Wait(2)
+		
+		Wait(1)
+		
+		MultiPlayerSync()
+		MoveViewObject([PC],35)
+		Wait(2)
+		MultiPlayerSync()
+		UnhideGUI()
+		MultiPlayerSync()
+		EndCutSceneMode()
+END
+

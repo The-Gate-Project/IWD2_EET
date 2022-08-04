@@ -1,0 +1,14 @@
+IF
+	Global("40FindEquipment","GLOBAL",0)
+	OR(2)
+		Clicked([ANYONE])
+		Opened([ANYONE])
+THEN
+	RESPONSE #100
+		AddJournalEntry(@18862,QUEST)
+		AddXP2DA("IW2EX7E")
+		DisplayStringNoName(Player1,@18865)
+		SetGlobal("40FindEquipment","GLOBAL",1)
+		SetGlobal("40MendingSpell","GLOBAL",1)
+END
+

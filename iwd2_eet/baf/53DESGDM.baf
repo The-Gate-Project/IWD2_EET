@@ -1,0 +1,30 @@
+IF
+  Global("SaveSavedLoc","LOCALS",0)
+THEN
+  RESPONSE #100
+    SetGlobal("SaveSavedLoc","LOCALS",1)
+    SaveObjectLocation("LOCALS","SavedLoc",Myself)
+    Continue()
+END
+
+IF
+	!NearSavedLocation(Myself,"LOCALSSavedLoc",1)
+	!Allegiance(Myself,ENEMY)
+	!See(NearestEnemyOf(Myself))
+	!See([0.0.DRIDER])
+THEN
+	RESPONSE #100
+		MoveToSavedLocation("SavedLoc","LOCALS")
+END
+
+/*IF
+	NearSavedLocation(Myself,"LOCALSSavedLoc",1)
+	!Allegiance(Myself,ENEMY)
+	!See(NearestEnemyOf(Myself))
+	!See([0.0.DRIDER])
+THEN
+	RESPONSE #100
+		//FaceSavedLocation(Myself)
+		RandomTurn()
+END*/
+

@@ -1,0 +1,57 @@
+IF
+	Global("Pool_Tainted","GLOBAL",1)
+	GlobalGT("TeleportIsairMadaeHP33","MYAREA",0) //Global("TeleportIsairMadaeHP33","MYAREA",0)
+	HPPercentGT(Myself,33)
+	Switch("Isair_HitPoints","GLOBAL")
+THEN
+	//RESPONSE #100
+	//	MatchHP("Isair",CURRENT_HP)
+	//	Continue()
+	RESPONSE #95
+		ApplySpellRES("IDSHP95",Myself)
+		Continue()
+	RESPONSE #90
+		ApplySpellRES("IDSHP90",Myself)
+		Continue()
+	RESPONSE #85
+		ApplySpellRES("IDSHP85",Myself)
+		Continue()
+	RESPONSE #80
+		ApplySpellRES("IDSHP80",Myself)
+		Continue()
+	RESPONSE #75
+		ApplySpellRES("IDSHP75",Myself)
+		Continue()
+	RESPONSE #70
+		ApplySpellRES("IDSHP70",Myself)
+		Continue()
+	RESPONSE #65
+		ApplySpellRES("IDSHP65",Myself)
+		Continue()
+	RESPONSE #60
+		ApplySpellRES("IDSHP60",Myself)
+		Continue()
+	RESPONSE #55
+		ApplySpellRES("IDSHP55",Myself)
+		Continue()
+	RESPONSE #50
+		ApplySpellRES("IDSHP50",Myself)
+		Continue()
+	RESPONSE #45
+		ApplySpellRES("IDSHP45",Myself)
+		Continue()
+	RESPONSE #40
+		ApplySpellRES("IDSHP40",Myself)
+		Continue()
+	RESPONSE #35
+		ApplySpellRES("IDSHP35",Myself)
+		Continue()
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		ChangeAIScript("",RACE)
+END
+

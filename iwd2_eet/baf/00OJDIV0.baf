@@ -1,0 +1,51 @@
+/*IF
+	Global("OJDIV0_TIMER","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("OJDIV0_TIMER","LOCALS",6)
+		Continue()
+END*/
+
+IF
+	HitBy([ANYONE],FIRE)
+THEN
+	RESPONSE #100
+		//SetGlobalTimer("OJDIV0_TIMER","LOCALS",6)
+		EquipMostDamagingMelee()
+		//AttackOneRound(LastSeenBy(Myself))
+		AttackOneRound(NearestEnemyOf(Myself))
+END
+
+IF
+	HPGT(Myself,10)
+	OR(5)
+		HitBy([ANYONE],CRUSHING)
+		HitBy([ANYONE],ELECTRICITY)
+		HitBy([ANYONE],PIERCING)
+		HitBy([ANYONE],SLASHING)
+		HitBy([ANYONE],MISSILE)
+	//GlobalTimerExpired("OJDIV0_TIMER","LOCALS")
+THEN
+	RESPONSE #100
+		//SetHPPercent(Myself,50,CURRENT_HP)
+		//StartCutScene("00OJDiv1")
+		ApplySpellRES("IDSHP50",Myself)
+		SetInterrupt(FALSE)
+		CreateCreature("00OCHX",[-1.-1],0)
+		ActionOverride("00OCHX",ApplySpellRES("IDSHPX1",Myself))
+		FaceObject("00OCHX")
+		SetSequence(SEQ_ATTACK)
+		SmallWait(7)
+		DisplayString(Myself,@41083)
+		ActionOverride("00OCHX",ApplySpellRES("idinvis5",Myself))
+		SetInterrupt(TRUE)
+END
+
+IF
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		EquipMostDamagingMelee()
+		AttackOneRound(LastSeenBy(Myself))
+END
+

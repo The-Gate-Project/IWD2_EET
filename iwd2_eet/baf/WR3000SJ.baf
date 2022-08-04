@@ -1,0 +1,8 @@
+IF
+	True()
+THEN
+	RESPONSE #100
+		SetGlobal("SPRITE_IS_DEADDRUM_SUMMON_J","GLOBAL",1)
+		IncrementGlobal("AR3002_DRUM_SUMMON","GLOBAL",-1)
+		ChangeAIScript("",OVERRIDE)
+END

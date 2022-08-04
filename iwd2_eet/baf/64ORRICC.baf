@@ -1,0 +1,76 @@
+IF
+	!IsActive(Myself)
+	!Global("TEAM_1","MYAREA",0)
+THEN
+	RESPONSE #100
+		Activate(Myself)
+		SetGlobal("IwIHidden","LOCALS",0)
+		ApplySpellRES("idinvis5",Myself)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	Global("PreventPlayerControl","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobal("PreventPlayerControl","LOCALS",1)
+		/*ChangeEnemyAlly(Player1,ENEMY_OF_EVIL)
+		ChangeEnemyAlly(Player2,ENEMY_OF_EVIL)
+		ChangeEnemyAlly(Player3,ENEMY_OF_EVIL)
+		ChangeEnemyAlly(Player4,ENEMY_OF_EVIL)
+		ChangeEnemyAlly(Player5,ENEMY_OF_EVIL)
+		ChangeEnemyAlly(Player6,ENEMY_OF_EVIL)*/
+		ClearActions(Player1)
+		ClearActions(Player2)
+		ClearActions(Player3)
+		ClearActions(Player4)
+		ClearActions(Player5)
+		ClearActions(Player6)
+		//ClearPartyEffects()
+		ActionOverride(Player1,ApplySpell(Myself,DISPEL_NO_SAVE))
+		ActionOverride(Player2,ApplySpell(Myself,DISPEL_NO_SAVE))
+		ActionOverride(Player3,ApplySpell(Myself,DISPEL_NO_SAVE))
+		ActionOverride(Player4,ApplySpell(Myself,DISPEL_NO_SAVE))
+		ActionOverride(Player5,ApplySpell(Myself,DISPEL_NO_SAVE))
+		ActionOverride(Player6,ApplySpell(Myself,DISPEL_NO_SAVE))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	Global("Killed","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobal("Killed","LOCALS",1)
+		DisplayStringHead(Myself,@40965)
+		ForceSpellRES("IWIN969",[PC])  // SPIN969.SPL INNATE_ORRICKS_SOUL_DEVOURER
+		Wait(2)
+		//ChangeEnemyAlly(Player1,PC)
+		Kill(Player6)
+		//ChangeEnemyAlly(Player2,PC)
+		Kill(Player5)
+		//ChangeEnemyAlly(Player3,PC)
+		Kill(Player4)
+		//ChangeEnemyAlly(Player4,PC)
+		Kill(Player3)
+		//ChangeEnemyAlly(Player5,PC)
+		Kill(Player2)
+		//ChangeEnemyAlly(Player6,PC)
+		Kill(Player1)
+END
+
+IF
+	Global("Floated","LOCALS",1)
+	OR(6)
+		See(Player6)
+		See(Player5)
+		See(Player4)
+		See(Player3)
+		See(Player2)
+		See(Player1)
+THEN
+	RESPONSE #100
+		SpellRES("IWIN969",LastSeenBy(Myself))  // SPIN969.SPL INNATE_ORRICKS_SOUL_DEVOURER
+		Wait(1)
+END
+

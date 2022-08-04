@@ -1,0 +1,27 @@
+IF
+	!IsActive(Myself)
+	Global("50SUOMA_HELP","GLOBAL",5)
+	OR(2)
+		!Global("UNHIDE_DT","MYAREA",0)
+		See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		SetGlobal("UNHIDE_DT","MYAREA",1)
+		FaceObject(NearestEnemyOf(Myself))
+		Activate(Myself)
+		SetGlobal("IwIHidden","LOCALS",0)
+		//SpellHitEffectSprite(Myself,Myself,DARKTREE_ATTACK,0)
+		CreateVisualEffectObject("DATTACH",Myself)
+		Wait(1)
+		SetSequence(SEQ_AWAKE)
+		//HideCreature(Myself,FALSE)
+		ApplySpellRES("idinvis5",Myself)
+END
+
+IF
+	!IsActive(Myself)
+THEN
+	RESPONSE #100
+		NoAction()
+END
+

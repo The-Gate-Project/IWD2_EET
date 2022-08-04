@@ -1,0 +1,156 @@
+IF
+	Global("IWD2_CHAPTER","GLOBAL",4)
+	//EntirePartyOnMap()
+	InMyArea(Player1)
+THEN
+	RESPONSE #100
+		//EndCutSceneMode()
+		//IncrementChapter("")
+		IncrementGlobal("IWD2_CHAPTER","GLOBAL",1)
+		TextScreen("IWD2TXT5")
+		//ResetJoinRequests()
+		MultiPlayerSync()
+		SaveGame(0)  // Глава Пятая
+END
+
+/*IF
+	Global("CHAPTER","GLOBAL",4)
+	!InCutsceneMode()
+THEN
+	RESPONSE #100
+		StartCutSceneMode()
+END
+
+IF
+	Global("CHAPTER","GLOBAL",4)
+THEN
+	RESPONSE #100
+		MultiPlayerSync()
+END*/
+
+IF
+	Global("6001_Fight","GLOBAL",1)
+	!Global("6000_RestingDisabled","MYAREA",1)
+THEN
+	RESPONSE #100
+		SetGlobal("6000_RestingDisabled","MYAREA",1)
+		//AllowAreaResting(FALSE)
+		AddAreaFlag(NOREST)
+		DisplayStringNoName(Player1,@35287)
+		Continue()
+END
+
+IF
+	OnCreation()
+	GlobalGT("6001_Fight","GLOBAL",1)
+	!Global("6000_RestingDisabled","MYAREA",2)
+THEN
+	RESPONSE #100
+		SetGlobal("6000_RestingDisabled","MYAREA",2)
+		//AllowAreaResting(TRUE)
+		RemoveAreaFlag(NOREST)
+		Continue()
+END
+
+IF
+	Global("Kuldahar_6000_UndeadKilled","GLOBAL",0)
+	!Global("6001_Fight","GLOBAL",1)
+	//!Exists([ENEMY.UNDEAD][0.0.10000.10000])
+	!AreaCheckAllegiance(ENEMY)
+THEN
+	RESPONSE #100
+		SetGlobal("Kuldahar_6000_UndeadKilled","GLOBAL",1)
+		//AllowAreaResting(TRUE)
+		RemoveAreaFlag(NOREST)
+		Continue()
+END
+
+IF
+	Global("Kuldahar_6000_UndeadKilled","GLOBAL",1)
+	Global("Kuldahar_6002_UndeadKilled","GLOBAL",1)
+	Global("Kuldahar_6003_UndeadKilled","GLOBAL",1)
+THEN
+	RESPONSE #100
+		SetGlobal("Kuldahar_Undead_Cleared","GLOBAL",1)
+		SetGlobal("Kuldahar_6000_UndeadKilled","GLOBAL",2)
+		SetGlobal("Kuldahar_6002_UndeadKilled","GLOBAL",2)
+		SetGlobal("Kuldahar_6003_UndeadKilled","GLOBAL",2)
+		//AddXPVar("Level_12_Hard",34094)
+		AddXP2DA("IW2EX12H")
+		DisplayStringNoName(Player1,@34094)
+		Continue()
+END
+
+IF
+	Global("STARTED_MUSIC","MYAREA",0)
+	!Global("Kuldahar_6000_UndeadKilled","GLOBAL",0)
+THEN
+	RESPONSE #100
+		SetGlobal("STARTED_MUSIC","MYAREA",1)
+		SetMusic(DAY,%IW6000%)
+		SetMusic(NIGHT,%IW6000%)
+		Continue()
+END
+
+IF
+	Global("IW6001_REVEALED","GLOBAL",0)
+THEN
+	RESPONSE #100
+		HideAreaOnMap("ID2000")
+		HideAreaOnMap("ID2100")
+		AddWorldmapAreaFlag("IW6000",VISIBLE_EXPLORABLE)
+		AddWorldmapAreaFlag("IW6001",VISIBLE_EXPLORABLE)
+		SetGlobal("IW6001_REVEALED","GLOBAL",1)
+		Continue()
+END
+
+IF
+	Global("KULD_60006001_TRAVEL","GLOBAL",0)
+THEN
+	RESPONSE #100
+		SetGlobal("KULD_60006001_TRAVEL","GLOBAL",6000)
+		Continue()
+END
+
+IF
+	Global("KULD_60006001_TRAVEL","GLOBAL",6001)
+THEN
+	RESPONSE #100
+		SetGlobal("KULD_60006001_TRAVEL","GLOBAL",6000)
+		AdvanceTime(EIGHT_HOURS)
+		DisplayStringNoName(Player1,@80089)
+		Continue()
+END
+
+IF
+	OnCreation()
+THEN
+	RESPONSE #100
+		NoAction()
+		Continue()
+END
+
+IF
+	!Global("RJ_AR6000","GLOBAL",0)
+	//!InCutsceneMode()
+THEN
+	RESPONSE #100
+		MultiPlayerSync()
+		//ResetJoinRequests()
+		SetGlobal("RJ_AR6000","GLOBAL",0)
+		Continue()
+END
+
+IF
+	GlobalLT("53Lab_Chem","GLOBAL",100)
+	Global("Imphra_Lab_Journal","MYAREA",0)
+THEN
+	RESPONSE #100
+		SetGlobal("Imphra_Lab_Journal","MYAREA",1)
+		SetQuestDone(@35518)
+		SetQuestDone(@35731)
+		SetQuestDone(@27313)
+		SetQuestDone(@27322)
+		Continue()
+END
+

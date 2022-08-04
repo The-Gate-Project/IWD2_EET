@@ -1,0 +1,10 @@
+IF
+	!Global("SPRITE_IS_DEADMalavon","GLOBAL",0)
+	!Global("SPRITE_IS_DEADViizra_Arabani","GLOBAL",0)
+	!Global("SPRITE_IS_DEADKadresh_Olonrae","GLOBAL",0)
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		RunAwayFrom(LastSeenBy(Myself),45)
+END
+

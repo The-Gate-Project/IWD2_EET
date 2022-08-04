@@ -1,0 +1,102 @@
+IF
+	!Global("40PSHERI_INACTIVE","MYAREA",1)
+	//!InCutsceneMode()
+	Global("PlayerSawSheri","MYAREA",1)
+	IsOverMe(Player1)
+THEN
+	RESPONSE #100
+		//ApplySpell(Player1,INNATE_HALF_DRAGON_LIGHTNING_BREATH)  // SPIN224.SPL (Дыхание молний)
+		ApplySpellRES("IWIN224",Player1)
+		ActionOverride("Illium",JumpToPoint([2326.532]))
+		
+		ActionOverride("Illium",SetHomeLocation([2326.532]))
+		SetGlobal("40PSHERI_INACTIVE","MYAREA",1)
+		TriggerActivation(Myself,FALSE)
+		//ChangeCurrentScript("")
+END
+
+IF
+	!Global("40PSHERI_INACTIVE","MYAREA",1)
+	//!InCutsceneMode()
+	Global("PlayerSawSheri","MYAREA",2)
+	IsOverMe(Player2)
+THEN
+	RESPONSE #100
+		//ApplySpell(Player2,INNATE_HALF_DRAGON_LIGHTNING_BREATH)  // SPIN224.SPL (Дыхание молний)
+		ApplySpellRES("IWIN224",Player2)
+		ActionOverride("Illium",JumpToPoint([2326.532]))
+		
+		ActionOverride("Illium",SetHomeLocation([2326.532]))
+		SetGlobal("40PSHERI_INACTIVE","MYAREA",1)
+		TriggerActivation(Myself,FALSE)
+		//ChangeCurrentScript("")
+END
+
+IF
+	!Global("40PSHERI_INACTIVE","MYAREA",1)
+	//!InCutsceneMode()
+	Global("PlayerSawSheri","MYAREA",3)
+	IsOverMe(Player3)
+THEN
+	RESPONSE #100
+		//ApplySpell(Player3,INNATE_HALF_DRAGON_LIGHTNING_BREATH)  // SPIN224.SPL (Дыхание молний)
+		ApplySpellRES("IWIN224",Player3)
+		ActionOverride("Illium",JumpToPoint([2326.532]))
+		
+		ActionOverride("Illium",SetHomeLocation([2326.532]))
+		SetGlobal("40PSHERI_INACTIVE","MYAREA",1)
+		TriggerActivation(Myself,FALSE)
+		//ChangeCurrentScript("")
+END
+
+IF
+	!Global("40PSHERI_INACTIVE","MYAREA",1)
+	//!InCutsceneMode()
+	Global("PlayerSawSheri","MYAREA",4)
+	IsOverMe(Player4)
+THEN
+	RESPONSE #100
+		//ApplySpell(Player4,INNATE_HALF_DRAGON_LIGHTNING_BREATH)  // SPIN224.SPL (Дыхание молний)
+		ApplySpellRES("IWIN224",Player4)
+		ActionOverride("Illium",JumpToPoint([2326.532]))
+		
+		ActionOverride("Illium",SetHomeLocation([2326.532]))
+		SetGlobal("40PSHERI_INACTIVE","MYAREA",1)
+		TriggerActivation(Myself,FALSE)
+		//ChangeCurrentScript("")
+END
+
+IF
+	!Global("40PSHERI_INACTIVE","MYAREA",1)
+	//!InCutsceneMode()
+	Global("PlayerSawSheri","MYAREA",5)
+	IsOverMe(Player5)
+THEN
+	RESPONSE #100
+		//ApplySpell(Player5,INNATE_HALF_DRAGON_LIGHTNING_BREATH)  // SPIN224.SPL (Дыхание молний)
+		ApplySpellRES("IWIN224",Player5)
+		ActionOverride("Illium",JumpToPoint([2326.532]))
+		
+		ActionOverride("Illium",SetHomeLocation([2326.532]))
+		SetGlobal("40PSHERI_INACTIVE","MYAREA",1)
+		TriggerActivation(Myself,FALSE)
+		//ChangeCurrentScript("")
+END
+
+IF
+	!Global("40PSHERI_INACTIVE","MYAREA",1)
+	//!InCutsceneMode()
+	Global("PlayerSawSheri","MYAREA",6)
+	IsOverMe(Player6)
+THEN
+	RESPONSE #100
+		//ApplySpell(Player6,INNATE_HALF_DRAGON_LIGHTNING_BREATH)  // SPIN224.SPL (Дыхание молний)
+		ApplySpellRES("IWIN224",Player6)
+		ActionOverride("Illium",JumpToPoint([2326.532]))
+		
+		ActionOverride("Illium",SetHomeLocation([2326.532]))
+		SetGlobal("40PSHERI_INACTIVE","MYAREA",1)
+		TriggerActivation(Myself,FALSE)
+		//ChangeCurrentScript("")
+END
+

@@ -1,0 +1,59 @@
+IF
+	//OutOfAmmo()
+	!CanEquipRanged()
+THEN
+	RESPONSE #100
+		EquipMostDamagingMelee()
+		Continue()
+END
+
+IF
+	OR(5)
+		See("6051Heartless_Dead1")
+		See("6051Heartless_Dead6")
+		See("6051Heartless_Dead7")
+		See("6051Heartless_Dead8")
+		See(NearestEnemyOf(Myself))
+	False()
+THEN
+	RESPONSE #100
+		Continue()
+END
+
+IF
+	StateCheck(Myself,STATE_PANIC)
+THEN
+	RESPONSE #100
+		RandomWalkContinuous()
+END
+
+IF
+	IsWeaponRanged(Myself)
+	OR(5)
+		Range("6051Heartless_Dead8",4)
+		Range("6051Heartless_Dead7",4)
+		Range("6051Heartless_Dead6",4)
+		Range("6051Heartless_Dead1",4)
+		Range(NearestEnemyOf(Myself),4)
+		//Range("6051Heartless_Dead2",4)
+		//Range("6051Heartless_Dead3",4)
+		//Range("6051Heartless_Dead4",4)
+		//Range("6051Heartless_Dead5",4)
+THEN
+	RESPONSE #100
+		RunAwayFrom(LastSeenBy(Myself),45)
+END
+
+IF
+	OR(5)
+		See("6051Heartless_Dead1")
+		See("6051Heartless_Dead6")
+		See("6051Heartless_Dead7")
+		See("6051Heartless_Dead8")
+		See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		//EquipWeapon()
+		AttackOneRound(LastSeenBy())
+END
+

@@ -1,0 +1,16 @@
+IF
+	Entered([PC])
+	!PartyHasItem("z3istone")
+THEN
+	RESPONSE #100
+		ReallyForceSpell(LastTrigger,TRAP_CLOUDKILL)
+END
+
+IF
+	Entered([PC])
+	PartyHasItem("z3istone")
+THEN
+	RESPONSE #100
+		NoAction()
+END
+

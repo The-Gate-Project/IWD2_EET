@@ -1,0 +1,10 @@
+IF
+	Clicked([ANYONE])
+	!Global("41PSDNDR_INACTIVE","MYAREA",1)
+THEN
+	RESPONSE #100
+		SetGlobal("41SherincalSecretDoorOpened","GLOBAL",1)
+		//ChangeCurrentScript("")
+		SetGlobal("41PSDNDR_INACTIVE","MYAREA",1)
+END
+

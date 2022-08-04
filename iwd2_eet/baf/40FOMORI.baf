@@ -1,0 +1,27 @@
+IF
+  Global("SaveSavedLoc","LOCALS",0)
+THEN
+  RESPONSE #100
+    SetGlobal("SaveSavedLoc","LOCALS",1)
+    SaveObjectLocation("LOCALS","SavedLoc",Myself)
+    Continue()
+END
+
+IF
+	ActionListEmpty()
+	!GlobalTimerNotExpired("IwTimer100","LOCALS")
+	Global("40PlayerSawYurst","GLOBAL",1)
+	Global("PlayerIsNearYurst","MYAREA",1)
+	!Global("40FomoriansDefeated","GLOBAL",1)
+	!Global("SPRITE_IS_DEADYurst","GLOBAL",1)
+	NearSavedLocation(Myself,"LOCALSSavedLoc",5)
+THEN
+	RESPONSE #100
+		FaceObject("Yurst")
+		SetSequence(SEQ_SHOOT)
+		SmallWait(7)
+		//ForceSpell("Yurst",2098)  // SPWI098.SPL (No such index)
+		ForceSpellRES("IWWI098","Yurst")
+		SetGlobalTimerRandom("IwTimer100","LOCALS",30,60)
+END
+

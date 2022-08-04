@@ -1,0 +1,47 @@
+IF
+	!Global("TEAM_0","MYAREA",1)
+	Allegiance(Myself,ENEMY)
+	IsActive(Myself)
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		SetGlobal("TEAM_0","MYAREA",1)
+		Continue()
+END
+
+IF
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		SetGlobal("TEAM_0","MYAREA",1)
+		NoAction()
+END
+
+IF
+	!Global("TEAM_0","MYAREA",0)
+	AttackedBy([GOODCUTOFF],DEFAULT)
+THEN
+	RESPONSE #100
+		SetGlobal("TEAM_0","MYAREA",1)
+		Enemy()
+END
+
+IF
+	!GlobalTimerNotExpired("IwTimer18","LOCALS")
+THEN
+	RESPONSE #25
+		DisplayStringHead(Myself,@8579)
+		SetGlobalTimerRandom("IwTimer18","LOCALS",13,15)
+	RESPONSE #25
+		DisplayStringHead(Myself,@8580)
+		SetGlobalTimerRandom("IwTimer18","LOCALS",13,15)
+	RESPONSE #25
+		DisplayStringHead(Myself,@8581)
+		SetGlobalTimerRandom("IwTimer18","LOCALS",13,15)
+	RESPONSE #25
+		DisplayStringHead(Myself,@8582)
+		SetGlobalTimerRandom("IwTimer18","LOCALS",13,15)
+	RESPONSE #300
+		SetGlobalTimerRandom("IwTimer18","LOCALS",13,15)
+END
+

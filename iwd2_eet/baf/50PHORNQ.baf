@@ -1,0 +1,18 @@
+IF
+	!Global("50PHORNQ_INACTIVE","MYAREA",1)
+	Unlocked(Myself)
+THEN
+	RESPONSE #100
+		//ChangeCurrentScript("")
+		SetGlobal("50PHORNQ_INACTIVE","MYAREA",1)
+END
+
+IF
+	!Global("50PHORNQ_INACTIVE","MYAREA",1)
+	!Unlocked(Myself)
+	GlobalGT("50Wight_Horn","GLOBAL",1)
+THEN
+	RESPONSE #100
+		Unlock(Myself)
+END
+

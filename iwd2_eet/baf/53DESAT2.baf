@@ -1,0 +1,65 @@
+IF
+	Global("SPELL_LIST_0_INDEX","LOCALS",-1)
+THEN
+	RESPONSE #100
+		ChangeAIScript("",CLASS)
+END
+
+IF
+	Global("Init_53DESAT2","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobal("Init_53DESAT2","LOCALS",1)
+		SetGlobalRandom("SPELL_LIST_0_INDEX","LOCALS",3,7)
+		Continue()
+END
+
+IF
+	StateCheck(Myself,STATE_PANIC)
+THEN
+	RESPONSE #100
+		RandomWalkContinuous()
+END
+
+/*IF
+	ForceMarkedSpell(MARKED_SPELL)
+	SetSpellTarget(Nothing)
+	See(NearestEnemyOf(Myself),0)
+THEN
+	RESPONSE #100
+		MarkSpellAndObject("2112211221122112221122112304",LastMarkedObject,SPELLCAST_IGNORE_SEE | SPELLCAST_IGNORE_VALID_SPELL_TARGET | SPELLCAST_RANDOM)  // [WIZARD_MAGIC_MISSILE, WIZARD_MAGIC_MISSILE, WIZARD_MAGIC_MISSILE, WIZARD_MAGIC_MISSILE, WIZARD_MELFS_ACID_ARROW, WIZARD_MELFS_ACID_ARROW, WIZARD_FIREBALL]
+		Continue()
+END
+
+IF
+	!IsMarkedSpell(MARKED_SPELL)
+THEN
+	RESPONSE #100
+		Spell(SpellTarget,MARKED_SPELL)
+		
+		IncrementGlobal("SPELL_LIST_0_INDEX","LOCALS",-1)
+		
+		WaitAnimation(Myself,WALK)
+		WaitAnimation(Myself,CONJURE)
+		WaitAnimation(Myself,CAST)
+		ForceMarkedSpell(MARKED_SPELL)
+END*/
+
+IF
+	GlobalGT("SPELL_LIST_0_INDEX","LOCALS",-1)
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #57
+		IncrementGlobal("SPELL_LIST_0_INDEX","LOCALS",-1)
+		ForceSpell(LastSeenBy(Myself),WIZARD_MAGIC_MISSILE)
+		Wait(1)
+	RESPONSE #29
+		IncrementGlobal("SPELL_LIST_0_INDEX","LOCALS",-1)
+		ForceSpell(LastSeenBy(Myself),WIZARD_MELF_ACID_ARROW)
+		Wait(1)
+	RESPONSE #14
+		IncrementGlobal("SPELL_LIST_0_INDEX","LOCALS",-1)
+		ForceSpell(LastSeenBy(Myself),WIZARD_FIREBALL)
+		Wait(1)
+END
+

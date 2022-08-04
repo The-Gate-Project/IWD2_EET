@@ -1,0 +1,1561 @@
+BACKUP ~iwd2_eet/backup~
+AUTHOR ~Ya~
+
+LANGUAGE ~Russian~
+	     ~ru_RU~
+	     ~iwd2_eet/lang/ru_RU/dialog.tra~
+LANGUAGE ~English~
+	     ~en_US~
+	     ~iwd2_eet/lang/en_US/dialog.tra~
+
+BEGIN ~Icwind Dale 2 in Baldur's Gate Enhanced Edition Trilogy~
+REQUIRE_PREDICATE GAME_IS ~eet~ ~Please install Baldur's Gate Enhanced Edition Trilogy at first~
+REQUIRE_COMPONENT ~iwd1_eet/setup-iwd1_eet.tp2~ ~0~ ~Please install Icewind Dale: Heart of Winter in Baldur's Gate Enhanced Edition Trilogy at first~
+
+ACTION_IF FILE_EXISTS ~%MOD_FOLDER%/lang/%LANGUAGE%/journal.tra~ BEGIN
+	LOAD_TRA ~%MOD_FOLDER%/lang/%LANGUAGE%/journal.tra~
+END
+
+OUTER_SPRINT newline ~%WNL%%LNL%%MNL%%TAB% ~
+OUTER_SPRINT slash ~/~
+OUTER_SPRINT quote ~"~
+OUTER_SPRINT tilde "~"
+
+INCLUDE ~%MOD_FOLDER%/functions.tph~
+
+/* IDS */
+APPEND ~instant.ids~ ~160 ApplySpellRES(S:RES*,O:Target)~ UNLESS ~ApplySpellRES~
+APPEND ~instant.ids~ ~34 UseItem(S:Object*,O:Target*)~    UNLESS ~UseItem~
+APPEND ~instant.ids~ ~230 RestParty()~                    UNLESS ~^230~
+
+APPEND ~specific.ids~ ~235	ORC_RUNNER~                   UNLESS ~235	ORC_RUNNER~
+APPEND ~specific.ids~ ~254	ANDORA_IWD2~                  UNLESS ~254	ANDORA_IWD2~
+
+APPEND ~invitem.ids~  ~10 NONSTEALABLE_NONDROPABLE~ UNLESS ~10 NONSTEALABLE_NONDROPABLE~
+APPEND ~wmpflag.ids~  ~5 VISIBLE_EXPLORABLE~        UNLESS  ~5 VISIBLE_EXPLORABLE~
+
+APPEND ~BITS.IDS~ ~0x00000001	BITS_BG1~               UNLESS ~BITS_BG1~
+APPEND ~BITS.IDS~ ~0x00000002	BITS_IWD1~              UNLESS ~BITS_IWD1~
+APPEND ~BITS.IDS~ ~0x00000004	BITS_SOD~               UNLESS ~BITS_SOD~
+APPEND ~BITS.IDS~ ~0x00000008	BITS_SOA~               UNLESS ~BITS_SOA~
+APPEND ~BITS.IDS~ ~0x00000010	BITS_IWD2~              UNLESS ~BITS_IWD2~
+APPEND ~BITS.IDS~ ~0x00000020	BITS_ROI~               UNLESS ~BITS_ROI~
+APPEND ~BITS.IDS~ ~0x00000040	BITS_HOW~               UNLESS ~BITS_HOW~
+APPEND ~BITS.IDS~ ~0x00000080	BITS_TOTL~              UNLESS ~BITS_TOTL~
+APPEND ~BITS.IDS~ ~0x00000003	BITS_BGIWD~             UNLESS ~BITS_BGIWD~
+APPEND ~BITS.IDS~ ~0x00000007	BITS_BGIWDSOD~          UNLESS ~BITS_BGIWDSOD~
+APPEND ~BITS.IDS~ ~0x0000000F	BITS_BGIWDSODSOA~       UNLESS ~BITS_BGIWDSODSOA~
+APPEND ~BITS.IDS~ ~0x0000001F	BITS_BGIWDSODSOAIWD~    UNLESS ~BITS_BGIWDSODSOAIWD~
+APPEND ~BITS.IDS~ ~0x0000003F	BITS_BGIWDSODSOAIWDROI~ UNLESS ~BITS_BGIWDSODSOAIWDROI~
+
+/*APPEND ~BITS.IDS~ ~0x00000006	BITS_IWDSOD~            UNLESS ~BITS_IWDSOD~
+APPEND ~BITS.IDS~ ~0x0000000E	BITS_IWDSODSOA~         UNLESS ~BITS_IWDSODSOA~
+APPEND ~BITS.IDS~ ~0x0000001E	BITS_IWDSODSOAIWD~      UNLESS ~BITS_IWDSODSOAIWD~
+APPEND ~BITS.IDS~ ~0x0000003E	BITS_IWDSODSOAIWDROI~   UNLESS ~BITS_IWDSODSOAIWDROI~
+APPEND ~BITS.IDS~ ~0x0000000C	BITS_SODSOA~            UNLESS ~BITS_SODSOA~
+APPEND ~BITS.IDS~ ~0x0000001C	BITS_SODSOAIWD~         UNLESS ~BITS_SODSOAIWD~
+APPEND ~BITS.IDS~ ~0x0000003C	BITS_SODSOAIWDROI~      UNLESS ~BITS_SODSOAIWDROI~
+APPEND ~BITS.IDS~ ~0x00000018	BITS_SOAIWD~            UNLESS ~BITS_SOAIWD~
+APPEND ~BITS.IDS~ ~0x00000038	BITS_SOAIWDROI~         UNLESS ~BITS_SOAIWDROI~
+APPEND ~BITS.IDS~ ~0x00000030	BITS_IWDROI~            UNLESS ~BITS_IWDROI~*/
+APPEND ~BITS.IDS~ ~0x00000042	BITS_IWD1HOW~           UNLESS ~BITS_IWD1HOW~
+
+LAF ADD_IDS_ENTRY 
+  INT_VAR minValue = 0 preferredValue = 140
+  STR_VAR idsFile = "SPLSTATE.IDS" identifier = "CHULT_ROBE"
+  RET CHULT_ROBE = value
+END
+LAF ADD_IDS_ENTRY
+  INT_VAR minValue = 0 preferredValue = 140
+  STR_VAR idsFile = "SPLSTATE.IDS" identifier = "CLERIC_BANE"
+  RET CLERIC_BANE_STATE = value
+END
+LAF ADD_IDS_ENTRY
+  INT_VAR minValue = 0 preferredValue = 140
+  STR_VAR idsFile = "SPLSTATE.IDS" identifier = "TORTOISE_SHELL"
+  RET TORTOISE_SHELL = value
+END
+LAF ADD_IDS_ENTRY
+  INT_VAR minValue = 0 preferredValue = 140
+  STR_VAR idsFile = "SPLSTATE.IDS" identifier = "AEGIS"
+  RET AEGIS = value
+END
+LAF ADD_IDS_ENTRY
+  INT_VAR minValue = 0 preferredValue = 140
+  STR_VAR idsFile = "SPLSTATE.IDS" identifier = "VIPERGOUT"
+  RET VIPERGOUT = value
+END
+LAF ADD_IDS_ENTRY
+  INT_VAR minValue = 0 preferredValue = 140
+  STR_VAR idsFile = "SPLSTATE.IDS" identifier = "ANTIMAGIC_SHELL"
+  RET ANTIMAGIC_SHELL = value
+END
+LAF ADD_IDS_ENTRY
+  INT_VAR minValue = 0 preferredValue = 140
+  STR_VAR idsFile = "SPLSTATE.IDS" identifier = "CRITICAL_PATH"
+  RET CRITICAL_PATH = value
+END
+LAF ADD_IDS_ENTRY
+  INT_VAR minValue = 0 preferredValue = 140
+  STR_VAR idsFile = "SPLSTATE.IDS" identifier = "INVULNERABLE_IWD"
+  RET INVULNERABLE_IWD = value
+END
+LAF ADD_IDS_ENTRY
+  INT_VAR minValue = 0 preferredValue = 140
+  STR_VAR idsFile = "SPLSTATE.IDS" identifier = "CRE_BLINDED_IWD"
+  RET CRE_BLINDED_IWD = value
+END
+LAF ADD_IDS_ENTRY
+  INT_VAR minValue = 0 preferredValue = 140
+  STR_VAR idsFile = "SPLSTATE.IDS" identifier = "CRE_INVISIBLE_IWD"
+  RET CRE_INVISIBLE_IWD = value
+END
+
+LAF APPEND_STATDESC_ENTRY INT_VAR strref=RESOLVE_STR_REF(@8807)  STR_VAR bam_file="IWAMSHEL" RET IWAMSHEL=index END
+LAF APPEND_STATDESC_ENTRY INT_VAR strref=RESOLVE_STR_REF(@14708) STR_VAR bam_file="IWHOPE"   RET IWHOPE  =index END
+LAF APPEND_STATDESC_ENTRY INT_VAR strref=RESOLVE_STR_REF(@22185) STR_VAR bam_file="IWBANE"   RET IWBANE  =index END
+LAF APPEND_STATDESC_ENTRY INT_VAR strref=RESOLVE_STR_REF(@21414) STR_VAR bam_file="IWEXALT"  RET IWEXALT =index END
+LAF APPEND_STATDESC_ENTRY INT_VAR strref=RESOLVE_STR_REF(@23183) STR_VAR bam_file="IWSPSHLD" RET IWSPSHLD=index END
+LAF APPEND_STATDESC_ENTRY INT_VAR strref=RESOLVE_STR_REF(@3071)  STR_VAR bam_file="IWISOM"   RET IWISOM  =index END
+LAF APPEND_STATDESC_ENTRY INT_VAR strref=RESOLVE_STR_REF(@17047) STR_VAR bam_file="IWAUVIT"  RET IWAUVIT =index END
+LAF APPEND_STATDESC_ENTRY INT_VAR strref=RESOLVE_STR_REF(@8818)  STR_VAR bam_file="IWSHOLAT" RET IWSHOLAT=index END
+LAF APPEND_STATDESC_ENTRY INT_VAR strref=RESOLVE_STR_REF(@21506) STR_VAR bam_file="IWMNDFOG" RET IWMNDFOG=index END
+LAF APPEND_STATDESC_ENTRY INT_VAR strref=RESOLVE_STR_REF(@19535) STR_VAR bam_file="IWCATGRC" RET IWCATGRC=index END
+LAF APPEND_STATDESC_ENTRY INT_VAR strref=RESOLVE_STR_REF(@18637) STR_VAR bam_file="IWVPGOUT" RET IWVPGOUT=index END
+LAF APPEND_STATDESC_ENTRY INT_VAR strref=RESOLVE_STR_REF(@7582)  STR_VAR bam_file="IWMNBLNK" RET IWMNBLNK=index END
+COPY_EXISTING ~statdesc.2da~ ~override~
+	PRETTY_PRINT_2DA
+COPY_EXISTING ~statdesc.2DA~ ~override~ //IDPETRIF
+	PRETTY_PRINT_2DA
+	COUNT_2DA_ROWS 3 petrif
+	FOR ( i = 4 ; i < petrif ; ++i ) BEGIN
+		READ_2DA_ENTRY i 2 3 fix
+		PATCH_IF ( ~%fix%~ STRING_EQUAL_CASE ~IDPETRIF~ ) BEGIN
+			READ_2DA_ENTRY i 0 3 petrification
+		END
+	END
+	BUT_ONLY_IF_IT_CHANGES
+
+LAF ADD_SPLPROT_ENTRY INT_VAR value_hex=1 STR_VAR label="OUTDOOR"    definition="0x106 0x1 8" RET outdoor   =index END
+LAF ADD_SPLPROT_ENTRY INT_VAR value_hex=1 STR_VAR label="NOTOUTDOOR" definition="0x106 0x1 9" RET notoutdoor=index END
+
+LAF ADD_SPLPROT_ENTRY INT_VAR stat_hex=0 STR_VAR label="SUMMONED" definition="0x10f 6 1" RET SUMMONED=index END
+LAF ADD_SPLPROT_ENTRY INT_VAR stat_hex=0 STR_VAR label="SUMMONED_DEMON" definition="0x10f 9 1" RET SUMMONED_DEMON=index END
+LAF ADD_SPLPROT_ENTRY INT_VAR stat_hex=0 STR_VAR label="SUMMONED_CREATURE" definition=EVAL "0x103 %SUMMONED% %SUMMONED_DEMON%" RET SUMMONED_CREATURE=index END
+LAF ADD_SPLPROT_ENTRY INT_VAR stat_hex=0 STR_VAR label="NOT_SUMMONED_CREATURE" definition=EVAL "0x104 %SUMMONED% %SUMMONED_DEMON%" RET NOT_SUMMONED_CREATURE=index END
+//COPY_EXISTING ~splprot.2da~ ~override~
+//	PRETTY_PRINT_2DA
+
+//SPELDESC.2DA
+APPEND ~SPELDESC.2DA~ ~SPPR403  17645
+SPPR107  12201
+SPWI517  7564
+SPWI625  32394
+SPWI418  25881
+SPWI405  4736
+SPWI407  12157
+SPWI408  25876
+SPWI410  22181
+SPWI414  22609
+SPWI403  25879
+SPPR407  22621
+SPPR408  22832
+SPPR409  5790
+SPWI206  2969
+SPWI214  12197
+SPWI305  12193
+IWWI223  X24242~
+
+COPY_EXISTING ~SPELDESC.2DA~ ~override~
+  REPLACE ~X24242~ @24242
+  PRETTY_PRINT_2DA
+
+APPEND ~ITEMEXCL.2DA~ ~z0chanml	1
+z0leat86	1
+z0leat87	1
+z0leat88	1
+z0leat89	1
+z0leat90	1
+z0leat91	1
+z0leat92	1
+z0leat93	1
+z0leat94	1
+z0leat95	1
+z0leat96	1
+z0leat97	1
+z0leat98	1
+z0leat99	1
+z0plat03	1
+z5hide06	1
+z5hideah	1
+z5leatms	1
+z5plat10	1
+z6changr	1
+z6chansa	1
+z6chantm	1
+z6leatin	1
+z6leatzu	1
+z6plataa	1
+z6platag	1
+z6platdc	1
+z6platkc	1
+z6platof	1
+z6platpf	1
+z0amulfd	1
+~
+
+APPEND ~Tooltip.2DA~ ~z0ax1h73	XXX15527	XXX15529	-1
+z0ax1h74	XXX15527	XXX15529	-1
+z0ax1h75	XXX15527	XXX15529	-1
+z0ax1h76	XXX15527	XXX15529	-1
+z0ax1h77	XXX15527	XXX15529	-1
+z0ax1h89	XXX15527	XXX15529	-1
+z0ax1h96	XXX15527	XXX15529	-1
+z0ax1h98	XXX15527	XXX15529	-1
+z1ax1hho	XXX15527	XXX15529	-1
+z0ax2hbd	XXX15527	XXX15529	-1
+z0ax1hsp	-1	XXX21426	XXX1866
+z0ax1h81	-1	XXX14062	-1
+z0macecf	-1	XXX33746	-1
+z0mstrmg	-1	XXX6620	XXX12116
+z0dagg81	XXX15527	XXX15529	-1
+z0dagg83	XXX15527	XXX15529	-1
+z0dagg84	XXX15527	XXX15529	-1
+z0dagg85	XXX15527	XXX15529	-1
+z0dagg86	XXX15527	XXX15529	-1
+z0dagg97	-1	XXX12016	-1
+z0daggfw	XXX15527	XXX15529	-1
+z5dagglt	XXX15527	XXX15529	-1
+z0daggpf	XXX15527	XXX15529	-1
+z0hamm96	-1	XXX12108	-1
+z0hammsc	-1	XXX12076	XXX12060
+z0sper93	-1	XXX926	-1
+z0staf81	-1	XXX12017	-1
+z0staf92	-1	XXX12017	-1
+z0stafdd	-1	XXX7606	-1
+z0bowl97	-1	XXX12053	-1
+z0bows88	-1	XXX12016	-1
+z0swdc89	-1	XXX12119	-1
+z0swds87	-1	XXX12084	-1
+z0swds85	-1	XXX25866	-1
+z0swdt90	-1	XXX12089	-1
+z1swdtws	-1	XXX3351	-1
+z0swdccs	-1	XXX12106	-1
+z1amulcm	XXX6620	-1	-1
+z1amulhc	XXX21423	-1	-1
+z5amulhd	XXX12016	XXX12033	XXX22177
+z0leat90	XXX12053	-1	-1
+z6chansa	XXX12084	-1	-1
+z0beltad	XXX18313	-1	-1
+z1bookle	XXX12121	-1	-1
+z5bookdv	XXX12083	-1	-1
+z5bookge	XXX21414	-1	-1
+z5booksu	XXX1417	-1	-1
+z5booksv	XXX12090	-1	-1
+z0bracrb	XXX2968	XXX16865	-1
+z0clcksb	XXX12070	-1	-1
+z0helmbh	XXX21424	-1	-1
+z1bardwd	XXX13014	XXX13047	-1
+z0ring67	XXX2968	-1	-1
+z0ring70	XXX12024	-1	-1
+z0ring72	XXX12108	-1	-1
+z0ring74	XXX12023	-1	-1
+z0ring78	XXX12031	-1	-1
+z4ringra	XXX12131	XXX12077	XXX21421
+z0shld91	XXX12017	-1	-1
+z0shld95	XXX12084	-1	-1
+z0shldmm	XXX3925	-1	-1
+z0shldrf	XXX12058	-1	-1
+z6swdlha	-1	XXX12026	-1
+z0amules	XXX12084	-1	-1
+z0amulds	XXX25875	-1	-1
+z0amulfd	XXX6618	-1	-1
+z0ax1hba	XXX35431	XXX35432	XXX35433
+z0ax1hck	XXX15527	XXX15529	-1
+z0hamt01	XXX15527	XXX15529	-1
+z0hamt02	XXX15527	XXX15529	-1
+z0hamt03	XXX15527	XXX15529	-1
+z0hamt04	XXX15527	XXX15529	-1
+z0hamt05	XXX15527	XXX15529	-1
+z0hamt06	XXX15527	XXX15529	-1
+z0hamt08	XXX15527	XXX15529	-1
+z0hamt10	XXX15527	XXX15529	-1
+z0bracla	XXX12077	-1	-1
+z0ax1hsc	XXX15527	XXX15529	-1~
+COPY_EXISTING ~Tooltip.2DA~ ~override~
+	REPLACE ~XXX926~   @926
+	REPLACE ~XXX1417~  @1417
+	REPLACE ~XXX1866~  @1866
+	REPLACE ~XXX2968~  @2968
+	REPLACE ~XXX3351~  @3351
+	REPLACE ~XXX3925~  @3925
+	REPLACE ~XXX6618~  @6618
+	REPLACE ~XXX6620~  @6620
+	REPLACE ~XXX7606~  @7606
+	REPLACE ~XXX12016~ @12016
+	REPLACE ~XXX12017~ @12017
+	REPLACE ~XXX12023~ @12023
+	REPLACE ~XXX12024~ @12024
+	REPLACE ~XXX12026~ @12026
+	REPLACE ~XXX12031~ @12031
+	REPLACE ~XXX12033~ @12033
+	REPLACE ~XXX12053~ @12053
+	REPLACE ~XXX12058~ @12058
+	REPLACE ~XXX12060~ @12060
+	REPLACE ~XXX12070~ @12070
+	REPLACE ~XXX12076~ @12076
+	REPLACE ~XXX12077~ @12077
+	REPLACE ~XXX12083~ @12083
+	REPLACE ~XXX12084~ @12084
+	REPLACE ~XXX12089~ @12089
+	REPLACE ~XXX12090~ @12090
+	REPLACE ~XXX12106~ @12106
+	REPLACE ~XXX12108~ @12108
+	REPLACE ~XXX12116~ @12116
+	REPLACE ~XXX12119~ @12119
+	REPLACE ~XXX12121~ @12121
+	REPLACE ~XXX12131~ @12131
+	REPLACE ~XXX13014~ @13014
+	REPLACE ~XXX13047~ @13047
+	REPLACE ~XXX14062~ @14062
+	REPLACE ~XXX15527~ @15527
+	REPLACE ~XXX15529~ @15529
+	REPLACE ~XXX16865~ @16865
+	REPLACE ~XXX18313~ @18313
+	REPLACE ~XXX21414~ @21414
+	REPLACE ~XXX21421~ @21421
+	REPLACE ~XXX21423~ @21423
+	REPLACE ~XXX21424~ @21424
+	REPLACE ~XXX21426~ @21426
+	REPLACE ~XXX22177~ @22177
+	REPLACE ~XXX25866~ @25866
+	REPLACE ~XXX25875~ @25875
+	REPLACE ~XXX33746~ @33746
+	REPLACE ~XXX35431~ @35431
+	REPLACE ~XXX35432~ @35432
+	REPLACE ~XXX35433~ @35433
+	PRETTY_PRINT_2DA
+
+//BLOCK XPLIST
+APPEND ~XPLIST.2DA~ ~IW2EX1E	IW2EX1_Easy	P_6000	      -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1     -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1
+IW2EX1A	IW2EX1_Average	P_8400	      -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1     -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1
+IW2EX1H	IW2EX1_Hard	P_10800	      -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1     -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1
+IW2EX1VH	IW2EX1_Very_Hard	P_13200	      -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1     -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1
+IW2EX2E	IW2EX2_Easy	P_8500	      -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1     -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1
+IW2EX2A	IW2EX2_Average	P_11000	      -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1     -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1
+IW2EX2H	IW2EX2_Hard	P_13600	      -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1     -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1
+IW2EX2VH	IW2EX2_Very_Hard	P_16100	      -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1     -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1
+IW2EX3E	IW2EX3_Easy	P_11000	      -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1     -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1
+IW2EX3A	IW2EX3_Average	P_13700	      -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1     -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1
+IW2EX3H	IW2EX3_Hard	P_16300	      -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1     -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1
+IW2EX3VH	IW2EX3_Very_Hard	P_19000	      -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1     -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1
+IW2EX4E	IW2EX4_Easy	P_13600	      -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1     -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1
+IW2EX4A	IW2EX4_Average	P_16300	      -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1     -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1
+IW2EX4H	IW2EX4_Hard	P_19100	      -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1     -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1
+IW2EX4VH	IW2EX4_Very_Hard	P_21800	      -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1     -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1
+IW2EX5E	IW2EX5_Easy	P_16100	      -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1     -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1
+IW2EX5A	IW2EX5_Average	P_19000	      -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1     -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1
+IW2EX5H	IW2EX5_Hard	P_21800	      -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1     -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1
+IW2EX5VH	IW2EX5_Very_Hard	P_24700	      -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1     -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1
+IW2EX6E	IW2EX6_Easy	P_18600	      -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1     -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1
+IW2EX6A	IW2EX6_Average	P_21600	      -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1     -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1
+IW2EX6H	IW2EX6_Hard	P_24600	      -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1     -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1
+IW2EX6VH	IW2EX6_Very_Hard	P_27600	      -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1     -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1
+IW2EX7E	IW2EX7_Easy	P_21100	      -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1     -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1
+IW2EX7A	IW2EX7_Average	P_24200	      -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1     -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1
+IW2EX7H	IW2EX7_Hard	P_27400	      -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1     -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1
+IW2EX7VH	IW2EX7_Very_Hard	P_30500	      -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1     -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1
+IW2EX8E	IW2EX8_Easy	P_23600	      -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1     -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1
+IW2EX8A	IW2EX8_Average	P_26900	      -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1     -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1
+IW2EX8H	IW2EX8_Hard	P_30100	      -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1     -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1
+IW2EX8VH	IW2EX8_Very_Hard	P_33400	      -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1     -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1
+IW2EX9E	IW2EX9_Easy	P_26200	      -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1     -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1
+IW2EX9A	IW2EX9_Average	P_29500	      -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1     -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1
+IW2EX9H	IW2EX9_Hard	P_32900	      -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1     -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1
+IW2EX9VH	IW2EX9_Very_Hard	P_36200	      -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1     -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1
+IW2EX10E	IW2EX10_Easy	P_28700	      -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1     -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1
+IW2EX10A	IW2EX10_Average	P_32200	      -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1     -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1
+IW2EX10H	IW2EX10_Hard	P_35600	      -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1     -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1
+IW2EX10VH	IW2EX10_Very_Hard	P_39100	      -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1     -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1
+IW2EX11E	IW2EX11_Easy	P_31200	      -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1     -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1
+IW2EX11A	IW2EX11_Average	P_34800	      -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1     -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1
+IW2EX11H	IW2EX11_Hard	P_38400	      -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1     -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1
+IW2EX11VH	IW2EX11_Very_Hard	P_42000	      -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1     -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1
+IW2EX12E	IW2EX12_Easy	P_21100	      -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1     -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1
+IW2EX12A	IW2EX12_Average	P_24200	      -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1     -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1
+IW2EX12H	IW2EX12_Hard	P_27400	      -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1     -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1
+IW2EX12VH	IW2EX12_Very_Hard	P_30500	      -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1     -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1
+IW2EX13E	IW2EX13_Easy	P_23600	      -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1     -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1
+IW2EX13A	IW2EX13_Average	P_26900	      -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1     -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1
+IW2EX13H	IW2EX13_Hard	P_30100	      -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1     -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1
+IW2EX13VH	IW2EX13_Very_Hard	P_33400	      -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1     -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1
+IW2EX14E	IW2EX14_Easy	P_18600	      -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1     -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1
+IW2EX14A	IW2EX14_Average	P_21600	      -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1     -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1
+IW2EX14H	IW2EX14_Hard	P_24600	      -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1     -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1
+IW2EX14VH	IW2EX14_Very_Hard	P_27600	      -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1     -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1
+IW2EX15E	IW2EX15_Easy	P_21100	      -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1     -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1
+IW2EX15A	IW2EX15_Average	P_24200	      -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1     -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1
+IW2EX15H	IW2EX15_Hard	P_27400	      -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1     -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1
+IW2EX15VH	IW2EX15_Very_Hard	P_30500	      -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1     -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1~
+COPY_EXISTING ~XPLIST.2DA~ ~override~
+	PRETTY_PRINT_2DA
+//BLOCKEND
+
+//BLOCK OTHER_2DA
+//BLOCK movies
+OUTER_SET XXX40814 = RESOLVE_STR_REF(@40814)
+OUTER_SET XXX40832 = RESOLVE_STR_REF(@40832)
+OUTER_SET XXX40834 = RESOLVE_STR_REF(@40834)
+OUTER_SET XXX40836 = RESOLVE_STR_REF(@40836)
+OUTER_SET XXX40837 = RESOLVE_STR_REF(@40837)
+OUTER_SET XXX40838 = RESOLVE_STR_REF(@40838)
+OUTER_SET XXX40839 = RESOLVE_STR_REF(@40839)
+OUTER_SET XXX40840 = RESOLVE_STR_REF(@40840)
+OUTER_SET XXX40841 = RESOLVE_STR_REF(@40841)
+OUTER_SET XXX40842 = RESOLVE_STR_REF(@40842)
+OUTER_SET XXX40843 = RESOLVE_STR_REF(@40843)
+OUTER_SET XXX40844 = RESOLVE_STR_REF(@40844)
+OUTER_SET XXX40845 = RESOLVE_STR_REF(@40845)
+OUTER_SET XXX40846 = RESOLVE_STR_REF(@40846)
+OUTER_SET XXX40847 = RESOLVE_STR_REF(@40847)
+OUTER_SET XXX40848 = RESOLVE_STR_REF(@40848)
+OUTER_SET XXX40886 = RESOLVE_STR_REF(@40886)
+OUTER_SET XXX40849 = RESOLVE_STR_REF(@40849)
+OUTER_SET XXX40850 = RESOLVE_STR_REF(@40850)
+OUTER_SET XXX40851 = RESOLVE_STR_REF(@40851)
+OUTER_SET XXX40852 = RESOLVE_STR_REF(@40852)
+OUTER_SET XXX40853 = RESOLVE_STR_REF(@40853)
+OUTER_SET XXX40854 = RESOLVE_STR_REF(@40854)
+OUTER_SET XXX40855 = RESOLVE_STR_REF(@40855)
+OUTER_SET XXX40856 = RESOLVE_STR_REF(@40856)
+OUTER_SET XXX40857 = RESOLVE_STR_REF(@40857)
+OUTER_SET XXX40858 = RESOLVE_STR_REF(@40858)
+OUTER_SET XXX40859 = RESOLVE_STR_REF(@40859)
+OUTER_SET XXX40860 = RESOLVE_STR_REF(@40860)
+OUTER_SET XXX40861 = RESOLVE_STR_REF(@40861)
+OUTER_SET XXX40862 = RESOLVE_STR_REF(@40862)
+OUTER_SET XXX40863 = RESOLVE_STR_REF(@40863)
+OUTER_SET XXX40864 = RESOLVE_STR_REF(@40864)
+OUTER_SET XXX40865 = RESOLVE_STR_REF(@40865)
+
+<<<<<<<<IWINTRO.2DA
+2DA V1.0		
+0		
+	Frame	STRREF
+red	255	0
+green	255	0
+blue	0	0
+1	330	%XXX40814%
+2	660	%XXX40832%
+3	960	%XXX40834%
+4	1290	%XXX40836%
+5	1650	%XXX40837%
+6	1800	%XXX40838%
+7	2160	%XXX40839%
+8	2640	%XXX40840%
+9	2940	%XXX40841%
+10	3300	%XXX40842%
+11	3570	%XXX40843%
+12	3720	%XXX40844%
+13	4020	%XXX40845%
+14	4350	%XXX40846%
+15	4620	%XXX40847%
+16	5010	%XXX40848%
+17	5400	%XXX40886%
+>>>>>>>>
+COPY ~IWINTRO.2DA~ ~override~ EVALUATE_BUFFER
+	PRETTY_PRINT_2DA
+
+<<<<<<<<MIDDLE.2DA
+2DA V1.0
+0
+	Frame	STRREF
+red	255	0
+green	255	0
+blue	0	0
+1	30	%XXX40849%
+2	360	%XXX40850%
+3	510	%XXX40851%
+4	870	%XXX40852%
+5	1290	%XXX40853%
+6	1710	%XXX40886%
+>>>>>>>>
+COPY ~MIDDLE.2DA~ ~override~ EVALUATE_BUFFER
+	PRETTY_PRINT_2DA
+
+<<<<<<<<IWEND.2DA
+2DA V1.0
+0
+	Frame	STRREF
+red	255	0
+green	255	0
+blue	0	0
+1	30	%XXX40854%
+2	360	%XXX40855%
+3	510	%XXX40856%
+4	750	%XXX40857%
+5	1080	%XXX40858%
+6	1410	%XXX40859%
+7	1650	%XXX40860%
+8	1860	%XXX40861%
+9	2040	%XXX40862%
+10	2310	%XXX40863%
+11	2460	%XXX40864%
+12	2730	%XXX40865%
+13	3000	%XXX40886%
+>>>>>>>>
+COPY ~IWEND.2DA~ ~override~ EVALUATE_BUFFER
+	PRETTY_PRINT_2DA
+
+APPEND ~Movidesc.2DA~ ~IWINTRO           XXX19669
+MIDDLE		XXX40884
+IWEND		XXX40883~
+COPY_EXISTING ~Movidesc.2DA~ ~override~
+	REPLACE	~XXX19669~ @19669
+	REPLACE	~XXX40884~ @40884
+	REPLACE	~XXX40883~ @40883
+	PRETTY_PRINT_2DA
+
+COPY_EXISTING ~bgee.lua~ ~override~
+	LPF REPLACE_MULTILINE
+		INT_VAR
+			num = 1
+			strict = 1
+		STR_VAR
+			pattern =      ~~~~~movies =
+{~~~~~
+			string  = EVAL ~~~~~movies =
+{
+	{ 'iwintro', 330, 640, %XXX40814%, 1, 1 },
+	{ 'iwintro', 660, 940, %XXX40832%, 1, 1 },
+	{ 'iwintro', 960, 1270, %XXX40834%, 1, 0 },
+	{ 'iwintro', 1290, 1630, %XXX40836%, 1, 1 },
+	{ 'iwintro', 1650, 1780, %XXX40837%, 1, 1 },
+	{ 'iwintro', 1800, 2140, %XXX40838%, 1, 0 },
+	{ 'iwintro', 2160, 2620, %XXX40839%, 0, 0 },
+	{ 'iwintro', 2640, 2920, %XXX40840%, 0, 0 },
+	{ 'iwintro', 2940, 3280, %XXX40841%, 1, 0 },
+	{ 'iwintro', 3300, 3550, %XXX40842%, 1, 0 },
+	{ 'iwintro', 3570, 3700, %XXX40843%, 1, 2 },
+	{ 'iwintro', 3720, 4000, %XXX40844%, 1, 1 },
+	{ 'iwintro', 4020, 4330, %XXX40845%, 1, 1 },
+	{ 'iwintro', 4350, 4600, %XXX40846%, 1, 1 },
+	{ 'iwintro', 4620, 4990, %XXX40847%, 1, 1 },
+	{ 'iwintro', 5010, 5380, %XXX40848%, 1, 1 },
+	{ 'iwintro', 5400, 5420, %XXX40886%, 1, 1 },
+	
+	{ 'middle', 30, 340, %XXX40849%, 1, 0 },
+	{ 'middle', 360, 490, %XXX40850%, 1, 0 },
+	{ 'middle', 510, 850, %XXX40851%, 0, 0 },
+	{ 'middle', 870, 1270, %XXX40852%, 1, 0 },
+	{ 'middle', 1290, 1690, %XXX40853%, 1, 0 },
+	{ 'middle', 1710, 1730, %XXX40886%, 1, 1 },
+	
+	{ 'iwend', 30, 340, %XXX40854%, 1, 1 },
+	{ 'iwend', 360, 490, %XXX40855%, 1, 0 },
+	{ 'iwend', 510, 730, %XXX40856%, 1, 0 },
+	{ 'iwend', 750, 1060, %XXX40857%, 1, 0 },
+	{ 'iwend', 1080, 1390, %XXX40858%, 1, 0 },
+	{ 'iwend', 1410, 1630, %XXX40859%, 1, 0 },
+	{ 'iwend', 1650, 1840, %XXX40860%, 1, 0 },
+	{ 'iwend', 1860, 2020, %XXX40861%, 0, 0 },
+	{ 'iwend', 2040, 2290, %XXX40862%, 0, 1 },
+	{ 'iwend', 2310, 2440, %XXX40863%, 0, 1 },
+	{ 'iwend', 2460, 2710, %XXX40864%, 1, 1 },
+	{ 'iwend', 2730, 2980, %XXX40865%, 1, 1 },
+	{ 'iwend', 3000, 3020, %XXX40886%, 1, 1 },%LNL%~~~~~
+	END
+//BLOCKEND
+
+APPEND ~Mastarea.2DA~ ~IW1000	value
+IW1001	value
+IW1002	value
+IW1003	value
+IW1004	value
+IW1005	value
+IW1006	value
+IW1007	value
+IW1100	value
+IW1101	value
+IW1102	value
+IW1103	value
+IW1104	value
+IW1105	value
+IW1106	value
+IW1107	value
+IW1200	value
+IW2000	value
+IW2001	value
+IW2002	value
+IW2100	value
+IW2101	value
+IW2102	value
+IW3000	value
+IW3001	value
+IW3002	value
+IW3100	value
+IW3101	value
+IW4000	value
+IW4100	value
+IW4101	value
+IW4102	value
+IW4103	value
+IW5000	value
+IW5001	value
+IW5002	value
+IW5004	value
+IW5005	value
+IW5010	value
+IW5011	value
+IW5012	value
+IW5013	value
+IW5014	value
+IW5015	value
+IW5016	value
+IW5017	value
+IW5018	value
+IW5019	value
+IW5020	value
+IW5021	value
+IW5022	value
+IW5023	value
+IW5024	value
+IW5025	value
+IW5026	value
+IW5027	value
+IW5028	value
+IW5029	value
+IW5030	value
+IW5100	value
+IW5101	value
+IW5102	value
+IW5200	value
+IW5201	value
+IW5202	value
+IW5203	value
+IW5300	value
+IW5301	value
+IW5302	value
+IW5303	value
+IW6000	value
+IW6001	value
+IW6002	value
+IW6003	value
+IW6004	value
+IW6005	value
+IW6007	value
+IW6008	value
+IW6009	value
+IW6010	value
+IW6050	value
+IW6051	value
+IW6100	value
+IW6101	value
+IW6102	value
+IW6103	value
+IW6104	value
+IW6200	value
+IW6201	value
+IW6300	value
+IW6301	value
+IW6302	value
+IW6303	value
+IW6304	value
+IW6305	value
+IW6400	value
+IW6401	value
+IW6402	value
+IW6403	value
+IW6500	value
+IW6501	value
+IW6502	value
+IW6503	value
+IW6600	value
+IW6601	value
+IW6602	value
+IW6603	value
+IW6700	value
+IW6701	value
+IW6702	value
+IW6703	value
+IW6800	value~
+COPY_EXISTING ~Mastarea.2DA~ ~override~
+	PRETTY_PRINT_2DA
+
+APPEND ~Tracking.2DA~ ~IW1000	O_XXX27838
+IW1001	O_XXX27839
+IW1002	O_XXX27840
+IW1003	O_XXX27841
+IW1004	O_XXX27842
+IW1005	O_XXX27843
+IW1006	O_XXX27844
+IW1007	O_XXX27845
+IW1100	O_XXX27847
+IW1101	O_XXX27850
+IW1102	O_XXX27851
+IW1103	O_XXX27852
+IW1104	O_XXX27853
+IW1105	O_XXX27854
+IW1106	O_XXX27856
+IW1107	O_XXX27855
+IW1200	O_XXX27857
+IW1201	O_XXX27858
+IW2000	O_XXX27743
+IW2001	O_XXX27745
+IW2002	O_XXX27746
+IW2100	O_XXX27748
+IW2101	O_XXX27743
+IW2102	O_XXX27749
+IW3000	O_XXX28597
+IW3001	O_XXX28598
+IW3002	O_XXX28599
+IW3100	O_XXX28600
+IW3101	O_XXX19534
+IW4000	O_XXX29064
+IW4001	O_XXX29063
+IW4100	O_XXX29065
+IW4101	O_XXX29066
+IW4102	O_XXX29067
+IW5000	O_XXX27758
+IW5001	O_XXX27759
+IW5002	O_XXX27760
+IW5004	O_XXX27762
+IW5005	O_XXX27763
+IW5010	O_XXX27761
+IW5011	O_XXX19534
+IW5012	O_XXX41061
+IW5013	O_XXX41062
+IW5014	O_XXX41063
+IW5015	O_XXX27761
+IW5016	O_XXX19534
+IW5017	O_XXX41064
+IW5018	O_XXX41065
+IW5019	O_XXX41066
+IW5020	O_XXX19534
+IW5021	O_XXX41067
+IW5022	O_XXX41068
+IW5023	O_XXX41069
+IW5024	O_XXX19534
+IW5025	O_XXX19534
+IW5026	O_XXX41070
+IW5027	O_XXX41071
+IW5028	O_XXX41072
+IW5029	O_XXX41073
+IW5030	O_XXX19534
+IW5100	O_XXX27764
+IW5101	O_XXX27765
+IW5102	O_XXX27766
+IW5200	O_XXX27767
+IW5201	O_XXX27768
+IW5202	O_XXX27769
+IW5203	O_XXX27770
+IW5300	O_XXX27771
+IW5301	O_XXX27772
+IW5302	O_XXX27773
+IW5303	O_XXX19534
+IW6000	O_XXX27952
+IW6001	O_XXX27953
+IW6002	O_XXX27954
+IW6003	O_XXX19534
+IW6004	O_XXX19534
+IW6005	O_XXX19534
+IW6006	O_XXX19534
+IW6007	O_XXX19534
+IW6050	O_XXX27955
+IW6051	O_XXX19534
+IW6100	O_XXX37886
+IW6101	O_XXX37887
+IW6102	O_XXX37888
+IW6103	O_XXX37889
+IW6104	O_XXX37890
+IW6200	O_XXX27978
+IW6201	O_XXX28008
+IW6300	O_XXX19534
+IW6301	O_XXX36472
+IW6302	O_XXX36472
+IW6303	O_XXX36473
+IW6304 	O_XXX36474
+IW6400	O_XXX36475
+IW6401	O_XXX36475
+IW6402	O_XXX36475
+IW6403	O_XXX36475
+IW6500	O_XXX27984
+IW6501	O_XXX27995
+IW6502	O_XXX19534
+IW6503	O_XXX27997
+IW6600	O_XXX19534
+IW6601	O_XXX27978
+IW6602	O_XXX27999
+IW6603	O_XXX28000
+IW6700	O_XXX19534
+IW6701	O_XXX28001
+IW6702	O_XXX28006
+IW6703	O_XXX28007
+IW6800	O_XXX19534~
+COPY_EXISTING ~Tracking.2DA~ ~override~
+	REPLACE ~XXX19534~ @19534
+	REPLACE ~XXX27743~ @27743
+	REPLACE ~XXX27745~ @27745
+	REPLACE ~XXX27746~ @27746
+	REPLACE ~XXX27748~ @27748
+	REPLACE ~XXX27749~ @27749
+	REPLACE ~XXX27758~ @27758
+	REPLACE ~XXX27759~ @27759
+	REPLACE ~XXX27760~ @27760
+	REPLACE ~XXX27761~ @27761
+	REPLACE ~XXX27762~ @27762
+	REPLACE ~XXX27763~ @27763
+	REPLACE ~XXX27764~ @27764
+	REPLACE ~XXX27765~ @27765
+	REPLACE ~XXX27766~ @27766
+	REPLACE ~XXX27767~ @27767
+	REPLACE ~XXX27768~ @27768
+	REPLACE ~XXX27769~ @27769
+	REPLACE ~XXX27770~ @27770
+	REPLACE ~XXX27771~ @27771
+	REPLACE ~XXX27772~ @27772
+	REPLACE ~XXX27773~ @27773
+	REPLACE ~XXX27838~ @27838
+	REPLACE ~XXX27839~ @27839
+	REPLACE ~XXX27840~ @27840
+	REPLACE ~XXX27841~ @27841
+	REPLACE ~XXX27842~ @27842
+	REPLACE ~XXX27843~ @27843
+	REPLACE ~XXX27844~ @27844
+	REPLACE ~XXX27845~ @27845
+	REPLACE ~XXX27847~ @27847
+	REPLACE ~XXX27850~ @27850
+	REPLACE ~XXX27851~ @27851
+	REPLACE ~XXX27852~ @27852
+	REPLACE ~XXX27853~ @27853
+	REPLACE ~XXX27854~ @27854
+	REPLACE ~XXX27855~ @27855
+	REPLACE ~XXX27856~ @27856
+	REPLACE ~XXX27857~ @27857
+	REPLACE ~XXX27858~ @27858
+	REPLACE ~XXX27952~ @27952
+	REPLACE ~XXX27953~ @27953
+	REPLACE ~XXX27954~ @27954
+	REPLACE ~XXX27955~ @27955
+	REPLACE ~XXX27978~ @27978
+	REPLACE ~XXX27984~ @27984
+	REPLACE ~XXX27995~ @27995
+	REPLACE ~XXX27997~ @27997
+	REPLACE ~XXX27999~ @27999
+	REPLACE ~XXX28000~ @28000
+	REPLACE ~XXX28001~ @28001
+	REPLACE ~XXX28006~ @28006
+	REPLACE ~XXX28007~ @28007
+	REPLACE ~XXX28008~ @28008
+	REPLACE ~XXX28597~ @28597
+	REPLACE ~XXX28598~ @28598
+	REPLACE ~XXX28599~ @28599
+	REPLACE ~XXX28600~ @28600
+	REPLACE ~XXX29063~ @29063
+	REPLACE ~XXX29064~ @29064
+	REPLACE ~XXX29065~ @29065
+	REPLACE ~XXX29066~ @29066
+	REPLACE ~XXX29067~ @29067
+	REPLACE ~XXX36472~ @36472
+	REPLACE ~XXX36473~ @36473
+	REPLACE ~XXX36474~ @36474
+	REPLACE ~XXX36475~ @36475
+	REPLACE ~XXX37886~ @37886
+	REPLACE ~XXX37887~ @37887
+	REPLACE ~XXX37888~ @37888
+	REPLACE ~XXX37889~ @37889
+	REPLACE ~XXX37890~ @37890
+	REPLACE ~XXX41061~ @41061
+	REPLACE ~XXX41062~ @41062
+	REPLACE ~XXX41063~ @41063
+	REPLACE ~XXX41064~ @41064
+	REPLACE ~XXX41065~ @41065
+	REPLACE ~XXX41066~ @41066
+	REPLACE ~XXX41067~ @41067
+	REPLACE ~XXX41068~ @41068
+	REPLACE ~XXX41069~ @41069
+	REPLACE ~XXX41070~ @41070
+	REPLACE ~XXX41071~ @41071
+	REPLACE ~XXX41072~ @41072
+	REPLACE ~XXX41073~ @41073
+	PRETTY_PRINT_2DA
+//BLOCKEND
+
+/*KITS*/
+INCLUDE ~%MOD_FOLDER%/kits/kits.tph~
+
+CLEAR_IDS_MAP
+
+/* INI */
+COPY ~%MOD_FOLDER%/ini~ ~override~
+
+//BLOCK MUSIC
+INCLUDE ~%MOD_FOLDER%/lib/_musics.tph~
+
+COPY ~%MOD_FOLDER%/baf/IW1200.baf~   ~%MOD_FOLDER%/baf~ EVALUATE_BUFFER
+COPY ~%MOD_FOLDER%/baf/21cOrcCm.baf~ ~%MOD_FOLDER%/baf~ EVALUATE_BUFFER
+COPY ~%MOD_FOLDER%/baf/IW3101.baf~   ~%MOD_FOLDER%/baf~ EVALUATE_BUFFER
+COPY ~%MOD_FOLDER%/baf/IW4100.baf~   ~%MOD_FOLDER%/baf~ EVALUATE_BUFFER
+COPY ~%MOD_FOLDER%/baf/IW4101.baf~   ~%MOD_FOLDER%/baf~ EVALUATE_BUFFER
+COPY ~%MOD_FOLDER%/baf/IW5001.baf~   ~%MOD_FOLDER%/baf~ EVALUATE_BUFFER
+COPY ~%MOD_FOLDER%/baf/IW5102.baf~   ~%MOD_FOLDER%/baf~ EVALUATE_BUFFER
+COPY ~%MOD_FOLDER%/baf/IW6000.baf~   ~%MOD_FOLDER%/baf~ EVALUATE_BUFFER
+COPY ~%MOD_FOLDER%/baf/IW6001.baf~   ~%MOD_FOLDER%/baf~ EVALUATE_BUFFER
+//BLOCKEND
+
+//BLOCK SAVE GAME
+LAF ADD_SAVE_GAME INT_VAR strref =   RESOLVE_STR_REF (@16202) RET aStr = index END
+COPY ~%MOD_FOLDER%/baf/IW1000.baf~   ~%MOD_FOLDER%/baf~ REPLACE_TEXTUALLY ~SaveGame(0)~ ~SaveGame(%aStr%)~
+LAF ADD_SAVE_GAME INT_VAR strref =   RESOLVE_STR_REF (@16204) RET aStr = index END
+COPY ~%MOD_FOLDER%/baf/40INVIS1.baf~ ~%MOD_FOLDER%/baf~ REPLACE_TEXTUALLY ~SaveGame(0)~ ~SaveGame(%aStr%)~
+LAF ADD_SAVE_GAME INT_VAR strref =   RESOLVE_STR_REF (@16205) RET aStr = index END
+COPY ~%MOD_FOLDER%/baf/IW5000.baf~   ~%MOD_FOLDER%/baf~ REPLACE_TEXTUALLY ~SaveGame(0)~ ~SaveGame(%aStr%)~
+LAF ADD_SAVE_GAME INT_VAR strref =   RESOLVE_STR_REF (@16206) RET aStr = index END
+COPY ~%MOD_FOLDER%/baf/IW5200.baf~   ~%MOD_FOLDER%/baf~ REPLACE_TEXTUALLY ~SaveGame(0)~ ~SaveGame(%aStr%)~
+LAF ADD_SAVE_GAME INT_VAR strref =   RESOLVE_STR_REF (@16207) RET aStr = index END
+COPY ~%MOD_FOLDER%/baf/IW6000.baf~   ~%MOD_FOLDER%/baf~ REPLACE_TEXTUALLY ~SaveGame(0)~ ~SaveGame(%aStr%)~
+LAF ADD_SAVE_GAME INT_VAR strref =   RESOLVE_STR_REF (@39843) RET aStr = index END
+COPY ~%MOD_FOLDER%/baf/IW1201.baf~   ~%MOD_FOLDER%/baf~ REPLACE_TEXTUALLY ~SaveGame(0)~ ~SaveGame(%aStr%)~
+LAF ADD_SAVE_GAME INT_VAR strref =   RESOLVE_STR_REF (@39588) RET aStr = index END
+COPY ~%MOD_FOLDER%/baf/IW6050.baf~   ~%MOD_FOLDER%/baf~ REPLACE_TEXTUALLY ~SaveGame(0)~ ~SaveGame(%aStr%)~
+COPY ~%MOD_FOLDER%/baf/IW6051.baf~   ~%MOD_FOLDER%/baf~ REPLACE_TEXTUALLY ~SaveGame(0)~ ~SaveGame(%aStr%)~
+LAF ADD_SAVE_GAME INT_VAR strref =   RESOLVE_STR_REF (@39401) RET aStr = index END
+COPY ~%MOD_FOLDER%/baf/IW6703.baf~   ~%MOD_FOLDER%/baf~ REPLACE_TEXTUALLY ~SaveGame(0)~ ~SaveGame(%aStr%)~
+LAF ADD_SAVE_GAME INT_VAR strref =   RESOLVE_STR_REF (@39725) RET aStr = index END
+COPY ~%MOD_FOLDER%/baf/61PFEXIT.baf~ ~%MOD_FOLDER%/baf~ REPLACE_TEXTUALLY ~SaveGame(0)~ ~SaveGame(%aStr%)~
+LAF ADD_SAVE_GAME INT_VAR strref =   RESOLVE_STR_REF (@39403) RET aStr = index END
+COPY ~%MOD_FOLDER%/baf/6501TELE.baf~ ~%MOD_FOLDER%/baf~ REPLACE_TEXTUALLY ~SaveGame(0)~ ~SaveGame(%aStr%)~
+//BLOCKEND
+
+//BLOCK  CHAPTERS
+COPY ~%MOD_FOLDER%/chapters~ ~override~
+COPY ~%MOD_FOLDER%/sod_ui~   ~EET/SoD_GUI~
+<<<<<<<<default.2da
+2DA V1.0
+NONE1111
+                        0           1                   
+SWITCH                  DEFAULT     DEFAULT         
+DEFAULT                 000000      000001 
+SONG                    XXXXXX
+>>>>>>>>
+COPY ~default.2da~ ~override/IWD2TXT0.2DA~
+  REPLACE_TEXTUALLY ~NONE1111~ ~IWD2TXT0~
+  REPLACE ~000000~ @16202
+  REPLACE ~000001~ @14454
+  REPLACE_TEXTUALLY ~XXXXXX~ ~%IWTHM%~ EVALUATE_BUFFER
+COPY ~default.2da~ ~override/IWD2TXT1.2DA~
+  REPLACE_TEXTUALLY ~NONE1111~ ~IWD2TXT1~
+  REPLACE ~000000~ @16203
+  REPLACE ~000001~ @14453
+  REPLACE_TEXTUALLY ~XXXXXX~ ~%IWTHM%~ EVALUATE_BUFFER
+COPY ~default.2da~ ~override/IWD2TXT2.2DA~
+  REPLACE_TEXTUALLY ~NONE1111~ ~IWD2TXT2~
+  REPLACE ~000000~ @16204
+  REPLACE ~000001~ @14452
+  REPLACE_TEXTUALLY ~XXXXXX~ ~%IWTHM%~ EVALUATE_BUFFER
+COPY ~default.2da~ ~override/IWD2TXT3.2DA~
+  REPLACE_TEXTUALLY ~NONE1111~ ~IWD2TXT3~
+  REPLACE ~000000~ @16205
+  REPLACE ~000001~ @19435
+  REPLACE_TEXTUALLY ~XXXXXX~ ~%IWTHM%~ EVALUATE_BUFFER
+COPY ~default.2da~ ~override/IWD2TXT4.2DA~
+  REPLACE_TEXTUALLY ~NONE1111~ ~IWD2TXT4~
+  REPLACE ~000000~ @16206
+  REPLACE ~000001~ @14450
+  REPLACE_TEXTUALLY ~XXXXXX~ ~%IWTHM%~ EVALUATE_BUFFER
+COPY ~default.2da~ ~override/IWD2TXT5.2DA~
+  REPLACE_TEXTUALLY ~NONE1111~ ~IWD2TXT5~
+  REPLACE ~000000~ @16207
+  REPLACE ~000001~ @14449
+  REPLACE_TEXTUALLY ~XXXXXX~ ~%IWTHM%~ EVALUATE_BUFFER
+COPY ~default.2da~ ~override/IWD2TXT6.2DA~
+  REPLACE_TEXTUALLY ~NONE1111~ ~IWD2TXT6~
+  REPLACE ~000000~ @16208
+  REPLACE ~000001~ @14448
+  REPLACE_TEXTUALLY ~XXXXXX~ ~%IWTHM%~ EVALUATE_BUFFER
+//BLOCKEND
+
+INCLUDE ~%MOD_FOLDER%/lib/_journal.tph~
+
+PRINT ~Compiling scripts...~
+//COPY ~%MOD_FOLDER%/baf/scripts_~ ~%MOD_FOLDER%/baf~
+ACTION_FOR_EACH file IN 41PARENA 50LIMVIS 50LIMVIW 60cSGrd2 61cEfSum 65cIyac0 IW6104 IW6503 BEGIN
+	ACTION_IF FILE_EXISTS ~%MOD_FOLDER%/baf/%file%.baf~ BEGIN
+		COPY ~%MOD_FOLDER%/baf/%file%.baf~ ~%MOD_FOLDER%/baf~
+			REPLACE_TEXTUALLY ~MSUMM1X~ ~ZSUMM1X~
+	END
+END
+COPY ~%MOD_FOLDER%/baf/52C2AREF.baf~  ~%MOD_FOLDER%/baf~
+	REPLACE_TEXTUALLY ~MSUMM1H~ ~ZSUMM1X~
+COPY_EXISTING ~MSUMM1X.vvc~ ~override/ZSUMM1X.vvc~
+	WRITE_ASCII 0x08 ~Z~ (1)
+	WRITE_LONG  0x2c 0
+	WRITE_LONG  0x4c 0xFFFFFFFF
+ACTION_FOR_EACH file IN 60PALTAR BEGIN
+	ACTION_IF FILE_EXISTS ~%MOD_FOLDER%/baf/%file%.baf~ BEGIN
+		COPY ~%MOD_FOLDER%/baf/%file%.baf~ ~%MOD_FOLDER%/baf~
+			REPLACE_TEXTUALLY ~ReallyForceSpell(LastTrigger,CLERIC_EARTHQUAKE)~ ~ReallyForceSpellRES("IWPR720",LastTrigger)~
+	END
+END
+COMPILE EVALUATE_BUFFER ~%MOD_FOLDER%/baf~
+PRINT ~Compiling dialogues...~
+COMPILE ~%MOD_FOLDER%/dlg~
+
+INCLUDE ~%MOD_FOLDER%/lib/_cheat_area.tph~
+INCLUDE ~%MOD_FOLDER%/lib/_areas.tph~
+INCLUDE ~%MOD_FOLDER%/lib/_spells.tph~
+INCLUDE ~%MOD_FOLDER%/lib/_items.tph~
+INCLUDE ~%MOD_FOLDER%/lib/_creature.tph~
+INCLUDE ~%MOD_FOLDER%/lib/_stores.tph~
+
+INCLUDE ~%MOD_FOLDER%/lib/_new_bg_items.tph~
+
+INCLUDE ~%MOD_FOLDER%/lib/_start_game.tph~
+
+PRINT ~Patching Worldmap...~
+INCLUDE ~%MOD_FOLDER%/lib/_worldmap.tph~
+
+MKDIR ~lang/%LANGUAGE%/movies~
+COPY_LARGE ~%MOD_FOLDER%/biffs/IWMOVIE~ ~lang/%LANGUAGE%/movies~
+
+INCLUDE ~%MOD_FOLDER%/lib/_convert_pvrz.tph~
+
+PRINT ~Biffing game resources...~
+MAKE_BIFF ~IW2BAM2~  BEGIN ~%MOD_FOLDER%/biffs/IW2BAM2~  ~^.*$~ END
+MAKE_BIFF ~IW2BAMS~  BEGIN ~%MOD_FOLDER%/biffs/IW2BAMS~  ~^.*$~ END
+MAKE_BIFF ~IW1000~   BEGIN ~%MOD_FOLDER%/biffs/IW1000~   ~^.*$~ END
+MAKE_BIFF ~IW1100~   BEGIN ~%MOD_FOLDER%/biffs/IW1100~   ~^.*$~ END
+MAKE_BIFF ~IW1200~   BEGIN ~%MOD_FOLDER%/biffs/IW1200~   ~^.*$~ END
+MAKE_BIFF ~IW2000~   BEGIN ~%MOD_FOLDER%/biffs/IW2000~   ~^.*$~ END
+MAKE_BIFF ~IW2100~   BEGIN ~%MOD_FOLDER%/biffs/IW2100~   ~^.*$~ END
+MAKE_BIFF ~IW3000~   BEGIN ~%MOD_FOLDER%/biffs/IW3000~   ~^.*$~ END
+MAKE_BIFF ~IW3100~   BEGIN ~%MOD_FOLDER%/biffs/IW3100~   ~^.*$~ END
+MAKE_BIFF ~IW4000~   BEGIN ~%MOD_FOLDER%/biffs/IW4000~   ~^.*$~ END
+MAKE_BIFF ~IW4100~   BEGIN ~%MOD_FOLDER%/biffs/IW4100~   ~^.*$~ END
+MAKE_BIFF ~IW5000~   BEGIN ~%MOD_FOLDER%/biffs/IW5000~   ~^.*$~ END
+MAKE_BIFF ~IW5100~   BEGIN ~%MOD_FOLDER%/biffs/IW5100~   ~^.*$~ END
+MAKE_BIFF ~IW5200~   BEGIN ~%MOD_FOLDER%/biffs/IW5200~   ~^.*$~ END
+MAKE_BIFF ~IW5300~   BEGIN ~%MOD_FOLDER%/biffs/IW5300~   ~^.*$~ END
+MAKE_BIFF ~IW6000~   BEGIN ~%MOD_FOLDER%/biffs/IW6000~   ~^.*$~ END
+MAKE_BIFF ~IW6100~   BEGIN ~%MOD_FOLDER%/biffs/IW6100~   ~^.*$~ END
+MAKE_BIFF ~IW6200~   BEGIN ~%MOD_FOLDER%/biffs/IW6200~   ~^.*$~ END
+MAKE_BIFF ~IW6300~   BEGIN ~%MOD_FOLDER%/biffs/IW6300~   ~^.*$~ END
+MAKE_BIFF ~IW6400~   BEGIN ~%MOD_FOLDER%/biffs/IW6400~   ~^.*$~ END
+MAKE_BIFF ~IW6500~   BEGIN ~%MOD_FOLDER%/biffs/IW6500~   ~^.*$~ END
+MAKE_BIFF ~IW6600~   BEGIN ~%MOD_FOLDER%/biffs/IW6600~   ~^.*$~ END
+MAKE_BIFF ~IWCREWAV~ BEGIN ~%MOD_FOLDER%/biffs/IWCREWAV~ ~^.*$~ END
+MAKE_BIFF ~IWCREWV1~ BEGIN ~%MOD_FOLDER%/biffs/IWCREWV1~ ~^.*$~ END
+MAKE_BIFF ~IWCREWV2~ BEGIN ~%MOD_FOLDER%/biffs/IWCREWV2~ ~^.*$~ END
+MAKE_BIFF ~IWCREWV3~ BEGIN ~%MOD_FOLDER%/biffs/IWCREWV3~ ~^.*$~ END
+MAKE_BIFF ~IWHLDRAG~ BEGIN ~%MOD_FOLDER%/biffs/IWHLDRAG~ ~^.*$~ END
+MAKE_BIFF ~IWISAMAD~ BEGIN ~%MOD_FOLDER%/biffs/IWISAMAD~ ~^.*$~ END
+MAKE_BIFF ~IWIWD2AN~ BEGIN ~%MOD_FOLDER%/biffs/IWIWD2AN~ ~^.*$~ END
+MAKE_BIFF ~IWMOVIE~  BEGIN ~%MOD_FOLDER%/biffs/IWMOVIE~  ~^.*$~ END
+MAKE_BIFF ~IWORCUND~ BEGIN ~%MOD_FOLDER%/biffs/IWORCUND~ ~^.*$~ END
+MAKE_BIFF ~IWWAVS1~  BEGIN ~%MOD_FOLDER%/biffs/IWWAVS1~  ~^.*$~ END
+MAKE_BIFF ~IWWAVS2~  BEGIN ~%MOD_FOLDER%/biffs/IWWAVS2~  ~^.*$~ END
+MAKE_BIFF ~IWWAVS3~  BEGIN ~%MOD_FOLDER%/biffs/IWWAVS3~  ~^.*$~ END
+
+
+
+
+/* ПЛАН:
+++| 1. Вытащить список персонажей на локациях
+++| 2. Вытащить список предметов из ЕЕТ и ИВД и сделать список того, что на что меняется. В том числе и рандомные.
+++| 3. Скрипты, диалоги и локации
+++|    * Надо проверить всех персонажей на локах на DiffLevel и по координатам.
+++|      - Лока	Номер_акт	ИмяНаЛоке	ИмяФайла	DiffLevel	X_Pos	Y_Pos	SummXY
+++|    * Надо скрывать локации из ИВД1, когда отображаются локации из ИВД2. Типа Кулдахара, Глаза Дракона и т.д.
+++|      - Hide ID2000, ID2100 - Reveal IW6000, IW6001
+++|      - Hide ID4000 in IW6001
+++|      - Hide ID5000 in IW6201
+--|    * Проверить на наличие не используемых *.cre файлов
+++|    * Проверить в скриптах и диалогах DEATHVAR, которые выписал на отдельном листе в Excel
+++| 4. Извлечь dialog.tlk
+++| 5. Исправить dialog.tlk <charname> и т.д.
+++|    * Изир сменить на Исаир, Медея - Мадея, Лизра - Лисара, Эжения - Эгения, Иефер - Хиферус, Изуномей - Иксуномей, Сильвана - Сильванус
+++|    * Отсеченная Рука -> Отрезанная Рука, эйри - Орлиное Гнездо, костехранитель - костяной страж
+--|    * Где есть Рики - там женский род нужен
+++| 6. ИНИ
+++|    * AR30XX - при суммоне добавить скрипт, чтобы обнулялись SPRITE_IS_DEAD и добавить ориентацию к SpawnPoint и поменять
+++|      ScriptName (см. скрипты локаций)
+++|    * IW1200 - бочке скрипт, где SetGlobal("SPRITE_IS_DEAD12KegArc","GLOBAL",0)
+++|    * will'o'whisp - вместо скрипта 50WWISP0 -> 50WWIP30 (IW50XX)
+++|    * IW5101 - override script переместить ниже
+++| 7. ИНИ скрипты и персонажи
+++|    * Проверить переменный с листа Excel vars
+--| 7.1. Убрать везде, когда Specifics != 0 и оставить только в icewind2.baf когда CombatCounter = 0.
+++| 8. Скрипты магов и Клериков
+++|    * Сначала пробежаться по персонажам и вытащить, у кого какие заклинания
+--|    * смотреть в зависимости от класса - клирик, друид, шаман (использовать шаманский танец)
+++|    * Если скрипт полностью сделан, но отмечен как магический, это для того, чтобы знать, какие заклинания добавлять персонажам
+++|    !!! Allegiance(Nearest(Myself),ENEMY)
+++|	    See(Nearest(Myself)) - работает
+--|	   * Если священник использует заклинания мага, делать ForceSpell и RemoveSpell
+++|    * Где в скриптах по куче заклинаний, сначала делать через RandomNum, а потом еще такие же блоки, но без RandomNum. Но где есть RandomNum, ставить таймер на 12, и вторые блоки может использовать только по окончании таймера (!GlobalTimerNotExpired) (или придумать еще что). И еще делать через Switch, для выбора, из какой группы заклинаний будет колдовать
+++|    * Где есть CheckSpellState надо проверять, иногда там может быть StateCheck, а иногда CheckStat
+++|    * Проверить скрипты у персонажей, чтобы не забыть добавить им заклинания с листа cre1
+++|    * Проверить скрипты с заклами из листа cre_spl
+++|    * Проверить на "	GlobalTimerNotExpired" (в начале - Tab)
+--|    * Некоторые скрипты пропустил. Надо найти
+--|    * до 53MYRVEC.baf где есть // BLOCK CHECK_TARGET - убрать и сделать по обычному
+++|    * проверить, где есть где есть ChangeAIScript, чтобы не забыть добавить заклы
+++|    * 67IVENOM.baf - где отметил  "v skripty", всем персонажам оттуда надо добавить ApplySpellRES("IWCPREM",Myself) если они CriticalPath и GlobalGT("BeginTrial","MYAREA",1)See([PC])
+++|    * BitCheck - вместо нескольких переменных
+++|    * В скриптах магов и жрецов RandomNum и перменную надо перенести наверх блока скрипта. Сначала RandomNum, потом переменная. Таймеры тоже наверх блока. И установка таймеров до Wait. Искать скрипты по _RANDOM_CAST. И через weidu поменять таймер с 6,9 на 9,12
+++|    * WIZARD_SPELL_TRAP перенести выше WIZARD_ABSOLUTE_IMMUNITY
+++| 8. Скрипты: Где есть FirstIwIHidden убрать Continue() (В ИВД1 тоже)
+--| 8. Надо что-то придумать с IGNORE_RETURN_TO_START_POS. Возможно, ставить таймер и при его окончании снова ставить и SetHomeLocation([-1.-1])
+++| 8. 00TxxM - сделать через Switch как в ИВД1 + надо проверить в Excel скрипты, которые я объединил
+++|           * 40SANCTU.baf, 41DAMAGE.baf (и все с ним связанные), 41HPORIA.baf, 41ZATTAK.baf, 41ORIAES.baf - тоже использовать Switch
+--| 9. На локациях, где есть предмет 41GRPILE, удалить его, и вместо этого поставить галочку на контейнер из EE Don't clear (6)
+--|    * AR6104 - BridgeRope1-4, возможно, тоже добавить такую галочку
+++| 9. Персонажей на локации + тригерры
+++|    * убрать у всех, у кого есть Toggle Invulnerability, вместо этого добавить этим персам IDINVUL
+++|    * IW5004 - trigger: XY: 1960.1125; name: SpiderTrig1; type: trap not detectable
+++|    * IW5004 - trigger: XY: 70.1590;   name: SpiderTrig2; type: trap not detectable
+++|    * IW6104 - BridgeRopeX - этим контейнерам добавить, чтобы они не исчезали (БГЕЕ)
+++| 9.1. Надо проверить расы в по сравнению с БГЕЕ 2.5. В ИВД1 - тоже
+++| 10. Установка локаций / Текст в них (не только триггеры, но и контейнеры, и двери) / MapNote / установка музыки
+++|     * Проверить все галочки у дверей, контейнеров и триггеров (в ИВД2 они отличаются)
+--|  * IW5010 - IW5030 - увеличить сложность ловушек
+++| 11. Магазины
+++| 12. Рандомные предметы
+--|    * Проверить, где-то, может-быть, упустил рандомные предметы (проверить предметы типа Misc)
+--|    * Надо вытащить список предметов из ЕЕТ и проверить, не ошибся ли я где с именами предметов
+++|     * на _V версиях сделать по 4 * вместо S1-8
+++| 15. Заклинания + не забыть про спасброски (в описании тоже)
+--|     * не забыть заклинание Оракул, или как там его и свитки для него !!!Есть дальше
+++|     * Для заклинаний с визуальными эффектами(типа FLAME_STRIKE), в прожектайлах есть галочка Pillar(колонна), скорее-всего надо это использовать.
+++|     * Установка локальных переменных - через внешний EFF, и использовать вместо Variable name - String, Resource 2 и Resource 3
+++|     * Проверять предметы, которые создаются заклинаниями
+++|     * IWWI417X - когда посмотрю в ИВД1
+++| 13. Предметы + исправление юзабилити в описаниях + исправить сами описания + не забыть про спасброски (в описании тоже) + тип предметов
+++|     * у книг поменять тип с 0 на 37
+++|     * у контейнеров сменить тип на контейнер
+++|     * Проверить предметы на Proficiency Type (искать ТИП ПРЕДМЕТА и ТИП ПРОФЕССИИ) Тип предметов тоже надо проверить.
+++|     * 61POTNXX (3 зелья) - добавить туда эффекты:
+++|       - локальная переменныя AnimationId устанавливалась на значение анимации Хистачи (там, где есть Polymorph)
+++|       - и добавить Delay эффект, который установит AnimationId=0 (т.е., когда закончится действие заклинания)
+++|     * проверить, что все предметы в инвентаре персонажей сделаны, и в Магазинах
+++|     * проверить, что все нужные предметы в списке предметов сделаны (а то был косяк с фильтром)
+++|     * отдельно проверить предметы RT_NORM (обязательно: у Персонажей и в Магазинах)
+++|     * Проверить урон у оружия до молотов
+++|         * Mace - 1d8 -> 1d6
+++|         * Scimitar - 1d6 -> 1d8
+++|     * Исправить предметы, у которых выше шанс критического удара (до моргенштернов) (см. 00MSTR86.itm, убрать галочку Keen Edge)
+++|         * 00AROW87
+--|     * Возможно, сменить тип у трупов на Male/Female Body(types: 48/45)
+++|     * 00GENIR - сменить тип на Food, и сделать, чтобы побольше лечило
+++|     * ChultRobe - Добавить в icewind2.baf блоки, которые проверяют Player1-6. Если паладин, но не blackguard, и Local ChultRobe=0, то применяет заклинание, в котором запрещает использование этой робы(опкод 180 - строка: Паладины не могут носить эту мантию) и ставит переменную Local ChultRobe=1 + Continue()
+++|     * где есть эффект EFFUHC1 исправить под описание
+++|     * проверить, поменял ли BAM в Ability у предметов, у которых в BAM-файлах есть RENAME (до IIWWND14.bam)
+++|     * Скрипты
+++|     * Магазины
+++|     * Предметы
+--|     * добавить предметы из магазина NYM в NYM2, которых там нет
+++|     * длинные луки до 00BOWLFK проверить требуемую силу, если 12, то =6, если больше, то значение-6
+++|     * прогнать все предметы через вейду, выписать: Имя файла, номер строки описания и требования. Если есть требования, добавить в описание
+++|     * проверить требования, чтобы совпадали с БГ
+++|     * исправить метательные молоты
+--|     * где-то есть 233 Modify Proficiency ставит на -1. В БГ нельзя уменьшать (оказывается, может)
+++|         * BOWS
+++|         * DAGGERS
+++|         * MACES
+++|         * SLINGS
+++|         * SHORT SWORDS
+++|         * LARGE SWORDS
+++|         * HAMMERS
+++|         * MORNINGSTARS
+++|         * FLAILS
+++|         * DARTS
+++|         * AXES
+++|         * STAVES
+++|         * CROSSBOWS
+++|         * SPEARS
+++|         * HALBERDS
+++|         * CLUBS
+++|         * GREAT SWORDS
+++|         * BASTARD SWORDS
+++|     * ITEMEXCL.2DA, Tooltip.2DA (Tooltip - при добавлении надо проверять текст, может есть в БГ)
+--| 21. Всем персонажам из БГ с анимацией Змеи(32531) добавить эффект SetGlobal("AnimationId","LOCALS",32531))
+++| 20. Персонажи - исправить предметы и заклинания
+++|       * Уровень персонажей увеличить. Низким уровням прибавлять 7-8, средним - 5. Примерно.
+++|       * У персонажей менять HP, AC, AC modifiers, THAC0, Saves, Resistances, Str + StrEx , Dex, Con, Int, Wis, Chr (XP не менять)
+++|           STR
+++|              19 = 18/01–18/50
+++|              20 = 18/51–18/75
+++|              21 = 18/76 –18/90
+++|              22 = 18/91–18/99
+++|              23 = 18/00
+++|              24 = 19–20 
+++|              25 = 21–22
+++|              26 = 22–23
+++|              27 = 24–25
+++|           Если АС = 10, не менять. Хотя буду, скорее всего смотреть вручную
+++|           Атрибуты до 18 включительно не меняются, меняются после 18 + для Силы - ЭкстраСила
+++|           спасброски:
+++|           	Death = Fort
+++|           	Poly = (Fort+Will)/2
+++|           	Breath = (Fort+Refl)/2
+++|           	Spell = (Refl+Will)/2
+++|           	Wand = Refl
+++|       * Проверить все галочки, в ИВД2 они отличаются 
+++|       * INNOCENT персонажей не будет, вместо этого - NO_CLASS.
+++|       * У персонажей поменять версию эффектов на 2
+++|       * Заклинания у персонажей
+--|       * Предметы у персонажей. Не забыть, что CLERIC не может использовать мечи и т.д.
+++|       * Звуки и строки персонажей
+++|       //Сделать моих дополнительных персонажей
+++|       * Оружейные навыки
+++|       * Другие аттрибуты, которые есть в ИВД2
+++|       * CriticalPath - в NI это Flags = 13 (Large Creature)
+++|           Добавлять им эффект, который при смерти будет ставить переменную IwdCriticalDead на 1 как IWCPSET.spl. Parent resource - IWCPSET. Твм - Cast Spell on Condition, условие - Target Died и тот спелл уже ставит переменную
+++|           Добавить эффекты от IDINVUL тем, кому нужно
+++|         И надо проверить потом, будет ли это работать в диалоге (ApplySpellRES)
+++|       * EA (Allegiance) тоже надо провермть, ENEMY_OF_EVIL скорее всего заменить на NOTEVIL
+++|       * Enchantment level - иммунитет к оружию +X (0x1bc)
+--|       * Киты. Если класс варвар, то кит варвар.
+++|       * !!! у некоторых персонажей невидимость, у некоторых - эффекты. Смотреть внимательно. Странице персонажей в Экселе.
+++|       * При добавлении заклинаний, надо учесть, что у некоторых есть ChangeAIScript
+++|       * Убрать у троллей 00TROLL1, 00TROLL2. Использовать БГшный вариант.
+++|       * У кого класс SORCERER - переделать на MAGE
+--|       * Священникам и паладинам не забыть добавить очки в Turn Undead
+--|       * 53Lab - галочка No Tooltip, + еще у нескольких, типа Наковальни в городе иллитидов и т.д.
+++|       * добавить дроу и серым дварфам SPLSTATE = CRE_BLINDED_IWD (в ивд1 тоже, может и БГшным тоже) (просто выписать их и перенести в мой отдельный компонент)
+++| 21. Проверить персонажей на предметы, которые не в инвентаре
+++| 14. магазины контейнеров
+++|       * проверить, некоторые не пустые
+++| 15. Предметы с вкладки new_items
+--| 16. Предметы и Заклинания остатки. Заклинание и свиток Связь с Другим Планом(ИВД)
+++| 16. Остатки персонажей
+++| 17. PROJECTILES
+--| 18. Где есть StartDialogNoSet - добавить ApplySpellRES("BDCUTSPY",Myself) в ИВД1 тоже
+++| 22. Оставшиеся предметы
+++|      * Предметам увеличить необходимые знания для идентификации
+++| 23. Оставшиеся скрипты и диалоги
+++|     * у кого есть встроенный 00ATRNSV.baf - надо исправить
+++| 23. Исправление магазинов. Проверить, где есть одинаковые сумки. Оставить только в одном. + проверить сумки у Персов и на Локах + 00AMULDS
+++| 24. Файлы локаций / MiniMaps / Сменить индекс PVRZ (см. ниже) / (см. в Excel AR3102 tis не нужен) (MOS не нужно)
+++| 19. BAM's для локаций и эффектов + VVC
+++| 25. всем локам ИВД добавить AreaType - IWDAREA
+++| 26. 2DA и МОС для глав. Не забыть про SONG (будет играть основная тема)
+++| 27. Анимация Персонажей. + ini и звуки для анимаций
+++| 28. Ролики
+++| 29. 2DA и другие настройки, заставки - ролики преобразоветь в WBM (XP, Zastavki i t.d.), TOOLTIP, ITEMEXCL, *.INI i t.d.
+++|     * Mastarea, Tracking, Movidesc, Movies
+++| 30. Извлечение WAV диалогов / анимации
+++| 30. Извлечение WAV локаций
+++| 30. Извлечение остатков WAV
+++| 31. Извлечение и изменение BAM для предметов (max size 210, ppi 72, RGB 8bit)
+++|        Edit bmp:
+++|          -2. Remove Shadow
+++|          -1. Convert to RGB
+++|          0. max size 210, ppi 72, RGB 8bit
+++|          //1. Background. HSB 0.0.0
+++|          2. Desaturate
+++|          3. Photo Filter (100%, HSB 35.55.75)
+++|          4. Brightness/Contrast
+++|          //5. Filter -> Artistic -> Underpainting
+++|          5. Noise = 7 / Uniform
+++|          6. Trim
+++|        Проверить, что все файлы есть
+++| 32. Сделать VVC
+++| 33. Музыка Songlist
+++| 34. Квесты в журнале
+++|       * Некоторые записи будут только квесты, и будут помещаться в соответствующие разделы, н-р: Подземье
+++| 35. Worldmap
+++| 36. Возвращение из ИВД
+++|       * Добавить StartMovie("IWEND") в последнюю локу, перед уходом в БГ
+--| 37. Добавить в магазины катаны и доугое оружие, которого нет в ИВД
+++| 38. Установка всех файлов до биффинга
+++| 38. биффинг
+++| 39, Перевести новые строки в dialog.tra
+++| 39. Праобразовать dialog.tra в UTF-8 (перед этим сделать backup tra-файла)
+++| 40. Сделать Киты и Субрасы
+++|       Киты:
+++|         PALADIN_ILMATER		-	PL_ILMATER		-	NeW
+++|         PALADIN_HELM		-	PL_HELM			-	NeW
+++|         PALADIN_MYSTRA		-	PL_MYSTRA		-	NeW
+++|         MONK_OLD_ORDER		-	OLD_ORDER		-	NeW
+++|         MONK_BROKEN_ONES	-	BROKEN_ONES		-	NeW
+++|         MONK_DARK_MOON		-	DARK_MOON		-	EE
+++|         CLERIC_ILMATER		-	OHILMATER		-	NeW
+++|         CLERIC_LATHANDER	-	GODLATHANDER	-	Orig
+++|         CLERIC_SELUNE		-	OHSELUNE		-	NeW
+++|         CLERIC_HELM			-	GODHELM			-	Orig
+++|         CLERIC_OGHMA		-	OHOGHMA			-	NeW
+++|         CLERIC_TEMPUS		-	OHTEMPUS		-	IwD:EE
+++|         CLERIC_BANE			-	OHBANE			-	NeW
+++|         CLERIC_MASK			-	OHMASK			-	NeW
+++|         CLERIC_TALOS		-	GODTALOS		-	Orig
+++|       Субрасы: Global("SUBRACE","LOCALS",XXX) - отдельный мод
+++|         XXX	-	SUBRACE
+++|         0	-	PURERACE
+++|         1	-	HUMAN_AASIMAR
+++|         2	-	HUMAN_TIEFLING
+++|         3	-	ELF_DROW
+++|         4	-	ELF_WILD
+++|         5	-	DWARF_GOLD
+++|         6	-	DWARF_GRAY
+++|         7	-	HALFLING_STRONGHEART
+++|         8	-	HALFLING_GHOSTWISE
+++|         9	-	GNOME_DEEP
+++|       * Надо учесть, какой класс или кит может иметь какую субрасу
+++|       //Все готово, надо только добавить в мод в начало
+--| 41. В скрипты IWHIDE, где есть Deactivate добавить ApplySpellRES("IDINVIS1",Myself) в самом начале блока. В ИВД1 тоже. (В ИВД1 готово)
+--| 42. Есть скрипт BALDUR.BCS. Мой icewind2. Не забыть добавить его.
+++| 43. добавить Cheat Areas. в ИВД1 тоже. смотреть, вроде, в СоС, или в каком-то другом большом моде
+++| 43. Для добавления записей в splprot взять функцию из мода Test Your Mettle. Там можно добавлять имя к записи.
+++| 43.04. В диалогах, где есть Actions не при выходе из диалога, добавить после блока Actions, перед GOTO  и  - FLAGS 0x200
+++|        V IWD1 toje, gde est' ChangeStoreMarkup, ili kak tam ego
+--| 43.01. В ИВД2 переменные устанавливаются в том же блоке скрипта, а в БГ после завершения обработки скрипта. Надо проверить все скрипты, где есть Continue(). Только для колдовства.
+--| 43.02. OR() в ИВД2 заканчивает обрапотку при нахождении первого тригера с результатом true. В БГ продолжает просматривать до конца. Это имеет значение при выборе цели для атаки.
+--| 43.03. AttackedBy не работает с вложенными объектами, в основном только с указанными напрямую. Это триггеры с 0x0001 по 0x00D6. В общем, не работают с большинством обхектов из object.ids.
+++| 43.05. Сделать отправку и возвращение как в ИВД1 (iwtoEET, game_start)
+--| 43.06. В обоих файлах диалогов заменить "спасбросок против палочек" на "спасбросок против жезлов"
+++| 43.07. Убрать в моем моде Store/Restore Party Locations
+++| 43.08. Сделать покороче добавление записей в 2DA и IDS, в IWD1 тоже (в tp2)
+--| 43.09. В диалоге Зака есть три магазина. Сделать один и добавлять туда предметы через icewind2.bcs.
+++| 43.10. В ИВД1 в диалогах добавить IncrementGlobalOnce, где есть.
+
+++| 43.1. Волка, который призывается с талисмана Гутевульфа, сделать сильнее.
+--| 43.2. Ререпроверить все галочки на локациях, персонажах и т.д.
+++| 43.3. На IW5301 и IW5302 добавить несколько зелий, повышающих интеллект и знания (рандомно +5/10/15/20/25, время - 2 часа), на IW61XX тоже
+++| 43.4. 61XXXXX - скрипты. Найти все, где есть LastShout и LastHeard. Возможно, сделать эти переменные MYAREA, т.к. они на триггерах есть
+--| 43.5. Проверить все скрипты на контейнерах, где есть Clicked(). Возможно, иногда там придется использовать ClearActions(). До лок AR6100.
+++| 43.6. Сделать все SaveGame() через 2da
+--| 45. Где в ИВД2 есть PlaySoundPoint, можно использовать DisplayStringPointNoLog (но надо проверить. В эту версию включить, а при проверочном прохождении проверить)
+++| 46. Сброс SPRITE_IS_DEAD из IWD1
+--| 47. Может пересмотреть Usability жезлов, а то в ИВД2 их могут использовать в основном только маги
+++| 48. Breaking the mirror in the Ice Temple (IWD2): -20 luck  (Разбить зеркало в Ледяном храме (IWD2): -20 удачи)
+--| 49. Возможно, в квесте с Колумом и мертвецами добавить проверку на расу GOBLIN
+++| 50. У кого жизней больше 30000 - добавить Ignore Nightmare Mode
+--| 50. Добавить в мой мод изменение названий глав в ИВД1 и ИВД2. В БГ2 и СоД тоже.
+
+
+
+
+
+/**/
+50. Сделать Unfinished Business
+  * добавить Хейли Данн, если посоветовали ее отцу отправиться в Таргос
+    * ей 38-39 лет
+    * Будет появляться в одном из четырех вариантов:
+      * Офицантка в таверне
+      * Защитница таргоса
+      * Проститутка в таверне
+      * помошница Дейдре Галлоуэй
+  * Быстрый Томас похоже, будет виден на всех локациях. Сделать так, чтоб так не было.
+  * Секс с Дерде Галловэй
+    * Ломан зовет ее рыжей
+  * Возможно, добавить кузнецу в Берегосте и Кромвелю, что они могут что-то изготовить из шкуры зимнего волка
+  * 11GARRAD.D - есть вариант в конце файла, когда у него нет свитка
+  * 11PHAEN.d - есть не испольуемые State
+++|  * В квесте с Вейрой(дух в гостинице), может добавить, что Шаман тоже как-то может ее изгнать (журнал типа @28048, @28049)
+  * 12cSpn3b.baf - последний SPAWN Caballus'a, там в скрипте есть еще огры и шаманы. Может добавить. Персонажи в игре есть. ID1200.
+  * 12WEAPON.d - может сделать еще проверку на владение копьем
+--|  * (посмотреть, что там. Не использовать старые диалоги, но может добввить что.) IW2000 - для Дерета и Сабрины есть старые диалоги, связанные с Эммой, у Эммы и Кайтлин тоже есть старые диалоги, и у Врека
+  * На локах AR63XX тоже есть диалоги NEW и старые. Тоже посмотреть.
+  * IW4000, IW4100 - Гублика и Шеринкаль и фоморские гиганты
+    - 40YurstFlags - есть в диалогах Шеринкаль и Гублики (сделать поиск по всем файлам)
+    - 40YurstTraps - обезвредить ловушки для Юрста (тоже не доделанный квест) (сделать поиск по всем файлам)
+    - 40AttackGoublika - 40ILIUM - аурилиты могут атаковать Гоблику, но это не реализовано
+    -  41SOARSM.baf
+  * IW4001 - 40SpiderSpawnRequests нигде не устанавливается - это SPAWN пауков
+  * IW4103 - возможно, Лемурам убрать увеличение DV
+++|  * Добавить AdvanceTime при перелете с Освальдом, если его нет.
+--|  * Китам священников надо добавить Святые Символы (надо будет разобраться, что делать, если они получат их в ИВД2, как-то экспортировать что-ли)
+  * Добавить опьянение в игре с Гутевульфом (УБ) и не только в игре, но и при покупке выпивки
+++|  * 52SALISA.D - добавить вариант с простым монахом (там есть только киты, может еще и SUN_SOUL)
+  * Монастырь, надо как-то подправить квест с кольцом Нонина. А то если Вен уйдет, его уже не вернуть (возможно, Вен выронит кольцо на первом этаже или в подземелье). А если Global("52Ven_Loot","GLOBAL",4), то сбросить кольцо где-нибудь, или же добавить Нонину в диалог, что вора поймали и у него нашли кольцо.
+  * Может, сделать еще вариан в разговорах с Тэйскими магами, если в партии Эдвин
+  * В отрезанной руке стражу можно не отравить, а еще и усыпить Но это не реализовано. Может, добавить.
+  * AR6503 в скриптах Есть Сааблик Тан, но на локе его не, может добавить (cre-файл есть - 66DSAABL.CRE)
+--|  * Vozmojno, Gerbashu v Kuldahare sdelat' tak, cnto esli na nego kolduyut lechashiy zakl, to quest s ego lecheniem zavershaetsya. A to v originale mojno vylechit' tol'ko zel'em.
+--|    Dobavki v dialog
+++|  * 20NEWMYS и 20MYSON(этот не надо) диалоги. Был в плену у орков. Это он сделал им взрывчатые бочки. Он где орки T7 AR2000.
+  * возможно, Майсону потом добавить магазин по продаже зелий
+  * Есть 30REST диалог и персонаж невидимый. Где-то там можно отдохнуть спокойно.
+  * Квест про Чумбру (Записи журнала: 35081, 35082, 35083)
+  * В Таргосе при виде корабля Освальда ставить переменную "Airship_Landed" = 1
+  * есть файлы персонажей с первых локаций(AR10XX -> AR12XX, типа 10REIG и 12REIG), но они не используются
+  
+  
+  * посмотреть в старом ИВД2 моде, там может есть то, что здесь пропустил
+  
+  
+  * может быть добавить зелья, стрелы и т.д. из ИВД1 и ИВД2 в БГ (в магазины и некоторым врагам)
+  
+  * Возможно, сделать так, что на локах ИВД ГГ мог погибнуть, но ставиться таймер. Если таймер закончится, и ГГ все еще мертв, то GameOver
+    - тогда надо будет поискать скрипты, где асть Dead(Player1)
+  
+*/
+
+/* Правки
+1. 11VALIN0.baf - пока пусть остается, надо проверить, вроде бы там может всю локацию враждебной сделать
+
+*/
+
+//BLOCK SCRIPT LEVEL
+/*
+IWD2		bg2			IWD1
+0 OVERRIDE	0 OVERRIDE	0 OVERRIDE
+1 SPECIAL_1	1 AREA		1 AREA
+2 TEAM		2 SPECIFICS	2 SPECIFICS
+4 SPECIAL_2	4 CLASS		4 CLASS
+5 COMBAT	5 RACE		5 RACE
+6 SPECIAL_3	6 GENERAL	6 GENERAL
+7 MOVEMENT	7 DEFAULT	7 DEFAULT
+
+Udalenie iz Vypolnit'
+HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\RunMRU
+*/
+//BLOCKEND
+
+/* Возможно, переделать все inc и set DEATHVAR через эффект Cast Spell On Condition и в ИВД1 и в ИВД2
+   BanterContainer */
+
+/* Сделать Монахам броню зависящую от Мудрости:
+    - добавить SpellState - MONK_WIS_AC
+    - создать EFF IDMNKWAC - котрый делает SetSpellState MONK_WIS_AC (permanent) - resource: IDMNKWA2.SPL
+    - создать заклинание IDMNKWAC
+       - будет убирать эффекты IDMNKWAC и IDMNKWA2
+       - устанавливает броню в зависимости от Мудрости (25 эффектов на каждое значение Мудрости)
+       
+       APPEND ~splprot.2da~ ~EM_1_HAND%TAB%134%TAB%-1%TAB%4~
+       LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 318 target = 1 parameter1 = 4 parameter2 = %nosws_row% timing = 2 resist_dispel = 0 STR_VAR resource = ~EM_BLDSNG~ END //nosws_row = EM_1_HAND
+    - всем монахам добавить по два эффекта:
+       Use EFF on Condition - every 6 second, resource: IDMNKWAC
+       Cast Spell On Condition - SpellState = MONK_WIS_AC, resource: IDMNKWAC
+*/
+
+/* при отправке/возвращении (ИВД) оживлять всех персонажей. (bdresurr и bdrejuve.spl). В ИВД1 тоже. */
+
+/* для кита Аэри - одно из заклинаний - Путы */
+
+/* !!!!!!!!!!!!!!!!!!!!
+ после установки сделать поиск по скриптам и диалогам IDCRITPS и IDINVULN (их надо будет заменить на CheckSpellState) 
+ после установки проверить скрипты. Может где-то забыл OverrideScriptName (через NearInfinity)*/
+ 
+/* CONVERT TIS / PVRZ (можно сделать массовый экспорт, а потом переименовать)
+ACTION_BASH_FOR ~%biff_dir%~ ~^B[0-9][0-9][0-9][0-9]N?[0-9]+\.PVRZ$~ BEGIN
+	OUTER_PATCH_SAVE filename ~%BASH_FOR_RES%~ BEGIN
+		REPLACE_EVALUATE CASE_INSENSITIVE ~^B\([0-9]\)\([0-9][0-9][0-9]N?\)\([0-9]+\)$~ BEGIN
+			SET MATCH3 = MATCH3 + 50
+		END ~B%MATCH1%%MATCH2%%MATCH3%~
+	END
+	COPY_LARGE + ~%BASH_FOR_FILESPEC%~ ~%biff_dir%/eetBD%MATCH1%/%filename%.PVRZ~
+	DELETE + ~%BASH_FOR_FILESPEC%~
+END
+
+ACTION_BASH_FOR ~%biff_dir%~ ~^BD[0-9][0-9][0-9][0-9]N?\.TIS$~ BEGIN
+	COPY + ~%BASH_FOR_FILESPEC%~ ~%BASH_FOR_FILESPEC%~
+		READ_LONG 0x8 "tiles_cnt"
+		READ_LONG 0x10 "tiles_off"
+		READ_LONG 0xc "tiles_length"
+		FOR (cnt=0; cnt<"%tiles_cnt%"; cnt=cnt+1) BEGIN
+			READ_LONG ("%tiles_off%"+"%tiles_length%"*cnt+0x0) "pvrz_page"
+			PATCH_IF (pvrz_page >= 0) BEGIN
+				//PATCH_PRINT ~cnt = %cnt%, pvrz_page = %pvrz_page%~
+				SET pvrz_page = pvrz_page + 50
+				WRITE_LONG ("%tiles_off%"+"%tiles_length%"*cnt+0x0) "pvrz_page"
+			END
+		END
+END
+
+//переименование
+ACTION_BASH_FOR ~%biff_dir%~ ~^A[0-9][0-9][0-9][0-9]N?[0-9]+\.PVRZ$~ BEGIN
+	OUTER_PATCH_SAVE filename ~%BASH_FOR_RES%~ BEGIN
+		REPLACE_EVALUATE CASE_INSENSITIVE ~^\(A\)\([0-9]\)\([0-9][0-9][0-9]N?\)\([0-9]+\)$~ BEGIN
+			SET MATCH4 = MATCH4 + 50
+			SPRINT ~MATCH1~ ~I~
+		END ~%MATCH1%%MATCH2%%MATCH3%%MATCH4%~
+	END
+	COPY_LARGE + ~%BASH_FOR_FILESPEC%~ ~%biff_dir%/%filename%.PVRZ~
+	DELETE + ~%BASH_FOR_FILESPEC%~
+END
+
+ACTION_BASH_FOR ~%biff_dir%~ ~^AR[0-9][0-9][0-9][0-9]+\.TIS$~ BEGIN
+	OUTER_PATCH_SAVE filename ~%BASH_FOR_RES%~ BEGIN
+		REPLACE_EVALUATE CASE_INSENSITIVE ~^\(AR\)([0-9]\)\([0-9][0-9][0-9]+\)$~ BEGIN
+			SPRINT ~MATCH1~ ~IW~
+		END ~%MATCH1%%MATCH2%%MATCH3%~
+	END
+	COPY + ~%BASH_FOR_FILESPEC%~ ~%biff_dir%/%filename%.TIS~
+	DELETE + ~%BASH_FOR_FILESPEC%~
+END
+
+ACTION_BASH_FOR ~%biff_dir%~ ~^IW[0-9][0-9][0-9][0-9]N?\.TIS$~ BEGIN
+	COPY + ~%BASH_FOR_FILESPEC%~ ~%BASH_FOR_FILESPEC%~
+		READ_LONG 0x8 "tiles_cnt"
+		READ_LONG 0x10 "tiles_off"
+		READ_LONG 0xc "tiles_length"
+		FOR (cnt=0; cnt<"%tiles_cnt%"; cnt=cnt+1) BEGIN
+			READ_LONG ("%tiles_off%"+"%tiles_length%"*cnt+0x0) "pvrz_page"
+			PATCH_IF (pvrz_page >= 0) BEGIN
+				//PATCH_PRINT ~cnt = %cnt%, pvrz_page = %pvrz_page%~
+				SET pvrz_page = pvrz_page + 50
+				WRITE_LONG ("%tiles_off%"+"%tiles_length%"*cnt+0x0) "pvrz_page"
+			END
+		END
+END
+
+//WED
+ACTION_BASH_FOR ~%biff_dir%~ ~^AR[0-9][0-9][0-9][0-9]+\.WED$~ BEGIN
+	OUTER_PATCH_SAVE filename ~%BASH_FOR_RES%~ BEGIN
+		REPLACE_EVALUATE CASE_INSENSITIVE ~^\(AR\)([0-9]\)\([0-9][0-9][0-9]+\)$~ BEGIN
+			SPRINT ~MATCH1~ ~IW~
+		END ~%MATCH1%%MATCH2%%MATCH3%~
+	END
+	COPY ~%BASH_FOR_FILESPEC%~ ~%biff_dir%/%filename%.WED~
+		WRITE_EVALUATED_ASCII 0c24 ~%filename%~ (8)
+	DELETE + ~%BASH_FOR_FILESPEC%~
+END
+
+//BMP
+ACTION_BASH_FOR ~%biff_dir%~ ~^AR[0-9][0-9][0-9][0-9]+\.BMP$~ BEGIN
+	OUTER_PATCH_SAVE filename ~%BASH_FOR_RES%~ BEGIN
+		REPLACE_EVALUATE CASE_INSENSITIVE ~^\(AR\)([0-9]\)\([0-9][0-9][0-9]+\)$~ BEGIN
+			SPRINT ~MATCH1~ ~IW~
+		END ~%MATCH1%%MATCH2%%MATCH3%~
+	END
+	COPY + ~%BASH_FOR_FILESPEC%~ ~%biff_dir%/%filename%.BMP~
+	DELETE + ~%BASH_FOR_FILESPEC%~
+END
+*/
+
+/* Проверки после установки:
+IWWI089.SPL - splprot
+IWWI422.SPL - REPLACE_TEXTUALLY
+IWIN277.SPL - все файлы
+IWIN278.SPL - все файлы
+61POTNHB.itm - AreaType
+В пещерах дуэргаров проверить, среагирует ли призрак на изгнание нежити.
+Проверить, появится ли призрак на локе с Шимишем
+60RITUAL.BCS - JumpToSavedLocation, строка 435 в baf
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,57 @@
+IF
+	True()
+THEN
+	RESPONSE #100
+		//CutSceneId(Player1)
+		CutSceneId(Player1) //[PC]
+		//SetVisualRange(200)
+		CreateCreatureImpassable("cutspy",[240.560],0)
+		CreateCreatureImpassable("cutspy2",[680.570],0)
+		EndCutSceneMode()
+END
+
+/*IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId(Player2)
+		SetVisualRange(200)
+		EndCutSceneMode()
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId(Player3)
+		SetVisualRange(200)
+		EndCutSceneMode()
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId(Player4)
+		SetVisualRange(200)
+		EndCutSceneMode()
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId(Player5)
+		SetVisualRange(200)
+		EndCutSceneMode()
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId(Player6)
+		SetVisualRange(200)
+		EndCutSceneMode()
+END*/
+

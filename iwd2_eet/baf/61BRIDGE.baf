@@ -1,0 +1,82 @@
+IF
+	HitBy([ANYONE],CRUSHING)
+	OpenState("AR6104_South_Bridge",TRUE)
+	GlobalGT("RopeCount","MYAREA",3)
+	HPLT(Myself,75)
+THEN
+	RESPONSE #100
+		SetGlobal("RopeCount","MYAREA",3)
+		StaticSequence("BridgeLeft",SEQ_CONJURE)
+		StaticSequence("BridgeRight",SEQ_CONJURE)
+		OpenDoor("AR6104_South_Bridge")
+		TriggerActivation("InfoBridgeDamaged",FALSE)
+		TriggerActivation("InfoBridgeUnsafe",TRUE)
+		TriggerActivation("InfoBridgeFixed",FALSE)
+		TriggerActivation("BridgeRepair",TRUE)
+		//GiveItemCreate("z5misc38","BridgeRope1",0,0,0)  // Пеньковая веревка
+		ActionOverride("BridgeRope1",CreateItem("z5misc38",0,0,0))
+END
+
+IF
+	HitBy([ANYONE],CRUSHING)
+	OpenState("AR6104_South_Bridge",TRUE)
+	GlobalGT("RopeCount","MYAREA",2)
+	HPLT(Myself,50)
+THEN
+	RESPONSE #100
+		SetGlobal("RopeCount","MYAREA",2)
+		StaticSequence("BridgeLeft",SEQ_CAST)
+		StaticSequence("BridgeRight",SEQ_CAST)
+		OpenDoor("AR6104_South_Bridge")
+		TriggerActivation("InfoBridgeDamaged",FALSE)
+		TriggerActivation("InfoBridgeUnsafe",TRUE)
+		TriggerActivation("InfoBridgeFixed",FALSE)
+		TriggerActivation("BridgeRepair",TRUE)
+		//GiveItemCreate("z5misc38","BridgeRope4",0,0,0)  // Пеньковая веревка
+		ActionOverride("BridgeRope4",CreateItem("z5misc38",0,0,0))
+END
+
+IF
+	HitBy([ANYONE],CRUSHING)
+	OpenState("AR6104_South_Bridge",TRUE)
+	GlobalGT("RopeCount","MYAREA",1)
+	HPLT(Myself,25)
+THEN
+	RESPONSE #100
+		SetGlobal("RopeCount","MYAREA",1)
+		StaticSequence("BridgeLeft",SEQ_AWAKE)
+		StaticSequence("BridgeRight",SEQ_AWAKE)
+		OpenDoor("AR6104_South_Bridge")
+		TriggerActivation("InfoBridgeDamaged",FALSE)
+		TriggerActivation("InfoBridgeUnsafe",TRUE)
+		TriggerActivation("InfoBridgeFixed",FALSE)
+		TriggerActivation("BridgeRepair",TRUE)
+		//GiveItemCreate("z5misc38","BridgeRope2",0,0,0)  // Пеньковая веревка
+		ActionOverride("BridgeRope2",CreateItem("z5misc38",0,0,0))
+END
+
+IF
+	HitBy([ANYONE],CRUSHING)
+	OpenState("AR6104_South_Bridge",TRUE)
+	GlobalGT("RopeCount","MYAREA",0)
+	HP(Myself,1)
+THEN
+	RESPONSE #100
+		SetGlobal("RopeCount","MYAREA",0)
+		StaticSequence("BridgeLeft",SEQ_ATTACK)
+		StaticSequence("BridgeRight",SEQ_ATTACK)
+		//HideCreature("61Bridge",TRUE)  // Мост
+		ApplySpellRES("IDINVIS4",Myself)
+		DisplayString(Myself,@37293)
+		ActionOverride("Bridge",DestroyItem("z5misc38"))  // Пеньковая веревка
+		TriggerActivation("InfoBridgeDamaged",TRUE)
+		TriggerActivation("InfoBridgeUnsafe",FALSE)
+		TriggerActivation("InfoBridgeFixed",FALSE)
+		TriggerActivation("BridgeRepair",TRUE)
+		ScreenShake([16.12],50)
+		//GiveItemCreate("z5misc38","BridgeRope3",0,0,0)  // Пеньковая веревка
+		ActionOverride("BridgeRope3",CreateItem("z5misc38",0,0,0))
+		SetGlobal("IwIHidden","LOCALS",1)
+		Deactivate(Myself)
+END
+

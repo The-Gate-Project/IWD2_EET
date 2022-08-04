@@ -1,0 +1,37 @@
+IF
+	!IsActive(Myself)
+	GlobalGT("AR5101_JELLIES_DEAD","GLOBAL",0)
+	Global("JELLIES_SPAWN_SIDE","MYAREA",1)
+THEN
+	RESPONSE #100
+		Activate(Myself)
+		SetGlobal("IwIHidden","LOCALS",0)
+		IncrementGlobal("AR5101_JELLIES_DEAD","GLOBAL",-1)
+		SetGlobalRandom("JELLIES_SPAWN_SIDE","MYAREA",1,2)
+		JumpToPoint([2035.2145])
+		//HideCreature(Myself,FALSE)
+		ApplySpellRES("idinvis5",Myself)
+END
+
+IF
+	!IsActive(Myself)
+	GlobalGT("AR5101_JELLIES_DEAD","GLOBAL",0)
+	!Global("JELLIES_SPAWN_SIDE","MYAREA",1)
+THEN
+	RESPONSE #100
+	Activate(Myself)
+		SetGlobal("IwIHidden","LOCALS",0)
+		IncrementGlobal("AR5101_JELLIES_DEAD","GLOBAL",-1)
+		SetGlobalRandom("JELLIES_SPAWN_SIDE","MYAREA",1,2)
+		JumpToPoint([2555.2031])
+		//HideCreature(Myself,FALSE)
+		ApplySpellRES("idinvis5",Myself)
+END
+
+IF
+	!IsActive(Myself)
+THEN
+	RESPONSE #100
+		NoAction()
+END
+

@@ -1,0 +1,11 @@
+BEGIN ~67CHIMER~
+
+IF ~NumTimesTalkedTo(0)~ THEN BEGIN 0
+  SAY @35291
+  IF ~~ THEN EXIT
+END
+
+IF ~NumTimesTalkedToGT(0)~ THEN BEGIN 1
+  SAY @35293
+  IF ~~ THEN EXIT
+END

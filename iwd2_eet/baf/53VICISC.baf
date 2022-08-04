@@ -1,0 +1,41 @@
+IF
+	Global("Viciscamera_Seen","GLOBAL",0)
+	LOS([PC],29)
+THEN
+	RESPONSE #100
+		SetGlobal("Viciscamera_Seen","GLOBAL",1)
+		Continue()
+END
+
+IF
+	Global("StartCombat","LOCALS",0)
+	AttackedBy([ANYONE],DEFAULT)
+THEN
+	RESPONSE #100
+		SetGlobal("StartCombat","LOCALS",1)
+		Enemy()
+		SetGlobal("TEAM_1","MYAREA",1)
+		SetGlobal("TEAM_9","MYAREA",1)
+END
+
+IF
+	AttackedBy([GOODCUTOFF],DEFAULT)
+	HasItem("z5misciv",LastAttackerOf(Myself))
+THEN
+	RESPONSE #100
+		//SetDialogueRange(300)
+		//Dialogue([PC])
+		ApplySpellRES("BDCUTSPY",Myself)
+		StartDialogNoSet([PC])
+END
+
+IF
+	Global("StartCombat","LOCALS",1)
+	!GlobalTimerNotExpired("Vic_Fog","MYAREA")
+	LOS([PC],30)
+THEN
+	RESPONSE #100
+		ReallyForceSpellRES("IWWI605",Myself)  // SPWI605.SPL WIZARD_ACID_FOG
+		SetGlobalTimer("Vic_Fog","MYAREA",105)
+END
+

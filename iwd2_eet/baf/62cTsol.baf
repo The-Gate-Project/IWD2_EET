@@ -1,0 +1,44 @@
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("Tsol_Silverblade")
+		MultiPlayerSync()
+		FadeToColor([0.0],0)
+		Wait(1)
+		//HideCreature(Myself,TRUE)
+		ApplySpellRES("idinvis4",Myself)
+		Wait(1)
+		FadeFromColor([0.0],0)
+		Wait(1)
+		EndCutSceneMode()
+		DestroySelf()
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("IW6200ElvenFighter1")
+		Wait(1)
+		DestroySelf()
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("IW6200ElvenFighter2")
+		Wait(1)
+		DestroySelf()
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("IW6200ElvenFighter3")
+		Wait(1)
+		DestroySelf()
+END
+

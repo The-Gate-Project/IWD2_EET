@@ -1,0 +1,15 @@
+IF
+	//Or(6)
+		See([0.0.WYVERN])
+	/*See("01_52WYRWH_01",0)
+		See("01_52WYRWH_02",0)
+		See("01_52WYRWH_03",0)
+		See("01_52WYRWH_04",0)
+		See("01_52WYRWH_05",0)*/
+	!StateCheck(LastSeenBy(Myself),STATE_REALLY_DEAD)
+THEN
+	RESPONSE #100
+		EquipMostDamagingMelee()
+		AttackOneRound(LastSeenBy(Myself))
+END
+

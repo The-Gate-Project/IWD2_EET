@@ -1,0 +1,32 @@
+IF
+	GlobalGT("Action","LOCALS",3)
+THEN
+	RESPONSE #100
+		SetGlobal("Action","LOCALS",0)
+		Continue()
+END
+
+IF
+	Global("Action","LOCALS",0)
+	See(NearestEnemyOf(Myself))
+	//IsSpellTargetValid(LastMarkedObject,WIZARD_EMOTION_HOPELESSNESS,SPELLCAST_IGNORE_HAS_CHECK)  // SPWI411.SPL (Эмоция: Отчаяние.)
+THEN
+	RESPONSE #100
+		IncrementGlobal("Action","LOCALS",1)
+		ForceSpell(LastSeenBy(Myself),WIZARD_EMOTION_HOPELESSNESS)  // SPWI411.SPL (Эмоция: Отчаяние.)
+		//WaitAnimation(Myself,WALK)
+		//WaitAnimation(Myself,CONJURE)
+		//WaitAnimation(Myself,CAST)
+		Wait(1)
+END
+
+IF
+	GlobalLT("Action","LOCALS",4)
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Action","LOCALS",1)
+		//EquipWeapon()
+		AttackOneRound(LastSeenBy(Myself))
+END
+

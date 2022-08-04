@@ -1,0 +1,11 @@
+IF
+	OR(2)
+		Entered([GOODCUTOFF])
+		DisarmFailed([GOODCUTOFF])
+THEN
+	RESPONSE #100
+		SetGlobal("TEAM_1","MYAREA",1)
+		DisplayString(Myself,14381)
+		ReallyForceSpell(LastTrigger,WIZARD_WEB)
+END
+

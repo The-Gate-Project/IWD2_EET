@@ -1,0 +1,24 @@
+IF
+	HasItem("POTN52",Myself) //POTN_08
+	HPPercentLT(Myself,50)
+THEN
+	RESPONSE #100
+		UseItem("POTN52",Myself) //POTN_08
+END
+
+IF
+	HasItem("POTN55",Myself) //POTN_52
+	HPPercentLT(Myself,50)
+THEN
+	RESPONSE #100
+		UseItem("POTN55",Myself) //POTN_52
+END
+
+IF
+	Global("Ignore_AI_Inhibit","LOCALS",0)
+THEN
+	RESPONSE #100
+		ApplySpellRES("iwperai",Myself)
+		SetGlobal("Ignore_AI_Inhibit","LOCALS",1)
+END
+

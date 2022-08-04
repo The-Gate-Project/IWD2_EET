@@ -1,0 +1,140 @@
+// IWD: [EA.GENERAL.RACE.CLASS.SPECIFIC.GENDER.ALIGNMNT.SUBRACE.AVCLASS.CLASSMSK],
+// BG : [EA.GENERAL.RACE.CLASS.SPECIFIC.GENDER.ALIGNMNT],
+//VerbalConstant:
+//FALLING -> HURT
+//See(Myself) - работает
+//IESDP - https://gibberlings3.github.io/iesdp/index.htm
+//Near Infinity - https://github.com/Argent77/NearInfinity/releases/
+
+IF
+  Global("SaveSavedLoc","LOCALS",0)
+THEN
+  RESPONSE #100
+    SetGlobal("SaveSavedLoc","LOCALS",1)
+    SaveObjectLocation("LOCALS","SavedLoc",Myself)
+    Continue()
+END
+
+IF
+	Global("RW_00AMVW050","LOCALS",0)
+	!NearSavedLocation(Myself,"LOCALSSavedLoc",5)
+THEN
+	RESPONSE #100
+		SetGlobal("RW_00AMVW050","LOCALS",1)
+		Continue()
+END
+
+IF
+	!Global("RW_00AMVW050","LOCALS",0)
+	NearSavedLocation(Myself,"LOCALSSavedLoc",5)
+THEN
+	RESPONSE #100
+		SetGlobal("RW_00AMVW050","LOCALS",0)
+		NoAction()
+END
+
+IF
+	!Global("RW_00AMVW050","LOCALS",0)
+	Range([PC],39)
+	//See([PC])
+THEN
+	RESPONSE #100
+		//MoveToPoint([-2.-2])
+		MoveToOffset([-2.-2])
+	RESPONSE #100
+		//MoveToPoint([-2.-2])
+		MoveToOffset([2.-2])
+	RESPONSE #100
+		//MoveToPoint([-2.-2])
+		MoveToOffset([-2.2])
+	RESPONSE #100
+		//MoveToPoint([-2.-2])
+		MoveToOffset([2.2])
+	RESPONSE #100
+		MoveToSavedLocation("SavedLoc","LOCALS")
+END
+
+/*IF
+	!Global("RW_00AMVW050","LOCALS",0)
+	Range([PC],39)
+	See([PC])
+THEN
+	RESPONSE #100
+		MoveToObject(LastSeenBy(Myself))
+END*/
+
+IF
+	!GlobalTimerNotExpired("IwTimer19","LOCALS")
+	Global("RW_00AMVW050","LOCALS",0)
+	Range([PC],39)
+THEN
+	RESPONSE #100
+		RandomWalk()
+		SetGlobalTimerRandom("IwTimer19","LOCALS",10,15)
+END
+
+/* MOVED 
+IF
+	Global("IMovedToPC","LOCALS",0)
+	!See([PC])
+THEN
+	RESPONSE #100
+		SetGlobalRandom("IMovedToPC","LOCALS",1,6)
+		SetGlobalTimerRandom("TimerIMovedToPC","LOCALS",20,30)
+		Continue()
+END
+
+IF
+	GlobalTimerExpired("TimerIMovedToPC","LOCALS")
+	!Global("IMovedToPC","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobal("IMovedToPC","LOCALS",0)
+		Continue()
+END
+
+IF
+	Global("TEAM_1","MYAREA",1)
+	Global("AR5101_IN_SUB_AREA","GLOBAL",0)
+	!See([PC])
+	Switch("IMovedToPC","LOCALS")
+THEN
+	RESPONSE #1
+		SetGlobal("IMovedToPC","LOCALS",0)
+		MoveToObject(Player1)
+	RESPONSE #2
+		SetGlobal("IMovedToPC","LOCALS",0)
+		MoveToObject(Player2)
+	RESPONSE #3
+		SetGlobal("IMovedToPC","LOCALS",0)
+		MoveToObject(Player3)
+	RESPONSE #4
+		SetGlobal("IMovedToPC","LOCALS",0)
+		MoveToObject(Player4)
+	RESPONSE #5
+		SetGlobal("IMovedToPC","LOCALS",0)
+		MoveToObject(Player5)
+	RESPONSE #6
+		SetGlobal("IMovedToPC","LOCALS",0)
+		MoveToObject(Player6)
+END
+*/
+
+/* With this code you need to fix k#telbgt.bcs
+
+>SetGlobal("K#temp","GLOBAL",29)
+    AdvanceTime(ONE_MONTH)
+    AddGlobals("K#DaysPassed","K#temp")
+
+>SetGlobal("K#temp","GLOBAL",29)
+    AdvanceTime(ONE_MONTH)
+    AddGlobals("K#DaysPassed","K#temp")
+    IncrementGlobal("K#TimerOneDay","GLOBAL",3132000)
+    
+    Or simply
+    
+>AdvanceTime(ONE_MONTH)
+
+With AdvanceTime, there are no problems. But if you change K#DaysPassed manually, the counter will go ahead for 29 days, because Timer K#TimerOneDay will greatly lag behind timer K#TimerCheckDay.
+
+С AdvanceTime нет проблем. Но при изменении K#DaysPassed вручную, счетчик уйдет вперед на 29 дней, т.к. таймер K#TimerOneDay будет сильно отставать от таймера K#TimerCheckDay. */

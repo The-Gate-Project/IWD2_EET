@@ -1,0 +1,22 @@
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("Limha")
+		Enemy()
+		SetGlobal("TEAM_1","MYAREA",1)
+		SetGlobal("LIHMA_OUTSIDE","GLOBAL",1)
+		SetGlobalTimer("LIMHA_TELEPORT_TIMER","GLOBAL",5)
+		SetSequence(SEQ_CAST)
+		Wait(1)
+		//SpellHitEffectSprite(Myself,Myself,DIMENSION_DOOR_ORIGIN,0)
+		CreateVisualEffectObject("SPDIMNDR",Myself)
+		Wait(1)
+		//HideCreature(Myself,TRUE)
+		ApplySpellRES("IDINVIS4",Myself)
+		DisplayStringNoName(Myself,@33648)
+		Wait(1)
+		EndCutSceneMode()
+		DestroySelf()
+END
+

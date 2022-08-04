@@ -1,0 +1,116 @@
+IF
+	//CreatureHidden(Myself)
+	Global("StartCutscene_63cFB01","MYAREA",0)
+THEN
+	RESPONSE #100
+		NoAction()
+END
+
+IF
+	Global("Summon","LOCALS",0)
+	Allegiance(Myself,ENEMY)
+	//!CreatureHidden(Myself)
+	//IsHeartOfFuryModeOn()
+	OR(2)
+		NightmareModeOn()
+		StoryModeOn()
+THEN
+	RESPONSE #100
+		SetGlobal("Summon","LOCALS",4)
+END
+
+IF
+	Global("Summon","LOCALS",0)
+	Allegiance(Myself,ENEMY)
+	//!CreatureHidden(Myself)
+	//CheckAreaDiffLevel(1)
+	DifficultyLT(NORMAL)
+THEN
+	RESPONSE #100
+		SetGlobal("Summon","LOCALS",1)
+END
+
+IF
+	Global("Summon","LOCALS",0)
+	Allegiance(Myself,ENEMY)
+	//!CreatureHidden(Myself)
+	//CheckAreaDiffLevel(2)
+	Difficulty(NORMAL)
+THEN
+	RESPONSE #100
+		SetGlobal("Summon","LOCALS",2)
+END
+
+IF
+	Global("Summon","LOCALS",0)
+	Allegiance(Myself,ENEMY)
+	//!CreatureHidden(Myself)
+	//CheckAreaDiffLevel(3)
+	DifficultyGT(NORMAL)
+THEN
+	RESPONSE #100
+		SetGlobal("Summon","LOCALS",3)
+END
+
+IF
+	Global("Summon","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("Summon","LOCALS",-1)
+		ForceSpellPoint([1180.767],WIZARD_CACOFIEND)
+		//SpellWait(WIZARD_CACOFIEND)
+		Wait(1)
+		ReallyForceSpellRES("IWWI526",Myself)  // SPWI526.SPL WIZARD_LUTZAENS_FREQUENT_JAUNT
+		ChangeAIScript("63Mour1C",GENERAL)
+END
+
+IF
+	Global("Summon","LOCALS",2)
+THEN
+	RESPONSE #100
+		SetGlobal("Summon","LOCALS",-1)
+		ForceSpellPointRES("IWWI807",[1180.767])
+		//SpellWait(WIZARD_SUMMON_FIEND)
+		Wait(1)
+		ReallyForceSpellRES("IWWI526",Myself)  // SPWI526.SPL WIZARD_LUTZAENS_FREQUENT_JAUNT
+		ChangeAIScript("63Mour2C",GENERAL)
+END
+
+IF
+	Global("Summon","LOCALS",3)
+THEN
+	RESPONSE #100
+		SetGlobal("Summon","LOCALS",-1)
+		ForceSpellPoint([1180.767],WIZARD_GATE)
+		//SpellWait(WIZARD_GATE)
+		Wait(1)
+		ReallyForceSpellRES("IWWI526",Myself)  // SPWI526.SPL WIZARD_LUTZAENS_FREQUENT_JAUNT
+		ChangeAIScript("63Mour3C",GENERAL)
+END
+
+IF
+	Global("Summon","LOCALS",4)
+THEN
+	RESPONSE #100
+		SetGlobal("Summon","LOCALS",-1)
+		ForceSpellPoint([1180.767],WIZARD_CACOFIEND)
+		//SpellWait(WIZARD_CACOFIEND)
+		Wait(1)
+		ForceSpellPointRES("IWWI807",[1180.767])
+		//SpellWait(WIZARD_SUMMON_FIEND)
+		Wait(1)
+		ForceSpellPoint([1180.767],WIZARD_GATE)
+		//SpellWait(WIZARD_GATE)
+		Wait(1)
+		ReallyForceSpellRES("IWWI526",Myself)  // SPWI526.SPL WIZARD_LUTZAENS_FREQUENT_JAUNT
+		ChangeAIScript("63Mour3C",GENERAL)
+END
+
+IF
+	HasItem("POTN55",Myself) //POTN_52
+	HPPercentLT(Myself,50)
+THEN
+	RESPONSE #100
+		UseItem("POTN55",Myself) //POTN_52
+END
+

@@ -1,0 +1,343 @@
+//BLOCK SET_VARS
+IF
+	!Global("SET_41SHAMAN","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("RandomNum","LOCALS",1,4)
+		SetGlobal("SET_41SHAMAN","LOCALS",1)
+		SetInterrupt(TRUE)
+END
+//BLOCKEND
+
+IF
+	StateCheck(Myself,STATE_PANIC)
+THEN
+	RESPONSE #100
+		RandomWalkContinuous()
+END
+
+IF
+	!GlobalTimerNotExpired("IWD_Rest","LOCALS")
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IWD_Rest","LOCALS",EIGHT_HOURS)
+		ApplySpell(Myself,RESTORE_FULL_HEALTH)
+		Rest()
+END
+
+IF
+	HitBy([ANYONE],FIRE)
+	HaveSpell(CLERIC_PROTECTION_FROM_FIRE)
+THEN
+	RESPONSE #100
+		Spell(Myself,CLERIC_PROTECTION_FROM_FIRE)
+		Wait(1)
+END
+
+IF
+	OR(3)
+		HPPercentLT(Myself,85)
+		StateCheck(Myself,STATE_POISONED)
+		//StateCheck(Myself,STATE_DISEASED)
+		!CheckSpellState(Myself,DISEASED)
+	HasItem("POTN17",Myself)
+THEN
+	RESPONSE #100
+		UseItem("POTN17",Myself)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_MEDIUM_WOUNDS)
+	HPPercentLT(Myself,75)
+	!StateCheck(Myself,STATE_REALLY_DEAD)
+THEN
+	RESPONSE #100
+		Spell(Myself,CLERIC_CURE_MEDIUM_WOUNDS)
+		Wait(1)
+END
+
+IF
+	HaveSpell(CLERIC_AID)
+	HPPercentLT(Myself,80)
+	!StateCheck(Myself,STATE_REALLY_DEAD)
+THEN
+	RESPONSE #100
+		Spell(Myself,CLERIC_AID)
+		Wait(1)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_LIGHT_WOUNDS)
+	HPPercentLT(Myself,90)
+	!StateCheck(Myself,STATE_REALLY_DEAD)
+THEN
+	RESPONSE #100
+		Spell(Myself,CLERIC_CURE_LIGHT_WOUNDS)
+		Wait(1)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_MEDIUM_WOUNDS)
+	See([ENEMY.HUMANOID])
+	HPPercentLT(LastSeenBy(Myself),75)
+	!StateCheck(LastSeenBy(Myself),STATE_REALLY_DEAD)
+	Specifics(LastSeenBy(Myself),254)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_MEDIUM_WOUNDS)
+		Wait(1)
+END
+
+IF
+	HaveSpell(CLERIC_AID)
+	See([ENEMY.HUMANOID])
+	HPPercentLT(LastSeenBy(Myself),80)
+	!StateCheck(LastSeenBy(Myself),STATE_REALLY_DEAD)
+	Specifics(LastSeenBy(Myself),254)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_AID)
+		Wait(1)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_LIGHT_WOUNDS)
+	See([ENEMY.HUMANOID])
+	HPPercentLT(LastSeenBy(Myself),90)
+	!StateCheck(LastSeenBy(Myself),STATE_REALLY_DEAD)
+	Specifics(LastSeenBy(Myself),254)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_CURE_LIGHT_WOUNDS)
+		Wait(1)
+END
+//BLOCK SPL_1
+/*IF
+	ForceMarkedSpell(MARKED_SPELL)
+	SetSpellTarget(Nothing)
+	See([GOODCUTOFF],0)
+	RandomNum(4,1)
+	See([ENEMY.HUMANOID],0)
+	Specifics(LastMarkedObject,254)
+THEN
+	RESPONSE #100
+		MarkSpellAndObject("1101131312031219",LastMarkedObject,SPELLCAST_IGNORE_SEE | SPELLCAST_IGNORE_VALID_SPELL_TARGET | SPELLCAST_RANDOM)  // [CLERIC_BLESS, CLERIC_PRAYER, CLERIC_CHANT, CLERIC_SPELL_SHIELD]
+		MarkSpellAndObject("1115",Myself,SPELLCAST_IGNORE_SEE | SPELLCAST_IGNORE_VALID_SPELL_TARGET | SPELLCAST_RANDOM)  // [CLERIC_ARMOR_OF_FAITH]
+		Continue()
+	RESPONSE #100
+		MarkSpellAndObject("1115",Myself,SPELLCAST_IGNORE_SEE | SPELLCAST_IGNORE_VALID_SPELL_TARGET | SPELLCAST_RANDOM)  // [CLERIC_ARMOR_OF_FAITH]
+		MarkSpellAndObject("1101131312031219",LastMarkedObject,SPELLCAST_IGNORE_SEE | SPELLCAST_IGNORE_VALID_SPELL_TARGET | SPELLCAST_RANDOM)  // [CLERIC_BLESS, CLERIC_PRAYER, CLERIC_CHANT, CLERIC_SPELL_SHIELD]
+		Continue()
+END
+
+IF
+	!IsMarkedSpell(MARKED_SPELL)
+THEN
+	RESPONSE #100
+		Spell(SpellTarget,MARKED_SPELL)
+		WaitAnimation(Myself,WALK)
+		WaitAnimation(Myself,CONJURE)
+		WaitAnimation(Myself,CAST)
+		ForceMarkedSpell(MARKED_SPELL)
+END*/
+/*IF
+	GlobalLT("SSPELLS_1_RANDOM_CAST","LOCALS",3)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("RandomNum","LOCALS",1,4)
+		Continue()
+END*/
+//1 - LastMarkedObject - [CLERIC_BLESS, CLERIC_PRAYER, CLERIC_CHANT, CLERIC_SPELL_SHIELD]
+IF
+	RandomNum(3,1)
+	Global("SSPELLS_1_RANDOM_CAST","LOCALS",1)
+	HaveSpell(CLERIC_BLESS)
+	See([GOODCUTOFF])
+	Global("RandomNum","LOCALS",1)
+	See([ENEMY.HUMANOID])
+	Specifics(LastSeenBy(Myself),254)
+	!StateCheck(LastSeenBy(Myself),STATE_BLESS)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("RandomNum","LOCALS",1,4)
+		Spell(LastSeenBy(Myself),CLERIC_BLESS)
+		Wait(1)
+END
+
+IF
+	RandomNum(3,2)
+	Global("SSPELLS_1_RANDOM_CAST","LOCALS",1)
+	HaveSpell(CLERIC_CHANT)
+	See([GOODCUTOFF])
+	Global("RandomNum","LOCALS",1)
+	See([ENEMY.HUMANOID])
+	Specifics(LastSeenBy(Myself),254)
+	!StateCheck(LastSeenBy(Myself),STATE_CHANT)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("RandomNum","LOCALS",1,4)
+		Spell(LastSeenBy(Myself),CLERIC_CHANT)
+		Wait(1)
+END
+
+IF
+	RandomNum(3,3)
+	Global("SSPELLS_1_RANDOM_CAST","LOCALS",1)
+	HaveSpellRES("IWPR219")
+	See([GOODCUTOFF])
+	Global("RandomNum","LOCALS",1)
+	See([ENEMY.HUMANOID])
+	Specifics(LastSeenBy(Myself),254)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("RandomNum","LOCALS",1,4)
+		SpellRES("IWPR219",LastSeenBy(Myself))
+		Wait(1)
+END
+//2 - Myself - [CLERIC_ARMOR_OF_FAITH]
+IF
+	Global("SSPELLS_1_RANDOM_CAST","LOCALS",2)
+	HaveSpell(CLERIC_ARMOR_OF_FAITH)
+	See([GOODCUTOFF])
+	Global("RandomNum","LOCALS",1)
+	See([ENEMY.HUMANOID])
+	Specifics(LastSeenBy(Myself),254)
+	!CheckSpellState(Myself,ARMOR_OF_FAITH)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("RandomNum","LOCALS",1,4)
+		Spell(Myself,CLERIC_ARMOR_OF_FAITH)
+		Wait(1)
+END
+//BLOCK NO_RND
+//1 - LastMarkedObject - [CLERIC_BLESS, CLERIC_PRAYER, CLERIC_CHANT, CLERIC_SPELL_SHIELD]
+IF
+	HaveSpell(CLERIC_BLESS)
+	See([GOODCUTOFF])
+	RandomNum(4,1)
+	See([ENEMY.HUMANOID])
+	Specifics(LastSeenBy(Myself),254)
+	!StateCheck(LastSeenBy(Myself),STATE_BLESS)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("RandomNum","LOCALS",1,4)
+		Spell(LastSeenBy(Myself),CLERIC_BLESS)
+		Wait(1)
+END
+
+IF
+	HaveSpell(CLERIC_CHANT)
+	See([GOODCUTOFF])
+	RandomNum(4,1)
+	See([ENEMY.HUMANOID])
+	Specifics(LastSeenBy(Myself),254)
+	!StateCheck(LastSeenBy(Myself),STATE_CHANT)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("RandomNum","LOCALS",1,4)
+		Spell(LastSeenBy(Myself),CLERIC_CHANT)
+		Wait(1)
+END
+
+IF
+	HaveSpellRES("IWPR219")
+	See([GOODCUTOFF])
+	RandomNum(4,1)
+	See([ENEMY.HUMANOID])
+	Specifics(LastSeenBy(Myself),254)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("RandomNum","LOCALS",1,4)
+		SpellRES("IWPR219",LastSeenBy(Myself))
+		Wait(1)
+END
+//2 - Myself - [CLERIC_ARMOR_OF_FAITH]
+IF
+	HaveSpell(CLERIC_ARMOR_OF_FAITH)
+	See([GOODCUTOFF])
+	RandomNum(4,1)
+	See([ENEMY.HUMANOID])
+	Specifics(LastSeenBy(Myself),254)
+	!CheckSpellState(Myself,ARMOR_OF_FAITH)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("RandomNum","LOCALS",1,4)
+		Spell(Myself,CLERIC_ARMOR_OF_FAITH)
+		Wait(1)
+END
+//BLOCKEND
+//BLOCKEND
+
+IF
+	HaveSpell(CLERIC_REMOVE_PARALYSIS)
+	See([ENEMY.HUMANOID])
+	RandomNum(4,1)
+	Specifics(LastSeenBy(Myself),254)
+	OR(4)
+		StateCheck(LastSeenBy(Myself),STATE_HELPLESS)
+		StateCheck(LastSeenBy(Myself),STATE_STUNNED)
+		CheckStatGT(LastSeenBy(Myself),0,HELD)
+		CheckStatGT(LastSeenBy(Myself),0,ENTANGLE)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_REMOVE_PARALYSIS)
+		Wait(1)
+END
+
+IF
+	HaveSpell(CLERIC_REMOVE_FEAR)
+	See([ENEMY.HUMANOID])
+	RandomNum(4,1)
+	Specifics(LastSeenBy(Myself),254)
+	StateCheck(LastSeenBy(Myself),STATE_PANIC)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_REMOVE_FEAR)
+		Wait(1)
+END
+
+IF
+	HaveSpell(CLERIC_SLOW_POISON)
+	See([ENEMY.HUMANOID])
+	RandomNum(4,1)
+	Specifics(LastSeenBy(Myself),254)
+	StateCheck(LastSeenBy(Myself),STATE_POISONED)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_SLOW_POISON)
+		Wait(1)
+END
+
+IF
+	HaveSpell(CLERIC_DISPEL_MAGIC)
+	See([ENEMY.HUMANOID])
+	RandomNum(4,1)
+	Specifics(LastSeenBy(Myself),254)
+	OR(10)
+		StateCheck(LastSeenBy(Myself),STATE_CONFUSED)
+		StateCheck(LastSeenBy(Myself),STATE_CHARMED)
+		StateCheck(LastSeenBy(Myself),STATE_SILENCED)
+		StateCheck(LastSeenBy(Myself),STATE_SLEEPING)
+		StateCheck(LastSeenBy(Myself),STATE_SLOWED)
+		CheckSpellState(LastSeenBy(Myself),MISCAST_MAGIC)
+		CheckSpellState(LastSeenBy(Myself),HOPELESSNESS)
+		CheckStatGT(LastSeenBy(Myself),0,WEB)
+		CheckSpellState(LastSeenBy(Myself),DETRIMENTAL_RECITATION)
+		CheckSpellState(LastSeenBy(Myself),NAUSEA)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_DISPEL_MAGIC)
+		Wait(1)
+END
+

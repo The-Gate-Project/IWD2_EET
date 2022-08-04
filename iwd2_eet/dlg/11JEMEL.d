@@ -1,0 +1,78 @@
+BEGIN ~11JEMEL~
+
+IF ~True()~ THEN BEGIN 0
+  SAY @6531
+  IF ~Global("Dock_Goblin_Quest","GLOBAL",0)~ THEN REPLY @6532 GOTO 1
+  IF ~Global("Dock_Goblin_Quest","GLOBAL",1)~ THEN REPLY @6534 GOTO 5
+  IF ~Global("Know_Deirdre","GLOBAL",1)
+      Global("Dock_Goblin_Quest","GLOBAL",1)~ THEN REPLY @6535 GOTO 9
+  IF ~~ THEN REPLY @6536 EXIT
+  IF ~Global("Shield","LOCALS",0)~ THEN REPLY @41421 GOTO 10
+END
+
+IF ~~ THEN BEGIN 1
+  SAY @6537
+  IF ~~ THEN GOTO 2
+END
+
+IF ~~ THEN BEGIN 2
+  SAY @6539
+  IF ~~ THEN REPLY @6540 EXIT
+  IF ~~ THEN REPLY @6541 GOTO 3
+  IF ~~ THEN REPLY @6542 GOTO 4
+END
+
+IF ~~ THEN BEGIN 3
+  SAY @6543
+  IF ~~ THEN REPLY @6544 EXIT
+END
+
+IF ~~ THEN BEGIN 4
+  SAY @6545
+  IF ~~ THEN REPLY @6546 EXIT
+END
+
+IF ~~ THEN BEGIN 5
+  SAY @6547
+  IF ~~ THEN REPLY @6548 GOTO 6
+  IF ~Global("Know_Deirdre","GLOBAL",1)
+      Global("Goblin_Attack","GLOBAL",0)~ THEN REPLY @6549 GOTO 9
+  IF ~~ THEN REPLY @6550 EXIT
+END
+
+IF ~~ THEN BEGIN 6
+  SAY @6551
+  IF ~~ THEN GOTO 7
+END
+
+IF ~~ THEN BEGIN 7
+  SAY @6552
+  IF ~~ THEN GOTO 8
+END
+
+IF ~~ THEN BEGIN 8
+  SAY @6553
+  IF ~Global("Know_Deirdre","GLOBAL",1)
+      Global("Goblin_Attack","GLOBAL",0)~ THEN REPLY @6549 GOTO 9
+  IF ~~ THEN REPLY @6550 EXIT
+END
+
+IF ~~ THEN BEGIN 9
+  SAY @6554
+  IF ~~ THEN REPLY @6555 GOTO 5
+  IF ~~ THEN REPLY @6550 EXIT
+END
+
+IF ~~ THEN BEGIN 10
+  SAY @41422
+  IF ~PartyGoldGT(399)~ THEN REPLY @41423 DO ~TakePartyGold(400)~ GOTO 11
+  IF ~PartyGoldGT(299)
+      CheckStatGT(LastTalkedToBy,15,INT)~ THEN REPLY @41424 DO ~TakePartyGold(300)~ GOTO 11
+  IF ~~ THEN REPLY @41425 EXIT
+END
+
+IF ~~ THEN BEGIN 11
+  SAY @41426
+  IF ~~ THEN DO ~SetGlobal("Shield","LOCALS",1)
+                 GiveItemCreate("z1shldkd",LastTalkedToBy,1,1,1)~ EXIT
+END

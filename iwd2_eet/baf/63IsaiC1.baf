@@ -1,0 +1,424 @@
+//BLOCK
+IF
+	Global("Pool_Tainted","GLOBAL",1)
+	Global("TeleportIsairMadaeHP33","MYAREA",0)
+	//HPPercentGT(Myself,33)
+	HPPercentGT(Myself,91)
+THEN
+	RESPONSE #100
+		//MatchHP("Isair2",CURRENT_HP)
+		SetGlobal("Isair_HitPoints","GLOBAL",95)
+		Continue()
+END
+
+IF
+	Global("Pool_Tainted","GLOBAL",1)
+	Global("TeleportIsairMadaeHP33","MYAREA",0)
+	//HPPercentGT(Myself,33)
+	HPPercentGT(Myself,86)
+	HPPercentLT(Myself,92)
+THEN
+	RESPONSE #100
+		//MatchHP("Isair2",CURRENT_HP)
+		SetGlobal("Isair_HitPoints","GLOBAL",90)
+		Continue()
+END
+
+IF
+	Global("Pool_Tainted","GLOBAL",1)
+	Global("TeleportIsairMadaeHP33","MYAREA",0)
+	//HPPercentGT(Myself,33)
+	HPPercentGT(Myself,81)
+	HPPercentLT(Myself,87)
+THEN
+	RESPONSE #100
+		//MatchHP("Isair2",CURRENT_HP)
+		SetGlobal("Isair_HitPoints","GLOBAL",85)
+		Continue()
+END
+
+IF
+	Global("Pool_Tainted","GLOBAL",1)
+	Global("TeleportIsairMadaeHP33","MYAREA",0)
+	//HPPercentGT(Myself,33)
+	HPPercentGT(Myself,76)
+	HPPercentLT(Myself,82)
+THEN
+	RESPONSE #100
+		//MatchHP("Isair2",CURRENT_HP)
+		SetGlobal("Isair_HitPoints","GLOBAL",80)
+		Continue()
+END
+
+IF
+	Global("Pool_Tainted","GLOBAL",1)
+	Global("TeleportIsairMadaeHP33","MYAREA",0)
+	//HPPercentGT(Myself,33)
+	HPPercentGT(Myself,71)
+	HPPercentLT(Myself,77)
+THEN
+	RESPONSE #100
+		//MatchHP("Isair2",CURRENT_HP)
+		SetGlobal("Isair_HitPoints","GLOBAL",75)
+		Continue()
+END
+
+IF
+	Global("Pool_Tainted","GLOBAL",1)
+	Global("TeleportIsairMadaeHP33","MYAREA",0)
+	//HPPercentGT(Myself,33)
+	HPPercentGT(Myself,66)
+	HPPercentLT(Myself,72)
+THEN
+	RESPONSE #100
+		//MatchHP("Isair2",CURRENT_HP)
+		SetGlobal("Isair_HitPoints","GLOBAL",70)
+		Continue()
+END
+
+IF
+	Global("Pool_Tainted","GLOBAL",1)
+	Global("TeleportIsairMadaeHP33","MYAREA",0)
+	//HPPercentGT(Myself,33)
+	HPPercentGT(Myself,61)
+	HPPercentLT(Myself,67)
+THEN
+	RESPONSE #100
+		//MatchHP("Isair2",CURRENT_HP)
+		SetGlobal("Isair_HitPoints","GLOBAL",65)
+		Continue()
+END
+
+IF
+	Global("Pool_Tainted","GLOBAL",1)
+	Global("TeleportIsairMadaeHP33","MYAREA",0)
+	//HPPercentGT(Myself,33)
+	HPPercentGT(Myself,56)
+	HPPercentLT(Myself,62)
+THEN
+	RESPONSE #100
+		//MatchHP("Isair2",CURRENT_HP)
+		SetGlobal("Isair_HitPoints","GLOBAL",60)
+		Continue()
+END
+
+IF
+	Global("Pool_Tainted","GLOBAL",1)
+	Global("TeleportIsairMadaeHP33","MYAREA",0)
+	//HPPercentGT(Myself,33)
+	HPPercentGT(Myself,51)
+	HPPercentLT(Myself,57)
+THEN
+	RESPONSE #100
+		//MatchHP("Isair2",CURRENT_HP)
+		SetGlobal("Isair_HitPoints","GLOBAL",55)
+		Continue()
+END
+////////////////////////////////
+IF
+	Global("Pool_Tainted","GLOBAL",1)
+	Global("TeleportIsairMadaeHP33","MYAREA",0)
+	//HPPercentGT(Myself,33)
+	HPPercentGT(Myself,46)
+	HPPercentLT(Myself,52)
+THEN
+	RESPONSE #100
+		//MatchHP("Isair2",CURRENT_HP)
+		SetGlobal("Isair_HitPoints","GLOBAL",50)
+		Continue()
+END
+
+IF
+	Global("Pool_Tainted","GLOBAL",1)
+	Global("TeleportIsairMadaeHP33","MYAREA",0)
+	//HPPercentGT(Myself,33)
+	HPPercentGT(Myself,41)
+	HPPercentLT(Myself,47)
+THEN
+	RESPONSE #100
+		//MatchHP("Isair2",CURRENT_HP)
+		SetGlobal("Isair_HitPoints","GLOBAL",45)
+		Continue()
+END
+
+IF
+	Global("Pool_Tainted","GLOBAL",1)
+	Global("TeleportIsairMadaeHP33","MYAREA",0)
+	//HPPercentGT(Myself,33)
+	HPPercentGT(Myself,36)
+	HPPercentLT(Myself,42)
+THEN
+	RESPONSE #100
+		//MatchHP("Isair2",CURRENT_HP)
+		SetGlobal("Isair_HitPoints","GLOBAL",40)
+		Continue()
+END
+
+IF
+	Global("Pool_Tainted","GLOBAL",1)
+	Global("TeleportIsairMadaeHP33","MYAREA",0)
+	//HPPercentGT(Myself,33)
+	//HPPercentGT(Myself,33)
+	HPPercentLT(Myself,37)
+THEN
+	RESPONSE #100
+		//MatchHP("Isair2",CURRENT_HP)
+		SetGlobal("Isair_HitPoints","GLOBAL",35)
+		Continue()
+END
+//BLOCKEND
+
+/*IF
+	!GlobalTimerNotExpired("IWD_Rest","LOCALS")
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IWD_Rest","LOCALS",EIGHT_HOURS)
+		ApplySpell(Myself,RESTORE_FULL_HEALTH)
+		Rest()
+END*/
+
+IF
+	Global("Obj0","LOCALS",0)
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		SetGlobal("Obj0","LOCALS",1)
+		ForceSpellRES("IWIN968",LastSeenBy(Myself))
+		Wait(1)
+END
+
+IF
+	HaveSpellRES("IWWI619")
+	See(Nearest(Myself))
+	!General(LastSeenBy(Myself),UNDEAD)
+	!Race(LastSeenBy(Myself),ELEMENTAL)
+	!Race(LastSeenBy(Myself),GOLEM)
+	Global("Obj1","LOCALS",0)
+	//StateCheck(LastMarkedObject,STATE_SUMMONED_CREATURE)
+	!Gender(LastSeenBy(Myself),SUMMONED)
+THEN
+	RESPONSE #100
+		SetGlobal("Obj1","LOCALS",1)
+		SpellRES("IWWI619",LastSeenBy(Myself))
+		Wait(1)
+END
+
+IF
+	HaveSpellRES("IWWI619")
+	See(SecondNearest(Myself))
+	!General(LastSeenBy(Myself),UNDEAD)
+	!Race(LastSeenBy(Myself),ELEMENTAL)
+	!Race(LastSeenBy(Myself),GOLEM)
+	Global("Obj1","LOCALS",0)
+	//StateCheck(LastMarkedObject,STATE_SUMMONED_CREATURE)
+	!Gender(LastSeenBy(Myself),SUMMONED)
+THEN
+	RESPONSE #100
+		SetGlobal("Obj1","LOCALS",1)
+		SpellRES("IWWI619",LastSeenBy(Myself))
+		Wait(1)
+END
+
+IF
+	HaveSpellRES("IWWI619")
+	See(ThirdNearest(Myself))
+	!General(LastSeenBy(Myself),UNDEAD)
+	!Race(LastSeenBy(Myself),ELEMENTAL)
+	!Race(LastSeenBy(Myself),GOLEM)
+	Global("Obj1","LOCALS",0)
+	//StateCheck(LastMarkedObject,STATE_SUMMONED_CREATURE)
+	!Gender(LastSeenBy(Myself),SUMMONED)
+THEN
+	RESPONSE #100
+		SetGlobal("Obj1","LOCALS",1)
+		SpellRES("IWWI619",LastSeenBy(Myself))
+		Wait(1)
+END
+
+IF
+	HaveSpellRES("IWWI619")
+	See(FourthNearest(Myself))
+	!General(LastSeenBy(Myself),UNDEAD)
+	!Race(LastSeenBy(Myself),ELEMENTAL)
+	!Race(LastSeenBy(Myself),GOLEM)
+	Global("Obj1","LOCALS",0)
+	//StateCheck(LastMarkedObject,STATE_SUMMONED_CREATURE)
+	!Gender(LastSeenBy(Myself),SUMMONED)
+THEN
+	RESPONSE #100
+		SetGlobal("Obj1","LOCALS",1)
+		SpellRES("IWWI619",LastSeenBy(Myself))
+		Wait(1)
+END
+
+IF
+	HaveSpellRES("IWWI619")
+	See(FifthNearest(Myself))
+	!General(LastSeenBy(Myself),UNDEAD)
+	!Race(LastSeenBy(Myself),ELEMENTAL)
+	!Race(LastSeenBy(Myself),GOLEM)
+	Global("Obj1","LOCALS",0)
+	//StateCheck(LastMarkedObject,STATE_SUMMONED_CREATURE)
+	!Gender(LastSeenBy(Myself),SUMMONED)
+THEN
+	RESPONSE #100
+		SetGlobal("Obj1","LOCALS",1)
+		SpellRES("IWWI619",LastSeenBy(Myself))
+		Wait(1)
+END
+
+IF
+	HaveSpellRES("IWWI619")
+	See(SixthNearest(Myself))
+	!General(LastSeenBy(Myself),UNDEAD)
+	!Race(LastSeenBy(Myself),ELEMENTAL)
+	!Race(LastSeenBy(Myself),GOLEM)
+	Global("Obj1","LOCALS",0)
+	//StateCheck(LastMarkedObject,STATE_SUMMONED_CREATURE)
+	!Gender(LastSeenBy(Myself),SUMMONED)
+THEN
+	RESPONSE #100
+		SetGlobal("Obj1","LOCALS",1)
+		SpellRES("IWWI619",LastSeenBy(Myself))
+		Wait(1)
+END
+
+IF
+	HasItem("BLAKBLAD",Myself)
+	HaveSpellRES("IWWI601")
+	!CheckSpellState(Myself,ANTIMAGIC_SHELL)
+THEN
+	RESPONSE #100
+		SpellRES("IWWI601",Myself)
+		Wait(1)
+END
+
+IF
+	HasItem("BLAKBLAD",Myself)
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+//BLOCK SET_VARS
+IF
+	!Global("SET_63IsaiC1","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobal("SET_63IsaiC1","LOCALS",1)
+		SetInterrupt(TRUE)
+END
+//BLOCKEND
+
+//BLOCK SPL_1
+/*IF
+	ForceMarkedSpell(MARKED_SPELL)
+	SetSpellTarget(Nothing)
+	See(NearestEnemyOf(Myself),0)
+THEN
+	RESPONSE #100
+		MarkSpellAndObject("2907",Myself,SPELLCAST_IGNORE_SEE | SPELLCAST_IGNORE_VALID_SPELL_TARGET)  // [WIZARD_BLACK_BLADE_OF_DISASTER]
+		MarkSpellAndObject("2910",LastMarkedObject,SPELLCAST_IGNORE_SEE | SPELLCAST_IGNORE_VALID_SPELL_TARGET)  // [WIZARD_EXECUTIONERS_EYES]
+		Continue()
+END
+
+IF
+	!IsMarkedSpell(MARKED_SPELL)
+THEN
+	RESPONSE #100
+		Spell(SpellTarget,MARKED_SPELL)
+		Wait(1)
+		ForceMarkedSpell(MARKED_SPELL)
+END*/
+/*IF
+	GlobalLT("SSPELLS_1_RANDOM_CAST","LOCALS",3)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		Continue()
+END*/
+// [WIZARD_BLACK_BLADE_OF_DISASTER] [WIZARD_EXECUTIONERS_EYES]
+IF
+	Global("SSPELLS_1_RANDOM_CAST","LOCALS",1)
+	HaveSpell(WIZARD_BLACK_BLADE_OF_DISASTER)
+	See(NearestEnemyOf(Myself))
+	!HasItem("BLAKBLAD",Myself)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		Spell(Myself,WIZARD_BLACK_BLADE_OF_DISASTER)
+		Wait(1)
+END
+
+IF
+	Global("SSPELLS_1_RANDOM_CAST","LOCALS",2)
+	HaveSpellRES("IWWI910")
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SpellRES("IWWI910",Myself)
+		Wait(1)
+END
+
+//BLOCK NO_RND
+// [WIZARD_BLACK_BLADE_OF_DISASTER] [WIZARD_EXECUTIONERS_EYES]
+IF
+	HaveSpell(WIZARD_BLACK_BLADE_OF_DISASTER)
+	See(NearestEnemyOf(Myself))
+	!HasItem("BLAKBLAD",Myself)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		Spell(Myself,WIZARD_BLACK_BLADE_OF_DISASTER)
+		Wait(1)
+END
+
+IF
+	HaveSpellRES("IWWI910")
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SpellRES("IWWI910",Myself)
+		Wait(1)
+END
+//BLOCKEND
+//BLOCKEND
+
+/*IF
+	HasItem("BBoDisa",Myself)  // Черный меч беды
+	HaveSpell(WIZARD_ANTIMAGIC_SHELL)  // SPWI601.SPL (Преграда магии)
+	SetLastMarkedObject(Myself)
+	IsSpellTargetValid(LastMarkedObject,WIZARD_ANTIMAGIC_SHELL,0)  // SPWI601.SPL (Преграда магии)
+THEN
+	RESPONSE #100
+		Spell(LastMarkedObject,WIZARD_ANTIMAGIC_SHELL)  // SPWI601.SPL (Преграда магии)
+		Wait(1)
+END */
+
+IF
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		//EquipWeapon()
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	!See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		//MoveToObjectUntilSee(NearestPC)
+		MoveToObject(NearestEnemyOf(Myself))
+END
+
+/*IF
+THEN
+	RESPONSE #100
+		MoveToObject(NearestPC)
+END*/
+

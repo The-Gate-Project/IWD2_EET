@@ -1,0 +1,32 @@
+IF
+	Allegiance(Myself,ENEMY)
+THEN
+	RESPONSE #100
+		ChangeAIScript("",SPECIFICS)
+END
+
+IF
+	!GlobalTimerNotExpired("IwTimer18","LOCALS")
+	!Allegiance(Myself,ENEMY)
+THEN
+	RESPONSE #50
+		DisplayStringHead(Myself,@27610)
+		SetGlobalTimerRandom("IwTimer18","LOCALS",10,30)
+		Continue()
+	RESPONSE #50
+		DisplayStringHead(Myself,@27611)
+		SetGlobalTimerRandom("IwTimer18","LOCALS",10,30)
+		Continue()
+	RESPONSE #50
+		DisplayStringHead(Myself,@27612)
+		SetGlobalTimerRandom("IwTimer18","LOCALS",10,30)
+		Continue()
+	RESPONSE #50
+		DisplayStringHead(Myself,@27613)
+		SetGlobalTimerRandom("IwTimer18","LOCALS",10,30)
+		Continue()
+	RESPONSE #200
+		SetGlobalTimerRandom("IwTimer18","LOCALS",10,30)
+		Continue()
+END
+

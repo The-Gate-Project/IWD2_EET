@@ -1,0 +1,71 @@
+IF
+	Contains("z6gensp",Myself)
+	Global("TEAM_1","MYAREA",0)
+	!Global("SH_Guards_Dead","GLOBAL",1)
+	HPGT("Food_Cook",0)
+	HPGT("IW6304_Food_Worker1",0)
+	HPGT("IW6304_Food_Worker2",0)
+	HPGT("IW6304_Food_Worker3",0)
+	HPGT("IW6304_Food_Worker4",0)
+THEN
+	RESPONSE #100
+		SetGlobal("SH_Guards_Dead","GLOBAL",1)
+		SetGlobal("SH_Guards_Sleep","GLOBAL",1)
+		DestroyItem("z6gensp")
+		StartCutSceneMode()
+		ClearAllActions()
+		MultiPlayerSync()
+		StartCutScene("63cBFDe2")
+		Wait(19)
+		AddXP2DA("IW2EX14H")
+		DisplayStringNoName(Player1,@39395) //[PC]
+END
+
+IF
+	Contains("z6genlp",Myself)
+	Global("TEAM_1","MYAREA",0)
+	!Global("SH_Guards_Dead","GLOBAL",1)
+	HPGT("Food_Cook",0)
+	HPGT("IW6304_Food_Worker1",0)
+	HPGT("IW6304_Food_Worker2",0)
+	HPGT("IW6304_Food_Worker3",0)
+	HPGT("IW6304_Food_Worker4",0)
+THEN
+	RESPONSE #100
+		SetGlobal("SH_Guards_Dead","GLOBAL",1)
+		DestroyItem("z6genlp")
+		StartCutSceneMode()
+		ClearAllActions()
+		MultiPlayerSync()
+		StartCutScene("63cBFDe2")
+		Wait(19)
+		AddXP2DA("IW2EX14H")
+		DisplayStringNoName(Player1,@39395) //[PC]
+END
+
+IF
+	OR(2)
+		Contains("z6genlp",Myself)
+		Contains("z6gensp",Myself)
+	Global("SH_Cook_Dead","GLOBAL",1)
+THEN
+	RESPONSE #100
+		SetGlobal("SH_Guards_Dead","GLOBAL",1)
+		DestroyItem("z6gensp")
+		DestroyItem("z6genlp")
+		DisplayStringNoName(Player1,@39402) //[PC]
+END
+
+IF
+	OR(2)
+		Contains("z6genlp",Myself)
+		Contains("z6gensp",Myself)
+	Global("SH_Guards_Dead","GLOBAL",1)
+THEN
+	RESPONSE #100
+		SetGlobal("SH_Guards_Dead","GLOBAL",1)
+		DestroyItem("z6gensp")
+		DestroyItem("z6genlp")
+		DisplayStringNoName(Player1,@39719) //[PC] - @39716
+END
+

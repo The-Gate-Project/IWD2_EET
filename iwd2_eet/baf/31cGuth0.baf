@@ -1,0 +1,39 @@
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("Sherincal")
+		FaceObject("31bugGut")
+		//SetDialogueRange(1000)
+		MultiPlayerSync()
+		FadeToColor([0.0],0)
+		Wait(1)
+		MultiPlayerSync()
+		MoveViewPoint([786.816],INSTANT)
+		MultiPlayerSync()
+		StartCutScene("31cGuth1")
+		Wait(1)
+		//SetVisualRange(25)
+		CreateCreature("CUTSPY",[780.825],0)
+		FadeFromColor([0.0],0)
+		Wait(1)
+		MultiPlayerSync()
+		Wait(2)
+		DisplayStringHead(Myself,@11811)
+		Wait(4)
+		DisplayStringHead("31bugGut",@11812)
+		Wait(2)
+		UnhideGUI()
+		MultiPlayerSync()
+		//Dialogue(NearestPC)
+		StartDialogNoSet([PC])
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("31bugGut")
+		FaceObject("Sherincal")
+END
+

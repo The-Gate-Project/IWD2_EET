@@ -1,0 +1,725 @@
+IF
+	//InternalGT(Myself,0,2)
+	GlobalGT("Internal_0","LOCALS",2)
+THEN
+	RESPONSE #100
+		//SetInternal(Myself,0,0)
+		SetGlobal("Internal_0","LOCALS",0)
+		Continue()
+END
+
+//BLOCK SET_VARS
+IF
+	!Global("SET_65rLordC","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobal("SET_65rLordC","LOCALS",1)
+		SetInterrupt(TRUE)
+END
+//BLOCKEND
+
+IF
+	StateCheck(Myself,STATE_PANIC)
+THEN
+	RESPONSE #100
+		RandomWalkContinuous()
+END
+
+IF
+	!GlobalTimerNotExpired("IWD_Rest","LOCALS")
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IWD_Rest","LOCALS",EIGHT_HOURS)
+		ApplySpell(Myself,RESTORE_FULL_HEALTH)
+		Rest()
+END
+
+/*IF
+	ForceMarkedSpell(MARKED_SPELL)
+	SetSpellTarget(Nothing)
+	HPPercentLT(Myself,25)
+	Allegiance(Myself,ENEMY)
+THEN
+	RESPONSE #100
+		MarkSpellAndObject("16071502",Myself,SPELLCAST_IGNORE_SEE)  // [CLERIC_HEAL, CLERIC_CURE_CRITICAL_WOUNDS]
+		Continue()
+END
+
+IF
+	IsMarkedSpell(MARKED_SPELL)
+	HPPercentLT(Nearest,25)
+	See(Nearest,0)
+	Allegiance(LastSeenBy(Myself),ENEMY)
+THEN
+	RESPONSE #100
+		MarkSpellAndObject("16071502",LastSeenBy(Myself),SPELLCAST_IGNORE_SEE)  // [CLERIC_HEAL, CLERIC_CURE_CRITICAL_WOUNDS]
+		Continue()
+END
+
+IF
+	IsMarkedSpell(MARKED_SPELL)
+	HPPercentLT(SecondNearest,25)
+	See(SecondNearest,0)
+	Allegiance(LastSeenBy(Myself),ENEMY)
+THEN
+	RESPONSE #100
+		MarkSpellAndObject("16071502",LastSeenBy(Myself),SPELLCAST_IGNORE_SEE)  // [CLERIC_HEAL, CLERIC_CURE_CRITICAL_WOUNDS]
+		Continue()
+END
+
+IF
+	IsMarkedSpell(MARKED_SPELL)
+	HPPercentLT(ThirdNearest,25)
+	See(ThirdNearest,0)
+	Allegiance(LastSeenBy(Myself),ENEMY)
+THEN
+	RESPONSE #100
+		MarkSpellAndObject("16071502",LastSeenBy(Myself),SPELLCAST_IGNORE_SEE)  // [CLERIC_HEAL, CLERIC_CURE_CRITICAL_WOUNDS]
+		Continue()
+END
+
+IF
+	IsMarkedSpell(MARKED_SPELL)
+	HPPercentLT(FourthNearest,25)
+	See(FourthNearest,0)
+	Allegiance(LastSeenBy(Myself),ENEMY)
+THEN
+	RESPONSE #100
+		MarkSpellAndObject("16071502",LastSeenBy(Myself),SPELLCAST_IGNORE_SEE)  // [CLERIC_HEAL, CLERIC_CURE_CRITICAL_WOUNDS]
+		Continue()
+END
+
+IF
+	IsMarkedSpell(MARKED_SPELL)
+	HPPercentLT(FifthNearest,25)
+	See(FifthNearest,0)
+	Allegiance(LastSeenBy(Myself),ENEMY)
+THEN
+	RESPONSE #100
+		MarkSpellAndObject("16071502",LastSeenBy(Myself),SPELLCAST_IGNORE_SEE)  // [CLERIC_HEAL, CLERIC_CURE_CRITICAL_WOUNDS]
+		Continue()
+END
+
+IF
+	IsMarkedSpell(MARKED_SPELL)
+	HPPercentLT(SixthNearest,25)
+	See(SixthNearest,0)
+	Allegiance(LastSeenBy(Myself),ENEMY)
+THEN
+	RESPONSE #100
+		MarkSpellAndObject("16071502",LastSeenBy(Myself),SPELLCAST_IGNORE_SEE)  // [CLERIC_HEAL, CLERIC_CURE_CRITICAL_WOUNDS]
+		Continue()
+END
+
+IF
+	IsMarkedSpell(MARKED_SPELL)
+	HPPercentLT(SeventhNearest,25)
+	See(SeventhNearest,0)
+	Allegiance(LastSeenBy(Myself),ENEMY)
+THEN
+	RESPONSE #100
+		MarkSpellAndObject("16071502",LastSeenBy(Myself),SPELLCAST_IGNORE_SEE)  // [CLERIC_HEAL, CLERIC_CURE_CRITICAL_WOUNDS]
+		Continue()
+END
+
+IF
+	IsMarkedSpell(MARKED_SPELL)
+	HPPercentLT(EighthNearest,25)
+	See(EighthNearest,0)
+	Allegiance(LastSeenBy(Myself),ENEMY)
+THEN
+	RESPONSE #100
+		MarkSpellAndObject("16071502",LastSeenBy(Myself),SPELLCAST_IGNORE_SEE)  // [CLERIC_HEAL, CLERIC_CURE_CRITICAL_WOUNDS]
+		Continue()
+END
+
+IF
+	IsMarkedSpell(MARKED_SPELL)
+	HPPercentLT(NinthNearest,25)
+	See(NinthNearest,0)
+	Allegiance(LastSeenBy(Myself),ENEMY)
+THEN
+	RESPONSE #100
+		MarkSpellAndObject("16071502",LastSeenBy(Myself),SPELLCAST_IGNORE_SEE)  // [CLERIC_HEAL, CLERIC_CURE_CRITICAL_WOUNDS]
+		Continue()
+END
+
+IF
+	IsMarkedSpell(MARKED_SPELL)
+	HPPercentLT(TenthNearest,25)
+	See(TenthNearest,0)
+	Allegiance(LastSeenBy(Myself),ENEMY)
+THEN
+	RESPONSE #100
+		MarkSpellAndObject("16071502",LastSeenBy(Myself),SPELLCAST_IGNORE_SEE)  // [CLERIC_HEAL, CLERIC_CURE_CRITICAL_WOUNDS]
+		Continue()
+END
+
+IF
+	!IsMarkedSpell(MARKED_SPELL)
+THEN
+	RESPONSE #100
+		Spell(SpellTarget,MARKED_SPELL)
+		WaitAnimation(Myself,WALK)
+		WaitAnimation(Myself,CONJURE)
+		WaitAnimation(Myself,CAST)
+		ForceMarkedSpell(MARKED_SPELL)
+END*/
+
+//BLOCK SELF - [CLERIC_HEAL, CLERIC_CURE_CRITICAL_WOUNDS, CLERIC_CURE_SERIOUS_WOUNDS, CLERIC_CURE_MODERATE_WOUNDS, CLERIC_CURE_LIGHT_WOUNDS]
+IF
+	HaveSpell(CLERIC_HEAL)
+	Allegiance(Myself,ENEMY)
+	HPPercentLT(Myself,20)
+	!StateCheck(Myself,STATE_REALLY_DEAD)
+THEN
+	RESPONSE #100
+		Spell(Myself,CLERIC_HEAL)
+		Wait(1)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_CRITICAL_WOUNDS)
+	Allegiance(Myself,ENEMY)
+	HPPercentLT(Myself,40)
+	!StateCheck(Myself,STATE_REALLY_DEAD)
+THEN
+	RESPONSE #100
+		Spell(Myself,CLERIC_CURE_CRITICAL_WOUNDS)
+		Wait(1)
+END
+//BLOCKEND
+
+//BLOCK 1
+IF
+	HaveSpell(CLERIC_HEAL)
+	Allegiance(Nearest(Myself),ENEMY)
+	HPPercentLT(Nearest(Myself),20)
+	!StateCheck(Nearest(Myself),STATE_REALLY_DEAD)
+THEN
+	RESPONSE #100
+		Spell(Nearest(Myself),CLERIC_HEAL)
+		Wait(1)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_CRITICAL_WOUNDS)
+	Allegiance(Nearest(Myself),ENEMY)
+	HPPercentLT(Myself,40)
+	!StateCheck(Nearest(Myself),STATE_REALLY_DEAD)
+THEN
+	RESPONSE #100
+		Spell(Nearest(Myself),CLERIC_CURE_CRITICAL_WOUNDS)
+		Wait(1)
+END
+//BLOCKEND
+
+//BLOCK 2
+IF
+	HaveSpell(CLERIC_HEAL)
+	Allegiance(SecondNearest(Myself),ENEMY)
+	HPPercentLT(SecondNearest(Myself),20)
+	!StateCheck(SecondNearest(Myself),STATE_REALLY_DEAD)
+THEN
+	RESPONSE #100
+		Spell(SecondNearest(Myself),CLERIC_HEAL)
+		Wait(1)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_CRITICAL_WOUNDS)
+	Allegiance(SecondNearest(Myself),ENEMY)
+	HPPercentLT(SecondNearest,40)
+	!StateCheck(SecondNearest(Myself),STATE_REALLY_DEAD)
+THEN
+	RESPONSE #100
+		Spell(SecondNearest(Myself),CLERIC_CURE_CRITICAL_WOUNDS)
+		Wait(1)
+END
+//BLOCKEND
+
+//BLOCK 3
+IF
+	HaveSpell(CLERIC_HEAL)
+	Allegiance(ThirdNearest(Myself),ENEMY)
+	HPPercentLT(ThirdNearest(Myself),20)
+	!StateCheck(ThirdNearest(Myself),STATE_REALLY_DEAD)
+THEN
+	RESPONSE #100
+		Spell(ThirdNearest(Myself),CLERIC_HEAL)
+		Wait(1)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_CRITICAL_WOUNDS)
+	Allegiance(ThirdNearest(Myself),ENEMY)
+	HPPercentLT(ThirdNearest,40)
+	!StateCheck(ThirdNearest(Myself),STATE_REALLY_DEAD)
+THEN
+	RESPONSE #100
+		Spell(ThirdNearest(Myself),CLERIC_CURE_CRITICAL_WOUNDS)
+		Wait(1)
+END
+//BLOCKEND
+
+//BLOCK 4
+IF
+	HaveSpell(CLERIC_HEAL)
+	Allegiance(FourthNearest(Myself),ENEMY)
+	HPPercentLT(FourthNearest(Myself),20)
+	!StateCheck(FourthNearest(Myself),STATE_REALLY_DEAD)
+THEN
+	RESPONSE #100
+		Spell(FourthNearest(Myself),CLERIC_HEAL)
+		Wait(1)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_CRITICAL_WOUNDS)
+	Allegiance(FourthNearest(Myself),ENEMY)
+	HPPercentLT(FourthNearest,40)
+	!StateCheck(FourthNearest(Myself),STATE_REALLY_DEAD)
+THEN
+	RESPONSE #100
+		Spell(FourthNearest(Myself),CLERIC_CURE_CRITICAL_WOUNDS)
+		Wait(1)
+END
+//BLOCKEND
+
+//BLOCK 5
+IF
+	HaveSpell(CLERIC_HEAL)
+	Allegiance(FifthNearest(Myself),ENEMY)
+	HPPercentLT(FifthNearest(Myself),20)
+	!StateCheck(FifthNearest(Myself),STATE_REALLY_DEAD)
+THEN
+	RESPONSE #100
+		Spell(FifthNearest(Myself),CLERIC_HEAL)
+		Wait(1)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_CRITICAL_WOUNDS)
+	Allegiance(FifthNearest(Myself),ENEMY)
+	HPPercentLT(FifthNearest,40)
+	!StateCheck(FifthNearest(Myself),STATE_REALLY_DEAD)
+THEN
+	RESPONSE #100
+		Spell(FifthNearest(Myself),CLERIC_CURE_CRITICAL_WOUNDS)
+		Wait(1)
+END
+//BLOCKEND
+
+//BLOCK 6
+IF
+	HaveSpell(CLERIC_HEAL)
+	Allegiance(SixthNearest(Myself),ENEMY)
+	HPPercentLT(SixthNearest(Myself),20)
+	!StateCheck(SixthNearest(Myself),STATE_REALLY_DEAD)
+THEN
+	RESPONSE #100
+		Spell(SixthNearest(Myself),CLERIC_HEAL)
+		Wait(1)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_CRITICAL_WOUNDS)
+	Allegiance(SixthNearest(Myself),ENEMY)
+	HPPercentLT(SixthNearest,40)
+	!StateCheck(SixthNearest(Myself),STATE_REALLY_DEAD)
+THEN
+	RESPONSE #100
+		Spell(SixthNearest(Myself),CLERIC_CURE_CRITICAL_WOUNDS)
+		Wait(1)
+END
+//BLOCKEND
+
+//BLOCK 7
+IF
+	HaveSpell(CLERIC_HEAL)
+	Allegiance(SeventhNearest(Myself),ENEMY)
+	HPPercentLT(SeventhNearest(Myself),20)
+	!StateCheck(SeventhNearest(Myself),STATE_REALLY_DEAD)
+THEN
+	RESPONSE #100
+		Spell(SeventhNearest(Myself),CLERIC_HEAL)
+		Wait(1)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_CRITICAL_WOUNDS)
+	Allegiance(SeventhNearest(Myself),ENEMY)
+	HPPercentLT(SeventhNearest,40)
+	!StateCheck(SeventhNearest(Myself),STATE_REALLY_DEAD)
+THEN
+	RESPONSE #100
+		Spell(SeventhNearest(Myself),CLERIC_CURE_CRITICAL_WOUNDS)
+		Wait(1)
+END
+//BLOCKEND
+
+//BLOCK 8
+IF
+	HaveSpell(CLERIC_HEAL)
+	Allegiance(EighthNearest(Myself),ENEMY)
+	HPPercentLT(EighthNearest(Myself),20)
+	!StateCheck(EighthNearest(Myself),STATE_REALLY_DEAD)
+THEN
+	RESPONSE #100
+		Spell(EighthNearest(Myself),CLERIC_HEAL)
+		Wait(1)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_CRITICAL_WOUNDS)
+	Allegiance(EighthNearest(Myself),ENEMY)
+	HPPercentLT(EighthNearest,40)
+	!StateCheck(EighthNearest(Myself),STATE_REALLY_DEAD)
+THEN
+	RESPONSE #100
+		Spell(EighthNearest(Myself),CLERIC_CURE_CRITICAL_WOUNDS)
+		Wait(1)
+END
+//BLOCKEND
+
+//BLOCK 9
+IF
+	HaveSpell(CLERIC_HEAL)
+	Allegiance(NinthNearest(Myself),ENEMY)
+	HPPercentLT(NinthNearest(Myself),20)
+	!StateCheck(NinthNearest(Myself),STATE_REALLY_DEAD)
+THEN
+	RESPONSE #100
+		Spell(NinthNearest(Myself),CLERIC_HEAL)
+		Wait(1)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_CRITICAL_WOUNDS)
+	Allegiance(NinthNearest(Myself),ENEMY)
+	HPPercentLT(NinthNearest,40)
+	!StateCheck(NinthNearest(Myself),STATE_REALLY_DEAD)
+THEN
+	RESPONSE #100
+		Spell(NinthNearest(Myself),CLERIC_CURE_CRITICAL_WOUNDS)
+		Wait(1)
+END
+//BLOCKEND
+
+//BLOCK 10
+IF
+	HaveSpell(CLERIC_HEAL)
+	Allegiance(TenthNearest(Myself),ENEMY)
+	HPPercentLT(TenthNearest(Myself),20)
+	!StateCheck(TenthNearest(Myself),STATE_REALLY_DEAD)
+THEN
+	RESPONSE #100
+		Spell(TenthNearest(Myself),CLERIC_HEAL)
+		Wait(1)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_CRITICAL_WOUNDS)
+	Allegiance(TenthNearest(Myself),ENEMY)
+	HPPercentLT(TenthNearest,40)
+	!StateCheck(TenthNearest(Myself),STATE_REALLY_DEAD)
+THEN
+	RESPONSE #100
+		Spell(TenthNearest(Myself),CLERIC_CURE_CRITICAL_WOUNDS)
+		Wait(1)
+END
+//BLOCKEND
+
+IF
+	HasItem("SLAYLIVE",Myself)
+	//Internal(Myself,0,0)
+	Global("Internal_0","LOCALS",0)
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		//SetInternal(Myself,0,1)
+		SetGlobal("Internal_0","LOCALS",1)
+		AttackOneRound(LastSeenBy(Myself))
+END
+//BLOCK SPL_1
+/*IF
+	ForceMarkedSpell(MARKED_SPELL)
+	SetSpellTarget(Nothing)
+	Internal(Myself,0,0)
+	See(NearestEnemyOf(Myself),0)
+THEN
+	RESPONSE #100
+		MarkSpellAndObject("2501111115032306",LastMarkedObject,SPELLCAST_IGNORE_SEE | SPELLCAST_IGNORE_VALID_SPELL_TARGET | SPELLCAST_RANDOM)  // [WIZARD_ANIMATE_DEAD, CLERIC_BANE, CLERIC_FLAME_STRIKE, WIZARD_HOLD_PERSON]
+		MarkSpellAndObject("1203140912151515",Myself,SPELLCAST_IGNORE_SEE | SPELLCAST_IGNORE_VALID_SPELL_TARGET | SPELLCAST_RANDOM)  // [CLERIC_CHANT, CLERIC_CLOAK_OF_FEAR, CLERIC_DRAW_UPON_HOLY_MIGHT, CLERIC_SLAY_LIVING]
+		Continue()
+	RESPONSE #100
+		MarkSpellAndObject("1203140912151515",Myself,SPELLCAST_IGNORE_SEE | SPELLCAST_IGNORE_VALID_SPELL_TARGET | SPELLCAST_RANDOM)  // [CLERIC_CHANT, CLERIC_CLOAK_OF_FEAR, CLERIC_DRAW_UPON_HOLY_MIGHT, CLERIC_SLAY_LIVING]
+		MarkSpellAndObject("2501111115032306",LastMarkedObject,SPELLCAST_IGNORE_SEE | SPELLCAST_IGNORE_VALID_SPELL_TARGET | SPELLCAST_RANDOM)  // [WIZARD_ANIMATE_DEAD, CLERIC_BANE, CLERIC_FLAME_STRIKE, WIZARD_HOLD_PERSON]
+		Continue()
+END
+
+IF
+	!IsMarkedSpell(MARKED_SPELL)
+THEN
+	RESPONSE #100
+		SetInternal(Myself,0,1)
+		Spell(SpellTarget,MARKED_SPELL)
+		WaitAnimation(Myself,WALK)
+		WaitAnimation(Myself,CONJURE)
+		WaitAnimation(Myself,CAST)
+		ForceMarkedSpell(MARKED_SPELL)
+END*/
+/*IF
+	GlobalLT("SSPELLS_1_RANDOM_CAST","LOCALS",3)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		Continue()
+END*/
+//1 - LastMarkedObject - [WIZARD_ANIMATE_DEAD, CLERIC_BANE, CLERIC_FLAME_STRIKE, WIZARD_HOLD_PERSON]
+IF
+	RandomNum(4,1)
+	Global("SSPELLS_1_RANDOM_CAST","LOCALS",1)
+	HaveSpell(WIZARD_ANIMATE_DEAD)
+	Global("Internal_0","LOCALS",0)
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		SetGlobal("Internal_0","LOCALS",1)
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		Spell(LastSeenBy(Myself),WIZARD_ANIMATE_DEAD)
+		Wait(1)
+END
+
+IF
+	RandomNum(4,2)
+	Global("SSPELLS_1_RANDOM_CAST","LOCALS",1)
+	HaveSpellRES("IWPR111")
+	Global("Internal_0","LOCALS",0)
+	See(NearestEnemyOf(Myself))
+	!CheckSpellState(LastSeenBy(Myself),CLERIC_BANE)
+THEN
+	RESPONSE #100
+		SetGlobal("Internal_0","LOCALS",1)
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SpellRES("IWPR111",LastSeenBy(Myself))
+		Wait(1)
+END
+
+IF
+	RandomNum(4,3)
+	Global("SSPELLS_1_RANDOM_CAST","LOCALS",1)
+	HaveSpell(CLERIC_FLAME_STRIKE)
+	Global("Internal_0","LOCALS",0)
+	See(NearestEnemyOf(Myself))
+	!Race(LastSeenBy(Myself),LICH)
+	!Race(LastSeenBy(Myself),DEMILICH)
+	!Race(LastSeenBy(Myself),RAKSHASA)
+	!Race(LastSeenBy(Myself),GOLEM)
+	!HasBounceEffects(LastSeenBy(Myself))
+THEN
+	RESPONSE #100
+		SetGlobal("Internal_0","LOCALS",1)
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		Spell(LastSeenBy(Myself),CLERIC_FLAME_STRIKE)
+		Wait(1)
+END
+
+IF
+	RandomNum(4,4)
+	Global("SSPELLS_1_RANDOM_CAST","LOCALS",1)
+	HaveSpell(WIZARD_HOLD_PERSON)
+	Global("Internal_0","LOCALS",0)
+	See(NearestEnemyOf(Myself))
+	!StateCheck(LastSeenBy(Myself),STATE_DISABLED)
+THEN
+	RESPONSE #100
+		SetGlobal("Internal_0","LOCALS",1)
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		Spell(LastSeenBy(Myself),WIZARD_HOLD_PERSON)
+		Wait(1)
+END
+//2 - Myself - [CLERIC_CHANT, CLERIC_CLOAK_OF_FEAR, CLERIC_DRAW_UPON_HOLY_MIGHT, CLERIC_SLAY_LIVING]
+IF
+	RandomNum(4,1)
+	Global("SSPELLS_1_RANDOM_CAST","LOCALS",2)
+	HaveSpell(CLERIC_CHANT)
+	Global("Internal_0","LOCALS",0)
+	See(NearestEnemyOf(Myself))
+	!StateCheck(Myself,STATE_CHANT)
+THEN
+	RESPONSE #100
+		SetGlobal("Internal_0","LOCALS",1)
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		Spell(Myself,CLERIC_CHANT)
+		Wait(1)
+END
+
+IF
+	RandomNum(4,2)
+	Global("SSPELLS_1_RANDOM_CAST","LOCALS",2)
+	HaveSpell(CLERIC_CLOAK_OF_FEAR)
+	Global("Internal_0","LOCALS",0)
+	See(NearestEnemyOf(Myself))
+	!StateCheck(LastSeenBy(Myself),STATE_PANIC)
+	!StateCheck(LastSeenBy(Myself),STATE_HELPLESS)
+THEN
+	RESPONSE #100
+		SetGlobal("Internal_0","LOCALS",1)
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		Spell(Myself,CLERIC_CLOAK_OF_FEAR)
+		Wait(1)
+END
+
+IF
+	RandomNum(4,3)
+	Global("SSPELLS_1_RANDOM_CAST","LOCALS",2)
+	HaveSpell(CLERIC_DRAW_UPON_HOLY_MIGHT)
+	Global("Internal_0","LOCALS",0)
+	See(NearestEnemyOf(Myself))
+	!StateCheck(Myself,STATE_DRAWUPONHOLYMIGHT)
+THEN
+	RESPONSE #100
+		SetGlobal("Internal_0","LOCALS",1)
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		Spell(Myself,CLERIC_DRAW_UPON_HOLY_MIGHT)
+		Wait(1)
+END
+
+IF
+	RandomNum(4,4)
+	Global("SSPELLS_1_RANDOM_CAST","LOCALS",2)
+	HaveSpell(CLERIC_SLAY_LIVING)
+	Global("Internal_0","LOCALS",0)
+	See(NearestEnemyOf(Myself))
+	!HasItem("SLAYLIVE",Myself)
+THEN
+	RESPONSE #100
+		SetGlobal("Internal_0","LOCALS",1)
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		Spell(Myself,CLERIC_SLAY_LIVING)
+		Wait(1)
+END
+//BLOCK NO_RND
+//1 - LastMarkedObject - [WIZARD_ANIMATE_DEAD, CLERIC_BANE, CLERIC_FLAME_STRIKE, WIZARD_HOLD_PERSON]
+IF
+	HaveSpell(WIZARD_ANIMATE_DEAD)
+	Global("Internal_0","LOCALS",0)
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		SetGlobal("Internal_0","LOCALS",1)
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		Spell(LastSeenBy(Myself),WIZARD_ANIMATE_DEAD)
+		Wait(1)
+END
+
+IF
+	HaveSpellRES("IWPR111")
+	Global("Internal_0","LOCALS",0)
+	See(NearestEnemyOf(Myself))
+	!CheckSpellState(LastSeenBy(Myself),CLERIC_BANE)
+THEN
+	RESPONSE #100
+		SetGlobal("Internal_0","LOCALS",1)
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SpellRES("IWPR111",LastSeenBy(Myself))
+		Wait(1)
+END
+
+IF
+	HaveSpell(CLERIC_FLAME_STRIKE)
+	Global("Internal_0","LOCALS",0)
+	See(NearestEnemyOf(Myself))
+	!Race(LastSeenBy(Myself),LICH)
+	!Race(LastSeenBy(Myself),DEMILICH)
+	!Race(LastSeenBy(Myself),RAKSHASA)
+	!Race(LastSeenBy(Myself),GOLEM)
+	!HasBounceEffects(LastSeenBy(Myself))
+THEN
+	RESPONSE #100
+		SetGlobal("Internal_0","LOCALS",1)
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		Spell(LastSeenBy(Myself),CLERIC_FLAME_STRIKE)
+		Wait(1)
+END
+
+IF
+	HaveSpell(WIZARD_HOLD_PERSON)
+	Global("Internal_0","LOCALS",0)
+	See(NearestEnemyOf(Myself))
+	!StateCheck(LastSeenBy(Myself),STATE_DISABLED)
+THEN
+	RESPONSE #100
+		SetGlobal("Internal_0","LOCALS",1)
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		Spell(LastSeenBy(Myself),WIZARD_HOLD_PERSON)
+		Wait(1)
+END
+//2 - Myself - [CLERIC_CHANT, CLERIC_CLOAK_OF_FEAR, CLERIC_DRAW_UPON_HOLY_MIGHT, CLERIC_SLAY_LIVING]
+IF
+	HaveSpell(CLERIC_CHANT)
+	Global("Internal_0","LOCALS",0)
+	See(NearestEnemyOf(Myself))
+	!StateCheck(Myself,STATE_CHANT)
+THEN
+	RESPONSE #100
+		SetGlobal("Internal_0","LOCALS",1)
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		Spell(Myself,CLERIC_CHANT)
+		Wait(1)
+END
+
+IF
+	HaveSpell(CLERIC_CLOAK_OF_FEAR)
+	Global("Internal_0","LOCALS",0)
+	See(NearestEnemyOf(Myself))
+	!StateCheck(LastSeenBy(Myself),STATE_PANIC)
+	!StateCheck(LastSeenBy(Myself),STATE_HELPLESS)
+THEN
+	RESPONSE #100
+		SetGlobal("Internal_0","LOCALS",1)
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		Spell(Myself,CLERIC_CLOAK_OF_FEAR)
+		Wait(1)
+END
+
+IF
+	HaveSpell(CLERIC_DRAW_UPON_HOLY_MIGHT)
+	Global("Internal_0","LOCALS",0)
+	See(NearestEnemyOf(Myself))
+	!StateCheck(Myself,STATE_DRAWUPONHOLYMIGHT)
+THEN
+	RESPONSE #100
+		SetGlobal("Internal_0","LOCALS",1)
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		Spell(Myself,CLERIC_DRAW_UPON_HOLY_MIGHT)
+		Wait(1)
+END
+
+IF
+	HaveSpell(CLERIC_SLAY_LIVING)
+	Global("Internal_0","LOCALS",0)
+	See(NearestEnemyOf(Myself))
+	!HasItem("SLAYLIVE",Myself)
+THEN
+	RESPONSE #100
+		SetGlobal("Internal_0","LOCALS",1)
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		Spell(Myself,CLERIC_SLAY_LIVING)
+		Wait(1)
+END
+//BLOCKEND
+//BLOCKEND
+
+IF
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		IncrementGlobal("Internal_0","LOCALS",1)
+		//EquipWeapon()
+		AttackOneRound(LastSeenBy(Myself))
+END
+

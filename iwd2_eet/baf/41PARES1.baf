@@ -1,0 +1,508 @@
+IF
+	Clicked([ANYONE])
+	OpenState("AR4102_Switch1",TRUE)
+	!Global("GameRoomMode","MYAREA",0)
+THEN
+	RESPONSE #100
+		CloseDoor("AR4102_Switch1")
+		//DisplayStringHead("GameMaster",@30913)
+		
+		TriggerActivation("AR4102_TSwitch2",FALSE)
+		TriggerActivation("AR4102_TSwitch3",FALSE)
+		//CloseDoor("AR4102_Switch1")
+		DisplayStringHead("GameMaster",@30913)
+		
+		Continue()
+END
+
+IF
+	Clicked([ANYONE])
+	OpenState("AR4102_Switch1",FALSE)
+	!Global("GameRoomMode","MYAREA",0)
+THEN
+	RESPONSE #100
+		OpenDoor("AR4102_Switch1")
+		
+		TriggerActivation("AR4102_TSwitch2",TRUE)
+		TriggerActivation("AR4102_TSwitch3",TRUE)
+		DisplayStringHead("GameMaster",@30914)
+		
+		Continue()
+END
+
+IF
+	Clicked([ANYONE])
+	OpenState("AR4102_Switch1",TRUE)
+	Global("GameRoomMode","MYAREA",1)
+	Global("PrismDeactivated","MYAREA",1)
+THEN
+	RESPONSE #100
+		DisplayStringHead("GameMaster",@30920)
+		CloseDoor("AR4102_Switch1")
+		SetGlobal("PrismDeactivated","MYAREA",0)
+		DisplayString(LastTrigger,@30531)
+END
+
+IF
+	Clicked([ANYONE])
+	OpenState("AR4102_Switch1",TRUE)
+	Global("GameRoomMode","MYAREA",1)
+	Global("PrismDeactivated","MYAREA",0)
+THEN
+	RESPONSE #100
+		DisplayStringHead("GameMaster",@30919)
+		CloseDoor("AR4102_Switch1")
+END
+
+IF
+	OR(2)
+		Clicked([ANYONE])
+		Trigger(0)
+	OpenState("AR4102_Switch1",TRUE)
+	Global("GameRoomMode","MYAREA",2)
+	Global("SPRITE_IS_DEADOria","GLOBAL",0)
+THEN
+	RESPONSE #100
+		CloseDoor("AR4102_Switch1")
+		DisplayStringHead("GameMaster",@34279)
+		ActionOverride("GameMaster",Wait(5))
+		DisplayStringHead("GameMaster",@30914)
+END
+
+IF
+	OR(2)
+		Clicked([ANYONE])
+		Trigger(0)
+	OpenState("AR4102_Switch1",TRUE)
+	Global("GameRoomMode","MYAREA",2)
+	Global("EtherealRealmActive","MYAREA",0)
+	!Global("SPRITE_IS_DEADOria","GLOBAL",0)
+THEN
+	RESPONSE #100
+		PlaySound("IW6400c")
+		CloseDoor("AR4102_Switch1")
+		/*SpellHitEffectSprite(Player1,Player1,PORTAL,0)
+		SpellHitEffectSprite(Player2,Player2,PORTAL,0)
+		SpellHitEffectSprite(Player3,Player3,PORTAL,0)
+		SpellHitEffectSprite(Player4,Player4,PORTAL,0)
+		SpellHitEffectSprite(Player5,Player5,PORTAL,0)
+		SpellHitEffectSprite(Player6,Player6,PORTAL,0)*/
+		CreateVisualEffectObject("PORTALH",Player1)
+		CreateVisualEffectObject("PORTALH",Player2)
+		CreateVisualEffectObject("PORTALH",Player3)
+		CreateVisualEffectObject("PORTALH",Player4)
+		CreateVisualEffectObject("PORTALH",Player5)
+		CreateVisualEffectObject("PORTALH",Player6)
+		//SetCreatureAreaFlag("OriaEssence",INVULNERABLE,FALSE)
+		ActionOverride("OriaEssence",ApplySpellRES("IDRINVUL",Myself))
+		//ApplySpell("OriaEssence",2082)  // Сущность Ории
+		ActionOverride("OriaEssence",ApplySpellRES("IWWI082",Myself))
+		/*ApplySpell(Player1,2084)
+		ApplySpell(Player2,2084)
+		ApplySpell(Player3,2084)
+		ApplySpell(Player4,2084)
+		ApplySpell(Player5,2084)
+		ApplySpell(Player6,2084)*/
+		ActionOverride(Player1,ApplySpellRES("IWWI084",Myself))
+		ActionOverride(Player2,ApplySpellRES("IWWI084",Myself))
+		ActionOverride(Player3,ApplySpellRES("IWWI084",Myself))
+		ActionOverride(Player4,ApplySpellRES("IWWI084",Myself))
+		ActionOverride(Player5,ApplySpellRES("IWWI084",Myself))
+		ActionOverride(Player6,ApplySpellRES("IWWI084",Myself))
+		ActionOverride("OriaEssence",EquipItemEx("z0cwrde1",1))
+		XEquipItem("z0cwrde1","OriaEssence",SLOT_WEAPON0,UNEQUIP)
+		ActionOverride("OriaEssence",EquipItemEx("z0ax1h79",0))
+		XEquipItem("z0ax1h79","OriaEssence",SLOT_WEAPON0,EQUIP)
+		/*SetDoorFlag("AR4102_Switch2",HIDDEN,TRUE)
+		SetDoorFlag("AR4102_Switch3",HIDDEN,TRUE)
+		SetDoorFlag("AR4102_Switch4",HIDDEN,TRUE)
+		SetDoorFlag("AR4102_Switch5",HIDDEN,TRUE)
+		SetDoorFlag("AR4102_Switch6",HIDDEN,TRUE)
+		SetDoorFlag("AR4102_Switch7",HIDDEN,TRUE)
+		SetDoorFlag("AR4102_Switch8",HIDDEN,TRUE)
+		SetDoorFlag("AR4102_Switch9",HIDDEN,TRUE)
+		SetDoorFlag("AR4102_Switch10",HIDDEN,TRUE)
+		SetDoorFlag("AR4102_Switch11",HIDDEN,TRUE)
+		SetDoorFlag("AR4102_Switch12",HIDDEN,TRUE)
+		SetDoorFlag("AR4102_Switch13",HIDDEN,TRUE)*/
+		SetGlobal("AR4102_Switch2_hidden","MYAREA",1)
+		SetGlobal("AR4102_Switch3_hidden","MYAREA",1)
+		SetGlobal("AR4102_Switch2_locked","MYAREA",1)
+		SetGlobal("AR4102_Switch3_locked","MYAREA",1)
+		Lock("AR4102_Switch2")
+		Lock("AR4102_Switch3")
+		SetGlobal("AR4102_Switch4_hidden","MYAREA",1)
+		SetGlobal("AR4102_Switch5_hidden","MYAREA",1)
+		SetGlobal("AR4102_Switch6_hidden","MYAREA",1)
+		SetGlobal("AR4102_Switch7_hidden","MYAREA",1)
+		SetGlobal("AR4102_Switch8_hidden","MYAREA",1)
+		SetGlobal("AR4102_Switch9_hidden","MYAREA",1)
+		SetGlobal("AR4102_Switch10_hidden","MYAREA",1)
+		SetGlobal("AR4102_Switch11_hidden","MYAREA",1)
+		SetGlobal("AR4102_Switch12_hidden","MYAREA",1)
+		SetGlobal("AR4102_Switch13_hidden","MYAREA",1)
+		TriggerActivation("To4101a",FALSE)
+		TriggerActivation("To4101b",FALSE)
+		SetGlobal("EtherealRealmActive","MYAREA",1)
+		DisplayStringNoName(LastTrigger,@34781)
+END
+
+IF
+	OR(2)
+		Clicked([ANYONE])
+		Trigger(0)
+	OpenState("AR4102_Switch1",FALSE)
+	Global("EtherealRealmActive","MYAREA",1)
+THEN
+	RESPONSE #100
+		PlaySound("IW6400c")
+		OpenDoor("AR4102_Switch1")
+		/*SpellHitEffectSprite(Player1,Player1,PORTAL,0)
+		SpellHitEffectSprite(Player2,Player2,PORTAL,0)
+		SpellHitEffectSprite(Player3,Player3,PORTAL,0)
+		SpellHitEffectSprite(Player4,Player4,PORTAL,0)
+		SpellHitEffectSprite(Player5,Player5,PORTAL,0)
+		SpellHitEffectSprite(Player6,Player6,PORTAL,0)*/
+		CreateVisualEffectObject("PORTALH",Player1)
+		CreateVisualEffectObject("PORTALH",Player2)
+		CreateVisualEffectObject("PORTALH",Player3)
+		CreateVisualEffectObject("PORTALH",Player4)
+		CreateVisualEffectObject("PORTALH",Player5)
+		CreateVisualEffectObject("PORTALH",Player6)
+		//ApplySpell("OriaEssence",2084)  // Сущность Ории
+		ActionOverride("OriaEssence",ApplySpellRES("IWWI084",Myself))
+		//SetCreatureAreaFlag("OriaEssence",INVULNERABLE,TRUE)
+		ActionOverride("OriaEssence",ApplySpellRES("IDINVUL",Myself))
+		/*ApplySpell(Player1,2082)  // SPWI082.SPL (No such index)
+		ApplySpell(Player2,2082)  // SPWI082.SPL (No such index)
+		ApplySpell(Player3,2082)  // SPWI082.SPL (No such index)
+		ApplySpell(Player4,2082)  // SPWI082.SPL (No such index)
+		ApplySpell(Player5,2082)  // SPWI082.SPL (No such index)
+		ApplySpell(Player6,2082)  // SPWI082.SPL (No such index)*/
+		ActionOverride(Player1,ApplySpellRES("IWWI082",Myself))
+		ActionOverride(Player2,ApplySpellRES("IWWI082",Myself))
+		ActionOverride(Player3,ApplySpellRES("IWWI082",Myself))
+		ActionOverride(Player4,ApplySpellRES("IWWI082",Myself))
+		ActionOverride(Player5,ApplySpellRES("IWWI082",Myself))
+		ActionOverride(Player6,ApplySpellRES("IWWI082",Myself))
+		ActionOverride("OriaEssence",EquipItemEx("z0ax1h79",1))
+		XEquipItem("z0ax1h79","OriaEssence",SLOT_WEAPON0,UNEQUIP)
+		ActionOverride("OriaEssence",EquipItemEx("z0cwrde1",0))
+		XEquipItem("z0cwrde1","OriaEssence",SLOT_WEAPON0,EQUIP)
+		/*SetDoorFlag("AR4102_Switch2",HIDDEN,FALSE)
+		SetDoorFlag("AR4102_Switch3",HIDDEN,FALSE)
+		SetDoorFlag("AR4102_Switch4",HIDDEN,FALSE)
+		SetDoorFlag("AR4102_Switch5",HIDDEN,FALSE)
+		SetDoorFlag("AR4102_Switch6",HIDDEN,FALSE)
+		SetDoorFlag("AR4102_Switch7",HIDDEN,FALSE)
+		SetDoorFlag("AR4102_Switch8",HIDDEN,FALSE)
+		SetDoorFlag("AR4102_Switch9",HIDDEN,FALSE)
+		SetDoorFlag("AR4102_Switch10",HIDDEN,FALSE)
+		SetDoorFlag("AR4102_Switch11",HIDDEN,FALSE)
+		SetDoorFlag("AR4102_Switch12",HIDDEN,FALSE)
+		SetDoorFlag("AR4102_Switch13",HIDDEN,FALSE)*/
+		SetGlobal("AR4102_Switch2_hidden","MYAREA",0)
+		SetGlobal("AR4102_Switch3_hidden","MYAREA",0)
+		SetGlobal("AR4102_Switch2_locked","MYAREA",0)
+		SetGlobal("AR4102_Switch3_locked","MYAREA",0)
+		Unlock("AR4102_Switch2")
+		Unlock("AR4102_Switch3")
+		SetGlobal("AR4102_Switch4_hidden","MYAREA",0)
+		SetGlobal("AR4102_Switch5_hidden","MYAREA",0)
+		SetGlobal("AR4102_Switch6_hidden","MYAREA",0)
+		SetGlobal("AR4102_Switch7_hidden","MYAREA",0)
+		SetGlobal("AR4102_Switch8_hidden","MYAREA",0)
+		SetGlobal("AR4102_Switch9_hidden","MYAREA",0)
+		SetGlobal("AR4102_Switch10_hidden","MYAREA",0)
+		SetGlobal("AR4102_Switch11_hidden","MYAREA",0)
+		SetGlobal("AR4102_Switch12_hidden","MYAREA",0)
+		SetGlobal("AR4102_Switch13_hidden","MYAREA",0)
+		TriggerActivation("To4101a",TRUE)
+		TriggerActivation("To4101b",TRUE)
+		SetGlobal("EtherealRealmActive","MYAREA",0)
+		DisplayStringNoName(LastTrigger,@34782)
+END
+
+IF
+	Clicked([ANYONE])
+	OpenState("AR4102_Switch1",FALSE)
+	Global("BattleSquareActive","MYAREA",1)
+	Global("BattleSquareAbort","MYAREA",0)
+THEN
+	RESPONSE #100
+		OpenDoor("AR4102_Switch1")
+		SetGlobal("BattleSquareAbort","MYAREA",1)
+END
+
+IF
+	Clicked([ANYONE])
+	OpenState("AR4102_Switch1",TRUE)
+	Global("GameRoomMode","MYAREA",3)
+	Global("BattleSquareActive","MYAREA",0)
+	!Global("SPRITE_IS_DEADOria","GLOBAL",0)
+	Global("SPRITE_IS_DEADOriaEssence","GLOBAL",0)
+THEN
+	RESPONSE #100
+		CloseDoor("AR4102_Switch1")
+		DisplayString(LastTrigger,@34279)
+		Wait(5)
+		DisplayString(LastTrigger,@30914)
+END
+
+IF
+	Clicked([ANYONE]) //Player1
+	//IsPlayerNumber(LastTrigger,1)
+	InPartySlot(LastTrigger,0)
+	//Exists(Player1)
+	!StateCheck(LastTrigger,STATE_DEAD)
+	OpenState("AR4102_Switch1",TRUE)
+	Global("GameRoomMode","MYAREA",3)
+	Global("BattleSquareActive","MYAREA",0)
+THEN
+	RESPONSE #100
+		CloseDoor("AR4102_Switch1")
+		SetGlobal("BattleSquarePlayer","MYAREA",1)
+		SetGlobal("BattleSquareActive","MYAREA",-1)
+END
+
+IF
+	Clicked([ANYONE])
+	OpenState("AR4102_Switch1",TRUE)
+	Global("GameRoomMode","MYAREA",3)
+	Global("BattleSquareActive","MYAREA",0)
+	!Global("SPRITE_IS_DEADOria","GLOBAL",0)
+	Global("SPRITE_IS_DEADOriaEssence","GLOBAL",0)
+THEN
+	RESPONSE #100
+		CloseDoor("AR4102_Switch1")
+		DisplayString(LastTrigger,@34279)
+		Wait(5)
+		DisplayString(LastTrigger,@30914)
+END
+
+IF
+	Clicked([ANYONE]) //Player2
+	//IsPlayerNumber(LastTrigger,2)
+	InPartySlot(LastTrigger,1)
+	//Exists(Player2)
+	!StateCheck(LastTrigger,STATE_DEAD)
+	OpenState("AR4102_Switch1",TRUE)
+	Global("GameRoomMode","MYAREA",3)
+	Global("BattleSquareActive","MYAREA",0)
+THEN
+	RESPONSE #100
+		CloseDoor("AR4102_Switch1")
+		SetGlobal("BattleSquarePlayer","MYAREA",2)
+		SetGlobal("BattleSquareActive","MYAREA",-1)
+END
+
+IF
+	Clicked([ANYONE])
+	OpenState("AR4102_Switch1",TRUE)
+	Global("GameRoomMode","MYAREA",3)
+	Global("BattleSquareActive","MYAREA",0)
+	!Global("SPRITE_IS_DEADOria","GLOBAL",0)
+	Global("SPRITE_IS_DEADOriaEssence","GLOBAL",0)
+THEN
+	RESPONSE #100
+		CloseDoor("AR4102_Switch1")
+		DisplayString(LastTrigger,@34279)
+		Wait(5)
+		DisplayString(LastTrigger,@30914)
+END
+
+IF
+	Clicked([ANYONE]) //Player3
+	//IsPlayerNumber(LastTrigger,3)
+	InPartySlot(LastTrigger,2)
+	//Exists(Player3)
+	!StateCheck(LastTrigger,STATE_DEAD)
+	OpenState("AR4102_Switch1",TRUE)
+	Global("GameRoomMode","MYAREA",3)
+	Global("BattleSquareActive","MYAREA",0)
+THEN
+	RESPONSE #100
+		CloseDoor("AR4102_Switch1")
+		SetGlobal("BattleSquarePlayer","MYAREA",3)
+		SetGlobal("BattleSquareActive","MYAREA",-1)
+END
+
+IF
+	Clicked([ANYONE])
+	OpenState("AR4102_Switch1",TRUE)
+	Global("GameRoomMode","MYAREA",3)
+	Global("BattleSquareActive","MYAREA",0)
+	!Global("SPRITE_IS_DEADOria","GLOBAL",0)
+	Global("SPRITE_IS_DEADOriaEssence","GLOBAL",0)
+THEN
+	RESPONSE #100
+		CloseDoor("AR4102_Switch1")
+		DisplayString(LastTrigger,@34279)
+		Wait(5)
+		DisplayString(LastTrigger,@30914)
+END
+
+IF
+	Clicked([ANYONE]) //Player4
+	//IsPlayerNumber(LastTrigger,4)
+	InPartySlot(LastTrigger,3)
+	//Exists(Player4)
+	!StateCheck(LastTrigger,STATE_DEAD)
+	OpenState("AR4102_Switch1",TRUE)
+	Global("GameRoomMode","MYAREA",3)
+	Global("BattleSquareActive","MYAREA",0)
+THEN
+	RESPONSE #100
+		CloseDoor("AR4102_Switch1")
+		SetGlobal("BattleSquarePlayer","MYAREA",4)
+		SetGlobal("BattleSquareActive","MYAREA",-1)
+END
+
+IF
+	Clicked([ANYONE])
+	OpenState("AR4102_Switch1",TRUE)
+	Global("GameRoomMode","MYAREA",3)
+	Global("BattleSquareActive","MYAREA",0)
+	!Global("SPRITE_IS_DEADOria","GLOBAL",0)
+	Global("SPRITE_IS_DEADOriaEssence","GLOBAL",0)
+THEN
+	RESPONSE #100
+		CloseDoor("AR4102_Switch1")
+		DisplayString(LastTrigger,@34279)
+		Wait(5)
+		DisplayString(LastTrigger,@30914)
+END
+
+IF
+	Clicked([ANYONE]) //Player5
+	//IsPlayerNumber(LastTrigger,5)
+	InPartySlot(LastTrigger,4)
+	//Exists(Player5)
+	!StateCheck(LastTrigger,STATE_DEAD)
+	OpenState("AR4102_Switch1",TRUE)
+	Global("GameRoomMode","MYAREA",3)
+	Global("BattleSquareActive","MYAREA",0)
+THEN
+	RESPONSE #100
+		CloseDoor("AR4102_Switch1")
+		SetGlobal("BattleSquarePlayer","MYAREA",5)
+		SetGlobal("BattleSquareActive","MYAREA",-1)
+END
+
+IF
+	Clicked([ANYONE])
+	OpenState("AR4102_Switch1",TRUE)
+	Global("GameRoomMode","MYAREA",3)
+	Global("BattleSquareActive","MYAREA",0)
+	!Global("SPRITE_IS_DEADOria","GLOBAL",0)
+	Global("SPRITE_IS_DEADOriaEssence","GLOBAL",0)
+THEN
+	RESPONSE #100
+		CloseDoor("AR4102_Switch1")
+		DisplayString(LastTrigger,@34279)
+		Wait(5)
+		DisplayString(LastTrigger,@30914)
+END
+
+IF
+	Clicked([ANYONE]) //Player6
+	//IsPlayerNumber(LastTrigger,6)
+	InPartySlot(LastTrigger,5)
+	//Exists(Player6)
+	!StateCheck(LastTrigger,STATE_DEAD)
+	OpenState("AR4102_Switch1",TRUE)
+	Global("GameRoomMode","MYAREA",3)
+	Global("BattleSquareActive","MYAREA",0)
+THEN
+	RESPONSE #100
+		CloseDoor("AR4102_Switch1")
+		SetGlobal("BattleSquarePlayer","MYAREA",6)
+		SetGlobal("BattleSquareActive","MYAREA",-1)
+END
+
+IF
+	Global("BattleSquareActive","MYAREA",-1)
+THEN
+	RESPONSE #100
+		TriggerActivation("To4101a",FALSE)
+		TriggerActivation("To4101b",FALSE)
+		ClearAllActions()
+		MultiPlayerSync()
+		//AllowAreaResting(FALSE)
+		AddAreaFlag(NOREST)
+		CloseDoor("AR4102_Door11")
+		//SetDoorFlag("AR4102_Door11",HIDDEN,TRUE)
+		Lock("AR4102_Door11")
+		/*SetDoorFlag("AR4102_Switch2",HIDDEN,TRUE)
+		SetDoorFlag("AR4102_Switch3",HIDDEN,TRUE)
+		SetDoorFlag("AR4102_Switch4",HIDDEN,TRUE)
+		SetDoorFlag("AR4102_Switch5",HIDDEN,TRUE)
+		SetDoorFlag("AR4102_Switch6",HIDDEN,TRUE)
+		SetDoorFlag("AR4102_Switch7",HIDDEN,TRUE)
+		SetDoorFlag("AR4102_Switch8",HIDDEN,TRUE)
+		SetDoorFlag("AR4102_Switch9",HIDDEN,TRUE)
+		SetDoorFlag("AR4102_Switch10",HIDDEN,TRUE)
+		SetDoorFlag("AR4102_Switch11",HIDDEN,TRUE)
+		SetDoorFlag("AR4102_Switch12",HIDDEN,TRUE)
+		SetDoorFlag("AR4102_Switch13",HIDDEN,TRUE)*/
+		SetGlobal("AR4102_Switch2_hidden","MYAREA",1)
+		SetGlobal("AR4102_Switch3_hidden","MYAREA",1)
+		SetGlobal("AR4102_Switch2_locked","MYAREA",1)
+		SetGlobal("AR4102_Switch3_locked","MYAREA",1)
+		Lock("AR4102_Switch2")
+		Lock("AR4102_Switch3")
+		SetGlobal("AR4102_Switch4_hidden","MYAREA",1)
+		SetGlobal("AR4102_Switch5_hidden","MYAREA",1)
+		SetGlobal("AR4102_Switch6_hidden","MYAREA",1)
+		SetGlobal("AR4102_Switch7_hidden","MYAREA",1)
+		SetGlobal("AR4102_Switch8_hidden","MYAREA",1)
+		SetGlobal("AR4102_Switch9_hidden","MYAREA",1)
+		SetGlobal("AR4102_Switch10_hidden","MYAREA",1)
+		SetGlobal("AR4102_Switch11_hidden","MYAREA",1)
+		SetGlobal("AR4102_Switch12_hidden","MYAREA",1)
+		SetGlobal("AR4102_Switch13_hidden","MYAREA",1)
+		TriggerActivation("GameGrid0",TRUE)
+		TriggerActivation("GameGrid1",TRUE)
+		TriggerActivation("GameGrid2",TRUE)
+		TriggerActivation("GameGrid3",TRUE)
+		TriggerActivation("GameGrid4",TRUE)
+		TriggerActivation("GameGrid5",TRUE)
+		TriggerActivation("GameGrid6",TRUE)
+		TriggerActivation("GameGrid7",TRUE)
+		TriggerActivation("GameGrid8",TRUE)
+		SetGlobal("BattleSquareSelected","MYAREA",-1)
+		SetGlobal("BattleSquarePlayerScore","MYAREA",0)
+		/*SetGlobal("BattleSquarePlayerScore1","MYAREA",0)
+		SetGlobal("BattleSquarePlayerScore2","MYAREA",0)
+		SetGlobal("BattleSquarePlayerScore4","MYAREA",0)
+		SetGlobal("BattleSquarePlayerScore8","MYAREA",0)
+		SetGlobal("BattleSquarePlayerScore16","MYAREA",0)
+		SetGlobal("BattleSquarePlayerScore32","MYAREA",0)
+		SetGlobal("BattleSquarePlayerScore64","MYAREA",0)
+		SetGlobal("BattleSquarePlayerScore128","MYAREA",0)
+		SetGlobal("BattleSquarePlayerScore256","MYAREA",0)*/
+
+		SetGlobal("BattleSquareArenaScore","MYAREA",0)
+		/*SetGlobal("BattleSquareArenaScore1","MYAREA",0)
+		SetGlobal("BattleSquareArenaScore2","MYAREA",0)
+		SetGlobal("BattleSquareArenaScore4","MYAREA",0)
+		SetGlobal("BattleSquareArenaScore8","MYAREA",0)
+		SetGlobal("BattleSquareArenaScore16","MYAREA",0)
+		SetGlobal("BattleSquareArenaScore32","MYAREA",0)
+		SetGlobal("BattleSquareArenaScore64","MYAREA",0)
+		SetGlobal("BattleSquareArenaScore128","MYAREA",0)
+		SetGlobal("BattleSquareArenaScore256","MYAREA",0)*/
+
+		SetGlobal("BattleSquareArenaCount","MYAREA",0)
+		SetGlobal("BattleSquarePlayerCount","MYAREA",0)
+		SetGlobal("BattleSquareState","MYAREA",1)
+		SetGlobal("BattleSquareActive","MYAREA",1)
+END
+
+IF
+	Clicked([ANYONE])
+THEN
+	RESPONSE #100
+		NoAction()
+END
+

@@ -1,0 +1,132 @@
+IF
+	Global("RemoveNote1","MYAREA",0)
+	OR(2)
+		!Global("TEAM_11","MYAREA",0)
+		GlobalGT("Convinced_Ginafae","GLOBAL",0)
+THEN
+	RESPONSE #100
+		SetGlobal("RemoveNote1","MYAREA",1)
+		RemoveMapNote([923.658],@7843)
+		Continue()
+END
+
+IF
+	Global("RemoveNote2","MYAREA",0)
+	Dead("Viciscamera")
+THEN
+	RESPONSE #100
+		SetGlobal("RemoveNote2","MYAREA",1)
+		RemoveMapNote([3614.981],@7845)
+		Continue()
+END
+
+IF
+	OpenState("AR5301_Cells",FALSE)
+	!Global("TEAM_1","MYAREA",0)
+THEN
+	RESPONSE #100
+		OpenDoor("AR5301_Cells")
+		Continue()
+END
+
+IF
+	Global("Viciscamera_Sequence","MYAREA",0)
+	Dead("Viciscamera")
+THEN
+	RESPONSE #100
+		SetGlobal("Viciscamera_Sequence","MYAREA",1)
+		StaticSequence("5301MS1",SEQ_AWAKE)
+		SetGlobalTimer("IwTimer42","MYAREA",4)
+		Continue()
+END
+
+IF
+	Global("Viciscamera_Sequence","MYAREA",1)
+	GlobalTimerExpired("IwTimer42","MYAREA")
+THEN
+	RESPONSE #100
+		SetGlobal("Viciscamera_Sequence","MYAREA",2)
+		Continue()
+END
+
+IF
+	Global("Viciscamera_Sequence","MYAREA",2)
+THEN
+	RESPONSE #100
+		StaticSequence("5301MS1",SEQ_CAST)
+		//Deactivate("spider_maker_thing1")
+		SoundActivate("spider_maker_thing1",FALSE)
+		Continue()
+END
+
+IF
+	Global("Viciscamera_JournalEntry","MYAREA",0)
+	Global("Viciscamera_Sequence","MYAREA",2)
+	Global("Viciscamera_Quest","GLOBAL",1)
+	Global("SPRITE_IS_DEADMalavon","GLOBAL",0)
+THEN
+	RESPONSE #100
+		SetGlobal("Viciscamera_JournalEntry","MYAREA",1)
+		AddJournalEntry(@39488,QUEST)
+		Continue()
+END
+
+IF
+	!Global("DF_Slain","GLOBAL",0)
+THEN
+	RESPONSE #100
+		SetGlobal("DF_Slain","GLOBAL",0)
+		CreateCreature("53ViDrFi",[180.1390],0)
+		Continue()
+	RESPONSE #100
+		SetGlobal("DF_Slain","GLOBAL",0)
+		CreateCreature("53ViDrFi",[175.1755],0)
+		Continue()
+	RESPONSE #100
+		SetGlobal("DF_Slain","GLOBAL",0)
+		CreateCreature("53ViDrFi",[175.2049],0)
+		Continue()
+END
+
+IF
+	!Global("DW_Slain","GLOBAL",0)
+THEN
+	RESPONSE #100
+		SetGlobal("DW_Slain","GLOBAL",0)
+		CreateCreature("53ViDrWi",[180.1390],0)
+		Continue()
+	RESPONSE #100
+		SetGlobal("DW_Slain","GLOBAL",0)
+		CreateCreature("53ViDrWi",[175.1755],0)
+		Continue()
+	RESPONSE #100
+		SetGlobal("DW_Slain","GLOBAL",0)
+		CreateCreature("53ViDrWi",[175.2049],0)
+		Continue()
+END
+
+IF
+	!Global("DP_Slain","GLOBAL",0)
+THEN
+	RESPONSE #100
+		SetGlobal("DP_Slain","GLOBAL",0)
+		CreateCreature("53ViDrPr",[180.1390],0)
+		Continue()
+	RESPONSE #100
+		SetGlobal("DP_Slain","GLOBAL",0)
+		CreateCreature("53ViDrPr",[175.1755],0)
+		Continue()
+	RESPONSE #100
+		SetGlobal("DP_Slain","GLOBAL",0)
+		CreateCreature("53ViDrPr",[175.2049],0)
+		Continue()
+END
+
+IF
+	OnCreation()
+THEN
+	RESPONSE #100
+		NoAction()
+		Continue()
+END
+

@@ -1,0 +1,22 @@
+IF
+	NumberOfTimesTalkedTo(0)
+	Range([PC],25)
+	!StateCheck(Myself,STATE_REALLY_DEAD)
+THEN
+	RESPONSE #100
+		//ApplySpellRES("IDRINVUL",Myself)
+		//SetDialogueRange(300)
+		//Dialogue(LastMarkedObject)
+		ApplySpellRES("BDCUTSPY",Myself)
+		StartDialogNoSet(LastSeenBy(Myself))
+		ChangeAIScript("",OVERRIDE)
+END
+
+IF
+	//Global("REM_INVUL","LOCALS",0)
+	CheckSpellState(Myself,INVULNERABLE_IWD)
+THEN
+	RESPONSE #100
+		ApplySpellRES("IDRINVUL",Myself)
+		//SetGlobal("REM_INVUL","LOCALS",1)
+END

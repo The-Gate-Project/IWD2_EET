@@ -1,0 +1,115 @@
+IF
+	StateCheck(Myself,STATE_PANIC)
+THEN
+	RESPONSE #100
+		RandomWalkContinuous()
+END
+
+IF
+	//!IsCreatureHiddenInShadows(Myself)
+	!StateCheck(Myself,STATE_NOT_VISIBLE)
+	OR(2)
+		See(NearestEnemyOf(Myself))
+		See([GOODCUTOFF.0.0.0.250])
+	CanEquipRanged()
+	!Range(LastSeenBy(Myself),3)
+THEN
+	RESPONSE #100
+		EquipRanged()
+		AttackReevaluate(LastSeenBy(Myself),45)
+END
+
+IF
+	//!IsCreatureHiddenInShadows(Myself)
+	!StateCheck(Myself,STATE_NOT_VISIBLE)
+	OR(2)
+		See(NearestEnemyOf(Myself))
+		See([GOODCUTOFF.0.0.0.250])
+	OR(2)
+		Range(LastSeenBy(Myself),3)
+		!CanEquipRanged()
+THEN
+	RESPONSE #100
+		EquipMostDamagingMelee()
+		AttackReevaluate(LastSeenBy(Myself),45)
+END
+
+IF
+	HPPercentGT(Myself,50)
+	OR(2)
+		See(NearestEnemyOf(Myself))
+		See([GOODCUTOFF.0.0.0.250])
+	CanEquipRanged()
+	!Range(LastSeenBy(Myself),3)
+THEN
+	RESPONSE #100
+		EquipRanged()
+		AttackReevaluate(LastSeenBy(Myself),45)
+END
+
+IF
+	HPPercentGT(Myself,50)
+	OR(2)
+		See(NearestEnemyOf(Myself))
+		See([GOODCUTOFF.0.0.0.250])
+	OR(2)
+		Range(LastSeenBy(Myself),3)
+		!CanEquipRanged()
+THEN
+	RESPONSE #100
+		EquipMostDamagingMelee()
+		AttackReevaluate(LastSeenBy(Myself),45)
+END
+
+IF
+	IsWeaponRanged(Myself)
+	!HPPercentGT(Myself,50)
+	
+	OR(2)
+		See(NearestEnemyOf(Myself))
+		See([GOODCUTOFF.0.0.0.250])
+	
+	//OR(2)
+	//	Range([GOODCUTOFF.0.0.0.250],5)
+	//	Range(NearestEnemyOf(Myself),5)
+	Range(LastSeenBy(Myself),5)
+THEN
+	RESPONSE #100
+		RunAwayFrom(LastSeenBy(Myself),45)
+END
+
+IF
+	!HPPercentGT(Myself,50)
+	OR(2)
+		See(NearestEnemyOf(Myself))
+		See([GOODCUTOFF.0.0.0.250])
+	CanEquipRanged()
+	!Range(LastSeenBy(Myself),3)
+THEN
+	RESPONSE #100
+		EquipRanged()
+		AttackReevaluate(LastSeenBy(Myself),45)
+END
+
+IF
+	!HPPercentGT(Myself,50)
+	OR(2)
+		See(NearestEnemyOf(Myself))
+		See([GOODCUTOFF.0.0.0.250])
+	OR(2)
+		Range(LastSeenBy(Myself),3)
+		!CanEquipRanged()
+THEN
+	RESPONSE #100
+		EquipMostDamagingMelee()
+		AttackReevaluate(LastSeenBy(Myself),45)
+END
+
+IF
+	!StateCheck([GOODCUTOFF.0.0.0.250],STATE_REALLY_DEAD)
+	!TargetUnreachable([GOODCUTOFF.0.0.0.250])
+THEN
+	RESPONSE #100
+		MoveToObject([GOODCUTOFF.0.0.0.250])
+END
+

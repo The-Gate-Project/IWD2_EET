@@ -1,0 +1,14 @@
+IF
+	Opened([ANYONE])
+THEN
+	RESPONSE #100
+		OpenDoor("AR6051_Bridge")
+END
+
+IF
+	Closed([ANYONE])
+THEN
+	RESPONSE #100
+		CloseDoor("AR6051_Bridge")
+END
+

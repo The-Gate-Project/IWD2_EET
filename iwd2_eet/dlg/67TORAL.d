@@ -1,0 +1,310 @@
+BEGIN ~67TORAL~
+
+IF WEIGHT #7
+~NumTimesTalkedTo(0)~ THEN BEGIN 0
+  SAY @25446
+  IF ~!Kit(LastTalkedToBy,OHBANE)
+      !Kit(LastTalkedToBy,OHMASK)
+      !Kit(LastTalkedToBy,GODTALOS)
+      !Kit(LastTalkedToBy,OHILMATER)~ THEN REPLY @25448 DO ~SetGlobal("SH_Spoke_To_Toral","GLOBAL",1)~ GOTO 1
+  IF ~Kit(LastTalkedToBy,OHBANE)~ THEN REPLY @38362 DO ~SetGlobal("SH_Spoke_To_Toral","GLOBAL",1)~ GOTO 45
+  IF ~Kit(LastTalkedToBy,OHMASK)~ THEN REPLY @38363 DO ~SetGlobal("SH_Spoke_To_Toral","GLOBAL",1)~ GOTO 47
+  IF ~Kit(LastTalkedToBy,GODTALOS)~ THEN REPLY @38364 DO ~SetGlobal("SH_Spoke_To_Toral","GLOBAL",1)~ GOTO 50
+  IF ~Kit(LastTalkedToBy,OHILMATER)~ THEN REPLY @38365 DO ~SetGlobal("SH_Spoke_To_Toral","GLOBAL",1)~ GOTO 51
+  IF ~~ THEN REPLY @25451 DO ~SetGlobal("SH_Spoke_To_Toral","GLOBAL",1)~ EXIT
+  IF ~!Kit(LastTalkedToBy,OHILMATER)~ THEN REPLY @25449 DO ~SetGlobal("SH_Spoke_To_Toral","GLOBAL",1)~ EXIT
+END
+
+IF ~~ THEN BEGIN 1
+  SAY @25452
+  IF ~~ THEN REPLY @25454 GOTO 2
+  IF ~Global("SH_Riki_Seek_Priest","GLOBAL",1)~ THEN REPLY @37975 DO ~SetGlobal("SH_Riki_Seek_Priest","GLOBAL",2)~ GOTO 44
+END
+
+IF ~~ THEN BEGIN 2
+  SAY @25455
+  IF ~~ THEN REPLY @25457 GOTO 3
+END
+
+IF ~~ THEN BEGIN 3
+  SAY @25458
+  IF ~~ THEN REPLY @25460 GOTO 4
+END
+
+IF ~~ THEN BEGIN 4
+  SAY @25461
+  IF ~~ THEN GOTO 5
+END
+
+IF ~~ THEN BEGIN 5
+  SAY @25463
+  IF ~~ THEN REPLY @25464 GOTO 6
+  IF ~~ THEN REPLY @25465 DO ~SetGlobal("SH_Riki_Seek_Priest","GLOBAL",2)~ GOTO 9
+  IF ~~ THEN REPLY @25466 EXIT
+END
+
+IF ~~ THEN BEGIN 6
+  SAY @25467
+  IF ~~ THEN REPLY @25468 GOTO 7
+END
+
+IF ~~ THEN BEGIN 7
+  SAY @25469
+  IF ~~ THEN REPLY @25470 GOTO 8
+END
+
+IF ~~ THEN BEGIN 8
+  SAY @25471
+  IF ~~ THEN REPLY @25472 DO ~SetGlobal("SH_Riki_Seek_Priest","GLOBAL",2)~ GOTO 9
+  IF ~~ THEN REPLY @25473 EXIT
+END
+
+IF ~~ THEN BEGIN 9
+  SAY @25474
+  IF ~~ THEN REPLY @25477 GOTO 10
+  IF ~~ THEN REPLY @25480 EXIT
+END
+
+IF ~~ THEN BEGIN 10
+  SAY @25482
+  IF ~~ THEN GOTO 11
+END
+
+IF ~~ THEN BEGIN 11
+  SAY @25484
+  IF ~~ THEN REPLY @25485 DO ~SetGlobal("SH_Illmater_Ritual","GLOBAL",1)
+                              SetGlobal("Tears_Suffereing","GLOBAL",1)~ GOTO 12
+  IF ~~ THEN REPLY @25486 DO ~SetGlobal("SH_Illmater_Ritual","GLOBAL",2)~ EXIT
+END
+
+IF ~~ THEN BEGIN 12
+  SAY @25489
+  IF ~~ THEN REPLY @25504 GOTO 13
+END
+
+IF ~~ THEN BEGIN 13
+  SAY @25505
+  IF ~~ THEN REPLY @25506 GOTO 14
+END
+
+IF ~~ THEN BEGIN 14
+  SAY @25507
+  IF ~~ THEN REPLY @25509 GOTO 15
+END
+
+IF ~~ THEN BEGIN 15
+  SAY @25513
+  IF ~~ THEN REPLY @25540 GOTO 16
+END
+
+IF ~~ THEN BEGIN 16
+  SAY @25541
+  IF ~~ THEN REPLY @25542 DO ~SetGlobal("Know_Red_Bonds","GLOBAL",1)~ GOTO 17
+END
+
+IF ~~ THEN BEGIN 17
+  SAY @25543
+  IF ~~ THEN REPLY @25544 GOTO 18
+END
+
+IF ~~ THEN BEGIN 18
+  SAY @25545
+  IF ~~ THEN GOTO 19
+END
+
+IF ~~ THEN BEGIN 19
+  SAY @25546
+  IF ~~ THEN REPLY @25547 DO ~SetGlobal("SH_Purify_Pool","GLOBAL",1)~ GOTO 20
+END
+
+IF ~~ THEN BEGIN 20
+  SAY @25548
+  IF ~~ THEN REPLY @25549 GOTO 21
+END
+
+IF ~~ THEN BEGIN 21
+  SAY @25550
+  IF ~~ THEN REPLY @25551 GOTO 22
+END
+
+IF ~~ THEN BEGIN 22
+  SAY @25552
+  IF ~~ THEN REPLY @25553 GOTO 23
+END
+
+IF ~~ THEN BEGIN 23
+  SAY @25554
+  IF ~~ THEN REPLY @25555 DO ~AddJournalEntry(@24973,QUEST)~ EXIT
+END
+
+IF WEIGHT #3
+~Global("SH_Perform_Illmater_Ritual","GLOBAL",4)~ THEN BEGIN 24
+  SAY @25556
+  IF ~~ THEN REPLY @25557 DO ~AddXP2DA("IW2EX14E")
+                              DisplayStringNoNameDlg(LastTalkedToBy,@25443)
+                              SetGlobal("SH_Informed_Toral","GLOBAL",1)
+                              EraseJournalEntry(@24408)
+                              EraseJournalEntry(@32699)
+                              EraseJournalEntry(@24973)
+                              EraseJournalEntry(@26394)
+                              AddJournalEntry(@24974,QUEST)~ GOTO 25
+END
+
+IF ~~ THEN BEGIN 25
+  SAY @25558
+  IF ~~ THEN DO ~SetGlobal("SH_Perform_Illmater_Ritual","GLOBAL",5)~ EXIT
+END
+
+IF WEIGHT #1
+~Global("SH_Purify_Pool","GLOBAL",3)~ THEN BEGIN 26
+  SAY @25559
+  IF ~~ THEN REPLY @25560 DO ~AddXP2DA("IW2EX14E")
+                              DisplayStringNoNameDlg(LastTalkedToBy,@25445)
+                              SetGlobal("SH_Purify_Pool","GLOBAL",4)
+                              AddJournalEntry(@24975,QUEST)~ GOTO 27
+END
+
+IF ~~ THEN BEGIN 27
+  SAY @25561
+  IF ~~ THEN REPLY @25562 EXIT
+END
+
+IF WEIGHT #6
+~NumTimesTalkedToGT(0)~ THEN BEGIN 28
+  SAY @25563
+  IF ~~ THEN REPLY @25564 GOTO 2
+  IF ~~ THEN REPLY @25565 EXIT
+END
+
+IF WEIGHT #4
+~Global("SH_Illmater_Ritual","GLOBAL",1)~ THEN BEGIN 29
+  SAY @25556
+  IF ~~ THEN REPLY @23964 GOTO 32
+  IF ~~ THEN REPLY @25569 EXIT
+END
+
+IF WEIGHT #5
+~Global("SH_Illmater_Ritual","GLOBAL",2)~ THEN BEGIN 30
+  SAY @25570
+  IF ~~ THEN REPLY @25571 DO ~SetGlobal("SH_Illmater_Ritual","GLOBAL",1)
+                              SetGlobal("Tears_Suffereing","GLOBAL",1)~ GOTO 12
+  IF ~~ THEN REPLY @27194 EXIT
+END
+
+IF WEIGHT #2
+~Global("SH_Purify_Pool","GLOBAL",1)
+ Global("SH_Perform_Illmater_Ritual","GLOBAL",5)~ THEN BEGIN 31
+  SAY @27196
+  IF ~~ THEN REPLY @27197 EXIT
+END
+
+IF ~~ THEN BEGIN 32
+  SAY @37738
+  IF ~~ THEN REPLY @37739 GOTO 33
+END
+
+IF ~~ THEN BEGIN 33
+  SAY @37740
+  IF ~~ THEN REPLY @37741 GOTO 34
+END
+
+IF ~~ THEN BEGIN 34
+  SAY @37742
+  IF ~~ THEN REPLY @37743 GOTO 35
+END
+
+IF ~~ THEN BEGIN 35
+  SAY @37744
+  IF ~~ THEN REPLY @37745 GOTO 36
+  IF ~~ THEN REPLY @37746 EXIT
+END
+
+IF ~~ THEN BEGIN 36
+  SAY @37747
+  IF ~~ THEN REPLY @37748 GOTO 37
+END
+
+IF ~~ THEN BEGIN 37
+  SAY @37749
+  IF ~~ THEN REPLY @37750 GOTO 38
+END
+
+IF ~~ THEN BEGIN 38
+  SAY @37751
+  IF ~~ THEN GOTO 39
+END
+
+IF ~~ THEN BEGIN 39
+  SAY @37752
+  IF ~~ THEN REPLY @37753 GOTO 40
+END
+
+IF ~~ THEN BEGIN 40
+  SAY @37754
+  IF ~~ THEN REPLY @37755 GOTO 41
+END
+
+IF ~~ THEN BEGIN 41
+  SAY @37756
+  IF ~~ THEN REPLY @37757 GOTO 42
+END
+
+IF ~~ THEN BEGIN 42
+  SAY @37758
+  IF ~~ THEN REPLY @37759 EXIT
+END
+
+IF WEIGHT #0
+~Global("SH_Purify_Pool","GLOBAL",4)~ THEN BEGIN 43
+  SAY @37907
+  IF ~~ THEN EXIT
+END
+
+IF ~~ THEN BEGIN 44
+  SAY @37978
+  IF ~~ THEN REPLY @37980 GOTO 3
+END
+
+IF ~~ THEN BEGIN 45
+  SAY @38366
+  IF ~!Global("SH_Riki_Seek_Priest","GLOBAL",1)~ THEN REPLY @38367 GOTO 46
+  IF ~Global("SH_Riki_Seek_Priest","GLOBAL",1)~ THEN REPLY @38368 DO ~SetGlobal("SH_Riki_Seek_Priest","GLOBAL",2)~ GOTO 46
+  IF ~~ THEN REPLY @38369 DO ~Enemy()~ EXIT
+END
+
+IF ~~ THEN BEGIN 46
+  SAY @38370
+  IF ~~ THEN REPLY @38371 DO ~Enemy()~ EXIT
+END
+
+IF ~~ THEN BEGIN 47
+  SAY @38372
+  IF ~!Global("SH_Riki_Seek_Priest","GLOBAL",1)~ THEN REPLY @38373 GOTO 48
+  IF ~Global("SH_Riki_Seek_Priest","GLOBAL",1)~ THEN REPLY @38374 DO ~SetGlobal("SH_Riki_Seek_Priest","GLOBAL",2)~ GOTO 48
+  IF ~!Global("SH_Riki_Seek_Priest","GLOBAL",1)
+      CheckStatGT(LastTalkedToBy,15,CHR)~ THEN REPLY @38375 GOTO 49
+  IF ~Global("SH_Riki_Seek_Priest","GLOBAL",1)
+      CheckStatGT(LastTalkedToBy,15,CHR)~ THEN REPLY @38376 DO ~SetGlobal("SH_Riki_Seek_Priest","GLOBAL",2)~ GOTO 49
+  IF ~~ THEN REPLY @38377 DO ~Enemy()~ EXIT
+END
+
+IF ~~ THEN BEGIN 48
+  SAY @38378
+  IF ~~ THEN REPLY @38379 DO ~Enemy()~ EXIT
+END
+
+IF ~~ THEN BEGIN 49
+  SAY @38380
+  IF ~~ THEN GOTO 5
+END
+
+IF ~~ THEN BEGIN 50
+  SAY @38381
+  IF ~~ THEN REPLY @38382 DO ~Enemy()~ EXIT
+END
+
+IF ~~ THEN BEGIN 51
+  SAY @38383
+  IF ~!Global("SH_Riki_Seek_Priest","GLOBAL",1)~ THEN REPLY @38384 GOTO 2
+  IF ~Global("SH_Riki_Seek_Priest","GLOBAL",1)~ THEN REPLY @38385 DO ~SetGlobal("SH_Riki_Seek_Priest","GLOBAL",2)~ GOTO 44
+END

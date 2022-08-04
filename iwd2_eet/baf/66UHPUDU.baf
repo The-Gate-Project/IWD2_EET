@@ -1,0 +1,68 @@
+IF
+	Global("FirstCheck","LOCALS",0)
+	Global("Unhide_Pudu","GLOBAL",1)
+THEN
+	RESPONSE #100
+		SetGlobal("IwIHidden","LOCALS",0)
+    	SetGlobal("FirstIwIHidden","LOCALS",1)
+		SetGlobal("FirstCheck","LOCALS",1)
+		ApplySpellRES("idinvis5",Myself)
+END
+
+IF
+	IsActive(Myself)
+	Global("IwIHidden","LOCALS",0)
+	Global("FirstIwIHidden","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobal("IwIHidden","LOCALS",1)
+		SetGlobal("FirstIwIHidden","LOCALS",1)
+		SetGlobal("FirstCheck","LOCALS",1)
+		Deactivate(Myself)
+END
+
+IF
+	IsActive(Myself)
+	!Global("IwIHidden","LOCALS",0)
+THEN
+	RESPONSE #100
+		Deactivate(Myself)
+END
+
+IF
+	Name("Pudu",Myself)
+	IsActive(Myself)
+	NumTimesTalkedTo(0)
+THEN
+	RESPONSE #100
+		//SetDialogueRange(300)
+		//Dialogue([PC])
+		ApplySpellRES("BDCUTSPY",Myself)
+		StartDialogNoSet([PC])
+END
+
+IF
+	!IsActive(Myself)
+	Global("Unhide_Pudu","GLOBAL",1)
+THEN
+	RESPONSE #100
+		//HideCreature(Myself,FALSE)
+		Activate(Myself)
+		SetGlobal("IwIHidden","LOCALS",0)
+		ApplySpellRES("idinvis5",Myself)
+END
+
+IF
+	IsActive(Myself)
+THEN
+	RESPONSE #100
+		ChangeAIScript("",SPECIFICS)
+END
+
+IF
+	!IsActive(Myself)
+THEN
+	RESPONSE #100
+		NoAction()
+END
+

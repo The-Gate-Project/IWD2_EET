@@ -1,0 +1,29 @@
+IF
+	StateCheck(Myself,STATE_PANIC)
+THEN
+	RESPONSE #100
+		RandomWalkContinuous()
+END
+
+IF
+	HPPercentGT("Support_Beam_South",0)
+THEN
+	RESPONSE #100
+		Attack("Support_Beam_South")
+END
+
+IF
+	HPPercentGT("Support_Beam_North",0)
+THEN
+	RESPONSE #100
+		Attack("Support_Beam_North")
+END
+
+IF
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		EquipMostDamagingMelee()
+		AttackOneRound(LastSeenBy(Myself))
+END
+

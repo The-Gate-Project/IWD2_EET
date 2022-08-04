@@ -1,0 +1,22 @@
+IF
+	!IsActive(Myself)
+	!Global("SPRITE_IS_DEADBarud","GLOBAL",0)
+THEN
+	RESPONSE #100
+		DestroySelf()
+END
+
+IF
+	IsActive(Myself)
+THEN
+	RESPONSE #100
+		ChangeAIScript("",SPECIFICS)
+END
+
+IF
+	!IsActive(Myself)
+THEN
+	RESPONSE #100
+		NoAction()
+END
+

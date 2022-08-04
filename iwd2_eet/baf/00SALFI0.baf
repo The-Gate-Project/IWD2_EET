@@ -1,0 +1,11 @@
+IF
+	!Global("00SALFI0_INACTIVE","LOCALS",1)
+	IsActive(Myself)
+	LOS([PC],35)
+THEN
+	RESPONSE #100
+		ReallyForceSpellRES("IWIN996",Myself)  // INNATE_SALAMANDER_AURA_FIRE
+		//ChangeCurrentScript("")
+		SetGlobal("00SALFI0_INACTIVE","LOCALS",1)
+END
+

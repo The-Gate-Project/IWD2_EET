@@ -1,0 +1,20 @@
+IF
+	Clicked([ANYONE])
+	OpenState("AR6102_Lever2",FALSE)
+THEN
+	RESPONSE #100
+		DisplayStringHead(LastTrigger,@35372) //283631
+		
+		//ClearActions(LastTrigger)
+		ActionOverride(LastTrigger,MoveToOffset([-1.-1]))
+		CreateVisualEffectObject("ENCHAH",Myself)
+END
+
+IF
+	Clicked([ANYONE])
+	!OpenState("AR6102_Lever2",FALSE)
+THEN
+	RESPONSE #100
+		NoAction()
+END
+

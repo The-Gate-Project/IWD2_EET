@@ -1,0 +1,9 @@
+IF
+	Clicked([ANYONE])
+	Global("Statue_info","MYAREA",0)
+THEN
+	RESPONSE #100
+		SetGlobal("Statue_info","MYAREA",1)
+		RemoveMapNote([2473.1760],@55071)
+		AddMapNoteColor([2473.1760],@55072,SLATE)
+END

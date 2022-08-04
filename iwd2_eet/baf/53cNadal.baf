@@ -1,0 +1,86 @@
+/*IF
+	//True()
+	TriggerOverride("Sorn",Range([PC],15))
+THEN
+	RESPONSE #100
+		CutSceneId("Sorn")
+		//MoveToObjectUntilSee(NearestPC)
+		//MoveToObject(Player1)
+		//FaceObject(NearestPC)
+		//Wait(3)
+		ClearActions(Player1)
+		ClearActions(Player2)
+		ClearActions(Player3)
+		ClearActions(Player4)
+		ClearActions(Player5)
+		ClearActions(Player6)
+		ClearActions("Nadal")
+		ClearActions(Myself)
+		Wait(1)
+		//SetDialogueRange(300)
+		//Dialogue(NearestPC)
+		StartDialogNoSet([PC])
+END
+
+IF
+	//True()
+	!TriggerOverride("Sorn",Range([PC],15))
+THEN
+	RESPONSE #100
+		CutSceneId("Sorn")
+		//MoveToObjectUntilSee(NearestPC)
+		MoveToObject(Player1)
+		FaceObject([PC])
+		//Wait(3)
+		Wait(1)
+		//SetDialogueRange(300)
+		//Dialogue(NearestPC)
+		StartCutScene("53cNadal")
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("Nadal")
+		//MoveToObjectUntilSee(NearestPC)
+		MoveToObject(Player1)
+		FaceObject([PC])
+END*/
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("Sorn")
+		ActionOverride(Player1,MoveToPoint([3303.1346]))
+		ActionOverride(Player2,MoveToPoint([3303.1346]))
+		ActionOverride(Player3,MoveToPoint([3303.1346]))
+		ActionOverride(Player4,MoveToPoint([3303.1346]))
+		ActionOverride(Player5,MoveToPoint([3303.1346]))
+		ActionOverride(Player6,MoveToPoint([3303.1346]))
+		Wait(2)
+		ClearActions(Player1)
+		ClearActions(Player2)
+		ClearActions(Player3)
+		ClearActions(Player4)
+		ClearActions(Player5)
+		ClearActions(Player6)
+		ClearActions("Nadal")
+		//ClearActions(Myself)
+		SmallWait(8)
+		ApplySpellRES("BDCUTSPY",Myself)
+		StartDialogNoSet([PC])
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("Nadal")
+		MoveToObject(Player1)
+		FaceObject([PC])
+END
+
+
+

@@ -1,0 +1,58 @@
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("MasterOfLocks")
+		MultiPlayerSync()
+		HideGUI()
+		//SetVisualRange(0)
+		ActionOverride("CUTSPY",DestroySelf())
+		Wait(1)
+		MultiPlayerSync()
+		JumpToPoint([586.2466])
+		/*HideCreature(Myself,FALSE)
+		HideCreature(Player1,FALSE)
+		HideCreature(Player2,FALSE)
+		HideCreature(Player3,FALSE)
+		HideCreature(Player4,FALSE)
+		HideCreature(Player5,FALSE)
+		HideCreature(Player6,FALSE)*/
+		ActionOverride(Player1,ApplySpellRES("IDINVIS7",Myself))
+		ActionOverride(Player2,ApplySpellRES("IDINVIS7",Myself))
+		ActionOverride(Player3,ApplySpellRES("IDINVIS7",Myself))
+		ActionOverride(Player4,ApplySpellRES("IDINVIS7",Myself))
+		ActionOverride(Player5,ApplySpellRES("IDINVIS7",Myself))
+		ActionOverride(Player6,ApplySpellRES("IDINVIS7",Myself))
+		FaceObject([PC])
+		MultiPlayerSync()
+		MoveViewObject(Myself,25)
+		Wait(4)
+		CloseDoor("AR4100_Door10")
+		Lock("AR4100_Door10")
+		Unlock("AR4100_Door1")
+		//CreateCreature("CUTSPY",[355.2370],0)
+		CreateCreature("CUTSPY",[181.1740],0)
+		StartCutScene("41cMOLo4")
+		//SetVisualRange(25)
+		//CreateCreature("CUTSPY",[-1.-1],0)
+		OpenDoor("AR4100_Door1")
+		MoveToPoint([495.2414])
+		Face(SE)
+		CloseDoor("AR4100_Door1")
+		Lock("AR4100_Door1")
+		MoveViewPoint([385.2372],BD_FAST)
+		MoveToPoint([385.2372])
+		FaceObject([PC])
+		UnhideGUI()
+		//Dialogue([PC])
+		StartDialogNoSet([PC])
+END
+
+/*IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId(Protagonist)
+		JumpToSavedLocation()
+END*/
+

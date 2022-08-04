@@ -1,0 +1,133 @@
+IF
+	//TimerActive(100)
+	//!GlobalTimerExpired("AntiMag_100","MYAREA")
+	GlobalTimerNotExpired("AntiMag_100","MYAREA")
+THEN
+	RESPONSE #100
+		NoAction()
+END
+
+IF
+	OR(2)
+		Entered(Player1)
+		IsOverMe(Player1)
+THEN
+	RESPONSE #100
+		ForceSpellRES("IWWI087",Player1)
+		Continue()
+END
+
+IF
+	OR(2)
+		Entered(Player2)
+		IsOverMe(Player2)
+THEN
+	RESPONSE #100
+		ForceSpellRES("IWWI087",Player2)
+		Continue()
+END
+
+IF
+	OR(2)
+		Entered(Player3)
+		IsOverMe(Player3)
+THEN
+	RESPONSE #100
+		ForceSpellRES("IWWI087",Player3)
+		Continue()
+END
+
+IF
+	OR(2)
+		Entered(Player4)
+		IsOverMe(Player4)
+THEN
+	RESPONSE #100
+		ForceSpellRES("IWWI087",Player4)
+		Continue()
+END
+
+IF
+	OR(2)
+		Entered(Player5)
+		IsOverMe(Player5)
+THEN
+	RESPONSE #100
+		ForceSpellRES("IWWI087",Player5)
+		Continue()
+END
+
+IF
+	OR(2)
+		Entered(Player6)
+		IsOverMe(Player6)
+THEN
+	RESPONSE #100
+		ForceSpellRES("IWWI087",Player6)
+		Continue()
+END
+
+IF
+	IsOverMe("Nathaniel")
+THEN
+	RESPONSE #100
+		ForceSpellRES("IWWI087","Nathaniel")
+		Continue()
+END
+
+IF
+	IsOverMe("04_Prisoner_01")
+THEN
+	RESPONSE #100
+		ForceSpellRES("IWWI087","04_Prisoner_01")
+		Continue()
+END
+
+IF
+	IsOverMe("04_Prisoner_02")
+THEN
+	RESPONSE #100
+		ForceSpellRES("IWWI087","04_Prisoner_02")
+		Continue()
+END
+
+IF
+	IsOverMe("04_Prisoner_03")
+THEN
+	RESPONSE #100
+		ForceSpellRES("IWWI087","04_Prisoner_03")
+		Continue()
+END
+
+IF
+	IsOverMe("04_Prisoner_04")
+THEN
+	RESPONSE #100
+		ForceSpellRES("IWWI087","04_Prisoner_04")
+		Continue()
+END
+
+IF
+	IsOverMe("04_Prisoner_05")
+THEN
+	RESPONSE #100
+		ForceSpellRES("IWWI087","04_Prisoner_05")
+		Continue()
+END
+
+IF
+	IsOverMe("04_Prisoner_06")
+THEN
+	RESPONSE #100
+		ForceSpellRES("IWWI087","04_Prisoner_06")
+		Continue()
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		//StartTimer(100,6)
+		SetGlobalTimer("AntiMag_100","MYAREA",6)
+END
+

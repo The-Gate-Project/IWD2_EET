@@ -1,0 +1,15 @@
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("EmmaMoonblade")
+		FadeToColor([0.0],0)
+		Wait(1)
+		//HideCreature(Myself,TRUE)
+		ApplySpellRES("IDINVIS4",Myself)
+		FadeFromColor([0.0],0)
+		Wait(1)
+		EndCutSceneMode()
+		DestroySelf()
+END
+

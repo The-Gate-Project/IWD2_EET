@@ -1,0 +1,94 @@
+IF
+  Global("SaveSavedLoc","LOCALS",0)
+THEN
+  RESPONSE #100
+    SetGlobal("SaveSavedLoc","LOCALS",1)
+    SaveObjectLocation("LOCALS","SavedLoc",Myself)
+    Continue()
+END
+
+IF
+	Global("HEALED_REIG","MYAREA",0)
+	HPGT(Myself,15)
+THEN
+	RESPONSE #100
+		SetGlobal("HEALED_REIG","MYAREA",1)
+		Continue()
+END
+
+IF
+	NumberOfTimesTalkedTo(0)
+	!Allegiance(Myself,ENEMY)
+	!StateCheck(Myself,STATE_REALLY_DEAD)
+	OR(2)
+		See(PartySlot1)
+		See([PC])
+	Range(LastSeenBy(Myself),17)
+THEN
+	RESPONSE #100
+		StartCutSceneMode()
+		ClearAllActions()
+		MultiPlayerSync()
+		ApplySpellRES("BDCUTSPY",Myself)
+		StartDialogNoSet(LastSeenBy(Myself))
+END
+
+IF
+	NumberOfTimesTalkedTo(0)
+	!Allegiance(Myself,ENEMY)
+	See([PC])
+THEN
+	RESPONSE #100
+		FaceObject(LastSeenBy(Myself))
+END
+
+IF
+	!Allegiance(Myself,ENEMY)
+	!StateCheck(Myself,STATE_REALLY_DEAD)
+	Global("Reig_Heal_Priest","GLOBAL",0)
+	Global("Reig_Quest","GLOBAL",1)
+	!Global("HEALED_REIG","MYAREA",0)
+	See([PC])
+THEN
+	RESPONSE #100
+		ApplySpellRES("BDCUTSPY",Myself)
+		StartDialogNoSet(LastSeenBy(Myself))
+END
+
+IF
+	!GlobalTimerNotExpired("IwTimer21","LOCALS")
+	GlobalLT("Reig_Quest","GLOBAL",2)
+	!See([ENEMY.0.GOBLIN])
+THEN
+	RESPONSE #20
+		DisplayStringHead(Myself,@1659)
+		SetGlobalTimerRandom("IwTimer21","LOCALS",10,15)
+	RESPONSE #20
+		DisplayStringHead(Myself,@1660)
+		SetGlobalTimerRandom("IwTimer21","LOCALS",10,15)
+	RESPONSE #20
+		DisplayStringHead(Myself,@1661)
+		SetGlobalTimerRandom("IwTimer21","LOCALS",10,15)
+	RESPONSE #20
+		DisplayStringHead(Myself,@1664)
+		SetGlobalTimerRandom("IwTimer21","LOCALS",10,15)
+	RESPONSE #320
+		SetGlobalTimerRandom("IwTimer21","LOCALS",10,15)
+END
+
+IF
+	!NearSavedLocation(Myself,"LOCALSSavedLoc",3)
+	!Allegiance(Myself,ENEMY)
+THEN
+	RESPONSE #100
+		MoveToSavedLocation("SavedLoc","LOCALS")
+END
+
+IF
+	Global("TEAM_2","MYAREA",1)
+	!See([PC])
+THEN
+	RESPONSE #100
+		MoveToObject(Player1)
+END
+

@@ -1,0 +1,37 @@
+IF
+	Allegiance(Myself,ENEMY)
+THEN
+	RESPONSE #100
+		ChangeAIScript("",SPECIFICS)
+END
+
+IF
+	AttackedBy([GOODCUTOFF],DEFAULT)
+THEN
+	RESPONSE #100
+		Enemy()
+END
+
+IF
+	!Allegiance(Myself,ENEMY)
+THEN
+	RESPONSE #50
+		//SpellCastEffect(Myself,"","","",GLOW_ENCHANTMENT,1,ATTACK)
+		CreateVisualEffectObject("ENCHACG",Myself)
+		SetSequence(SEQ_CAST)
+		Wait(1)
+		//SpellHitEffectPoint(Myself,[766.1640],RECITATION,0)
+		CreateVisualEffect("RECITAH",[766.1640])
+		WaitRandom(3,5)
+		Continue()
+	RESPONSE #50
+		//SpellCastEffect(Myself,"","","",GLOW_ENCHANTMENT,1,ATTACK)
+		CreateVisualEffectObject("ENCHACG",Myself)
+		SetSequence(SEQ_CAST)
+		Wait(1)
+		//SpellHitEffectPoint(Myself,[624.1647],RECITATION,0)
+		CreateVisualEffect("RECITAH",[624.1647])
+		WaitRandom(3,5)
+		Continue()
+END
+

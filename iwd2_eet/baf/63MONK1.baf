@@ -1,0 +1,40 @@
+IF
+	!Allegiance(Myself,NOTEVIL) //ENEMY_OF_EVIL
+THEN
+	RESPONSE #100
+		ChangeEnemyAlly(Myself,NOTEVIL) //ENEMY_OF_EVIL
+END
+
+IF
+	Global("SH_Teleported_To_6303","GLOBAL",2)
+	!Global("SH_Ormis_Antidote","GLOBAL",2)
+THEN
+	RESPONSE #100
+		DestroySelf()
+END
+
+IF
+	!IsActive(Myself)
+	Global("SH_Teleported_To_6303","GLOBAL",2)
+	Global("SH_Ormis_Antidote","GLOBAL",2)
+THEN
+	RESPONSE #100
+		Activate(Myself)
+		SetGlobal("IwIHidden","LOCALS",0)
+		Continue()
+END
+
+IF
+	IsActive(Myself)
+THEN
+	RESPONSE #100
+		ChangeAIScript("",SPECIFICS)
+END
+
+IF
+	!IsActive(Myself)
+THEN
+	RESPONSE #100
+		NoAction()
+END
+

@@ -1,0 +1,9 @@
+IF
+	True()
+THEN
+	RESPONSE #100
+		ChangeSpecifics(Myself,254)
+		ApplySpellRES("iwperai",Myself)
+		ChangeAIScript("",OVERRIDE)
+END
+

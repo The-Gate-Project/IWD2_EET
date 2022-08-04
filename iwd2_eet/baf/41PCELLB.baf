@@ -1,0 +1,20 @@
+IF
+	Clicked([ANYONE])
+	Global("NathanielTalk","MYAREA",0)
+	!Global("41PCELLB_INACTIVE","MYAREA",1)
+	GlobalLT("41NateFreeQuest","GLOBAL",3)
+THEN
+	RESPONSE #100
+		SetGlobal("NathanielTalk","MYAREA",1)
+END
+
+IF
+	OpenState(Myself,TRUE)
+	!Global("41PCELLB_INACTIVE","MYAREA",1)
+THEN
+	RESPONSE #100
+		SetGlobal("TEAM_1","MYAREA",1)
+		//ChangeCurrentScript("")
+		SetGlobal("41PCELLB_INACTIVE","MYAREA",1)
+END
+

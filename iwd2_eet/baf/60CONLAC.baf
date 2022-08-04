@@ -1,0 +1,45 @@
+IF
+	Allegiance(Myself,ENEMY)
+THEN
+	RESPONSE #100
+		ChangeAIScript("00aAtGN",RACE)
+END
+
+IF
+	!GlobalTimerNotExpired("IwTimer21","LOCALS")
+	!Allegiance(Myself,ENEMY)
+	Global("60Seek_Sheemish_Quest","GLOBAL",0)
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,@38795)
+		SetGlobalTimer("IwTimer21","LOCALS",15)
+		Continue()
+	RESPONSE #100
+		DisplayStringHead(Myself,@38796)
+		SetGlobalTimer("IwTimer21","LOCALS",15)
+		Continue()
+	RESPONSE #100
+		DisplayStringHead(Myself,@38797)
+		SetGlobalTimer("IwTimer21","LOCALS",15)
+		Continue()
+END
+
+IF
+	!GlobalTimerNotExpired("IwTimer21","LOCALS")
+	!Allegiance(Myself,ENEMY)
+	Global("60Seek_Sheemish_Quest","GLOBAL",1)
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,@38792)
+		SetGlobalTimer("IwTimer21","LOCALS",5)
+		Continue()
+	RESPONSE #100
+		DisplayStringHead(Myself,@38793)
+		SetGlobalTimer("IwTimer21","LOCALS",5)
+		Continue()
+	RESPONSE #100
+		DisplayStringHead(Myself,@38794)
+		SetGlobalTimer("IwTimer21","LOCALS",5)
+		Continue()
+END
+

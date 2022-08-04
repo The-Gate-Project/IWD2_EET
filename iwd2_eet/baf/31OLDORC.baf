@@ -1,0 +1,51 @@
+IF
+	Global("SAW_PC","LOCALS",0)
+	IsActive(Myself)
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		FaceObject(NearestEnemyOf(Myself))
+		DisplayStringHead(Myself,@2060)
+		SetGlobal("SAW_PC","LOCALS",1)
+		Continue()
+END
+
+IF
+	!IsActive(Myself)
+	/*Dead("06_Bug_01")
+	Dead("06_Bug_02")
+	Dead("06_Bug_03")
+	Dead("06_Bug_04")*/
+	GlobalGT("SPRITE_IS_DEAD3101_Bugbear","GLOBAL",3)
+THEN
+	RESPONSE #100
+		FaceObject(NearestEnemyOf(Myself))
+		//HideCreature(Myself,FALSE)
+		Activate(Myself)
+		SetGlobal("IwIHidden","LOCALS",0)
+		ApplySpellRES("IDINVIS5",Myself)
+END
+
+IF
+	!IsActive(Myself)
+THEN
+	RESPONSE #100
+		NoAction()
+END
+
+IF
+	!GlobalTimerNotExpired("IwTimer21","LOCALS")
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #50
+		DisplayStringHead(Myself,@2061)
+		SetGlobalTimerRandom("IwTimer21","LOCALS",4,8)
+		Continue()
+	RESPONSE #50
+		DisplayStringHead(Myself,@2064)
+		SetGlobalTimerRandom("IwTimer21","LOCALS",4,8)
+		Continue()
+	RESPONSE #100
+		Continue()
+END
+

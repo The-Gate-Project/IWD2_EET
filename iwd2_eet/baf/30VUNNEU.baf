@@ -1,0 +1,17 @@
+IF
+	Allegiance(Myself,ENEMY)
+THEN
+	RESPONSE #100
+		ChangeEnemyAlly(Myself,NEUTRAL)
+		ApplySpellRES("iwperai",Myself)
+		ChangeAIScript("00T10ET",OVERRIDE)
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		ApplySpellRES("iwperai",Myself)
+		ChangeAIScript("00T10ET",OVERRIDE)
+END
+

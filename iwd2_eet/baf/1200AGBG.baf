@@ -1,0 +1,301 @@
+IF
+	!Global("1200AGBG_INACTIVE","LOCALS",1)
+	!Global("1200_BATTLE_CLEANUP","GLOBAL",0)
+THEN
+	RESPONSE #100
+		SetGlobal("1200AGBG_INACTIVE","LOCALS",1)
+END
+
+IF
+	!Global("1200AGBG_INACTIVE","LOCALS",1)
+	Global("PC_PREFERED_TARGET","LOCALS",0)
+	OR(2)
+		NightmareModeOn()
+		StoryModeOn()
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #25
+		SetGlobal("PC_PREFERED_TARGET","LOCALS",1)
+		Continue()
+	RESPONSE #75
+		Continue()
+END
+
+/*IF
+	!Global("1200AGBG_INACTIVE","LOCALS",1)
+	Global("PC_PREFERED_TARGET","LOCALS",0)
+	!GlobalTimerNotExpired("IwTimer12","LOCALS")
+	CheckAreaDiffLevel(2)
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #25
+		SetGlobal("PC_PREFERED_TARGET","LOCALS",1)
+		Continue()
+	RESPONSE #75
+		SetGlobalTimerRandom("IwTimer12","LOCALS",6,18)
+		Continue()
+END*/
+
+IF
+	!Global("1200AGBG_INACTIVE","LOCALS",1)
+	Global("PC_PREFERED_TARGET","LOCALS",0)
+	!GlobalTimerNotExpired("IwTimer12","LOCALS")
+	//CheckAreaDiffLevel(3)
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #50
+		SetGlobal("PC_PREFERED_TARGET","LOCALS",1)
+		Continue()
+	RESPONSE #50
+		SetGlobalTimerRandom("IwTimer12","LOCALS",6,18)
+		Continue()
+END
+
+IF
+	!Global("1200AGBG_INACTIVE","LOCALS",1)
+	!Global("PC_PREFERED_TARGET","LOCALS",0)
+	!See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		SetGlobal("PC_PREFERED_TARGET","LOCALS",0)
+		Continue()
+END
+
+IF
+	!Global("1200AGBG_INACTIVE","LOCALS",1)
+	Global("PC_PREFERED_TARGET","LOCALS",0)
+	AttackedBy([GOODCUTOFF],DEFAULT)
+THEN
+	RESPONSE #100
+		SetGlobal("PC_PREFERED_TARGET","LOCALS",1)
+		Enemy()
+		Continue()
+END
+
+IF
+	StateCheck(Myself,STATE_PANIC)
+THEN
+	RESPONSE #100
+		RandomWalkContinuous()
+END
+
+IF
+	!Global("1200AGBG_INACTIVE","LOCALS",1)
+	Global("PC_PREFERED_TARGET","LOCALS",0)
+	!Global("Goblins_Attack_Palisade","GLOBAL",0)
+	!Allegiance(Myself,ENEMY)
+	See([ENEMY])
+THEN
+	RESPONSE #100
+		SetGlobal("FOLLOW_PC","LOCALS",0)
+		EquipMostDamagingMelee()
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	!Global("1200AGBG_INACTIVE","LOCALS",1)
+	Global("PC_PREFERED_TARGET","LOCALS",0)
+	!Global("Goblins_Attack_Palisade","GLOBAL",0)
+	OR(3)
+		See([ENEMY.0.WOLF])
+		See([ENEMY.0.OGRE])
+		See([ENEMY.0.GOBLIN])
+THEN
+	RESPONSE #100
+		SetGlobal("FOLLOW_PC","LOCALS",0)
+		EquipMostDamagingMelee()
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	!Global("1200AGBG_INACTIVE","LOCALS",1)
+	Global("PC_PREFERED_TARGET","LOCALS",0)
+	Global("GOBLIN_TEAM_1_STATE","MYAREA",1)
+	OR(3)
+		See("12_Goblin_Team_01_a01")
+		See("12_Goblin_Team_01_02")
+		See("12_Goblin_Team_01_01")
+THEN
+	RESPONSE #100
+		SetGlobal("FOLLOW_PC","LOCALS",0)
+		EquipMostDamagingMelee()
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	!Global("1200AGBG_INACTIVE","LOCALS",1)
+	Global("PC_PREFERED_TARGET","LOCALS",0)
+	Global("GOBLIN_TEAM_2_STATE","MYAREA",1)
+	OR(3)
+		See("12_Goblin_Team_02_a01")
+		See("12_Goblin_Team_02_02")
+		See("12_Goblin_Team_02_01")
+THEN
+	RESPONSE #100
+		SetGlobal("FOLLOW_PC","LOCALS",0)
+		EquipMostDamagingMelee()
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	!Global("1200AGBG_INACTIVE","LOCALS",1)
+	Global("PC_PREFERED_TARGET","LOCALS",0)
+	Global("GOBLIN_TEAM_3_STATE","MYAREA",1)
+	OR(5)
+		See("03_Vghotan")
+		See("12_Goblin_Team_03_a02")
+		See("12_Goblin_Team_03_a01")
+		See("12_Goblin_Team_03_02")
+		See("12_Goblin_Team_03_01")
+THEN
+	RESPONSE #100
+		SetGlobal("FOLLOW_PC","LOCALS",0)
+		EquipMostDamagingMelee()
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	!Global("1200AGBG_INACTIVE","LOCALS",1)
+	Global("PC_PREFERED_TARGET","LOCALS",0)
+	Global("GOBLIN_TEAM_4_STATE","MYAREA",1)
+	OR(3)
+		See("12_Goblin_Team_04_a01")
+		See("12_Goblin_Team_04_02")
+		See("12_Goblin_Team_04_01")
+THEN
+	RESPONSE #100
+		SetGlobal("FOLLOW_PC","LOCALS",0)
+		EquipMostDamagingMelee()
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	!Global("1200AGBG_INACTIVE","LOCALS",1)
+	Global("PC_PREFERED_TARGET","LOCALS",0)
+	Global("GOBLIN_TEAM_5_STATE","MYAREA",1)
+	OR(11)
+		See("05_Ghotrag")
+		See("12_Goblin_Team_05_e02")
+		See("12_Goblin_Team_05_e01")
+		See("12_Goblin_Team_05_a03")
+		See("12_Goblin_Team_05_a02")
+		See("12_Goblin_Team_05_a01")
+		See("12_Goblin_Team_05_06")
+		See("12_Goblin_Team_05_05")
+		See("12_Goblin_Team_05_04")
+		See("12_Goblin_Team_05_02")
+		See("12_Goblin_Team_05_01")
+THEN
+	RESPONSE #100
+		SetGlobal("FOLLOW_PC","LOCALS",0)
+		EquipMostDamagingMelee()
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	!Global("1200AGBG_INACTIVE","LOCALS",1)
+	Global("PC_PREFERED_TARGET","LOCALS",0)
+	Global("GOBLIN_TEAM_6_STATE","MYAREA",1)
+	OR(11)
+		See("06_Caballus")
+		See("12_Goblin_Team_06_e02")
+		See("12_Goblin_Team_06_e01")
+		See("12_Goblin_Team_06_a03")
+		See("12_Goblin_Team_06_a02")
+		See("12_Goblin_Team_06_a01")
+		See("12_Goblin_Team_06_05")
+		See("12_Goblin_Team_06_04")
+		See("12_Goblin_Team_06_03")
+		See("12_Goblin_Team_06_02")
+		See("12_Goblin_Team_06_01")
+THEN
+	RESPONSE #100
+		SetGlobal("FOLLOW_PC","LOCALS",0)
+		EquipMostDamagingMelee()
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	!Global("1200AGBG_INACTIVE","LOCALS",1)
+	Global("PC_PREFERED_TARGET","LOCALS",0)
+	Global("GOBLIN_TEAM_7_STATE","MYAREA",1)
+	OR(8)
+		See("12_Goblin_Team_07_e01")
+		See("12_Goblin_Team_07_a02")
+		See("12_Goblin_Team_07_a01")
+		See("12_Goblin_Team_07_05")
+		See("12_Goblin_Team_07_04")
+		See("12_Goblin_Team_07_03")
+		See("12_Goblin_Team_07_02")
+		See("12_Goblin_Team_07_01")
+THEN
+	RESPONSE #100
+		SetGlobal("FOLLOW_PC","LOCALS",0)
+		EquipMostDamagingMelee()
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	!Global("1200AGBG_INACTIVE","LOCALS",1)
+	Global("PC_PREFERED_TARGET","LOCALS",0)
+	Global("GOBLIN_TEAM_8_STATE","MYAREA",1)
+	OR(6)
+		See("12_Goblin_Team_08_a02")
+		See("12_Goblin_Team_08_a01")
+		See("12_Goblin_Team_08_e01")
+		See("12_Goblin_Team_08_02")
+		See("12_Goblin_Team_08_01")
+		See("Phaen")
+THEN
+	RESPONSE #100
+		SetGlobal("FOLLOW_PC","LOCALS",0)
+		EquipMostDamagingMelee()
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	!Global("1200AGBG_INACTIVE","LOCALS",1)
+	Global("PC_PREFERED_TARGET","LOCALS",0)
+	See("12_Goblin_Team_01_w01")
+	Allegiance(LastSeenBy(Myself),ENEMY)
+THEN
+	RESPONSE #100
+		SetGlobal("FOLLOW_PC","LOCALS",0)
+		EquipMostDamagingMelee()
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	!Global("1200AGBG_INACTIVE","LOCALS",1)
+	Global("PC_PREFERED_TARGET","LOCALS",0)
+	See("12_Goblin_Team_03_w01")
+	Allegiance(LastSeenBy(Myself),ENEMY)
+THEN
+	RESPONSE #100
+		SetGlobal("FOLLOW_PC","LOCALS",0)
+		EquipMostDamagingMelee()
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	!Global("1200AGBG_INACTIVE","LOCALS",1)
+	Global("PC_PREFERED_TARGET","LOCALS",0)
+	See("12_Goblin_Team_03_w02")
+	Allegiance(LastSeenBy(Myself),ENEMY)
+THEN
+	RESPONSE #100
+		SetGlobal("FOLLOW_PC","LOCALS",0)
+		EquipMostDamagingMelee()
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	!Global("1200AGBG_INACTIVE","LOCALS",1)
+	Global("PC_PREFERED_TARGET","LOCALS",0)
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		SetGlobal("PC_PREFERED_TARGET","LOCALS",1)
+		Continue()
+END
+

@@ -1,0 +1,117 @@
+IF
+	Clicked([ANYONE])
+	Global("CanTravel","MYAREA",0)
+	Global("CurrentDestination","MYAREA",3)
+	Global("61CurrentDay","GLOBAL",1)
+THEN
+	RESPONSE #100
+		SaveGame(0)
+		Continue()
+END
+
+IF
+	Clicked([ANYONE])
+	Global("CurrentDestination","MYAREA",3)
+THEN
+	RESPONSE #100
+		ActionOverride(Player1,MoveToPoint([1928.592]))
+		ActionOverride(Player2,MoveToPoint([1928.592]))
+		ActionOverride(Player3,MoveToPoint([1928.592]))
+		ActionOverride(Player4,MoveToPoint([1928.592]))
+		ActionOverride(Player5,MoveToPoint([1928.592]))
+		ActionOverride(Player6,MoveToPoint([1928.592]))
+		SetGlobal("CanTravel","MYAREA",1)
+		SetGlobal("PlayersAtExit","MYAREA",0)
+		Continue()
+END
+
+IF
+	Global("CanTravel","MYAREA",1)
+	!BitCheck("PlayersAtExit","MYAREA",1)
+	OR(2)
+		Range(Player1,10)
+		StateCheck(Player1,STATE_REALLY_DEAD)
+THEN
+	RESPONSE #100
+		IncrementGlobal("PlayersAtExit","MYAREA",1)
+		Continue()
+END
+
+IF
+	Global("CanTravel","MYAREA",1)
+	!BitCheck("PlayersAtExit","MYAREA",2)
+	OR(3)
+		NumInPartyLT(2)
+		Range(Player2,10)
+		StateCheck(Player2,STATE_REALLY_DEAD)
+THEN
+	RESPONSE #100
+		IncrementGlobal("PlayersAtExit","MYAREA",2)
+		Continue()
+END
+
+IF
+	Global("CanTravel","MYAREA",1)
+	!BitCheck("PlayersAtExit","MYAREA",4)
+	OR(3)
+		NumInPartyLT(3)
+		Range(Player3,10)
+		StateCheck(Player3,STATE_REALLY_DEAD)
+THEN
+	RESPONSE #100
+		IncrementGlobal("PlayersAtExit","MYAREA",4)
+		Continue()
+END
+
+IF
+	Global("CanTravel","MYAREA",1)
+	!BitCheck("PlayersAtExit","MYAREA",8)
+	OR(3)
+		NumInPartyLT(4)
+		Range(Player4,10)
+		StateCheck(Player4,STATE_REALLY_DEAD)
+THEN
+	RESPONSE #100
+		IncrementGlobal("PlayersAtExit","MYAREA",8)
+		Continue()
+END
+
+IF
+	Global("CanTravel","MYAREA",1)
+	!BitCheck("PlayersAtExit","MYAREA",16)
+	OR(3)
+		NumInPartyLT(5)
+		Range(Player5,10)
+		StateCheck(Player5,STATE_REALLY_DEAD)
+THEN
+	RESPONSE #100
+		IncrementGlobal("PlayersAtExit","MYAREA",16)
+		Continue()
+END
+
+IF
+	Global("CanTravel","MYAREA",1)
+	!BitCheck("PlayersAtExit","MYAREA",32)
+	OR(3)
+		NumInPartyLT(6)
+		Range(Player6,10)
+		StateCheck(Player6,STATE_REALLY_DEAD)
+THEN
+	RESPONSE #100
+		IncrementGlobal("PlayersAtExit","MYAREA",32)
+		Continue()
+END
+
+IF
+	Global("PlayersAtExit","MYAREA",63)
+THEN
+	RESPONSE #100
+		FadeToColor([0.0],0)
+		SetGlobal("CanTravel","MYAREA",0)
+		SetGlobal("PlayersAtExit","MYAREA",0)
+		StartCutSceneMode()
+		ClearAllActions()
+		MultiPlayerSync()
+		StartCutScene("61cFExit")
+END
+

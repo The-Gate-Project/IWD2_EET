@@ -1,0 +1,163 @@
+IF
+	Global("Init","LOCALS",0)
+THEN
+	RESPONSE #100
+		ApplySpellRES("IDINVUL",Myself)
+		ApplySpellRES("IDINVIS6",Myself)
+		ChangeEnemyAlly(Myself,NEUTRAL)
+		SetGlobal("Init","LOCALS",1)
+		//JumpToObject("Snake_Statue")
+		JumpToPoint([2262.732])
+		Continue()
+END
+
+IF
+	!Global("60Heart1_InContainer","MYAREA",0)
+	!Contains("z6heart1","Treasury Table 1")
+	!Contains("z6heart1","Treasury Table 2")
+	!Contains("z6heart1","Treasure Table 3")
+	!Contains("z6heart1","Treasure Table 4")
+	!Contains("z6heart1","Treasure Table 5")
+	!Contains("z6heart1","Treasure Table 6")
+	!Contains("z6heart1","Treasure Table 7")
+	!Contains("z6heart1","Training Room Table")
+	!Contains("z6heart1","Priests Room Table 1")
+	!Contains("z6heart1","Priests Room Table 2")
+	!Contains("z6heart1","Ojaihas Chest 1")
+	!Contains("z6heart1","Ojaihas Chest 2")
+	!Contains("z6heart1","Ojaihas Chest 3")
+	!Contains("z6heart1","Priests Bookshelf 1")
+	!Contains("z6heart1","Snake_Statue")
+THEN
+	RESPONSE #100
+		SetGlobal("60Heart1_InContainer","MYAREA",0)
+		//Continue()
+END
+
+IF
+	Global("60Heart1_InContainer","MYAREA",0)
+	OR(15)
+		Contains("z6heart1","Treasury Table 1")
+		Contains("z6heart1","Treasury Table 2")
+		Contains("z6heart1","Treasure Table 3")
+		Contains("z6heart1","Treasure Table 4")
+		Contains("z6heart1","Treasure Table 5")
+		Contains("z6heart1","Treasure Table 6")
+		Contains("z6heart1","Treasure Table 7")
+		Contains("z6heart1","Training Room Table")
+		Contains("z6heart1","Priests Room Table 1")
+		Contains("z6heart1","Priests Room Table 2")
+		Contains("z6heart1","Ojaihas Chest 1")
+		Contains("z6heart1","Ojaihas Chest 2")
+		Contains("z6heart1","Ojaihas Chest 3")
+		Contains("z6heart1","Priests Bookshelf 1")
+		Contains("z6heart1","Snake_Statue")
+THEN
+	RESPONSE #100
+		SetGlobal("60Heart1_InContainer","MYAREA",1)
+		SetGlobal("60Heart1_InParty","MYAREA",0)
+END
+
+IF
+	!Global("60Heart1_InContainer","MYAREA",0)
+THEN
+	RESPONSE #100
+		NoAction()
+END
+
+IF
+	Global("60Heart1_InContainer","MYAREA",0)
+	//!Global("60Heart1_InParty","MYAREA",0)
+	!PartyHasItem("z6heart1")
+THEN
+	RESPONSE #100
+		SetGlobal("60Heart1_InParty","MYAREA",0)
+		NoAction()
+END
+
+IF
+	Global("60Heart1_InContainer","MYAREA",0)
+	//!Global("60Heart1_InParty","MYAREA",1)
+	PartyHasItem("z6heart1")
+THEN
+	RESPONSE #100
+		SetGlobal("60Heart1_InParty","MYAREA",1)
+		Continue()
+END
+
+IF
+	HasItem("z6heart1",Player1)
+	!Range(Player1,4)
+THEN
+	RESPONSE #100
+		JumpToObject(Player1)
+		SaveObjectLocation("MYAREA","HC1SavedLoc",Myself)
+END
+
+IF
+	HasItem("z6heart1",Player2)
+	!Range(Player2,4)
+THEN
+	RESPONSE #100
+		JumpToObject(Player2)
+		SaveObjectLocation("MYAREA","HC1SavedLoc",Myself)
+END
+
+IF
+	HasItem("z6heart1",Player3)
+	!Range(Player3,4)
+THEN
+	RESPONSE #100
+		JumpToObject(Player3)
+		SaveObjectLocation("MYAREA","HC1SavedLoc",Myself)
+END
+
+IF
+	HasItem("z6heart1",Player4)
+	!Range(Player4,4)
+THEN
+	RESPONSE #100
+		JumpToObject(Player4)
+		SaveObjectLocation("MYAREA","HC1SavedLoc",Myself)
+END
+
+IF
+	HasItem("z6heart1",Player5)
+	!Range(Player5,4)
+THEN
+	RESPONSE #100
+		JumpToObject(Player5)
+		SaveObjectLocation("MYAREA","HC1SavedLoc",Myself)
+END
+
+IF
+	HasItem("z6heart1",Player6)
+	!Range(Player6,4)
+THEN
+	RESPONSE #100
+		JumpToObject(Player6)
+		SaveObjectLocation("MYAREA","HC1SavedLoc",Myself)
+END
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

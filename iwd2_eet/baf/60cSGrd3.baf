@@ -1,0 +1,17 @@
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("The_Guardian")
+		MultiPlayerSync()
+		SetSequence(SEQ_SHOOT)
+		PlaySound("DRAGON02")
+		//ScreenShake(45,10,10)
+		ScreenShake([10.10],45)
+		UnhideGUI()
+		EndCutSceneMode()
+		MultiPlayerSync()
+		AddXP2DA("IW2EX12H")
+		DisplayStringNoName(Player1,@33399) //[PC]
+END
+

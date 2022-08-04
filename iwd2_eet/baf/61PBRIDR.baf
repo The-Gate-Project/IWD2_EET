@@ -1,0 +1,221 @@
+IF
+	NumItems("z5misc38","Bridge",1)
+THEN
+	RESPONSE #100
+		ActionOverride("Bridge",DestroyItem("z5misc38"))
+		IncrementGlobal("RopeCount","MYAREA",1)
+END
+
+IF
+	NumItems("z5misc38","Bridge",2)
+THEN
+	RESPONSE #100
+		ActionOverride("Bridge",DestroyItem("z5misc38"))
+		IncrementGlobal("RopeCount","MYAREA",2)
+END
+
+IF
+	NumItems("z5misc38","Bridge",3)
+THEN
+	RESPONSE #100
+		ActionOverride("Bridge",DestroyItem("z5misc38"))
+		IncrementGlobal("RopeCount","MYAREA",3)
+END
+
+IF
+	NumItems("z5misc38","Bridge",4)
+THEN
+	RESPONSE #100
+		ActionOverride("Bridge",DestroyItem("z5misc38"))
+		IncrementGlobal("RopeCount","MYAREA",4)
+END
+
+IF
+	NumItems("z5misc38","Bridge",5)
+THEN
+	RESPONSE #100
+		ActionOverride("Bridge",DestroyItem("z5misc38"))
+		IncrementGlobal("RopeCount","MYAREA",5)
+END
+
+IF
+	GlobalGT("RopeCount","MYAREA",0)
+	//Sequence("BridgeLeft",ATTACK)
+	Global("BridgeLeft_Seq","MYAREA",0)
+THEN
+	RESPONSE #100
+		PlaySound("IW5100E")
+		StaticSequence("BridgeLeft",SEQ_AWAKE)
+		StaticSequence("BridgeRight",SEQ_AWAKE)
+		SetGlobal("BridgeLeft_Seq","MYAREA",1)
+		SetGlobal("BridgeRight_Seq","MYAREA",1)
+		OpenDoor("AR6104_South_Bridge")
+		TriggerActivation("InfoBridgeDamaged",FALSE)
+		TriggerActivation("InfoBridgeUnsafe",TRUE)
+		//SetHP("61Bridge",25)  // Ìîñò
+		//HideCreature("61Bridge",FALSE)  // Ìîñò
+		Activate("61Bridge")
+		ActionOverride("61Bridge",SetGlobal("IwIHidden","LOCALS",0))
+		ActionOverride("61Bridge",ApplySpellRES("IWSHP25",Myself))
+END
+
+IF
+	GlobalGT("RopeCount","MYAREA",1)
+	//Sequence("BridgeLeft",SEQ_AWAKE)
+	Global("BridgeLeft_Seq","MYAREA",1)
+THEN
+	RESPONSE #100
+		PlaySound("IW5100E")
+		StaticSequence("BridgeLeft",SEQ_CAST)
+		StaticSequence("BridgeRight",SEQ_CAST)
+		SetGlobal("BridgeLeft_Seq","MYAREA",2)
+		SetGlobal("BridgeRight_Seq","MYAREA",2)
+		//SetHP("61Bridge",50)  // Ìîñò
+		ActionOverride("61Bridge",ApplySpellRES("IWSHP50",Myself))
+END
+
+IF
+	GlobalGT("RopeCount","MYAREA",2)
+	//Sequence("BridgeLeft",SEQ_CAST)
+	Global("BridgeLeft_Seq","MYAREA",2)
+THEN
+	RESPONSE #100
+		PlaySound("IW5100E")
+		StaticSequence("BridgeLeft",SEQ_CONJURE)
+		StaticSequence("BridgeRight",SEQ_CONJURE)
+		SetGlobal("BridgeLeft_Seq","MYAREA",3)
+		SetGlobal("BridgeRight_Seq","MYAREA",3)
+		//SetHP("61Bridge",75)  // Ìîñò
+		ActionOverride("61Bridge",ApplySpellRES("IWSHP75",Myself))
+END
+
+IF
+	GlobalGT("RopeCount","MYAREA",3)
+	//Sequence("BridgeLeft",SEQ_CONJURE)
+	Global("BridgeLeft_Seq","MYAREA",3)
+THEN
+	RESPONSE #100
+		PlaySound("IW5100E")
+		StaticSequence("BridgeLeft",SEQ_DAMAGE)
+		StaticSequence("BridgeRight",SEQ_DAMAGE)
+		SetGlobal("BridgeLeft_Seq","MYAREA",4)
+		SetGlobal("BridgeRight_Seq","MYAREA",4)
+		//SetHP("61Bridge",100)  // Ìîñò
+		ActionOverride("61Bridge",ApplySpellRES("IWSHP100",Myself))
+		TriggerActivation("InfoBridgeUnsafe",FALSE)
+		TriggerActivation("InfoBridgeFixed",TRUE)
+		TriggerActivation(Myself,FALSE)
+END
+
+IF
+	OR(2)
+		Entered([ANYONE])
+		IsOverMe([ANYONE])
+	!Specifics(LastTrigger,253)
+	Global("RopeCount","MYAREA",0)
+THEN
+	RESPONSE #100
+		PlaySound("IW5200E")
+		ClearActions(LastTrigger)
+		VerbalConstant(LastTrigger,HURT)
+		DisplayString(LastTrigger,@35805)
+		Wait(3)
+		ActionOverride(LastTrigger,JumpToPoint([1536.2432]))
+		ApplySpellRES("IWWI097",LastTrigger)
+		ApplySpellRES("IWWI097",LastTrigger)
+		ApplySpellRES("IWWI097",LastTrigger)
+		ApplySpellRES("IWWI097",LastTrigger)
+		ApplySpellRES("IWWI097",LastTrigger)
+		ApplySpellRES("IWWI097",LastTrigger)
+		ApplySpellRES("IWWI097",LastTrigger)
+		ApplySpellRES("IWWI097",LastTrigger)
+		ActionOverride(LastTrigger,SetSequence(SEQ_SLEEP))
+END
+
+IF
+	OpenState("AR6104_South_Bridge",TRUE)
+	Global("RopeCount","MYAREA",0)
+	HP("61Bridge",1)  // Ìîñò
+	!IsActive("61Bridge")  // Ìîñò
+	//Sequence("BridgeLeft",ATTACK)
+	//Sequence("BridgeRight",ATTACK)
+	Global("BridgeLeft_Seq","MYAREA",0)
+	Global("BridgeRight_Seq","MYAREA",0)
+	!IsOverMe([ANYONE])
+THEN
+	RESPONSE #100
+		CloseDoor("AR6104_South_Bridge")
+END
+
+IF
+	OR(2)
+		Entered([ANYONE])
+		IsOverMe([ANYONE])
+	!Specifics(LastTrigger,253)
+	Global("RopeCount","MYAREA",1)
+	RandomNumLT(100,75)
+THEN
+	RESPONSE #100
+		PlaySound("IW5200E")
+		ClearActions(LastTrigger)
+		VerbalConstant(LastTrigger,HURT)
+		DisplayString(LastTrigger,@35805)
+		Wait(3)
+		ActionOverride(LastTrigger,JumpToPoint([1536.2432]))
+		ApplySpellRES("IWWI097",LastTrigger)
+		ApplySpellRES("IWWI097",LastTrigger)
+		ApplySpellRES("IWWI097",LastTrigger)
+		ApplySpellRES("IWWI097",LastTrigger)
+		ApplySpellRES("IWWI097",LastTrigger)
+		ApplySpellRES("IWWI097",LastTrigger)
+		ApplySpellRES("IWWI097",LastTrigger)
+		ActionOverride(LastTrigger,SetSequence(SEQ_SLEEP))
+END
+
+IF
+	OR(2)
+		Entered([ANYONE])
+		IsOverMe([ANYONE])
+	!Specifics(LastTrigger,253)
+	Global("RopeCount","MYAREA",2)
+	RandomNumLT(100,50)
+THEN
+	RESPONSE #100
+		PlaySound("IW5200E")
+		ClearActions(LastTrigger)
+		VerbalConstant(LastTrigger,HURT)
+		DisplayString(LastTrigger,@35805)
+		Wait(3)
+		ActionOverride(LastTrigger,JumpToPoint([1536.2432]))
+		ApplySpellRES("IWWI097",LastTrigger)
+		ApplySpellRES("IWWI097",LastTrigger)
+		ApplySpellRES("IWWI097",LastTrigger)
+		ApplySpellRES("IWWI097",LastTrigger)
+		ApplySpellRES("IWWI097",LastTrigger)
+		ApplySpellRES("IWWI097",LastTrigger)
+		ActionOverride(LastTrigger,SetSequence(SEQ_SLEEP))
+END
+
+IF
+	OR(2)
+		Entered([ANYONE])
+		IsOverMe([ANYONE])
+	!Specifics(LastTrigger,253)
+	Global("RopeCount","MYAREA",3)
+	RandomNumLT(100,25)
+THEN
+	RESPONSE #100
+		PlaySound("IW5200E")
+		ClearActions(LastTrigger)
+		VerbalConstant(LastTrigger,HURT)
+		DisplayString(LastTrigger,@35805)
+		Wait(3)
+		ActionOverride(LastTrigger,JumpToPoint([1536.2432]))
+		ApplySpellRES("IWWI097",LastTrigger)
+		ApplySpellRES("IWWI097",LastTrigger)
+		ApplySpellRES("IWWI097",LastTrigger)
+		ApplySpellRES("IWWI097",LastTrigger)
+		ApplySpellRES("IWWI097",LastTrigger)
+		ActionOverride(LastTrigger,SetSequence(SEQ_SLEEP))
+END
+

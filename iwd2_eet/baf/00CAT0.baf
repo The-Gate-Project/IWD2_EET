@@ -1,0 +1,62 @@
+IF
+	Global("CAT_WALK","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobal("CAT_WALK","LOCALS",1)
+		Continue()
+	RESPONSE #100
+		SetGlobal("CAT_WALK","LOCALS",2)
+		Continue()
+END
+
+IF
+	!GlobalTimerNotExpired("IwTimer19","LOCALS")
+	Global("CAT_WALK","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobalTimerRandom("IwTimer19","LOCALS",15,25)
+		SetGlobal("CAT_WALK","LOCALS",2)
+		Continue()
+END
+
+IF
+	!GlobalTimerNotExpired("IwTimer19","LOCALS")
+	Global("CAT_WALK","LOCALS",2)
+THEN
+	RESPONSE #100
+		SetGlobalTimerRandom("IwTimer19","LOCALS",5,15)
+		SetGlobal("CAT_WALK","LOCALS",1)
+		Continue()
+END
+
+IF
+	Global("CAT_WALK","LOCALS",1)
+	Allegiance(Myself,ENEMY)
+	See([PC])
+THEN
+	RESPONSE #100
+		SetGlobal("CAT_WALK","LOCALS",2)
+		Continue()
+END
+
+IF
+	Global("CAT_WALK","LOCALS",1)
+THEN
+	RESPONSE #100
+		RandomWalk()
+END
+
+IF
+	AttackedBy([ENEMY.0.GOBLIN],DEFAULT)
+THEN
+	RESPONSE #100
+		RunAwayFrom(LastAttackerOf(Myself),45)
+END
+
+IF
+	!Allegiance(Myself,ENEMY)
+THEN
+	RESPONSE #100
+		NoAction()
+END
+

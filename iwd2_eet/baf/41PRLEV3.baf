@@ -1,0 +1,117 @@
+/* OLD
+IF
+	Clicked([ANYONE])
+	//!CheckDoorFlags(Myself,DOORLOCKED)
+	!Global("41PRLEV3_locked","MYAREA",1)
+THEN
+	RESPONSE #100
+		PlaySound("IW4100d")
+		OpenDoor("AR4100_Lever3_RocksDumped")
+		//SetDoorFlag("AR4100_Lever3_RocksDumped",HIDDEN,FALSE)
+		/*ForceSpellPoint([1491.1833],2097)  // SPWI097.SPL (Падающие обломки)
+		ForceSpellPoint([1491.1833],2097)  // SPWI097.SPL (Падающие обломки)
+		ForceSpellPoint([1491.1833],2097)  // SPWI097.SPL (Падающие обломки)
+		ForceSpellPoint([1491.1833],2097)  // SPWI097.SPL (Падающие обломки)
+		ForceSpellPoint([1491.1833],2097)  // SPWI097.SPL (Падающие обломки)
+		ForceSpellPoint([1491.1833],2097)  // SPWI097.SPL (Падающие обломки)
+		ForceSpellPoint([1491.1833],2097)  // SPWI097.SPL (Падающие обломки)
+		ForceSpellPoint([1491.1833],2097)  // SPWI097.SPL (Падающие обломки)*/
+		ForceSpellPointRES("IWWI097",[1491.1833])
+		ForceSpellPointRES("IWWI097",[1491.1833])
+		ForceSpellPointRES("IWWI097",[1491.1833])
+		ForceSpellPointRES("IWWI097",[1491.1833])
+		ForceSpellPointRES("IWWI097",[1491.1833])
+		ForceSpellPointRES("IWWI097",[1491.1833])
+		ForceSpellPointRES("IWWI097",[1491.1833])
+		ForceSpellPointRES("IWWI097",[1491.1833])
+		SetGlobal("41PRLEV3_locked","MYAREA",1)
+		Lock(Myself)
+END
+
+IF
+	Clicked([ANYONE])
+	//CheckDoorFlags(Myself,DOORLOCKED)
+	Global("41PRLEV3_locked","MYAREA",1)
+	OpenState(Myself,TRUE)
+	OpenState("AR4100_Lever3_RocksDumped",FALSE)
+	Range(LastTrigger,4)
+	HasItem("z4genrp",LastTrigger)
+THEN
+	RESPONSE #100
+		ActionOverride(LastTrigger,DestroyItem("z4genrp"))
+		CloseDoor(Myself)
+		Unlock(Myself)
+		SetGlobal("41PRLEV3_locked","MYAREA",0)
+END
+
+IF
+	Clicked([ANYONE])
+	//CheckDoorFlags(Myself,DOORLOCKED)
+	Global("41PRLEV3_locked","MYAREA",1)
+	Range(LastTrigger,4)
+	!HasItem("z4genrp",LastTrigger)
+THEN
+	RESPONSE #100
+		DisplayStringNoName(LastTrigger,@31992)
+END*/
+
+IF
+	//Clicked([ANYONE])
+	OpenState(Myself,TRUE)
+	//!CheckDoorFlags(Myself,DOORLOCKED)
+	!Global("41PRLEV3_locked","MYAREA",1)
+THEN
+	RESPONSE #100
+		PlaySound("IW4100d")
+		OpenDoor("AR4100_Lever3_RocksDumped")
+		//ActionOverride("AR4100_Lever3_Container",CreateItem("z4genrp",1,0,0))
+		TriggerActivation("AR4100_Lever3_Reg",TRUE)
+		//SetDoorFlag("AR4100_Lever3_RocksDumped",HIDDEN,FALSE)
+		/*ForceSpellPoint([1491.1833],2097)  // SPWI097.SPL (Падающие обломки)
+		ForceSpellPoint([1491.1833],2097)  // SPWI097.SPL (Падающие обломки)
+		ForceSpellPoint([1491.1833],2097)  // SPWI097.SPL (Падающие обломки)
+		ForceSpellPoint([1491.1833],2097)  // SPWI097.SPL (Падающие обломки)
+		ForceSpellPoint([1491.1833],2097)  // SPWI097.SPL (Падающие обломки)
+		ForceSpellPoint([1491.1833],2097)  // SPWI097.SPL (Падающие обломки)
+		ForceSpellPoint([1491.1833],2097)  // SPWI097.SPL (Падающие обломки)
+		ForceSpellPoint([1491.1833],2097)  // SPWI097.SPL (Падающие обломки)*/
+		ForceSpellPointRES("IWWI097",[1491.1833])
+		ForceSpellPointRES("IWWI097",[1491.1833])
+		ForceSpellPointRES("IWWI097",[1491.1833])
+		ForceSpellPointRES("IWWI097",[1491.1833])
+		ForceSpellPointRES("IWWI097",[1491.1833])
+		ForceSpellPointRES("IWWI097",[1491.1833])
+		ForceSpellPointRES("IWWI097",[1491.1833])
+		ForceSpellPointRES("IWWI097",[1491.1833])
+		SetGlobal("41PRLEV3_locked","MYAREA",1)
+		Lock(Myself)
+END
+
+IF
+	//Clicked([ANYONE])
+	OpenState(Myself,FALSE)
+	//CheckDoorFlags(Myself,DOORLOCKED)
+	Global("41PRLEV3_locked","MYAREA",1)
+	//OpenState(Myself,TRUE)
+	OpenState("AR4100_Lever3_RocksDumped",FALSE)
+	//Range(LastTrigger,4)
+	//HasItem("z4genrp",LastTrigger)
+THEN
+	RESPONSE #100
+		//ActionOverride(LastTrigger,DestroyItem("z4genrp"))
+		//CloseDoor(Myself)
+		//Unlock(Myself)
+		SetGlobal("41PRLEV3_locked","MYAREA",0)
+END
+
+/* IF
+	Clicked([ANYONE])
+	//CheckDoorFlags(Myself,DOORLOCKED)
+	Global("41PRLEV3_locked","MYAREA",1)
+	Range(LastTrigger,4)
+	!HasItem("z4genrp",LastTrigger)
+THEN
+	RESPONSE #100
+		DisplayStringNoName(LastTrigger,@31992)
+END */
+

@@ -1,0 +1,18 @@
+/*IF
+	!TimerActive(22)
+	Allegiance(Myself,ENEMY)
+THEN
+	RESPONSE #100
+		MoveToObject(NearestPC)
+		StartRandomTimer(22,2,5)
+END*/
+
+IF
+	!GlobalTimerNotExpired("IwTimer22","LOCALS")
+	Allegiance(Myself,ENEMY)
+THEN
+	RESPONSE #100
+		MoveToObject(Player1)
+		SetGlobalTimerRandom("IwTimer22","LOCALS",2,5)
+END
+

@@ -1,0 +1,32 @@
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId(Myself)
+		ClearAllActions()
+		MultiPlayerSync()
+		Wait(1)
+		StartCutSceneMode()
+		ActionOverride("07_52MNKCL_01",DestroySelf())
+		ActionOverride("07_52MNKCL_02",DestroySelf())
+		ActionOverride("07_52MNKCL_03",DestroySelf())
+		/*ChangeEnemyAlly(Player1,PC)
+		ChangeEnemyAlly(Player2,PC)
+		ChangeEnemyAlly(Player3,PC)
+		ChangeEnemyAlly(Player4,PC)
+		ChangeEnemyAlly(Player5,PC)
+		ChangeEnemyAlly(Player6,PC)*/
+		ActionOverride(Player1,ApplySpellRES("IDRUNSEL",Myself))
+		ActionOverride(Player2,ApplySpellRES("IDRUNSEL",Myself))
+		ActionOverride(Player3,ApplySpellRES("IDRUNSEL",Myself))
+		ActionOverride(Player4,ApplySpellRES("IDRUNSEL",Myself))
+		ActionOverride(Player5,ApplySpellRES("IDRUNSEL",Myself))
+		ActionOverride(Player6,ApplySpellRES("IDRUNSEL",Myself))
+		MoveViewPoint([585.640],22)
+		//ResetJoinRequests()
+		MultiPlayerSync()
+		SetGlobal("FORCE_PARTY_EA","MYAREA",1)
+		MultiPlayerSync()
+		EndCutSceneMode()
+END
+

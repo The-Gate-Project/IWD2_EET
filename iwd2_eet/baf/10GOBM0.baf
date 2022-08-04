@@ -1,0 +1,154 @@
+IF
+	Global("I_LIKE_DWARVES","LOCALS",0)
+	See([PC])
+THEN
+	RESPONSE #75
+		SetGlobal("I_LIKE_DWARVES","LOCALS",2)
+		Continue()
+	RESPONSE #25
+		SetGlobal("I_LIKE_DWARVES","LOCALS",1)
+		Continue()
+END
+
+IF
+	StateCheck(Myself,STATE_PANIC)
+THEN
+	RESPONSE #100
+		RandomWalkContinuous()
+END
+
+IF
+	Global("I_LIKE_DWARVES","LOCALS",1)
+	OR(2)
+		See([0.0.DWARF])
+		See([PC.0.DWARF])
+THEN
+	RESPONSE #100
+		EquipMostDamagingMelee()
+		AttackOneRound(LastSeenBy(Myself))
+END
+/* OLD_OR
+IF
+	OR(9)
+		See(NearestEnemyOf(Myself))
+		See("JORUN")
+		See("CRANDALL")
+		See("BROGAN")
+		See("JON")
+		See("REIG")
+		See("SCREED")
+		See("ELDGULL")
+		See("HEDRON")
+THEN
+	RESPONSE #100
+		EquipMostDamagingMelee()
+		AttackOneRound(LastSeenBy(Myself))
+END
+*/
+
+/*IF
+	See("JORUN")
+	!StateCheck(LastSeenBy(Myself),STATE_REALLY_DEAD)
+THEN
+	RESPONSE #40
+		EquipMostDamagingMelee()
+		AttackOneRound(LastSeenBy(Myself))
+	RESPONSE #60
+		Continue()
+END
+
+IF
+	See("CRANDALL")
+	!StateCheck(LastSeenBy(Myself),STATE_REALLY_DEAD)
+THEN
+	RESPONSE #40
+		EquipMostDamagingMelee()
+		AttackOneRound(LastSeenBy(Myself))
+	RESPONSE #60
+		Continue()
+END
+
+IF
+	See("BROGAN")
+	!StateCheck(LastSeenBy(Myself),STATE_REALLY_DEAD)
+THEN
+	RESPONSE #40
+		EquipMostDamagingMelee()
+		AttackOneRound(LastSeenBy(Myself))
+	RESPONSE #60
+		Continue()
+END
+
+IF
+	See("JON")
+	!StateCheck(LastSeenBy(Myself),STATE_REALLY_DEAD)
+THEN
+	RESPONSE #40
+		EquipMostDamagingMelee()
+		AttackOneRound(LastSeenBy(Myself))
+	RESPONSE #60
+		Continue()
+END
+
+IF
+	See("REIG")
+	!StateCheck(LastSeenBy(Myself),STATE_REALLY_DEAD)
+THEN
+	RESPONSE #40
+		EquipMostDamagingMelee()
+		AttackOneRound(LastSeenBy(Myself))
+	RESPONSE #60
+		Continue()
+END
+
+IF
+	See("SCREED")
+	!StateCheck(LastSeenBy(Myself),STATE_REALLY_DEAD)
+THEN
+	RESPONSE #40
+		EquipMostDamagingMelee()
+		AttackOneRound(LastSeenBy(Myself))
+	RESPONSE #60
+		Continue()
+END
+
+IF
+	See("ELDGULL")
+	!StateCheck(LastSeenBy(Myself),STATE_REALLY_DEAD)
+THEN
+	RESPONSE #40
+		EquipMostDamagingMelee()
+		AttackOneRound(LastSeenBy(Myself))
+	RESPONSE #60
+		Continue()
+END
+
+IF
+	See("HEDRON")
+	!StateCheck(LastSeenBy(Myself),STATE_REALLY_DEAD)
+THEN
+	RESPONSE #40
+		EquipMostDamagingMelee()
+		AttackOneRound(LastSeenBy(Myself))
+	RESPONSE #60
+		Continue()
+END*/
+
+IF
+	OR(9)
+		See("HEDRON")
+		See("ELDGULL")
+		See("SCREED")
+		See("REIG")
+		See("JON")
+		See("BROGAN")
+		See("CRANDALL")
+		See("JORUN")
+		See(NearestEnemyOf(Myself))
+	!StateCheck(LastSeenBy(Myself),STATE_REALLY_DEAD)
+THEN
+	RESPONSE #100
+		EquipMostDamagingMelee()
+		AttackOneRound(LastSeenBy(Myself))
+END
+

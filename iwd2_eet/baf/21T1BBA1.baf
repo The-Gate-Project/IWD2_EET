@@ -1,0 +1,58 @@
+/*IF
+	!Global("Captains_Team1_attacked","MYAREA",1)
+	IsHeartOfFuryModeOn()
+	AttackedBy([GOODCUTOFF],DEFAULT)
+THEN
+	RESPONSE #100
+		SetGlobal("Captains_Team1_attacked","MYAREA",1)
+		SetGlobalTimer("Captains_Team1_Timer","MYAREA",35)
+		Continue()
+END
+
+IF
+	!Global("Captains_Team1_attacked","MYAREA",1)
+	CheckAreaDiffLevel(3)
+	AttackedBy([GOODCUTOFF],DEFAULT)
+THEN
+	RESPONSE #100
+		SetGlobal("Captains_Team1_attacked","MYAREA",1)
+		SetGlobalTimer("Captains_Team1_Timer","MYAREA",35)
+		Continue()
+END*/
+
+IF
+	!Global("Captains_Team1_attacked","MYAREA",1)
+	AttackedBy([GOODCUTOFF],DEFAULT)
+THEN
+	RESPONSE #100
+		SetGlobal("Captains_Team1_attacked","MYAREA",1)
+		SetGlobalTimer("Captains_Team1_Timer","MYAREA",35)
+		Continue()
+END
+
+IF
+	Global("Captains_Team1_attacked","MYAREA",1)
+	GlobalTimerExpired("Captains_Team1_Timer","MYAREA")
+	StateCheck(Myself,STATE_SILENCED)
+	!GlobalTimerNotExpired("IwTimer0","LOCALS")
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,@36665)
+		SetGlobalTimer("IwTimer0","LOCALS",4)
+		Continue()
+END
+
+IF
+	Global("Captains_Team1_attacked","MYAREA",1)
+	GlobalTimerExpired("Captains_Team1_Timer","MYAREA")
+	!StateCheck(Myself,STATE_SILENCED)
+	!GlobalTimerNotExpired("IwTimer0","LOCALS")
+THEN
+	RESPONSE #100
+		SetGlobal("Captains_Team1_attacked","MYAREA",2)
+		DisplayStringHead(Myself,@25011)
+		SetGlobalTimer("IwTimer0","LOCALS",4)
+		SetGlobal("TEAM_2","MYAREA",1)
+		Continue()
+END
+

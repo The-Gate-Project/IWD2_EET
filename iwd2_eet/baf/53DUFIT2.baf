@@ -1,0 +1,19 @@
+IF
+	!Allegiance(Myself,ENEMY)
+	!StateCheck(Myself,STATE_INVISIBLE)
+	Detect([PC])
+THEN
+	RESPONSE #100
+		ApplySpellRES("IWIN259",Myself)  // SPIN259.SPL INNATE_INVISIBILITY_NO_FEEDBACK
+		Wait(1)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		ChangeAIScript("",CLASS)
+END
+
+

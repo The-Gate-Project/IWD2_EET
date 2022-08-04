@@ -1,0 +1,653 @@
+//BLOCK
+IF
+	Global("Pool_Tainted","GLOBAL",1)
+	Global("TeleportIsairMadaeHP33","MYAREA",0)
+	//HPPercentGT(Myself,33)
+	HPPercentGT(Myself,91)
+THEN
+	RESPONSE #100
+		//MatchHP("Isair2",CURRENT_HP)
+		SetGlobal("Isair_HitPoints","GLOBAL",95)
+		Continue()
+END
+
+IF
+	Global("Pool_Tainted","GLOBAL",1)
+	Global("TeleportIsairMadaeHP33","MYAREA",0)
+	//HPPercentGT(Myself,33)
+	HPPercentGT(Myself,86)
+	HPPercentLT(Myself,92)
+THEN
+	RESPONSE #100
+		//MatchHP("Isair2",CURRENT_HP)
+		SetGlobal("Isair_HitPoints","GLOBAL",90)
+		Continue()
+END
+
+IF
+	Global("Pool_Tainted","GLOBAL",1)
+	Global("TeleportIsairMadaeHP33","MYAREA",0)
+	//HPPercentGT(Myself,33)
+	HPPercentGT(Myself,81)
+	HPPercentLT(Myself,87)
+THEN
+	RESPONSE #100
+		//MatchHP("Isair2",CURRENT_HP)
+		SetGlobal("Isair_HitPoints","GLOBAL",85)
+		Continue()
+END
+
+IF
+	Global("Pool_Tainted","GLOBAL",1)
+	Global("TeleportIsairMadaeHP33","MYAREA",0)
+	//HPPercentGT(Myself,33)
+	HPPercentGT(Myself,76)
+	HPPercentLT(Myself,82)
+THEN
+	RESPONSE #100
+		//MatchHP("Isair2",CURRENT_HP)
+		SetGlobal("Isair_HitPoints","GLOBAL",80)
+		Continue()
+END
+
+IF
+	Global("Pool_Tainted","GLOBAL",1)
+	Global("TeleportIsairMadaeHP33","MYAREA",0)
+	//HPPercentGT(Myself,33)
+	HPPercentGT(Myself,71)
+	HPPercentLT(Myself,77)
+THEN
+	RESPONSE #100
+		//MatchHP("Isair2",CURRENT_HP)
+		SetGlobal("Isair_HitPoints","GLOBAL",75)
+		Continue()
+END
+
+IF
+	Global("Pool_Tainted","GLOBAL",1)
+	Global("TeleportIsairMadaeHP33","MYAREA",0)
+	//HPPercentGT(Myself,33)
+	HPPercentGT(Myself,66)
+	HPPercentLT(Myself,72)
+THEN
+	RESPONSE #100
+		//MatchHP("Isair2",CURRENT_HP)
+		SetGlobal("Isair_HitPoints","GLOBAL",70)
+		Continue()
+END
+
+IF
+	Global("Pool_Tainted","GLOBAL",1)
+	Global("TeleportIsairMadaeHP33","MYAREA",0)
+	//HPPercentGT(Myself,33)
+	HPPercentGT(Myself,61)
+	HPPercentLT(Myself,67)
+THEN
+	RESPONSE #100
+		//MatchHP("Isair2",CURRENT_HP)
+		SetGlobal("Isair_HitPoints","GLOBAL",65)
+		Continue()
+END
+
+IF
+	Global("Pool_Tainted","GLOBAL",1)
+	Global("TeleportIsairMadaeHP33","MYAREA",0)
+	//HPPercentGT(Myself,33)
+	HPPercentGT(Myself,56)
+	HPPercentLT(Myself,62)
+THEN
+	RESPONSE #100
+		//MatchHP("Isair2",CURRENT_HP)
+		SetGlobal("Isair_HitPoints","GLOBAL",60)
+		Continue()
+END
+
+IF
+	Global("Pool_Tainted","GLOBAL",1)
+	Global("TeleportIsairMadaeHP33","MYAREA",0)
+	//HPPercentGT(Myself,33)
+	HPPercentGT(Myself,51)
+	HPPercentLT(Myself,57)
+THEN
+	RESPONSE #100
+		//MatchHP("Isair2",CURRENT_HP)
+		SetGlobal("Isair_HitPoints","GLOBAL",55)
+		Continue()
+END
+////////////////////////////////
+IF
+	Global("Pool_Tainted","GLOBAL",1)
+	Global("TeleportIsairMadaeHP33","MYAREA",0)
+	//HPPercentGT(Myself,33)
+	HPPercentGT(Myself,46)
+	HPPercentLT(Myself,52)
+THEN
+	RESPONSE #100
+		//MatchHP("Isair2",CURRENT_HP)
+		SetGlobal("Isair_HitPoints","GLOBAL",50)
+		Continue()
+END
+
+IF
+	Global("Pool_Tainted","GLOBAL",1)
+	Global("TeleportIsairMadaeHP33","MYAREA",0)
+	//HPPercentGT(Myself,33)
+	HPPercentGT(Myself,41)
+	HPPercentLT(Myself,47)
+THEN
+	RESPONSE #100
+		//MatchHP("Isair2",CURRENT_HP)
+		SetGlobal("Isair_HitPoints","GLOBAL",45)
+		Continue()
+END
+
+IF
+	Global("Pool_Tainted","GLOBAL",1)
+	Global("TeleportIsairMadaeHP33","MYAREA",0)
+	//HPPercentGT(Myself,33)
+	HPPercentGT(Myself,36)
+	HPPercentLT(Myself,42)
+THEN
+	RESPONSE #100
+		//MatchHP("Isair2",CURRENT_HP)
+		SetGlobal("Isair_HitPoints","GLOBAL",40)
+		Continue()
+END
+
+IF
+	Global("Pool_Tainted","GLOBAL",1)
+	Global("TeleportIsairMadaeHP33","MYAREA",0)
+	//HPPercentGT(Myself,33)
+	//HPPercentGT(Myself,33)
+	HPPercentLT(Myself,37)
+THEN
+	RESPONSE #100
+		//MatchHP("Isair2",CURRENT_HP)
+		SetGlobal("Isair_HitPoints","GLOBAL",35)
+		Continue()
+END
+//BLOCKEND
+//BLOCK SET_VARS
+IF
+	!Global("SET_63IsaiC2","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_2_RANDOM_CAST","LOCALS",1,8)
+		SetGlobal("SET_63IsaiC2","LOCALS",1)
+		SetInterrupt(TRUE)
+END
+//BLOCKEND
+
+/*IF
+	!GlobalTimerNotExpired("IWD_Rest","LOCALS")
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IWD_Rest","LOCALS",EIGHT_HOURS)
+		ApplySpell(Myself,RESTORE_FULL_HEALTH)
+		Rest()
+END*/
+
+//BLOCK SPL_1
+/*IF
+	ForceMarkedSpell(MARKED_SPELL)
+	SetSpellTarget(Nothing)
+	!TimerActive(99)
+	SetLastMarkedObject(Myself)
+THEN
+	RESPONSE #100
+		MarkSpellAndObject("29092909290929092909271024262212",Myself,SPELLCAST_IGNORE_SEE | SPELLCAST_IGNORE_VALID_SPELL_TARGET | SPELLCAST_RANDOM)  // [WIZARD_AEGIS, WIZARD_AEGIS, WIZARD_AEGIS, WIZARD_AEGIS, WIZARD_AEGIS, WIZARD_SEVEN_EYES, WIZARD_FIRESHIELD_BLUE, WIZARD_MIRROR_IMAGE]
+		MarkSpellAndObject("2201",Myself,SPELLCAST_IGNORE_SEE | SPELLCAST_IGNORE_VALID_SPELL_TARGET | SPELLCAST_RANDOM)  // [WIZARD_BLUR]
+		Continue()
+	RESPONSE #100
+		MarkSpellAndObject("2201",Myself,SPELLCAST_IGNORE_SEE | SPELLCAST_IGNORE_VALID_SPELL_TARGET | SPELLCAST_RANDOM)  // [WIZARD_BLUR]
+		MarkSpellAndObject("29092909290929092909271024262212",Myself,SPELLCAST_IGNORE_SEE | SPELLCAST_IGNORE_VALID_SPELL_TARGET | SPELLCAST_RANDOM)  // [WIZARD_AEGIS, WIZARD_AEGIS, WIZARD_AEGIS, WIZARD_AEGIS, WIZARD_AEGIS, WIZARD_SEVEN_EYES, WIZARD_FIRESHIELD_BLUE, WIZARD_MIRROR_IMAGE]
+		Continue()
+END
+
+IF
+	!IsMarkedSpell(MARKED_SPELL)
+THEN
+	RESPONSE #100
+		StartTimer(99,14)
+		Spell(SpellTarget,MARKED_SPELL)
+		WaitAnimation(Myself,WALK)
+		WaitAnimation(Myself,CONJURE)
+		WaitAnimation(Myself,CAST)
+		ForceMarkedSpell(MARKED_SPELL)
+END*/
+/*IF
+	GlobalLT("SSPELLS_1_RANDOM_CAST","LOCALS",3)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		Continue()
+END*/
+//1 - Myself - [WIZARD_AEGIS, WIZARD_AEGIS, WIZARD_AEGIS, WIZARD_AEGIS, WIZARD_AEGIS, WIZARD_SEVEN_EYES, WIZARD_FIRESHIELD_BLUE, WIZARD_MIRROR_IMAGE]
+IF
+	RandomNum(4,1)
+	Global("SSPELLS_1_RANDOM_CAST","LOCALS",1)
+	!GlobalTimerNotExpired("IwTimer99","LOCALS")
+	HaveSpellRES("IWWI909")
+	!CheckSpellState(Myself,AEGIS)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_2_RANDOM_CAST","LOCALS",1,8)
+		SetGlobalTimer("IwTimer99","LOCALS",14)
+		SpellRES("IWWI909",Myself)
+		Wait(1)
+END
+
+IF
+	RandomNum(4,2)
+	Global("SSPELLS_1_RANDOM_CAST","LOCALS",1)
+	!GlobalTimerNotExpired("IwTimer99","LOCALS")
+	HaveSpell(WIZARD_ABSOLUTE_IMMUNITY)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_2_RANDOM_CAST","LOCALS",1,8)
+		SetGlobalTimer("IwTimer99","LOCALS",14)
+		ApplySpell(Myself,WIZARD_SPELL_TRAP)
+		Spell(Myself,WIZARD_ABSOLUTE_IMMUNITY)
+		Wait(1)
+END
+
+IF
+	RandomNum(4,3)
+	Global("SSPELLS_1_RANDOM_CAST","LOCALS",1)
+	!GlobalTimerNotExpired("IwTimer99","LOCALS")
+	HaveSpell(WIZARD_FIRE_SHIELD_BLUE)
+	!CheckStatGT(Myself,0,WIZARD_FIRE_SHIELD)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_2_RANDOM_CAST","LOCALS",1,8)
+		SetGlobalTimer("IwTimer99","LOCALS",14)
+		Spell(Myself,WIZARD_FIRE_SHIELD_BLUE)
+		Wait(1)
+END
+
+IF
+	RandomNum(4,4)
+	Global("SSPELLS_1_RANDOM_CAST","LOCALS",1)
+	!GlobalTimerNotExpired("IwTimer99","LOCALS")
+	HaveSpell(WIZARD_MIRROR_IMAGE)
+	!StateCheck(Myself,STATE_MIRRORIMAGE)
+	CheckStat(Myself,0,STONESKINS)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_2_RANDOM_CAST","LOCALS",1,8)
+		SetGlobalTimer("IwTimer99","LOCALS",14)
+		Spell(Myself,WIZARD_MIRROR_IMAGE)
+		Wait(1)
+END
+//3 - Myself - [WIZARD_BLUR]
+IF
+	Global("SSPELLS_1_RANDOM_CAST","LOCALS",2)
+	!GlobalTimerNotExpired("IwTimer99","LOCALS")
+	HaveSpell(WIZARD_BLUR)
+	!StateCheck(Myself,STATE_BLUR)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_2_RANDOM_CAST","LOCALS",1,8)
+		SetGlobalTimer("IwTimer99","LOCALS",14)
+		Spell(Myself,WIZARD_BLUR)
+		Wait(1)
+END
+//BLOCK NO_RND
+//1 - Myself - [WIZARD_AEGIS, WIZARD_AEGIS, WIZARD_AEGIS, WIZARD_AEGIS, WIZARD_AEGIS, WIZARD_SEVEN_EYES, WIZARD_FIRESHIELD_BLUE, WIZARD_MIRROR_IMAGE]
+IF
+	!GlobalTimerNotExpired("IwTimer99","LOCALS")
+	HaveSpellRES("IWWI909")
+	!CheckSpellState(Myself,AEGIS)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IwTimer99","LOCALS",14)
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_2_RANDOM_CAST","LOCALS",1,8)
+		SpellRES("IWWI909",Myself)
+		Wait(1)
+END
+
+IF
+	!GlobalTimerNotExpired("IwTimer99","LOCALS")
+	HaveSpell(WIZARD_ABSOLUTE_IMMUNITY)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IwTimer99","LOCALS",14)
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_2_RANDOM_CAST","LOCALS",1,8)
+		ApplySpell(Myself,WIZARD_SPELL_TRAP)
+		Spell(Myself,WIZARD_ABSOLUTE_IMMUNITY)
+		Wait(1)
+END
+
+IF
+	!GlobalTimerNotExpired("IwTimer99","LOCALS")
+	HaveSpell(WIZARD_FIRE_SHIELD_BLUE)
+	!CheckStatGT(Myself,0,WIZARD_FIRE_SHIELD)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IwTimer99","LOCALS",14)
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_2_RANDOM_CAST","LOCALS",1,8)
+		Spell(Myself,WIZARD_FIRE_SHIELD_BLUE)
+		Wait(1)
+END
+
+IF
+	!GlobalTimerNotExpired("IwTimer99","LOCALS")
+	HaveSpell(WIZARD_MIRROR_IMAGE)
+	!StateCheck(Myself,STATE_MIRRORIMAGE)
+	CheckStat(Myself,0,STONESKINS)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IwTimer99","LOCALS",14)
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_2_RANDOM_CAST","LOCALS",1,8)
+		Spell(Myself,WIZARD_MIRROR_IMAGE)
+		Wait(1)
+END
+//3 - Myself - [WIZARD_BLUR]
+IF
+	!GlobalTimerNotExpired("IwTimer99","LOCALS")
+	HaveSpell(WIZARD_BLUR)
+	!StateCheck(Myself,STATE_BLUR)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IwTimer99","LOCALS",14)
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_2_RANDOM_CAST","LOCALS",1,8)
+		Spell(Myself,WIZARD_BLUR)
+		Wait(1)
+END
+//BLOCKEND
+//BLOCKEND
+//BLOCK SPL_2
+/*IF
+	ForceMarkedSpell(MARKED_SPELL)
+	SetSpellTarget(Nothing)
+	Global("SpellOrMelee","LOCALS",0)
+	See(NearestEnemyOf(Myself),0)
+THEN
+	RESPONSE #100
+		MarkSpellAndObject("24252603281028062609291124242312",LastMarkedObject,SPELLCAST_IGNORE_SEE | SPELLCAST_IGNORE_VALID_SPELL_TARGET | SPELLCAST_RANDOM)  // [CLERIC_CONTAGION, WIZARD_CHAIN_LIGHTNING, WIZARD_FLAYING, WIZARD_GREAT_SHOUT, WIZARD_INVISIBLE_STALKER, WIZARD_MASS_DOMINATE, WIZARD_VITRIOLIC_SPHERE, WIZARD_SLOW]
+		Continue()
+END
+
+IF
+	!IsMarkedSpell(MARKED_SPELL)
+THEN
+	RESPONSE #100
+		SetGlobal("SpellOrMelee","LOCALS",1)
+		Spell(SpellTarget,MARKED_SPELL)
+		WaitAnimation(Myself,WALK)
+		WaitAnimation(Myself,CONJURE)
+		WaitAnimation(Myself,CAST)
+		ForceMarkedSpell(MARKED_SPELL)
+END*/
+/*IF
+	GlobalLT("SSPELLS_2_RANDOM_CAST","LOCALS",9)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_2_RANDOM_CAST","LOCALS",1,8)
+		Continue()
+END*/
+//1 - LastMarkedObject - [CLERIC_CONTAGION, WIZARD_CHAIN_LIGHTNING, WIZARD_FLAYING, WIZARD_GREAT_SHOUT, WIZARD_INVISIBLE_STALKER, WIZARD_MASS_DOMINATE, WIZARD_VITRIOLIC_SPHERE, WIZARD_SLOW]
+IF
+	Global("SSPELLS_2_RANDOM_CAST","LOCALS",1)
+	HaveSpell(WIZARD_CONTAGION)
+	Global("SpellOrMelee","LOCALS",0)
+	See(NearestEnemyOf(Myself))
+	!Class(LastSeenBy(Myself),MONK)
+	!StateCheck(LastSeenBy(Myself),STATE_POISONED)
+	!StateCheck(LastSeenBy(Myself),STATE_SLOWED)
+	//!StateCheck(LastSeenBy(Myself),STATE_DISEASED)
+	!CheckSpellState(LastSeenBy(Myself),DISEASED)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_2_RANDOM_CAST","LOCALS",1,8)
+		SetGlobal("SpellOrMelee","LOCALS",1)
+		Spell(LastSeenBy(Myself),WIZARD_CONTAGION)
+		Wait(1)
+END
+
+IF
+	Global("SSPELLS_2_RANDOM_CAST","LOCALS",2)
+	HaveSpell(WIZARD_CHAIN_LIGHTNING)
+	Global("SpellOrMelee","LOCALS",0)
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_2_RANDOM_CAST","LOCALS",1,8)
+		SetGlobal("SpellOrMelee","LOCALS",1)
+		Spell(LastSeenBy(Myself),WIZARD_CHAIN_LIGHTNING)
+		Wait(1)
+END
+
+IF
+	Global("SSPELLS_2_RANDOM_CAST","LOCALS",3)
+	HaveSpell(WIZARD_BIGBYS_CLENCHED_FIST)
+	Global("SpellOrMelee","LOCALS",0)
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_2_RANDOM_CAST","LOCALS",1,8)
+		SetGlobal("SpellOrMelee","LOCALS",1)
+		Spell(LastSeenBy(Myself),WIZARD_BIGBYS_CLENCHED_FIST)
+		Wait(1)
+END
+
+IF
+	Global("SSPELLS_2_RANDOM_CAST","LOCALS",4)
+	HaveSpell(WIZARD_WAIL_OF_THE_BANSHEE)
+	Global("SpellOrMelee","LOCALS",0)
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_2_RANDOM_CAST","LOCALS",1,8)
+		SetGlobal("SpellOrMelee","LOCALS",1)
+		Spell(LastSeenBy(Myself),WIZARD_WAIL_OF_THE_BANSHEE)
+		Wait(1)
+END
+
+IF
+	Global("SSPELLS_2_RANDOM_CAST","LOCALS",5)
+	HaveSpell(WIZARD_INVISIBLE_STALKER)
+	Global("SpellOrMelee","LOCALS",0)
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_2_RANDOM_CAST","LOCALS",1,8)
+		SetGlobal("SpellOrMelee","LOCALS",1)
+		Spell(LastSeenBy(Myself),WIZARD_INVISIBLE_STALKER)
+		Wait(1)
+END
+
+IF
+	Global("SSPELLS_2_RANDOM_CAST","LOCALS",6)
+	HaveSpell(WIZARD_DOMINATION)
+	Global("SpellOrMelee","LOCALS",0)
+	See(NearestEnemyOf(Myself))
+	!StateCheck(LastSeenBy,STATE_DISABLED)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_2_RANDOM_CAST","LOCALS",1,8)
+		SetGlobal("SpellOrMelee","LOCALS",1)
+		Spell(LastSeenBy(Myself),WIZARD_DOMINATION)
+		Wait(1)
+END
+
+IF
+	Global("SSPELLS_2_RANDOM_CAST","LOCALS",7)
+	HaveSpellRES("IWWI424")
+	Global("SpellOrMelee","LOCALS",0)
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_2_RANDOM_CAST","LOCALS",1,8)
+		SetGlobal("SpellOrMelee","LOCALS",1)
+		SpellRES("IWWI424",LastSeenBy(Myself))
+		Wait(1)
+END
+
+IF
+	Global("SSPELLS_2_RANDOM_CAST","LOCALS",8)
+	HaveSpell(WIZARD_SLOW)
+	Global("SpellOrMelee","LOCALS",0)
+	See(NearestEnemyOf(Myself))
+	!StateCheck(LastSeenBy(Myself),STATE_SLOWED)
+	!HasBounceEffects(LastSeenBy(Myself))
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_2_RANDOM_CAST","LOCALS",1,8)
+		SetGlobal("SpellOrMelee","LOCALS",1)
+		Spell(LastSeenBy(Myself),WIZARD_SLOW)
+		Wait(1)
+END
+//BLOCK NO_RND
+//1 - LastMarkedObject - [CLERIC_CONTAGION, WIZARD_CHAIN_LIGHTNING, WIZARD_FLAYING, WIZARD_GREAT_SHOUT, WIZARD_INVISIBLE_STALKER, WIZARD_MASS_DOMINATE, WIZARD_VITRIOLIC_SPHERE, WIZARD_SLOW]
+IF
+	HaveSpell(WIZARD_CONTAGION)
+	Global("SpellOrMelee","LOCALS",0)
+	See(NearestEnemyOf(Myself))
+	!Class(LastSeenBy(Myself),MONK)
+	!StateCheck(LastSeenBy(Myself),STATE_POISONED)
+	!StateCheck(LastSeenBy(Myself),STATE_SLOWED)
+	//!StateCheck(LastSeenBy(Myself),STATE_DISEASED)
+	!CheckSpellState(LastSeenBy(Myself),DISEASED)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_2_RANDOM_CAST","LOCALS",1,8)
+		SetGlobal("SpellOrMelee","LOCALS",1)
+		Spell(LastSeenBy(Myself),WIZARD_CONTAGION)
+		Wait(1)
+END
+
+IF
+	HaveSpell(WIZARD_CHAIN_LIGHTNING)
+	Global("SpellOrMelee","LOCALS",0)
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_2_RANDOM_CAST","LOCALS",1,8)
+		SetGlobal("SpellOrMelee","LOCALS",1)
+		Spell(LastSeenBy(Myself),WIZARD_CHAIN_LIGHTNING)
+		Wait(1)
+END
+
+IF
+	HaveSpell(WIZARD_BIGBYS_CLENCHED_FIST)
+	Global("SpellOrMelee","LOCALS",0)
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_2_RANDOM_CAST","LOCALS",1,8)
+		SetGlobal("SpellOrMelee","LOCALS",1)
+		Spell(LastSeenBy(Myself),WIZARD_BIGBYS_CLENCHED_FIST)
+		Wait(1)
+END
+
+IF
+	HaveSpell(WIZARD_WAIL_OF_THE_BANSHEE)
+	Global("SpellOrMelee","LOCALS",0)
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_2_RANDOM_CAST","LOCALS",1,8)
+		SetGlobal("SpellOrMelee","LOCALS",1)
+		Spell(LastSeenBy(Myself),WIZARD_WAIL_OF_THE_BANSHEE)
+		Wait(1)
+END
+
+IF
+	HaveSpell(WIZARD_INVISIBLE_STALKER)
+	Global("SpellOrMelee","LOCALS",0)
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_2_RANDOM_CAST","LOCALS",1,8)
+		SetGlobal("SpellOrMelee","LOCALS",1)
+		Spell(LastSeenBy(Myself),WIZARD_INVISIBLE_STALKER)
+		Wait(1)
+END
+
+IF
+	HaveSpell(WIZARD_DOMINATION)
+	Global("SpellOrMelee","LOCALS",0)
+	See(NearestEnemyOf(Myself))
+	!StateCheck(LastSeenBy,STATE_DISABLED)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_2_RANDOM_CAST","LOCALS",1,8)
+		SetGlobal("SpellOrMelee","LOCALS",1)
+		Spell(LastSeenBy(Myself),WIZARD_DOMINATION)
+		Wait(1)
+END
+
+IF
+	HaveSpellRES("IWWI424")
+	Global("SpellOrMelee","LOCALS",0)
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_2_RANDOM_CAST","LOCALS",1,8)
+		SetGlobal("SpellOrMelee","LOCALS",1)
+		SpellRES("IWWI424",LastSeenBy(Myself))
+		Wait(1)
+END
+
+IF
+	HaveSpell(WIZARD_SLOW)
+	Global("SpellOrMelee","LOCALS",0)
+	See(NearestEnemyOf(Myself))
+	!StateCheck(LastSeenBy(Myself),STATE_SLOWED)
+	!HasBounceEffects(LastSeenBy(Myself))
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_2_RANDOM_CAST","LOCALS",1,8)
+		SetGlobal("SpellOrMelee","LOCALS",1)
+		Spell(LastSeenBy(Myself),WIZARD_SLOW)
+		Wait(1)
+END
+//BLOCKEND
+//BLOCKEND
+
+IF
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		SetGlobal("SpellOrMelee","LOCALS",0)
+		//EquipWeapon()
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	!See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		//MoveToObjectUntilSee(NearestPC)
+		MoveToObject(NearestEnemyOf(Myself))
+END
+

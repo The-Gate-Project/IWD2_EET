@@ -1,0 +1,15 @@
+IF
+	//IsCreatureHiddenInShadows(Myself)
+	!StateCheck(Myself,STATE_NOT_VISIBLE)
+	!GlobalTimerNotExpired("IwTimer16","LOCALS")
+	Allegiance(Myself,ENEMY)
+	!See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		SetGlobalTimerRandom("IwTimer16","LOCALS",6,18)
+		Hide()
+	RESPONSE #50
+		SetGlobalTimerRandom("IwTimer16","LOCALS",1,6)
+		Continue()
+END
+

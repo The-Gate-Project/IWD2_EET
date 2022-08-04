@@ -1,0 +1,55 @@
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("Isair")
+		SetGlobal("StartCutscene_63cFB02","MYAREA",1)
+		//ActionOverride("63GlabSL",DestroySelf())
+		//ActionOverride("63GlabSR",DestroySelf())
+		Wait(1)
+		//SpellHitEffectSprite(Myself,Myself,DIMENSION_DOOR_ORIGIN,0)
+		CreateVisualEffectObject("spdimndr",Myself)
+		//HideCreature(Myself,TRUE)
+		ApplySpellRES("IDINVIS6",Myself)
+		DisplayStringHead(Myself,@38707)
+		Wait(1)
+		EndCutSceneMode()
+		DestroySelf()
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("Madae")
+		Wait(1)
+		//SpellHitEffectSprite(Myself,Myself,DIMENSION_DOOR_ORIGIN,0)
+		CreateVisualEffectObject("spdimndr",Myself)
+		//HideCreature(Myself,TRUE)
+		ApplySpellRES("IDINVIS6",Myself)
+		DisplayStringHead(Myself,@38707)
+		DestroySelf()
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("63GlabSL")
+		Wait(1)
+		//SpellHitEffectSprite(Myself,Myself,POISON,0)
+		CreateVisualEffectObject("POISONH",Myself)
+		DestroySelf()
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("63GlabSR")
+		Wait(1)
+		//SpellHitEffectSprite(Myself,Myself,POISON,0)
+		CreateVisualEffectObject("POISONH",Myself)
+		DestroySelf()
+END
+

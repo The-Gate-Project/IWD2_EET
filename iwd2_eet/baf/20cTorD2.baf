@@ -1,0 +1,27 @@
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("Torak2")
+		//StopJoinRequests()
+		ClearActions(Player1)
+		ClearActions(Player2)
+		ClearActions(Player3)
+		ClearActions(Player4)
+		ClearActions(Player5)
+		ClearActions(Player6)
+		MultiPlayerSync()
+		//HideCreature("Torak2",FALSE)
+		ApplySpellRES("IDINVIS5",Myself)
+		MoveViewPoint([2010.1650],15)
+		MoveToPoint([2010.1650])
+		FaceObject([PC])
+		MultiPlayerSync()
+		SetNumTimesTalkedTo(1)
+		SetGlobal("SR_Torak_Talk","GLOBAL",1)
+		//SetDialogueRange(300)
+		//Dialogue(NearestPC)
+		ApplySpellRES("BDCUTSPY",Myself)
+		StartDialogNoSet([PC])
+END
+

@@ -1,0 +1,53 @@
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("Isair2")
+		SetGlobal("StartCutscene_63cFB06","MYAREA",1)
+		FaceObject([PC])
+		SetSequence(SEQ_ATTACK_BACKSLASH)
+		Wait(1)
+		SetSequence(SEQ_ATTACK_BACKSLASH)
+		Wait(1)
+		SetSequence(SEQ_ATTACK_BACKSLASH)
+		Wait(1)
+		SetSequence(SEQ_DIE)
+		Wait(4)
+		MultiPlayerSync()
+		//HideCreature(Myself,TRUE)
+		ApplySpellRES("IDINVIS6",Myself)
+		EndCutSceneMode()
+		DestroySelf()
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("Madae2")
+		FaceObject([PC])
+		SetSequence(SEQ_ATTACK_BACKSLASH)
+		Wait(1)
+		SetSequence(SEQ_ATTACK_BACKSLASH)
+		Wait(1)
+		SetSequence(SEQ_ATTACK_BACKSLASH)
+		Wait(1)
+		SetSequence(SEQ_DIE)
+		Wait(4)
+		DestroySelf()
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("Orrick")
+		Wait(2)
+		//SpellHitEffectSprite(Myself,Myself,DIMENSION_DOOR_ORIGIN,0)
+		CreateVisualEffectObject("spdimndr",Myself)
+		//HideCreature(Myself,TRUE)
+		ApplySpellRES("IDINVIS6",Myself)
+		DisplayStringHead(Myself,@41117)
+		DestroySelf()
+END
+

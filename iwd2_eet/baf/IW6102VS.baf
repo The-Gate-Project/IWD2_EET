@@ -1,0 +1,46 @@
+IF
+	Global("61VolcanoStatus","GLOBAL",-1)
+THEN
+	RESPONSE #100
+		DestroySelf()
+END
+
+IF
+	Global("Init","LOCALS",0)
+THEN
+	RESPONSE #100
+		ApplySpellRES("IDINVUL",Myself)
+		ApplySpellRES("IDINVIS6",Myself)
+		ChangeEnemyAlly(Myself,NEUTRAL)
+		SetGlobal("Init","LOCALS",1)
+		SetGlobalRandom("VolcanoJump","LOCALS",1,5)
+		SetGlobalTimerRandom("VolcanoTimerJump","LOCALS",1,6)
+		Continue()
+END
+
+IF
+	GlobalGT("61VolcanoStatus","GLOBAL",0)
+	GlobalTimerExpired("VolcanoTimerJump","LOCALS")
+	Switch("VolcanoJump","LOCALS")
+THEN
+	RESPONSE #1
+		JumpToPoint([623.420])
+		SetGlobalRandom("VolcanoJump","LOCALS",1,5)
+		SetGlobalTimerRandom("VolcanoTimerJump","LOCALS",6,9)
+	RESPONSE #2
+		JumpToPoint([775.2030])
+		SetGlobalRandom("VolcanoJump","LOCALS",1,5)
+		SetGlobalTimerRandom("VolcanoTimerJump","LOCALS",6,9)
+	RESPONSE #3
+		JumpToPoint([2945.825])
+		SetGlobalRandom("VolcanoJump","LOCALS",1,5)
+		SetGlobalTimerRandom("VolcanoTimerJump","LOCALS",6,9)
+	RESPONSE #4
+		JumpToPoint([3045.1200])
+		SetGlobalRandom("VolcanoJump","LOCALS",1,5)
+		SetGlobalTimerRandom("VolcanoTimerJump","LOCALS",6,9)
+	RESPONSE #5
+		JumpToPoint([400.1250])
+		SetGlobalRandom("VolcanoJump","LOCALS",1,5)
+		SetGlobalTimerRandom("VolcanoTimerJump","LOCALS",6,9)
+END

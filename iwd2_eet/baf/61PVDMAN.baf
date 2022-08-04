@@ -1,0 +1,17 @@
+IF
+	Global("61NheeroFindQuest","GLOBAL",2)
+	See([PC])
+	//Range([PC],28)
+THEN
+	RESPONSE #100
+		//FloatMessage("Mandal",35014)
+		DisplayStringPointLog([3550.1260],@35014)
+		AddJournalEntry(@34990,QUEST)
+		//AddXPVar("LEVEL_12_AVERAGE",35014)  // Вы обнаружили останки Мандала Грая, спутника Ниро Футмы.
+		AddXP2DA("IW2EX12A")
+		//DisplayString(Player1,@35014) //[PC]
+		SetGlobal("61NheeroFindQuest","GLOBAL",3)
+		//ChangeCurrentScript("")
+		TriggerActivation(Myself,FALSE)
+END
+

@@ -1,0 +1,21 @@
+IF
+	Global("FLOAT_SPECIAL","LOCALS",0)
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		FaceObject(LastSeenBy(Myself))
+		DisplayStringHead(Myself,@29189)
+		SetGlobal("FLOAT_SPECIAL","LOCALS",1)
+		Continue()
+END
+
+IF
+	//!IsCreatureAreaFlag(Myself,IGNORE_AI_INHIBIT)
+	!Global("IGNORE_AI_INHIBIT","LOCALS",1)
+THEN
+	RESPONSE #100
+		//SetCreatureAreaFlag(Myself,IGNORE_AI_INHIBIT,TRUE)
+		ApplySpellRES("IWPERAI",Myself)
+		SetGlobal("IGNORE_AI_INHIBIT","LOCALS",1)
+END
+

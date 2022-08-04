@@ -1,0 +1,75 @@
+BEGIN ~12TRAINE~
+
+IF WEIGHT #2
+~!Dead("TRAINING_KEG")
+ RandomNum(4,1)~ THEN BEGIN 0
+  SAY @7410
+  IF ~~ THEN EXIT
+END
+
+IF WEIGHT #3
+~!Dead("TRAINING_KEG")
+ RandomNum(4,2)~ THEN BEGIN 1
+  SAY @7412
+  IF ~~ THEN EXIT
+END
+
+IF WEIGHT #4
+~!Dead("TRAINING_KEG")
+ RandomNum(4,3)~ THEN BEGIN 2
+  SAY @7415
+  IF ~~ THEN EXIT
+END
+
+IF WEIGHT #5
+~!Dead("TRAINING_KEG")
+ RandomNum(4,4)~ THEN BEGIN 3
+  SAY @7416
+  IF ~~ THEN EXIT
+END
+
+IF WEIGHT #6
+~Dead("TRAINING_KEG")
+ RandomNum(4,1)~ THEN BEGIN 4
+  SAY @7419
+  IF ~~ THEN EXIT
+END
+
+IF WEIGHT #7
+~Dead("TRAINING_KEG")
+ RandomNum(4,2)~ THEN BEGIN 5
+  SAY @7423
+  IF ~~ THEN EXIT
+END
+
+IF WEIGHT #8
+~Dead("TRAINING_KEG")
+ RandomNum(4,3)~ THEN BEGIN 6
+  SAY @14409
+  IF ~~ THEN EXIT
+END
+
+IF WEIGHT #9
+~Dead("TRAINING_KEG")
+ RandomNum(4,4)~ THEN BEGIN 7
+  SAY @14415
+  IF ~~ THEN EXIT
+END
+
+IF ~~ THEN BEGIN 8
+  SAY @14415
+  IF ~~ THEN EXIT
+END
+
+IF WEIGHT #1
+~GlobalGT("Goblin_Palisade_Quest","GLOBAL",0)
+ Global("Goblins_Attack_Palisade","GLOBAL",1)~ THEN BEGIN 9
+  SAY @14416
+  IF ~~ THEN EXIT
+END
+
+IF WEIGHT #0
+~GlobalGT("Goblin_Palisade_Quest","GLOBAL",0)~ THEN BEGIN 10
+  SAY @14417
+  IF ~~ THEN REPLY @15061 EXIT
+END

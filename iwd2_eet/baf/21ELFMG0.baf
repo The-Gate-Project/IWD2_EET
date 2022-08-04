@@ -1,0 +1,660 @@
+//BLOCK SET_VARS
+IF
+	!Global("SET_21ELFMG0","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_2_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandomPlus("Spell_Set","LOCALS",1,2,-1)
+		SetGlobal("SET_21ELFMG0","LOCALS",1)
+		SetInterrupt(TRUE)
+END
+//BLOCKEND
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		SetGlobal("Spell_Set","LOCALS",0)
+		Continue()
+	RESPONSE #100
+		SetGlobal("Spell_Set","LOCALS",1)
+		Continue()
+END
+
+IF
+	StateCheck(Myself,STATE_PANIC)
+THEN
+	RESPONSE #100
+		RandomWalkContinuous()
+END
+
+IF
+	!GlobalTimerNotExpired("IWD_Rest","LOCALS")
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IWD_Rest","LOCALS",EIGHT_HOURS)
+		ApplySpell(Myself,RESTORE_FULL_HEALTH)
+		Rest()
+END
+
+IF
+	HasItem("CHILLT",Myself)
+	Global("Cast_Spell","LOCALS",0)
+	Global("Spell_Set","LOCALS",0)
+	See([PC])
+THEN
+	RESPONSE #100
+		SetGlobal("Cast_Spell","LOCALS",1)
+		AttackOneRound(LastSeenBy(Myself))
+END
+//BLOCK SPL_1
+/*IF
+	ForceMarkedSpell(MARKED_SPELL)
+	SetSpellTarget(Nothing)
+	Global("Cast_Spell","LOCALS",0)
+	Global("Spell_Set","LOCALS",0)
+	See([PC],0)
+THEN
+	RESPONSE #100
+		MarkSpellAndObject("21022117",Myself,SPELLCAST_IGNORE_SEE | SPELLCAST_IGNORE_VALID_SPELL_TARGET | SPELLCAST_RANDOM)  // [WIZARD_ARMOR, WIZARD_CHILL_TOUCH]
+		MarkSpellAndObject("22132205230421042112",LastMarkedObject,SPELLCAST_IGNORE_SEE | SPELLCAST_IGNORE_VALID_SPELL_TARGET | SPELLCAST_RANDOM)  // [WIZARD_STINKING_CLOUD, WIZARD_HORROR, WIZARD_FIREBALL, WIZARD_CHARM_PERSON, WIZARD_MAGIC_MISSILE]
+		Continue()
+	RESPONSE #100
+		MarkSpellAndObject("22132205230421042112",LastMarkedObject,SPELLCAST_IGNORE_SEE | SPELLCAST_IGNORE_VALID_SPELL_TARGET | SPELLCAST_RANDOM)  // [WIZARD_STINKING_CLOUD, WIZARD_HORROR, WIZARD_FIREBALL, WIZARD_CHARM_PERSON, WIZARD_MAGIC_MISSILE]
+		MarkSpellAndObject("21022117",Myself,SPELLCAST_IGNORE_SEE | SPELLCAST_IGNORE_VALID_SPELL_TARGET | SPELLCAST_RANDOM)  // [WIZARD_ARMOR, WIZARD_CHILL_TOUCH]
+		Continue()
+END
+
+IF
+	!IsMarkedSpell(MARKED_SPELL)
+THEN
+	RESPONSE #100
+		SetGlobal("Cast_Spell","LOCALS",1)
+		Spell(SpellTarget,MARKED_SPELL)
+		WaitAnimation(Myself,WALK)
+		WaitAnimation(Myself,CONJURE)
+		WaitAnimation(Myself,CAST)
+		ForceMarkedSpell(MARKED_SPELL)
+END*/
+/*IF
+	GlobalLT("SSPELLS_1_RANDOM_CAST","LOCALS",3)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		Continue()
+END*/
+//1 - Myself - [WIZARD_ARMOR, WIZARD_CHILL_TOUCH]
+IF
+	RandomNum(2,1)
+	Global("SSPELLS_1_RANDOM_CAST","LOCALS",1)
+	HaveSpell(WIZARD_ARMOR)
+	Global("Cast_Spell","LOCALS",0)
+	Global("Spell_Set","LOCALS",0)
+	See([PC])
+	CheckStatGT(Myself,5,ARMORCLASS)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_2_RANDOM_CAST","LOCALS",1,2)
+		SetGlobal("Cast_Spell","LOCALS",1)
+		Spell(Myself,WIZARD_ARMOR)
+		Wait(1)
+END
+
+IF
+	RandomNum(2,2)
+	Global("SSPELLS_1_RANDOM_CAST","LOCALS",1)
+	HaveSpell(WIZARD_CHILL_TOUCH)
+	Global("Cast_Spell","LOCALS",0)
+	Global("Spell_Set","LOCALS",0)
+	See([PC])
+	!HasItem("CHILLT",Myself)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_2_RANDOM_CAST","LOCALS",1,2)
+		SetGlobal("Cast_Spell","LOCALS",1)
+		Spell(Myself,WIZARD_CHILL_TOUCH)
+		Wait(1)
+END
+//2 - LastMarkedObject - [WIZARD_STINKING_CLOUD, WIZARD_HORROR, WIZARD_FIREBALL, WIZARD_CHARM_PERSON, WIZARD_MAGIC_MISSILE]
+IF
+	RandomNum(5,1)
+	Global("SSPELLS_1_RANDOM_CAST","LOCALS",2)
+	HaveSpell(WIZARD_STINKING_CLOUD)
+	Global("Cast_Spell","LOCALS",0)
+	Global("Spell_Set","LOCALS",0)
+	See([PC])
+	!General(LastSeenBy(Myself),UNDEAD)
+	!Race(LastSeenBy(Myself),DEMONIC)
+	!Race(LastSeenBy(Myself),TANARI)
+	!Class(LastSeenBy(Myself),TANARI)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_2_RANDOM_CAST","LOCALS",1,2)
+		SetGlobal("Cast_Spell","LOCALS",1)
+		Spell(LastSeenBy(Myself),WIZARD_STINKING_CLOUD)
+		Wait(1)
+END
+
+IF
+	RandomNum(5,2)
+	Global("SSPELLS_1_RANDOM_CAST","LOCALS",2)
+	HaveSpell(WIZARD_HORROR)
+	Global("Cast_Spell","LOCALS",0)
+	Global("Spell_Set","LOCALS",0)
+	See([PC])
+	!General(LastSeenBy(Myself),UNDEAD)
+	!Race(LastSeenBy(Myself),DEMONIC)
+	!Race(LastSeenBy(Myself),TANARI)
+	!Class(LastSeenBy(Myself),TANARI)
+	!Race(LastSeenBy(Myself),TROLL)
+	!Race(LastSeenBy(Myself),GOLEM)
+	!Kit(LastSeenBy(Myself),CAVALIER)
+	!Kit(LastSeenBy(Myself),BLACKGUARD)
+	!StateCheck(LastSeenBy(Myself),STATE_DISABLED)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_2_RANDOM_CAST","LOCALS",1,2)
+		SetGlobal("Cast_Spell","LOCALS",1)
+		Spell(LastSeenBy(Myself),WIZARD_HORROR)
+		Wait(1)
+END
+
+IF
+	RandomNum(5,3)
+	Global("SSPELLS_1_RANDOM_CAST","LOCALS",2)
+	HaveSpell(WIZARD_FIREBALL)
+	Global("Cast_Spell","LOCALS",0)
+	Global("Spell_Set","LOCALS",0)
+	See([PC])
+	!Race(LastSeenBy(Myself),LICH)
+	!Race(LastSeenBy(Myself),GOLEM)
+	!Race(LastSeenBy(Myself),DEMILICH)
+	!Race(LastSeenBy(Myself),RAKSHASA)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_2_RANDOM_CAST","LOCALS",1,2)
+		SetGlobal("Cast_Spell","LOCALS",1)
+		Spell(LastSeenBy(Myself),WIZARD_FIREBALL)
+		Wait(1)
+END
+
+IF
+	RandomNum(5,4)
+	Global("SSPELLS_1_RANDOM_CAST","LOCALS",2)
+	HaveSpell(WIZARD_CHARM_PERSON)
+	Global("Cast_Spell","LOCALS",0)
+	Global("Spell_Set","LOCALS",0)
+	See([PC])
+	!Class(LastSeenBy(Myself),MONK)
+	!Kit(LastSeenBy(Myself),INQUISITOR)
+	!Kit(LastSeenBy(Myself),CAVALIER)
+	!Race(LastSeenBy(Myself),ELF)
+	!StateCheck(LastSeenBy(Myself),STATE_DISABLED)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_2_RANDOM_CAST","LOCALS",1,2)
+		SetGlobal("Cast_Spell","LOCALS",1)
+		Spell(LastSeenBy(Myself),WIZARD_CHARM_PERSON)
+		Wait(1)
+END
+
+IF
+	RandomNum(5,5)
+	Global("SSPELLS_1_RANDOM_CAST","LOCALS",2)
+	HaveSpell(WIZARD_MAGIC_MISSILE)
+	Global("Cast_Spell","LOCALS",0)
+	Global("Spell_Set","LOCALS",0)
+	See([PC])
+	!HasBounceEffects(LastSeenBy(Myself))
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_2_RANDOM_CAST","LOCALS",1,2)
+		SetGlobal("Cast_Spell","LOCALS",1)
+		Spell(LastSeenBy(Myself),WIZARD_MAGIC_MISSILE)
+		Wait(1)
+END
+//BLOCK NO_RND
+//1 - Myself - [WIZARD_ARMOR, WIZARD_CHILL_TOUCH]
+IF
+	HaveSpell(WIZARD_ARMOR)
+	Global("Cast_Spell","LOCALS",0)
+	Global("Spell_Set","LOCALS",0)
+	See([PC])
+	CheckStatGT(Myself,5,ARMORCLASS)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_2_RANDOM_CAST","LOCALS",1,2)
+		SetGlobal("Cast_Spell","LOCALS",1)
+		Spell(Myself,WIZARD_ARMOR)
+		Wait(1)
+END
+
+IF
+	HaveSpell(WIZARD_CHILL_TOUCH)
+	Global("Cast_Spell","LOCALS",0)
+	Global("Spell_Set","LOCALS",0)
+	See([PC])
+	!HasItem("CHILLT",Myself)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_2_RANDOM_CAST","LOCALS",1,2)
+		SetGlobal("Cast_Spell","LOCALS",1)
+		Spell(Myself,WIZARD_CHILL_TOUCH)
+		Wait(1)
+END
+//2 - LastMarkedObject - [WIZARD_STINKING_CLOUD, WIZARD_HORROR, WIZARD_FIREBALL, WIZARD_CHARM_PERSON, WIZARD_MAGIC_MISSILE]
+IF
+	HaveSpell(WIZARD_STINKING_CLOUD)
+	Global("Cast_Spell","LOCALS",0)
+	Global("Spell_Set","LOCALS",0)
+	See([PC])
+	!General(LastSeenBy(Myself),UNDEAD)
+	!Race(LastSeenBy(Myself),DEMONIC)
+	!Race(LastSeenBy(Myself),TANARI)
+	!Class(LastSeenBy(Myself),TANARI)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_2_RANDOM_CAST","LOCALS",1,2)
+		SetGlobal("Cast_Spell","LOCALS",1)
+		Spell(LastSeenBy(Myself),WIZARD_STINKING_CLOUD)
+		Wait(1)
+END
+
+IF
+	HaveSpell(WIZARD_HORROR)
+	Global("Cast_Spell","LOCALS",0)
+	Global("Spell_Set","LOCALS",0)
+	See([PC])
+	!General(LastSeenBy(Myself),UNDEAD)
+	!Race(LastSeenBy(Myself),DEMONIC)
+	!Race(LastSeenBy(Myself),TANARI)
+	!Class(LastSeenBy(Myself),TANARI)
+	!Race(LastSeenBy(Myself),TROLL)
+	!Race(LastSeenBy(Myself),GOLEM)
+	!Kit(LastSeenBy(Myself),CAVALIER)
+	!Kit(LastSeenBy(Myself),BLACKGUARD)
+	!StateCheck(LastSeenBy(Myself),STATE_DISABLED)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_2_RANDOM_CAST","LOCALS",1,2)
+		SetGlobal("Cast_Spell","LOCALS",1)
+		Spell(LastSeenBy(Myself),WIZARD_HORROR)
+		Wait(1)
+END
+
+IF
+	HaveSpell(WIZARD_FIREBALL)
+	Global("Cast_Spell","LOCALS",0)
+	Global("Spell_Set","LOCALS",0)
+	See([PC])
+	!Race(LastSeenBy(Myself),LICH)
+	!Race(LastSeenBy(Myself),GOLEM)
+	!Race(LastSeenBy(Myself),DEMILICH)
+	!Race(LastSeenBy(Myself),RAKSHASA)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_2_RANDOM_CAST","LOCALS",1,2)
+		SetGlobal("Cast_Spell","LOCALS",1)
+		Spell(LastSeenBy(Myself),WIZARD_FIREBALL)
+		Wait(1)
+END
+
+IF
+	HaveSpell(WIZARD_CHARM_PERSON)
+	Global("Cast_Spell","LOCALS",0)
+	Global("Spell_Set","LOCALS",0)
+	See([PC])
+	!Class(LastSeenBy(Myself),MONK)
+	!Kit(LastSeenBy(Myself),INQUISITOR)
+	!Kit(LastSeenBy(Myself),CAVALIER)
+	!Race(LastSeenBy(Myself),ELF)
+	!StateCheck(LastSeenBy(Myself),STATE_DISABLED)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_2_RANDOM_CAST","LOCALS",1,2)
+		SetGlobal("Cast_Spell","LOCALS",1)
+		Spell(LastSeenBy(Myself),WIZARD_CHARM_PERSON)
+		Wait(1)
+END
+
+IF
+	HaveSpell(WIZARD_MAGIC_MISSILE)
+	Global("Cast_Spell","LOCALS",0)
+	Global("Spell_Set","LOCALS",0)
+	See([PC])
+	!HasBounceEffects(LastSeenBy(Myself))
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_2_RANDOM_CAST","LOCALS",1,2)
+		SetGlobal("Cast_Spell","LOCALS",1)
+		Spell(LastSeenBy(Myself),WIZARD_MAGIC_MISSILE)
+		Wait(1)
+END
+//BLOCKEND
+//BLOCKEND
+
+IF
+	OR(20)	
+		HasItem("SGRASP01",Myself)
+		HasItem("SGRASP02",Myself)
+		HasItem("SGRASP03",Myself)
+		HasItem("SGRASP04",Myself)
+		HasItem("SGRASP05",Myself)
+		HasItem("SGRASP06",Myself)
+		HasItem("SGRASP07",Myself)
+		HasItem("SGRASP08",Myself)
+		HasItem("SGRASP09",Myself)
+		HasItem("SGRASP10",Myself)
+		HasItem("SGRASP11",Myself)
+		HasItem("SGRASP12",Myself)
+		HasItem("SGRASP13",Myself)
+		HasItem("SGRASP14",Myself)
+		HasItem("SGRASP15",Myself)
+		HasItem("SGRASP16",Myself)
+		HasItem("SGRASP17",Myself)
+		HasItem("SGRASP18",Myself)
+		HasItem("SGRASP19",Myself)
+		HasItem("SGRASP20",Myself)
+	Global("Cast_Spell","LOCALS",0)
+	Global("Spell_Set","LOCALS",1)
+	See([PC])
+THEN
+	RESPONSE #100
+		SetGlobal("Cast_Spell","LOCALS",1)
+		AttackOneRound(LastSeenBy(Myself))
+END
+//BLOCK SPL_2
+/*IF
+	ForceMarkedSpell(MARKED_SPELL)
+	SetSpellTarget(Nothing)
+	Global("Cast_Spell","LOCALS",0)
+	Global("Spell_Set","LOCALS",1)
+	See([PC],0)
+THEN
+	RESPONSE #100
+		MarkSpellAndObject("22152308211821052103",LastMarkedObject,SPELLCAST_IGNORE_SEE | SPELLCAST_IGNORE_VALID_SPELL_TARGET | SPELLCAST_RANDOM)  // [WIZARD_WEB, WIZARD_LIGHTNING_BOLT, WIZARD_CHROMATIC_ORB, WIZARD_COLOR_SPRAY, WIZARD_BURNING_HANDS]
+		MarkSpellAndObject("21152212",Myself,SPELLCAST_IGNORE_SEE | SPELLCAST_IGNORE_VALID_SPELL_TARGET | SPELLCAST_RANDOM)  // [WIZARD_SHOCKING_GRASP, WIZARD_MIRROR_IMAGE]
+		Continue()
+	RESPONSE #100
+		MarkSpellAndObject("21152212",Myself,SPELLCAST_IGNORE_SEE | SPELLCAST_IGNORE_VALID_SPELL_TARGET | SPELLCAST_RANDOM)  // [WIZARD_SHOCKING_GRASP, WIZARD_MIRROR_IMAGE]
+		MarkSpellAndObject("22152308211821052103",LastMarkedObject,SPELLCAST_IGNORE_SEE | SPELLCAST_IGNORE_VALID_SPELL_TARGET | SPELLCAST_RANDOM)  // [WIZARD_WEB, WIZARD_LIGHTNING_BOLT, WIZARD_CHROMATIC_ORB, WIZARD_COLOR_SPRAY, WIZARD_BURNING_HANDS]
+		Continue()
+END
+
+IF
+	!IsMarkedSpell(MARKED_SPELL)
+THEN
+	RESPONSE #100
+		SetGlobal("Cast_Spell","LOCALS",1)
+		Spell(SpellTarget,MARKED_SPELL)
+		WaitAnimation(Myself,WALK)
+		WaitAnimation(Myself,CONJURE)
+		WaitAnimation(Myself,CAST)
+		ForceMarkedSpell(MARKED_SPELL)
+END*/
+/*IF
+	GlobalLT("SSPELLS_2_RANDOM_CAST","LOCALS",3)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_2_RANDOM_CAST","LOCALS",1,2)
+		Continue()
+END*/
+
+//1 - LastMarkedObject - [WIZARD_WEB, WIZARD_LIGHTNING_BOLT, WIZARD_CHROMATIC_ORB, WIZARD_COLOR_SPRAY, WIZARD_BURNING_HANDS]
+IF
+	RandomNum(5,1)
+	Global("SSPELLS_2_RANDOM_CAST","LOCALS",1)
+	HaveSpell(WIZARD_WEB)
+	Global("Cast_Spell","LOCALS",0)
+	Global("Spell_Set","LOCALS",1)
+	See([PC])
+	!Race(LastSeenBy(Myself),LICH)
+	!Race(LastSeenBy(Myself),GOLEM)
+	!Race(LastSeenBy(Myself),DEMILICH)
+	!Race(LastSeenBy(Myself),RAKSHASA)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_2_RANDOM_CAST","LOCALS",1,2)
+		SetGlobal("Cast_Spell","LOCALS",1)
+		Spell(LastSeenBy(Myself),WIZARD_WEB)
+		Wait(1)
+END
+
+IF
+	RandomNum(5,2)
+	Global("SSPELLS_2_RANDOM_CAST","LOCALS",1)
+	HaveSpell(WIZARD_LIGHTNING_BOLT)
+	Global("Cast_Spell","LOCALS",0)
+	Global("Spell_Set","LOCALS",1)
+	See([PC])
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_2_RANDOM_CAST","LOCALS",1,2)
+		SetGlobal("Cast_Spell","LOCALS",1)
+		Spell(LastSeenBy(Myself),WIZARD_LIGHTNING_BOLT)
+		Wait(1)
+END
+
+IF
+	RandomNum(5,3)
+	Global("SSPELLS_2_RANDOM_CAST","LOCALS",1)
+	HaveSpell(WIZARD_CHROMATIC_ORB)
+	Global("Cast_Spell","LOCALS",0)
+	Global("Spell_Set","LOCALS",1)
+	See([PC])
+	!HasBounceEffects(LastSeenBy(Myself))
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_2_RANDOM_CAST","LOCALS",1,2)
+		SetGlobal("Cast_Spell","LOCALS",1)
+		Spell(LastSeenBy(Myself),WIZARD_CHROMATIC_ORB)
+		Wait(1)
+END
+
+IF
+	RandomNum(5,4)
+	Global("SSPELLS_2_RANDOM_CAST","LOCALS",1)
+	HaveSpell(WIZARD_COLOR_SPRAY)
+	Global("Cast_Spell","LOCALS",0)
+	Global("Spell_Set","LOCALS",1)
+	See([PC])
+	!StateCheck(LastSeenBy(Myself),STATE_SLEEPING)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_2_RANDOM_CAST","LOCALS",1,2)
+		SetGlobal("Cast_Spell","LOCALS",1)
+		Spell(LastSeenBy(Myself),WIZARD_COLOR_SPRAY)
+		Wait(1)
+END
+
+IF
+	RandomNum(5,5)
+	Global("SSPELLS_2_RANDOM_CAST","LOCALS",1)
+	HaveSpell(WIZARD_BURNING_HANDS)
+	Global("Cast_Spell","LOCALS",0)
+	Global("Spell_Set","LOCALS",1)
+	See([PC])
+	Range(LastSeenBy(Myself),8)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_2_RANDOM_CAST","LOCALS",1,2)
+		SetGlobal("Cast_Spell","LOCALS",1)
+		Spell(LastSeenBy(Myself),WIZARD_BURNING_HANDS)
+		Wait(1)
+END
+//2 - Myself - [WIZARD_SHOCKING_GRASP, WIZARD_MIRROR_IMAGE]
+IF
+	RandomNum(2,1)
+	Global("SSPELLS_2_RANDOM_CAST","LOCALS",2)
+	HaveSpell(WIZARD_SHOCKING_GRASP)
+	Global("Cast_Spell","LOCALS",0)
+	Global("Spell_Set","LOCALS",1)
+	See([PC])
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_2_RANDOM_CAST","LOCALS",1,2)
+		SetGlobal("Cast_Spell","LOCALS",1)
+		Spell(Myself,WIZARD_SHOCKING_GRASP)
+		Wait(1)
+END
+
+IF
+	RandomNum(2,2)
+	Global("SSPELLS_2_RANDOM_CAST","LOCALS",2)
+	HaveSpell(WIZARD_MIRROR_IMAGE)
+	Global("Cast_Spell","LOCALS",0)
+	Global("Spell_Set","LOCALS",1)
+	See([PC])
+	!StateCheck(Myself,STATE_MIRRORIMAGE)
+	CheckStat(Myself,0,STONESKINS)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_2_RANDOM_CAST","LOCALS",1,2)
+		SetGlobal("Cast_Spell","LOCALS",1)
+		Spell(Myself,WIZARD_MIRROR_IMAGE)
+		Wait(1)
+END
+
+//BLOCK NO_RND
+//1 - LastMarkedObject - [WIZARD_WEB, WIZARD_LIGHTNING_BOLT, WIZARD_CHROMATIC_ORB, WIZARD_COLOR_SPRAY, WIZARD_BURNING_HANDS]
+IF
+	HaveSpell(WIZARD_WEB)
+	Global("Cast_Spell","LOCALS",0)
+	Global("Spell_Set","LOCALS",1)
+	See([PC])
+	!Race(LastSeenBy(Myself),LICH)
+	!Race(LastSeenBy(Myself),GOLEM)
+	!Race(LastSeenBy(Myself),DEMILICH)
+	!Race(LastSeenBy(Myself),RAKSHASA)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_2_RANDOM_CAST","LOCALS",1,2)
+		SetGlobal("Cast_Spell","LOCALS",1)
+		Spell(LastSeenBy(Myself),WIZARD_WEB)
+		Wait(1)
+END
+
+IF
+	HaveSpell(WIZARD_LIGHTNING_BOLT)
+	Global("Cast_Spell","LOCALS",0)
+	Global("Spell_Set","LOCALS",1)
+	See([PC])
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_2_RANDOM_CAST","LOCALS",1,2)
+		SetGlobal("Cast_Spell","LOCALS",1)
+		Spell(LastSeenBy(Myself),WIZARD_LIGHTNING_BOLT)
+		Wait(1)
+END
+
+IF
+	HaveSpell(WIZARD_CHROMATIC_ORB)
+	Global("Cast_Spell","LOCALS",0)
+	Global("Spell_Set","LOCALS",1)
+	See([PC])
+	!HasBounceEffects(LastSeenBy(Myself))
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_2_RANDOM_CAST","LOCALS",1,2)
+		SetGlobal("Cast_Spell","LOCALS",1)
+		Spell(LastSeenBy(Myself),WIZARD_CHROMATIC_ORB)
+		Wait(1)
+END
+
+IF
+	HaveSpell(WIZARD_COLOR_SPRAY)
+	Global("Cast_Spell","LOCALS",0)
+	Global("Spell_Set","LOCALS",1)
+	See([PC])
+	!StateCheck(LastSeenBy(Myself),STATE_SLEEPING)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_2_RANDOM_CAST","LOCALS",1,2)
+		SetGlobal("Cast_Spell","LOCALS",1)
+		Spell(LastSeenBy(Myself),WIZARD_COLOR_SPRAY)
+		Wait(1)
+END
+
+IF
+	HaveSpell(WIZARD_BURNING_HANDS)
+	Global("Cast_Spell","LOCALS",0)
+	Global("Spell_Set","LOCALS",1)
+	See([PC])
+	Range(LastSeenBy(Myself),8)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_2_RANDOM_CAST","LOCALS",1,2)
+		SetGlobal("Cast_Spell","LOCALS",1)
+		Spell(LastSeenBy(Myself),WIZARD_BURNING_HANDS)
+		Wait(1)
+END
+//2 - Myself - [WIZARD_SHOCKING_GRASP, WIZARD_MIRROR_IMAGE]
+IF
+	HaveSpell(WIZARD_SHOCKING_GRASP)
+	Global("Cast_Spell","LOCALS",0)
+	Global("Spell_Set","LOCALS",1)
+	See([PC])
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_2_RANDOM_CAST","LOCALS",1,2)
+		SetGlobal("Cast_Spell","LOCALS",1)
+		Spell(Myself,WIZARD_SHOCKING_GRASP)
+		Wait(1)
+END
+
+IF
+	HaveSpell(WIZARD_MIRROR_IMAGE)
+	Global("Cast_Spell","LOCALS",0)
+	Global("Spell_Set","LOCALS",1)
+	See([PC])
+	!StateCheck(Myself,STATE_MIRRORIMAGE)
+	CheckStat(Myself,0,STONESKINS)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,2)
+		SetGlobalRandom("SSPELLS_2_RANDOM_CAST","LOCALS",1,2)
+		SetGlobal("Cast_Spell","LOCALS",1)
+		Spell(Myself,WIZARD_MIRROR_IMAGE)
+		Wait(1)
+END
+//BLOCKEND
+//BLOCKEND
+
+IF
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		SetGlobal("Cast_Spell","LOCALS",0)
+		//EquipWeapon()
+		AttackOneRound(LastSeenBy(Myself))
+END
+

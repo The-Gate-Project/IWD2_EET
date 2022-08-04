@@ -1,0 +1,58 @@
+IF
+	!Global("20ORCBA2_INACTIVE","LOCALS",1)
+	//Exists([PC][1984.384.2687.767]) // 2335.575
+	OR(6)
+		NearLocation(Player1,2335,575,25)
+		NearLocation(Player2,2335,575,25)
+		NearLocation(Player3,2335,575,25)
+		NearLocation(Player4,2335,575,25)
+		NearLocation(Player5,2335,575,25)
+		NearLocation(Player6,2335,575,25)
+THEN
+	RESPONSE #100
+		SetGlobal("20ORCBA2_INACTIVE","LOCALS",1)
+END
+
+IF
+	!Global("20ORCBA2_INACTIVE","LOCALS",1)
+	Global("OkayToLightKeg","LOCALS",0)
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		SetGlobal("OkayToLightKeg","LOCALS",1)
+		Continue()
+END
+
+IF
+	!Global("20ORCBA2_INACTIVE","LOCALS",1)
+	StateCheck(Myself,STATE_PANIC)
+THEN
+	RESPONSE #100
+		RandomWalkContinuous()
+END
+
+IF
+	!Global("20ORCBA2_INACTIVE","LOCALS",1)
+	Global("OkayToLightKeg","LOCALS",1)
+	See([ENEMY.MONSTER.KEG.0.200])
+THEN
+	RESPONSE #100
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	!Global("20ORCBA2_INACTIVE","LOCALS",1)
+	Global("OkayToLightKeg","LOCALS",1)
+	!See([ENEMY.MONSTER.KEG.0.200])
+THEN
+	RESPONSE #100
+		SetGlobal("20ORCBA2_INACTIVE","LOCALS",1)
+END
+
+IF
+	!Global("20ORCBA2_INACTIVE","LOCALS",1)
+	True()
+THEN
+	RESPONSE #100
+END
+

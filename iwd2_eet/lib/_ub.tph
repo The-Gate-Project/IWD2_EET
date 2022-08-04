@@ -1,0 +1,130 @@
+OUTER_SPRINT ~ubiwd~ ~%MOD_FOLDER%/ub~
+
+/*для моей установки
+@36362 @34676 @18091 - all
+@34220 - yurst
+*/
+
+//BLOCK myson
+OUTER_SPRINT ~mysoniwd~ ~%ubiwd%/myson~
+
+COPY ~override/20arte.cre~ ~override/20myson.cre~
+	SAY 0x08 @31144
+	SAY 0x0c @31145
+	WRITE_BYTE 0x2e 50
+
+COPY ~override/IW2000.are~ ~override~
+	LPF add_area_cre_acti
+		INT_VAR
+			pos_x      = 1980
+			pos_y      = 514
+			flags      = 9
+			anim       = 51456
+			dir        = 14
+		STR_VAR
+			actor_name = IWMyson
+			dialogue   = 20NEWMYS
+			race_scr   = 20MYSON2
+			cre_file   = 20myson
+	END
+
+COMPILE ~%mysoniwd%/20CMYSON.BAF~
+        ~%mysoniwd%/20MYSON2.BAF~
+        ~%mysoniwd%/20NEWMYS.d~
+
+COPY ~override/IW2001.are~ ~override~
+	LPF add_area_cre_acti
+		INT_VAR
+			pos_x      = 2262
+			pos_y      = 1483
+			flags      = 9
+			anim       = 51456
+		STR_VAR
+			actor_name = IWMyson
+			dialogue   = 20MYSON
+			over_scr   = IWHIDE
+			race_scr   = 20MYSONX
+			cre_file   = 20myson
+	END
+COMPILE ~%mysoniwd%/20MYSONX.BAF~
+        ~%mysoniwd%/20MYSON.d~
+//BLOCKEND
+
+//BLOCK Sherincal & Goublika
+OUTER_SPRINT ~sheribub~ ~%ubiwd%/sheribublik~
+/* desc
+если отправили Гоблику убивать Шеринкаль, то в начале там все появляются, а потом Гоблику убивают
+их добавить сразу, только iwhide и делать через Script Name (длинный)
+*/
+ADD_JOURNAL TITLE (@1000084) @18079 @18089 @34220 @18092 //- done 3 последних
+/* GlobalLT("40GoublikaQuest","GLOBAL",3) - стирать на перевале @18079
+   Так же нужно доделать этот квест(чтобы) */
+
+/* Возле Шеринкаль 7 фоморцев */
+
+/* добавить всем фоморцам 40TGIANT */
+
+COPY_EXISTING ~40GBLKA.CRE~ ~override~
+	WRITE_BYTE 0x270 128
+	WRITE_ASCII 0x2cc ~40GBLKA~ (8)
+COPY_EXISTING ~40GBLKA.CRE~ ~override/41GBLKA.CRE~ //Hidden
+	WRITE_BYTE 0x10 4
+	WRITE_BYTE 0x2e 57
+	WRITE_ASCII 0x2cc ~~ (8)
+	REMOVE_CRE_ITEMS
+	ADD_CRE_ITEM ~Z0CWSPEA~ #0 #0 #0 ~NONE~ ~WEAPON1~ EQUIP TWOHANDED
+COPY_EXISTING ~40GIAFOM.CRE~ ~override~
+	WRITE_BYTE 0x270 128
+COPY_EXISTING ~40GIAFOM.CRE~ ~override/41GIAFOM.CRE~ //Hidden
+	WRITE_LONG 0x14 6000
+	WRITE_ASCII 0x2cc ~~ (8)
+
+/* Erase in Sherincal dialog
+@34676
+@34219
+*/
+
+/* variables
+40FomoriansDefeated
+40GoublikaAbuses
+40GoublikaAfraid
+40GoublikaHunts
+40GoublikaMet
+40GoublikaOrder
+40GoublikaQuest
+40SherincalAttack
+41SpawnGiants
+FomoriansJoinLegion
+
+locals
+CallForHelp
+GaveAfraidSpeech
+*/
+
+/* new items
+
+*/
+//BLOCKEND
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

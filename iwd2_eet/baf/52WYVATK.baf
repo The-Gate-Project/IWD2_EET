@@ -1,0 +1,106 @@
+IF
+	!Allegiance(Myself,ENEMY)
+	See(Player1)
+	HasItem("z0misc40",LastSeenBy(Myself))
+THEN
+	RESPONSE #100
+		FaceObject(LastSeenBy(Myself))
+		DisplayStringNoName(Player1,@634)
+		SetSequence(SEQ_ATTACK)
+		Enemy()
+		SetGlobal("TEAM_1","MYAREA",1)
+END
+
+IF
+	!Allegiance(Myself,ENEMY)
+	See(Player2)
+	HasItem("z0misc40",LastSeenBy(Myself))
+THEN
+	RESPONSE #100
+		FaceObject(LastSeenBy(Myself))
+		DisplayStringNoName(Player2,@634)
+		SetSequence(SEQ_ATTACK)
+		Enemy()
+		SetGlobal("TEAM_1","MYAREA",1)
+END
+
+IF
+	!Allegiance(Myself,ENEMY)
+	See(Player3)
+	HasItem("z0misc40",LastSeenBy(Myself))
+THEN
+	RESPONSE #100
+		FaceObject(LastSeenBy(Myself))
+		DisplayStringNoName(Player3,@634)
+		SetSequence(SEQ_ATTACK)
+		Enemy()
+		SetGlobal("TEAM_1","MYAREA",1)
+END
+
+IF
+	!Allegiance(Myself,ENEMY)
+	See(Player4)
+	HasItem("z0misc40",LastSeenBy(Myself))
+THEN
+	RESPONSE #100
+		FaceObject(LastSeenBy(Myself))
+		DisplayStringNoName(Player4,@634)
+		SetSequence(SEQ_ATTACK)
+		Enemy()
+		SetGlobal("TEAM_1","MYAREA",1)
+END
+
+IF
+	!Allegiance(Myself,ENEMY)
+	See(Player5)
+	HasItem("z0misc40",LastSeenBy(Myself))
+THEN
+	RESPONSE #100
+		FaceObject(LastSeenBy(Myself))
+		DisplayStringNoName(Player5,@634)
+		SetSequence(SEQ_ATTACK)
+		Enemy()
+		SetGlobal("TEAM_1","MYAREA",1)
+END
+
+IF
+	!Allegiance(Myself,ENEMY)
+	See(Player6)
+	HasItem("z0misc40",LastSeenBy(Myself))
+THEN
+	RESPONSE #100
+		FaceObject(LastSeenBy(Myself))
+		DisplayStringNoName(Player6,@634)
+		SetSequence(SEQ_ATTACK)
+		Enemy()
+		SetGlobal("TEAM_1","MYAREA",1)
+END
+
+IF
+	//Or(19)
+		See([0.0.YETI])
+	/*	See("02_52YETTU_03",0)
+		See("02_52YETTG_01",0)
+		See("02_52YETTG_02",0)
+		See("02_52YETTU_04",0)
+		See("02_52YETTU_05",0)
+		See("02_52YETTU_06",0)
+		See("02_52YETGH_07",0)
+		See("02_52YETGH_08",0)
+		See("02_52YETGH_09",0)
+		See("02_52YETGH_10",0)
+		See("02_52YETUH_11",0)
+		See("02_52YETUH_12",0)
+		See("02_52YETUH_13",0)
+		See("02_52YETUH_14",0)
+		See("02_52YETUH_15",0)
+		See("02_52YETUH_16",0)
+		See("02_52YETUH_17",0)
+		See("02_52YETUH_18",0)*/
+	!StateCheck(LastSeenBy(Myself),STATE_REALLY_DEAD)
+THEN
+	RESPONSE #100
+		EquipMostDamagingMelee()
+		AttackOneRound(LastSeenBy(Myself))
+END
+

@@ -1,0 +1,111 @@
+IF
+	//Sequence("AR5202_C1_Switch0_S",SEQ_ATTACK)
+	Global("52C1LVR0_SEQ","MYAREA",0)
+	OpenState(Myself,TRUE)
+THEN
+	RESPONSE #100
+		StaticSequence("AR5202_C1_Switch0_S",SEQ_AWAKE)
+		SetGlobal("52C1LVR0_SEQ","MYAREA",1)
+		Continue()
+END
+
+IF
+	//!Sequence("AR5202_C1_Switch0_S",SEQ_ATTACK)
+	!Global("52C1LVR0_SEQ","MYAREA",0)
+	OpenState(Myself,FALSE)
+THEN
+	RESPONSE #100
+		StaticSequence("AR5202_C1_Switch0_S",SEQ_ATTACK)
+		SetGlobal("52C1LVR0_SEQ","MYAREA",0)
+		Continue()
+END
+
+IF
+	OR(2)
+		OpenState(Myself,TRUE)
+		!Global("AR5202_C1_Switch0_D","MYAREA",0)
+	//	!CheckDoorFlags(Myself,DOORLOCKED)
+	OR(2)
+		Global("WATCHING_PLAYER","MYAREA",0)
+		!Global("52Morohem_Master","GLOBAL",1)
+THEN
+	RESPONSE #100
+		Unlock(Myself)
+		CloseDoor(Myself)
+		Lock(Myself)
+		SetGlobal("AR5202_C1_Switch0_D","MYAREA",0)
+END
+
+IF
+	OR(2)
+		!Global("52Morohem_Master","GLOBAL",1)
+		Global("WATCHING_PLAYER","MYAREA",0)
+THEN
+	RESPONSE #100
+		NoAction()
+END
+
+IF
+	Global("CHAMBER_1_LEVER","MYAREA",0)
+	//!CheckDoorFlags(Myself,DOORLOCKED)
+	!Global("AR5202_C1_Switch0_D","MYAREA",0)
+	OpenState(Myself,TRUE)
+	//!CheckDoorFlags("AR5202_C1_Switch1_D",DOORLOCKED)
+	!Global("AR5202_C1_Switch1_D","MYAREA",0)
+	OpenState("AR5202_C1_Switch1_D",FALSE)
+	//!CheckDoorFlags("AR5202_C1_Switch2_D",DOORLOCKED)
+	!Global("AR5202_C1_Switch2_D","MYAREA",0)
+	OpenState("AR5202_C1_Switch2_D",FALSE)
+	//!CheckDoorFlags("AR5202_C1_Switch3_D",DOORLOCKED)
+	!Global("AR5202_C1_Switch3_D","MYAREA",0)
+	OpenState("AR5202_C1_Switch3_D",FALSE)
+	//!CheckDoorFlags("AR5202_C1_Switch4_D",DOORLOCKED)
+	!Global("AR5202_C1_Switch4_D","MYAREA",0)
+	OpenState("AR5202_C1_Switch4_D",FALSE)
+THEN
+	RESPONSE #100
+		Lock(Myself)
+		Lock("AR5202_C1_Switch1_D")
+		Lock("AR5202_C1_Switch2_D")
+		Lock("AR5202_C1_Switch3_D")
+		Lock("AR5202_C1_Switch4_D")
+		SetGlobal("AR5202_C1_Switch0_D","MYAREA",0)
+		SetGlobal("AR5202_C1_Switch1_D","MYAREA",0)
+		SetGlobal("AR5202_C1_Switch2_D","MYAREA",0)
+		SetGlobal("AR5202_C1_Switch3_D","MYAREA",0)
+		SetGlobal("AR5202_C1_Switch4_D","MYAREA",0)
+		SetGlobal("5202_CHAMBER_1_MONK_DEAD","GLOBAL",0)
+		CreateCreature("52MnkSt",[380.1135],10)
+END
+
+IF
+	Global("CHAMBER_1_LEVER","MYAREA",0)
+	GlobalGT("5202_CHAMBER_1_MONK_DEAD","GLOBAL",0)
+	//CheckDoorFlags(Myself,DOORLOCKED)
+	OpenState(Myself,TRUE)
+	Global("AR5202_C1_Switch0_D","MYAREA",0)
+THEN
+	RESPONSE #100
+		Unlock("AR5202_C1_Switch1_D")
+		Unlock("AR5202_C1_Switch2_D")
+		Unlock("AR5202_C1_Switch3_D")
+		Unlock("AR5202_C1_Switch4_D")
+		SetGlobal("AR5202_C1_Switch1_D","MYAREA",1)
+		SetGlobal("AR5202_C1_Switch2_D","MYAREA",1)
+		SetGlobal("AR5202_C1_Switch3_D","MYAREA",1)
+		SetGlobal("AR5202_C1_Switch4_D","MYAREA",1)
+		SetGlobal("CHAMBER_1_LEVER","MYAREA",1)
+		SetGlobal("5202_CHAMBER_1_MONK_DEAD","GLOBAL",0)
+END
+
+IF
+	!Global("CHAMBER_1_LEVER","MYAREA",0)
+	//!CheckDoorFlags(Myself,DOORLOCKED)
+	!Global("AR5202_C1_Switch0_D","MYAREA",0)
+	OpenState(Myself,TRUE)
+THEN
+	RESPONSE #100
+		CloseDoor(Myself)
+		SetGlobal("CHAMBER_1_LEVER","MYAREA",0)
+END
+

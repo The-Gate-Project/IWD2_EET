@@ -1,0 +1,56 @@
+IF
+  Global("SaveSavedLoc","LOCALS",0)
+THEN
+  RESPONSE #100
+    SetGlobal("SaveSavedLoc","LOCALS",1)
+    SaveObjectLocation("LOCALS","SavedLoc",Myself)
+    Continue()
+END
+
+IF
+	!GlobalTimerNotExpired("IwTimer4","LOCALS")
+	NearSavedLocation(Myself,"LOCALSSavedLoc",1)
+THEN
+	RESPONSE #100
+		SetGlobalTimerRandom("IwTimer4","LOCALS",1,3)
+		SetGlobal("FLOAT_NOISE","LOCALS",1)
+		SetSequence(SEQ_ATTACK)
+		Continue()
+	RESPONSE #100
+		SetGlobalTimerRandom("IwTimer4","LOCALS",1,3)
+		SetGlobal("FLOAT_NOISE","LOCALS",1)
+		SetSequence(SEQ_ATTACK_BACKSLASH)
+		Continue()
+	RESPONSE #100
+		SetGlobalTimerRandom("IwTimer4","LOCALS",1,3)
+		SetGlobal("FLOAT_NOISE","LOCALS",1)
+		SetSequence(SEQ_ATTACK_JAB)
+		Continue()
+END
+
+IF
+	!Global("FLOAT_NOISE","LOCALS",0)
+THEN
+	RESPONSE #33
+		DisplayStringHead(Myself,@20773)
+		SetGlobal("FLOAT_NOISE","LOCALS",0)
+	RESPONSE #33
+		DisplayStringHead(Myself,@20774)
+		SetGlobal("FLOAT_NOISE","LOCALS",0)
+	RESPONSE #33
+		DisplayStringHead(Myself,@20775)
+		SetGlobal("FLOAT_NOISE","LOCALS",0)
+	RESPONSE #201
+		SetGlobal("FLOAT_NOISE","LOCALS",0)
+END
+
+IF
+	!GlobalTimerNotExpired("IwTimer19","LOCALS")
+	!NearSavedLocation(Myself,"LOCALSSavedLoc",4)
+	!Allegiance(Myself,ENEMY)
+THEN
+	RESPONSE #100
+		MoveToSavedLocation("SavedLoc","LOCALS")
+		SetGlobalTimer("IwTimer19","LOCALS",5)
+END
+

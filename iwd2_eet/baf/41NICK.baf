@@ -1,0 +1,41 @@
+IF
+	Global("41NickAwaken","MYAREA",1)
+	GlobalTimerExpired("NickAwaken","MYAREA")
+	See([PC])
+THEN
+	RESPONSE #100
+		Polymorph(MAGE_MALE_HUMAN)
+		JumpToPoint([1120.1375])
+		SetHomeLocation([1120.1375])
+		//SetDialogueRange(300)
+		SetSequence(SEQ_AWAKE)
+		SetGlobal("41NickAwaken","MYAREA",2)
+		//Dialogue(LastMarkedObject)
+		ApplySpellRES("BDCUTSPY",Myself)
+		StartDialogNoSet(LastSeenBy(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	GlobalLT("41NickAwaken","MYAREA",2)
+	AttackedBy([ANYONE],DEFAULT)
+THEN
+	RESPONSE #100
+		Polymorph(MAGE_MALE_HUMAN)
+		SetSequence(SEQ_AWAKE)
+		JumpToPoint([1120.1375])
+		SetHomeLocation([1120.1375])
+		SetGlobal("41NickAwaken","MYAREA",2)
+		ChangeAIScript("",CLASS)
+END
+
+IF
+	AttackedBy([ANYONE],DEFAULT)
+THEN
+	RESPONSE #100
+		EquipMostDamagingMelee()
+		SetGlobal("TEAM_1","MYAREA",1)
+		SetGlobal("TEAM_5","MYAREA",1)
+		Enemy()
+END
+

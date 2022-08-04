@@ -1,0 +1,61 @@
+IF
+	OpenState("AR3000_Drum3",TRUE)
+THEN
+	RESPONSE #100
+		DestroySelf()
+END
+
+IF
+	!Global("DRUM_3_CHECK_SUMMON","MYAREA",0)
+	See([PC])
+THEN
+	RESPONSE #100
+		//SpellHitEffectSprite("DRUM_3","DRUM_3",CAUSE_CRITICAL_WOUNDS,10)
+		CreateVisualEffectObject("CCWOUNH",Myself)
+		Continue()
+END
+
+IF
+	!Global("DRUM_3_CHECK_SUMMON","MYAREA",0)
+	!See([PC])
+THEN
+	RESPONSE #100
+		PlaySound("WIF_P103")
+		Continue()
+END
+
+IF
+	!Global("DRUM_3_CHECK_SUMMON","MYAREA",0)
+	!StateCheck(Myself,STATE_REALLY_DEAD)
+	!Global("SPAWN_LOCK","MYAREA",0)
+THEN
+	RESPONSE #100
+		SetGlobal("DRUM_3_CHECK_SUMMON","MYAREA",0)
+		SetGlobal("TEAM_15","MYAREA",1)
+		SetGlobal("TEAM_16","MYAREA",1)
+		SetGlobal("TEAM_15","MYAREA",1)
+END
+
+IF
+	!Global("DRUM_3_CHECK_SUMMON","MYAREA",0)
+	!StateCheck(Myself,STATE_REALLY_DEAD)
+	Global("SPAWN_LOCK","MYAREA",0)
+THEN
+	RESPONSE #100
+		SetGlobal("DRUM_3_CHECK_SUMMON","MYAREA",0)
+		SetGlobal("AR3000_DRUM_SUMMON","GLOBAL",1)
+		SetGlobal("TEAM_15","MYAREA",1)
+		SetGlobal("TEAM_16","MYAREA",1)
+		SetGlobal("TEAM_15","MYAREA",1)
+END
+
+IF
+	//!IsCreatureAreaFlag(Myself,IGNORE_AI_INHIBIT)
+	!Global("IGNORE_AI_INHIBIT","LOCALS",1)
+THEN
+	RESPONSE #100
+		//SetCreatureAreaFlag(Myself,IGNORE_AI_INHIBIT,TRUE)
+		SetGlobal("IGNORE_AI_INHIBIT","LOCALS",1)
+		ApplySpellRES("IWPERAI",Myself)
+END
+

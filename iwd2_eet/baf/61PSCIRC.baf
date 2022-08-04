@@ -1,0 +1,23 @@
+IF
+	OR(2)
+		Entered([PC])
+		IsOverMe([PC])
+	!GlobalTimerNotExpired("SummCircTimer","MYAREA")
+THEN
+	RESPONSE #100
+		SetGlobalTimer("SummCircTimer","MYAREA",28)
+		ForceSpellRES("IWWI017",LastTrigger)  // SPWI017.SPL TRAP_POISON_CONFUSION_DARTS
+END
+
+IF
+	Global("Summon","MYAREA",3)
+	OR(2)
+		See([ENEMY.MONSTER.TANARI])
+		See([ENEMY.MONSTER.DEMONIC])
+THEN
+	RESPONSE #100
+		SetGlobal("Summon","MYAREA",0)
+		TriggerActivation("ProtectionCircle",FALSE)
+		TriggerActivation(Myself,FALSE)
+END
+

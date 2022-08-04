@@ -1,0 +1,18 @@
+IF
+	!Global("OTYUGH_ESCAPE","MYAREA",0)
+	Heard([ANYONE],66)
+THEN
+	RESPONSE #100
+		MoveToObject(LastHeardBy(Myself))
+END
+
+IF
+	!GlobalTimerNotExpired("IwTimer22","LOCALS")
+	!Global("OTYUGH_ESCAPE","MYAREA",0)
+	ActionListEmpty()
+THEN
+	RESPONSE #100
+		RandomWalk()
+		SetGlobalTimerRandom("IwTimer22","LOCALS",2,10)
+END
+

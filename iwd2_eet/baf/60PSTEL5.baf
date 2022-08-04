@@ -1,0 +1,27 @@
+IF
+	Global("door","LOCALS",1)
+	
+	OpenState(Myself,FALSE)
+THEN
+	RESPONSE #100
+		OpenDoor(Myself)
+		Wait(5)
+END
+
+IF
+	Opened([ANYONE])
+THEN
+	RESPONSE #100
+		GiveItemCreate("z6stele5",LastTrigger,1,0,0)
+		SetGlobal("door","LOCALS",1)
+END
+
+IF
+	Global("door","LOCALS",0)
+	OpenState(Myself,TRUE)
+THEN
+	RESPONSE #100
+		CloseDoor(Myself)
+		Wait(5)
+END
+

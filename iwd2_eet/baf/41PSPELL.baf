@@ -1,0 +1,34 @@
+IF
+	OR(2)
+		Opened([PC])
+		Entered([PC])
+THEN
+	RESPONSE #100
+		DisplayString(LastTrigger,14381)
+		ReallyForceSpellRES("IWWI220",LastTrigger)  // WIZARD_SNILLOCS_SNOWBALL_SWARM
+	RESPONSE #100
+		DisplayString(LastTrigger,14381)
+		ReallyForceSpellRES("IWWI420",LastTrigger)  // WIZARD_EMOTION_FEAR
+	RESPONSE #100
+		DisplayString(LastTrigger,14381)
+		ReallyForceSpellRES("IWWI122",LastTrigger)  // WIZARD_ICE_DAGGER
+	RESPONSE #100
+		DisplayString(LastTrigger,14381)
+		ReallyForceSpell(LastTrigger,WIZARD_ICE_STORM)
+	RESPONSE #100
+		DisplayString(LastTrigger,14381)
+		ReallyForceSpell(LastTrigger,CLERIC_UNHOLY_BLIGHT)
+	RESPONSE #100
+		DisplayString(LastTrigger,14381)
+		ReallyForceSpell(LastTrigger,CLERIC_CHARM_PERSON)
+	RESPONSE #100
+		DisplayString(LastTrigger,14381)
+		ReallyForceSpell(LastTrigger,CLERIC_DISPEL_MAGIC)
+	RESPONSE #100
+		DisplayString(LastTrigger,14381)
+		ReallyForceSpellRES("IWPR117",LastTrigger)  // CLERIC_FROST_FINGERS
+	RESPONSE #100
+		DisplayString(LastTrigger,14381)
+		ReallyForceSpell(LastTrigger,CLERIC_SILENCE_15_FOOT)
+END
+

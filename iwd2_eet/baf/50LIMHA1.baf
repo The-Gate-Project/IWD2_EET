@@ -1,0 +1,666 @@
+IF
+	!IsActive(Myself)
+THEN
+	RESPONSE #100
+		NoAction()
+END
+
+//BLOCK SET_VARS
+IF
+	!Global("SET_50LIMHA1","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,3)
+		SetGlobal("SET_50LIMHA1","LOCALS",1)
+		SetInterrupt(TRUE)
+END
+//BLOCKEND
+
+IF
+	StateCheck(Myself,STATE_PANIC)
+THEN
+	RESPONSE #100
+		RandomWalkContinuous()
+END
+
+IF
+	!GlobalTimerNotExpired("IWD_Rest","LOCALS")
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IWD_Rest","LOCALS",EIGHT_HOURS)
+		ApplySpell(Myself,RESTORE_FULL_HEALTH)
+		Rest()
+END
+
+IF
+	Global("GREASED_FLOOR","LOCALS",0)
+THEN
+	RESPONSE #100
+		ForceSpellPoint([2334.728],WIZARD_GREASE)
+		Wait(1)
+		SetGlobal("LIMHA_TRY_WARP","MYAREA",1)
+		SetGlobal("GREASED_FLOOR","LOCALS",1)
+END
+/*
+IF
+	!Global("LIMHA_TRY_WARP","MYAREA",0)
+	OR(4)
+		Range(NearestEnemyOf(Myself),10)
+		HitBy([GOODCUTOFF],CRUSHING)
+		GlobalTimerExpired("LIMHA_TELEPORT_TIMER","GLOBAL")
+		Global("GREASED_FLOOR","LOCALS",1)
+	//SetLastMarkedObject(Nothing)
+	OR(3) // 4
+		!Dead("LIMHA_SPOTTER_00")
+		!IsCreatureAreaFlag("LIMHA_SPOTTER_00",ENABLED)
+		
+		!RandomNum(3,1)
+		//SetLastMarkedObject("LIMHA_SPOTTER_00")
+	OR(3) // 4
+		!Dead(LastMarkedObject)
+		!IsCreatureAreaFlag("LIMHA_SPOTTER_01",ENABLED)
+		!RandomNum(3,1)
+		SetLastMarkedObject("LIMHA_SPOTTER_01")
+	OR(3) // 4
+		!Dead(LastMarkedObject)
+		!IsCreatureAreaFlag("LIMHA_SPOTTER_02",ENABLED)
+		!RandomNum(3,1)
+		SetLastMarkedObject("LIMHA_SPOTTER_02")
+	OR(3) // 4
+		!Dead(LastMarkedObject)
+		!IsCreatureAreaFlag("LIMHA_SPOTTER_03",ENABLED)
+		!RandomNum(3,1)
+		SetLastMarkedObject("LIMHA_SPOTTER_03")
+	OR(3) // 4
+		!Dead(LastMarkedObject)
+		!IsCreatureAreaFlag("LIMHA_SPOTTER_04",ENABLED)
+		!RandomNum(3,1)
+		SetLastMarkedObject("LIMHA_SPOTTER_04")
+	OR(3) // 4
+		!Dead(LastMarkedObject)
+		!IsCreatureAreaFlag("LIMHA_SPOTTER_05",ENABLED)
+		!RandomNum(3,1)
+		SetLastMarkedObject("LIMHA_SPOTTER_05")
+	OR(3) // 4
+		!Dead(LastMarkedObject)
+		!IsCreatureAreaFlag("LIMHA_SPOTTER_06",ENABLED)
+		!RandomNum(3,1)
+		SetLastMarkedObject("LIMHA_SPOTTER_06")
+	OR(3) // 4
+		!Dead(LastMarkedObject)
+		!IsCreatureAreaFlag("LIMHA_SPOTTER_07",ENABLED)
+		!RandomNum(3,1)
+		SetLastMarkedObject("LIMHA_SPOTTER_07")
+	OR(3) // 4
+		!Dead(LastMarkedObject)
+		!IsCreatureAreaFlag("LIMHA_SPOTTER_08",ENABLED)
+		!RandomNum(3,1)
+		SetLastMarkedObject("LIMHA_SPOTTER_08")
+	OR(3) // 4
+		!Dead(LastMarkedObject)
+		!IsCreatureAreaFlag("LIMHA_SPOTTER_09",ENABLED)
+		!RandomNum(3,1)
+		SetLastMarkedObject("LIMHA_SPOTTER_09")
+	!Dead(LastMarkedObject)
+THEN
+	RESPONSE #100
+		SetGlobal("LIMHA_TRY_WARP","MYAREA",0)
+		SetGlobalTimerRandom("LIMHA_TELEPORT_TIMER","GLOBAL",6,12)
+		SetCreatureAreaFlag(LastMarkedObject,ENABLED,FALSE)
+		ForceSpell(LastMarkedObject,WIZARD_DIMENSION_DOOR)  // SPWI402.SPL (Дверь измерений)
+		Wait(1)
+END*/
+
+IF
+	!Global("LIMHA_TRY_WARP","MYAREA",0)
+	OR(4)
+		Range(NearestEnemyOf(Myself),10)
+		HitBy([GOODCUTOFF],CRUSHING)
+		GlobalTimerExpired("LIMHA_TELEPORT_TIMER","GLOBAL")
+		Global("GREASED_FLOOR","LOCALS",1)
+	!TriggerOverride("LIMHA_SPOTTER_00",Global("ENABLED","LOCALS",1))
+	!RandomNum(3,1)
+	!Dead("LIMHA_SPOTTER_00")
+THEN
+	RESPONSE #100
+		/*SetGlobal("LIMHA_TRY_WARP","MYAREA",0)
+		SetGlobalTimerRandom("LIMHA_TELEPORT_TIMER","GLOBAL",6,12)
+		ActionOverride("LIMHA_SPOTTER_00",SetGlobal("ENABLED","LOCALS",1))
+		ForceSpell("LIMHA_SPOTTER_00",WIZARD_DIMENSION_DOOR)
+		Wait(2)*/
+		SetGlobal("LIMHA_SPOTTER","LOCALS",1)
+		Continue()
+END
+
+IF
+	!Global("LIMHA_TRY_WARP","MYAREA",0)
+	OR(4)
+		Range(NearestEnemyOf(Myself),10)
+		HitBy([GOODCUTOFF],CRUSHING)
+		GlobalTimerExpired("LIMHA_TELEPORT_TIMER","GLOBAL")
+		Global("GREASED_FLOOR","LOCALS",1)
+	!TriggerOverride("LIMHA_SPOTTER_01",Global("ENABLED","LOCALS",1))
+	!RandomNum(3,1)
+	!Dead("LIMHA_SPOTTER_01")
+THEN
+	RESPONSE #100
+		SetGlobal("LIMHA_SPOTTER","LOCALS",2)
+		Continue()
+END
+
+IF
+	!Global("LIMHA_TRY_WARP","MYAREA",0)
+	OR(4)
+		Range(NearestEnemyOf(Myself),10)
+		HitBy([GOODCUTOFF],CRUSHING)
+		GlobalTimerExpired("LIMHA_TELEPORT_TIMER","GLOBAL")
+		Global("GREASED_FLOOR","LOCALS",1)
+	!TriggerOverride("LIMHA_SPOTTER_02",Global("ENABLED","LOCALS",1))
+	!RandomNum(3,1)
+	!Dead("LIMHA_SPOTTER_02")
+THEN
+	RESPONSE #100
+		SetGlobal("LIMHA_SPOTTER","LOCALS",3)
+		Continue()
+END
+
+IF
+	!Global("LIMHA_TRY_WARP","MYAREA",0)
+	OR(4)
+		Range(NearestEnemyOf(Myself),10)
+		HitBy([GOODCUTOFF],CRUSHING)
+		GlobalTimerExpired("LIMHA_TELEPORT_TIMER","GLOBAL")
+		Global("GREASED_FLOOR","LOCALS",1)
+	!TriggerOverride("LIMHA_SPOTTER_03",Global("ENABLED","LOCALS",1))
+	!RandomNum(3,1)
+	!Dead("LIMHA_SPOTTER_03")
+THEN
+	RESPONSE #100
+		SetGlobal("LIMHA_SPOTTER","LOCALS",4)
+		Continue()
+END
+
+IF
+	!Global("LIMHA_TRY_WARP","MYAREA",0)
+	OR(4)
+		Range(NearestEnemyOf(Myself),10)
+		HitBy([GOODCUTOFF],CRUSHING)
+		GlobalTimerExpired("LIMHA_TELEPORT_TIMER","GLOBAL")
+		Global("GREASED_FLOOR","LOCALS",1)
+	!TriggerOverride("LIMHA_SPOTTER_04",Global("ENABLED","LOCALS",1))
+	!RandomNum(3,1)
+	!Dead("LIMHA_SPOTTER_04")
+THEN
+	RESPONSE #100
+		SetGlobal("LIMHA_SPOTTER","LOCALS",5)
+		Continue()
+END
+
+IF
+	!Global("LIMHA_TRY_WARP","MYAREA",0)
+	OR(4)
+		Range(NearestEnemyOf(Myself),10)
+		HitBy([GOODCUTOFF],CRUSHING)
+		GlobalTimerExpired("LIMHA_TELEPORT_TIMER","GLOBAL")
+		Global("GREASED_FLOOR","LOCALS",1)
+	!TriggerOverride("LIMHA_SPOTTER_05",Global("ENABLED","LOCALS",1))
+	!RandomNum(3,1)
+	!Dead("LIMHA_SPOTTER_05")
+THEN
+	RESPONSE #100
+		SetGlobal("LIMHA_SPOTTER","LOCALS",6)
+		Continue()
+END
+
+IF
+	!Global("LIMHA_TRY_WARP","MYAREA",0)
+	OR(4)
+		Range(NearestEnemyOf(Myself),10)
+		HitBy([GOODCUTOFF],CRUSHING)
+		GlobalTimerExpired("LIMHA_TELEPORT_TIMER","GLOBAL")
+		Global("GREASED_FLOOR","LOCALS",1)
+	!TriggerOverride("LIMHA_SPOTTER_06",Global("ENABLED","LOCALS",1))
+	!RandomNum(3,1)
+	!Dead("LIMHA_SPOTTER_06")
+THEN
+	RESPONSE #100
+		SetGlobal("LIMHA_SPOTTER","LOCALS",7)
+		Continue()
+END
+
+IF
+	!Global("LIMHA_TRY_WARP","MYAREA",0)
+	OR(4)
+		Range(NearestEnemyOf(Myself),10)
+		HitBy([GOODCUTOFF],CRUSHING)
+		GlobalTimerExpired("LIMHA_TELEPORT_TIMER","GLOBAL")
+		Global("GREASED_FLOOR","LOCALS",1)
+	!TriggerOverride("LIMHA_SPOTTER_07",Global("ENABLED","LOCALS",1))
+	!RandomNum(3,1)
+	!Dead("LIMHA_SPOTTER_07")
+THEN
+	RESPONSE #100
+		SetGlobal("LIMHA_SPOTTER","LOCALS",8)
+		Continue()
+END
+
+IF
+	!Global("LIMHA_TRY_WARP","MYAREA",0)
+	OR(4)
+		Range(NearestEnemyOf(Myself),10)
+		HitBy([GOODCUTOFF],CRUSHING)
+		GlobalTimerExpired("LIMHA_TELEPORT_TIMER","GLOBAL")
+		Global("GREASED_FLOOR","LOCALS",1)
+	!TriggerOverride("LIMHA_SPOTTER_08",Global("ENABLED","LOCALS",1))
+	!RandomNum(3,1)
+	!Dead("LIMHA_SPOTTER_08")
+THEN
+	RESPONSE #100
+		SetGlobal("LIMHA_SPOTTER","LOCALS",9)
+		Continue()
+END
+
+IF
+	!Global("LIMHA_TRY_WARP","MYAREA",0)
+	OR(4)
+		Range(NearestEnemyOf(Myself),10)
+		HitBy([GOODCUTOFF],CRUSHING)
+		GlobalTimerExpired("LIMHA_TELEPORT_TIMER","GLOBAL")
+		Global("GREASED_FLOOR","LOCALS",1)
+	!TriggerOverride("LIMHA_SPOTTER_09",Global("ENABLED","LOCALS",1))
+	!RandomNum(3,1)
+	!Dead("LIMHA_SPOTTER_09")
+THEN
+	RESPONSE #100
+		SetGlobal("LIMHA_SPOTTER","LOCALS",10)
+		Continue()
+END
+
+/* Switch */
+IF
+	!Global("LIMHA_SPOTTER","LOCALS",0)
+	Switch("LIMHA_SPOTTER","LOCALS")
+THEN
+	RESPONSE #1
+		SetGlobal("LIMHA_TRY_WARP","MYAREA",0)
+		SetGlobal("LIMHA_SPOTTER","LOCALS",0)
+		SetGlobalTimerRandom("LIMHA_TELEPORT_TIMER","GLOBAL",6,12)
+		ActionOverride("LIMHA_SPOTTER_00",SetGlobal("ENABLED","LOCALS",1))
+		ForceSpell("LIMHA_SPOTTER_00",WIZARD_DIMENSION_DOOR)
+		Wait(2)
+	RESPONSE #2
+		SetGlobal("LIMHA_TRY_WARP","MYAREA",0)
+		SetGlobal("LIMHA_SPOTTER","LOCALS",0)
+		SetGlobalTimerRandom("LIMHA_TELEPORT_TIMER","GLOBAL",6,12)
+		ActionOverride("LIMHA_SPOTTER_01",SetGlobal("ENABLED","LOCALS",1))
+		ForceSpell("LIMHA_SPOTTER_01",WIZARD_DIMENSION_DOOR)
+		Wait(2)
+	RESPONSE #3
+		SetGlobal("LIMHA_TRY_WARP","MYAREA",0)
+		SetGlobal("LIMHA_SPOTTER","LOCALS",0)
+		SetGlobalTimerRandom("LIMHA_TELEPORT_TIMER","GLOBAL",6,12)
+		ActionOverride("LIMHA_SPOTTER_02",SetGlobal("ENABLED","LOCALS",1))
+		ForceSpell("LIMHA_SPOTTER_02",WIZARD_DIMENSION_DOOR)
+		Wait(2)
+	RESPONSE #4
+		SetGlobal("LIMHA_TRY_WARP","MYAREA",0)
+		SetGlobal("LIMHA_SPOTTER","LOCALS",0)
+		SetGlobalTimerRandom("LIMHA_TELEPORT_TIMER","GLOBAL",6,12)
+		ActionOverride("LIMHA_SPOTTER_03",SetGlobal("ENABLED","LOCALS",1))
+		ForceSpell("LIMHA_SPOTTER_03",WIZARD_DIMENSION_DOOR)
+		Wait(2)
+	RESPONSE #5
+		SetGlobal("LIMHA_TRY_WARP","MYAREA",0)
+		SetGlobal("LIMHA_SPOTTER","LOCALS",0)
+		SetGlobalTimerRandom("LIMHA_TELEPORT_TIMER","GLOBAL",6,12)
+		ActionOverride("LIMHA_SPOTTER_04",SetGlobal("ENABLED","LOCALS",1))
+		ForceSpell("LIMHA_SPOTTER_04",WIZARD_DIMENSION_DOOR)
+		Wait(2)
+	RESPONSE #6
+		SetGlobal("LIMHA_TRY_WARP","MYAREA",0)
+		SetGlobal("LIMHA_SPOTTER","LOCALS",0)
+		SetGlobalTimerRandom("LIMHA_TELEPORT_TIMER","GLOBAL",6,12)
+		ActionOverride("LIMHA_SPOTTER_05",SetGlobal("ENABLED","LOCALS",1))
+		ForceSpell("LIMHA_SPOTTER_05",WIZARD_DIMENSION_DOOR)
+		Wait(2)
+	RESPONSE #7
+		SetGlobal("LIMHA_TRY_WARP","MYAREA",0)
+		SetGlobal("LIMHA_SPOTTER","LOCALS",0)
+		SetGlobalTimerRandom("LIMHA_TELEPORT_TIMER","GLOBAL",6,12)
+		ActionOverride("LIMHA_SPOTTER_06",SetGlobal("ENABLED","LOCALS",1))
+		ForceSpell("LIMHA_SPOTTER_06",WIZARD_DIMENSION_DOOR)
+		Wait(2)
+	RESPONSE #8
+		SetGlobal("LIMHA_TRY_WARP","MYAREA",0)
+		SetGlobal("LIMHA_SPOTTER","LOCALS",0)
+		SetGlobalTimerRandom("LIMHA_TELEPORT_TIMER","GLOBAL",6,12)
+		ActionOverride("LIMHA_SPOTTER_07",SetGlobal("ENABLED","LOCALS",1))
+		ForceSpell("LIMHA_SPOTTER_07",WIZARD_DIMENSION_DOOR)
+		Wait(2)
+	RESPONSE #9
+		SetGlobal("LIMHA_TRY_WARP","MYAREA",0)
+		SetGlobal("LIMHA_SPOTTER","LOCALS",0)
+		SetGlobalTimerRandom("LIMHA_TELEPORT_TIMER","GLOBAL",6,12)
+		ActionOverride("LIMHA_SPOTTER_08",SetGlobal("ENABLED","LOCALS",1))
+		ForceSpell("LIMHA_SPOTTER_08",WIZARD_DIMENSION_DOOR)
+		Wait(2)
+	RESPONSE #10
+		SetGlobal("LIMHA_TRY_WARP","MYAREA",0)
+		SetGlobal("LIMHA_SPOTTER","LOCALS",0)
+		SetGlobalTimerRandom("LIMHA_TELEPORT_TIMER","GLOBAL",6,12)
+		ActionOverride("LIMHA_SPOTTER_09",SetGlobal("ENABLED","LOCALS",1))
+		ForceSpell("LIMHA_SPOTTER_09",WIZARD_DIMENSION_DOOR)
+		Wait(2)
+END
+
+IF
+	Global("LIMHA_TRY_WARP","MYAREA",0)
+	GlobalTimerExpired("LIMHA_TELEPORT_TIMER","GLOBAL")
+	OR(2)
+		See(NearestEnemyOf(Myself))
+		HitBy([GOODCUTOFF],CRUSHING)
+THEN
+	RESPONSE #100
+		SetGlobal("LIMHA_TRY_WARP","MYAREA",1)
+		SetGlobalTimerRandom("LIMHA_TELEPORT_TIMER","GLOBAL",6,12)
+		Continue()
+END
+
+IF
+	Global("GREASED_FLOOR","LOCALS",1)
+	!See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		ForceSpell(Myself,WIZARD_PROTECTION_FROM_NORMAL_MISSILES)
+		//SpellWait(WIZARD_PROTECTION_FROM_NORMAL_MISSILES)
+		SetGlobal("LIMHA_LAST_CAST","MYAREA",-1)
+		SetGlobal("LIMHA_MODE","MYAREA",2)
+		SetGlobal("GREASED_FLOOR","LOCALS",2)
+		Wait(2)
+END
+
+IF
+	//ChargeCount("z0wand40",Myself,0,0,GREATER_THAN)
+	HasItem("z0wand40",Myself)
+	See(NearestEnemyOfType([0.0.0.0.0.SUMMONED]))
+THEN
+	RESPONSE #100
+		UseItem("z0wand40",LastSeenBy(Myself))
+		Wait(2)
+END
+//BLOCK SPL_1
+/*IF
+	ForceMarkedSpell(MARKED_SPELL)
+	SetSpellTarget(Nothing)
+	See(NearestEnemyOf(Myself),0)
+	Or(2)
+		Range(LastMarkedObject,10,LESS_THAN)
+		!See([ENEMY],0)
+THEN
+	RESPONSE #100
+		MarkSpellAndObject("210423162306",LastMarkedObject,SPELLCAST_IGNORE_SEE | SPELLCAST_IGNORE_VALID_SPELL_TARGET)  // [WIZARD_CHARM_PERSON, WIZARD_DIRE_CHARM, WIZARD_HOLD_PERSON]
+		Continue()
+END
+
+IF
+	!IsMarkedSpell(MARKED_SPELL)
+THEN
+	RESPONSE #100
+		SetGlobal("LIMHA_MODE","MYAREA",0)
+		Spell(SpellTarget,MARKED_SPELL)
+		Wait(1)
+		ForceMarkedSpell(MARKED_SPELL)
+END*/
+/*IF
+	GlobalLT("SSPELLS_1_RANDOM_CAST","LOCALS",4)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,3)
+		Continue()
+END*/
+//1 - LastMarkedObject - [WIZARD_CHARM_PERSON, WIZARD_DIRE_CHARM, WIZARD_HOLD_PERSON]
+IF
+	Global("SSPELLS_1_RANDOM_CAST","LOCALS",1)
+	HaveSpell(WIZARD_CHARM_PERSON)
+	See(NearestEnemyOf(Myself))
+	OR(2)
+		Range(LastSeenBy(Myself),10)
+		!See([ENEMY])
+	!Class(NearestEnemyOf(Myself),MONK)
+	!Kit(NearestEnemyOf(Myself),INQUISITOR)
+	!Kit(NearestEnemyOf(Myself),CAVALIER)
+	!Race(NearestEnemyOf(Myself),ELF)
+	!StateCheck(NearestEnemyOf(Myself),STATE_DISABLED)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,3)
+		Spell(NearestEnemyOf(Myself),WIZARD_CHARM_PERSON)
+		Wait(1)
+END
+
+IF
+	Global("SSPELLS_1_RANDOM_CAST","LOCALS",2)
+	HaveSpell(WIZARD_DIRE_CHARM)
+	See(NearestEnemyOf(Myself))
+	OR(2)
+		Range(LastSeenBy(Myself),10)
+		!See([ENEMY])
+	!Class(NearestEnemyOf(Myself),MONK)
+	!Race(NearestEnemyOf(Myself),ELF)
+	!StateCheck(NearestEnemyOf(Myself),STATE_DISABLED)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,3)
+		Spell(NearestEnemyOf(Myself),WIZARD_DIRE_CHARM)
+		Wait(1)
+END
+
+IF
+	Global("SSPELLS_1_RANDOM_CAST","LOCALS",3)
+	HaveSpell(WIZARD_HOLD_PERSON)
+	See(NearestEnemyOf(Myself))
+	OR(2)
+		Range(LastSeenBy(Myself),10)
+		!See([ENEMY])
+	!StateCheck(NearestEnemyOf(Myself),STATE_DISABLED)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,3)
+		Spell(NearestEnemyOf(Myself),WIZARD_HOLD_PERSON)
+		Wait(1)
+END
+//BLOCK NO_RND
+//1 - LastMarkedObject - [WIZARD_CHARM_PERSON, WIZARD_DIRE_CHARM, WIZARD_HOLD_PERSON]
+IF
+	HaveSpell(WIZARD_CHARM_PERSON)
+	See(NearestEnemyOf(Myself))
+	OR(2)
+		Range(LastSeenBy(Myself),10)
+		!See([ENEMY])
+	!Class(NearestEnemyOf(Myself),MONK)
+	!Kit(NearestEnemyOf(Myself),INQUISITOR)
+	!Kit(NearestEnemyOf(Myself),CAVALIER)
+	!Race(NearestEnemyOf(Myself),ELF)
+	!StateCheck(NearestEnemyOf(Myself),STATE_DISABLED)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,3)
+		Spell(NearestEnemyOf(Myself),WIZARD_CHARM_PERSON)
+		Wait(1)
+END
+
+IF
+	HaveSpell(WIZARD_DIRE_CHARM)
+	See(NearestEnemyOf(Myself))
+	OR(2)
+		Range(LastSeenBy(Myself),10)
+		!See([ENEMY])
+	!Class(NearestEnemyOf(Myself),MONK)
+	!Race(NearestEnemyOf(Myself),ELF)
+	!StateCheck(NearestEnemyOf(Myself),STATE_DISABLED)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,3)
+		Spell(NearestEnemyOf(Myself),WIZARD_DIRE_CHARM)
+		Wait(1)
+END
+
+IF
+	HaveSpell(WIZARD_HOLD_PERSON)
+	See(NearestEnemyOf(Myself))
+	OR(2)
+		Range(LastSeenBy(Myself),10)
+		!See([ENEMY])
+	!StateCheck(NearestEnemyOf(Myself),STATE_DISABLED)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("SSPELLS_1_RANDOM_CAST","LOCALS",1,3)
+		Spell(NearestEnemyOf(Myself),WIZARD_HOLD_PERSON)
+		Wait(1)
+END
+//BLOCKEND
+//BLOCKEND
+IF
+	Global("LIMHA_MODE","MYAREA",2)
+THEN
+	RESPONSE #100
+		SetGlobal("LIMHA_MODE","MYAREA",1)
+		Continue()
+	RESPONSE #100
+		SetGlobal("LIMHA_MODE","MYAREA",0)
+		Continue()
+END
+
+IF
+	Global("LIMHA_MODE","MYAREA",0)
+	HaveSpell(WIZARD_MONSTER_SUMMONING_3)
+	GlobalLT("WIZARD_SUMMON_MONSTER","LOCALS",1)
+	//Or(2)
+		See(NearestEnemyOf(Myself))
+	//	SetLastMarkedObject(Myself)
+THEN
+	RESPONSE #100
+		SetGlobal("LIMHA_MODE","MYAREA",1)
+		IncrementGlobal("WIZARD_SUMMON_MONSTER","LOCALS",1)
+		Spell(LastSeenBy(Myself),WIZARD_MONSTER_SUMMONING_3)
+		Wait(1)
+		DisplayStringHead(Myself,@17703)
+END
+
+IF
+	Global("LIMHA_MODE","MYAREA",0)
+	HaveSpell(WIZARD_MONSTER_SUMMONING_3)
+	GlobalLT("WIZARD_SUMMON_MONSTER","LOCALS",2)
+	//Or(2)
+		See(NearestEnemyOf(Myself))
+	//	SetLastMarkedObject(Myself)
+THEN
+	RESPONSE #100
+		SetGlobal("LIMHA_MODE","MYAREA",1)
+		IncrementGlobal("WIZARD_SUMMON_MONSTER","LOCALS",1)
+		Spell(LastSeenBy(Myself),WIZARD_MONSTER_SUMMONING_3)
+		Wait(1)
+		DisplayStringHead(Myself,@17703)
+END
+
+IF
+	Global("LIMHA_MODE","MYAREA",0)
+	HaveSpell(WIZARD_SPIDER_SPAWN)
+	//Or(2)
+		See(NearestEnemyOf(Myself))
+	//	SetLastMarkedObject(Myself)
+THEN
+	RESPONSE #100
+		SetGlobal("LIMHA_MODE","MYAREA",1)
+		Spell(LastSeenBy(Myself),WIZARD_SPIDER_SPAWN)
+		Wait(1)
+		DisplayStringHead(Myself,@17703)
+END
+
+IF
+	Global("LIMHA_MODE","MYAREA",0)
+	HaveSpell(WIZARD_MONSTER_SUMMONING_3)
+	//Or(2)
+		See(NearestEnemyOf(Myself))
+	//	SetLastMarkedObject(Myself)
+THEN
+	RESPONSE #100
+		SetGlobal("LIMHA_MODE","MYAREA",1)
+		IncrementGlobal("WIZARD_SUMMON_MONSTER","LOCALS",1)
+		Spell(LastSeenBy(Myself),WIZARD_MONSTER_SUMMONING_3)
+		Wait(1)
+		DisplayStringHead(Myself,@17703)
+END
+
+IF
+	Global("LIMHA_MODE","MYAREA",0)
+THEN
+	RESPONSE #100
+		SetGlobal("LIMHA_MODE","MYAREA",1)
+		Continue()
+END
+
+IF
+	Global("LIMHA_MODE","MYAREA",1)
+	HaveSpell(WIZARD_PROTECTION_FROM_NORMAL_MISSILES)
+	!CheckSpellState(Myself,PROTECTION_FROM_NORMAL_MISSILES)
+THEN
+	RESPONSE #100
+		SetGlobal("LIMHA_MODE","MYAREA",2)
+		Spell(Myself,WIZARD_PROTECTION_FROM_NORMAL_MISSILES)
+		Wait(1)
+END
+
+IF
+	Global("LIMHA_MODE","MYAREA",1)
+	HaveSpell(WIZARD_MIRROR_IMAGE)
+	!StateCheck(Myself,STATE_MIRRORIMAGE)CheckStat(Myself,0,STONESKINS)
+THEN
+	RESPONSE #100
+		SetGlobal("LIMHA_MODE","MYAREA",2)
+		Spell(Myself,WIZARD_MIRROR_IMAGE)
+		Wait(1)
+END
+
+/*IF
+	Global("LIMHA_MODE","MYAREA",1)
+	HaveSpell(WIZARD_MINOR_MIRROR_IMAGE)  // SPWI120.SPL (Малое Зеркальное отражение)
+	IsSpellTargetValid(Myself,WIZARD_MINOR_MIRROR_IMAGE,0)  // SPWI120.SPL (Малое Зеркальное отражение)
+THEN
+	RESPONSE #100
+		SetGlobal("LIMHA_MODE","MYAREA",2)
+		Spell(Myself,WIZARD_MINOR_MIRROR_IMAGE)  // SPWI120.SPL (Малое Зеркальное отражение)
+		Wait(1)
+END*/
+
+IF
+	Global("LIMHA_MODE","MYAREA",1)
+	HaveSpell(WIZARD_MINOR_GLOBE_OF_INVULNERABILITY)
+	!CheckStatGT(Myself,0,MINORGLOBE)
+THEN
+	RESPONSE #100
+		SetGlobal("LIMHA_MODE","MYAREA",2)
+		Spell(Myself,WIZARD_MINOR_GLOBE_OF_INVULNERABILITY)
+		Wait(1)
+END
+
+IF
+	Global("LIMHA_MODE","MYAREA",1)
+	HaveSpell(WIZARD_GHOST_ARMOR)
+	CheckStatGT(Myself,2,ARMORCLASS)
+THEN
+	RESPONSE #100
+		SetGlobal("LIMHA_MODE","MYAREA",2)
+		Spell(Myself,WIZARD_GHOST_ARMOR)
+		Wait(1)
+END
+
+IF
+	Global("LIMHA_MODE","MYAREA",1)
+THEN
+	RESPONSE #100
+		SetGlobal("LIMHA_MODE","MYAREA",2)
+		Continue()
+END
+

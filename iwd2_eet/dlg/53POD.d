@@ -1,0 +1,6 @@
+BEGIN ~53POD~
+
+IF ~True()~ THEN BEGIN 0
+  SAY @2499
+  IF ~~ THEN EXIT
+END

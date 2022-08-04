@@ -1,0 +1,33 @@
+IF
+  OR(2)
+    Die()
+    StateCheck(Myself,STATE_REALLY_DEAD)
+  !Global("Set_Death_Variable","LOCALS",1)
+THEN
+  RESPONSE #100
+    SetGlobal("Set_Death_Variable","LOCALS",1)
+    IncrementGlobal("6001_BGrp2_Dead","GLOBAL",1)
+    Continue()
+END
+
+IF
+  IsActive(Myself)
+  Global("IwIHidden","LOCALS",0)
+  Global("FirstIwIHidden","LOCALS",0)
+THEN
+  RESPONSE #100
+    SetGlobal("IwIHidden","LOCALS",1)
+    SetGlobal("FirstIwIHidden","LOCALS",1)
+    ApplySpellRES("idinvis4",Myself)
+    Deactivate(Myself)
+    //Continue()
+END
+
+IF
+  IsActive(Myself)
+  !Global("IwIHidden","LOCALS",0)
+THEN
+  RESPONSE #100
+    Deactivate(Myself)
+    //Continue()
+END

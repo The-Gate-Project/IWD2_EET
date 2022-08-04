@@ -1,0 +1,28 @@
+IF
+	Global("INVULNERABLE_IWD2","LOCALS",0)
+THEN
+	RESPONSE #100
+		ApplySpellRES("IDINVUL",Myself)
+		SetGlobal("INVULNERABLE_IWD2","LOCALS",1)
+		Continue()
+END
+
+IF
+	OR(11)
+		HitBy([PC],CRUSHING)
+		HitBy([PC],ACID)
+		HitBy([PC],COLD)
+		HitBy([PC],ELECTRICITY)
+		HitBy([PC],FIRE)
+		HitBy([PC],PIERCING)
+		HitBy([PC],POISON)
+		HitBy([PC],MAGIC)
+		HitBy([PC],MISSILE)
+		HitBy([PC],SLASHING)
+		HitBy([PC],STUNNING)
+	OpenState("AR4100_LeftSlide",TRUE)
+THEN
+	RESPONSE #100
+		CloseDoor("AR4100_LeftSlide")
+END
+

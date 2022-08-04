@@ -1,0 +1,16 @@
+IF
+	Allegiance(Myself,ENEMY)
+THEN
+	RESPONSE #100
+		ChangeAIScript("20DeretC",RACE)
+END
+
+IF
+	Global("GoHome","LOCALS",1)
+	AttackedBy([GOODCUTOFF],DEFAULT)
+THEN
+	RESPONSE #100
+		Enemy()
+		ChangeAIScript("20DeretC",RACE)
+END
+

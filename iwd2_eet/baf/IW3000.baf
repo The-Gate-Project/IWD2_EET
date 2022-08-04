@@ -1,0 +1,144 @@
+IF
+	OnCreation()
+	Global("30enneli_Healed","GLOBAL",0)
+THEN
+	RESPONSE #100
+		//SetHP("Ennelia",6)
+		ActionOverride("Ennelia",ApplySpellRES("IWSHP15",Myself))
+		Continue()
+END
+
+IF
+  !Global("IW3000_Visited","GLOBAL",1)
+THEN
+  RESPONSE #100
+    SetGlobal("IW3000_Visited","GLOBAL",1)
+    Continue()
+END
+
+IF
+	Global("30BRASTO_ESCAPE","GLOBAL",3)
+	Global("BRASTON_PAUSED_STATE","GLOBAL",2)
+	Global("SPRITE_IS_DEADBraston","GLOBAL",0)
+THEN
+	RESPONSE #100
+		//HideCreature("Braston",FALSE)
+		Activate("Braston")
+		ActionOverride("Braston",SetGlobal("IwIHidden","LOCALS",0))
+		ActionOverride("Braston",ApplySpellRES("idinvis5",Myself))
+		SetGlobal("BRASTON_DELETE_AR3100","GLOBAL",1)
+		SetGlobal("BRASTON_PAUSED_STATE","GLOBAL",0)
+		Continue()
+END
+
+IF
+	!Global("BRASTON_DELETE_AR3000","GLOBAL",0)
+	!Dead("Braston")
+	Exists("Braston")
+THEN
+	RESPONSE #100
+		ActionOverride("Braston",DestroySelf())
+		SetGlobal("BRASTON_DELETE_AR3000","GLOBAL",0)
+		Continue()
+END
+
+IF
+	GlobalLT("30ENNELI_BQUEST","GLOBAL",2)
+	!Global("ENNELIA_BRASTON_TEAM","MYAREA",0)
+THEN
+	RESPONSE #100
+		SetGlobal("30ENNELI_BQUEST","GLOBAL",2)
+		Continue()
+END
+
+IF
+	Global("DRUMMERS_RESET","MYAREA",0)
+	!Global("SPRITE_IS_DEAD31bugGut","GLOBAL",0)
+THEN
+	RESPONSE #100
+		SetGlobal("TEAM_2","MYAREA",0)
+		SetGlobal("TEAM_7","MYAREA",0)
+		SetGlobal("TEAM_15","MYAREA",0)
+		ActionOverride("07_GobRu",DestroySelf())
+		ActionOverride("02_OrcRu",DestroySelf())
+		ActionOverride("15_OrcRu",DestroySelf())
+		SetGlobal("DRUM_1_STATE","MYAREA",0)
+		SetGlobal("DRUM_2_STATE","MYAREA",0)
+		SetGlobal("DRUM_3_STATE","MYAREA",0)
+		SetGlobal("SPAWN_LOCK","MYAREA",0)
+		SetGlobal("DRUMMERS_RESET","MYAREA",1)
+		Continue()
+END
+
+IF
+	Global("SPAWN_LOCK","MYAREA",0)
+	//!Dead("DRUM_SUMMON_A")
+	Global("SPRITE_IS_DEADDRUM_SUMMON_A","GLOBAL",1)
+	//!Dead("DRUM_SUMMON_B")
+	Global("SPRITE_IS_DEADDRUM_SUMMON_B","GLOBAL",1)
+	OR(2)
+		//CheckAreaDiffLevel(1)
+		DifficultyLT(NORMAL)
+		//!Dead("DRUM_SUMMON_C")
+		Global("SPRITE_IS_DEADDRUM_SUMMON_C","GLOBAL",1)
+	OR(2)
+		//!CheckAreaDiffLevel(3)
+		DifficultyLT(HARDEST)
+		//!Dead("DRUM_SUMMON_D")
+		Global("SPRITE_IS_DEADDRUM_SUMMON_D","GLOBAL",1)
+THEN
+	RESPONSE #100
+		SetGlobal("SPAWN_LOCK","MYAREA",1)
+		Continue()
+END
+
+IF
+	Global("SPAWN_LOCK","MYAREA",2)
+	!GlobalTimerNotExpired("WORG_SPAWN_TIMER","MYAREA")
+THEN
+	RESPONSE #100
+		SetGlobal("SPAWN_LOCK","MYAREA",0)
+		Continue()
+END
+
+IF
+	Global("SPAWN_LOCK","MYAREA",1)
+	OR(2)
+		//Dead("DRUM_SUMMON_A")
+		GlobalGT("SPRITE_IS_DEADDRUM_SUMMON_A","GLOBAL",1)
+		//Dead("DRUM_SUMMON_B")
+		GlobalGT("SPRITE_IS_DEADDRUM_SUMMON_B","GLOBAL",1)
+	OR(2)
+		//CheckAreaDiffLevel(1)
+		DifficultyLT(NORMAL)
+		//Dead("DRUM_SUMMON_C")
+		GlobalGT("SPRITE_IS_DEADDRUM_SUMMON_C","GLOBAL",1)
+	OR(2)
+		//!CheckAreaDiffLevel(3)
+		DifficultyLT(HARDEST)
+		//Dead("DRUM_SUMMON_D")
+		GlobalGT("SPRITE_IS_DEADDRUM_SUMMON_D","GLOBAL",1)
+THEN
+	RESPONSE #100
+		SetGlobalTimerRandom("WORG_SPAWN_TIMER","MYAREA",45,60)
+		SetGlobal("SPAWN_LOCK","MYAREA",2)
+		Continue()
+END
+
+IF
+	!Global("AR3000_DRUM_SUMMON","GLOBAL",0)
+	!Global("SPAWN_LOCK","MYAREA",0)
+THEN
+	RESPONSE #100
+		SetGlobal("AR3000_DRUM_SUMMON","GLOBAL",0)
+		Continue()
+END
+
+IF
+	OnCreation()
+THEN
+	RESPONSE #100
+		NoAction()
+		Continue()
+END
+

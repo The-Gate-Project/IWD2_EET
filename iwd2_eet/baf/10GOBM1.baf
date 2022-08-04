@@ -1,0 +1,96 @@
+IF
+	Global("I_LIKE_DWARVES","LOCALS",0)
+	See([PC])
+THEN
+	RESPONSE #75
+		SetGlobal("I_LIKE_DWARVES","LOCALS",2)
+		Continue()
+	RESPONSE #25
+		SetGlobal("I_LIKE_DWARVES","LOCALS",1)
+		Continue()
+END
+
+IF
+	!IsActive(Myself)
+	!Global("Dock_Goblin_Quest","GLOBAL",0)
+THEN
+	RESPONSE #100
+		DestroySelf()
+END
+
+IF
+	!IsActive(Myself)
+THEN
+	RESPONSE #100
+		NoAction()
+END
+
+IF
+	StateCheck(Myself,STATE_PANIC)
+THEN
+	RESPONSE #100
+		RandomWalkContinuous()
+END
+
+IF
+	Global("I_LIKE_DWARVES","LOCALS",1)
+	OR(2)
+		See([0.0.DWARF])
+		See([PC.0.DWARF])
+THEN
+	RESPONSE #100
+		EquipMostDamagingMelee()
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		EquipMostDamagingMelee()
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	!GlobalTimerNotExpired("IwTimer18","LOCALS")
+THEN
+	RESPONSE #15
+		DisplayStringHead(Myself,@1677)
+		SetGlobalTimerRandom("IwTimer18","LOCALS",20,30)
+		Continue()
+	RESPONSE #15
+		DisplayStringHead(Myself,@1678)
+		SetGlobalTimerRandom("IwTimer18","LOCALS",20,30)
+		Continue()
+	RESPONSE #15
+		DisplayStringHead(Myself,@1679)
+		SetGlobalTimerRandom("IwTimer18","LOCALS",20,30)
+		Continue()
+	RESPONSE #15
+		DisplayStringHead(Myself,@1680)
+		SetGlobalTimerRandom("IwTimer18","LOCALS",20,30)
+		Continue()
+	RESPONSE #15
+		DisplayStringHead(Myself,@1681)
+		SetGlobalTimerRandom("IwTimer18","LOCALS",20,30)
+		Continue()
+	RESPONSE #15
+		DisplayStringHead(Myself,@1683)
+		SetGlobalTimerRandom("IwTimer18","LOCALS",20,30)
+		Continue()
+	RESPONSE #15
+		DisplayStringHead(Myself,@1684)
+		SetGlobalTimerRandom("IwTimer18","LOCALS",20,30)
+		Continue()
+	RESPONSE #15
+		DisplayStringHead(Myself,@1685)
+		SetGlobalTimerRandom("IwTimer18","LOCALS",20,30)
+		Continue()
+	RESPONSE #15
+		DisplayStringHead(Myself,@1687)
+		SetGlobalTimerRandom("IwTimer18","LOCALS",20,30)
+		Continue()
+	RESPONSE #765
+		Continue()
+END
+

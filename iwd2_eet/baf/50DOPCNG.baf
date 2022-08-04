@@ -1,0 +1,17 @@
+IF
+	IsActive(Myself)
+	!Global("DestroyNoCol","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("DestroyNoCol","LOCALS",1)
+		DestroyItem("iwnocol")
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+THEN
+	RESPONSE #100
+		ChangeAnimation("50Dop")
+END
+

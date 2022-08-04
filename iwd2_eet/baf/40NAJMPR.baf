@@ -1,0 +1,92 @@
+IF
+  Global("SaveSavedLoc","LOCALS",0)
+THEN
+  RESPONSE #100
+    SetGlobal("SaveSavedLoc","LOCALS",1)
+    SaveObjectLocation("LOCALS","SavedLoc",Myself)
+    Continue()
+END
+
+IF
+	Global("ML_0","LOCALS",0)
+	OR(2)
+		!IsWeaponRanged(Myself)
+		HPPercentLT(Myself,75)
+THEN
+	RESPONSE #100
+		//SetCreatureAreaFlag(Myself,INVULNERABLE,TRUE)
+		ApplySpellRES("IDINVULS",Myself)
+		SetGlobal("ML_0","LOCALS",1)
+END
+
+IF
+	Global("ML_0","LOCALS",1)
+	ActionListEmpty()
+	NearLocation(Myself,3090,448,4)
+THEN
+	RESPONSE #100
+		SetHomeLocation([3090.448])
+		SetGlobal("ML_0","LOCALS",2)
+		Continue()
+END
+
+IF
+	Global("ML_0","LOCALS",1)
+	OR(2)
+		!IsWeaponRanged(Myself)
+		HPPercentLT(Myself,75)
+THEN
+	RESPONSE #100
+		MoveToPoint([3090.448])
+END
+
+IF
+	Global("ML_0","LOCALS",2)
+	OR(2)
+		!IsWeaponRanged(Myself)
+		HPPercentLT(Myself,75)
+THEN
+	RESPONSE #100
+		JumpToPoint([3090.550])
+		
+		SetHomeLocation([3090.550])
+		
+		SetGlobal("ML_0","LOCALS",3)
+END
+
+IF
+	Global("ML_0","LOCALS",3)
+	OR(2)
+		!IsWeaponRanged(Myself)
+		HPPercentLT(Myself,75)
+THEN
+	RESPONSE #100
+		//SetSavedLocation()
+		SaveObjectLocation("LOCALS","SavedLoc",Myself)
+		SetGlobal("ML_0","LOCALS",4)
+END
+
+IF
+	Global("ML_0","LOCALS",4)
+	OR(2)
+		!IsWeaponRanged(Myself)
+		HPPercentLT(Myself,75)
+THEN
+	RESPONSE #100
+		//SetCreatureAreaFlag(Myself,INVULNERABLE,FALSE)
+		ApplySpellRES("IDRINVUL",Myself)
+		SetGlobal("ML_0","LOCALS",5)
+END
+
+IF
+	Global("ML_0","LOCALS",5)
+	OR(2)
+		!IsWeaponRanged(Myself)
+		HPPercentLT(Myself,75)
+THEN
+	RESPONSE #100
+		//ChangeCurrentScript("")
+		SetGlobal("ML_0","LOCALS",-1)
+		ChangeAIScript("",SPECIFICS)
+END
+

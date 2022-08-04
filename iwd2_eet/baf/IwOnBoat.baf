@@ -1,0 +1,35 @@
+IF
+	!Global("SCREED_OnBoat","MYAREA",1)
+	IsOverMe("SCREED")
+THEN
+	RESPONSE #100
+		SetGlobal("SCREED_OnBoat","MYAREA",1)
+		Continue()
+END
+
+IF
+	!Global("SCREED_OnBoat","MYAREA",2)
+	!IsOverMe("SCREED")
+THEN
+	RESPONSE #100
+		SetGlobal("SCREED_OnBoat","MYAREA",2)
+		Continue()
+END
+
+IF
+	!Global("ELDGULL_OnBoat","MYAREA",1)
+	IsOverMe("ELDGULL")
+THEN
+	RESPONSE #100
+		SetGlobal("ELDGULL_OnBoat","MYAREA",1)
+		Continue()
+END
+
+IF
+	!Global("ELDGULL_OnBoat","MYAREA",2)
+	!IsOverMe("ELDGULL")
+THEN
+	RESPONSE #100
+		SetGlobal("ELDGULL_OnBoat","MYAREA",2)
+		Continue()
+END

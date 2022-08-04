@@ -1,0 +1,30 @@
+IF
+	Entered([PC])
+THEN
+	RESPONSE #100
+		//HideCreature("09_53MYCBLH_01",FALSE)
+		//HideCreature("09_53MYCBLH_02",FALSE)
+		//HideCreature("09_53MYCBLH_03",FALSE)
+		//HideCreature("09_53MYCBLH_04",FALSE)
+		//HideCreature("09_53MYCBLH_05",FALSE)
+		//HideCreature("09_53MYCREH_06",FALSE)
+		//HideCreature("09_53MYCREH_07",FALSE)
+		//HideCreature("09_53MYCREH_08",FALSE)
+		Activate("5300_Myconid_Team9_01")
+		ActionOverride("5300_Myconid_Team9_01",SetGlobal("IwIHidden","LOCALS",0))
+		Activate("5300_Myconid_Team9_02")
+		ActionOverride("5300_Myconid_Team9_02",SetGlobal("IwIHidden","LOCALS",0))
+		Activate("5300_Myconid_Team9_03")
+		ActionOverride("5300_Myconid_Team9_03",SetGlobal("IwIHidden","LOCALS",0))
+		Activate("5300_Myconid_Team9_04")
+		ActionOverride("5300_Myconid_Team9_04",SetGlobal("IwIHidden","LOCALS",0))
+		Activate("5300_Myconid_Team9_05")
+		ActionOverride("5300_Myconid_Team9_05",SetGlobal("IwIHidden","LOCALS",0))
+		Activate("5300_Myconid_Team9_06")
+		ActionOverride("5300_Myconid_Team9_06",SetGlobal("IwIHidden","LOCALS",0))
+		Activate("5300_Myconid_Team9_07")
+		ActionOverride("5300_Myconid_Team9_07",SetGlobal("IwIHidden","LOCALS",0))
+		Activate("5300_Myconid_Team9_08")
+		ActionOverride("5300_Myconid_Team9_08",SetGlobal("IwIHidden","LOCALS",0))
+END
+

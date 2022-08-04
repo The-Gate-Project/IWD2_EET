@@ -1,0 +1,17 @@
+IF
+	Global("Started_Cutscene_GMeet","MYAREA",0)
+	!Dead("Zigma")
+	//Global("SPRITE_IS_DEADZigma","GLOBAL",0)
+	Global("TEAM_1","MYAREA",0)
+	Entered([PC])
+THEN
+	RESPONSE #100
+		SetGlobal("Started_Cutscene_GMeet","MYAREA",1)
+		ClearActions("Zigma")
+		//ActionOverride("Zigma",ClearSpriteEffects("Zigma"))
+		StartCutSceneMode()
+		ClearAllActions()
+		MultiPlayerSync()
+		StartCutScene("63cGMeet")
+END
+

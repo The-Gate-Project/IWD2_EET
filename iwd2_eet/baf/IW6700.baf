@@ -1,0 +1,25 @@
+IF
+	Exists("OrmisDohor")
+	!Global("SPRITE_IS_DEADOrmisDohorLemur","GLOBAL",0)
+THEN
+	RESPONSE #100
+		ActionOverride("OrmisDohor",DestroySelf())
+		Continue()
+END
+
+IF
+	!Global("SH_BarracksGuardsReset","GLOBAL",1)
+THEN
+	RESPONSE #100
+		SetGlobal("SH_BarracksGuardsReset","GLOBAL",1)
+		Continue()
+END
+
+IF
+	OnCreation()
+THEN
+	RESPONSE #100
+		NoAction()
+		Continue()
+END
+

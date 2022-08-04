@@ -1,0 +1,132 @@
+IF
+	Allegiance(Myself,ENEMY)
+THEN
+	RESPONSE #264
+		SetGlobal("SPECIAL_ATTACK","LOCALS",0)
+		Continue()
+	RESPONSE #33
+		SetGlobal("SPECIAL_ATTACK","LOCALS",1)
+		Continue()
+	RESPONSE #33
+		SetGlobal("SPECIAL_ATTACK","LOCALS",2)
+		Continue()
+	RESPONSE #33
+		SetGlobal("SPECIAL_ATTACK","LOCALS",3)
+		Continue()
+	RESPONSE #33
+		SetGlobal("SPECIAL_ATTACK","LOCALS",4)
+		Continue()
+END
+
+IF
+	OR(2)
+		Global("SPECIAL_ATTACK","LOCALS",3)
+		Global("SPECIAL_ATTACK","LOCALS",4)
+	OR(2)
+		!HasItem("RING30",Myself)  // Кольцо очарования
+		//!ChargeCount("RING30",Myself,0,0,GREATER_THAN)  // Кольцо очарования - 1 charge
+		!Global("ChargeCountRING30","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobal("SPECIAL_ATTACK","LOCALS",0)
+		Continue()
+END
+
+IF
+	StateCheck(Myself,STATE_PANIC)
+THEN
+	RESPONSE #100
+		RandomWalkContinuous()
+END
+
+IF
+	!GlobalTimerNotExpired("IWD_Rest","LOCALS")
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IWD_Rest","LOCALS",EIGHT_HOURS)
+		ApplySpell(Myself,RESTORE_FULL_HEALTH)
+		Rest()
+END
+
+IF
+	HasItem("POTN55",Myself) //POTN_52
+	HPPercentLT(Myself,25)
+THEN
+	RESPONSE #100
+		UseItem("POTN55",Myself) //POTN_52
+END
+
+IF
+	HasItem("POTN52",Myself) //POTN_08
+	HPPercentLT(Myself,25)
+THEN
+	RESPONSE #100
+		UseItem("POTN52",Myself) //POTN_08
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	HaveSpell(WIZARD_COLOR_SPRAY)
+	OR(2)
+		See([PC])
+		See([GOODCUTOFF.0.0.0.150])
+	!StateCheck(LastSeenBy(Myself),STATE_SLEEPING)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),WIZARD_COLOR_SPRAY)
+		Wait(1)
+END
+
+IF
+	Global("SPECIAL_ATTACK","LOCALS",1)
+	HaveSpell(WIZARD_CHARM_PERSON)
+	OR(2)
+		AttackedBy([GOODCUTOFF],DEFAULT)
+		AttackedBy([GOODCUTOFF.0.0.0.150],DEFAULT)
+	!Class(LastAttackerOf(Myself),MONK)
+	!Kit(LastAttackerOf(Myself),INQUISITOR)
+	!Kit(LastAttackerOf(Myself),CAVALIER)
+	!Race(LastAttackerOf(Myself),ELF)
+	!StateCheck(LastAttackerOf(Myself),STATE_DISABLED)
+THEN
+	RESPONSE #100
+		Spell(LastAttackerOf(Myself),WIZARD_CHARM_PERSON)
+		Wait(1)
+END
+
+IF
+	Global("SPECIAL_ATTACK","LOCALS",2)
+	OR(2)
+		AttackedBy([GOODCUTOFF],DEFAULT)
+		AttackedBy([GOODCUTOFF.0.0.0.150],DEFAULT)
+THEN
+	RESPONSE #100
+		IncrementGlobal("ChargeCountRING30","LOCALS",1)
+		UseItem("RING30",LastAttackerOf(Myself))
+END
+
+IF
+	Global("SPECIAL_ATTACK","LOCALS",4)
+	HaveSpell(WIZARD_SLOW)
+	OR(2)
+		See([PC])
+		See([GOODCUTOFF.0.0.0.150])
+	!StateCheck(LastSeenBy(Myself),STATE_SLOWED)
+	!HasBounceEffects(LastSeenBy(Myself))
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),WIZARD_SLOW)
+		Wait(1)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	OR(2)
+		See(NearestEnemyOf(Myself))
+		See([GOODCUTOFF.0.0.0.150])
+THEN
+	RESPONSE #100
+		EquipMostDamagingMelee()
+		AttackOneRound(LastSeenBy(Myself))
+END
+

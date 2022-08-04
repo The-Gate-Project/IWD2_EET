@@ -1,0 +1,42 @@
+IF
+  Global("SaveSavedLoc","LOCALS",0)
+THEN
+  RESPONSE #100
+    SetGlobal("SaveSavedLoc","LOCALS",1)
+    SaveObjectLocation("LOCALS","SavedLoc",Myself)
+    Continue()
+END
+
+IF
+	!GlobalTimerNotExpired("IwTimer18","LOCALS")
+	GlobalLT("Reig_Quest","GLOBAL",2)
+	!See([ENEMY.0.GOBLIN])
+THEN
+	RESPONSE #20
+		DisplayStringHead(Myself,@1662)
+		SetGlobalTimerRandom("IwTimer18","LOCALS",10,15)
+	RESPONSE #20
+		DisplayStringHead(Myself,@1665)
+		SetGlobalTimerRandom("IwTimer18","LOCALS",10,15)
+	RESPONSE #160
+		SetGlobalTimerRandom("IwTimer18","LOCALS",10,15)
+END
+
+IF
+	!GlobalTimerNotExpired("IwTimer19","LOCALS")
+	!NearSavedLocation(Myself,"LOCALSSavedLoc",1)
+THEN
+	RESPONSE #100
+		MoveToSavedLocation("SavedLoc","LOCALS")
+		SetGlobalTimerRandom("IwTimer19","LOCALS",1,5)
+END
+
+/*IF
+	!GlobalTimerNotExpired("IwTimer19","LOCALS")
+	NearSavedLocation(Myself,"LOCALSSavedLoc",1)
+THEN
+	RESPONSE #100
+		RandomTurn()
+		SetGlobalTimerRandom("IwTimer19","LOCALS",1,5)
+END*/
+

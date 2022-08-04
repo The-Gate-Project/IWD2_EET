@@ -1,0 +1,32 @@
+/*IF
+	!Global("61HELHOU_INACTIVE","LOCALS",1)
+	Allegiance(Myself,ENEMY)
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		UseItem("z0cihel1",LastSeenBy(Myself))  // No such index
+		//ChangeCurrentScript("")
+		SetGlobal("61HELHOU_INACTIVE","LOCALS",1)
+END*/
+
+IF
+	!Global("61HELHOU_INACTIVE","LOCALS",1)
+	Allegiance(Myself,ENEMY)
+	See(NearestEnemyOf(Myself))
+	Range(LastSeenBy(Myself),6)
+THEN
+	RESPONSE #100
+		//DestroyItem("z0cihel1")  // No such index
+		ForceSpellRES("IWHLHND",LastSeenBy(Myself))
+		SetGlobal("61HELHOU_INACTIVE","LOCALS",1)
+END
+//IWHLHND
+
+IF
+	!Global("Z61HELHOU_INACTIVE","LOCALS",1)
+	HasItem("z0cihel1",Myself)
+THEN
+	RESPONSE #100
+		DestroyItem("z0cihel1")  // No such index
+		SetGlobal("Z61HELHOU_INACTIVE","LOCALS",1)
+END

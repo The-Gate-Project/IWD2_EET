@@ -1,0 +1,9 @@
+IF
+	See([PC])
+	Global("CUTSPY_APPLY","LOCALS",0)
+THEN
+	RESPONSE #100
+		ApplySpellRES("BDCUTSPY",Myself)
+		SetGlobal("CUTSPY_APPLY","LOCALS",1)
+		Continue()
+END

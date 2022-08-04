@@ -1,0 +1,87 @@
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("TyrannarBrutaiMar")
+		Explore()
+		HideGUI()
+		MultiPlayerSync()
+		Wait(1)
+		OpenDoor("AR6503_Door1")
+		OpenDoor("AR6503_Door2")
+		OpenDoor("AR6503_Door3")
+		OpenDoor("AR6503_Door4")
+		Unlock("AR6503_Door5")
+		OpenDoor("AR6503_Door5")
+		OpenDoor("AR6503_Door6")
+		Wait(1)
+		SetGlobal("TEAM_2","MYAREA",1)
+		EndCutSceneMode()
+		UnhideGUI()
+		MultiPlayerSync()
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("Undead_Gaernat_Sharptooth")
+		Wait(2)
+		//HideCreature(Myself,FALSE)
+		ApplySpellRES("idinvis5",Myself)
+		//SpellHitEffectSprite(Myself,Myself,MONSTER_SUMMONING_I,0)
+		CreateVisualEffectObject("MSUMM1H",Myself)
+		//SetGlobal("IwIHidden","LOCALS",0)
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("Undead_Guthma")
+		Wait(2)
+		//HideCreature(Myself,FALSE)
+		ApplySpellRES("idinvis5",Myself)
+		//SpellHitEffectSprite(Myself,Myself,MONSTER_SUMMONING_I,0)
+		CreateVisualEffectObject("MSUMM1H",Myself)
+		//SetGlobal("IwIHidden","LOCALS",0)
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("Undead_Harshom")
+		Wait(2)
+		//HideCreature(Myself,FALSE)
+		ApplySpellRES("idinvis5",Myself)
+		//SpellHitEffectSprite(Myself,Myself,MONSTER_SUMMONING_I,0)
+		CreateVisualEffectObject("MSUMM1H",Myself)
+		//SetGlobal("IwIHidden","LOCALS",0)
+END
+
+/*IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("Undead_Saablic_Tan")
+		Wait(2)
+		//HideCreature(Myself,FALSE)
+		ApplySpellRES("idinvis5",Myself)
+		//SpellHitEffectSprite(Myself,Myself,MONSTER_SUMMONING_I,0)
+		CreateVisualEffectObject("MSUMM1H",Myself)
+END*/
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("Undead_Sherincal")
+		Wait(2)
+		//HideCreature(Myself,FALSE)
+		ApplySpellRES("idinvis5",Myself)
+		//SpellHitEffectSprite(Myself,Myself,MONSTER_SUMMONING_I,0)
+		CreateVisualEffectObject("MSUMM1H",Myself)
+		//SetGlobal("IwIHidden","LOCALS",0)
+END
+

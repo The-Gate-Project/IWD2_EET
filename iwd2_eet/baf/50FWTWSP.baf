@@ -1,0 +1,30 @@
+IF
+	IsActive(Myself)
+	OR(3)
+		Global("ACTIVE_DARK_TREE","MYAREA",-1)
+		See([PC])
+		AttackedBy([GOODCUTOFF],DEFAULT)
+THEN
+	RESPONSE #100
+		//XEquipItem("z0ciwsp2",Myself,SLOT_AMULET,FALSE)  // No such index
+		//HideCreature(Myself,TRUE)
+		ApplySpellRES("idinvis4",Myself)
+		SetGlobal("FirstIwIHidden","LOCALS",1)
+		SetGlobal("IwIHidden","LOCALS",1)
+		Deactivate(Myself)
+END
+
+IF
+	!Global("AR5003_DARK_TREE_CLEAR","GLOBAL",0)
+THEN
+	RESPONSE #100
+		DestroySelf()
+END
+
+IF
+	!IsActive(Myself)
+THEN
+	RESPONSE #100
+		NoAction()
+END
+

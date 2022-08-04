@@ -1,0 +1,98 @@
+IF
+	Global("Crane_Wheel","GLOBAL",1)
+THEN
+	RESPONSE #100
+		SetGlobal("Crane_Wheel","GLOBAL",2)
+		Continue()
+END
+
+IF
+	Global("11Know_Potion","GLOBAL",0)
+	//ItemIsIdentified("z1gengbo",Player1)  // Призрачный сосуд
+	PartyHasItemIdentified("z1gengbo")
+THEN
+	RESPONSE #100
+		SetGlobal("11Know_Potion","GLOBAL",1)
+		Continue()
+END
+
+/*IF
+	Global("11Know_Potion","GLOBAL",0)
+	ItemIsIdentified("z1gengbo",Player2)  // Призрачный сосуд
+THEN
+	RESPONSE #100
+		SetGlobal("11Know_Potion","GLOBAL",1)
+		Continue()
+END
+
+IF
+	Global("11Know_Potion","GLOBAL",0)
+	ItemIsIdentified("z1gengbo",Player3)  // Призрачный сосуд
+THEN
+	RESPONSE #100
+		SetGlobal("11Know_Potion","GLOBAL",1)
+		Continue()
+END
+
+IF
+	Global("11Know_Potion","GLOBAL",0)
+	ItemIsIdentified("z1gengbo",Player4)  // Призрачный сосуд
+THEN
+	RESPONSE #100
+		SetGlobal("11Know_Potion","GLOBAL",1)
+		Continue()
+END
+
+IF
+	Global("11Know_Potion","GLOBAL",0)
+	ItemIsIdentified("z1gengbo",Player5)  // Призрачный сосуд
+THEN
+	RESPONSE #100
+		SetGlobal("11Know_Potion","GLOBAL",1)
+		Continue()
+END
+
+IF
+	Global("11Know_Potion","GLOBAL",0)
+	ItemIsIdentified("z1gengbo",Player6)  // Призрачный сосуд
+THEN
+	RESPONSE #100
+		SetGlobal("11Know_Potion","GLOBAL",1)
+		Continue()
+END*/
+
+IF
+	Global("TARGOS_HOSTILE","GLOBAL",0)
+	!Global("TEAM_0","MYAREA",0)
+THEN
+	RESPONSE #100
+		SetGlobal("TARGOS_HOSTILE","GLOBAL",1)
+		Continue()
+END
+
+IF
+	Global("TEAM_0","MYAREA",0)
+	!Global("TARGOS_HOSTILE","GLOBAL",0)
+THEN
+	RESPONSE #100
+		SetGlobal("TEAM_0","MYAREA",1)
+		Continue()
+END
+
+IF
+	!Global("TOWNIE_DEAD","GLOBAL",0)
+THEN
+	RESPONSE #100
+		SetGlobal("TOWNIE_HOSTILE","MYAREA",0)
+		SetGlobal("TOWNIE_DEAD","GLOBAL",0)
+		Continue()
+END
+
+IF
+	OnCreation()
+THEN
+	RESPONSE #100
+		NoAction()
+		Continue()
+END
+

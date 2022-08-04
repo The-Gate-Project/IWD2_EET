@@ -1,0 +1,308 @@
+/*IF
+	Global("4100Visited","MYAREA",0)
+	!InCutsceneMode()
+THEN
+	RESPONSE #100
+		StartCutSceneMode()
+		HideCreature(Player1,TRUE)
+		HideCreature(Player2,TRUE)
+		HideCreature(Player3,TRUE)
+		HideCreature(Player4,TRUE)
+		HideCreature(Player5,TRUE)
+		HideCreature(Player6,TRUE)
+		Continue()
+END*/
+
+IF
+	Global("4100Visited","MYAREA",0)
+	//EntirePartyOnMap()
+	InMyArea(Player1)
+THEN
+	RESPONSE #100
+		StartCutSceneMode()
+		ClearAllActions()
+		MultiPlayerSync()
+		/*HideCreature(Player1,TRUE)
+		HideCreature(Player2,TRUE)
+		HideCreature(Player3,TRUE)
+		HideCreature(Player4,TRUE)
+		HideCreature(Player5,TRUE)
+		HideCreature(Player6,TRUE)*/
+		ActionOverride(Player1,ApplySpellRES("IDINVIS6",Myself))
+		ActionOverride(Player2,ApplySpellRES("IDINVIS6",Myself))
+		ActionOverride(Player3,ApplySpellRES("IDINVIS6",Myself))
+		ActionOverride(Player4,ApplySpellRES("IDINVIS6",Myself))
+		ActionOverride(Player5,ApplySpellRES("IDINVIS6",Myself))
+		ActionOverride(Player6,ApplySpellRES("IDINVIS6",Myself))
+		SetGlobal("4100Visited","MYAREA",1)
+		StartCutScene("41cMOLo0")
+END
+
+/*IF
+	Global("4100Visited","MYAREA",0)
+THEN
+	RESPONSE #100
+		HideCreature(Player1,TRUE)
+		HideCreature(Player2,TRUE)
+		HideCreature(Player3,TRUE)
+		HideCreature(Player4,TRUE)
+		HideCreature(Player5,TRUE)
+		HideCreature(Player6,TRUE)
+		MultiPlayerSync()
+END*/
+
+IF
+	OnCreation()
+	Global("41DestroySoldiers","GLOBAL",1)
+THEN
+	RESPONSE #100
+		ActionOverride("Rahm",DestroySelf())
+		ActionOverride("10_Luskan_Soldier_01",DestroySelf())
+		ActionOverride("10_Luskan_Soldier_02",DestroySelf())
+		ActionOverride("10_Luskan_Soldier_03",DestroySelf())
+		ActionOverride("10_Luskan_Soldier_04",DestroySelf())
+		ActionOverride("Ingrath",DestroySelf())
+		ActionOverride("11_Neverwinter_Soldier_01",DestroySelf())
+		ActionOverride("11_Neverwinter_Soldier_02",DestroySelf())
+		ActionOverride("11_Neverwinter_Soldier_03",DestroySelf())
+		ActionOverride("11_Neverwinter_Soldier_04",DestroySelf())
+		SetGlobal("41DestroySoldiers","GLOBAL",0)
+		Continue()
+END
+
+IF
+	OnCreation()
+	Global("SnowStopped","MYAREA",0)
+	GlobalGT("41NateDestroySourceQuest","GLOBAL",2)
+THEN
+	RESPONSE #100
+		SetGlobal("SnowStopped","MYAREA",1)
+		Weather(NOWEATHER)
+		SetGlobal("TEAM_2","MYAREA",1)
+		Continue()
+END
+
+IF
+	Global("SPRITE_IS_DEADRemorhaz_Queen","GLOBAL",1)
+	OpenState("AR4100_Rockwall",FALSE)
+THEN
+	RESPONSE #100
+		AddJournalEntry(@22969,QUEST_DONE)
+		AddXP2DA("IW2EX8H")
+		DisplayStringNoName(Player1,@22973)
+		Continue()
+END
+
+IF
+	Global("SPRITE_IS_DEADRemorhaz_Queen","GLOBAL",2)
+	OpenState("AR4100_Rockwall",FALSE)
+THEN
+	RESPONSE #100
+		AddJournalEntry(@22970,QUEST_DONE)
+		AddXP2DA("IW2EX8VH")
+		DisplayStringNoName(Player1,@22973)
+		Continue()
+END
+
+IF
+	GlobalGT("SPRITE_IS_DEADRemorhaz_Queen","GLOBAL",0)
+	OpenState("AR4100_Rockwall",FALSE)
+THEN
+	RESPONSE #100
+		PlaySound("IW4100e")
+		SetGlobal("SPRITE_IS_DEADRemorhaz_Queen","GLOBAL",-1)
+		SetGlobal("41DestroyBlockade","MYAREA",2)
+		ForceSpellPoint([2335.1887],CLERIC_FIRE_STORM)
+		OpenDoor("AR4100_Rockwall")
+		//HideCreature("Rengar",FALSE)
+		Activate("Rengar")
+		ActionOverride("Rengar",SetGlobal("IwIHidden","LOCALS",0))
+		Continue()
+END
+
+IF
+	OnCreation()
+	Global("41SherincalSecretDoorOpened","GLOBAL",1)
+	OR(2)
+		OpenState("AR4100_Door13",FALSE)
+		OpenState("AR4100_Door14",FALSE)
+THEN
+	RESPONSE #100
+		Unlock("AR4100_Door13")
+		Unlock("AR4100_Door14")
+		OpenDoor("AR4100_Door13")
+		OpenDoor("AR4100_Door14")
+		Continue()
+END
+
+IF
+	OnCreation()
+THEN
+	RESPONSE #100
+		ActionOverride("Rengar",SetGlobal("TriedTurning","LOCALS",0))
+		Continue()
+END
+
+IF
+	Global("5005_INGRATH_NO_SHOW","GLOBAL",0)
+	!Global("TEAM_11","MYAREA",0)
+THEN
+	RESPONSE #100
+		SetGlobal("5005_INGRATH_NO_SHOW","GLOBAL",1)
+		Continue()
+END
+
+IF
+	OnCreation()
+THEN
+	RESPONSE #100
+		NoAction()
+		Continue()
+END
+
+IF
+	Global("SPRITE_IS_DEADRemorhaz_Zack","GLOBAL",1)
+THEN
+	RESPONSE #100
+		Unlock("AR4100_Door11")
+		Activate("41Zack")
+		ActionOverride("41Zack",SetGlobal("IwIHidden","LOCALS",0))
+		ActionOverride("41Zack",JumpToObject("Remorhaz_Zack"))
+		ActionOverride("41Zack",ApplySpellRES("IWJUMPOF",Myself))
+		//HideCreature("41Zack",FALSE)
+		ActionOverride("41Zack",ApplySpellRES("IDINVIS5",Myself))
+		ActionOverride("41Zack",PlayDead(10))
+		ActionOverride("41Zack",PlayDead(100))
+		SetGlobal("41ZackAreaNum","GLOBAL",4100)
+		SetGlobal("SPRITE_IS_DEADRemorhaz_Zack","GLOBAL",2)
+END
+
+IF
+	Global("SPRITE_IS_DEADRemorhaz_Zack","GLOBAL",0)
+	RandomNum(2,1)
+	//!InCutsceneMode()
+	//Sequence("Remorhaz_Zack",SLEEP)
+	TriggerOverride("Remorhaz_Zack",Global("Sequence","LOCALS",16))
+	!GlobalTimerNotExpired("ZackFloatTimer","MYAREA")
+THEN
+	RESPONSE #100
+		//FloatMessage("41Zack",34767)
+		DisplayStringNoNameHead("Remorhaz_Zack",@34767)
+		SetGlobalTimer("ZackFloatTimer","MYAREA",10)
+	RESPONSE #100
+		//FloatMessage("41Zack",34768)
+		DisplayStringNoNameHead("Remorhaz_Zack",@34768)
+		SetGlobalTimer("ZackFloatTimer","MYAREA",10)
+	RESPONSE #100
+		//FloatMessage("41Zack",34769)
+		DisplayStringNoNameHead("Remorhaz_Zack",@34769)
+		SetGlobalTimer("ZackFloatTimer","MYAREA",10)
+END
+
+IF
+	Global("41ZackAreaNum","GLOBAL",4100)
+	Global("SPRITE_IS_DEAD41Zack","GLOBAL",0)
+	!Exists("41Zack")
+THEN
+	RESPONSE #100
+		CreateCreature("41Zack",[64.2560],10)
+		//ActionOverride("41Zack",SetSavedLocationPoint(2195,2510,E))
+		ActionOverride("41Zack",SaveLocation("LOCALS","SavedLoc",[2195.2510]))
+		ActionOverride("41Zack",SetNumTimesTalkedTo(1))
+END
+
+IF
+	!Global("41ZackAreaNum","GLOBAL",4100)
+	Global("SPRITE_IS_DEAD41Zack","GLOBAL",0)
+	!Exists("41Zack")
+	OR(2)
+		Global("41ZackTask","GLOBAL",11)
+		Global("41ZackTask","GLOBAL",12)
+	GlobalTimerExpired("41BelladonnaTimer","GLOBAL")
+THEN
+	RESPONSE #100
+		CreateCreature("41Zack",[64.2560],10)
+		//ActionOverride("41Zack",SetSavedLocationPoint(2195,2510,E))
+		ActionOverride("41Zack",SaveLocation("LOCALS","SavedLoc",[2195.2510]))
+		ActionOverride("41Zack",SetNumTimesTalkedTo(1))
+		SetGlobal("41ZackTask","GLOBAL",12)
+END
+
+IF
+	Global("SPRITE_IS_DEADSherincal","GLOBAL",1)
+	Global("TEAM_3","MYAREA",0)
+THEN
+	RESPONSE #100
+		SetGlobal("TEAM_3","MYAREA",1)
+END
+
+IF
+	Global("SPRITE_IS_DEADSherincal","GLOBAL",1)
+	Global("TEAM_8","MYAREA",0)
+THEN
+	RESPONSE #100
+		Unlock("AR4100_Door13")
+		OpenDoor("AR4100_Door13")
+		SetGlobal("TEAM_8","MYAREA",1)
+END
+
+IF
+	GlobalLT("SP_BATTLE_MUSIC","MYAREA",2)
+	Dead("Sherincal")
+	//!AnyPCSeesEnemy()
+	CombatCounter(0)
+THEN
+	RESPONSE #100
+		SetMusic(COMBAT_NORMAL,0)
+		SetGlobal("SP_BATTLE_MUSIC","MYAREA",2)
+		Continue()
+END
+
+IF
+	Global("SP_BATTLE_MUSIC","MYAREA",0)
+	IsActive("Sherincal")
+	Allegiance("Sherincal",ENEMY)
+THEN
+	RESPONSE #100
+		SetMusic(COMBAT_NORMAL,%IWBTLE3%)
+		SetGlobal("SP_BATTLE_MUSIC","MYAREA",1)
+		Continue()
+END
+
+IF
+	GlobalLT("NumOpenedIceDoors","MYAREA",10)
+	!Global("NumOpenedIceDoors","MYAREA",-1)
+	OpenState("AR4100_Door1",TRUE)
+	OpenState("AR4100_Door2",TRUE)
+	OpenState("AR4100_Door3",TRUE)
+	OpenState("AR4100_Door4",TRUE)
+	OpenState("AR4100_Door5",TRUE)
+	OpenState("AR4100_Door6",TRUE)
+	OpenState("AR4100_Door7",TRUE)
+	OpenState("AR4100_Door8",TRUE)
+	OpenState("AR4100_Door9",TRUE)
+	OpenState("AR4100_Door10",TRUE)
+THEN
+	RESPONSE #100
+		SetGlobal("NumOpenedIceDoors","MYAREA",10)
+END
+
+IF
+	Global("NumOpenedIceDoors","MYAREA",10)
+	PartyHasItem("z4amulhs")
+THEN
+	RESPONSE #100
+		TakePartyItem("z4amulhs")
+		DestroyItem("z4amulhs")
+		DisplayStringNoName(Player1,@80091)
+		SetGlobal("NumOpenedIceDoors","MYAREA",-1)
+END
+
+IF
+	!Global("5000_SORDI_TEAM_ANGRY","GLOBAL",0)
+THEN
+	RESPONSE #100
+		SetGlobal("5000_SORDI_TEAM_ANGRY","GLOBAL",0)
+		Continue()
+END
+

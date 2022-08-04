@@ -1,0 +1,127 @@
+IF
+	//CreatureHidden(Myself)
+	Global("StartCutscene_63cFB01","MYAREA",0)
+THEN
+	RESPONSE #100
+		NoAction()
+END
+
+IF
+	StateCheck(Myself,STATE_SILENCED)
+THEN
+	RESPONSE #100
+		ForceSpell(Myself,WIZARD_VOCALIZE)
+		Wait(2)
+END
+
+IF
+	Global("Zilvar_Needs_Help","MYAREA",1)
+	DifficultyLT(NORMAL)
+	!StoryModeOn()
+	!NightmareModeOn()
+THEN
+	RESPONSE #100
+		ForceSpell("Zilvar",WIZARD_DIMENSION_DOOR)
+		Wait(1)
+		ForceSpell(NearestEnemyOf(Myself),WIZARD_EMOTION_HOPELESSNESS)
+END
+
+/*IF
+	ForceMarkedSpell(MARKED_SPELL)
+	SetSpellTarget(Nothing)
+	Global("Zilvar_Needs_Help","MYAREA",1)
+	CheckAreaDiffLevel(1)
+	SetLastMarkedObject(Myself)
+THEN
+	RESPONSE #100
+		MarkSpellAndObject("2402","Zilvar",0)  // [WIZARD_DIMENSION_DOOR]
+		MarkSpellAndObject("2411",LastMarkedObject,SPELLCAST_IGNORE_SEE | SPELLCAST_IGNORE_VALID_SPELL_TARGET)  // [WIZARD_EMOTION_HOPELESSNESS]
+		Continue()
+END
+
+IF
+	!IsMarkedSpell(MARKED_SPELL)
+THEN
+	RESPONSE #100
+		SetGlobal("Zilvar_Needs_Help","MYAREA",0)
+		Spell(SpellTarget,MARKED_SPELL)
+		WaitAnimation(Myself,WALK)
+		WaitAnimation(Myself,CONJURE)
+		WaitAnimation(Myself,CAST)
+		ForceMarkedSpell(MARKED_SPELL)
+END*/
+
+IF
+	Global("Zilvar_Needs_Help","MYAREA",1)
+	Difficulty(NORMAL)
+THEN
+	RESPONSE #100
+		ForceSpell("Zilvar",WIZARD_DIMENSION_DOOR)
+		Wait(1)
+		ForceSpell(NearestEnemyOf(Myself),WIZARD_CHROMATIC_ORB)
+		ForceSpell(NearestEnemyOf(Myself),WIZARD_MAGIC_MISSILE)
+END
+
+/*IF
+	ForceMarkedSpell(MARKED_SPELL)
+	SetSpellTarget(Nothing)
+	Global("Zilvar_Needs_Help","MYAREA",1)
+	CheckAreaDiffLevel(2)
+	SetLastMarkedObject(Myself)
+THEN
+	RESPONSE #100
+		MarkSpellAndObject("2402","Zilvar",0)  // [WIZARD_DIMENSION_DOOR]
+		MarkSpellAndObject("21182112",LastMarkedObject,SPELLCAST_IGNORE_SEE | SPELLCAST_IGNORE_VALID_SPELL_TARGET)  // [WIZARD_CHROMATIC_ORB, WIZARD_MAGIC_MISSILE]
+		Continue()
+END
+
+IF
+	!IsMarkedSpell(MARKED_SPELL)
+THEN
+	RESPONSE #100
+		Spell(SpellTarget,MARKED_SPELL)
+		WaitAnimation(Myself,WALK)
+		WaitAnimation(Myself,CONJURE)
+		WaitAnimation(Myself,CAST)
+		ForceMarkedSpell(MARKED_SPELL)
+END*/
+
+IF
+	Global("Zilvar_Needs_Help","MYAREA",1)
+	OR(3)
+		DifficultyGT(NORMAL)
+		StoryModeOn()
+		NightmareModeOn()
+THEN
+	RESPONSE #100
+		ForceSpell("Zilvar",WIZARD_DIMENSION_DOOR)
+		Wait(1)
+		ForceSpell(NearestEnemyOf(Myself),WIZARD_CHROMATIC_ORB)
+		ForceSpell(NearestEnemyOf(Myself),WIZARD_EMOTION_HOPELESSNESS)
+		ForceSpell(NearestEnemyOf(Myself),WIZARD_MAGIC_MISSILE)
+END
+
+/*IF
+	ForceMarkedSpell(MARKED_SPELL)
+	SetSpellTarget(Nothing)
+	Global("Zilvar_Needs_Help","MYAREA",1)
+	CheckAreaDiffLevel(3)
+	SetLastMarkedObject(Myself)
+THEN
+	RESPONSE #100
+		MarkSpellAndObject("2402","Zilvar",0)  // [WIZARD_DIMENSION_DOOR]
+		MarkSpellAndObject("211824112112",LastMarkedObject,SPELLCAST_IGNORE_SEE | SPELLCAST_IGNORE_VALID_SPELL_TARGET)  // [WIZARD_CHROMATIC_ORB, WIZARD_EMOTION_HOPELESSNESS, WIZARD_MAGIC_MISSILE]
+		Continue()
+END
+
+IF
+	!IsMarkedSpell(MARKED_SPELL)
+THEN
+	RESPONSE #100
+		Spell(SpellTarget,MARKED_SPELL)
+		WaitAnimation(Myself,WALK)
+		WaitAnimation(Myself,CONJURE)
+		WaitAnimation(Myself,CAST)
+		ForceMarkedSpell(MARKED_SPELL)
+END*/
+

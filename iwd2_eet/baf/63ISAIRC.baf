@@ -1,0 +1,14 @@
+IF
+	Global("SH_Teleported_To_6303","GLOBAL",2)
+THEN
+	RESPONSE #3
+		SetGlobal("IsairCombatSequence","MYAREA",1)
+		ChangeAIScript("63IsaiC1",GENERAL)
+	RESPONSE #2
+		SetGlobal("IsairCombatSequence","MYAREA",2)
+		ChangeAIScript("63IsaiC2",GENERAL)
+	RESPONSE #3
+		SetGlobal("IsairCombatSequence","MYAREA",3)
+		ChangeAIScript("63IsaiC3",GENERAL)
+END
+

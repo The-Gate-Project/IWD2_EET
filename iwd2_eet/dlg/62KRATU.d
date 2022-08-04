@@ -1,0 +1,264 @@
+BEGIN ~62KRATU~
+
+IF WEIGHT #0 ~NumTimesTalkedTo(0)~ THEN BEGIN 0
+  SAY @16670
+  IF ~~ THEN REPLY @16671 GOTO 1
+  IF ~CheckStatGT(LastTalkedToBy,11,CHR)~ THEN REPLY @16672 GOTO 2
+  IF ~CheckStatLT(LastTalkedToBy,12,CHR)~ THEN REPLY @37762 GOTO 31
+  IF ~~ THEN REPLY @16673 DO ~Enemy()~ EXIT
+END
+
+IF ~~ THEN BEGIN 1
+  SAY @16676
+  IF ~OR(2)
+        !Class(LastTalkedToBy,PALADIN_ALL)
+        Kit(LastTalkedToBy,BLACKGUARD)
+      CheckStatGT(LastTalkedToBy,12,CHR)~ THEN REPLY @16677 GOTO 7
+  IF ~OR(2)
+        !Class(LastTalkedToBy,PALADIN_ALL)
+        Kit(LastTalkedToBy,BLACKGUARD)
+      CheckStatGT(LastTalkedToBy,12,CHR)~ THEN REPLY @16678 GOTO 2
+  IF ~OR(2)
+        !Class(LastTalkedToBy,PALADIN_ALL)
+        Kit(LastTalkedToBy,BLACKGUARD)
+      CheckStatLT(LastTalkedToBy,13,CHR)~ THEN REPLY @35424 GOTO 31
+  IF ~OR(2)
+        !Class(LastTalkedToBy,PALADIN_ALL)
+        Kit(LastTalkedToBy,BLACKGUARD)
+      CheckStatLT(LastTalkedToBy,13,CHR)~ THEN REPLY @35425 GOTO 31
+  IF ~~ THEN REPLY @16679 DO ~Enemy()~ EXIT
+END
+
+IF ~~ THEN BEGIN 2
+  SAY @16680
+  IF ~~ THEN REPLY @16681 GOTO 3
+  IF ~~ THEN REPLY @16682 GOTO 6
+  IF ~~ THEN REPLY @16683 GOTO 7
+  IF ~~ THEN REPLY @16684 EXIT
+  IF ~~ THEN REPLY @16685 DO ~Enemy()~ EXIT
+END
+
+IF ~~ THEN BEGIN 3
+  SAY @16686
+  IF ~~ THEN REPLY @16687 GOTO 4
+  IF ~~ THEN REPLY @16688 GOTO 2
+  IF ~~ THEN REPLY @16689 DO ~Enemy()~ EXIT
+END
+
+IF ~~ THEN BEGIN 4
+  SAY @16690
+  IF ~~ THEN REPLY @16691 GOTO 5
+  IF ~~ THEN REPLY @16688 GOTO 2
+  IF ~~ THEN REPLY @16692 DO ~Enemy()~ EXIT
+END
+
+IF ~~ THEN BEGIN 5
+  SAY @16693
+  IF ~~ THEN REPLY @16694 GOTO 6
+  IF ~~ THEN REPLY @16688 GOTO 2
+  IF ~~ THEN REPLY @16695 DO ~Enemy()~ EXIT
+END
+
+IF ~~ THEN BEGIN 6
+  SAY @16696
+  IF ~~ THEN REPLY @16697 GOTO 7
+  IF ~~ THEN REPLY @16698 GOTO 11
+  IF ~~ THEN REPLY @16683 GOTO 7
+  IF ~~ THEN REPLY @16685 DO ~Enemy()~ EXIT
+END
+
+IF ~~ THEN BEGIN 7
+  SAY @16700
+  IF ~~ THEN REPLY @16702 GOTO 8
+  IF ~~ THEN REPLY @16704 GOTO 2
+  IF ~~ THEN REPLY @16706 DO ~Enemy()~ EXIT
+END
+
+IF ~~ THEN BEGIN 8
+  SAY @16708
+  IF ~OR(2)
+        !Class(LastTalkedToBy,PALADIN_ALL)
+        Kit(LastTalkedToBy,BLACKGUARD)~ THEN REPLY @16710 DO ~SetGlobal("Kill_Mdarfein_Quest","GLOBAL",1)~ GOTO 9
+  IF ~~ THEN REPLY @16712 EXIT
+  IF ~~ THEN REPLY @16714 DO ~Enemy()~ EXIT
+END
+
+IF ~~ THEN BEGIN 9
+  SAY @16716
+  IF ~~ THEN DO ~GiveItem("z6keybc",LastTalkedToBy)
+                 AddJournalEntry(@16652,QUEST)~ EXIT
+END
+
+IF WEIGHT #3
+~!Global("Kill_Mdarfein_Quest","GLOBAL",1)~ THEN BEGIN 10
+  SAY @16718
+  IF ~~ THEN REPLY @16719 GOTO 2
+  IF ~~ THEN REPLY @16720 EXIT
+  IF ~~ THEN REPLY @16721 DO ~Enemy()~ EXIT
+END
+
+IF ~~ THEN BEGIN 11
+  SAY @16722
+  IF ~~ THEN REPLY @16723 DO ~SetGlobal("Find_Elven_Cleric","GLOBAL",1)
+                              AddJournalEntry(@16653,QUEST)~ GOTO 21
+  IF ~~ THEN REPLY @16724 DO ~Enemy()~ EXIT
+END
+
+IF WEIGHT #2
+~Global("Kill_Mdarfein_Quest","GLOBAL",1)~ THEN BEGIN 12
+  SAY @16725
+  IF ~~ THEN REPLY @16726 GOTO 13
+  IF ~~ THEN REPLY @40962 GOTO 32
+  IF ~~ THEN REPLY @16728 EXIT
+  IF ~~ THEN REPLY @16729 DO ~Enemy()~ EXIT
+END
+
+IF ~~ THEN BEGIN 13
+  SAY @16730
+  IF ~~ THEN REPLY @16731 GOTO 14
+  IF ~~ THEN REPLY @16732 GOTO 17
+  IF ~~ THEN REPLY @16733 GOTO 19
+  IF ~~ THEN REPLY @16684 EXIT
+  IF ~~ THEN REPLY @16685 DO ~Enemy()~ EXIT
+END
+
+IF ~~ THEN BEGIN 14
+  SAY @16686
+  IF ~~ THEN REPLY @16687 GOTO 15
+  IF ~~ THEN REPLY @16688 GOTO 13
+  IF ~~ THEN REPLY @16689 DO ~Enemy()~ EXIT
+END
+
+IF ~~ THEN BEGIN 15
+  SAY @16690
+  IF ~~ THEN REPLY @16691 GOTO 16
+  IF ~~ THEN REPLY @16688 GOTO 13
+  IF ~~ THEN REPLY @16692 DO ~Enemy()~ EXIT
+END
+
+IF ~~ THEN BEGIN 16
+  SAY @16693
+  IF ~~ THEN REPLY @16688 GOTO 13
+  IF ~~ THEN REPLY @16734 EXIT
+  IF ~~ THEN REPLY @16695 DO ~Enemy()~ EXIT
+END
+
+IF ~~ THEN BEGIN 17
+  SAY @16696
+  IF ~~ THEN REPLY @16735 GOTO 19
+  IF ~~ THEN REPLY @16736 GOTO 18
+  IF ~~ THEN REPLY @16733 GOTO 19
+  IF ~~ THEN REPLY @16685 DO ~Enemy()~ EXIT
+END
+
+IF ~~ THEN BEGIN 18
+  SAY @16722
+  IF ~~ THEN REPLY @16723 GOTO 13
+  IF ~~ THEN REPLY @16737 DO ~Enemy()~ EXIT
+END
+
+IF ~~ THEN BEGIN 19
+  SAY @16700
+  IF ~~ THEN REPLY @16702 GOTO 20
+  IF ~~ THEN REPLY @16704 GOTO 13
+  IF ~~ THEN REPLY @16738 EXIT
+  IF ~~ THEN REPLY @19613 DO ~Enemy()~ EXIT
+END
+
+IF ~~ THEN BEGIN 20
+  SAY @16708
+  IF ~~ THEN REPLY @19616 EXIT
+  IF ~~ THEN REPLY @16712 EXIT
+  IF ~~ THEN REPLY @19619 DO ~Enemy()~ EXIT
+END
+
+IF ~~ THEN BEGIN 21
+  SAY @16730
+  IF ~~ THEN REPLY @16681 GOTO 22
+  IF ~~ THEN REPLY @16683 GOTO 25
+  IF ~~ THEN REPLY @16684 EXIT
+  IF ~~ THEN REPLY @16685 DO ~Enemy()~ EXIT
+END
+
+IF ~~ THEN BEGIN 22
+  SAY @16686
+  IF ~~ THEN REPLY @16687 GOTO 23
+  IF ~~ THEN REPLY @16688 GOTO 21
+  IF ~~ THEN REPLY @16689 DO ~Enemy()~ EXIT
+END
+
+IF ~~ THEN BEGIN 23
+  SAY @16690
+  IF ~~ THEN REPLY @16691 GOTO 24
+  IF ~~ THEN REPLY @16688 GOTO 21
+  IF ~~ THEN REPLY @16692 DO ~Enemy()~ EXIT
+END
+
+IF ~~ THEN BEGIN 24
+  SAY @16693
+  IF ~~ THEN REPLY @19622 GOTO 21
+  IF ~~ THEN REPLY @16695 DO ~Enemy()~ EXIT
+END
+
+IF ~~ THEN BEGIN 25
+  SAY @16700
+  IF ~~ THEN REPLY @16702 GOTO 26
+  IF ~~ THEN REPLY @16706 DO ~Enemy()~ EXIT
+END
+
+IF ~~ THEN BEGIN 26
+  SAY @16708
+  IF ~~ THEN REPLY @16710 DO ~SetGlobal("Kill_Mdarfein_Quest","GLOBAL",1)~ GOTO 9
+  IF ~~ THEN REPLY @16712 EXIT
+  IF ~~ THEN REPLY @19623 DO ~Enemy()~ EXIT
+END
+
+IF WEIGHT #1
+~Global("SPRITE_IS_DEADMdarfein","GLOBAL",1)~ THEN BEGIN 27
+  SAY @19624
+  IF ~~ THEN REPLY @20708 DO ~AddXP2DA("IW2EX13H")
+                              DisplayStringNoNameDlg(LastTalkedToBy,@16669)
+                              SetGlobal("Kill_Mdarfein_Quest","GLOBAL",5)~ GOTO 28
+  IF ~OR(2)
+        !Class(LastTalkedToBy,PALADIN_ALL)
+        Kit(LastTalkedToBy,BLACKGUARD)
+      !Class(LastTalkedToBy,MONK)~ THEN REPLY @23014 DO ~AddXP2DA("IW2EX13H")
+                                                         DisplayStringNoNameDlg(LastTalkedToBy,@16669)
+                                                         SetGlobal("Kill_Mdarfein_Quest","GLOBAL",5)~ GOTO 30
+  IF ~~ THEN REPLY @23020 DO ~AddXP2DA("IW2EX13H")
+                              DisplayStringNoNameDlg(LastTalkedToBy,@16669)
+                              SetGlobal("Kill_Mdarfein_Quest","GLOBAL",5)
+                              Enemy()~ EXIT
+END
+
+IF ~~ THEN BEGIN 28
+  SAY @23024
+  IF ~~ THEN REPLY @23025 GOTO 29
+  IF ~~ THEN REPLY @24178 DO ~SetGlobal("Kratuuk_Enemy","GLOBAL",1)
+                              Enemy()~ EXIT
+  IF ~~ THEN REPLY @24182 DO ~SetGlobal("Kratuuk_Enemy","GLOBAL",1)
+                              Enemy()~ EXIT
+END
+
+IF ~~ THEN BEGIN 29
+  SAY @25580
+  IF ~~ THEN DO ~SetGlobal("Kratuuk_Enemy","GLOBAL",1)
+                 Enemy()~ EXIT
+END
+
+IF ~~ THEN BEGIN 30
+  SAY @25581
+  IF ~~ THEN DO ~SetGlobal("Kratuuk_Enemy","GLOBAL",1)
+                 Enemy()~ EXIT
+END
+
+IF ~~ THEN BEGIN 31
+  SAY @37761
+  IF ~~ THEN DO ~Enemy()~ EXIT
+END
+
+IF ~~ THEN BEGIN 32
+  SAY @25652
+  IF ~False()~ THEN REPLY @25653 DO ~RestParty()~ EXIT
+  IF ~~ THEN REPLY @25654 DO ~RestPartyEx(0,0,TRUE)~ EXIT
+END

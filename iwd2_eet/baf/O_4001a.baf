@@ -1,0 +1,24 @@
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId(Myself)
+		StartCutSceneMode()
+		ClearAllActions()
+		MultiPlayerSync()
+		ClearActions(Player1)
+		ClearActions(Player2)
+		ClearActions(Player3)
+		ClearActions(Player4)
+		ClearActions(Player5)
+		ClearActions(Player6)
+		MultiPlayerSync()
+		//StopJoinRequests()
+		SetGlobal("RJ_AR4001","GLOBAL",1)
+		
+		AdvanceTime(FOUR_DAYS)
+		
+		MultiPlayerSync()
+		StartCutScene("IWA4001a")
+END
+

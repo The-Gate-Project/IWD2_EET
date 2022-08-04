@@ -1,0 +1,52 @@
+IF
+	!Global("DRAVY_EQUIP_ITEM","LOCALS",1)
+THEN
+	RESPONSE #100
+		XEquipItem("Z0CIBAR1",Myself,SLOT_RING_LEFT,EQUIP)
+		SetGlobal("DRAVY_EQUIP_ITEM","LOCALS",1)
+		Continue()
+END
+
+IF
+	GlobalLT("50Dragon","GLOBAL",3)
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		SetGlobal("50Dragon","GLOBAL",3)
+		Continue()
+END
+
+IF
+	StateCheck(Myself,STATE_PANIC)
+THEN
+	RESPONSE #100
+		RandomWalkContinuous()
+END
+
+IF
+	!GlobalTimerNotExpired("DRAGON_BREATH","LOCALS")
+	See(NearestEnemyOf(Myself))
+	//IsSpellTargetValid(LastMarkedObject,INNATE_DRAGON_BREATH_REDUCED_DAMAGE,SPELLCAST_IGNORE_HAS_CHECK)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("DRAGON_BREATH","LOCALS",20)
+		ForceSpellRES("IWIN241",LastSeenBy(Myself))  // SPIN241.SPL INNATE_DRAGON_BREATH_REDUCED_DAMAGE
+		Wait(2)
+END
+
+IF
+	AttackedBy([GOODCUTOFF],DEFAULT)
+THEN
+	RESPONSE #100
+		EquipMostDamagingMelee()
+		AttackOneRound(LastAttackerOf(Myself))
+END
+
+IF
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		EquipMostDamagingMelee()
+		AttackOneRound(LastSeenBy(Myself))
+END
+

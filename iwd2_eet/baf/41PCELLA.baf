@@ -1,0 +1,19 @@
+IF
+	Clicked([ANYONE])
+	Global("PrisonerTalk","MYAREA",0)
+	!Global("41PCELLA_INACTIVE","MYAREA",1)
+THEN
+	RESPONSE #100
+		SetGlobal("PrisonerTalk","MYAREA",1)
+END
+
+IF
+	OpenState(Myself,TRUE)
+	!Global("41PCELLA_INACTIVE","MYAREA",1)
+THEN
+	RESPONSE #100
+		SetGlobal("PrisonerTalk","MYAREA",-1)
+		//ChangeCurrentScript("")
+		SetGlobal("41PCELLA_INACTIVE","MYAREA",1)
+END
+

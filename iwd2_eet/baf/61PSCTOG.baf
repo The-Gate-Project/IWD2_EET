@@ -1,0 +1,150 @@
+/*IF
+	!Global("61PSCTOG_HIDDEN","MYAREA",0)
+THEN
+	RESPONSE #100
+		NoAction()
+END*/
+
+IF
+	Trigger(0)
+	OpenState("AR6102_Lever1",TRUE)
+	!TimeOfDay(DAY)
+	Global("61PSCTOG_HIDDEN","MYAREA",0)
+THEN
+	RESPONSE #100
+		TriggerActivation("SummoningCircle",TRUE)
+		TriggerActivation("ProtectionCircle",TRUE)
+		SetGlobalTimer("SummonWaitTimer","MYAREA",ONE_DAY)
+		SetGlobal("Summon","MYAREA",1)
+		CloseDoor("AR6102_Lever1")
+		//SetDoorFlag(Myself,HIDDEN,TRUE)
+		//Lock(Myself)
+		SetGlobal("61PSCTOG_HIDDEN","MYAREA",1)
+END
+
+IF
+	Clicked([ANYONE])
+	//LevelInClassGT(LastTrigger,8,CLERIC)
+	
+	Class(LastTrigger,CLERIC_ALL)
+	ClassLevelGT(LastTrigger,PRIEST,15)
+	
+	OpenState("AR6102_Lever1",FALSE)
+	!TimeOfDay(DAY)
+	Global("61PSCTOG_HIDDEN","MYAREA",0)
+THEN
+	RESPONSE #100
+		TriggerActivation("SummoningCircle",TRUE)
+		TriggerActivation("ProtectionCircle",TRUE)
+		SetGlobalTimer("SummonWaitTimer","MYAREA",ONE_DAY)
+		SetGlobal("Summon","MYAREA",2)
+		//SetDoorFlag(Myself,HIDDEN,TRUE)
+		//Lock(Myself)
+		OpenDoor("AR6102_Lever1")
+		SetGlobal("61PSCTOG_HIDDEN","MYAREA",1)
+END
+
+IF
+	Clicked([ANYONE])
+	Class(LastTrigger,CLERIC_ALL)
+	OR(2)
+		//!LevelInClassGT(LastTrigger,8,CLERIC)
+		!ClassLevelGT(LastTrigger,PRIEST,15)
+		TimeOfDay(DAY)
+	OpenState("AR6102_Lever1",TRUE)
+	Global("61PSCTOG_HIDDEN","MYAREA",0)
+THEN
+	RESPONSE #100
+		CloseDoor("AR6102_Lever1")
+		ForceSpellRES("IWWI810",LastTrigger)  // SPWI810.SPL WIZARD_FLAYING
+		DisplayString(LastTrigger,@41304) //283644
+		SmallWait(5)
+		OpenDoor("AR6102_Lever1")
+END
+
+IF
+	Clicked([ANYONE])
+	Class(LastTrigger,CLERIC_ALL)
+	OR(2)
+		//!LevelInClassGT(LastTrigger,8,CLERIC)
+		!ClassLevelGT(LastTrigger,PRIEST,15)
+		TimeOfDay(DAY)
+	OpenState("AR6102_Lever1",FALSE)
+	Global("61PSCTOG_HIDDEN","MYAREA",0)
+THEN
+	RESPONSE #100
+		OpenDoor("AR6102_Lever1")
+		ForceSpellRES("IWWI810",LastTrigger)  // SPWI810.SPL WIZARD_FLAYING
+		DisplayString(LastTrigger,@41304)
+		SmallWait(5)
+		CloseDoor("AR6102_Lever1")
+END
+
+IF
+	Clicked([ANYONE])
+	!Class(LastTrigger,CLERIC_ALL)
+	//OR(2)
+		//!LevelInClassGT(LastTrigger,8,CLERIC)
+	//	!ClassLevelGT(LastTrigger,PRIEST,15)
+		TimeOfDay(DAY)
+	OpenState("AR6102_Lever1",TRUE)
+	Global("61PSCTOG_HIDDEN","MYAREA",0)
+THEN
+	RESPONSE #100
+		CloseDoor("AR6102_Lever1")
+		ForceSpellRES("IWWI810",LastTrigger)  // SPWI810.SPL WIZARD_FLAYING
+		DisplayString(LastTrigger,@41304)
+		SmallWait(5)
+		OpenDoor("AR6102_Lever1")
+END
+
+IF
+	Clicked([ANYONE])
+	!Class(LastTrigger,CLERIC_ALL)
+	//OR(2)
+		//!LevelInClassGT(LastTrigger,8,CLERIC)
+	//	!ClassLevelGT(LastTrigger,PRIEST,15)
+		TimeOfDay(DAY)
+	OpenState("AR6102_Lever1",FALSE)
+	Global("61PSCTOG_HIDDEN","MYAREA",0)
+THEN
+	RESPONSE #100
+		OpenDoor("AR6102_Lever1")
+		ForceSpellRES("IWWI810",LastTrigger)  // SPWI810.SPL WIZARD_FLAYING
+		DisplayString(LastTrigger,@41304)
+		SmallWait(5)
+		CloseDoor("AR6102_Lever1")
+END
+
+IF
+	Clicked([ANYONE])
+	OpenState("AR6102_Lever1",FALSE)
+	Global("61PSCTOG_HIDDEN","MYAREA",0)
+THEN
+	RESPONSE #100
+		OpenDoor("AR6102_Lever1")
+END
+
+IF
+	Clicked([ANYONE])
+	OpenState("AR6102_Lever1",TRUE)
+	Global("61PSCTOG_HIDDEN","MYAREA",0)
+THEN
+	RESPONSE #100
+		CloseDoor("AR6102_Lever1")
+END
+
+IF
+	//OpenState("AR6102_Lever1",FALSE)
+	GlobalTimerExpired("SummonWaitTimer","MYAREA")
+	!Global("61PSCTOG_HIDDEN","MYAREA",0)
+THEN
+	RESPONSE #100
+		//SetDoorFlag(Myself,HIDDEN,FALSE)
+		SetGlobal("61PSCTOG_HIDDEN","MYAREA",0)
+		//Unlock(Myself)
+		TriggerActivation("SummoningCircle",FALSE)
+		TriggerActivation("ProtectionCircle",FALSE)
+		OpenDoor("AR6102_Lever1")
+END
+

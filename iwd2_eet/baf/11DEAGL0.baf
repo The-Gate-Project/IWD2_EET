@@ -1,0 +1,27 @@
+IF
+	Global("SAID_SPECIAL","LOCALS",0)
+	GlobalTimerExpired("GARRADUN_CHANGED_TIMER","MYAREA")
+	See("Doppelganger")
+THEN
+	RESPONSE #100
+		SetGlobalTimer("GARRADUN_CHANGED_TIMER","MYAREA",1)
+		DisplayStringHead(Myself,@28203)
+		SetGlobal("SAID_SPECIAL","LOCALS",1)
+END
+
+IF
+	!Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	See([ENEMY])
+THEN
+	RESPONSE #100
+		FaceObject(LastSeenBy(Myself))
+END
+
+IF
+	!Global("SAID_SPECIAL","LOCALS",0)
+THEN
+	RESPONSE #100
+		ChangeAIScript("",GENERAL)
+END
+

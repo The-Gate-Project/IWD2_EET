@@ -1,0 +1,154 @@
+IF
+	//CreatureHidden(Myself)
+	Global("CreatureHidden","LOCALS",1)
+	!Global("SPAWN","LOCALS",0)
+THEN
+	RESPONSE #100
+		//HideCreature(Myself,FALSE)
+		ApplySpellRES("idinvis9",Myself)
+		Continue()
+END
+
+IF
+	Global("SPAWN","LOCALS",0)
+	See(NearestEnemyOf(Myself))
+	!TargetUnreachable(LastSeenBy(Myself))
+THEN
+	RESPONSE #100
+		//SpellHitEffectSprite(Myself,Myself,ANIMAL_SUMMONING_CIRCLE,10)
+		CreateVisualEffectObject("ASUMM1X",Myself)
+		SmallWait(7)
+		//SpellHitEffectSprite(Myself,Myself,CAUSE_CRITICAL_WOUNDS,10)
+		CreateVisualEffectObject("CCWOUNH",Myself)
+		FaceObject(NearestEnemyOf(Myself))
+		SetGlobal("SPAWN","LOCALS",1)
+END
+
+IF
+	Global("SPAWN","LOCALS",0)
+	NumInParty(6)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("CheckPlayer","LOCALS",1,6)
+		Continue()
+END
+
+IF
+	Global("SPAWN","LOCALS",0)
+	NumInParty(5)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("CheckPlayer","LOCALS",1,5)
+		Continue()
+END
+
+IF
+	Global("SPAWN","LOCALS",0)
+	NumInParty(4)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("CheckPlayer","LOCALS",1,4)
+		Continue()
+END
+
+IF
+	Global("SPAWN","LOCALS",0)
+	NumInParty(3)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("CheckPlayer","LOCALS",1,3)
+		Continue()
+END
+
+IF
+	Global("SPAWN","LOCALS",0)
+	NumInParty(2)
+THEN
+	RESPONSE #100
+		SetGlobalRandom("CheckPlayer","LOCALS",1,2)
+		Continue()
+END
+
+IF
+	Global("SPAWN","LOCALS",0)
+	NumInParty(1)
+THEN
+	RESPONSE #100
+		SetGlobal("CheckPlayer","LOCALS",1)
+		Continue()
+END
+
+IF
+	Global("SPAWN","LOCALS",0)
+	Switch("CheckPlayer","LOCALS")
+THEN
+	RESPONSE #1
+		JumpToObject(Player1)
+		ApplySpellRES("IWJUMPOF",Myself)
+		//SpellHitEffectSprite(Myself,Myself,ANIMAL_SUMMONING_CIRCLE,10)
+		CreateVisualEffectObject("ASUMM1X",Myself)
+		SmallWait(7)
+		//SpellHitEffectSprite(Myself,Myself,CAUSE_CRITICAL_WOUNDS,10)
+		CreateVisualEffectObject("CCWOUNH",Myself)
+		FaceObject(NearestEnemyOf(Myself))
+		SetGlobal("SPAWN","LOCALS",1)
+	RESPONSE #2
+		JumpToObject(Player2)
+		ApplySpellRES("IWJUMPOF",Myself)
+		//SpellHitEffectSprite(Myself,Myself,ANIMAL_SUMMONING_CIRCLE,10)
+		CreateVisualEffectObject("ASUMM1X",Myself)
+		SmallWait(7)
+		//SpellHitEffectSprite(Myself,Myself,CAUSE_CRITICAL_WOUNDS,10)
+		CreateVisualEffectObject("CCWOUNH",Myself)
+		FaceObject(NearestEnemyOf(Myself))
+		SetGlobal("SPAWN","LOCALS",1)
+	RESPONSE #3
+		JumpToObject(Player3)
+		ApplySpellRES("IWJUMPOF",Myself)
+		//SpellHitEffectSprite(Myself,Myself,ANIMAL_SUMMONING_CIRCLE,10)
+		CreateVisualEffectObject("ASUMM1X",Myself)
+		SmallWait(7)
+		//SpellHitEffectSprite(Myself,Myself,CAUSE_CRITICAL_WOUNDS,10)
+		CreateVisualEffectObject("CCWOUNH",Myself)
+		FaceObject(NearestEnemyOf(Myself))
+		SetGlobal("SPAWN","LOCALS",1)
+	RESPONSE #4
+		JumpToObject(Player4)
+		ApplySpellRES("IWJUMPOF",Myself)
+		//SpellHitEffectSprite(Myself,Myself,ANIMAL_SUMMONING_CIRCLE,10)
+		CreateVisualEffectObject("ASUMM1X",Myself)
+		SmallWait(7)
+		//SpellHitEffectSprite(Myself,Myself,CAUSE_CRITICAL_WOUNDS,10)
+		CreateVisualEffectObject("CCWOUNH",Myself)
+		FaceObject(NearestEnemyOf(Myself))
+		SetGlobal("SPAWN","LOCALS",1)
+	RESPONSE #5
+		JumpToObject(Player5)
+		ApplySpellRES("IWJUMPOF",Myself)
+		//SpellHitEffectSprite(Myself,Myself,ANIMAL_SUMMONING_CIRCLE,10)
+		CreateVisualEffectObject("ASUMM1X",Myself)
+		SmallWait(7)
+		//SpellHitEffectSprite(Myself,Myself,CAUSE_CRITICAL_WOUNDS,10)
+		CreateVisualEffectObject("CCWOUNH",Myself)
+		FaceObject(NearestEnemyOf(Myself))
+		SetGlobal("SPAWN","LOCALS",1)
+	RESPONSE #6
+		JumpToObject(Player6)
+		ApplySpellRES("IWJUMPOF",Myself)
+		//SpellHitEffectSprite(Myself,Myself,ANIMAL_SUMMONING_CIRCLE,10)
+		CreateVisualEffectObject("ASUMM1X",Myself)
+		SmallWait(7)
+		//SpellHitEffectSprite(Myself,Myself,CAUSE_CRITICAL_WOUNDS,10)
+		CreateVisualEffectObject("CCWOUNH",Myself)
+		FaceObject(NearestEnemyOf(Myself))
+		SetGlobal("SPAWN","LOCALS",1)
+END
+
+IF
+	//CreatureHidden(Myself)
+	Global("CreatureHidden","LOCALS",1)
+THEN
+	RESPONSE #100
+		NoAction()
+END
+

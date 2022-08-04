@@ -1,0 +1,27 @@
+IF
+  Global("SaveSavedLoc","LOCALS",0)
+THEN
+  RESPONSE #100
+    SetGlobal("SaveSavedLoc","LOCALS",1)
+    SaveObjectLocation("LOCALS","SavedLoc",Myself)
+    Continue()
+END
+
+IF
+	!NearSavedLocation(Myself,"LOCALSSavedLoc",30)
+THEN
+	RESPONSE #100
+		//ReturnToSavedLocation(0)
+		MoveToSavedLocation("SavedLoc","LOCALS")
+END
+
+IF
+	!IsActive(Myself)
+	NearSavedLocation(Myself,"LOCALSSavedLoc",0)
+THEN
+	RESPONSE #100
+		Activate(Myself)
+		SetGlobal("IwIHidden","LOCALS",0)
+		Continue()
+END
+

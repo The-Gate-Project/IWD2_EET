@@ -1,0 +1,14 @@
+IF
+	Global("IsairCombatSequence","MYAREA",1)
+THEN
+	RESPONSE #100
+		ChangeAIScript("63MadaC1",GENERAL)
+END
+
+IF
+	!Global("IsairCombatSequence","MYAREA",0)
+THEN
+	RESPONSE #100
+		ChangeAIScript("63MadaC2",GENERAL)
+END
+

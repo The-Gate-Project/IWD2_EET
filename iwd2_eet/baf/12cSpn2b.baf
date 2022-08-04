@@ -1,0 +1,112 @@
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("12_Goblin_Team_07_e01")
+		//SpellHitEffectSprite(Myself,Myself,CONJURATION,0)
+		//HideCreature(Myself,FALSE)
+		Activate(Myself)
+		SetGlobal("IwIHidden","LOCALS",0)
+		CreateVisualEffectObject("CONJUH",Myself)
+		SmallWait(3)
+		ApplySpellRES("IDINVIS5",Myself)
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("12_Goblin_Team_07_01")
+		//SpellHitEffectSprite(Myself,Myself,CONJURATION,0)
+		//HideCreature(Myself,FALSE)
+		Activate(Myself)
+		SetGlobal("IwIHidden","LOCALS",0)
+		CreateVisualEffectObject("CONJUH",Myself)
+		SmallWait(3)
+		ApplySpellRES("IDINVIS5",Myself)
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("12_Goblin_Team_07_02")
+		//SpellHitEffectSprite(Myself,Myself,CONJURATION,0)
+		//HideCreature(Myself,FALSE)
+		Activate(Myself)
+		SetGlobal("IwIHidden","LOCALS",0)
+		CreateVisualEffectObject("CONJUH",Myself)
+		SmallWait(3)
+		ApplySpellRES("IDINVIS5",Myself)
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("12_Goblin_Team_07_03")
+		//SpellHitEffectSprite(Myself,Myself,CONJURATION,0)
+		//HideCreature(Myself,FALSE)
+		Activate(Myself)
+		SetGlobal("IwIHidden","LOCALS",0)
+		CreateVisualEffectObject("CONJUH",Myself)
+		SmallWait(3)
+		ApplySpellRES("IDINVIS5",Myself)
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("12_Goblin_Team_07_04")
+		//SpellHitEffectSprite(Myself,Myself,CONJURATION,0)
+		//HideCreature(Myself,FALSE)
+		Activate(Myself)
+		SetGlobal("IwIHidden","LOCALS",0)
+		CreateVisualEffectObject("CONJUH",Myself)
+		SmallWait(3)
+		ApplySpellRES("IDINVIS5",Myself)
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("12_Goblin_Team_07_05")
+		//SpellHitEffectSprite(Myself,Myself,CONJURATION,0)
+		//HideCreature(Myself,FALSE)
+		Activate(Myself)
+		SetGlobal("IwIHidden","LOCALS",0)
+		CreateVisualEffectObject("CONJUH",Myself)
+		SmallWait(3)
+		ApplySpellRES("IDINVIS5",Myself)
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("12_Goblin_Team_07_a01")
+		//SpellHitEffectSprite(Myself,Myself,CONJURATION,0)
+		//HideCreature(Myself,FALSE)
+		Activate(Myself)
+		SetGlobal("IwIHidden","LOCALS",0)
+		CreateVisualEffectObject("CONJUH",Myself)
+		SmallWait(3)
+		ApplySpellRES("IDINVIS5",Myself)
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		CutSceneId("12_Goblin_Team_07_a02")
+		//SpellHitEffectSprite(Myself,Myself,CONJURATION,0)
+		//HideCreature(Myself,FALSE)
+		Activate(Myself)
+		SetGlobal("IwIHidden","LOCALS",0)
+		CreateVisualEffectObject("CONJUH",Myself)
+		SmallWait(3)
+		ApplySpellRES("IDINVIS5",Myself)
+END
+

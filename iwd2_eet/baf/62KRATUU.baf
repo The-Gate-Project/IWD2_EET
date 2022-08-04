@@ -1,0 +1,25 @@
+IF
+  OR(2)
+    Die()
+    StateCheck(Myself,STATE_REALLY_DEAD)
+  !Global("Set_Death_Variable","LOCALS",1)
+THEN
+  RESPONSE #100
+    SetGlobal("Set_Death_Variable","LOCALS",1)
+    IncrementGlobal("Kratuuk_Team_Dead","GLOBAL",1)
+    IncrementGlobal("T2_OrcDreadWarriorDead","GLOBAL",1)
+    Continue()
+END
+
+IF
+	Global("Purified_Fields","MYAREA",1)
+THEN
+	RESPONSE #100
+		DropInventory()
+		//Kill(Myself)
+		//SpellHitEffectSprite(Myself,Myself,RIGHTEOUS_WRATH_OF_THE_FAITHFUL_GROUND,0)
+		CreateVisualEffectObject("RWOTFAG",Myself)
+		//ChunkCreature(Myself)
+		ApplySpellRES("IWCHUNK",Myself)
+END
+

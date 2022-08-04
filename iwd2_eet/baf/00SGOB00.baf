@@ -1,0 +1,89 @@
+IF
+	!Allegiance(Myself,ENEMY)
+THEN
+	RESPONSE #100
+		Enemy()
+		Continue()
+END
+
+IF
+	OR(2)
+		GlobalGT("SCROLL_11SCRLPS_STATE","MYAREA",2)
+		AttackedBy([GOODCUTOFF],DEFAULT)
+THEN
+	RESPONSE #100
+		SetGlobal("SCROLL_11SCRLPS_STATE","MYAREA",3)
+		ChangeAIScript("",CLASS)
+END
+
+IF
+	!GlobalTimerNotExpired("IwTimer1","LOCALS")
+THEN
+	RESPONSE #100
+		Face(N)
+		SetGlobalTimerRandom("IwTimer1","LOCALS",1,3)
+	RESPONSE #100
+		Face(NE)
+		SetGlobalTimerRandom("IwTimer1","LOCALS",1,3)
+	RESPONSE #100
+		Face(E)
+		SetGlobalTimerRandom("IwTimer1","LOCALS",1,3)
+	RESPONSE #100
+		Face(SE)
+		SetGlobalTimerRandom("IwTimer1","LOCALS",1,3)
+	RESPONSE #100
+		Face(S)
+		SetGlobalTimerRandom("IwTimer1","LOCALS",1,3)
+	RESPONSE #100
+		Face(SW)
+		SetGlobalTimerRandom("IwTimer1","LOCALS",1,3)
+	RESPONSE #100
+		Face(W)
+		SetGlobalTimerRandom("IwTimer1","LOCALS",1,3)
+	RESPONSE #100
+		Face(NW)
+		SetGlobalTimerRandom("IwTimer1","LOCALS",1,3)
+END
+
+IF
+	Global("I_FLOATED","LOCALS",0)
+	Global("SCROLL_11SCRLPS_STATE","MYAREA",0)
+	!GlobalTimerNotExpired("SCROLL_11SCRLPS_TIMER","MYAREA")
+THEN
+	RESPONSE #100
+		SetGlobalTimer("SCROLL_11SCRLPS_TIMER","MYAREA",1)
+		SetGlobal("SCROLL_11SCRLPS_STATE","MYAREA",1)
+		SetGlobal("I_FLOATED","LOCALS",1)
+		DisplayStringHead(Myself,@26651)
+END
+
+IF
+	Global("I_FLOATED","LOCALS",0)
+	Global("SCROLL_11SCRLPS_STATE","MYAREA",1)
+	!GlobalTimerNotExpired("SCROLL_11SCRLPS_TIMER","MYAREA")
+THEN
+	RESPONSE #100
+		SetGlobalTimer("SCROLL_11SCRLPS_TIMER","MYAREA",1)
+		SetGlobal("SCROLL_11SCRLPS_STATE","MYAREA",2)
+		SetGlobal("I_FLOATED","LOCALS",1)
+		DisplayStringHead(Myself,@26652)
+END
+
+IF
+	Global("I_FLOATED","LOCALS",0)
+	Global("SCROLL_11SCRLPS_STATE","MYAREA",2)
+	!GlobalTimerNotExpired("SCROLL_11SCRLPS_TIMER","MYAREA")
+THEN
+	RESPONSE #100
+		SetGlobal("SCROLL_11SCRLPS_STATE","MYAREA",3)
+		SetGlobal("I_FLOATED","LOCALS",1)
+		DisplayStringHead(Myself,@26654)
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+		NoAction()
+END
+

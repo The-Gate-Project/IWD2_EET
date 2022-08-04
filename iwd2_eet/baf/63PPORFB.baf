@@ -1,0 +1,55 @@
+IF
+	Contains("z6gencl",Myself)
+THEN
+	RESPONSE #100
+		SetGlobal("SH_Purify_Pool","GLOBAL",3)
+		SetGlobal("Pool_Tainted","GLOBAL",1)
+		AmbientActivate("6303MS1",FALSE)
+		DestroyItem("z6gencl")
+		//SpellHitEffectPoint(Myself,[-1.-1],CALL_LIGHTNING,0)
+		//ReallyForceSpellPointRES("IDCALLIH",[2485.955])
+		CreateVisualEffect("IDCLLH",[2485.955])
+		DisplayStringPointLog([2485.955],@37855)
+		AddJournalEntry(@24975,QUEST)
+END
+
+IF
+	Global("PoR_HealIsair","MYAREA",0)
+	!Global("StartCutscene_63cFB04","MYAREA",0)
+	!Global("Pool_Tainted","GLOBAL",1)
+	HPPercentLT("Isair2",66)
+THEN
+	RESPONSE #100
+		SetGlobal("PoR_HealIsair","MYAREA",1)
+		ReallyForceSpell("Isair2",CLERIC_HEAL)  // SPPR607.SPL (Θρφελενθε)
+		//SpellWait(CLERIC_HEAL)  // SPPR607.SPL (Θρφελενθε)
+		Wait(2)
+END
+
+IF
+	Global("PoR_HealMadae","MYAREA",0)
+	!Global("StartCutscene_63cFB04","MYAREA",0)
+	!Global("Pool_Tainted","GLOBAL",1)
+	HPPercentLT("Madae2",66)
+THEN
+	RESPONSE #100
+		SetGlobal("PoR_HealMadae","MYAREA",1)
+		ReallyForceSpell("Madae2",CLERIC_HEAL)  // SPPR607.SPL (Θρφελενθε)
+		//SpellWait(CLERIC_HEAL)  // SPPR607.SPL (Θρφελενθε)
+		Wait(2)
+END
+
+IF
+	Global("PoR_Buff","MYAREA",0)
+	!Global("Pool_Tainted","GLOBAL",1)
+	!Global("StartCutscene_63cFB04","MYAREA",0)
+THEN
+	RESPONSE #100
+		SetGlobal("PoR_Buff","MYAREA",1)
+		ReallyForceSpellRES("IWWI909","Isair2")  // SPWI909.SPL WIZARD_AEGIS
+		ReallyForceSpell("Isair2",WIZARD_SPELL_TURNING)  // SPWI710.SPL WIZARD_SEVEN_EYES
+		ReallyForceSpellRES("IWWI910","Isair2")  // SPWI910.SPL WIZARD_EXECUTIONERS_EYES
+		ReallyForceSpellRES("IWPR609","Madae2")  // SPPR609.SPL CLERIC_DIVINE_SHELL
+		ReallyForceSpellRES("IWPR801","Madae2")  // SPPR801.SPL CLERIC_HOLY_AURA
+END
+

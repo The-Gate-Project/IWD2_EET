@@ -1,0 +1,14 @@
+IF
+//	OR(2)
+		Entered([PC])
+//		IsOverMe([PC])
+THEN
+	RESPONSE #100
+		StartCutSceneMode()
+		Activate("Torak2")
+		ActionOverride("Torak2",SetGlobal("IwIHidden","LOCALS",0))
+		ClearAllActions()
+		MultiPlayerSync()
+		StartCutScene("20cTorD2")
+END
+

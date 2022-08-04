@@ -1,0 +1,81 @@
+IF
+  Global("SaveSavedLoc","LOCALS",0)
+THEN
+  RESPONSE #100
+    SetGlobal("SaveSavedLoc","LOCALS",1)
+    SaveObjectLocation("LOCALS","SavedLoc",Myself)
+    Continue()
+END
+
+IF
+	!Allegiance(Myself,ENEMY)
+	!Global("5000_SORDI_TEAM_ANGRY","GLOBAL",0)
+THEN
+	RESPONSE #100
+		Enemy()
+		Continue()
+END
+
+IF
+	!Global("5000_SORDI_TEAM_ANGRY","GLOBAL",0)
+	GlobalTimerExpired("SORDI_TEAM_TIMER","MYAREA")
+THEN
+	RESPONSE #100
+		SetGlobal("5000_SORDI_TEAM_ANGRY","GLOBAL",0)
+		Continue()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	Global("5000_SORDI_TEAM_ANGRY","GLOBAL",0)
+	!See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		ChangeEnemyAlly(Myself,NEUTRAL)
+		Continue()
+END
+
+IF
+	!GlobalTimerNotExpired("IwTimer18","LOCALS")
+	GlobalLT("50Wight_Horn","GLOBAL",2)
+THEN
+	RESPONSE #15
+		DisplayStringHead(Myself,@17018)
+		SetGlobalTimerRandom("IwTimer18","LOCALS",15,20)
+	RESPONSE #15
+		DisplayStringHead(Myself,@17019)
+		SetGlobalTimerRandom("IwTimer18","LOCALS",15,20)
+	RESPONSE #15
+		DisplayStringHead(Myself,@17020)
+		SetGlobalTimerRandom("IwTimer18","LOCALS",15,20)
+	RESPONSE #255
+		SetGlobalTimerRandom("IwTimer18","LOCALS",15,20)
+END
+
+IF
+	!GlobalTimerNotExpired("IwTimer19","LOCALS")
+	!NearSavedLocation(Myself,"LOCALSSavedLoc",4)
+	Global("5000_SORDI_TEAM_ANGRY","GLOBAL",0)
+THEN
+	RESPONSE #100
+		MoveToSavedLocation("SavedLoc","LOCALS")
+		SetGlobalTimer("IwTimer19","LOCALS",5)
+END
+
+/*IF
+	!Global("5000_SORDI_TEAM_ANGRY","GLOBAL",0)
+	!Range(NearestPC,4,LESS_THAN)
+THEN
+	RESPONSE #100
+		MoveToObject(NearestPC)
+END*/
+
+IF
+	!Global("5000_SORDI_TEAM_ANGRY","GLOBAL",0)
+	!Range([PC],4)
+THEN
+	RESPONSE #100
+		MoveToObject(Player1)
+END
+
+

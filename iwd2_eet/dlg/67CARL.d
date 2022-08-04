@@ -1,0 +1,30 @@
+BEGIN ~67CARL~
+
+IF WEIGHT #0
+~NumTimesTalkedTo(0)~ THEN BEGIN 0
+  SAY @29243
+  IF ~~ THEN DO ~SetGlobal("SH_Carl_Third","GLOBAL",1)~ EXIT
+END
+
+IF WEIGHT #3
+~Global("SH_Carl_Third","GLOBAL",1)~ THEN BEGIN 1
+  SAY @29245
+  IF ~~ THEN DO ~SetGlobal("SH_Carl_Floats","GLOBAL",1)~ EXIT
+END
+
+IF WEIGHT #2
+~Global("SH_Carl_Floats","GLOBAL",1)~ THEN BEGIN 2
+  SAY @29243
+  IF ~~ THEN REPLY @29246 GOTO 3
+END
+
+IF ~~ THEN BEGIN 3
+  SAY @29247
+  IF ~~ THEN REPLY @29248 DO ~SetGlobal("SH_Carl_Loop","GLOBAL",1)~ EXIT
+END
+
+IF WEIGHT #1
+~Global("SH_Carl_Loop","GLOBAL",1)~ THEN BEGIN 4
+  SAY @29249
+  IF ~~ THEN EXIT
+END

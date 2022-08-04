@@ -1,0 +1,361 @@
+IF
+	Global("RemoveNote1","MYAREA",0)
+	OR(2)
+		!Global("TEAM_1","MYAREA",0)
+		Global("Viciscamera_Quest","GLOBAL",2)
+THEN
+	RESPONSE #100
+		SetGlobal("RemoveNote1","MYAREA",1)
+		RemoveMapNote([724.845],@55060)
+		Continue()
+END
+
+IF
+	Global("RemoveNote2","MYAREA",0)
+	!Global("TEAM_2","MYAREA",0)
+THEN
+	RESPONSE #100
+		SetGlobal("RemoveNote2","MYAREA",1)
+		RemoveMapNote([331.2305],@55061)
+		Continue()
+END
+
+IF
+	!Global("Know_Lolthians","GLOBAL",0)
+	!Global("SPRITE_IS_DEAD53DroPriestess","GLOBAL",0)
+	Global("53SetJournal1E","MYAREA",0)
+THEN
+	RESPONSE #100
+		SetGlobal("53SetJournal1E","MYAREA",1)
+		SetQuestDone(@38814)
+		Continue()
+END
+
+IF
+	Global("ar5300_Kill_Camp","GLOBAL",1)
+THEN
+	RESPONSE #100
+		SetGlobal("ar5300_Kill_Camp","GLOBAL",2)
+		ActionOverride("Malavon",DestroySelf())
+		ActionOverride("Ginafae",DestroySelf())
+		ActionOverride("Viizra_Arabani",DestroySelf())
+		ActionOverride("Kadresh_Olonrae",DestroySelf())
+		ActionOverride("House_Despana_Guard_01",DestroySelf())
+		ActionOverride("House_Despana_Guard_02",DestroySelf())
+		ActionOverride("House_Despana_Guard_03",DestroySelf())
+		ActionOverride("House_Despana_Guard_04",DestroySelf())
+		ActionOverride("House_Despana_Guard_05",DestroySelf())
+		ActionOverride("House_Despana_Guard_06",DestroySelf())
+		ActionOverride("House_Despana_Guard_07",DestroySelf())
+		ActionOverride("House_Despana_Guard_08",DestroySelf())
+		ActionOverride("House_Despana_Guard_09",DestroySelf())
+		ActionOverride("House_Despana_Guard_10",DestroySelf())
+		ActionOverride("House_Despana_Guard_11",DestroySelf())
+		ActionOverride("House_Despana_Guard_12",DestroySelf())
+		ActionOverride("Sorcere_Apprentice_01",DestroySelf())
+		ActionOverride("Sorcere_Apprentice_02",DestroySelf())
+		ActionOverride("Sorcere_Apprentice_03",DestroySelf())
+		ActionOverride("Sorcere_Apprentice_04",DestroySelf())
+		ActionOverride("Sorcere_Apprentice_05",DestroySelf())
+		ActionOverride("Sorcere_Apprentice_06",DestroySelf())
+		Continue()
+END
+
+IF
+	Global("ar5300_Kill_Fodder","GLOBAL",1)
+THEN
+	RESPONSE #100
+		SetGlobal("ar5300_Kill_Fodder","GLOBAL",2)
+		ActionOverride("Goblin5300_Fodder_01",DestroySelf())
+		ActionOverride("Goblin5300_Fodder_02",DestroySelf())
+		ActionOverride("Goblin5300_Fodder_03",DestroySelf())
+		ActionOverride("Goblin5300_Fodder_04",DestroySelf())
+		//ActionOverride("Goblin5300_Fodder_05",DestroySelf())
+		//ActionOverride("Goblin5300_Fodder_06",DestroySelf())
+		//ActionOverride("Goblin5300_Fodder_07",DestroySelf())
+		//ActionOverride("Goblin5300_Fodder_08",DestroySelf())
+		//ActionOverride("Goblin5300_Fodder_09",DestroySelf())
+		//ActionOverride("Goblin5300_Fodder_10",DestroySelf())
+		//ActionOverride("Goblin5300_Fodder_11",DestroySelf())
+		//ActionOverride("Goblin5300_Fodder_12",DestroySelf())
+		ActionOverride("Goblin5300_Fodder_13",DestroySelf())
+		ActionOverride("Goblin5300_Fodder_14",DestroySelf())
+		ActionOverride("Goblin5300_Fodder_15",DestroySelf())
+		//ActionOverride("Goblin5300_Fodder_16",DestroySelf())
+		ActionOverride("Goblin5300_Fodder_17",DestroySelf())
+		ActionOverride("Goblin5300_Fodder_18",DestroySelf())
+		//ActionOverride("Goblin5300_Fodder_19",DestroySelf())
+		//ActionOverride("Goblin5300_Fodder_20",DestroySelf())
+		//ActionOverride("Goblin5300_Fodder_21",DestroySelf())
+		//ActionOverride("Goblin5300_Fodder_22",DestroySelf())
+		//ActionOverride("Goblin5300_Fodder_23",DestroySelf())
+		//ActionOverride("Goblin5300_Fodder_24",DestroySelf())
+		Continue()
+END
+
+IF
+	//OnCreation()
+	
+	Global("ar5300_Kill_Oinchackolp","GLOBAL",1)
+THEN
+	RESPONSE #100
+		SetGlobal("ar5300_Kill_Oinchackolp","GLOBAL",2)
+		ActionOverride("Oinchackolp",DestroySelf())
+		ActionOverride("Minotaur5300_Thrall_01",DestroySelf())
+		ActionOverride("Minotaur5300_Thrall_02",DestroySelf())
+		ActionOverride("Minotaur5300_Thrall_03",DestroySelf())
+		ActionOverride("Minotaur5300_Thrall_04",DestroySelf())
+		//ActionOverride("Minotaur53_Thrall_05",DestroySelf())
+		//ActionOverride("Minotaur53_Thrall_06",DestroySelf())
+		//ActionOverride("Minotaur53_Thrall_07",DestroySelf())
+		ActionOverride("Duergar_Fighter_Thrall_01",DestroySelf())
+		ActionOverride("Duergar_Fighter_Thrall_02",DestroySelf())
+		ActionOverride("Duergar_Fighter_Thrall_03",DestroySelf())
+		//ActionOverride("Duergar_Fighter_Thrall_04",DestroySelf())
+		//ActionOverride("Duergar_Fighter_Thrall_05",DestroySelf())
+		//ActionOverride("Duergar_Fighter_Thrall_06",DestroySelf())
+		//ActionOverride("Duergar_Fighter_Thrall_07",DestroySelf())
+		ActionOverride("Derro_Savant_Thrall_01",DestroySelf())
+		ActionOverride("Derro_Savant_Thrall_02",DestroySelf())
+		ActionOverride("Derro_Savant_Thrall_03",DestroySelf())
+		//ActionOverride("Derro_Savant_Thrall_04",DestroySelf())
+		//ActionOverride("Derro_Savant_Thrall_05",DestroySelf())
+		//ActionOverride("Derro_Savant_Thrall_06",DestroySelf())
+		//ActionOverride("Derro_Savant_Thrall_07",DestroySelf())
+		//ActionOverride("Derro_Savant_Thrall_01",DestroySelf())
+		//ActionOverride("Derro_Savant_Thrall_02",DestroySelf())
+		//ActionOverride("Derro_Savant_Thrall_03",DestroySelf())
+		//ActionOverride("Derro_Savant_Thrall_04",DestroySelf())
+		//ActionOverride("Derro_Savant_Thrall_05",DestroySelf())
+		//ActionOverride("Derro_Savant_Thrall_06",DestroySelf())
+		//ActionOverride("Derro_Savant_Thrall_07",DestroySelf())
+		Continue()
+END
+
+IF
+	//OnCreation()
+	
+	Global("ar5300_Kill_Beelthot","GLOBAL",1)
+THEN
+	RESPONSE #100
+		SetGlobal("ar5300_Kill_Beelthot","GLOBAL",2)
+		ActionOverride("Beelthot",DestroySelf())
+		//ActionOverride("Verbeeg_Thrall_01",DestroySelf())
+		//ActionOverride("Verbeeg_Thrall_02",DestroySelf())
+		//ActionOverride("Fomorian5300_Thrall_01",DestroySelf())
+		//ActionOverride("Fomorian5300_Thrall_02",DestroySelf())
+		//ActionOverride("Drow_Wizard00_Thrall_01",DestroySelf())
+		//ActionOverride("Drow_Wizard00_Thrall_02",DestroySelf())
+		Continue()
+END
+
+IF
+	Global("ar5300_Kill_Others","GLOBAL",1)
+THEN
+	RESPONSE #100
+		SetGlobal("ar5300_Kill_Others","GLOBAL",2)
+		ActionOverride("Myrvek_of_Grackls",DestroySelf())
+		ActionOverride("Heggr_Splitsteel",DestroySelf())
+		ActionOverride("Wode_the_Guileful",DestroySelf())
+		ActionOverride("Valas_Rrostarr",DestroySelf())
+		ActionOverride("Sorn",DestroySelf())
+		ActionOverride("Nadal",DestroySelf())
+		Continue()
+END
+
+IF
+	Global("ar5300_Kill_New","GLOBAL",1)
+THEN
+	RESPONSE #100
+		SetGlobal("ar5300_Kill_New","GLOBAL",2)
+		ActionOverride("5300_Spider_Team06_01",DestroySelf())
+		ActionOverride("5300_Spider_Team06_02",DestroySelf())
+		ActionOverride("5300_Spider_Team06_03",DestroySelf())
+		ActionOverride("5300_Spider_Team06_04",DestroySelf())
+		ActionOverride("5300_Spider_Team06_05",DestroySelf())
+		ActionOverride("5300_Spider_Team06_06",DestroySelf())
+		ActionOverride("5300_Spider_Team06_07",DestroySelf())
+		ActionOverride("5300_Spider_Team06_08",DestroySelf())
+		
+		ActionOverride("5300_Spider_Team07_01",DestroySelf())
+		ActionOverride("5300_Spider_Team07_02",DestroySelf())
+		ActionOverride("5300_Spider_Team07_03",DestroySelf())
+		ActionOverride("5300_Spider_Team07_04",DestroySelf())
+		
+		ActionOverride("5300_Myconid_Team9_01",DestroySelf())
+		ActionOverride("5300_Myconid_Team9_02",DestroySelf())
+		ActionOverride("5300_Myconid_Team9_03",DestroySelf())
+		ActionOverride("5300_Myconid_Team9_04",DestroySelf())
+		ActionOverride("5300_Myconid_Team9_05",DestroySelf())
+		ActionOverride("5300_Myconid_Team9_06",DestroySelf())
+		ActionOverride("5300_Myconid_Team9_07",DestroySelf())
+		ActionOverride("5300_Myconid_Team9_08",DestroySelf())
+		
+		ActionOverride("5300_Dark_DrakeT03_01",DestroySelf())
+		ActionOverride("5300_Dark_DrakeT03_02",DestroySelf())
+		ActionOverride("5300_Dark_DrakeT03_03",DestroySelf())
+		Continue()
+END
+
+IF
+	Global("ar5300_Kill_ar5300","GLOBAL",1)
+THEN
+	RESPONSE #100
+		NoAction()
+		Wait(30)
+END
+
+IF
+	!Global("TEAM_2","MYAREA",0)
+	OR(4)
+		StateCheck("Myrvek_of_Grackls",STATE_CHARMED)
+		StateCheck("Heggr_Splitsteel",STATE_CHARMED)
+		StateCheck("Wode_the_Guileful",STATE_CHARMED)
+		StateCheck("Valas_Rrostarr",STATE_CHARMED)
+THEN
+	RESPONSE #100
+		SetGlobal("TEAM_2","MYAREA",1)
+		Continue()
+END
+
+IF
+	OR(2)
+		Global("Beelthot_Gone","MYAREA",1)
+		Global("SPRITE_IS_DEADBeelthot","GLOBAL",1)
+THEN
+	RESPONSE #100
+		OpenDoor("AR5300_Door3")
+		OpenDoor("AR5300_Door4")
+		SetGlobal("Citadel_Doors_Open","MYAREA",1)
+		Continue()
+END
+
+IF
+	Global("Citadel_Doors_Open","MYAREA",1)
+	Global("Timers_Set","MYAREA",0)
+THEN
+	RESPONSE #100
+		SetGlobal("Timers_Set","MYAREA",1)
+		SetGlobalTimer("IwTimer40","MYAREA",5)
+		SetGlobalTimer("IwTimer50","MYAREA",7)
+		Continue()
+	RESPONSE #100
+		SetGlobal("Timers_Set","MYAREA",1)
+		SetGlobalTimer("IwTimer40","MYAREA",7)
+		SetGlobalTimer("IwTimer50","MYAREA",4)
+		Continue()
+END
+
+IF
+	Global("Citadel_Doors_Open","MYAREA",1)
+	GlobalLT("Spawn_Duergar_Left","MYAREA",3)
+	GlobalTimerExpired("IwTimer40","MYAREA")
+THEN
+	RESPONSE #100
+		CreateCreature("53DuFiT2",[3010.520],0)
+		IncrementGlobal("Spawn_Duergar_Left","MYAREA",1)
+		SetGlobalTimer("IwTimer40","MYAREA",5)
+		Continue()
+END
+
+IF
+	Global("Citadel_Doors_Open","MYAREA",1)
+	GlobalLT("Spawn_Duergar_Right","MYAREA",3)
+	GlobalTimerExpired("IwTimer50","MYAREA")
+THEN
+	RESPONSE #100
+		CreateCreature("53DuFiT2",[3200.510],0)
+		IncrementGlobal("Spawn_Duergar_Right","MYAREA",1)
+		SetGlobalTimer("IwTimer50","MYAREA",5)
+		Continue()
+END
+
+IF
+	!Global("TEAM_5","MYAREA",0)
+	Global("TEAM_3","MYAREA",0)
+THEN
+	RESPONSE #100
+		SetGlobal("TEAM_3","MYAREA",1)
+END
+
+IF
+	Global("52Ven_Loot","GLOBAL",3)
+	//EntirePartyOnMap()
+	InMyArea(Player1)
+THEN
+	RESPONSE #100
+		SetGlobal("52Ven_Loot","GLOBAL",4)
+		Continue()
+END
+
+IF
+	OnCreation()
+THEN
+	RESPONSE #100
+		NoAction()
+		Continue()
+END
+
+IF
+	!Global("SpireClock","MYAREA",1)
+	TimeLT(DAWN_START)
+THEN
+	RESPONSE #100
+		SetGlobal("SpireClock","MYAREA",1)
+		StaticSequence("5300RG1",SEQ_ATTACK)
+		StaticSequence("5300RG2",SEQ_ATTACK)
+		StaticSequence("5300RG3",SEQ_ATTACK)
+		StaticSequence("5300RG4",SEQ_ATTACK)
+END
+
+IF
+	!Global("SpireClock","MYAREA",2)
+	TimeGT(5)
+	TimeLT(10)
+THEN
+	RESPONSE #100
+		SetGlobal("SpireClock","MYAREA",2)
+		StaticSequence("5300RG1",SEQ_ATTACK)
+		StaticSequence("5300RG2",SEQ_ATTACK)
+		StaticSequence("5300RG3",SEQ_ATTACK)
+		StaticSequence("5300RG4",SEQ_AWAKE)
+END
+
+IF
+	!Global("SpireClock","MYAREA",3)
+	TimeGT(9)
+	TimeLT(15)
+THEN
+	RESPONSE #100
+		SetGlobal("SpireClock","MYAREA",3)
+		StaticSequence("5300RG1",SEQ_ATTACK)
+		StaticSequence("5300RG2",SEQ_ATTACK)
+		StaticSequence("5300RG3",SEQ_AWAKE)
+		StaticSequence("5300RG4",SEQ_AWAKE)
+END
+
+IF
+	!Global("SpireClock","MYAREA",4)
+	TimeGT(14)
+	TimeLT(20)
+THEN
+	RESPONSE #100
+		SetGlobal("SpireClock","MYAREA",4)
+		StaticSequence("5300RG1",SEQ_ATTACK)
+		StaticSequence("5300RG2",SEQ_AWAKE)
+		StaticSequence("5300RG3",SEQ_AWAKE)
+		StaticSequence("5300RG4",SEQ_AWAKE)
+END
+
+IF
+	!Global("SpireClock","MYAREA",5)
+	TimeGT(19)
+THEN
+	RESPONSE #100
+		SetGlobal("SpireClock","MYAREA",5)
+		StaticSequence("5300RG1",SEQ_AWAKE)
+		StaticSequence("5300RG2",SEQ_AWAKE)
+		StaticSequence("5300RG3",SEQ_AWAKE)
+		StaticSequence("5300RG4",SEQ_AWAKE)
+END
+

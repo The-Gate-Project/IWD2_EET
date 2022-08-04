@@ -1,0 +1,133 @@
+IF
+	OR(4)
+		!Exists("BLANCHARD")
+		!Exists("KICKSHAW")
+		Dead("BLANCHARD")
+		Dead("KICKSHAW")
+THEN
+	RESPONSE #100
+		ChangeAIScript("",DEFAULT)
+END
+
+IF
+	Global("FLOATS","LOCALS",0)
+	!GlobalTimerNotExpired("IwTimer0","LOCALS")
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,@3053)
+		SetGlobalTimer("IwTimer0","LOCALS",1)
+		IncrementGlobal("FLOATS","LOCALS",1)
+END
+
+IF
+	Global("FLOATS","LOCALS",1)
+	!GlobalTimerNotExpired("IwTimer0","LOCALS")
+THEN
+	RESPONSE #100
+		DisplayStringHead("BLANCHARD",@3103)
+		SetGlobalTimer("IwTimer0","LOCALS",9)
+		IncrementGlobal("FLOATS","LOCALS",1)
+END
+
+IF
+	Global("FLOATS","LOCALS",2)
+	!GlobalTimerNotExpired("IwTimer0","LOCALS")
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,@3054)
+		SetGlobalTimer("IwTimer0","LOCALS",10)
+		IncrementGlobal("FLOATS","LOCALS",1)
+END
+
+IF
+	Global("FLOATS","LOCALS",3)
+	!GlobalTimerNotExpired("IwTimer0","LOCALS")
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,@3055)
+		SetGlobalTimer("IwTimer0","LOCALS",1)
+		IncrementGlobal("FLOATS","LOCALS",1)
+END
+
+IF
+	Global("FLOATS","LOCALS",4)
+	!GlobalTimerNotExpired("IwTimer0","LOCALS")
+THEN
+	RESPONSE #100
+		DisplayStringHead("KICKSHAW",@3067)
+		SetGlobalTimer("IwTimer0","LOCALS",9)
+		IncrementGlobal("FLOATS","LOCALS",1)
+END
+
+IF
+	Global("FLOATS","LOCALS",5)
+	!GlobalTimerNotExpired("IwTimer0","LOCALS")
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,@3062)
+		SetGlobalTimer("IwTimer0","LOCALS",10)
+		IncrementGlobal("FLOATS","LOCALS",1)
+END
+
+IF
+	Global("FLOATS","LOCALS",6)
+	!GlobalTimerNotExpired("IwTimer0","LOCALS")
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,@3063)
+		SetGlobalTimer("IwTimer0","LOCALS",5)
+		IncrementGlobal("FLOATS","LOCALS",1)
+END
+
+IF
+	Global("FLOATS","LOCALS",7)
+	!GlobalTimerNotExpired("IwTimer0","LOCALS")
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,@3064)
+		SetGlobalTimer("IwTimer0","LOCALS",1)
+		IncrementGlobal("FLOATS","LOCALS",1)
+END
+
+IF
+	Global("FLOATS","LOCALS",8)
+	!GlobalTimerNotExpired("IwTimer0","LOCALS")
+THEN
+	RESPONSE #100
+		DisplayStringHead("KICKSHAW",@3068)
+		SetGlobalTimer("IwTimer0","LOCALS",1)
+		IncrementGlobal("FLOATS","LOCALS",1)
+END
+
+IF
+	Global("FLOATS","LOCALS",9)
+	!GlobalTimerNotExpired("IwTimer0","LOCALS")
+THEN
+	RESPONSE #100
+		DisplayStringHead("BLANCHARD",@3104)
+		SetGlobalTimer("IwTimer0","LOCALS",3)
+		IncrementGlobal("FLOATS","LOCALS",1)
+END
+
+IF
+	Global("FLOATS","LOCALS",10)
+	!GlobalTimerNotExpired("IwTimer0","LOCALS")
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,@3065)
+		SetGlobalTimer("IwTimer0","LOCALS",5)
+		IncrementGlobal("FLOATS","LOCALS",1)
+END
+
+IF
+	Global("FLOATS","LOCALS",11)
+	!GlobalTimerNotExpired("IwTimer0","LOCALS")
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,@3066)
+		Wait(1)
+		DisplayStringHead("KICKSHAW",@3066)
+		SetGlobalTimer("IwTimer0","LOCALS",10)
+		SetGlobal("FLOATS","LOCALS",0)
+END
+

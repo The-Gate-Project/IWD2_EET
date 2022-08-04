@@ -1,0 +1,30 @@
+IF
+	IsActive(Myself)
+	OR(5)
+		Global("60Ghost_Gone","GLOBAL",1)
+		Allegiance(Myself,ENEMY)
+		HPPercentLT(Myself,100)
+		HitBy([ANYONE],CRUSHING)
+		AttackedBy([ANYONE],DEFAULT)
+THEN
+	RESPONSE #100
+		DestroySelf()
+END
+
+IF
+	!IsActive(Myself)
+	Global("FirstUnhide","LOCALS",0)
+	GlobalGT("60Shortcut","GLOBAL",5)
+THEN
+	RESPONSE #100
+		SetGlobal("FirstUnhide","LOCALS",1)
+		
+		SetGlobal("60Cheap_Unhide","GLOBAL",1)
+		
+		//HideCreature(Myself,FALSE)
+		Activate(Myself)
+		SetGlobal("IwIHidden","LOCALS",0)
+		ApplySpellRES("idinvis5",Myself)
+		Continue()
+END
+

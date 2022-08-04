@@ -1,0 +1,95 @@
+IF
+	Global("SPRITE_IS_DEADCagedFury","GLOBAL",1)
+THEN
+	RESPONSE #100
+		ChangeEnemyAlly(Myself,NEUTRAL)
+		ChangeAIScript("",SPECIFICS)
+END
+
+IF
+	Allegiance("Xhaan",ENEMY)
+THEN
+	RESPONSE #100
+		Enemy()
+		SetGlobalTimerRandom("CastTimer","LOCALS",1,20)
+		ChangeAIScript("",SPECIFICS)
+END
+
+IF
+	!Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("CalmTimer","LOCALS")
+	See([0.HUMANOID])
+	//!HPLost(LastMarkedObject,0)
+	HPPercentLT(LastSeenBy(Myself),100)
+THEN
+	RESPONSE #100
+		Enemy()
+		SetGlobalTimer("CalmTimer","LOCALS",7)
+END
+
+IF
+	!Allegiance(Myself,ENEMY)
+	!GlobalTimerNotExpired("CalmTimer","LOCALS")
+THEN
+	RESPONSE #100
+		SetGlobalTimer("CalmTimer","LOCALS",7)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See([0.HUMANOID])
+	//!HPLost(LastMarkedObject,0)
+	HPPercentLT(LastSeenBy(Myself),100)
+THEN
+	RESPONSE #100
+		EquipMostDamagingMelee()
+		AttackReevaluate(LastSeenBy(Myself),45)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!See([0.HUMANOID])
+THEN
+	RESPONSE #100
+		ChangeEnemyAlly(Myself,NEUTRAL)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See([0.HUMANOID])
+	//HPLost(LastMarkedObject,0)
+	HPPercent(LastSeenBy(Myself),100)
+THEN
+	RESPONSE #100
+		ChangeEnemyAlly(Myself,NEUTRAL)
+END
+
+IF
+	!Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	!NearSavedLocation(Myself,"LOCALSSavedLoc",5)
+THEN
+	RESPONSE #100
+		//JumpToSavedLocation()
+		//SpellHitEffectSprite(Myself,Myself,DIMENSION_DOOR_ORIGIN,0)
+		SetInterrupt(FALSE)
+		CreateCreatureAtLocation("SavedLoc","LOCALS","IDGOLS2")
+		SmallWait(2)
+		JumpToObject("IDGOLMSVLC2")
+		SmallWait(2)
+		ActionOverride("IDGOLMSVLC2",DestroySelf())
+		CreateVisualEffectObject("SPDIMNDR",Myself)
+		MoveToSavedLocation("SavedLoc","LOCALS")
+		SetInterrupt(TRUE)
+END
+
+IF
+	Global("INITIALIZED_41ABISHI","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobal("SaveSavedLoc","LOCALS",1)
+		SaveObjectLocation("LOCALS","SavedLoc",Myself)
+		SetGlobal("INITIALIZED_41ABISHI","LOCALS",1)
+		Continue()
+END
+

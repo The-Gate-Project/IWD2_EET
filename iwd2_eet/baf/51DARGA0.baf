@@ -1,0 +1,99 @@
+IF
+  Global("SaveSavedLoc","LOCALS",0)
+THEN
+  RESPONSE #100
+    SetGlobal("SaveSavedLoc","LOCALS",1)
+    SaveObjectLocation("LOCALS","SavedLoc",Myself)
+    Continue()
+END
+
+IF
+	Global("TEAM_11","MYAREA",1)
+	!See([PC])
+THEN
+	RESPONSE #100
+		MoveToObject(Player1)
+END
+
+
+
+IF
+	!GlobalTimerNotExpired("IwTimer18","LOCALS")
+	!Global("51Dargab_Warn","GLOBAL",0)
+THEN
+	RESPONSE #50
+		DisplayStringHead(Myself,@18761)
+		SetGlobalTimerRandom("IwTimer18","LOCALS",5,10)
+	RESPONSE #50
+		DisplayStringHead(Myself,@18762)
+		SetGlobalTimerRandom("IwTimer18","LOCALS",5,10)
+	RESPONSE #50
+		DisplayStringHead(Myself,@18763)
+		SetGlobalTimerRandom("IwTimer18","LOCALS",5,10)
+	RESPONSE #150
+		SetGlobalTimerRandom("IwTimer18","LOCALS",5,10)
+END
+
+IF
+	NumberOfTimesTalkedTo(0)
+	!Allegiance(Myself,ENEMY)
+	!StateCheck(Myself,STATE_REALLY_DEAD)
+	See([PC])
+THEN
+	RESPONSE #100
+		//SetDialogueRange(300)
+		//Dialogue(LastMarkedObject)
+		ApplySpellRES("BDCUTSPY",Myself)
+		StartDialogNoSet(LastSeenBy(Myself))
+END
+
+IF
+	Global("RW_51DARGA00","LOCALS",0)
+	!NearSavedLocation(Myself,"LOCALSSavedLoc",5)
+THEN
+	RESPONSE #100
+		SetGlobal("RW_51DARGA00","LOCALS",1)
+		Continue()
+END
+
+IF
+	!Global("RW_51DARGA00","LOCALS",0)
+	NearSavedLocation(Myself,"LOCALSSavedLoc",5)
+THEN
+	RESPONSE #100
+		SetGlobal("RW_51DARGA00","LOCALS",0)
+		NoAction()
+END
+
+IF
+	!Global("RW_51DARGA00","LOCALS",0)
+	!Global("51Dargab_Warn","GLOBAL",0)
+	!Allegiance(Myself,ENEMY)
+THEN
+	RESPONSE #100
+		//MoveToPoint([-2.-2])
+		MoveToOffset([-2.-2])
+	RESPONSE #100
+		//MoveToPoint([-2.-2])
+		MoveToOffset([2.-2])
+	RESPONSE #100
+		//MoveToPoint([-2.-2])
+		MoveToOffset([-2.2])
+	RESPONSE #100
+		//MoveToPoint([-2.-2])
+		MoveToOffset([2.2])
+	RESPONSE #100
+		MoveToSavedLocation("SavedLoc","LOCALS")
+END
+
+IF
+	!GlobalTimerNotExpired("IwTimer19","LOCALS")
+	Global("RW_51DARGA00","LOCALS",0)
+	!Global("51Dargab_Warn","GLOBAL",0)
+	!Allegiance(Myself,ENEMY)
+THEN
+	RESPONSE #100
+		RandomWalk()
+		SetGlobalTimerRandom("IwTimer19","LOCALS",5,10)
+END
+

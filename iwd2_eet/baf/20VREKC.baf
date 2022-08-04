@@ -1,0 +1,39 @@
+IF
+	Global("SwordTaken","LOCALS",0)
+	//!HasItem("z0swdl09","Container_1")  // Лунный клинок Селуны
+	!Contains("z0swdl09","Container_1")
+THEN
+	RESPONSE #100
+		SetGlobal("SwordTaken","LOCALS",1)
+		Enemy()
+		SetGlobal("TEAM_1","MYAREA",1)
+END
+
+IF
+	NumberOfTimesTalkedTo(0)
+	!Allegiance(Myself,ENEMY)
+	!StateCheck(Myself,STATE_REALLY_DEAD)
+	//!Allegiance(Myself,ENEMY)
+	See([PC])
+THEN
+	RESPONSE #100
+		//SetDialogueRange(300)
+		ApplySpellRES("BDCUTSPY",Myself)
+		StartDialogNoSet(LastSeenBy(Myself))
+END
+
+IF
+	StateCheck(Myself,STATE_PANIC)
+THEN
+	RESPONSE #100
+		RandomWalkContinuous()
+END
+
+IF
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		EquipMostDamagingMelee()
+		AttackOneRound(LastSeenBy(Myself))
+END
+

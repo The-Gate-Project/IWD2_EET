@@ -1,0 +1,156 @@
+IF
+  Global("SaveSavedLoc","LOCALS",0)
+THEN
+  RESPONSE #100
+    SetGlobal("SaveSavedLoc","LOCALS",1)
+    SaveObjectLocation("LOCALS","SavedLoc",Myself)
+    Continue()
+END
+
+IF
+	Global("Switch","MYAREA",1)
+THEN
+	RESPONSE #100
+		ChangeAIScript("00aMvW05",SPECIFICS)
+END
+
+IF
+	Global("Villagers_Rescued","MYAREA",1)
+THEN
+	RESPONSE #100
+		SetGlobal("Switch","MYAREA",1)
+		Continue()
+END
+
+IF
+	Global("Villagers_Rescued","MYAREA",1)
+	//IsScriptName("Peasant_1",Myself)
+	Specifics(Myself,51)
+THEN
+	RESPONSE #100
+		SetHomeLocation([562.1015])
+		//SetSavedLocationPoint(562,1015,S)
+		SaveLocation("LOCALS","SavedLoc",[562.1015])
+END
+
+IF
+	Global("Villagers_Rescued","MYAREA",1)
+	//IsScriptName("Peasant_2",Myself)
+	Specifics(Myself,52)
+THEN
+	RESPONSE #100
+		SetHomeLocation([812.845])
+		//SetSavedLocationPoint(812,845,S)
+		SaveLocation("LOCALS","SavedLoc",[812.845])
+END
+
+IF
+	Global("Villagers_Rescued","MYAREA",1)
+	//IsScriptName("Peasant_3",Myself)
+	Specifics(Myself,53)
+THEN
+	RESPONSE #100
+		SetHomeLocation([1015.1145])
+		//SetSavedLocationPoint(1015,1145,S)
+		SaveLocation("LOCALS","SavedLoc",[1015.1145])
+END
+
+IF
+	Global("Villagers_Rescued","MYAREA",1)
+	//IsScriptName("Peasant_4",Myself)
+	Specifics(Myself,54)
+THEN
+	RESPONSE #100
+		SetHomeLocation([357.744])
+		//SetSavedLocationPoint(357,744,S)
+		SaveLocation("LOCALS","SavedLoc",[357.744])
+END
+
+IF
+	Global("Villagers_Rescued","MYAREA",1)
+	//IsScriptName("Peasant_5",Myself)
+	Specifics(Myself,55)
+THEN
+	RESPONSE #100
+		SetHomeLocation([792.797])
+		//SetSavedLocationPoint(792,797,S)
+		SaveLocation("LOCALS","SavedLoc",[792.797])
+END
+
+IF
+	Global("Villagers_Rescued","MYAREA",1)
+	//IsScriptName("Peasant_6",Myself)
+	Specifics(Myself,56)
+THEN
+	RESPONSE #100
+		SetHomeLocation([454.1152])
+		//SetSavedLocationPoint(454,1152,S)
+		SaveLocation("LOCALS","SavedLoc",[454.1152])
+END
+
+IF
+	Global("Villagers_Rescued","MYAREA",1)
+	//IsScriptName("Peasant_7",Myself)
+	Specifics(Myself,57)
+THEN
+	RESPONSE #100
+		SetHomeLocation([742.1144])
+		//SetSavedLocationPoint(742,1144,S)
+		SaveLocation("LOCALS","SavedLoc",[742.1144])
+END
+
+IF
+	Global("Villagers_Rescued","MYAREA",1)
+	//IsScriptName("Peasant_8",Myself)
+	Specifics(Myself,58)
+THEN
+	RESPONSE #100
+		SetHomeLocation([991.866])
+		//SetSavedLocationPoint(991,866,S)
+		SaveLocation("LOCALS","SavedLoc",[991.866])
+END
+
+IF
+	Global("Villagers_Rescued","MYAREA",1)
+	//IsScriptName("Peasant_9",Myself)
+	Specifics(Myself,59)
+THEN
+	RESPONSE #100
+		SetHomeLocation([298.620])
+		//SetSavedLocationPoint(298,620,S)
+		SaveLocation("LOCALS","SavedLoc",[298.620])
+END
+
+IF
+	Global("Villagers_Rescued","MYAREA",1)
+	//IsScriptName("Peasant_10",Myself)
+	Specifics(Myself,60)
+THEN
+	RESPONSE #100
+		SetHomeLocation([954.867])
+		//SetSavedLocationPoint(954,867,S)
+		SaveLocation("LOCALS","SavedLoc",[954.867])
+END
+
+IF
+	Global("Villagers_Rescued","MYAREA",1)
+	//IsScriptName("Peasant_11",Myself)
+	Specifics(Myself,61)
+THEN
+	RESPONSE #100
+		SetHomeLocation([268.643])
+		//SetSavedLocationPoint(268,643,S)
+		SaveLocation("LOCALS","SavedLoc",[268.643])
+END
+
+IF
+	Global("Villagers_Rescued","MYAREA",1)
+	//IsScriptName("Peasant_12",Myself)
+	Specifics(Myself,62)
+THEN
+	RESPONSE #100
+		SetHomeLocation([616.991])
+		//SetSavedLocationPoint(616,991,S)
+		SaveLocation("LOCALS","SavedLoc",[616.991])
+END
+

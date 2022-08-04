@@ -1,0 +1,35 @@
+IF
+	StateCheck(Myself,STATE_PANIC)
+THEN
+	RESPONSE #100
+		RandomWalkContinuous()
+END
+
+IF
+	Global("FaerieFire","LOCALS",0)
+	OR(2)
+		See([0.0.DRIDER])
+		See(NearestEnemyOf(Myself))
+	//IsSpellTargetValid(LastMarkedObject,INNATE_FAERIE_FIRE,SPELLCAST_IGNORE_HAS_CHECK)  // SPIN242.SPL (Огонь фей)
+	!CheckSpellState(LastSeenBy(Myself),FAERIE_FIRE)
+THEN
+	RESPONSE #100
+		SetGlobal("FaerieFire","LOCALS",1)
+		//ForceSpellRES("IWIN242",LastSeenBy(Myself))  // SPIN242.SPL INNATE_FAERIE_FIRE
+		ForceSpell(LastSeenBy(Myself),CLERIC_FAERIE_FIRE) 
+		//WaitAnimation(Myself,WALK)
+		//WaitAnimation(Myself,CONJURE)
+		//WaitAnimation(Myself,CAST)
+		Wait(2)
+END
+
+IF
+	OR(2)
+		See([0.0.DRIDER])
+		See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		EquipMostDamagingMelee()
+		AttackOneRound(LastSeenBy(Myself))
+END
+

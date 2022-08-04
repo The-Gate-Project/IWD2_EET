@@ -1,0 +1,30 @@
+IF
+	GlobalTimerNotExpired("PrismFireDelay","MYAREA")
+THEN
+	RESPONSE #100
+		NoAction()
+END
+
+IF
+	Global("41PrismFire","MYAREA",3)
+	!Global("PrismDeactivated","MYAREA",1)
+THEN
+	RESPONSE #100
+		ForceSpellPointRES("IWWI092",[2048.1472])
+		SetGlobal("PrismDeactivated","MYAREA",1)
+		SetGlobalTimer("PrismFireDelay","MYAREA",1)
+END
+
+IF
+	Global("41PrismFire","MYAREA",3)
+	Global("PrismDeactivated","MYAREA",1)
+THEN
+	RESPONSE #100
+		//SpellHitEffectPoint(Protagonist,[2023.1181],ELECTRICITY,30)
+		//SpellHitEffectPoint(Protagonist,[2067.1133],ELECTRICITY,30)
+		CreateVisualEffect("ELECTRH",[2023.1181])
+		CreateVisualEffect("ELECTRH",[2067.1133])
+		DisplayStringNoName(Player1,@30529)
+		TriggerActivation(Myself,FALSE)
+END
+

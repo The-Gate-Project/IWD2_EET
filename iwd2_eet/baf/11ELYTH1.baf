@@ -1,0 +1,263 @@
+IF
+  Global("SaveSavedLoc","LOCALS",0)
+THEN
+  RESPONSE #100
+    SetGlobal("SaveSavedLoc","LOCALS",1)
+    SaveObjectLocation("LOCALS","SavedLoc",Myself)
+    Continue()
+END
+
+IF
+	Global("FL_0","LOCALS",0)
+	!GlobalTimerNotExpired("IwTimer18","LOCALS")
+	Global("Goblins_Attack_Palisade","GLOBAL",1)
+	Global("Shaengarne_Quest","GLOBAL",0)
+	See([PC])
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,@36589)
+		SetGlobalTimerRandom("IwTimer18","LOCALS",10,15)
+		IncrementGlobal("FL_0","LOCALS",1)
+		FaceObject(LastSeenBy(Myself))
+END
+
+IF
+	Global("FL_0","LOCALS",1)
+	!GlobalTimerNotExpired("IwTimer18","LOCALS")
+	Global("Goblins_Attack_Palisade","GLOBAL",1)
+	Global("Shaengarne_Quest","GLOBAL",0)
+	See([PC])
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,@36590)
+		SetGlobalTimerRandom("IwTimer18","LOCALS",10,15)
+		IncrementGlobal("FL_0","LOCALS",1)
+		FaceObject(LastSeenBy(Myself))
+END
+
+IF
+	Global("FL_0","LOCALS",2)
+	!GlobalTimerNotExpired("IwTimer18","LOCALS")
+	Global("Goblins_Attack_Palisade","GLOBAL",1)
+	Global("Shaengarne_Quest","GLOBAL",0)
+	See([PC])
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,@36591)
+		SetGlobalTimerRandom("IwTimer18","LOCALS",10,15)
+		SetGlobal("FL_0","LOCALS",0)
+		FaceObject(LastSeenBy(Myself))
+END
+
+IF
+	Global("FL_1","LOCALS",0)
+	!GlobalTimerNotExpired("IwTimer18","LOCALS")
+	GlobalGT("Shaengarne_Quest","GLOBAL",1)
+	Global("Shaengarne_Bridge_Cleared","GLOBAL",1)
+	Global("Fortress_Quest","GLOBAL",0)
+	See([PC])
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,@36592)
+		SetGlobalTimerRandom("IwTimer18","LOCALS",10,15)
+		IncrementGlobal("FL_1","LOCALS",1)
+		FaceObject(LastSeenBy(Myself))
+END
+
+IF
+	Global("FL_1","LOCALS",1)
+	!GlobalTimerNotExpired("IwTimer18","LOCALS")
+	GlobalGT("Shaengarne_Quest","GLOBAL",1)
+	Global("Shaengarne_Bridge_Cleared","GLOBAL",1)
+	Global("Fortress_Quest","GLOBAL",0)
+	See([PC])
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,@36593)
+		SetGlobalTimerRandom("IwTimer18","LOCALS",10,15)
+		SetGlobal("FL_1","LOCALS",0)
+		FaceObject(LastSeenBy(Myself))
+END
+
+IF
+	Global("FL_2","LOCALS",0)
+	!GlobalTimerNotExpired("IwTimer18","LOCALS")
+	Global("SPRITE_IS_DEAD31bugGut","GLOBAL",0)
+	GlobalGT("Fortress_Quest","GLOBAL",0)
+	See([PC])
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,@36594)
+		SetGlobalTimerRandom("IwTimer18","LOCALS",10,15)
+		IncrementGlobal("FL_2","LOCALS",1)
+		FaceObject(LastSeenBy(Myself))
+END
+
+IF
+	Global("FL_2","LOCALS",1)
+	!GlobalTimerNotExpired("IwTimer18","LOCALS")
+	Global("SPRITE_IS_DEAD31bugGut","GLOBAL",0)
+	GlobalGT("Fortress_Quest","GLOBAL",0)
+	See([PC])
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,@36595)
+		SetGlobalTimerRandom("IwTimer18","LOCALS",10,15)
+		IncrementGlobal("FL_2","LOCALS",1)
+		FaceObject(LastSeenBy(Myself))
+END
+
+IF
+	Global("FL_2","LOCALS",2)
+	!GlobalTimerNotExpired("IwTimer18","LOCALS")
+	Global("SPRITE_IS_DEAD31bugGut","GLOBAL",0)
+	GlobalGT("Fortress_Quest","GLOBAL",0)
+	See([PC])
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,@36596)
+		SetGlobalTimerRandom("IwTimer18","LOCALS",10,15)
+		SetGlobal("FL_2","LOCALS",0)
+		FaceObject(LastSeenBy(Myself))
+END
+
+IF
+	Global("FL_3","LOCALS",0)
+	!GlobalTimerNotExpired("IwTimer18","LOCALS")
+	!Global("SPRITE_IS_DEAD31bugGut","GLOBAL",0)
+	GlobalGT("Fortress_Quest","GLOBAL",0)
+	See([PC])
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,@36597)
+		SetGlobalTimerRandom("IwTimer18","LOCALS",10,15)
+		IncrementGlobal("FL_3","LOCALS",1)
+		FaceObject(LastSeenBy(Myself))
+END
+
+IF
+	Global("FL_3","LOCALS",1)
+	!GlobalTimerNotExpired("IwTimer18","LOCALS")
+	!Global("SPRITE_IS_DEAD31bugGut","GLOBAL",0)
+	GlobalGT("Fortress_Quest","GLOBAL",0)
+	See([PC])
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,@36598)
+		SetGlobalTimerRandom("IwTimer18","LOCALS",10,15)
+		IncrementGlobal("FL_3","LOCALS",1)
+		FaceObject(LastSeenBy(Myself))
+END
+
+IF
+	Global("FL_3","LOCALS",2)
+	!GlobalTimerNotExpired("IwTimer18","LOCALS")
+	!Global("SPRITE_IS_DEAD31bugGut","GLOBAL",0)
+	GlobalGT("Fortress_Quest","GLOBAL",0)
+	See([PC])
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,@36599)
+		SetGlobalTimerRandom("IwTimer18","LOCALS",10,15)
+		SetGlobal("FL_3","LOCALS",0)
+		FaceObject(LastSeenBy(Myself))
+END
+
+IF
+	!Global("Goblins_Attack_Palisade","GLOBAL",0)
+	See([PC])
+THEN
+	RESPONSE #100
+		FaceObject(LastSeenBy(Myself))
+END
+
+IF
+	Global("ML_0","LOCALS",0)
+	!GlobalTimerNotExpired("IwTimer19","LOCALS")
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IwTimer19","LOCALS",30)
+		SetGlobal("ML_0","LOCALS",1)
+END
+
+IF
+	Global("ML_0","LOCALS",1)
+	ActionListEmpty()
+	NearLocation(Myself,806,530,4)
+THEN
+	RESPONSE #100
+		SetHomeLocation([806.530])
+		SetGlobal("ML_0","LOCALS",2)
+		Continue()
+END
+
+IF
+	Global("ML_0","LOCALS",1)
+THEN
+	RESPONSE #100
+		MoveToPoint([806.530])
+END
+
+IF
+	Global("ML_0","LOCALS",2)
+	!GlobalTimerNotExpired("IwTimer19","LOCALS")
+THEN
+	RESPONSE #100
+		Face(N)
+		SetGlobal("ML_0","LOCALS",3)
+END
+
+IF
+	Global("ML_0","LOCALS",3)
+	!GlobalTimerNotExpired("IwTimer19","LOCALS")
+THEN
+	RESPONSE #100
+		SetGlobalTimer("IwTimer19","LOCALS",30)
+		SetGlobal("ML_0","LOCALS",4)
+END
+
+IF
+	Global("ML_0","LOCALS",4)
+	ActionListEmpty()
+	NearLocation(Myself,825,322,4)
+THEN
+	RESPONSE #100
+		SetHomeLocation([825.322])
+		SetGlobal("ML_0","LOCALS",5)
+		Continue()
+END
+
+IF
+	Global("ML_0","LOCALS",4)
+THEN
+	RESPONSE #100
+		MoveToPoint([825.322])
+END
+
+IF
+	Global("ML_0","LOCALS",5)
+	!GlobalTimerNotExpired("IwTimer19","LOCALS")
+THEN
+	RESPONSE #100
+		Face(N)
+		SetGlobal("ML_0","LOCALS",0)
+END
+
+IF
+	!GlobalTimerNotExpired("IwTimer20","LOCALS")
+	!NearSavedLocation(Myself,"LOCALSSavedLoc",0)
+THEN
+	RESPONSE #100
+		MoveToSavedLocation("SavedLoc","LOCALS")
+		SetGlobalTimer("IwTimer20","LOCALS",5)
+END
+
+/*IF
+	!GlobalTimerNotExpired("IwTimer20","LOCALS")
+	NearSavedLocation(Myself,"LOCALSSavedLoc",0)
+THEN
+	RESPONSE #100
+		RandomTurn()
+		SetGlobalTimer("IwTimer20","LOCALS",5)
+END*/
+

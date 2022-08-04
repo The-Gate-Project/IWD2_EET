@@ -1,0 +1,16 @@
+IF
+	Clicked([ANYONE])
+	CheckStatGT(LastTrigger,15,INT)
+THEN
+	RESPONSE #100
+		DisplayString(Myself,@25726)
+		SetGlobal("61PlayerReadWarningSign","GLOBAL",1)
+END
+
+IF
+	Clicked([ANYONE])
+THEN
+	RESPONSE #100
+		DisplayString(Myself,@25727)
+END
+

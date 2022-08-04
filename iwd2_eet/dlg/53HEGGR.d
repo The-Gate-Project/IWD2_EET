@@ -1,0 +1,106 @@
+BEGIN ~53HEGGR~
+
+IF WEIGHT #2
+~NumberOfTimesTalkedTo(0)~ THEN BEGIN 0
+  SAY @22389
+  IF ~~ THEN REPLY @22390 DO ~SetGlobal("Know_Heggr","GLOBAL",1)~ GOTO 1
+  IF ~~ THEN REPLY @22391 DO ~SetGlobal("Heggr_Trade","GLOBAL",1)~ GOTO 5
+  IF ~~ THEN REPLY @22392 DO ~StartStore("53Heggr",LastTalkedToBy)~ EXIT
+  IF ~~ THEN REPLY @22393 EXIT
+END
+
+IF ~~ THEN BEGIN 1
+  SAY @22394
+  IF ~~ THEN EXTERN ~53WODE~ 9
+END
+
+IF ~~ THEN BEGIN 2
+  SAY @22398
+  IF ~~ THEN EXTERN ~53VALAS~ 5
+END
+
+IF ~~ THEN BEGIN 3
+  SAY @22399
+  IF ~Race(LastTalkedToBy,DWARF)~ THEN REPLY @22400 GOTO 4
+  IF ~Global("Heggr_Trade","GLOBAL",0)~ THEN REPLY @22391 DO ~SetGlobal("Heggr_Trade","GLOBAL",1)~ GOTO 5
+  IF ~~ THEN REPLY @22392 DO ~StartStore("53Heggr",LastTalkedToBy)~ EXIT
+  IF ~~ THEN REPLY @22393 EXIT
+END
+
+IF ~~ THEN BEGIN 4
+  SAY @22401
+  IF ~CheckStatGT(LastTalkedToBy,12,CHR)~ THEN REPLY @22402 GOTO 6
+  IF ~CheckStatLT(LastTalkedToBy,13,CHR)~ THEN REPLY @22403 DO ~Enemy()~ GOTO 7
+  IF ~~ THEN REPLY @22404 GOTO 8
+  IF ~~ THEN REPLY @22392 DO ~StartStore("53Heggr",LastTalkedToBy)~ EXIT
+  IF ~~ THEN REPLY @22393 EXIT
+END
+
+IF ~~ THEN BEGIN 5
+  SAY @22405
+  IF ~CheckStatGT(LastTalkedToBy,12,INT)~ THEN REPLY @22406 GOTO 4
+  IF ~~ THEN REPLY @22392 DO ~StartStore("53Heggr",LastTalkedToBy)~ EXIT
+  IF ~~ THEN REPLY @22393 EXIT
+END
+
+IF ~~ THEN BEGIN 6
+  SAY @22407
+  IF ~CheckStatLT(LastTalkedToBy,13,INT)~ THEN REPLY @22408 GOTO 9
+  IF ~CheckStatGT(LastTalkedToBy,12,INT)~ THEN REPLY @22409 DO ~ChangeStoreMarkup("53Heggr",130,60)~ GOTO 13
+  IF ~CheckStatGT(LastTalkedToBy,12,INT)
+      CheckStatGT(LastTalkedToBy,15,CHR)~ THEN REPLY @22410 DO ~ChangeStoreMarkup("53Heggr",120,70)~ GOTO 14
+  IF ~~ THEN REPLY @30094 DO ~ChangeStoreMarkup("53Heggr",130,50)~ GOTO 8
+END
+
+IF ~~ THEN BEGIN 7
+  SAY @22411
+  IF ~~ THEN EXIT
+END
+
+IF ~~ THEN BEGIN 8
+  SAY @22412
+  IF ~~ THEN REPLY @22392 DO ~StartStore("53Heggr",LastTalkedToBy)~ EXIT
+  IF ~~ THEN REPLY @22393 EXIT
+END
+
+IF ~~ THEN BEGIN 9
+  SAY @22413
+  IF ~~ THEN REPLY @22414 DO ~ChangeStoreMarkup("53Heggr",130,50)~ GOTO 8
+  IF ~~ THEN REPLY @22415 DO ~Enemy()~ GOTO 10
+END
+
+IF ~~ THEN BEGIN 10
+  SAY @22416
+  IF ~~ THEN EXIT
+END
+
+IF WEIGHT #1
+~NumTimesTalkedToGT(0)~ THEN BEGIN 11
+  SAY @22417
+  IF ~!Global("Know_Heggr","GLOBAL",1)~ THEN REPLY @22390 DO ~SetGlobal("Know_Heggr","GLOBAL",1)~ GOTO 1
+  IF ~~ THEN REPLY @22392 DO ~StartStore("53Heggr",LastTalkedToBy)~ EXIT
+  IF ~~ THEN REPLY @22393 EXIT
+END
+
+IF ~~ THEN BEGIN 12
+  SAY @22418
+  IF ~~ THEN EXTERN ~53MYRVEK~ 11
+END
+
+IF ~~ THEN BEGIN 13
+  SAY @30095
+  IF ~~ THEN REPLY @22392 DO ~StartStore("53Heggr",LastTalkedToBy)~ EXIT
+  IF ~~ THEN REPLY @1487 EXIT
+END
+
+IF ~~ THEN BEGIN 14
+  SAY @30096
+  IF ~~ THEN REPLY @30097 DO ~StartStore("53Heggr",LastTalkedToBy)~ EXIT
+  IF ~~ THEN REPLY @28840 EXIT
+END
+
+IF WEIGHT #0
+~See([ENEMY])~ THEN BEGIN 15
+  SAY @27284
+  IF ~~ THEN EXIT
+END

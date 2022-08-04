@@ -1,0 +1,697 @@
+IF
+	Global("CurrentAction","LOCALS",3)
+THEN
+	RESPONSE #100
+		SetGlobal("Rested","LOCALS",1)
+		SetGlobal("CurrentAction","LOCALS",0)
+		Rest()
+		ApplySpellRES("IWWI096",Myself)  // SPWI096.SPL
+END
+
+/*IF
+	!IsCreatureAreaFlag(Myself,IGNORE_RETURN_TO_START_POS)
+THEN
+	RESPONSE #100
+		SetCreatureAreaFlag(Myself,IGNORE_RETURN_TO_START_POS,TRUE)
+END*/
+
+IF
+	!Allegiance(Myself,ENEMY)
+	Global("CurrentAction","LOCALS",4)
+	See([ENEMY])
+THEN
+	RESPONSE #100
+		//EquipWeapon()
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	AttackedBy([GOODCUTOFF],DEFAULT)
+	!Allegiance(Myself,ENEMY)
+THEN
+	RESPONSE #100
+		Enemy()
+END
+
+IF
+	Global("ML_0","LOCALS",0)
+	ActionListEmpty()
+	NearLocation(Myself,510,2200,4)
+THEN
+	RESPONSE #100
+		SetHomeLocation([510.2200])
+		SetGlobal("ML_0","LOCALS",1)
+		Continue()
+END
+
+IF
+	Global("ML_0","LOCALS",0)
+	Global("CurrentAction","LOCALS",1)
+	OR(3)
+		Name("04_DumbPrisoner_03",Myself)
+		Name("05_TrollPrisoner",Myself)
+		Name("05_WizardPrisoner",Myself)
+THEN
+	RESPONSE #100
+		MoveToPoint([510.2200])
+END
+
+IF
+	Global("ML_0","LOCALS",1)
+	Global("CurrentAction","LOCALS",1)
+	OR(3)
+		Name("04_DumbPrisoner_03",Myself)
+		Name("05_TrollPrisoner",Myself)
+		Name("05_WizardPrisoner",Myself)
+THEN
+	RESPONSE #100
+		Unlock("ArmoryChest1")
+		SetGlobal("ML_0","LOCALS",2)
+END
+
+//BLOCK ArmoryChest1
+IF
+	Global("ML_0","LOCALS",2)
+	Global("CurrentAction","LOCALS",1)
+	OR(3)
+		Name("04_DumbPrisoner_03",Myself)
+		Name("05_TrollPrisoner",Myself)
+		Name("05_WizardPrisoner",Myself)
+	Contains("z0swdt91","ArmoryChest1")
+THEN
+	RESPONSE #100
+		ActionOverride("ArmoryChest1",DestroyItem("z0swdt91"))
+		CreateItem("z0swdt91",0,0,0)
+		Continue()
+END
+
+IF
+	Global("ML_0","LOCALS",2)
+	Global("CurrentAction","LOCALS",1)
+	OR(3)
+		Name("04_DumbPrisoner_03",Myself)
+		Name("05_TrollPrisoner",Myself)
+		Name("05_WizardPrisoner",Myself)
+	Contains("BRAC02","ArmoryChest1")
+THEN
+	RESPONSE #100
+		ActionOverride("ArmoryChest1",DestroyItem("BRAC02"))
+		CreateItem("BRAC02",0,0,0)
+		Continue()
+END
+
+IF
+	Global("ML_0","LOCALS",2)
+	Global("CurrentAction","LOCALS",1)
+	OR(3)
+		Name("04_DumbPrisoner_03",Myself)
+		Name("05_TrollPrisoner",Myself)
+		Name("05_WizardPrisoner",Myself)
+	Contains("z0dagg84","ArmoryChest1")
+THEN
+	RESPONSE #100
+		ActionOverride("ArmoryChest1",DestroyItem("z0dagg84"))
+		CreateItem("z0dagg84",10,0,0)
+		Continue()
+END
+
+IF
+	Global("ML_0","LOCALS",2)
+	Global("CurrentAction","LOCALS",1)
+	OR(3)
+		Name("04_DumbPrisoner_03",Myself)
+		Name("05_TrollPrisoner",Myself)
+		Name("05_WizardPrisoner",Myself)
+	Contains("z0slng94","ArmoryChest1")
+THEN
+	RESPONSE #100
+		ActionOverride("ArmoryChest1",DestroyItem("z0slng94"))
+		CreateItem("z0slng94",0,0,0)
+		Continue()
+END
+
+IF
+	Global("ML_0","LOCALS",2)
+	Global("CurrentAction","LOCALS",1)
+	OR(3)
+		Name("04_DumbPrisoner_03",Myself)
+		Name("05_TrollPrisoner",Myself)
+		Name("05_WizardPrisoner",Myself)
+	Contains("z0bull89","ArmoryChest1")
+THEN
+	RESPONSE #100
+		ActionOverride("ArmoryChest1",DestroyItem("z0bull89"))
+		CreateItem("z0bull89",40,0,0)
+		Continue()
+END
+
+IF
+	Global("ML_0","LOCALS",2)
+	Global("CurrentAction","LOCALS",1)
+	OR(3)
+		Name("04_DumbPrisoner_03",Myself)
+		Name("05_TrollPrisoner",Myself)
+		Name("05_WizardPrisoner",Myself)
+	Contains("POTN27","ArmoryChest1")
+THEN
+	RESPONSE #100
+		ActionOverride("ArmoryChest1",DestroyItem("POTN27"))
+		CreateItem("POTN27",1,0,0)
+		Continue()
+END
+//BLOCKEND
+IF
+	Global("ML_0","LOCALS",2)
+	Global("CurrentAction","LOCALS",1)
+	OR(3)
+		Name("04_DumbPrisoner_03",Myself)
+		Name("05_TrollPrisoner",Myself)
+		Name("05_WizardPrisoner",Myself)
+THEN
+	RESPONSE #100
+		//TransferInventory("ArmoryChest1",Myself)
+		SetGlobal("ML_0","LOCALS",3)
+END
+
+IF
+	Global("ML_0","LOCALS",3)
+	Global("CurrentAction","LOCALS",1)
+	OR(3)
+		Name("04_DumbPrisoner_03",Myself)
+		Name("05_TrollPrisoner",Myself)
+		Name("05_WizardPrisoner",Myself)
+THEN
+	RESPONSE #100
+		EquipItem("BRAC02")  // Наручи защиты +3
+		SetGlobal("ML_0","LOCALS",4)
+END
+
+IF
+	Global("ML_0","LOCALS",4)
+	Global("CurrentAction","LOCALS",1)
+	OR(3)
+		Name("04_DumbPrisoner_03",Myself)
+		Name("05_TrollPrisoner",Myself)
+		Name("05_WizardPrisoner",Myself)
+THEN
+	RESPONSE #100
+		EquipItem("z0bull89")  // Ядра всплеска кислоты
+		SetGlobal("ML_0","LOCALS",5)
+END
+
+IF
+	Global("ML_0","LOCALS",5)
+	Global("CurrentAction","LOCALS",1)
+	OR(3)
+		Name("04_DumbPrisoner_03",Myself)
+		Name("05_TrollPrisoner",Myself)
+		Name("05_WizardPrisoner",Myself)
+THEN
+	RESPONSE #100
+		SetGlobal("EQUIPPED","LOCALS",1)
+		SetGlobal("ML_0","LOCALS",6)
+END
+
+IF
+	Global("ML_0","LOCALS",6)
+	Global("CurrentAction","LOCALS",1)
+	OR(3)
+		Name("04_DumbPrisoner_03",Myself)
+		Name("05_TrollPrisoner",Myself)
+		Name("05_WizardPrisoner",Myself)
+THEN
+	RESPONSE #100
+		SetGlobal("CurrentAction","LOCALS",4)
+		SetGlobal("ML_0","LOCALS",0)
+END
+
+IF
+	Global("ML_1","LOCALS",0)
+	ActionListEmpty()
+	NearLocation(Myself,670,2320,4)
+THEN
+	RESPONSE #100
+		SetHomeLocation([670.2320])
+		SetGlobal("ML_1","LOCALS",1)
+		Continue()
+END
+
+IF
+	Global("ML_1","LOCALS",0)
+	Global("CurrentAction","LOCALS",1)
+	OR(3)
+		Name("04_SmartPrisoner_04",Myself)
+		Name("05_TrollPrisoner",Myself)
+		Name("05_WizardPrisoner",Myself)
+THEN
+	RESPONSE #100
+		MoveToPoint([670.2320])
+END
+
+IF
+	Global("ML_1","LOCALS",1)
+	Global("CurrentAction","LOCALS",1)
+	OR(3)
+		Name("04_SmartPrisoner_04",Myself)
+		Name("05_TrollPrisoner",Myself)
+		Name("05_WizardPrisoner",Myself)
+THEN
+	RESPONSE #100
+		Unlock("ArmoryChest2")
+		SetGlobal("ML_1","LOCALS",2)
+END
+
+//BLOCK ArmoryChest2
+IF
+	Global("ML_1","LOCALS",2)
+	Global("CurrentAction","LOCALS",1)
+	OR(3)
+		Name("04_SmartPrisoner_04",Myself)
+		Name("05_TrollPrisoner",Myself)
+		Name("05_WizardPrisoner",Myself)
+	Contains("z5misc38","ArmoryChest2")
+THEN
+	RESPONSE #100
+		ActionOverride("ArmoryChest2",DestroyItem("z5misc38"))
+		CreateItem("z5misc38",0,0,0)
+		Continue()
+END
+
+IF
+	Global("ML_1","LOCALS",2)
+	Global("CurrentAction","LOCALS",1)
+	OR(3)
+		Name("04_SmartPrisoner_04",Myself)
+		Name("05_TrollPrisoner",Myself)
+		Name("05_WizardPrisoner",Myself)
+	Contains("z0swdb91","ArmoryChest2")
+THEN
+	RESPONSE #100
+		ActionOverride("ArmoryChest2",DestroyItem("z0swdb91"))
+		CreateItem("z0swdb91",0,0,0)
+		Continue()
+END
+
+IF
+	Global("ML_1","LOCALS",2)
+	Global("CurrentAction","LOCALS",1)
+	OR(3)
+		Name("04_SmartPrisoner_04",Myself)
+		Name("05_TrollPrisoner",Myself)
+		Name("05_WizardPrisoner",Myself)
+	Contains("z0plat11","ArmoryChest2")
+THEN
+	RESPONSE #100
+		ActionOverride("ArmoryChest2",DestroyItem("z0plat11"))
+		CreateItem("z0plat11",0,0,0)
+		Continue()
+END
+
+IF
+	Global("ML_1","LOCALS",2)
+	Global("CurrentAction","LOCALS",1)
+	OR(3)
+		Name("04_SmartPrisoner_04",Myself)
+		Name("05_TrollPrisoner",Myself)
+		Name("05_WizardPrisoner",Myself)
+	Contains("z0shld86","ArmoryChest2")
+THEN
+	RESPONSE #100
+		ActionOverride("ArmoryChest2",DestroyItem("z0shld86"))
+		CreateItem("z0shld86",0,0,0)
+		Continue()
+END
+
+IF
+	Global("ML_1","LOCALS",2)
+	Global("CurrentAction","LOCALS",1)
+	OR(3)
+		Name("04_SmartPrisoner_04",Myself)
+		Name("05_TrollPrisoner",Myself)
+		Name("05_WizardPrisoner",Myself)
+	Contains("HELM01","ArmoryChest2")
+THEN
+	RESPONSE #100
+		ActionOverride("ArmoryChest2",DestroyItem("HELM01"))
+		CreateItem("HELM01",0,0,0)
+		Continue()
+END
+
+IF
+	Global("ML_1","LOCALS",2)
+	Global("CurrentAction","LOCALS",1)
+	OR(3)
+		Name("04_SmartPrisoner_04",Myself)
+		Name("05_TrollPrisoner",Myself)
+		Name("05_WizardPrisoner",Myself)
+	Contains("HAMM03","ArmoryChest2")
+THEN
+	RESPONSE #100
+		ActionOverride("ArmoryChest2",DestroyItem("HAMM03"))
+		CreateItem("HAMM03",0,0,0)
+		Continue()
+END
+//BLOCKEND
+
+IF
+	Global("ML_1","LOCALS",2)
+	Global("CurrentAction","LOCALS",1)
+	OR(3)
+		Name("04_SmartPrisoner_04",Myself)
+		Name("05_TrollPrisoner",Myself)
+		Name("05_WizardPrisoner",Myself)
+THEN
+	RESPONSE #100
+		//TransferInventory("ArmoryChest2",Myself)
+		SetGlobal("ML_1","LOCALS",3)
+END
+
+IF
+	Global("ML_1","LOCALS",3)
+	Global("CurrentAction","LOCALS",1)
+	OR(3)
+		Name("04_SmartPrisoner_04",Myself)
+		Name("05_TrollPrisoner",Myself)
+		Name("05_WizardPrisoner",Myself)
+THEN
+	RESPONSE #100
+		EquipItem("z0plat11")  // Сверхлегкие полные латы
+		SetGlobal("ML_1","LOCALS",4)
+END
+
+IF
+	Global("ML_1","LOCALS",4)
+	Global("CurrentAction","LOCALS",1)
+	OR(3)
+		Name("04_SmartPrisoner_04",Myself)
+		Name("05_TrollPrisoner",Myself)
+		Name("05_WizardPrisoner",Myself)
+THEN
+	RESPONSE #100
+		EquipItem("z0shld86")  // Осадный щит-оберег от очарования +1
+		SetGlobal("ML_1","LOCALS",5)
+END
+
+IF
+	Global("ML_1","LOCALS",5)
+	Global("CurrentAction","LOCALS",1)
+	OR(3)
+		Name("04_SmartPrisoner_04",Myself)
+		Name("05_TrollPrisoner",Myself)
+		Name("05_WizardPrisoner",Myself)
+THEN
+	RESPONSE #100
+		EquipItem("HELM01")  // Шлем
+		SetGlobal("ML_1","LOCALS",6)
+END
+
+IF
+	Global("ML_1","LOCALS",6)
+	Global("CurrentAction","LOCALS",1)
+	OR(3)
+		Name("04_SmartPrisoner_04",Myself)
+		Name("05_TrollPrisoner",Myself)
+		Name("05_WizardPrisoner",Myself)
+THEN
+	RESPONSE #100
+		SetGlobal("EQUIPPED","LOCALS",1)
+		SetGlobal("ML_1","LOCALS",7)
+END
+
+IF
+	Global("ML_1","LOCALS",7)
+	Global("CurrentAction","LOCALS",1)
+	OR(3)
+		Name("04_SmartPrisoner_04",Myself)
+		Name("05_TrollPrisoner",Myself)
+		Name("05_WizardPrisoner",Myself)
+THEN
+	RESPONSE #100
+		SetGlobal("CurrentAction","LOCALS",4)
+		SetGlobal("ML_1","LOCALS",0)
+END
+
+IF
+	Global("ML_2","LOCALS",0)
+	ActionListEmpty()
+	NearLocation(Myself,730,2385,4)
+THEN
+	RESPONSE #100
+		SetHomeLocation([730.2385])
+		SetGlobal("ML_2","LOCALS",1)
+		Continue()
+END
+
+IF
+	Global("ML_2","LOCALS",0)
+	Global("CurrentAction","LOCALS",1)
+	OR(3)
+		Name("04_FemalePrisoner_07",Myself)
+		Name("05_TrollPrisoner",Myself)
+		Name("05_WizardPrisoner",Myself)
+THEN
+	RESPONSE #100
+		MoveToPoint([730.2385])
+END
+
+IF
+	Global("ML_2","LOCALS",1)
+	Global("CurrentAction","LOCALS",1)
+	OR(3)
+		Name("04_FemalePrisoner_07",Myself)
+		Name("05_TrollPrisoner",Myself)
+		Name("05_WizardPrisoner",Myself)
+THEN
+	RESPONSE #100
+		Unlock("ArmoryChest3")
+		SetGlobal("ML_2","LOCALS",2)
+END
+
+//BLOCK ArmoryChest3
+IF
+	Global("ML_2","LOCALS",2)
+	Global("CurrentAction","LOCALS",1)
+	OR(3)
+		Name("04_FemalePrisoner_07",Myself)
+		Name("05_TrollPrisoner",Myself)
+		Name("05_WizardPrisoner",Myself)
+	Contains("z0bwhxia","ArmoryChest3")
+THEN
+	RESPONSE #100
+		ActionOverride("ArmoryChest3",DestroyItem("z0bwhxia"))
+		CreateItem("z0bwhxia",0,0,0)
+		Continue()
+END
+
+IF
+	Global("ML_2","LOCALS",2)
+	Global("CurrentAction","LOCALS",1)
+	OR(3)
+		Name("04_FemalePrisoner_07",Myself)
+		Name("05_TrollPrisoner",Myself)
+		Name("05_WizardPrisoner",Myself)
+	Contains("BOLT06","ArmoryChest3")
+THEN
+	RESPONSE #100
+		ActionOverride("ArmoryChest3",DestroyItem("BOLT06"))
+		CreateItem("BOLT06",40,0,0)
+		Continue()
+END
+
+IF
+	Global("ML_2","LOCALS",2)
+	Global("CurrentAction","LOCALS",1)
+	OR(3)
+		Name("04_FemalePrisoner_07",Myself)
+		Name("05_TrollPrisoner",Myself)
+		Name("05_WizardPrisoner",Myself)
+	Contains("z0shld92","ArmoryChest3")
+THEN
+	RESPONSE #100
+		ActionOverride("ArmoryChest3",DestroyItem("z0shld92"))
+		CreateItem("z0shld92",0,0,0)
+		Continue()
+END
+
+IF
+	Global("ML_2","LOCALS",2)
+	Global("CurrentAction","LOCALS",1)
+	OR(3)
+		Name("04_FemalePrisoner_07",Myself)
+		Name("05_TrollPrisoner",Myself)
+		Name("05_WizardPrisoner",Myself)
+	Contains("z0leat92","ArmoryChest3")
+THEN
+	RESPONSE #100
+		ActionOverride("ArmoryChest3",DestroyItem("z0leat92"))
+		CreateItem("z0leat92",0,0,0)
+		Continue()
+END
+
+IF
+	Global("ML_2","LOCALS",2)
+	Global("CurrentAction","LOCALS",1)
+	OR(3)
+		Name("04_FemalePrisoner_07",Myself)
+		Name("05_TrollPrisoner",Myself)
+		Name("05_WizardPrisoner",Myself)
+	Contains("z0swds85","ArmoryChest3")
+THEN
+	RESPONSE #100
+		ActionOverride("ArmoryChest3",DestroyItem("z0swds85"))
+		CreateItem("z0swds85",1,1,0)
+		Continue()
+END
+//BLOCKEND
+
+IF
+	Global("ML_2","LOCALS",2)
+	Global("CurrentAction","LOCALS",1)
+	OR(3)
+		Name("04_FemalePrisoner_07",Myself)
+		Name("05_TrollPrisoner",Myself)
+		Name("05_WizardPrisoner",Myself)
+THEN
+	RESPONSE #100
+		//TransferInventory("ArmoryChest3",Myself)
+		SetGlobal("ML_2","LOCALS",3)
+END
+
+IF
+	Global("ML_2","LOCALS",3)
+	Global("CurrentAction","LOCALS",1)
+	OR(3)
+		Name("04_FemalePrisoner_07",Myself)
+		Name("05_TrollPrisoner",Myself)
+		Name("05_WizardPrisoner",Myself)
+THEN
+	RESPONSE #100
+		EquipItemEx("z0leat92",1)  // Клепанный кожаный доспех ужаса
+		SetGlobal("ML_2","LOCALS",4)
+END
+
+IF
+	Global("ML_2","LOCALS",4)
+	Global("CurrentAction","LOCALS",1)
+	OR(3)
+		Name("04_FemalePrisoner_07",Myself)
+		Name("05_TrollPrisoner",Myself)
+		Name("05_WizardPrisoner",Myself)
+THEN
+	RESPONSE #100
+		EquipItemEx("z0shld92",1)  // Малый щит увеличенной стойкости
+		SetGlobal("ML_2","LOCALS",5)
+END
+
+IF
+	Global("ML_2","LOCALS",5)
+	Global("CurrentAction","LOCALS",1)
+	OR(3)
+		Name("04_FemalePrisoner_07",Myself)
+		Name("05_TrollPrisoner",Myself)
+		Name("05_WizardPrisoner",Myself)
+THEN
+	RESPONSE #100
+		EquipItemEx("BOLT06",1)  // Болт +2
+		SetGlobal("ML_2","LOCALS",6)
+END
+
+IF
+	Global("ML_2","LOCALS",6)
+	Global("CurrentAction","LOCALS",1)
+	OR(3)
+		Name("04_FemalePrisoner_07",Myself)
+		Name("05_TrollPrisoner",Myself)
+		Name("05_WizardPrisoner",Myself)
+THEN
+	RESPONSE #100
+		SetGlobal("EQUIPPED","LOCALS",1)
+		SetGlobal("ML_2","LOCALS",7)
+END
+
+IF
+	Global("ML_2","LOCALS",7)
+	Global("CurrentAction","LOCALS",1)
+	OR(3)
+		Name("04_FemalePrisoner_07",Myself)
+		Name("05_TrollPrisoner",Myself)
+		Name("05_WizardPrisoner",Myself)
+THEN
+	RESPONSE #100
+		SetGlobal("CurrentAction","LOCALS",4)
+		SetGlobal("ML_2","LOCALS",0)
+END
+
+IF
+	Global("ML_3","LOCALS",0)
+	ActionListEmpty()
+	NearLocation(Myself,297,1218,4)
+THEN
+	RESPONSE #100
+		SetHomeLocation([297.1218])
+		SetGlobal("ML_3","LOCALS",1)
+		Continue()
+END
+
+IF
+	Global("ML_3","LOCALS",0)
+	Global("CurrentAction","LOCALS",5)
+THEN
+	RESPONSE #100
+		MoveToPoint([297.1218])
+END
+
+IF
+	Global("ML_3","LOCALS",1)
+	Global("CurrentAction","LOCALS",5)
+THEN
+	RESPONSE #100
+		DestroySelf()
+END
+
+IF
+	Global("ML_4","LOCALS",0)
+	ActionListEmpty()
+	NearLocation(Myself,3096,439,4)
+THEN
+	RESPONSE #100
+		SetHomeLocation([3096.439])
+		SetGlobal("ML_4","LOCALS",1)
+		Continue()
+END
+
+IF
+	Global("ML_4","LOCALS",0)
+	Global("CurrentAction","LOCALS",6)
+THEN
+	RESPONSE #100
+		MoveToPoint([3096.439])
+END
+
+IF
+	Global("ML_4","LOCALS",1)
+	Global("CurrentAction","LOCALS",6)
+THEN
+	RESPONSE #100
+		IncrementGlobal("61NUMPRISONERSSENTTORAKSHASA","GLOBAL",1)
+		SetGlobal("ML_4","LOCALS",2)
+END
+
+IF
+	Global("ML_4","LOCALS",2)
+	Global("CurrentAction","LOCALS",6)
+THEN
+	RESPONSE #100
+		DestroySelf()
+END
+
+IF
+	!GlobalTimerNotExpired("IwTimer27","LOCALS")
+	!Allegiance(Myself,ENEMY)
+	Global("CurrentAction","LOCALS",4)
+THEN
+	RESPONSE #100
+		RandomWalk()
+		SetGlobalTimer("IwTimer27","LOCALS",5)
+END
+

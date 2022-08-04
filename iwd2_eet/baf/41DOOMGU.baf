@@ -1,0 +1,139 @@
+IF
+	!Allegiance(Myself,ENEMY)
+	See([PC])
+	HasItem("z4amulhs",LastSeenBy(Myself))
+THEN
+	RESPONSE #100
+		EquipItemEx("S2-16M2",1)
+		EquipItemEx("z0cihela",0)
+		EquipItemEx("z0cihelb",0)
+		EquipItemEx("z0cishld",0)
+		EquipItemEx("z0cishlb",0)
+		EquipItemEx("z0cwswdb",0)
+		EquipItemEx("z0mstr96",0)
+		//EquipItemEx("S2-16M2",0)
+		Enemy()
+END
+
+IF
+	!Allegiance(Myself,ENEMY)
+	AttackedBy([GOODCUTOFF],DEFAULT)
+THEN
+	RESPONSE #100
+		EquipItemEx("S2-16M2",1)
+		EquipItemEx("z0cihela",0)
+		EquipItemEx("z0cihelb",0)
+		EquipItemEx("z0cishld",0)
+		EquipItemEx("z0cishlb",0)
+		EquipItemEx("z0cwswdb",0)
+		EquipItemEx("z0mstr96",0)
+		//EquipItemEx("S2-16M2",0)
+		Enemy()
+END
+
+IF
+	!Allegiance(Myself,ENEMY)
+	Exists(Player1)
+	HasItem("z4amulhs",Player1)
+THEN
+	RESPONSE #100
+		MoveToObject(Player1)
+END
+
+IF
+	!Allegiance(Myself,ENEMY)
+	Exists(Player2)
+	HasItem("z4amulhs",Player2)
+THEN
+	RESPONSE #100
+		MoveToObject(Player2)
+END
+
+IF
+	!Allegiance(Myself,ENEMY)
+	Exists(Player3)
+	HasItem("z4amulhs",Player3)
+THEN
+	RESPONSE #100
+		MoveToObject(Player3)
+END
+
+IF
+	!Allegiance(Myself,ENEMY)
+	Exists(Player4)
+	HasItem("z4amulhs",Player4)
+THEN
+	RESPONSE #100
+		MoveToObject(Player4)
+END
+
+IF
+	!Allegiance(Myself,ENEMY)
+	Exists(Player5)
+	HasItem("z4amulhs",Player5)
+THEN
+	RESPONSE #100
+		MoveToObject(Player5)
+END
+
+IF
+	!Allegiance(Myself,ENEMY)
+	Exists(Player6)
+	HasItem("z4amulhs",Player6)
+THEN
+	RESPONSE #100
+		MoveToObject(Player6)
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	!See([PC])
+THEN
+	RESPONSE #100
+		//EquipItemEx("S2-16M2",0)
+		EquipItemEx("z0cihela",1)
+		EquipItemEx("z0cihelb",1)
+		EquipItemEx("z0cishld",1)
+		EquipItemEx("z0cishlb",1)
+		EquipItemEx("z0cwswdb",1)
+		EquipItemEx("z0mstr96",1)
+		EquipItemEx("S2-16M2",0)
+		ChangeEnemyAlly(Myself,NEUTRAL)
+END
+
+IF
+	StateCheck(Myself,STATE_PANIC)
+THEN
+	RESPONSE #100
+		RandomWalkContinuous()
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	AttackedBy([GOODCUTOFF],DEFAULT)
+	See(LastAttackerOf(Myself))
+THEN
+	RESPONSE #100
+		EquipMostDamagingMelee()
+		AttackOneRound(LastAttackerOf(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		EquipMostDamagingMelee()
+		AttackOneRound(NearestEnemyOf(Myself))
+END
+
+IF
+	Allegiance(Myself,ENEMY)
+	See([PC])
+	HasItem("z4amulhs",LastSeenBy(Myself))
+THEN
+	RESPONSE #100
+		EquipMostDamagingMelee()
+		AttackOneRound(LastSeenBy(Myself))
+END
+

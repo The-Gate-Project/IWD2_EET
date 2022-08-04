@@ -1,0 +1,84 @@
+IF
+	Global("Removed_Key_Item","MYAREA",0)
+	OpenState("AR2101_Door1_Bridge",TRUE)
+THEN
+	RESPONSE #100
+		SetGlobal("Removed_Key_Item","MYAREA",1)
+		TakePartyItem("z2genwp")
+		Kill("Support_Beam_R")
+		Kill("Support_Beam_M")
+		//MAP_NOTE
+		RemoveMapNote([244.1139],@55023)
+		Continue()
+END
+
+IF
+	Global("Opened_Middle_Support","MYAREA",0)
+	Dead("Support_Beam_M")
+THEN
+	RESPONSE #100
+		SetGlobal("Opened_Middle_Support","MYAREA",1)
+		OpenDoor("AR2101_Door3_Support2")
+		//PlaySoundPoint("AM2101e",[1228.373])
+		PlaySound("IW2101e")
+		//MAP_NOTE
+		RemoveMapNote([1258.487],@55021)
+		Continue()
+END
+
+IF
+	Global("Opened_Right_Support","MYAREA",0)
+	Dead("Support_Beam_R")
+THEN
+	RESPONSE #100
+		SetGlobal("Opened_Right_Support","MYAREA",1)
+		OpenDoor("AR2101_Door4_Support3")
+		//PlaySoundPoint("AM2101d",[2458.567])
+		PlaySound("IW2101d")
+		//MAP_NOTE
+		RemoveMapNote([2435.383],@55021)
+		Continue()
+END
+
+IF
+	Global("Played_Dam_Broke_Scene","MYAREA",0)
+	Dead("Support_Beam_R")
+	Dead("Support_Beam_M")
+	OpenState("AR2101_Door4_Support3",TRUE)
+	OpenState("AR2101_Door3_Support2",TRUE)
+	OpenState("AR2101_Door2_Support1",TRUE)
+THEN
+	RESPONSE #100
+		SetGlobal("Played_Dam_Broke_Scene","MYAREA",1)
+		StartCutSceneMode()
+		ClearAllActions()
+		MultiPlayerSync()
+		StartCutScene("21cDam0")
+END
+
+IF
+	Global("Shaengarne_Award_XPVar","GLOBAL",0)
+	Global("IW2102_Visited","GLOBAL",1)
+	Global("Destroy_Shaengarne_Bridge","GLOBAL",0)
+THEN
+	RESPONSE #100
+		SetGlobal("Destroy_Shaengarne_Bridge","GLOBAL",1)
+		Continue()
+END
+
+IF
+	OnCreation()
+THEN
+	RESPONSE #100
+		NoAction()
+		Continue()
+END
+
+/* IF
+	!CreatureHidden("Cutscene")
+THEN
+	RESPONSE #100
+		HideCreature("Cutscene",TRUE)
+		Continue()
+END */
+

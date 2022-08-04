@@ -1,0 +1,11 @@
+IF
+	!Global("41DOPPLE_INACTIVE","LOCALS",1)
+	Allegiance("Ingrath",ENEMY)
+THEN
+	RESPONSE #100
+		SetName(@9362)
+		Enemy()
+		Polymorph(DOPPLEGANGER)
+		SetGlobal("41DOPPLE_INACTIVE","LOCALS",1)
+END
+

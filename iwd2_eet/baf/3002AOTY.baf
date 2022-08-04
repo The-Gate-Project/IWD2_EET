@@ -1,0 +1,129 @@
+IF
+	!Global("3002AOTY_INACTIVE","LOCALS",1)
+	!Global("CAGE_BEETLES_DEAD","MYAREA",0)
+	!Global("CAGE_OTYUGH_DEAD","MYAREA",0)
+THEN
+	RESPONSE #100
+		SetGlobal("3002AOTY_INACTIVE","LOCALS",1)
+END
+
+IF
+	!Global("3002AOTY_INACTIVE","LOCALS",1)
+	!Global("PREFER_PC","LOCALS",0)
+	!See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		SetGlobal("PREFER_PC","LOCALS",0)
+		Continue()
+END
+
+IF
+	!Global("3002AOTY_INACTIVE","LOCALS",1)
+	Global("PREFER_PC","LOCALS",0)
+	AttackedBy([GOODCUTOFF],DEFAULT)
+THEN
+	RESPONSE #100
+		SetGlobal("PREFER_PC","LOCALS",1)
+		Continue()
+END
+
+IF
+	!Global("3002AOTY_INACTIVE","LOCALS",1)
+	Global("PREFER_PC","LOCALS",0)
+	//Dead(MyTarget)
+	OR(2)
+		Heard([ANYONE],77)
+		Heard([ANYONE],88)
+	!TargetUnreachable(LastHeardBy)
+THEN
+	RESPONSE #100
+		//SetMyTarget(LastHeardBy)
+		MoveToObject(LastHeardBy)
+		Continue()
+END
+
+IF
+	!Global("3002AOTY_INACTIVE","LOCALS",1)
+	Global("PREFER_PC","LOCALS",0)
+	Global("CAGE_OTYUGH_DEAD","MYAREA",0)
+	!Global("OTYUGH_ESCAPE","MYAREA",0)
+	//Or(4)
+	//	See("03_Oty_01",0)
+	//	See("03_Oty_02",0)
+	//	AttackedBy("03_Oty_01",DEFAULT)
+	//	AttackedBy("03_Oty_02",DEFAULT)
+	See([0.0.OTYUGH])
+	!StateCheck(LastSeenBy(Myself),STATE_REALLY_DEAD)
+THEN
+	RESPONSE #100
+		Shout(66)
+		//EquipWeapon()
+		AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+	!Global("3002AOTY_INACTIVE","LOCALS",1)
+	Global("PREFER_PC","LOCALS",0)
+	Global("CAGE_OTYUGH_DEAD","MYAREA",0)
+	!Global("OTYUGH_ESCAPE","MYAREA",0)
+	//Or(4)
+	//	See("03_Oty_01",0)
+	//	See("03_Oty_02",0)
+	//	AttackedBy("03_Oty_01",DEFAULT)
+	//	AttackedBy("03_Oty_02",DEFAULT)
+	AttackedBy([0.0.OTYUGH],DEFAULT)
+THEN
+	RESPONSE #100
+		Shout(66)
+		//EquipWeapon()
+		AttackOneRound(LastAttackerOf(Myself))
+END
+
+IF
+	!Global("3002AOTY_INACTIVE","LOCALS",1)
+	Global("PREFER_PC","LOCALS",0)
+	!Global("OTYUGH_ESCAPE","MYAREA",0)
+	OR(2)
+		See([0.0.OTYUGH])
+		See([0.0.BEETLE])
+	!StateCheck(LastSeenBy(Myself),STATE_REALLY_DEAD)
+THEN
+	RESPONSE #100
+		Shout(66)
+		//EquipWeapon()
+		Attack(LastSeenBy(Myself))
+END
+
+IF
+	!Global("3002AOTY_INACTIVE","LOCALS",1)
+	Global("PREFER_PC","LOCALS",0)
+	Global("CAGE_BEETLES_DEAD","MYAREA",0)
+	AttackedBy([ENEMY.0.BEETLE],DEFAULT)
+THEN
+	RESPONSE #100
+		//EquipWeapon()
+		AttackOneRound(LastAttackerOf(Myself))
+END
+
+IF
+	!Global("3002AOTY_INACTIVE","LOCALS",1)
+	Global("PREFER_PC","LOCALS",0)
+	!Global("OTYUGH_ESCAPE","MYAREA",0)
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		SetGlobal("PREFER_PC","LOCALS",1)
+		Continue()
+END
+
+IF
+	!Global("3002AOTY_INACTIVE","LOCALS",1)
+	!Global("PREFER_PC","LOCALS",0)
+	!GlobalTimerNotExpired("IwTimer4","LOCALS")
+THEN
+	RESPONSE #100
+		SetGlobalTimerRandom("IwTimer4","LOCALS",1,4)
+		Shout(66)
+		Continue()
+END
+
