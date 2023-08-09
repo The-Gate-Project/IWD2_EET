@@ -19,11 +19,11 @@ IW4100      IW4100   IW4100     0      159       423    506    @iw4100       @iw
 IW5000      IW5000   IW5000     0      160       600    560    @iw5000       @iw5000       N        //++ Блуждающая Деревня // Wandering Village // Village Itinérant
 IW5001      IW5001   IW5001     2      161       705    575    N             N             N        //++ Холодные Топи // Edge of the Fell Wood // Orée de la Forêt maudite
 IW5010      IW5010   IW5010     0      131       775    610    @iw5010       @iw5010       N        //++ The Fell Wood // La Foret Maudite
-IW5004      IW5004   IW5004     4      162       933    458    @iw5001       @iw5001       N        //++ Холодные Топи // Cold Marshes // Marais Froids
-IW5005      IW5005   IW5005     0      163       830    550    @iw5005       @iw5005       N        //++ Речные пещеры // River Caves // Cavernes de la rivière
-IW5102      IW5102   IW5102     4      164       830    460    @iw5005       @iw5005       N        //++ Речные пещеры // River Caves // Cavernes de la rivière
+IW5004      IW5004   IW5004     4      162       775    505    @iw5001       @iw5001       N        //++ Холодные Топи // Cold Marshes // Marais Froids
+IW5005      IW5005   IW5005     0      163       845    550    @iw5005       @iw5005       N        //++ Речные пещеры // River Caves // Cavernes de la rivière
+IW5102      IW5102   IW5102     4      164       815    440    @iw5005       @iw5005       N        //++ Речные пещеры // River Caves // Cavernes de la rivière
 IW5200      IW5200   IW5200     0      165       828    354    @iw5200       @iw5200       N        //++ Монастырь Черного Ворона // Black Raven Monastery // Monastère du Corbeau Noir
-IW5203      IW5203   IW5203     0      185       767    415    @iw5200       @iw5200       N        //++ Монастырь Черного Ворона // Black Raven Monastery // Monastère du Corbeau Noir
+IW5203      IW5203   IW5203     0      185       905    395    @iw5200       @iw5200       N        //++ Монастырь Черного Ворона // Black Raven Monastery // Monastère du Corbeau Noir
 IW5300      IW5300   IW5300     0      166       947    314    @iw5300       @iw5300       N        //++ Подземье // The Underdark // l’Ombre-Terre
 IW5303      IW5303   IW5303     0      186       1034   345    N             N             N        
 																		 		                    
