@@ -2,9 +2,9 @@
 //IWD2
 SHORT_NAME  CONTENT  LONG_NAME  FLAGS  BAM_ANIM  X_POS  Y_POS  NAME         TOOLTIP      LOAD_IM
 
-IW1000      IW1000   IW1000     0      134       670    190    N             N             N        //++ Доки Таргоса // Targos Docks // Quais de Targos
-IW1100      IW1100   IW1100     0      134       680    180    N             N             N        //++ Таргос - 10457 // Targos
-IW1200      IW1200   IW1200     0      152       670    185    @iw1000       @iw1000       N        //++ Частокол // Targos
+IW1000      IW1000   IW1000     0      134       710    180    N             N             N        //++ Доки Таргоса // Targos Docks // Quais de Targos
+IW1100      IW1100   IW1100     0      134       715    190    N             N             N        //++ Таргос - 10457 // Targos
+IW1200      IW1200   IW1200     0      152       710    185    @iw1000       @iw1000       N        //++ Частокол // Targos
 IW2000      IW2000   IW2000     2      155       460    390    @iw2000       @iw2000       N        //++ Шенгарнский брод // Shaengarne Ford // Gue du Shaengarne
 IW2001      IW2001   IW2001     0      134       460    390    N             N             N        //++
 IW2100      IW2100   IW2100     0      134       550    360    N             N             N        //++
@@ -28,7 +28,7 @@ IW5300      IW5300   IW5300     0      166       947    314    @iw5300       @iw
 IW5303      IW5303   IW5303     0      186       1034   345    N             N             N        
 																		 		                    
 IW6000      IW6000   IW6000     0      172       740    275    @iw6000       @iw6000       N        //++ Кулдахарский Перевал // Kuldahar Pass // Le col de Kuldahar
-IW6001      IW6001   IW6001     0      137       825    215    @iw6001       @iw6001       N        //++ Кулдахар // Kuldahar
+IW6001      IW6001   IW6001     0      137       835    230    @iw6001       @iw6001       N        //++ Кулдахар // Kuldahar
 IW6050      IW6050   IW6050     0      187       500    5450   N             N             N        //++
 IW6100      IW6100   IW6100     0      140       1050   125    @iw6100       @iw6100       N        //++ Глаз Дракона // Dragon's Eye // l’œil du Dragon
 IW6104      IW6104   IW6104     0      173       1030   80     @iw6100       @iw6100       N        //++ Глаз Дракона // Dragon's Eye // l’œil du Dragon
