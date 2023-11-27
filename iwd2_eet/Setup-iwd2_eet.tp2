@@ -13,6 +13,9 @@ LANGUAGE ~Deutsch~
 LANGUAGE ~Français~
 	     ~fr_FR~
 	     ~iwd2_eet/lang/fr_FR/dialog.tra~
+LANGUAGE ~Simplified Chinese~
+	     ~zh_CN~
+	     ~iwd2_eet/lang/zh_CN/dialog.tra~
 
 BEGIN ~Icewind Dale 2 in Baldur's Gate Enhanced Edition Trilogy~
 REQUIRE_PREDICATE GAME_IS ~eet~ ~Please install Baldur's Gate Enhanced Edition Trilogy at first~
