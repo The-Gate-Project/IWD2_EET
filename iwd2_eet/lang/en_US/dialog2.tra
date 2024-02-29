@@ -6863,7 +6863,7 @@ STATISTICS:
 User under the effects of the spell Shocking Grasp
 
 Weight: 1~
-@18669 = ~Minor Mirror Image Potionя~
+@18669 = ~Minor Mirror Image Potion~
 @18670 = ~Potions are typically found in ceramic, crystal, glass, or metal flasks or vials.  Flasks or other containers generally contain enough fluid to provide one person with one complete dose to achieve the effects of the potion. 
 
 STATISTICS:
@@ -10689,7 +10689,7 @@ Advantages:
 CHAOS OF BATTLE: Chaos of Battle applies bonuses to all allies and penalties to all enemies within a 30-ft. radius of the caster. The spell lasts 1 turn and will randomly affect the targets' Armor Class, Hit Points, THAC0, saves, or luck. The magnitude of the effect starts at 1 (5 for Hit Points) at level 1 and will improve by 1 (5 for Hit Points) every 6 levels of the caster.
 
 Disadvantages:
-– Alignment restricted to chaotic good, chaotic neutral, chaotic evil, or true neutral.~
+- Alignment restricted to chaotic good, chaotic neutral, chaotic evil, or true neutral.~
 @70777 = ~Less than two weeks after your initiation ceremony at the Tempus Temple, you have been summoned to the Elder Swordsman of your Order. In words that promise the glory of faith, he gave you the first assignment you will undertake as a true member of the Order. You will fearlessly travel North and contact the local temple in Easthaven. In addition, the Elder Swordsman, as if not attaching much importance to this, mentioned that he was "worried" about some omens regarding events in the North. He is sure that if in these troubled times there is still valor and glory, it should be in the service of the Lord of Battle.
 
 It may not be a lot of glory to travel the frozen slopes of the Spine of the World, but you are eager to hit the road. After all, this is an opportunity to show the peoples of the North the courage and valor that came from the cities of the South, as well as to avoid the boredom of daily polishing of the armor of the supreme clergy of the temple. You agree without hesitation; and in ten days you are already on a ship going to the North, armed only with a staff in your hands and loud battle hymns in your heart.~
@@ -10705,9 +10705,9 @@ Chaos of Battle applies bonuses to all allies and penalties to all enemies withi
 STATISTICS:
 
 Equipped abilities:
-– Strength: +1
-– Magic Resistance: +5%
-– Can memorize one extra 6th- and 7th-level Cleric spell
+- Strength: +1
+- Magic Resistance: +5%
+- Can memorize one extra 6th- and 7th-level Cleric spell
 
 Weight: 0~
 
@@ -10717,13 +10717,13 @@ Weight: 0~
 @70786 = ~PRIEST OF ILMATER: Ilmater, also known as the Crying God, is the god of suffering and perseverance. Taught that enduring the suffering of others is the greatest act of sacrifice, Painbearers of Ilmater can be found wherever the weak are oppressed. Painbearers are known for their charity, humility and their un-shaking faith during even the most trying of circumstances.
 
 Advantages:
-– May use Lay on Hands ability once per day. Gains one use at level 1 and an additional use every 5 levels thereafter.
-– May cast Ilmater's Endurance once per day. Gains one use at level 1 and an additional use every 10 levels thereafter.
+- May use Lay on Hands ability once per day. Gains one use at level 1 and an additional use every 5 levels thereafter.
+- May cast Ilmater's Endurance once per day. Gains one use at level 1 and an additional use every 10 levels thereafter.
 
 ILMATER'S ENDURANCE: The Painbearer draws upon Ilmater to be able to shoulder the burden of trials ahead. For 1 round per level of the Painbearer, the cleric gains +2 to saves, doubles HP, is immune to panic and disease, and will stand firm in the face of any charge or force.
 
 Disadvantages:
-– Alignment restricted to lawful good, neutral good, and lawful neutral.~
+- Alignment restricted to lawful good, neutral good, and lawful neutral.~
 
 //OHSELUNE
 @70787 = ~priest of Selûne~
@@ -10731,16 +10731,16 @@ Disadvantages:
 @70789 = ~PRIEST OF SELÛNE: Selûne is often called the Moonmaiden for her connection to the silver moon that orbits Faerun. She is the goddess of the moon and travelers. Her priests, called Silverstars, travel far and wide to help the oppressed and explore lost places. Silverstars are known for their open-minded tolerance and their hatred of bigotry.
 
 Advantages:
-– May cast Moon Motes once per day. Gains one use at level 1 and an additional use every 3 levels thereafter.
+- May cast Moon Motes once per day. Gains one use at level 1 and an additional use every 3 levels thereafter.
 
 MOON MOTES: Moon motes calls upon Selûne's connection with moonlight and magic to invoke a spray of glowing spheres. The glowing spheres cause 4d4 points of magical energy damage to every creature caught in its path, with creatures rolling their Saving Throw vs. Spell sustaining half damage. Undead suffer double damage from the glowing spheres.
 
-– May cast Moonblade once per day. Gains one use at level 1 and an additional use every 5 levels thereafter.
-– May cast Wall of Moonlight once per day. Gains one use at level 1 and an additional use every 10 levels thereafter.
+- May cast Moonblade once per day. Gains one use at level 1 and an additional use every 5 levels thereafter.
+- May cast Wall of Moonlight once per day. Gains one use at level 1 and an additional use every 10 levels thereafter.
 
 Disadvantages:
-– Alignment restricted to neutral good, chaotic good, and chaotic neutral.
-– May not turn undead.~
+- Alignment restricted to neutral good, chaotic good, and chaotic neutral.
+- May not turn undead.~
 
 //OHOGHMA
 @70790 = ~priest of Oghma~
@@ -10748,12 +10748,12 @@ Disadvantages:
 @70792 = ~PRIEST OF OGHMA: Oghma, the Lord of Knowledge, is the patron of bards and the god of knowledge. Oghma's Lorekeepers are interested in recovering lost secrets, preserving knowledge and spreading information freely. Lorekeepers are known for their honesty and their inquisitive nature.
 
 Advantages:
-– +10 bonus to base Lore score on each level.
-– May cast Secret Word once per day. Gains one use at level 1 and an additional use every 5 levels thereafter.
+- +10 bonus to base Lore score on each level.
+- May cast Secret Word once per day. Gains one use at level 1 and an additional use every 5 levels thereafter.
 
 Disadvantages:
-– Alignment restricted to lawful neutral, true neutral, and chaotic neutral.
-– May not turn undead.~
+- Alignment restricted to lawful neutral, true neutral, and chaotic neutral.
+- May not turn undead.~
 
 //OHBANE
 @70793 = ~priest of Bane~
@@ -10761,13 +10761,13 @@ Disadvantages:
 @70795 = ~PRIEST OF BANE: Also known as the Black Hand, Bane is the god of strife, hatred and tyranny. The Dreadmasters, his priests, can be found wherever the strong and cruel prey upon the weak. They are known for their manipulative, scheming and malicious attitude.
 
 Advantages:
-– Immune to charm, fear and morale failure.
-– May cast Cloak of Fear once per day. Gains one use at level 1 and an additional use every 4 levels thereafter.
-– May cast Domination once per day. Gains one use at level 1 and an additional use every 5 levels thereafter.
+- Immune to charm, fear and morale failure.
+- May cast Cloak of Fear once per day. Gains one use at level 1 and an additional use every 4 levels thereafter.
+- May cast Domination once per day. Gains one use at level 1 and an additional use every 5 levels thereafter.
 
 Disadvantages:
-– Alignment restricted to lawful evil, neutral evil, and chaotic evil.
-– May not turn undead.~
+- Alignment restricted to lawful evil, neutral evil, and chaotic evil.
+- May not turn undead.~
 
 //OHMASK
 @70796 = ~priest of Mask~
@@ -10775,11 +10775,11 @@ Disadvantages:
 @70798 = ~PRIEST OF MASK: The Lord of Shadows, Mask, is the god of thieves and shadows. His servants, the Demarchs, often help small bands of thieves in their efforts. Many can be found as advisors in thieves' guilds. They are known for their deceptive nature and their avarice. It is rumored that the Cult of Mask maintains a large network of informants throughout the cities of the realm. It is also rumored that this network provides employment for all sorts of thieves, beggars and thugs.
 
 Advantages:
-– May cast Apparel with Shadows once per day.
+- May cast Apparel with Shadows once per day.
 
 APPAREL WITH SHADOWS: This spell enables a priest to mask any one being. By touch, the caster provides +35% Hide in Shadows bonus, +20% Moving Silently bonus and renders the target undetectable to divination spells for 1 round per level.
 
-– Five arcane spells are added to <PRO_HISHER> repertoire, all the way up to the 5th level. These are listed below:
+- Five arcane spells are added to <PRO_HISHER> repertoire, all the way up to the 5th level. These are listed below:
   1st level: Reflected Image.
   2nd level: Invisibility.
   3rd level: Invisibility 10' Radius.
@@ -10787,8 +10787,8 @@ APPAREL WITH SHADOWS: This spell enables a priest to mask any one being. By touc
   5th level: Shadow Door.
 
 Disadvantages:
-– Alignment restricted to chaotic neutral, lawful evil, neutral evil, and chaotic evil.
-– Dual-Classing restricted to Thieves.~
+- Alignment restricted to chaotic neutral, lawful evil, neutral evil, and chaotic evil.
+- Dual-Classing restricted to Thieves.~
 
 //PL_ILMATER
 @70799 = ~paladin of Ilmater~
@@ -10796,20 +10796,20 @@ Disadvantages:
 @70801 = ~PALADIN OF ILMATER: Paladins of Ilmater venerate the god of suffering.  They willingly take the most horrible wounds in any battle just to prevent the suffering of others.  They are typically known for their humility.
 
 Advantages:
-– +4 bonus to Save Throws vs. Death.
-– 1st level: Gains an additional use of Lay on Hands.
-– 3rd level: May use the Cure Disease ability once per day.
-– 5th level: May cast Favor of Ilmater once per day.
-– 7th level: May cast Champion's Strength once per day.
-– 9th level: May cast Entropy Shield once per day.
+- +4 bonus to Save Throws vs. Death.
+- 1st level: Gains an additional use of Lay on Hands.
+- 3rd level: May use the Cure Disease ability once per day.
+- 5th level: May cast Favor of Ilmater once per day.
+- 7th level: May cast Champion's Strength once per day.
+- 9th level: May cast Entropy Shield once per day.
 
 ILMATER'S ENDURANCE: The Painbearer draws upon Ilmater to be able to shoulder the burden of trials ahead. For 1 round per level of the Painbearer, the cleric gains +2 to saves, doubles HP, is immune to panic and disease, and will stand firm in the face of any charge or force.
 
 DIVINE SHELL: When cast, this spell surrounds the caster with a defensive maelstrom of energy that blocks or deflects many attacks. This gives the caster a +6 deflection bonus to AC and a 10/- point damage reduction to most attack forms: electricity, fire, cold, and acid. It also gives the caster +2 to all of his/her saving throws and immunity to all missile-based attacks.
 
 Disadvantages:
-– Restricted to two weapon slots.
-– May not achieve Mastery with Two Handed Swords.~
+- Restricted to two weapon slots.
+- May not achieve Mastery with Two Handed Swords.~
 
 //PL_HELM
 @70802 = ~paladin of Helm~
@@ -10817,21 +10817,21 @@ Disadvantages:
 @70804 = ~PALADIN OF HELM: Paladins of Helm follow the teachings of the god of guardians. They are dedicated to defending the weak and protecting important places against assault.
 
 Advantages:
-– 1st level: Gains Aura of Good passive ability.
+- 1st level: Gains Aura of Good passive ability.
 AURA OF GOOD: This spell functions like Detect Evil, except that it detects the auras of good creatures, clerics or paladins of good deities once per round.
  
-– 3rd level: Gains Aura of Courage passive ability.
+- 3rd level: Gains Aura of Courage passive ability.
 AURA OF COURAGE: The Paladin becomes immune to fear (magical or otherwise). In addition, allies within 10 feet have their Morale reset each round.
 
-– 5th level: May cast Divine Bond once per day.
+- 5th level: May cast Divine Bond once per day.
 DIVINE BOND: Divinate of Helm forms a divine bond with The Watcher which allows the paladin to enhance the weapon as a standard action by calling upon the aid of a celestial spirit for 1 turn per paladin level. When called, the spirit causes the weapon to shed light. At 5th level, this spirit grants the weapon a +1 Enhancement bonus. For every four levels beyond 5th, the weapon gains another +1 Enhancement bonus, to a maximum of +5 at 21th level.
 
-– 8th level: Gains Aura of Resolve passive ability.
+- 8th level: Gains Aura of Resolve passive ability.
 AURA OF RESOLVE: Paladin becomes immune to charm spells and spell-like abilities. In addition, once per round allies within 10 feet gains a +2 bonus to Saving Throws against all spells that belong to the Enchantment school.
 
 Disadvantages:
-– May not turn undead.
-– May not Specialize in ranged weapons.~
+- May not turn undead.
+- May not Specialize in ranged weapons.~
 
 //PL_MYSTRA
 @70805 = ~paladin of Mystra~
@@ -10839,17 +10839,17 @@ Disadvantages:
 @70807 = ~PALADIN OF MYSTRA: Paladins of Mystra insure that the powers of the goddess of magic are not used for evil.  They seek out evil spellcasters all over Faerun for the protection of civilization and to protect benign wizards from the repercussions of irresponsible magic use.
 
 Advantages:
-– +2 bonus to Save Throws vs. Spell.
-– 9th level: Casting time reduced by 3.
-– Four arcane spells are added to <PRO_HISHER> repertoire, all the way up to the 4th level. These are listed below:
+- +2 bonus to Save Throws vs. Spell.
+- 9th level: Casting time reduced by 3.
+- Four arcane spells are added to <PRO_HISHER> repertoire, all the way up to the 4th level. These are listed below:
   1st level: Magic Missiles.
   2nd level: Glitterdust.
   3rd level: Dispel Magic.
   4th level: Minor Sequencer.
 
 Disadvantages:
-– May not use Lay on Hands.
-– May not cast Protection From Evil as an innate ability.~
+- May not use Lay on Hands.
+- May not cast Protection From Evil as an innate ability.~
 
 //OLD_ORDER
 @70808 = ~monk of the Old Order~
@@ -10861,7 +10861,7 @@ Advantages:
 - Set Trap (one time per day on level 3, and by one on level 10 and level 18)
 
 Disadvantages:
-– Alignment restricted to any lawful.~
+- Alignment restricted to any lawful.~
 
 //BROKEN_ONES
 @70811 = ~monk of the Broken Ones~
@@ -10869,19 +10869,19 @@ Disadvantages:
 @70813 = ~MONK OF THE BROKEN ONES: Members of the Order of the Broken Ones venerate Ilmater, god of suffering.  They strive to endure the pain of their training as well as the pain of others.
 
 Advantages:
-– +2 bonus to Save Throws vs. Death.
-– 1st level: Gains an additional use of Lay on Hands. Lay on Hands used by this monk can also work on others.
-– 5th level: May cast Favor of Ilmater once per day.
-– 13th level: May cast Entropy Shield once per day.
+- +2 bonus to Save Throws vs. Death.
+- 1st level: Gains an additional use of Lay on Hands. Lay on Hands used by this monk can also work on others.
+- 5th level: May cast Favor of Ilmater once per day.
+- 13th level: May cast Entropy Shield once per day.
 
 ILMATER'S ENDURANCE: The Painbearer draws upon Ilmater to be able to shoulder the burden of trials ahead. For 1 round per level of the Painbearer, the cleric gains +2 to saves, doubles HP, is immune to panic and disease, and will stand firm in the face of any charge or force.
 
 DIVINE SHELL: When cast, this spell surrounds the caster with a defensive maelstrom of energy that blocks or deflects many attacks. This gives the caster a +6 deflection bonus to AC and a 10/- point damage reduction to most attack forms: electricity, fire, cold, and acid. It also gives the caster +2 to all of his/her saving throws and immunity to all missile-based attacks.
 
 Disadvantages:
-– Alignment restricted to lawful good, neutral good, and lawful neutral.
-– May not use Stunning Blow ability.
-– May not use Quivering Palm ability.~
+- Alignment restricted to lawful good, neutral good, and lawful neutral.
+- May not use Stunning Blow ability.
+- May not use Quivering Palm ability.~
 
 //SPELLS
 @70814 = ~Ilmater's Endurance~
@@ -10945,8 +10945,8 @@ STATISTICS:
 
 Equipped abilities:
 - Wisdom: +1
-– Magic Resistance: +5%
-– Can cast one extra 6th- and 7th-level priest spell
+- Magic Resistance: +5%
+- Can cast one extra 6th- and 7th-level priest spell
 
 Weight: 0~
 //SELUNE
@@ -10958,8 +10958,8 @@ STATISTICS:
 Equipped abilities:
 - Charisma: +1
 - Wisdom: +1
-– Magic Resistance: +10%
-– Can cast one extra 6th- and 7th-level priest spell
+- Magic Resistance: +10%
+- Can cast one extra 6th- and 7th-level priest spell
 
 Weight: 0~
 //OGHMA
@@ -10971,8 +10971,8 @@ STATISTICS:
 Equipped abilities:
 - Intelligence: +1
 - Wisdom: +1
-– Magic Resistance: +5%
-– Can cast one extra 6th- and 7th-level priest spell
+- Magic Resistance: +5%
+- Can cast one extra 6th- and 7th-level priest spell
 
 Weight: 0~
 //BANE
@@ -10982,9 +10982,9 @@ Weight: 0~
 STATISTICS:
 
 Equipped abilities:
-– Strength: +1
-– Magic Resistance: +10%
-– Can cast one extra 6th- and 7th-level priest spell
+- Strength: +1
+- Magic Resistance: +10%
+- Can cast one extra 6th- and 7th-level priest spell
 
 Weight: 0~
 //MASK
@@ -10996,8 +10996,8 @@ STATISTICS:
 Equipped abilities:
 - Intelligence: +1
 - Dexterity: +1
-– Magic Resistance: +10%
-– Can cast one extra 6th- and 7th-level priest spell
+- Magic Resistance: +10%
+- Can cast one extra 6th- and 7th-level priest spell
 
 Weight: 0~
 
@@ -11121,7 +11121,7 @@ The innkeeper should be pleased to hear his inn is haunted no longer.~
 STATISTICS:
 
 Charge abilities:
-– Missile Blast
+- Missile Blast
   Damage: 6d6 fire (Save vs. Spell for half)
   Range: 50 ft.
   Area of Effect: 15-ft. radius
@@ -11133,8 +11133,8 @@ Weight: 11~
 STATISTICS:
 
 Equipped abilities:
-– Armor Class: +1
-– Saving Throws: +1
+- Armor Class: +1
+- Saving Throws: +1
 
 Weight: 1~
 @1000005 = ~Boots of Speed~
@@ -11143,7 +11143,7 @@ Weight: 1~
 STATISTICS:
 
 Equipped abilities:
-– Doubles movement rate
+- Doubles movement rate
 
 Weight: 4~
 @1000007 = ~Boots of the North~
@@ -11152,7 +11152,7 @@ Weight: 4~
 STATISTICS:
 
 Equipped abilities:
-– Cold Resistance: +50%
+- Cold Resistance: +50%
 
 Weight: 4~
 @1000009 = ~Longbow of marksmanship~
@@ -11175,7 +11175,7 @@ Weight: 2~
 STATISTICS:
 
 Equipped abilities:
-– Armor Class: 6
+- Armor Class: 6
 
 Weight: 2~
 @1000013 = ~Gauntlets of Weapon Expertise~
@@ -11184,7 +11184,7 @@ Weight: 2~
 STATISTICS:
 
 Equipped abilities:
-– THAC0: +1
+- THAC0: +1
 
 Weight: 2~
 @1000015 = ~Cloak of Protection +2~
@@ -11193,8 +11193,8 @@ Weight: 2~
 STATISTICS:
 
 Equipped abilities:
-– Armor Class: +2
-– Saving Throws: +2
+- Armor Class: +2
+- Saving Throws: +2
 
 Weight: 3~
 @1000017 = ~~
@@ -11246,7 +11246,7 @@ Weight: 5~
 STATISTICS:
 
 Equipped abilities:
-– Protects against critical hits
+- Protects against critical hits
 
 Weight: 2~
 @1000025 = ~Splint Mail +1~
@@ -11275,7 +11275,7 @@ Weight: 35~
 STATISTICS:
 
 Equipped abilities:
-– Fire Resistance: +40%
+- Fire Resistance: +40%
 
 Weight: 0~
 @1000031 = ~Ring of Protection +1~
@@ -11284,8 +11284,8 @@ Weight: 0~
 STATISTICS:
 
 Equipped abilities:
-– Armor Class: +1
-– Saving Throws: +1
+- Armor Class: +1
+- Saving Throws: +1
 
 Weight: 0~
 @1000033 = ~Ring of Protection +2~
@@ -11294,8 +11294,8 @@ Weight: 0~
 STATISTICS:
 
 Equipped abilities:
-– Armor Class: +2
-– Saving Throws: +2
+- Armor Class: +2
+- Saving Throws: +2
 
 Weight: 0~
 @1000035 = ~Ring of Free Action~
@@ -11304,7 +11304,7 @@ Weight: 0~
 STATISTICS:
 
 Equipped abilities:
-– The wearer is immune to everything, magical and otherwise, that affects mobility in any way. This includes Haste and Slow spells.
+- The wearer is immune to everything, magical and otherwise, that affects mobility in any way. This includes Haste and Slow spells.
 
 Weight: 0~
 @1000037 = ~Ring of Charm~
@@ -11313,10 +11313,10 @@ Weight: 0~
 STATISTICS:
 
 Equipped abilities:
-– Charisma: 18
+- Charisma: 18
 
 Charge abilities:
-– Charm Person once per day (Save vs. Spell at +3 negates)
+- Charm Person once per day (Save vs. Spell at +3 negates)
   Range: 60 ft.
   Duration: 100 seconds
   Area of Effect: 1 creature
@@ -11328,7 +11328,7 @@ Weight: 0~
 STATISTICS:
 
 Equipped abilities: 
-– Regenerate 1 Hit Point per round
+- Regenerate 1 Hit Point per round
 
 Weight: 0~
 @1000041 = ~Ring of Protection +3~
@@ -11337,8 +11337,8 @@ Weight: 0~
 STATISTICS:
 
 Equipped abilities:
-– Armor Class: +3
-– Saving Throws: +3
+- Armor Class: +3
+- Saving Throws: +3
 
 Weight: 0~
 @1000043 = ~Large Shield +1, +4 vs. missile weapons~
@@ -11357,7 +11357,7 @@ Weight: 12~
 STATISTICS:
 
 Equipped abilities:
-– Armor Class: +3, an extra +1 vs. missile weapons
+- Armor Class: +3, an extra +1 vs. missile weapons
 
 Requires:
  10 Strength
@@ -11369,9 +11369,9 @@ Weight: 4~
 STATISTICS:
 
 Equipped abilities:
-– Armor Class: +2
-– Magic Resistance: +50%
-– Does not allow casting spells
+- Armor Class: +2
+- Magic Resistance: +50%
+- Does not allow casting spells
 - Protection from Petrification
 
 Weight: 2~

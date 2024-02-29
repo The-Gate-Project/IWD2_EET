@@ -29,6 +29,11 @@ ACTION_IF FILE_EXISTS ~%MOD_FOLDER%/lang/%LANGUAGE%/journal.tra~ BEGIN
 	LOAD_TRA ~%MOD_FOLDER%/lang/%LANGUAGE%/journal.tra~
 END
 
+ACTION_IF FILE_EXISTS ~%MOD_FOLDER%/lang/en_US/areas-bp-bgt.tra~ BEGIN
+	LOAD_TRA ~%MOD_FOLDER%/lang/en_US/areas-bp-bgt.tra~
+	LOAD_TRA ~%MOD_FOLDER%/lang/%LANGUAGE%/areas-bp-bgt.tra~
+END
+
 OUTER_SPRINT newline ~%WNL%%LNL%%MNL%%TAB% ~
 OUTER_SPRINT slash ~/~
 OUTER_SPRINT quote ~"~

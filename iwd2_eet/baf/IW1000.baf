@@ -68,6 +68,9 @@ IF
 	Global("TARGOS_REVEALED","MYAREA",0)
 THEN
 	RESPONSE #100
+		HideAreaOnMap("XG0025")  // Compat PoF
+		HideAreaOnMap("XG0024")  // Compat PoF
+		SetGlobal("XG0025HiddenXG0024","GLOBAL",1) // Compat PoF
 		AddWorldmapAreaFlag("IW1200",VISIBLE_EXPLORABLE)
 		SetGlobal("TARGOS_REVEALED","MYAREA",1)
 		Continue()
