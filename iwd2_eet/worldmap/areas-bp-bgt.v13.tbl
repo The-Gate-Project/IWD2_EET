@@ -3,8 +3,8 @@
 SHORT_NAME  CONTENT  LONG_NAME  FLAGS  BAM_ANIM  X_POS  Y_POS  NAME         TOOLTIP      LOAD_IM
 
 IW1000      IW1000   IW1000     0      152       265    -275    @iw10000      @iw10000      N        //++ Доки Таргоса // Targos Docks // Quais de Targos
-IW1100      IW1100   IW1100     0      216       170    -320    @iw11000      @iw11000      N        //++ Таргос - 10457 // Targos
-IW1200      IW1200   IW1200     0      217        80    -350    @iw12000      @iw12000      N        //++ Частокол // Targos
+IW1100      IW1100   IW1100     0      216       170    -330    @iw11000      @iw11000      N        //++ Таргос - 10457 // Targos
+IW1200      IW1200   IW1200     0      217        80    -385    @iw12000      @iw12000      N        //++ Частокол // Targos
 IW2000      IW2000   IW2000     2      155       360     100    @iw2000       @iw2000       N        //++ Шенгарнский брод // Shaengarne Ford // Gue du Shaengarne
 IW2001      IW2001   IW2001     0      134       360     100    N             N             N        //++
 IW2100      IW2100   IW2100     0      134       290     200    N             N             N        //++
@@ -28,7 +28,7 @@ IW5300      IW5300   IW5300     0      166       1140    108    @iw5300       @i
 IW5303      IW5303   IW5303     0      186       1247    122    N             N             N        
                                                                                                     
 IW6000      IW6000   IW6000     0      172       1460   -200    @iw6000       @iw6000       N        //++ Кулдахарский Перевал // Kuldahar Pass // Le col de Kuldahar
-IW6001      IW6001   IW6001     0      137       1600   -245    @iw6001       @iw6001       N        //++ Кулдахар // Kuldahar
+IW6001      IW6001   IW6001     0      137       1600   -245    N             N             N        //++ Кулдахар // Kuldahar
 IW6050      IW6050   IW6050     0      187       500    5450    N             N             N        //++
 IW6100      IW6100   IW6100     0      140       1750   -225    @iw6100       @iw6100       N        //++ Глаз Дракона // Dragon's Eye // l’œil du Dragon
 IW6104      IW6104   IW6104     0      173       1845   -170    @iw61040      @iw61040      N        //++ Глаз Дракона // Dragon's Eye // l’œil du Dragon "Magma chamber"
