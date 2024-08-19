@@ -30,7 +30,8 @@ IF
 THEN
 	RESPONSE #100
 		//SetGlobal("IWD2_COMPLETE","GLOBAL",1)
-		BitSet("IWDEET_COMPLETE","GLOBAL",BITS_IWD2)
+		//BitSet("IWDEET_COMPLETE","GLOBAL",BITS_IWD2)
+		SetGlobal("IWDEET_IWD2_COMPLETE","GLOBAL",1)
 		SetGlobal("SH_LeaveSeveredHand","GLOBAL",2)
 		AddAreaFlag(NOTRAVEL)
 		TriggerActivation("To6301a",FALSE)

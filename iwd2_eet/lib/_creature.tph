@@ -4214,6 +4214,7 @@ COPY ~%cre_folder%/62MDARF.cre~ ~override~
 	SAY 0x008 @155
 	SAY 0x00c @8501
 	WRITE_LONG  0x14  20000
+	WRITE_BYTE  0x271 4
 
 COPY ~%cre_folder%/62NEOORC.cre~ ~override~
 	SAY 0x008 @19132
