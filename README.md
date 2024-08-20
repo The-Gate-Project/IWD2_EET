@@ -10,7 +10,7 @@
 
 - [IWD1_EET](https://github.com/The-Gate-Project/IWD1_EET)   
 
-- **[IWD2_EET](https://github.com/The-Gate-Project/IWD2_EET)**  
+- **[IWD2_EET](https://github.com/The-Gate-Project/IWD2_EET) !**  
 
 - OTHER MODS  
 
@@ -19,7 +19,7 @@
 - EET_End  
 
 
-#### (Worldmap_IWD_EET is not needed any more, as it is part of IWD1 and IWD2.) 
+##### (Worldmap_IWD_EET is not needed anymore, as it is part of IWD1 and IWD2.) 
 
 
 
