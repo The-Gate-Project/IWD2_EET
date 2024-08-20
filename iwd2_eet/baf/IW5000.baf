@@ -168,8 +168,8 @@ IF
 THEN
 	RESPONSE #100
 		SetGlobal("Venla_Store","MYAREA",1)
-		AddStoreItem("50Venla","z5potn56",3,3)
-		AddStoreItem("50Venlaa","z5potn56",3,3)
+		AddStoreItem("50Venla","z5potn56",3,1)
+		AddStoreItem("50Venlaa","z5potn56",3,1)
 		Continue()
 END
 
