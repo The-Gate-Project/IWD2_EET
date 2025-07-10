@@ -1047,8 +1047,33 @@ INCLUDE ~%MOD_FOLDER%/lib/_start_game.tph~
 PRINT ~Patching Worldmap...~
 INCLUDE ~%MOD_FOLDER%/lib/_worldmap.tph~
 
-MKDIR ~lang/%LANGUAGE%/movies~
-COPY_LARGE ~%MOD_FOLDER%/biffs/IWMOVIE~ ~lang/%LANGUAGE%/movies~
+//copy all movies to the game movies directory
+//if language movie don't exist, use english movie
+ACTION_IF NOT DIRECTORY_EXISTS ~lang/%LANGUAGE%/movies~ BEGIN
+	MKDIR ~lang/%LANGUAGE%/movies~
+END
+ACTION_BASH_FOR ~%MOD_FOLDER%/lang/%LANGUAGE%/IWMOVIE~ ~^.+\.wbm$~ BEGIN
+	COPY_LARGE ~%BASH_FOR_FILESPEC%~ ~lang/%LANGUAGE%/movies~
+END
+ACTION_BASH_FOR ~%MOD_FOLDER%/lang/en_US/IWMOVIE~ ~^.+\.wbm$~ BEGIN
+	ACTION_IF NOT FILE_EXISTS ~%MOD_FOLDER%/lang/%LANGUAGE%/IWMOVIE/%BASH_FOR_FILE%~ BEGIN
+		COPY_LARGE ~%BASH_FOR_FILESPEC%~ ~lang/%LANGUAGE%/movies~
+	END
+END
+//prepare biffing folder for sounds and movies
+ACTION_FOR_EACH folder IN IWCREWAV IWCREWV1 IWCREWV2 IWCREWV3 IWMOVIE BEGIN
+	ACTION_IF NOT DIRECTORY_EXISTS ~%MOD_FOLDER%/biffs/%folder%~ BEGIN
+		MKDIR ~%MOD_FOLDER%/biffs/%folder%~
+	END
+	ACTION_BASH_FOR ~%MOD_FOLDER%/lang/%LANGUAGE%/%folder%~ ~^.+~ BEGIN
+		COPY_LARGE ~%BASH_FOR_FILESPEC%~ ~%MOD_FOLDER%/biffs/%folder%~
+	END
+	ACTION_BASH_FOR ~%MOD_FOLDER%/lang/en_US/%folder%~ ~^.+~ BEGIN
+		ACTION_IF NOT FILE_EXISTS ~%MOD_FOLDER%/lang/%LANGUAGE%/%folder%/%BASH_FOR_FILE%~ BEGIN
+			COPY_LARGE ~%BASH_FOR_FILESPEC%~ ~%MOD_FOLDER%/biffs/%folder%~
+		END
+	END
+END
 
 INCLUDE ~%MOD_FOLDER%/lib/_convert_pvrz.tph~
 
