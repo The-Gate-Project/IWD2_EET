@@ -1,123 +1,80 @@
-OUTER_SET wmp_xCoord_SoA = 0
-OUTER_SET wmp_yCoord_SoA = 0
-
-<<<<<<<<wmp.l
-@iwd1000 = "str1000"
-@iwd2000 = "str2000"
-@iwd3000 = "str3000"
-@iwd4000 = "str4000"
-@iwd4100 = "str4100"
-@iwd5000 = "str5000"
-@iwd5001 = "str5001"
-@iwd5010 = "str5010"
-@iwd5005 = "str5005"
-@iwd5200 = "str5200"
-@iwd5300 = "str5300"
-@iwd6000 = "str6000"
-@iwd6001 = "str6001"
-@iwd6100 = "str6100"
-@iwd6200 = "str6200"
-@iwd6300 = "str6300"
+<<<<<<<<.../wmp.l
 >>>>>>>>
 
-OUTER_SPRINT ~rep1000~ @10457
-OUTER_SPRINT ~rep2000~ @10460
-OUTER_SPRINT ~rep3000~ @10459
-OUTER_SPRINT ~rep4000~ @32032
-OUTER_SPRINT ~rep4100~ @32033
-OUTER_SPRINT ~rep5000~ @32034
-OUTER_SPRINT ~rep5001~ @32038
-OUTER_SPRINT ~rep5010~ @41389
-OUTER_SPRINT ~rep5005~ @32037
-OUTER_SPRINT ~rep5200~ @32113
-OUTER_SPRINT ~rep5300~ @32092
-OUTER_SPRINT ~rep6000~ @19731
-OUTER_SPRINT ~rep6001~ @3061
-OUTER_SPRINT ~rep6100~ @19730
-OUTER_SPRINT ~rep6200~ @32095 /**/
-OUTER_SPRINT ~rep6300~ @16234
-
-OUTER_INNER_PATCH_SAVE rep1000 ~%rep1000%~ BEGIN REPLACE_TEXTUALLY ~ ~ ~###~ END
-OUTER_INNER_PATCH_SAVE rep2000 ~%rep2000%~ BEGIN REPLACE_TEXTUALLY ~ ~ ~###~ END
-OUTER_INNER_PATCH_SAVE rep3000 ~%rep3000%~ BEGIN REPLACE_TEXTUALLY ~ ~ ~###~ END
-OUTER_INNER_PATCH_SAVE rep4000 ~%rep4000%~ BEGIN REPLACE_TEXTUALLY ~ ~ ~###~ END
-OUTER_INNER_PATCH_SAVE rep4100 ~%rep4100%~ BEGIN REPLACE_TEXTUALLY ~ ~ ~###~ END
-OUTER_INNER_PATCH_SAVE rep5000 ~%rep5000%~ BEGIN REPLACE_TEXTUALLY ~ ~ ~###~ END
-OUTER_INNER_PATCH_SAVE rep5001 ~%rep5001%~ BEGIN REPLACE_TEXTUALLY ~ ~ ~###~ END
-OUTER_INNER_PATCH_SAVE rep5010 ~%rep5010%~ BEGIN REPLACE_TEXTUALLY ~ ~ ~###~ END
-OUTER_INNER_PATCH_SAVE rep5005 ~%rep5005%~ BEGIN REPLACE_TEXTUALLY ~ ~ ~###~ END
-OUTER_INNER_PATCH_SAVE rep5200 ~%rep5200%~ BEGIN REPLACE_TEXTUALLY ~ ~ ~###~ END
-OUTER_INNER_PATCH_SAVE rep5300 ~%rep5300%~ BEGIN REPLACE_TEXTUALLY ~ ~ ~###~ END
-OUTER_INNER_PATCH_SAVE rep6000 ~%rep6000%~ BEGIN REPLACE_TEXTUALLY ~ ~ ~###~ END
-OUTER_INNER_PATCH_SAVE rep6001 ~%rep6001%~ BEGIN REPLACE_TEXTUALLY ~ ~ ~###~ END
-OUTER_INNER_PATCH_SAVE rep6100 ~%rep6100%~ BEGIN REPLACE_TEXTUALLY ~ ~ ~###~ END
-OUTER_INNER_PATCH_SAVE rep6200 ~%rep6200%~ BEGIN REPLACE_TEXTUALLY ~ ~ ~###~ END
-OUTER_INNER_PATCH_SAVE rep6300 ~%rep6300%~ BEGIN REPLACE_TEXTUALLY ~ ~ ~###~ END
-
-COPY ~wmp.l~ ~%MOD_FOLDER%/lang/%LANGUAGE%/worldmap.tra~
-    REPLACE_TEXTUALLY ~str1000~ ~%rep1000%~ EVALUATE_BUFFER
-    REPLACE_TEXTUALLY ~str2000~ ~%rep2000%~ EVALUATE_BUFFER
-    REPLACE_TEXTUALLY ~str3000~ ~%rep3000%~ EVALUATE_BUFFER
-    REPLACE_TEXTUALLY ~str4000~ ~%rep4000%~ EVALUATE_BUFFER
-    REPLACE_TEXTUALLY ~str4100~ ~%rep4100%~ EVALUATE_BUFFER
-    REPLACE_TEXTUALLY ~str5000~ ~%rep5000%~ EVALUATE_BUFFER
-    REPLACE_TEXTUALLY ~str5001~ ~%rep5001%~ EVALUATE_BUFFER
-    REPLACE_TEXTUALLY ~str5010~ ~%rep5010%~ EVALUATE_BUFFER
-    REPLACE_TEXTUALLY ~str5005~ ~%rep5005%~ EVALUATE_BUFFER
-    REPLACE_TEXTUALLY ~str5200~ ~%rep5200%~ EVALUATE_BUFFER
-    REPLACE_TEXTUALLY ~str5300~ ~%rep5300%~ EVALUATE_BUFFER
-    REPLACE_TEXTUALLY ~str6000~ ~%rep6000%~ EVALUATE_BUFFER
-    REPLACE_TEXTUALLY ~str6001~ ~%rep6001%~ EVALUATE_BUFFER
-    REPLACE_TEXTUALLY ~str6100~ ~%rep6100%~ EVALUATE_BUFFER
-    REPLACE_TEXTUALLY ~str6200~ ~%rep6200%~ EVALUATE_BUFFER
-    REPLACE_TEXTUALLY ~str6300~ ~%rep6300%~ EVALUATE_BUFFER
-
-INCLUDE ~%MOD_FOLDER%/worldmap/icon/add_map_icons.tpa~
-LAF ADD_MAP_ICONS
-  STR_VAR
-    path_to_icons = EVAL ~%MOD_FOLDER%/Worldmap/AR5203/icon.bam~
-    patch_to_pvrz = EVAL ~%MOD_FOLDER%/Worldmap/AR5203~
-  RET
-    icon_5203 = new_icon_index
-END
-LAF ADD_MAP_ICONS
-  STR_VAR
-    path_to_icons = EVAL ~%MOD_FOLDER%/Worldmap/AR5303/icon.bam~
-    patch_to_pvrz = EVAL ~%MOD_FOLDER%/Worldmap/AR5303~
-  RET
-    icon_5303 = new_icon_index
-END
-LAF ADD_MAP_ICONS
-  STR_VAR
-    path_to_icons = EVAL ~%MOD_FOLDER%/Worldmap/AR6050/icon.bam~
-    patch_to_pvrz = EVAL ~%MOD_FOLDER%/Worldmap/AR6050~
-  RET
-    icon_6050 = new_icon_index
-END
-LAF ADD_MAP_ICONS
-  STR_VAR
-    path_to_icons = EVAL ~%MOD_FOLDER%/Worldmap/AR6200/icon.bam~
-    patch_to_pvrz = EVAL ~%MOD_FOLDER%/Worldmap/AR6200~
-  RET
-    icon_6200 = new_icon_index
+ACTION_DEFINE_ASSOCIATIVE_ARRAY wmptra BEGIN
+//  areaname => dialog.tra number
+    iw1000 => ~@10457~	// Targos
+    iw2000 => ~@10460~	// Shaengarne Ford
+    iw2102 => ~@41080~	// Shaengarne Bridge
+    iw3000 => ~@10459~
+    iw4000 => ~@32032~
+    iw4100 => ~@32033~
+    iw5000 => ~@32034~
+    iw5004 => ~@32038~
+    iw5010 => ~@41389~
+    iw5005 => ~@32037~
+    iw5200 => ~@32113~
+    iw5300 => ~@32092~
+    iw6000 => ~@19731~
+    iw6001 => ~@3061~
+    iw6100 => ~@19730~
+    iw6200 => ~@32095~
+    iw6300 => ~@16234~
+// BP-BGT-Worldamp	
+    iw10000 => ~@2006002~	// Targos Dock
+    iw11000 => ~@2006001~	// Targos Town
+    iw12000 => ~@2006000~	// Targos Palisade
+    iw50010 => ~@2006003~	// Edge of the Fell Wood
+    iw61040 => ~@2006004~	// Dragon's Eye "Magma chamber"
+    iw5102  => ~@2006005~	// River Caves
 END
 
-COPY ~%MOD_FOLDER%/Worldmap/areas.tbl~ ~%MOD_FOLDER%/Worldmap~
-	REPLACE_TEXTUALLY ~XX1~ ~%icon_5203%~ EVALUATE_BUFFER
-	REPLACE_TEXTUALLY ~XX2~ ~%icon_5303%~ EVALUATE_BUFFER
-	REPLACE_TEXTUALLY ~XX4~ ~%icon_6050%~ EVALUATE_BUFFER
-	REPLACE_TEXTUALLY ~XX5~ ~%icon_6200%~ EVALUATE_BUFFER
+// creates the worlmap.tra file from the wmptra array
+COPY ~.../wmp.l~ ~%MOD_FOLDER%/lang/%LANGUAGE%/worldmap.tra~
+ACTION_PHP_EACH ~wmptra~ AS area => strref BEGIN
+	ACTION_BASH_FOR ~%MOD_FOLDER%/lang/%LANGUAGE%~ ~^.*\.tra$~ BEGIN
+		ACTION_IF FILE_CONTAINS_EVALUATED (~%MOD_FOLDER%/lang/%LANGUAGE%/%BASH_FOR_FILE%~ ~^%strref%~) BEGIN
+			COPY - ~%MOD_FOLDER%/lang/%LANGUAGE%/%BASH_FOR_FILE%~ ~%MOD_FOLDER%/lang/%LANGUAGE%~
+				REPLACE_EVALUATE CASE_INSENSITIVE ~~~~~^[ %TAB%]*%strref%[ %TAB%]*[=][ %TAB%]*[\~"]\(.*\)["\~]~~~~~ BEGIN
+					INNER_PATCH_SAVE string "%MATCH1%" BEGIN REPLACE_TEXTUALLY " " "###" END
+				END ~%MATCH0%~
+			APPEND_OUTER ~%MOD_FOLDER%/lang/%LANGUAGE%/worldmap.tra~ ~@%area% = "%string%"~
+		END
+	END
+END
+
+ACTION_DEFINE_ASSOCIATIVE_ARRAY mapicon BEGIN
+//  folder => bam_anim
+	AR5203 => ~XX1~
+    AR5303 => ~XX2~
+    AR6050 => ~XX4~
+    AR6200 => ~XX5~
+END
+
+INCLUDE ~%MOD_FOLDER%/worldmap/icon/add_map_icons_ee.tpa~
+ACTION_PHP_EACH ~mapicon~ AS folder => bam_anim BEGIN
+	LAF ADD_MAP_ICONS_EE
+	STR_VAR
+		path_to_icons = EVAL ~%MOD_FOLDER%/Worldmap/%folder%/icon.bam~
+		patch_to_pvrz = EVAL ~%MOD_FOLDER%/Worldmap/%folder%~
+	RET
+		new_icon_index
+	END
+	ACTION_DEFINE_ASSOCIATIVE_ARRAY remapped_icons BEGIN ~%bam_anim%~ => ~%new_icon_index%~ END
+END
 
 INCLUDE ~%MOD_FOLDER%/lib/add_worldmap_tbl.tpa~
 LAF ADD_WORLDMAP_TBL
 	INT_VAR
     	inclSv = 0
-    	add_x = wmp_xCoord_SoA
-    	add_y = wmp_yCoord_SoA
+		patch_bp_files = 1
 	STR_VAR
     	path_to_areas = EVAL ~%MOD_FOLDER%/Worldmap/areas.tbl~
     	path_to_links = EVAL ~%MOD_FOLDER%/Worldmap/links.tbl~
+		path_to_areas_bp = EVAL ~%MOD_FOLDER%/Worldmap/areas-bp-bgt.tbl~
+		path_to_links_bp = EVAL ~%MOD_FOLDER%/Worldmap/links-bp-bgt.tbl~
     	path_to_trans = EVAL ~%MOD_FOLDER%/lang/%LANGUAGE%/worldmap.tra~
+		icons_table = ~remapped_icons~
 END
 
 

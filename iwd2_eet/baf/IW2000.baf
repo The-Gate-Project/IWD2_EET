@@ -31,13 +31,14 @@ IF
 	Global("TorakDialog","MYAREA",0)
 THEN
 	RESPONSE #100
+		RemoveAreaFlag(NOREST)
 		SetGlobal("TorakDialog","MYAREA",1)
 		//ActionOverride("Torak1",SetDialogueRange(300))
 		//ActionOverride("Torak1",Dialogue(Protagonist))
 		ActionOverride("Torak1",ApplySpellRES("BDCUTSPY",Myself))
 		ActionOverride("Torak1",StartDialogNoSet([PC]))
 		//AllowAreaResting(TRUE)
-		RemoveAreaFlag(NOREST)
+		//RemoveAreaFlag(NOREST)
 END
 
 IF
