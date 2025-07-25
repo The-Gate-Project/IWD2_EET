@@ -24,7 +24,9 @@ LANGUAGE ~Simplified Chinese~
 
 BEGIN ~Icewind Dale 2 in Baldur's Gate Enhanced Edition Trilogy~
 REQUIRE_PREDICATE GAME_IS ~eet~ ~Please install Baldur's Gate Enhanced Edition Trilogy at first~
-REQUIRE_COMPONENT ~iwd1_eet/setup-iwd1_eet.tp2~ ~1~ ~Please install Icewind Dale: Heart of Winter in Baldur's Gate Enhanced Edition Trilogy at first~
+REQUIRE_PREDICATE	(MOD_IS_INSTALLED ~setup-iwd1_eet.tp2~ ~3~) ||
+					(MOD_IS_INSTALLED ~setup-iwd1_eet.tp2~ ~2~) ||
+					(MOD_IS_INSTALLED ~setup-iwd1_eet.tp2~ ~1~) ~Please install Icewind Dale: Heart of Winter in Baldur's Gate Enhanced Edition Trilogy at first~
 
 ACTION_IF FILE_EXISTS ~%MOD_FOLDER%/lang/%LANGUAGE%/dialog2.tra~ BEGIN
 	LOAD_TRA ~%MOD_FOLDER%/lang/%LANGUAGE%/dialog2.tra~
