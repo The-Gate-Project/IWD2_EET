@@ -1,7 +1,7 @@
-BACKUP ~iwd2_eet/backup~
+BACKUP ~weidu_external/iwd2_eet/backup~
 AUTHOR ~tipun~
 
-VERSION ~1.0~
+VERSION ~1.1~
 
 LANGUAGE ~Russian~
 	     ~ru_RU~
@@ -15,6 +15,9 @@ LANGUAGE ~Deutsch~
 LANGUAGE ~Français~
 	     ~fr_FR~
 	     ~iwd2_eet/lang/fr_FR/dialog.tra~
+LANGUAGE ~Español~
+	     ~es_ES~
+	     ~iwd2_eet/lang/es_ES/dialog.tra~
 LANGUAGE ~Simplified Chinese~
 	     ~zh_CN~
 	     ~iwd2_eet/lang/zh_CN/dialog.tra~
