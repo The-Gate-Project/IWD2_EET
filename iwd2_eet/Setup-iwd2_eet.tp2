@@ -25,8 +25,8 @@ LANGUAGE ~Simplified Chinese~
 BEGIN ~Icewind Dale 2 in Baldur's Gate Enhanced Edition Trilogy~
 REQUIRE_PREDICATE GAME_IS ~eet~ ~Please install Baldur's Gate Enhanced Edition Trilogy at first~
 REQUIRE_PREDICATE	(MOD_IS_INSTALLED ~setup-iwd1_eet.tp2~ ~3~) ||
-					(MOD_IS_INSTALLED ~setup-iwd1_eet.tp2~ ~2~) ||
-					(MOD_IS_INSTALLED ~setup-iwd1_eet.tp2~ ~1~) ~Please install Icewind Dale: Heart of Winter in Baldur's Gate Enhanced Edition Trilogy at first~
+			(MOD_IS_INSTALLED ~setup-iwd1_eet.tp2~ ~2~) ||
+			(MOD_IS_INSTALLED ~setup-iwd1_eet.tp2~ ~1~) ~Please install Icewind Dale: Heart of Winter in Baldur's Gate Enhanced Edition Trilogy at first~
 
 ACTION_IF FILE_EXISTS ~%MOD_FOLDER%/lang/%LANGUAGE%/dialog2.tra~ BEGIN
 	LOAD_TRA ~%MOD_FOLDER%/lang/%LANGUAGE%/dialog2.tra~
@@ -1057,12 +1057,19 @@ INCLUDE ~%MOD_FOLDER%/lib/_worldmap.tph~
 ACTION_IF NOT DIRECTORY_EXISTS ~lang/%LANGUAGE%/movies~ BEGIN
 	MKDIR ~lang/%LANGUAGE%/movies~
 END
+
+  COPY - ~weidu.conf~ ~.../weidu.conf~
+    READ_2DA_ENTRY 0 2 3 "IW2_lang_dir"
+
+	PRINT ~Game in %IW2_lang_dir%...
+~
+
 ACTION_BASH_FOR ~%MOD_FOLDER%/lang/%LANGUAGE%/IWMOVIE~ ~^.+\.wbm$~ BEGIN
-	COPY_LARGE ~%BASH_FOR_FILESPEC%~ ~lang/%LANGUAGE%/movies~
+	COPY_LARGE ~%BASH_FOR_FILESPEC%~ ~lang/%IW2_lang_dir%/movies~
 END
 ACTION_BASH_FOR ~%MOD_FOLDER%/lang/en_US/IWMOVIE~ ~^.+\.wbm$~ BEGIN
 	ACTION_IF NOT FILE_EXISTS ~%MOD_FOLDER%/lang/%LANGUAGE%/IWMOVIE/%BASH_FOR_FILE%~ BEGIN
-		COPY_LARGE ~%BASH_FOR_FILESPEC%~ ~lang/%LANGUAGE%/movies~
+		COPY_LARGE ~%BASH_FOR_FILESPEC%~ ~lang/%IW2_lang_dir%/movies~
 	END
 END
 //prepare biffing folder for sounds and movies
