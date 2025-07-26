@@ -1,7 +1,7 @@
-BACKUP ~iwd2_eet/backup~
+BACKUP ~weidu_external/iwd2_eet/backup~
 AUTHOR ~tipun~
 
-VERSION ~1.0~
+VERSION ~1.1~
 
 LANGUAGE ~Russian~
 	     ~ru_RU~
@@ -15,13 +15,18 @@ LANGUAGE ~Deutsch~
 LANGUAGE ~Français~
 	     ~fr_FR~
 	     ~iwd2_eet/lang/fr_FR/dialog.tra~
+LANGUAGE ~Español~
+	     ~es_ES~
+	     ~iwd2_eet/lang/es_ES/dialog.tra~
 LANGUAGE ~Simplified Chinese~
 	     ~zh_CN~
 	     ~iwd2_eet/lang/zh_CN/dialog.tra~
 
 BEGIN ~Icewind Dale 2 in Baldur's Gate Enhanced Edition Trilogy~
 REQUIRE_PREDICATE GAME_IS ~eet~ ~Please install Baldur's Gate Enhanced Edition Trilogy at first~
-REQUIRE_COMPONENT ~iwd1_eet/setup-iwd1_eet.tp2~ ~1~ ~Please install Icewind Dale: Heart of Winter in Baldur's Gate Enhanced Edition Trilogy at first~
+REQUIRE_PREDICATE	(MOD_IS_INSTALLED ~setup-iwd1_eet.tp2~ ~3~) ||
+			(MOD_IS_INSTALLED ~setup-iwd1_eet.tp2~ ~2~) ||
+			(MOD_IS_INSTALLED ~setup-iwd1_eet.tp2~ ~1~) ~Please install Icewind Dale: Heart of Winter in Baldur's Gate Enhanced Edition Trilogy at first~
 
 ACTION_IF FILE_EXISTS ~%MOD_FOLDER%/lang/%LANGUAGE%/dialog2.tra~ BEGIN
 	LOAD_TRA ~%MOD_FOLDER%/lang/%LANGUAGE%/dialog2.tra~
@@ -1047,8 +1052,40 @@ INCLUDE ~%MOD_FOLDER%/lib/_start_game.tph~
 PRINT ~Patching Worldmap...~
 INCLUDE ~%MOD_FOLDER%/lib/_worldmap.tph~
 
-MKDIR ~lang/%LANGUAGE%/movies~
-COPY_LARGE ~%MOD_FOLDER%/biffs/IWMOVIE~ ~lang/%LANGUAGE%/movies~
+//copy all movies to the game movies directory
+//if language movie don't exist, use english movie
+ACTION_IF NOT DIRECTORY_EXISTS ~lang/%LANGUAGE%/movies~ BEGIN
+	MKDIR ~lang/%LANGUAGE%/movies~
+END
+
+  COPY - ~weidu.conf~ ~.../weidu.conf~
+    READ_2DA_ENTRY 0 2 3 "IW2_lang_dir"
+
+	PRINT ~Game in %IW2_lang_dir%...
+~
+
+ACTION_BASH_FOR ~%MOD_FOLDER%/lang/%LANGUAGE%/IWMOVIE~ ~^.+\.wbm$~ BEGIN
+	COPY_LARGE ~%BASH_FOR_FILESPEC%~ ~lang/%IW2_lang_dir%/movies~
+END
+ACTION_BASH_FOR ~%MOD_FOLDER%/lang/en_US/IWMOVIE~ ~^.+\.wbm$~ BEGIN
+	ACTION_IF NOT FILE_EXISTS ~%MOD_FOLDER%/lang/%LANGUAGE%/IWMOVIE/%BASH_FOR_FILE%~ BEGIN
+		COPY_LARGE ~%BASH_FOR_FILESPEC%~ ~lang/%IW2_lang_dir%/movies~
+	END
+END
+//prepare biffing folder for sounds and movies
+ACTION_FOR_EACH folder IN IWCREWAV IWCREWV1 IWCREWV2 IWCREWV3 IWMOVIE BEGIN
+	ACTION_IF NOT DIRECTORY_EXISTS ~%MOD_FOLDER%/biffs/%folder%~ BEGIN
+		MKDIR ~%MOD_FOLDER%/biffs/%folder%~
+	END
+	ACTION_BASH_FOR ~%MOD_FOLDER%/lang/%LANGUAGE%/%folder%~ ~^.+~ BEGIN
+		COPY_LARGE ~%BASH_FOR_FILESPEC%~ ~%MOD_FOLDER%/biffs/%folder%~
+	END
+	ACTION_BASH_FOR ~%MOD_FOLDER%/lang/en_US/%folder%~ ~^.+~ BEGIN
+		ACTION_IF NOT FILE_EXISTS ~%MOD_FOLDER%/lang/%LANGUAGE%/%folder%/%BASH_FOR_FILE%~ BEGIN
+			COPY_LARGE ~%BASH_FOR_FILESPEC%~ ~%MOD_FOLDER%/biffs/%folder%~
+		END
+	END
+END
 
 INCLUDE ~%MOD_FOLDER%/lib/_convert_pvrz.tph~
 
