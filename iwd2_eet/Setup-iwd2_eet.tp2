@@ -18,6 +18,9 @@ LANGUAGE ~Français~
 LANGUAGE ~Español~
 	     ~es_ES~
 	     ~iwd2_eet/lang/es_ES/dialog.tra~
+LANGUAGE ~Polski~
+	     ~pl_PL~
+	     ~iwd2_eet/lang/pl_PL/dialog.tra~
 LANGUAGE ~Simplified Chinese~
 	     ~zh_CN~
 	     ~iwd2_eet/lang/zh_CN/dialog.tra~
