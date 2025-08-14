@@ -128,6 +128,24 @@ COPY ~%KIT_FOLDER%/kit_tempus/BELTTMPS.ITM~ ~override~
   SAY 0x0c @70782
   SAY 0x54 @70783
 
+	ACTION_IF (MOD_IS_INSTALLED ~SETUP-BG2FIXPACK.TP2~ ~104~) BEGIN
+
+<<<<<<<<bld_rep.baf
+IF
+  HasItem("CDHLYSYM",Player6)
+  !Name("Anomen",Player6)
+  !Name("Aerie",Player6)
+  !Name("Viconia",Player6)
+  Kit(Player6,OHTYR)
+THEN
+  RESPONSE #100
+    ApplySpellRES("CDHLYSY2",Player6)
+    ActionOverride(Player6,TransformItem("CDHLYSYM","beltty"))
+END
+>>>>>>>>
+
+	END ELSE BEGIN
+
 <<<<<<<<bld_rep.baf
 IF
   HasItem("CDHLYSYM",Player6)
@@ -140,6 +158,8 @@ THEN
     ActionOverride(Player6,TransformItem("CDHLYSYM","beltty"))
 END
 >>>>>>>>
+
+	END
 
 <<<<<<<<bld_add.baf
 IF

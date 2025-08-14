@@ -725,6 +725,24 @@ COPY ~%KIT_FOLDER%/itm/OHMASK.itm~ ~override~
 
 /* SCRIPTS */
 
+	ACTION_IF (MOD_IS_INSTALLED ~SETUP-BG2FIXPACK.TP2~ ~104~) BEGIN
+
+<<<<<<<<bld_rep.baf
+IF
+	HasItem("CDHLYSYM",Player6)
+	!Name("Anomen",Player6)
+	!Name("Aerie",Player6)
+	!Name("Viconia",Player6)
+	Kit(Player6,OHTEMPUS)
+THEN
+	RESPONSE #100
+		ApplySpellRES("CDHLYSY2",Player6)
+		ActionOverride(Player6,TransformItem("CDHLYSYM","ohtempus")) //BELTTMPS
+END
+>>>>>>>>
+
+	END ELSE BEGIN
+
 <<<<<<<<bld_rep.baf
 IF
 	HasItem("CDHLYSYM",Player6)
@@ -737,6 +755,8 @@ THEN
 		ActionOverride(Player6,TransformItem("CDHLYSYM","ohtempus")) //BELTTMPS
 END
 >>>>>>>>
+
+	END
 
 <<<<<<<<bld_add.baf
 IF
