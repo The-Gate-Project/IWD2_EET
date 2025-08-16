@@ -3065,6 +3065,33 @@ COPY ~override/IW6200.are~ ~override~
 	LPF fj_are_structure INT_VAR fj_delete_mode=22  STR_VAR fj_structure_type=actor END
 	LPF fj_are_structure INT_VAR fj_delete_mode=20  STR_VAR fj_structure_type=actor END
 	LPF fj_are_structure INT_VAR fj_delete_mode=16  STR_VAR fj_structure_type=actor END
+	 // More reliable IW6200.are first cutscene
+		LPF fj_are_structure INT_VAR fj_delete_mode=23  STR_VAR fj_structure_type=region END
+		LPF fj_are_structure
+			INT_VAR
+				fj_type = 0 // Proximity trigger
+				fj_box_left       = 125
+				fj_box_top        = 2357
+				fj_box_right      = 621
+				fj_box_bottom     = 2770
+				fj_cursor_idx     = 4
+				fj_trap_active    = 1
+				fj_loc_x          = 328
+				fj_loc_y          = 2549
+				fj_vertex_0       = 125 + (2502 << 16)
+				fj_vertex_1       = 454 + (2770 << 16)
+				fj_vertex_2       = 621 + (2582 << 16)
+				fj_vertex_3       = 297 + (2357 << 16)
+			STR_VAR
+				fj_structure_type   = "region"
+				fj_reg_script       = "62PSAABG"
+				fj_name             = "Saablic_Greeting"
+		END
+		LPF ALTER_AREA_ACTOR 
+			STR_VAR 
+				actor_name     = "Saablic_Tan" 
+				script_class   = ~~
+		END
 
 COPY ~override/IW6201.are~ ~override~
 	LPF fj_are_structure INT_VAR fj_delete_mode=22  STR_VAR fj_structure_type=actor END
