@@ -10487,14 +10487,14 @@ Disadvantages:
 â€“ Alignment restricted to lawful good, neutral good, and lawful neutral.~
 
 //OHSELUNE
-@70787 = ~priest of SelÃ»ne~
-@70788 = ~Priest of SelÃ»ne~
-@70789 = ~PRIEST OF SELÃ›NE: SelÃ»ne is often called the Moonmaiden for her connection to the silver moon that orbits Faerun. She is the goddess of the moon and travelers. Her priests, called Silverstars, travel far and wide to help the oppressed and explore lost places. Silverstars are known for their open-minded tolerance and their hatred of bigotry.
+@70787 = ~priest of Selûne~
+@70788 = ~Priest of Selûne~
+@70789 = ~PRIEST OF SELÛNE: Selûne is often called the Moonmaiden for her connection to the silver moon that orbits Faerun. She is the goddess of the moon and travelers. Her priests, called Silverstars, travel far and wide to help the oppressed and explore lost places. Silverstars are known for their open-minded tolerance and their hatred of bigotry.
 
 Advantages:
 â€“ May cast Moon Motes once per day. Gains one use at level 1 and an additional use every 3 levels thereafter.
 
-MOON MOTES: Moon motes calls upon SelÃ»ne's connection with moonlight and magic to invoke a spray of glowing spheres. The glowing spheres cause 4d4 points of magical energy damage to every creature caught in its path, with creatures rolling their Saving Throw vs. Spell sustaining half damage. Undead suffer double damage from the glowing spheres.
+MOON MOTES: Moon motes calls upon Selûne's connection with moonlight and magic to invoke a spray of glowing spheres. The glowing spheres cause 4d4 points of magical energy damage to every creature caught in its path, with creatures rolling their Saving Throw vs. Spell sustaining half damage. Undead suffer double damage from the glowing spheres.
 
 â€“ May cast Moonblade once per day. Gains one use at level 1 and an additional use every 5 levels thereafter.
 â€“ May cast Wall of Moonlight once per day. Gains one use at level 1 and an additional use every 10 levels thereafter.
@@ -10649,7 +10649,7 @@ Disadvantages:
 @70815 = ~ILMATER'S ENDURANCE: The Painbearer draws upon Ilmater to be able to shoulder the burden of trials ahead. For 1 round per level of the Painbearer, the cleric gains +2 to saves, doubles HP, is immune to panic and disease, and will stand firm in the face of any charge or force.~
 
 @70816 = ~Fragments de lune~
-@70817 = ~MOON MOTES: Moon motes calls upon SelÃ»ne's connection with moonlight and magic to invoke a spray of glowing spheres. The glowing spheres cause 4d4 points of magical energy damage to every creature caught in its path, with creatures rolling their Saving Throw vs. Spell sustaining half damage. Undead suffer double damage from the glowing spheres.~
+@70817 = ~MOON MOTES: Moon motes calls upon Selûne's connection with moonlight and magic to invoke a spray of glowing spheres. The glowing spheres cause 4d4 points of magical energy damage to every creature caught in its path, with creatures rolling their Saving Throw vs. Spell sustaining half damage. Undead suffer double damage from the glowing spheres.~
 
 @70818 = ~Lame de Lune~
 @70819 = ~Moonblade 
@@ -10711,7 +10711,7 @@ Equipped abilities:
 
 Weight: 0~
 //SELUNE
-@70838 = ~Holy Symbol of SelÃ»ne~
+@70838 = ~Holy Symbol of Selûne~
 @70839 = ~Only the most worthy and devoted servants of the Moonmaiden are granted these powerful holy symbols.
 
 STATISTICS:
