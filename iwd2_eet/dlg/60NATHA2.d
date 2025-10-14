@@ -24,7 +24,7 @@ IF WEIGHT #2
                                                               SetGlobal("60Egenia_Quest","GLOBAL",3)
                                                               GiveItemCreate("RING41",LastTalkedToBy,1,1,1)
                                                               GiveItemCreate("z0wand30",LastTalkedToBy,50,0,0)
-                                                              GiveItemCreate("SPPR707Z ",LastTalkedToBy,1,1,1)
+                                                              GiveItemCreate("SPPR707Z",LastTalkedToBy,1,1,1)
                                                               EraseJournalEntry(@38957)
                                                               EraseJournalEntry(@39075)
                                                               AddJournalEntry(@39076,QUEST_DONE)~ GOTO 24
@@ -71,7 +71,7 @@ IF WEIGHT #3
                                                               SetGlobal("60Egenia_Quest","GLOBAL",3)
                                                               GiveItemCreate("RING41",LastTalkedToBy,1,1,1)
                                                               GiveItemCreate("z0wand30",LastTalkedToBy,50,0,0)
-                                                              GiveItemCreate("SPPR707Z ",LastTalkedToBy,1,1,1)
+                                                              GiveItemCreate("SPPR707Z",LastTalkedToBy,1,1,1)
                                                               EraseJournalEntry(@38957)
                                                               EraseJournalEntry(@39075)
                                                               AddJournalEntry(@39076,QUEST_DONE)~ GOTO 24
@@ -129,7 +129,7 @@ IF ~~ THEN BEGIN 2
                                                               SetGlobal("60Egenia_Quest","GLOBAL",3)
                                                               GiveItemCreate("RING41",LastTalkedToBy,1,1,1)
                                                               GiveItemCreate("z0wand30",LastTalkedToBy,50,0,0)
-                                                              GiveItemCreate("SPPR707Z ",LastTalkedToBy,1,1,1)
+                                                              GiveItemCreate("SPPR707Z",LastTalkedToBy,1,1,1)
                                                               EraseJournalEntry(@38957)
                                                               EraseJournalEntry(@39075)
                                                               AddJournalEntry(@39076,QUEST_DONE)~ GOTO 24
@@ -187,7 +187,7 @@ IF ~~ THEN BEGIN 3
                                                               SetGlobal("60Egenia_Quest","GLOBAL",3)
                                                               GiveItemCreate("RING41",LastTalkedToBy,1,1,1)
                                                               GiveItemCreate("z0wand30",LastTalkedToBy,50,0,0)
-                                                              GiveItemCreate("SPPR707Z ",LastTalkedToBy,1,1,1)
+                                                              GiveItemCreate("SPPR707Z",LastTalkedToBy,1,1,1)
                                                               EraseJournalEntry(@38957)
                                                               EraseJournalEntry(@39075)
                                                               AddJournalEntry(@39076,QUEST_DONE)~ GOTO 24
@@ -373,12 +373,12 @@ IF ~~ THEN BEGIN 24
   IF ~Class(LastTalkedToBy,MONK)~ THEN REPLY @39138 DO ~SetGlobal("60Egenia_Quest","GLOBAL",3)
                                                         GiveItemCreate("RING41",LastTalkedToBy,1, 1, 1)
                                                         GiveItemCreate("z0wand30",LastTalkedToBy,50,0,0)
-                                                        GiveItemCreate("SPPR707Z ",LastTalkedToBy,1,1,1)~ GOTO 25
+                                                        GiveItemCreate("SPPR707Z",LastTalkedToBy,1,1,1)~ GOTO 25
   IF ~Class(LastTalkedToBy,PALADIN_ALL)
       !Kit(LastTalkedToBy,BLACKGUARD)~ THEN REPLY @39139 DO ~SetGlobal("60Egenia_Quest","GLOBAL",3)
                                                              GiveItemCreate("RING41",LastTalkedToBy,1, 1, 1)
                                                              GiveItemCreate("z0wand30",LastTalkedToBy,50,0,0)
-                                                             GiveItemCreate("SPPR707Z ",LastTalkedToBy,1,1,1)~ GOTO 25
+                                                             GiveItemCreate("SPPR707Z",LastTalkedToBy,1,1,1)~ GOTO 25
   IF ~!Class(LastTalkedToBy,MONK)
       OR(2)
         !Class(LastTalkedToBy,PALADIN_ALL)
@@ -437,7 +437,7 @@ IF ~~ THEN BEGIN 28
                                                               SetGlobal("60Egenia_Quest","GLOBAL",3)
                                                               GiveItemCreate("RING41",LastTalkedToBy,1,1,1)
                                                               GiveItemCreate("z0wand30",LastTalkedToBy,50,0,0)
-                                                              GiveItemCreate("SPPR707Z ",LastTalkedToBy,1,1,1)
+                                                              GiveItemCreate("SPPR707Z",LastTalkedToBy,1,1,1)
                                                               EraseJournalEntry(@38957)
                                                               EraseJournalEntry(@39075)
                                                               AddJournalEntry(@39076,QUEST_DONE)~ GOTO 24
@@ -480,7 +480,7 @@ IF WEIGHT #1
                                                               SetGlobal("60Egenia_Quest","GLOBAL",3)
                                                               GiveItemCreate("RING41",LastTalkedToBy,1,1,1)
                                                               GiveItemCreate("z0wand30",LastTalkedToBy,50,0,0)
-                                                              GiveItemCreate("SPPR707Z ",LastTalkedToBy,1,1,1)
+                                                              GiveItemCreate("SPPR707Z",LastTalkedToBy,1,1,1)
                                                               EraseJournalEntry(@38957)
                                                               EraseJournalEntry(@39075)
                                                               AddJournalEntry(@39076,QUEST_DONE)~ GOTO 24

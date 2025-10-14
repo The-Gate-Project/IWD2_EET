@@ -4,7 +4,7 @@ IF WEIGHT #1
 ~NumTimesTalkedTo(0)~ THEN BEGIN 0
   SAY @9995
   IF ~Global("52Sersa_Train","GLOBAL",1)
-      Global("52Svaltid_Sersa ","GLOBAL",0)~ THEN REPLY @9996 GOTO 3
+      Global("52Svaltid_Sersa","GLOBAL",0)~ THEN REPLY @9996 GOTO 3
   IF ~~ THEN REPLY @9997 GOTO 2
   IF ~~ THEN REPLY @9998 EXIT
 END
@@ -13,7 +13,7 @@ IF WEIGHT #2
 ~True()~ THEN BEGIN 1
   SAY @9999
   IF ~Global("52Sersa_Train","GLOBAL",1)
-      Global("52Svaltid_Sersa ","GLOBAL",0)~ THEN REPLY @9996 GOTO 3
+      Global("52Svaltid_Sersa","GLOBAL",0)~ THEN REPLY @9996 GOTO 3
   IF ~~ THEN REPLY @9997 GOTO 2
   IF ~~ THEN REPLY @9998 EXIT
 END
@@ -22,7 +22,7 @@ IF ~~ THEN BEGIN 2
   SAY @10000
   IF ~Class(LastTalkedToBy,MONK)~ THEN REPLY @38537 GOTO 9
   IF ~Global("52Sersa_Train","GLOBAL",1)
-      Global("52Svaltid_Sersa ","GLOBAL",0)~ THEN REPLY @9996 GOTO 3
+      Global("52Svaltid_Sersa","GLOBAL",0)~ THEN REPLY @9996 GOTO 3
   IF ~~ THEN REPLY @9998 EXIT
 END
 
@@ -46,7 +46,7 @@ END
 
 IF ~~ THEN BEGIN 6
   SAY @10009
-  IF ~~ THEN REPLY @10010 DO ~SetGlobal("52Svaltid_Sersa ","GLOBAL",1)
+  IF ~~ THEN REPLY @10010 DO ~SetGlobal("52Svaltid_Sersa","GLOBAL",1)
                               AddJournalEntry(@9994,QUEST)~ GOTO 7
 END
 
@@ -59,7 +59,7 @@ IF WEIGHT #0
 ~GlobalGT("52Aruma_Gone","GLOBAL",0)~ THEN BEGIN 8
   SAY @10015
   IF ~Global("52Sersa_Train","GLOBAL",1)
-      Global("52Svaltid_Sersa ","GLOBAL",0)~ THEN REPLY @9996 GOTO 3
+      Global("52Svaltid_Sersa","GLOBAL",0)~ THEN REPLY @9996 GOTO 3
   IF ~~ THEN REPLY @9997 GOTO 2
   IF ~~ THEN REPLY @9998 EXIT
 END
@@ -67,6 +67,6 @@ END
 IF ~~ THEN BEGIN 9
   SAY @38532
   IF ~Global("52Sersa_Train","GLOBAL",1)
-      Global("52Svaltid_Sersa ","GLOBAL",0)~ THEN REPLY @9996 EXIT
+      Global("52Svaltid_Sersa","GLOBAL",0)~ THEN REPLY @9996 EXIT
   IF ~~ THEN REPLY @9998 EXIT
 END
