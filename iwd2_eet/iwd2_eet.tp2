@@ -54,8 +54,8 @@ APPEND ~instant.ids~ ~160 ApplySpellRES(S:RES*,O:Target)~ UNLESS ~ApplySpellRES~
 //APPEND ~instant.ids~ ~34 UseItem(S:Object*,O:Target*)~    UNLESS ~UseItem~
 APPEND ~instant.ids~ ~230 RestParty()~                    UNLESS ~^230~
 
-APPEND ~specific.ids~ ~235	ORC_RUNNER~                   UNLESS ~235	ORC_RUNNER~
-APPEND ~specific.ids~ ~254	ANDORA_IWD2~                  UNLESS ~254	ANDORA_IWD2~
+APPEND ~specific.ids~ ~235 ORC_RUNNER~                   UNLESS ~235 ORC_RUNNER~
+APPEND ~specific.ids~ ~254 ANDORA_IWD2~                  UNLESS ~254 ANDORA_IWD2~
 
 APPEND ~invitem.ids~  ~10 NONSTEALABLE_NONDROPABLE~ UNLESS ~10 NONSTEALABLE_NONDROPABLE~
 APPEND ~wmpflag.ids~  ~5 VISIBLE_EXPLORABLE~        UNLESS  ~5 VISIBLE_EXPLORABLE~

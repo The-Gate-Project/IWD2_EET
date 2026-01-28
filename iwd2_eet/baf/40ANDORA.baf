@@ -96,7 +96,6 @@ IF
 		!Name("40CULTWW",LastSeenBy(Myself))
 	!Specifics(LastSeenBy(Myself),254)
 	!InParty(LastSeenBy(Myself))
-	
 	!Range(LastSeenBy(Myself),4)
 	CanEquipRanged()
 THEN
