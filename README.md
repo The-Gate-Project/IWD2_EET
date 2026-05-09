@@ -22,18 +22,24 @@
 
 - [EET](https://github.com/Gibberlings3/EET)
 
+- OTHER MODS  
+
 - [IWD1_EET](https://github.com/The-Gate-Project/IWD1_EET)   
 
-- **[IWD2_EET](https://github.com/The-Gate-Project/IWD2_EET) !**  
+- **[IWD2_EET](https://github.com/The-Gate-Project/IWD2_EET) !!!**
 
-- OTHER MODS  
+- OTHER MODS
+
+- [NWNforBG](https://github.com/abalabokhin/NWNForBG) (Core (0) and "BP-BGT-Worldmap / separate worldmap" (11 / 12)) 
+
+- OTHER MODS
+
+- [IWD_EET-party-banter](https://github.com/The-Gate-Project/iwd_eet-party-banter)
 
 - [IWD_EET_End](https://github.com/The-Gate-Project/IWD_EET_End)   
 
-- EET_End  
+- [IWD_EET_integration fork](https://github.com/11jo/IWD_EET_Integration) (All components)
 
+- NWNforBG ("Install NWN as a dedicated campaign") (20)
 
-##### (Worldmap_IWD_EET is not needed anymore, as it is part of IWD1 and IWD2.) 
-
-
-
+- EET_End 
