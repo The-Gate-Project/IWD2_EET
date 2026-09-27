@@ -254,6 +254,11 @@ OUTER_WHILE ( zzz < 51 ) BEGIN
 		LPF ADD_SPELL_EFFECT INT_VAR opcode=17 power=1 target=2 timing=1 parameter1=val parameter2=1 END
 	ACTION_IF ( zzz < 30 ) BEGIN OUTER_SET zzz = zzz + 5 END ELSE BEGIN OUTER_SET zzz = zzz + 10 END
 END
+//53MORHIZ.d - IDSHP45 - HP = 103
+// Draiken fix: Morhiz's surrender dialogue applies IDSHP45, but the spell was never created.
+COPY ~%MOD_FOLDER%/spl/spell.spl~  ~override/IDSHP45.spl~
+	LPF ADD_SPELL_EFFECT INT_VAR opcode=17 power=1 target=2 timing=1 parameter1=100 parameter2=2 END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode=17 power=1 target=2 timing=1 parameter1=46 parameter2=1 END
 //BLOCKEND
 
 COPY_EXISTING ~FSTRIKH.pro~ ~override/SUNRAYX.pro~
@@ -534,18 +539,14 @@ ADD_PROJECTILE ~%MOD_FOLDER%/spl/mfmiss.pro~  ~Mordenkainen's force missiles 1~
 OUTER_SET imis1 = ~%mfmiss%~
 ADD_PROJECTILE ~%MOD_FOLDER%/spl/mfmiss2.pro~ ~Mordenkainen's force missiles 2~
 OUTER_SET imis2 = ~%mfmiss2%~
-OUTER_SET num1 = imis2
-OUTER_SET num2 = imis2 + 1
-OUTER_SPRINT ~prot~ ~~
-OUTER_SPRINT ~misl~ ~~
-OUTER_FOR ( i = 3 ; i < 12 ; ++i ) BEGIN
-  OUTER_SPRINT ~prot~ ~%prot%%num1% mfmiss2%LNL%~
-  OUTER_SPRINT ~misl~ ~%misl%%num2% Mordenkainen's force missiles %i%%LNL%~
-  OUTER_SET num1 = num1 + 1
-  OUTER_SET num2 = num2 + 1
+// Draiken fix: this used to APPEND nine hand-numbered PROJECTL.IDS/MISSILE.IDS lines
+// that all pointed at MFMISS2 (duplicate entries that confuse later mods and tools).
+// Register real, uniquely named copies through ADD_PROJECTILE instead; only five
+// extra slots are ever referenced by IWWI422 below.
+OUTER_FOR ( i = 3 ; i < 8 ; ++i ) BEGIN
+  COPY ~%MOD_FOLDER%/spl/mfmiss2.pro~ ~override/iwmfm%i%.pro~
+  ADD_PROJECTILE ~override/iwmfm%i%.pro~ ~Mordenkainen's force missiles %i%~
 END
-APPEND ~projectl.ids~ ~%prot%~
-APPEND ~missile.ids~  ~%misl%~
 COPY ~%MOD_FOLDER%/spl/IWWI422.spl~ ~override~
 	SAY 0x08 @21435
 	REPLACE_TEXTUALLY ~#FF_~ ~WIF_~
@@ -565,22 +566,22 @@ COPY ~%MOD_FOLDER%/spl/IWWI422.spl~ ~override~
 			END
 			6 7 8
 			BEGIN
-				WRITE_SHORT offset imis2 + 1
+				WRITE_SHORT offset %iwmfm3%
 			END
 			9 10 11
 			BEGIN
-				WRITE_SHORT offset imis2 + 2
+				WRITE_SHORT offset %iwmfm4%
 			END
 			12 13 14
 			BEGIN
-				WRITE_SHORT offset imis2 + 3
+				WRITE_SHORT offset %iwmfm5%
 			END
 			15 16 17
 			BEGIN
-				WRITE_SHORT offset imis2 + 4
+				WRITE_SHORT offset %iwmfm6%
 			END
 			DEFAULT
-				WRITE_SHORT offset imis2 + 5
+				WRITE_SHORT offset %iwmfm7%
 		END
 	END
 

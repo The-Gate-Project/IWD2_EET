@@ -1,3 +1,210 @@
+// ---- Draiken fix (IWD2 Histachii Brew) ----
+// 61PBREWT was attached to the RootTable container as its *trap* script. In the
+// Enhanced Edition engine a container's script only runs when its trap fires, so
+// none of this ever executed: the brew was never made and the Nheero quest stalled.
+// The same logic now runs from the area script, addressing the table by name.
+IF
+	Global("61NheeroMissionQuest","GLOBAL",5)
+	Global("SPRITE_IS_DEADAlchemist","GLOBAL",0)
+	!Contains("z6genmr","RootTable")
+		Contains("z6genmm","RootTable")
+THEN
+	RESPONSE #100
+		DisplayString(Player1,@50015)
+		AddJournalEntry(@35061,QUEST)
+		FadeToColor([0.0],0)
+		SetGlobalTimer("AlchemistWaitTimer","MYAREA",0)
+		FadeFromColor([0.0],0)
+		SetGlobal("61NheeroMissionQuest","GLOBAL",6)
+END
+
+IF
+	Global("61NheeroMissionQuest","GLOBAL",5)
+	!Global("SPRITE_IS_DEADAlchemist","GLOBAL",0)
+	!Contains("z6genmr","RootTable")
+		Contains("z6genmm","RootTable")
+THEN
+	RESPONSE #100
+		DisplayString(Player1,@50015)
+		AddJournalEntry(@35061,QUEST)
+		SetGlobal("61NheeroMissionQuest","GLOBAL",6)
+END
+
+IF
+	Global("PlayerMadeBrew","MYAREA",-1)
+	GlobalGT("61NheeroMissionQuest","GLOBAL",3)
+	GlobalLT("61NheeroMissionQuest","GLOBAL",8)
+	OpenState("AR6102_Lever2",TRUE)
+	Contains("z6potnsb","RootTable")
+THEN
+	RESPONSE #100
+		DisplayString(Player1,@50016)
+		AddJournalEntry(@41362,QUEST)
+		AddXP2DA("IW2EX12VH")
+		DisplayStringNoName(Player1,@41302)
+		SetGlobal("61PlayerMadeBrew","GLOBAL",1)
+		SetGlobal("61NheeroMissionQuest","GLOBAL",8)
+END
+
+IF
+	Global("61NheeroMissionQuest","GLOBAL",6)
+	OpenState("AR6102_Lever2",TRUE)
+	Contains("z6potnsb","RootTable")
+THEN
+	RESPONSE #100
+		DisplayString(Player1,@50017)
+		AddJournalEntry(@35062,QUEST)
+		SetGlobal("61NheeroMissionQuest","GLOBAL",7)
+END
+
+IF
+	Global("61NheeroMissionQuest","GLOBAL",7)
+		Contains("z6genmr","RootTable")
+	!Contains("z6genmm","RootTable")
+THEN
+	RESPONSE #100
+		DisplayString(Player1,@50016)
+		AddJournalEntry(@41362,QUEST)
+		AddXP2DA("IW2EX12VH")
+		DisplayStringNoName(Player1,@35015)
+		SetGlobal("61NheeroMissionQuest","GLOBAL",8)
+END
+
+IF
+	Global("BrewTime","MYAREA",1)
+		Contains("z6genmr","RootTable")
+THEN
+	RESPONSE #100
+		ActionOverride("RootTable",CreateItem("z6potnhb",1,0,0))
+		IncrementGlobal("HistachiiBrewCount","MYAREA",1)
+		SetGlobal("CheckBrewExpiration","MYAREA",1)
+		SetGlobalTimer("HistachiiBrewSpoilTimer","MYAREA",2400)
+		SetGlobal("BrewTime","MYAREA",0)
+END
+
+IF
+	Global("BrewTime","MYAREA",1)
+		Contains("z6genmm","RootTable")
+THEN
+	RESPONSE #100
+		
+		ActionOverride("RootTable",CreateItem("z6potnsb",1,0,0))
+		SetGlobal("BrewTime","MYAREA",0)
+END
+
+IF
+	Global("WorkRoomActive","MYAREA",1)
+		Contains("z6daggws","PoisonTable")
+THEN
+	RESPONSE #100
+		ActionOverride("PoisonTable",DestroyItem("z6daggws"))
+		ActionOverride("PoisonTable",CreateItem("z6genwp",1,0,0)) 
+		IncrementGlobal("WyvernPoisonCount","MYAREA",1)
+END
+
+IF
+	Global("WorkRoomActive","MYAREA",1)
+	Global("61ExitTo6104Open","GLOBAL",1)
+	Contains("z6genwp","PoisonTable")
+THEN
+	RESPONSE #100
+		ActionOverride("PoisonTable",DestroyItem("z6genwp"))
+		ActionOverride("PoisonTable",CreateItem("POTN20",1,0,0)) 
+END
+
+IF
+	GlobalGT("BrewTime","MYAREA",0)
+THEN
+	RESPONSE #100
+		SetGlobal("BrewTime","MYAREA",0)
+END
+
+IF
+	Global("CheckBrewExpiration","MYAREA",1)
+	GlobalTimerExpired("HistachiiBrewSpoilTimer","MYAREA")
+	HasItem("z6potnhb",Player1)
+THEN
+	RESPONSE #100
+		ActionOverride(Player1,DestroyItem("z6potnhb"))
+		GiveItemCreate("z6potnub",Player1,1,0,0)
+		Continue()
+END
+
+IF
+	Global("CheckBrewExpiration","MYAREA",1)
+	GlobalTimerExpired("HistachiiBrewSpoilTimer","MYAREA")
+	HasItem("z6potnhb",Player2)
+THEN
+	RESPONSE #100
+		ActionOverride(Player2,DestroyItem("z6potnhb"))
+		GiveItemCreate("z6potnub",Player2,1,0,0)
+		Continue()
+END
+
+IF
+	Global("CheckBrewExpiration","MYAREA",1)
+	GlobalTimerExpired("HistachiiBrewSpoilTimer","MYAREA")
+	HasItem("z6potnhb",Player3)
+THEN
+	RESPONSE #100
+		ActionOverride(Player3,DestroyItem("z6potnhb"))
+		GiveItemCreate("z6potnub",Player3,1,0,0)
+		Continue()
+END
+
+IF
+	Global("CheckBrewExpiration","MYAREA",1)
+	GlobalTimerExpired("HistachiiBrewSpoilTimer","MYAREA")
+	HasItem("z6potnhb",Player4)
+THEN
+	RESPONSE #100
+		ActionOverride(Player4,DestroyItem("z6potnhb"))
+		GiveItemCreate("z6potnub",Player4,1,0,0)
+		Continue()
+END
+
+IF
+	Global("CheckBrewExpiration","MYAREA",1)
+	GlobalTimerExpired("HistachiiBrewSpoilTimer","MYAREA")
+	HasItem("z6potnhb",Player5)
+THEN
+	RESPONSE #100
+		ActionOverride(Player5,DestroyItem("z6potnhb"))
+		GiveItemCreate("z6potnub",Player5,1,0,0)
+		Continue()
+END
+
+IF
+	Global("CheckBrewExpiration","MYAREA",1)
+	GlobalTimerExpired("HistachiiBrewSpoilTimer","MYAREA")
+	HasItem("z6potnhb",Player6)
+THEN
+	RESPONSE #100
+		ActionOverride(Player6,DestroyItem("z6potnhb"))
+		GiveItemCreate("z6potnub",Player6,1,0,0)
+		Continue()
+END
+
+IF
+	Global("CheckBrewExpiration","MYAREA",1)
+	GlobalTimerExpired("HistachiiBrewSpoilTimer","MYAREA")
+	Contains("z6potnhb","RootTable")
+THEN
+	RESPONSE #100
+		ActionOverride("RootTable",DestroyItem("z6potnhb"))
+		ActionOverride("RootTable",CreateItem("z6potnub",1,0,0))
+		Continue()
+END
+
+IF
+	Global("CheckBrewExpiration","MYAREA",1)
+	GlobalTimerExpired("HistachiiBrewSpoilTimer","MYAREA")
+THEN
+	RESPONSE #100
+		SetGlobal("CheckBrewExpiration","MYAREA",0)
+END
+// ---- end Draiken fix ----
+
 IF
 	!Global("VolcanoCreate","MYAREA",1)
 THEN
